@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import {
   FaArrowRight,
   FaMagnifyingGlass,
-  FaDraftingCompass,
+  FaCompassDrafting,
   FaHammer,
   FaRocket,
   FaChevronRight,
@@ -74,7 +74,7 @@ const PROCESS_STEPS = [
   },
   {
     number: '02',
-    icon: FaDraftingCompass,
+    icon: FaCompassDrafting,
     title: 'Architecture',
     desc: 'Design the system: models, pipelines, integrations, and infra.',
   },
