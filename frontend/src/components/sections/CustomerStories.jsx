@@ -133,7 +133,7 @@ export default function CustomerStories() {
               exit={{ opacity: 0, x: -24 }}
               transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               className="grid grid-cols-1 lg:grid-cols-5 gap-0"
-              style={{ minHeight: '380px' }}
+              style={{ minHeight: window.innerWidth < 1024 ? 'auto' : '380px' }}
             >
               {/* LEFT — image panel */}
               <div
@@ -143,32 +143,32 @@ export default function CustomerStories() {
                   backgroundImage: (story.coverImage || story.image) ? `url("${encodeURI(story.coverImage || story.image)}")` : undefined,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  minHeight: '320px',
+                  minHeight: window.innerWidth < 640 ? '240px' : '320px',
                 }}
               >
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black/30" />
 
                 {/* Industry badge + slide number */}
-                <div className="absolute inset-0 p-8 flex flex-col justify-between">
-                  <span className="text-[11px] uppercase tracking-widest text-white/80 font-semibold bg-white/10 px-3 py-1.5 rounded-full w-fit">
+                <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-between">
+                  <span className="text-[10px] sm:text-[11px] uppercase tracking-widest text-white/80 font-semibold bg-white/10 px-3 py-1.5 rounded-full w-fit">
                     {story.service || story.industry}
                   </span>
-                  <p className="text-[80px] font-display font-black text-white/10 leading-none select-none">
+                  <p className="text-[60px] sm:text-[80px] font-display font-black text-white/10 leading-none select-none">
                     {String(idx + 1).padStart(2, '0')}
                   </p>
                 </div>
               </div>
 
               {/* RIGHT — content */}
-              <div className="lg:col-span-3 flex flex-col justify-between pl-10 py-2">
+              <div className="lg:col-span-3 flex flex-col justify-between pl-0 lg:pl-10 py-8 lg:py-2">
                 <div>
-                  <p className="text-[13px] text-[#666] mb-3">{story.client}</p>
-                  <h3 className="text-[22px] font-display font-bold text-white leading-tight mb-6">
+                  <p className="text-[12px] sm:text-[13px] text-[#666] mb-3">{story.client}</p>
+                  <h3 className="text-[18px] sm:text-[22px] font-display font-bold text-white leading-tight mb-4 sm:mb-6">
                     {story.title}
                   </h3>
                   {story.quote?.text && (
-                    <blockquote className="border-l-2 border-[#F26522] pl-5 italic text-[#aaa] text-[15px] leading-relaxed mb-6">
+                    <blockquote className="border-l-2 border-[#F26522] pl-4 sm:pl-5 italic text-[#aaa] text-[14px] sm:text-[15px] leading-relaxed mb-4 sm:mb-6">
                       "{story.quote.text}"
                     </blockquote>
                   )}
@@ -176,8 +176,8 @@ export default function CustomerStories() {
                     <div className="flex items-center gap-3 mb-6">
                       <div className="w-8 h-8 bg-[#1A3050] rounded-full flex-shrink-0" />
                       <div>
-                        <p className="text-[14px] font-bold text-white">{story.quote.author}</p>
-                        <p className="text-[13px] text-[#666]">
+                        <p className="text-[13px] sm:text-[14px] font-bold text-white">{story.quote.author}</p>
+                        <p className="text-[12px] sm:text-[13px] text-[#666]">
                           {story.quote.role} · {story.client}
                         </p>
                       </div>
@@ -188,11 +188,11 @@ export default function CustomerStories() {
                 <div>
                   {/* Metrics */}
                   {story.metrics?.length > 0 && (
-                    <div className="flex gap-3 mb-6">
+                    <div className="flex flex-col sm:flex-row gap-3 mb-6">
                       {story.metrics.slice(0, 2).map((m, i) => (
-                        <div key={i} className="border border-[#1A3050] px-5 py-4 flex-1">
-                          <p className="text-[26px] font-display font-black text-[#F26522]">{m.value}</p>
-                          <p className="text-[11px] text-[#666] mt-1">{m.label}</p>
+                        <div key={i} className="border border-[#1A3050] px-4 py-3 sm:px-5 sm:py-4 flex-1">
+                          <p className="text-[22px] sm:text-[26px] font-display font-black text-[#F26522]">{m.value}</p>
+                          <p className="text-[10px] sm:text-[11px] text-[#666] mt-1">{m.label}</p>
                         </div>
                       ))}
                     </div>

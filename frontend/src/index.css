@@ -226,12 +226,30 @@ button { cursor: pointer; font-family: inherit; }
 
 /* ── RESPONSIVE ───────────────────────────────── */
 @media (max-width: 1024px) {
-  .section-pad { padding: 80px 28px; }
-  .section-pad-sm { padding: 56px 28px; }
+  .section-pad { padding: 80px 32px; }
+  .section-pad-sm { padding: 56px 32px; }
+}
+@media (max-width: 768px) {
+  .section-pad { padding: 64px 24px; }
+  .section-pad-sm { padding: 48px 24px; }
+  .content-wrap { width: 100%; }
 }
 @media (max-width: 640px) {
-  .section-pad { padding: 56px 20px; }
+  .section-pad { padding: 48px 20px; }
   .section-pad-sm { padding: 40px 20px; }
-  .hero-title { font-size: 1.9rem; }
-  .section-title { font-size: 1.9rem; }
+  .hero-title { font-size: 2.25rem; line-height: 1.1; }
+  .section-title { font-size: 2rem; line-height: 1.2; }
+  
+  /* Ensure grids stack on small mobile */
+  .grid { display: flex; flex-direction: column; }
+  .grid-cols-1, .grid-cols-2, .grid-cols-3, .grid-cols-4, .grid-cols-5, .grid-cols-6 { 
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important; 
+  }
+  
+  /* Buttons full width on tiny screens */
+  .btn-accent, .btn-ghost { width: 100%; justify-content: center; }
 }
+
+/* Fix for horizontal overflow issues */
+.overflow-x-hidden-fix { overflow-x: hidden; width: 100vw; position: relative; }
+
