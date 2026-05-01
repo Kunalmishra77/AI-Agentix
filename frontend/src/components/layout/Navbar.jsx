@@ -396,7 +396,7 @@ export default function Navbar({ bannerVisible }) {
         className={`fixed left-0 right-0 z-[100] h-[72px] flex items-center
           transition-all duration-300 ${navBg} ${navShadow}`}
       >
-        <div className="max-w-[1240px] mx-auto w-full px-4 sm:px-8 lg:px-12 h-full flex items-center gap-4">
+        <div className="max-w-[1240px] mx-auto w-full px-4 sm:px-8 lg:px-12 h-full flex items-center justify-between gap-4">
 
           {/* LOGO */}
           <Link to="/" className="flex items-center shrink-0">

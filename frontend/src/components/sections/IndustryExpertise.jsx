@@ -170,7 +170,7 @@ export default function IndustryExpertise() {
 
         {/* ── Tabs ── */}
         <div
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 border-t border-[#e5e5e5]"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 border-t border-[#e5e5e5]"
         >
           {INDUSTRIES.map((item, i) => (
             <button

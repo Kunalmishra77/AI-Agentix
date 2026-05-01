@@ -93,12 +93,12 @@ for (let i = 0; i < AWARDS.length; i += 2) {
 function AwardSquare({ award }) {
   return (
     <div
-      className="relative overflow-hidden rounded-lg w-full"
-      style={{ height: '260px', background: award.bg }}
+      className="relative overflow-hidden rounded-lg w-full h-[200px] sm:h-[260px]"
+      style={{ background: award.bg }}
     >
       <div className="absolute inset-0 p-5 flex flex-col justify-between">
         <span
-          className="font-bold text-[13px] tracking-wide"
+          className="font-bold text-[12px] sm:text-[13px] tracking-wide"
           style={{ color: award.dark ? '#fff' : '#0a0a0a' }}
         >
           {award.issuer}
@@ -108,7 +108,7 @@ function AwardSquare({ award }) {
           <p
             className="font-black leading-tight mb-1 whitespace-pre-line"
             style={{
-              fontSize: 'clamp(1.1rem, 1.6vw, 1.5rem)',
+              fontSize: 'clamp(1rem, 4vw, 1.5rem)',
               color: award.dark ? '#fff' : '#0a0a0a',
               letterSpacing: '-0.01em',
             }}
@@ -116,7 +116,7 @@ function AwardSquare({ award }) {
             {award.title}
           </p>
           <p
-            className="text-[11px] font-semibold"
+            className="text-[10px] sm:text-[11px] font-semibold"
             style={{ color: award.accent || (award.dark ? '#0a0a0a' : 'rgba(0,0,0,0.55)') }}
           >
             {award.subtitle}
@@ -124,7 +124,7 @@ function AwardSquare({ award }) {
         </div>
 
         <span
-          className="text-[12px] font-medium tracking-wider uppercase"
+          className="text-[11px] sm:text-[12px] font-medium tracking-wider uppercase"
           style={{ color: award.dark ? 'rgba(255,255,255,0.45)' : 'rgba(0,0,0,0.4)' }}
         >
           {award.year}
@@ -181,7 +181,7 @@ export default function AwardsSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.4 }}
-                className="grid grid-cols-2 gap-4"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                 style={{ gridTemplateRows: '1fr' }}
               >
                 {currentPage.map((award) => (

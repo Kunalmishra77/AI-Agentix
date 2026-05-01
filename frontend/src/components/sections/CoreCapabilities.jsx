@@ -142,6 +142,10 @@ export default function CoreCapabilities() {
                   className={`
                     lg:col-start-${col + 1} lg:row-start-${row + 1}
                   `}
+                  style={{ 
+                    gridColumn: window.innerWidth < 1024 ? 'auto' : undefined,
+                    gridRow: window.innerWidth < 1024 ? 'auto' : undefined 
+                  }}
                 >
                   <CapCard
                     cap={cap}
