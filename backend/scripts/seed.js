@@ -35,6 +35,7 @@ const CASE_STUDIES = [
     result: 'The system delivered 78 qualified meetings in the first 6 weeks, a 3.9× improvement.',
     metrics: [{ value: '3.9×', label: 'Increase in qualified meetings' }, { value: '40h', label: 'Weekly hours saved' }, { value: '6wk', label: 'Time to full ROI' }],
     tags: ['AI Agents', 'LLM Integration'], featured: true,
+    coverImage: '/assets/images/Customer stories1.webp'
   },
   {
     title: '24/7 AI Support Agent for a 50,000-User Platform',
@@ -44,6 +45,7 @@ const CASE_STUDIES = [
     result: '74% autonomous resolution rate. CSAT improved from 3.4 to 4.7 in 30 days.',
     metrics: [{ value: '74%', label: 'Autonomous ticket resolution' }, { value: '4.7★', label: 'CSAT (up from 3.4)' }, { value: '30d', label: 'Time to full impact' }],
     tags: ['Custom Chatbot', 'RAG'], featured: true,
+    coverImage: '/assets/images/Customer stories2.webp'
   },
   {
     title: 'End-to-End n8n Automation for a Digital Marketing Agency',
@@ -53,6 +55,7 @@ const CASE_STUDIES = [
     result: '26 hours/week reclaimed per account manager. Full ROI achieved in 3 weeks.',
     metrics: [{ value: '26h', label: 'Hours saved/week per AM' }, { value: '100%', label: 'Automated reporting' }, { value: '3wk', label: 'Time to ROI' }],
     tags: ['n8n Automation'], featured: true,
+    coverImage: '/assets/images/Customer stories3.webp'
   },
   {
     title: 'Intelligent Contract Analysis System for a Legal Firm',
@@ -62,6 +65,7 @@ const CASE_STUDIES = [
     result: 'Contract review time reduced by 68%. Associates now focus entirely on legal strategy.',
     metrics: [{ value: '68%', label: 'Reduction in review time' }, { value: '99.2%', label: 'Extraction accuracy' }],
     tags: ['LLM Integration', 'Data Engineering'], featured: false,
+    coverImage: '/assets/images/Customer stories4.webp'
   },
 ];
 
@@ -119,8 +123,10 @@ async function seed() {
     // Case studies
     for (const cs of CASE_STUDIES) {
       await client.query(
-        `INSERT INTO case_studies (title, slug, industry, client, challenge, solution, result, metrics, tags, is_featured) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) ON CONFLICT (slug) DO NOTHING`,
-        [cs.title, sl(cs.title), cs.industry, cs.client, cs.challenge, cs.solution, cs.result, JSON.stringify(cs.metrics), cs.tags, cs.featured]
+        `INSERT INTO case_studies (title, slug, industry, client, challenge, solution, result, metrics, tags, is_featured, cover_image) 
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) 
+         ON CONFLICT (slug) DO UPDATE SET cover_image = EXCLUDED.cover_image`,
+        [cs.title, sl(cs.title), cs.industry, cs.client, cs.challenge, cs.solution, cs.result, JSON.stringify(cs.metrics), cs.tags, cs.featured, cs.coverImage]
       );
     }
     console.log(`  ✅  ${CASE_STUDIES.length} case studies seeded`);

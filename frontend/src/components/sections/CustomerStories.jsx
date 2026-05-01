@@ -140,7 +140,7 @@ export default function CustomerStories() {
                 className="lg:col-span-2 relative overflow-hidden"
                 style={{
                   background: imageBg,
-                  backgroundImage: story.image ? `url(${story.image})` : undefined,
+                  backgroundImage: (story.coverImage || story.image) ? `url("${encodeURI(story.coverImage || story.image)}")` : undefined,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   minHeight: '320px',
