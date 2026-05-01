@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "cd frontend && npm install && npm run build && cd .. && rm -rf dist && cp -r frontend/dist ./dist",
+    "build": "cd frontend && npm install && npm run build && cd .. && rm -rf public && cp -r frontend/dist ./public",
     "start": "node backend/server.js",
     "backend-dev": "cd backend && npm run dev",
     "frontend-dev": "cd frontend && npm run dev"
