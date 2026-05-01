@@ -240,12 +240,6 @@ button { cursor: pointer; font-family: inherit; }
   .hero-title { font-size: 2.25rem; line-height: 1.1; }
   .section-title { font-size: 2rem; line-height: 1.2; }
   
-  /* Ensure grids stack on small mobile */
-  .grid { display: flex; flex-direction: column; }
-  .grid-cols-1, .grid-cols-2, .grid-cols-3, .grid-cols-4, .grid-cols-5, .grid-cols-6 { 
-    grid-template-columns: repeat(1, minmax(0, 1fr)) !important; 
-  }
-  
   /* Buttons full width on tiny screens */
   .btn-accent, .btn-ghost { width: 100%; justify-content: center; }
 }
