@@ -3,6 +3,7 @@ import { useState } from 'react';
 import AnnouncementBanner from './components/layout/AnnouncementBanner.jsx';
 import Navbar from './components/layout/Navbar.jsx';
 import Footer from './components/layout/Footer.jsx';
+import ScrollToTop from './components/ui/ScrollToTop.jsx';
 import Home from './pages/Home.jsx';
 import Contact from './pages/Contact.jsx';
 import CaseStudies from './pages/CaseStudies.jsx';
@@ -32,6 +33,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-[#0D1E3A]">
+      <ScrollToTop />
       {bannerVisible && <AnnouncementBanner onDismiss={dismissBanner} />}
       <Navbar bannerVisible={bannerVisible} />
       <main>
