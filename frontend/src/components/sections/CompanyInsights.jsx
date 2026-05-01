@@ -58,21 +58,21 @@ const slideVariants = {
 
 function SliderCard({ item, isResource }) {
   return (
-    <div className="flex gap-8 w-full">
+    <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 w-full">
       {/* Square image */}
-      <div className="relative flex-shrink-0 overflow-hidden rounded-sm" style={{ width: 200, height: 200 }}>
+      <div className="relative flex-shrink-0 overflow-hidden rounded-sm mx-auto sm:mx-0" style={{ width: 200, height: 200 }}>
         <div className="absolute inset-0" style={{ background: item.bg }} />
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white rounded-full px-4 py-1.5 whitespace-nowrap shadow-sm">
           <span className="text-[12px] font-medium text-[#333]">{item.category}</span>
         </div>
       </div>
       {/* Text */}
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center text-center sm:text-left">
         <h3 className="font-display font-bold text-[#0D1E3A] leading-snug mb-3" style={{ fontSize: '1.15rem' }}>
           {item.title}
         </h3>
         <p className="text-[14px] text-[#666] leading-relaxed mb-5">{item.excerpt}</p>
-        <button className="flex items-center gap-2 text-[#F26522] font-semibold text-[14px] w-fit hover:text-[#E05A1A] transition-colors">
+        <button className="flex items-center gap-2 text-[#F26522] font-semibold text-[14px] mx-auto sm:mx-0 w-fit hover:text-[#E05A1A] transition-colors">
           {isResource ? 'Download' : 'Read more'}
           <span className="w-5 h-5 rounded-full border-2 border-current flex items-center justify-center text-[10px]">
             {isResource ? '↓' : '→'}
@@ -110,20 +110,20 @@ export default function CompanyInsights() {
   }, [next]);
 
   return (
-    <section className="flex border-t border-[#e5e5e5]" style={{ minHeight: '480px' }}>
+    <section className="flex flex-col lg:flex-row border-t border-[#e5e5e5]" style={{ minHeight: '480px' }}>
 
       {/* LEFT — dark panel */}
       <div
-        className="flex-shrink-0 flex flex-col justify-center px-12 py-16"
-        style={{ width: '30%', backgroundColor: '#232323' }}
+        className="flex-shrink-0 flex flex-col justify-center px-8 sm:px-12 py-12 lg:py-16 w-full lg:w-[30%]"
+        style={{ backgroundColor: '#232323' }}
       >
         <h2
           className="font-display font-black text-white leading-tight mb-5"
           style={{ fontSize: 'clamp(1.8rem, 2.5vw, 2.6rem)', letterSpacing: '-0.025em' }}
         >
-          Company<br />insights
+          Company<br className="hidden lg:block" /> insights
         </h2>
-        <p className="text-[#aaa] text-[14px] leading-relaxed mb-10">
+        <p className="text-[#aaa] text-[14px] leading-relaxed mb-10 max-w-md">
           Learn more about how AI Agentix is revolutionising operational productivity
         </p>
 
@@ -172,7 +172,7 @@ export default function CompanyInsights() {
       </div>
 
       {/* RIGHT — one-by-one slide */}
-      <div className="flex-1 overflow-hidden bg-[#f5f5f3] flex items-center py-16 px-12">
+      <div className="flex-1 overflow-hidden bg-[#f5f5f3] flex items-center py-12 sm:py-16 px-8 sm:px-12">
         <div className="w-full relative" style={{ minHeight: 200 }}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div

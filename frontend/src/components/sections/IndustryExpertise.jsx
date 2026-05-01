@@ -85,37 +85,37 @@ export default function IndustryExpertise() {
   const ind = INDUSTRIES[active];
 
   return (
-    <section ref={ref} className="bg-white py-20 border-t border-[#e5e5e5]">
-      <div className="max-w-[1240px] mx-auto px-12">
+    <section ref={ref} className="bg-white py-12 sm:py-20 border-t border-[#e5e5e5]">
+      <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
 
         {/* ── Header ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex items-center justify-between mb-12"
+          className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-12"
         >
           <h2
             className="font-display font-black text-[#0D1E3A] leading-tight"
-            style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.025em' }}
+            style={{ fontSize: 'clamp(1.75rem, 3.5vw, 3rem)', letterSpacing: '-0.025em' }}
           >
             Industry expertise
           </h2>
-          <div className="flex items-center gap-4">
-            <span className="text-[15px] text-[#555]">Your industry isn't here? That's not a problem!</span>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <span className="text-[14px] sm:text-[15px] text-[#555]">Your industry isn't here? That's not a problem!</span>
             <Link
               to="/contact"
-              className="px-5 py-2.5 bg-[#F26522] text-white font-semibold text-[14px] hover:bg-[#FF7A3D] transition-colors whitespace-nowrap"
+              className="px-5 py-2.5 bg-[#F26522] text-white font-semibold text-[14px] hover:bg-[#FF7A3D] transition-colors whitespace-nowrap text-center"
             >
               Let's talk
             </Link>
           </div>
         </motion.div>
 
-        {/* ── Main: image left | content right — equal height ── */}
-        <div className="grid grid-cols-[38%_1fr] items-stretch">
+        {/* ── Main: image | content — stacked on mobile ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-[38%_1fr] items-stretch">
 
-          {/* LEFT — image fills full column height */}
+          {/* LEFT — image panel */}
           <AnimatePresence mode="wait">
             <motion.div
               key={`img-${active}`}
@@ -123,8 +123,8 @@ export default function IndustryExpertise() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35 }}
-              className="relative overflow-hidden"
-              style={{ background: ind.bg, minHeight: '460px' }}
+              className="relative overflow-hidden min-h-[280px] sm:min-h-[360px] lg:min-h-[460px]"
+              style={{ background: ind.bg }}
             >
               <img
                 src={ind.image}
@@ -143,20 +143,19 @@ export default function IndustryExpertise() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-col justify-center px-14 py-12 bg-white border border-[#e5e5e5] border-l-0"
+              className="flex flex-col justify-center px-6 sm:px-10 lg:px-14 py-8 sm:py-12 bg-white border border-[#e5e5e5] lg:border-l-0"
             >
               <h3
-                className="font-display font-bold text-[#0D1E3A] mb-6 leading-snug"
-                style={{ fontSize: '1.75rem' }}
+                className="font-display font-bold text-[#0D1E3A] mb-4 sm:mb-6 leading-snug text-[1.4rem] sm:text-[1.75rem]"
               >
                 {ind.title}
               </h3>
               {ind.content.map((p, i) => (
-                <p key={i} className="text-[15px] text-[#555] leading-relaxed mb-5">
+                <p key={i} className="text-[14px] sm:text-[15px] text-[#555] leading-relaxed mb-4 sm:mb-5">
                   {p}
                 </p>
               ))}
-              <div className="mt-auto pt-6 flex justify-end">
+              <div className="mt-auto pt-4 sm:pt-6 flex justify-end">
                 <Link
                   to={ind.href}
                   className="text-[14px] font-semibold text-[#F26522] hover:text-[#FF7A3D] transition-colors"
@@ -169,23 +168,22 @@ export default function IndustryExpertise() {
 
         </div>
 
-        {/* ── Tabs: FULL WIDTH below both columns ── */}
+        {/* ── Tabs ── */}
         <div
-          className="grid border-t border-[#e5e5e5]"
-          style={{ gridTemplateColumns: `repeat(${INDUSTRIES.length}, 1fr)` }}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 border-t border-[#e5e5e5]"
         >
           {INDUSTRIES.map((item, i) => (
             <button
               key={item.tab}
               onClick={() => setActive(i)}
-              className={`py-8 px-5 text-left border-r border-b transition-all duration-200
+              className={`py-6 sm:py-8 px-4 sm:px-5 text-left border-r border-b transition-all duration-200
                 ${active === i
                   ? 'bg-[#0D1E3A] border-[#0D1E3A]'
                   : 'bg-white border-[#e5e5e5] hover:bg-[#f7f7f5]'
                 }`}
             >
               <span
-                className={`font-semibold text-[14px] leading-snug block
+                className={`font-semibold text-[13px] sm:text-[14px] leading-snug block
                   ${active === i ? 'text-[#F26522]' : 'text-[#333]'}`}
               >
                 {item.tab}

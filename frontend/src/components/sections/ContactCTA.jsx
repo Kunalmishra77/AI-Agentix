@@ -38,8 +38,7 @@ export default function ContactCTA() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="relative z-10 max-w-[1240px] mx-auto px-12 py-20 grid items-center"
-          style={{ gridTemplateColumns: '38% 1fr', gap: '4rem' }}
+          className="relative z-10 max-w-[1240px] mx-auto px-6 sm:px-12 py-16 sm:py-20 grid grid-cols-1 lg:grid-cols-[38%_1fr] items-center gap-10 lg:gap-16"
         >
           {/* Left — "Contact us" */}
           <h2
@@ -52,7 +51,7 @@ export default function ContactCTA() {
           {/* Right — subtitle + CTA */}
           <div>
             <p
-              className="text-white font-medium leading-relaxed mb-8"
+              className="text-white font-medium leading-relaxed mb-8 max-w-2xl"
               style={{ fontSize: 'clamp(1rem, 1.4vw, 1.2rem)' }}
             >
               Schedule an intro call to get know each other better and understand the way we work
@@ -68,12 +67,12 @@ export default function ContactCTA() {
       </section>
 
       {/* ── Bottom — Newsletter signup ── */}
-      <section className="bg-white border-t border-[#e5e5e5] py-14">
-        <div className="max-w-[1240px] mx-auto px-12">
-          <div className="grid items-center gap-16" style={{ gridTemplateColumns: '45% 1fr' }}>
+      <section className="bg-white border-t border-[#e5e5e5] py-12 sm:py-14">
+        <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[45%_1fr] items-center gap-10 lg:gap-16">
 
             {/* Left */}
-            <div>
+            <div className="text-center lg:text-left">
               <h3
                 className="font-display font-black text-[#0D1E3A] mb-2"
                 style={{ fontSize: '1.5rem' }}

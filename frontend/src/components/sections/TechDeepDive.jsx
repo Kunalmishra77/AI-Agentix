@@ -48,10 +48,10 @@ export default function TechDeepDive() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="font-display font-black text-[#0D1E3A] leading-tight mb-16 w-full"
-          style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2.4rem)', letterSpacing: '-0.02em' }}
+          className="font-display font-black text-[#0D1E3A] leading-tight mb-12 sm:mb-16 w-full"
+          style={{ fontSize: 'clamp(1.4rem, 2.6vw, 2.4rem)', letterSpacing: '-0.02em' }}
         >
-          Outrun the competition with Artificial Intelligence solutions<br />
+          Outrun the competition with Artificial Intelligence solutions
           and Machine Learning services oiled with Big Data
         </motion.h2>
 

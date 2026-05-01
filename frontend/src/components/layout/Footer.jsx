@@ -49,11 +49,11 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t border-[#E8EDF3]">
 
-      {/* ── MAIN GRID — 4 columns ── */}
-      <div className="max-w-[1240px] mx-auto px-12 py-10 grid grid-cols-1 md:grid-cols-[20%_1fr_13%_20%] gap-10 items-start border-b border-[#E8EDF3]">
+      {/* ── MAIN GRID ── */}
+      <div className="max-w-[1240px] mx-auto px-6 sm:px-12 py-12 lg:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[20%_1fr_13%_20%] gap-10 lg:gap-12 items-start border-b border-[#E8EDF3]">
 
         {/* Col 1 — Logo + tagline + social */}
-        <div>
+        <div className="md:pr-4">
           <Link to="/" className="inline-block mb-4">
             <img
               src="/assets/clients/logo.png"
@@ -61,43 +61,43 @@ export default function Footer() {
               className="h-9 w-auto object-contain"
             />
           </Link>
-          <p className="text-[13px] text-[#6B7280] leading-relaxed mb-5">
+          <p className="text-[13px] text-[#6B7280] leading-relaxed mb-6">
             End-to-end AI solutions — from strategy and proof-of-concept to production deployment.
           </p>
-          <div className="flex gap-2">
+          <div className="flex gap-3">
             <a
               href="https://linkedin.com"
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
-              className="w-8 h-8 rounded-lg border border-[#E5E7EB] flex items-center justify-center text-[#6B7280] hover:border-[#F26522] hover:text-[#F26522] hover:bg-[#FFF5F0] transition-all duration-200"
+              className="w-9 h-9 rounded-lg border border-[#E5E7EB] flex items-center justify-center text-[#6B7280] hover:border-[#F26522] hover:text-[#F26522] hover:bg-[#FFF5F0] transition-all duration-200"
             >
-              <FaLinkedinIn size={13} />
+              <FaLinkedinIn size={14} />
             </a>
             <a
               href="https://twitter.com"
               target="_blank"
               rel="noreferrer"
               aria-label="X / Twitter"
-              className="w-8 h-8 rounded-lg border border-[#E5E7EB] flex items-center justify-center text-[#6B7280] hover:border-[#F26522] hover:text-[#F26522] hover:bg-[#FFF5F0] transition-all duration-200"
+              className="w-9 h-9 rounded-lg border border-[#E5E7EB] flex items-center justify-center text-[#6B7280] hover:border-[#F26522] hover:text-[#F26522] hover:bg-[#FFF5F0] transition-all duration-200"
             >
-              <FaXTwitter size={13} />
+              <FaXTwitter size={14} />
             </a>
           </div>
         </div>
 
         {/* Col 2 — Services (3 sub-cols) */}
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.12em] font-bold text-[#F26522] mb-5">
+        <div className="lg:px-4">
+          <p className="text-[11px] uppercase tracking-[0.12em] font-bold text-[#F26522] mb-6">
             Services
           </p>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-4">
             {SERVICES.map((group) => (
               <div key={group.label}>
-                <p className="text-[11px] uppercase tracking-[0.1em] font-semibold text-[#9CA3AF] mb-3">
+                <p className="text-[11px] uppercase tracking-[0.1em] font-semibold text-[#9CA3AF] mb-4">
                   {group.label}
                 </p>
-                <ul className="space-y-2">
+                <ul className="space-y-3 sm:space-y-2">
                   {group.links.map(([name, href]) => (
                     <li key={name}>
                       <Link
@@ -116,10 +116,10 @@ export default function Footer() {
 
         {/* Col 3 — Company links */}
         <div>
-          <p className="text-[11px] uppercase tracking-[0.12em] font-bold text-[#F26522] mb-5">
+          <p className="text-[11px] uppercase tracking-[0.12em] font-bold text-[#F26522] mb-6">
             Company
           </p>
-          <ul className="space-y-2">
+          <ul className="space-y-3 sm:space-y-2">
             {COMPANY.map(([name, href]) => (
               <li key={name}>
                 <Link
@@ -135,31 +135,31 @@ export default function Footer() {
 
         {/* Col 4 — Get in touch */}
         <div>
-          <p className="text-[11px] uppercase tracking-[0.12em] font-bold text-[#F26522] mb-5">
+          <p className="text-[11px] uppercase tracking-[0.12em] font-bold text-[#F26522] mb-6">
             Get in touch
           </p>
-          <div className="rounded-xl p-4 bg-[#FFF8F5] border border-[#FFE0CC]">
-            <p className="text-[13px] font-semibold text-[#0D1E3A] mb-0.5">AI Agentix Ltd.</p>
-            <p className="text-[11px] text-[#6B7280] mb-2">HQ — Global Remote</p>
+          <div className="rounded-xl p-5 bg-[#FFF8F5] border border-[#FFE0CC]">
+            <p className="text-[13px] font-semibold text-[#0D1E3A] mb-1">AI Agentix Ltd.</p>
+            <p className="text-[11px] text-[#6B7280] mb-3">HQ — Global Remote</p>
             <a
               href="mailto:hello@ai-agentix.com"
-              className="text-[13px] text-[#F26522] hover:text-[#C93D00] transition-colors duration-150 block mb-3"
+              className="text-[13px] text-[#F26522] hover:text-[#C93D00] transition-colors duration-150 block mb-4 font-medium"
             >
               hello@ai-agentix.com
             </a>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-bold text-white bg-[#F26522] rounded-lg hover:bg-[#C93D00] transition-colors duration-200"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-[12px] font-bold text-white bg-[#F26522] rounded-lg hover:bg-[#C93D00] transition-colors duration-200"
             >
-              Let's talk <FaArrowRight size={9} />
+              Let's talk <FaArrowRight size={10} />
             </Link>
           </div>
 
           {/* Products */}
-          <p className="text-[11px] uppercase tracking-[0.12em] font-bold text-[#9CA3AF] mt-6 mb-3">
+          <p className="text-[11px] uppercase tracking-[0.12em] font-bold text-[#9CA3AF] mt-8 mb-4">
             Products
           </p>
-          <div className="flex flex-col gap-1.5">
+          <div className="flex flex-col gap-2.5">
             {PRODUCTS.map(([name, href]) => (
               <Link
                 key={name}
@@ -175,11 +175,11 @@ export default function Footer() {
       </div>
 
       {/* ── BOTTOM BAR ── */}
-      <div className="max-w-[1240px] mx-auto px-12 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p className="text-[11px] text-[#9CA3AF]">
+      <div className="max-w-[1240px] mx-auto px-6 sm:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-3">
+        <p className="text-[11px] text-[#9CA3AF] text-center sm:text-left">
           © 2026 AI Agentix Ltd. All rights reserved.
         </p>
-        <div className="flex gap-5">
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
           {['Terms', 'Privacy Policy', 'Cookies'].map((t) => (
             <Link
               key={t}
@@ -190,14 +190,14 @@ export default function Footer() {
             </Link>
           ))}
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-4 sm:gap-2">
           <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"
-            className="text-[#9CA3AF] hover:text-[#F26522] transition-colors">
-            <FaLinkedinIn size={13} />
+            className="text-[#9CA3AF] hover:text-[#F26522] transition-colors p-1">
+            <FaLinkedinIn size={14} />
           </a>
           <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="X / Twitter"
-            className="text-[#9CA3AF] hover:text-[#F26522] transition-colors">
-            <FaXTwitter size={13} />
+            className="text-[#9CA3AF] hover:text-[#F26522] transition-colors p-1">
+            <FaXTwitter size={14} />
           </a>
         </div>
       </div>

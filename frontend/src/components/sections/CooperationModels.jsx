@@ -34,11 +34,11 @@ function ModelCard({ model, index, inView }) {
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.08, duration: 0.5 }}
-      className="relative overflow-hidden cursor-default"
+      className={`relative overflow-hidden cursor-default border-t border-[#e5e5e5] ${
+        index % 2 === 0 ? 'sm:border-r border-[#e5e5e5]' : ''
+      }`}
       style={{
         minHeight: '280px',
-        borderTop: '1px solid #e5e5e5',
-        borderRight: index % 2 === 0 ? '1px solid #e5e5e5' : 'none',
         backgroundColor: hovered ? '#0D1E3A' : '#ffffff',
         transition: 'background-color 0.3s ease',
       }}
@@ -112,11 +112,11 @@ export default function CooperationModels() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex items-center justify-between mb-12"
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-12"
         >
           <h2
             className="font-display font-black text-[#0D1E3A] leading-tight"
-            style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.025em' }}
+            style={{ fontSize: 'clamp(1.75rem, 3.5vw, 3rem)', letterSpacing: '-0.025em' }}
           >
             Cooperation models
           </h2>
@@ -128,10 +128,9 @@ export default function CooperationModels() {
           </Link>
         </motion.div>
 
-        {/* 2×2 grid */}
+        {/* Grid — borders handled via Tailwind/CSS for responsive stacking */}
         <div
-          className="grid grid-cols-1 sm:grid-cols-2"
-          style={{ borderLeft: '1px solid #e5e5e5', borderBottom: '1px solid #e5e5e5' }}
+          className="grid grid-cols-1 sm:grid-cols-2 border-l border-b border-[#e5e5e5]"
         >
           {MODELS.map((model, i) => (
             <ModelCard key={model.title} model={model} index={i} inView={inView} />

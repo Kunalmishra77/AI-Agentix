@@ -110,14 +110,14 @@ function HeroSection() {
       {/* Radial glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full opacity-20"
+        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-[500px] rounded-full opacity-20"
         style={{
           background:
             'radial-gradient(ellipse at center, #38BDF8 0%, transparent 70%)',
         }}
       />
 
-      <div className="content-wrap relative z-10">
+      <div className="content-wrap relative z-10 px-6 sm:px-12">
         <motion.div
           ref={ref}
           variants={variants}

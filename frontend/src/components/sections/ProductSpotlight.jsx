@@ -24,17 +24,17 @@ export default function ProductSpotlight() {
       <div className="absolute inset-0 z-[1] bg-black/50" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-[1240px] mx-auto px-12 py-20">
+      <div className="relative z-10 max-w-[1240px] mx-auto px-6 sm:px-12 py-16 sm:py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="grid grid-cols-[38%_1fr] items-center gap-16"
+          className="grid grid-cols-1 lg:grid-cols-[38%_1fr] items-center gap-10 lg:gap-16"
         >
           {/* Left — product name */}
           <h2
             className="font-display font-black text-white leading-tight"
-            style={{ fontSize: 'clamp(2.8rem, 5vw, 4.8rem)', letterSpacing: '-0.02em' }}
+            style={{ fontSize: 'clamp(2.5rem, 5vw, 4.8rem)', letterSpacing: '-0.02em' }}
           >
             ContextClue
           </h2>
@@ -42,7 +42,7 @@ export default function ProductSpotlight() {
           {/* Right — description + CTA */}
           <div>
             <p
-              className="text-white font-medium leading-relaxed mb-8"
+              className="text-white font-medium leading-relaxed mb-8 max-w-2xl"
               style={{ fontSize: 'clamp(1rem, 1.4vw, 1.2rem)' }}
             >
               ContextClue is our innovative product powered by Generative AI that provides

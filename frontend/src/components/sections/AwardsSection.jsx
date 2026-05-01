@@ -149,10 +149,10 @@ export default function AwardsSection() {
   const currentPage = PAGES[page];
 
   return (
-    <section className="bg-white py-20 border-t border-[#e5e5e5]">
-      <div ref={ref} className="max-w-[1240px] mx-auto px-12">
+    <section className="bg-white py-12 sm:py-20 border-t border-[#e5e5e5]">
+      <div ref={ref} className="max-w-[1240px] mx-auto px-6 sm:px-12">
 
-        <div className="grid gap-16 items-center" style={{ gridTemplateColumns: '55% 45%' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-10 lg:gap-16 items-center">
 
           {/* LEFT — wider text block */}
           <motion.div
@@ -162,11 +162,11 @@ export default function AwardsSection() {
           >
             <h2
               className="font-display font-black text-[#0D1E3A] leading-tight mb-6"
-              style={{ fontSize: 'clamp(2rem, 3.2vw, 3.2rem)', letterSpacing: '-0.025em' }}
+              style={{ fontSize: 'clamp(1.75rem, 3.2vw, 3.2rem)', letterSpacing: '-0.025em' }}
             >
               We are recognized as one of the best AI, BI, and Big Data consultants
             </h2>
-            <p className="text-[15px] text-[#666] leading-relaxed">
+            <p className="text-[14px] sm:text-[15px] text-[#666] leading-relaxed">
               We helped multiple companies achieve their goals, but — instead of making hollow
               marketing claims here — we encourage you to check our Clutch scoring.
             </p>

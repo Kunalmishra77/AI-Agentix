@@ -33,7 +33,7 @@ export default function ServiceHighlights() {
           <motion.div
             key={item.title}
             variants={fadeUp}
-            className="group p-12 border border-[#1A3050] hover:border-[rgba(232,77,28,0.3)]
+            className="group p-8 sm:p-12 border border-[#1A3050] hover:border-[rgba(232,77,28,0.3)]
                        transition-all duration-300 hover:-translate-y-1 cursor-default"
           >
             <h2 className="text-[22px] font-display font-bold text-white mb-4">{item.title}</h2>

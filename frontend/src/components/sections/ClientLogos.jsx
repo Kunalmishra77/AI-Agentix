@@ -11,18 +11,18 @@
 
 export default function ClientLogos() {
   return (
-    <section className="bg-[#f9f9f7] border-t border-[#e5e5e5] py-6">
-      <div className="max-w-[1240px] mx-auto px-12 flex items-center gap-10">
+    <section className="bg-[#f9f9f7] border-t border-[#e5e5e5] py-8">
+      <div className="max-w-[1240px] mx-auto px-6 sm:px-12 flex flex-col sm:flex-row items-center gap-6 sm:gap-10">
         {/* Label */}
-        <p className="flex-shrink-0 text-[15px] font-medium text-[#0D1E3A] whitespace-nowrap">
+        <p className="flex-shrink-0 text-[14px] sm:text-[15px] font-medium text-[#0D1E3A] whitespace-nowrap">
           Our clients
         </p>
 
-        {/* Divider */}
-        <div className="w-px h-8 bg-[#ddd] flex-shrink-0" />
+        {/* Divider — hidden on mobile */}
+        <div className="hidden sm:block w-px h-8 bg-[#ddd] flex-shrink-0" />
 
         {/* Logos */}
-        <div className="flex items-center justify-between flex-1 gap-6 flex-wrap">
+        <div className="flex items-center justify-center sm:justify-between flex-1 gap-6 sm:gap-8 flex-wrap">
           {CLIENTS.map(({ name, src }) => (
             <img
               key={name}

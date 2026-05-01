@@ -110,20 +110,18 @@ export default function CoreCapabilities() {
   const { ref, inView } = useInView({ threshold: 0.05, triggerOnce: true });
 
   return (
-    <section className="bg-white py-24 border-t border-[#e5e5e5]">
-      <div ref={ref} className="max-w-[1240px] mx-auto px-12">
-          {/* Full-width staggered ladder grid — heading is first cell */}
+    <section className="bg-white py-12 sm:py-24 border-t border-[#e5e5e5]">
+      <div ref={ref} className="max-w-[1240px] mx-auto px-6 sm:px-12">
+          {/* Grid — standard on mobile, complex staggered ladder on desktop */}
           <div
-            className="grid gap-0"
-            style={{ gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows: 'repeat(3, auto)' }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0"
           >
-            {/* Heading cell — col 1, row 1 */}
+            {/* Heading cell */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
-              className="flex items-start p-8"
-              style={{ gridColumn: 1, gridRow: 1 }}
+              className="flex items-start p-6 sm:p-8 md:col-span-2 lg:col-span-1 lg:row-start-2 lg:col-start-1"
             >
               <h2
                 className="font-display font-black text-[#0D1E3A] leading-[1.08]"
@@ -141,7 +139,9 @@ export default function CoreCapabilities() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: i * 0.08, duration: 0.5 }}
-                  style={{ gridColumn: col + 1, gridRow: row + 1 }}
+                  className={`
+                    lg:col-start-${col + 1} lg:row-start-${row + 1}
+                  `}
                 >
                   <CapCard
                     cap={cap}
