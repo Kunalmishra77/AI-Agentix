@@ -35,7 +35,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#0A1628]" style={{ minHeight: '100vh' }}>
+    <section className="relative w-full overflow-hidden bg-[#0A1628]" style={{ height: '100vh', minHeight: '600px' }}>
 
       {/* VIDEO — full bleed */}
       <video
@@ -52,7 +52,7 @@ export default function HeroSection() {
       <div
         ref={contentRef}
         className="relative z-10 flex flex-col justify-start"
-        style={{ minHeight: '100vh', paddingTop: '110px', paddingBottom: '220px' }}
+        style={{ height: '100%', paddingTop: '120px', paddingBottom: '180px' }}
       >
         <div className="max-w-[1240px] mx-auto w-full px-12">
 

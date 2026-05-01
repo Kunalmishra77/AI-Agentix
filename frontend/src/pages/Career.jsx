@@ -160,7 +160,7 @@ function JobCard({ job, index }) {
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="border border-[#1A3050] bg-[#0D1E3A] overflow-hidden"
+      className="border border-[#E5E7EB] bg-white overflow-hidden"
       style={{ borderLeft: open ? '3px solid #F26522' : '3px solid transparent', transition: 'border-color 0.25s' }}
     >
       <button
@@ -169,13 +169,13 @@ function JobCard({ job, index }) {
       >
         <div className="flex flex-col gap-1">
           <h3
-            className="text-[18px] font-display font-bold text-white group-hover:text-[#F26522] transition-colors duration-200"
+            className="text-[18px] font-display font-bold text-[#0D1E3A] group-hover:text-[#F26522] transition-colors duration-200"
           >
             {job.title}
           </h3>
           <div className="flex items-center gap-3 flex-wrap">
             <span
-              className={`text-[10px] uppercase tracking-widest font-semibold px-2.5 py-1 rounded-full ${
+              className={`text-[12px] uppercase tracking-widest font-semibold px-2.5 py-1 rounded-full ${
                 job.type === 'Contract'
                   ? 'bg-[#38BDF8]/10 text-[#38BDF8] border border-[#38BDF8]/30'
                   : 'bg-[#F26522]/10 text-[#F26522] border border-[#F26522]/30'
@@ -183,7 +183,7 @@ function JobCard({ job, index }) {
             >
               {job.type}
             </span>
-            <span className="text-[12px] text-[#555]">Remote · {job.department}</span>
+            <span className="text-[12px] text-[#6B7280]">Remote · {job.department}</span>
           </div>
         </div>
         <motion.span
@@ -205,15 +205,15 @@ function JobCard({ job, index }) {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="px-8 pb-8 space-y-5 border-t border-[#1A3050] pt-6">
-              <p className="text-[15px] text-[#888] leading-relaxed">{job.description}</p>
+            <div className="px-8 pb-8 space-y-5 border-t border-[#E5E7EB] pt-6">
+              <p className="text-[15px] text-[#6B7280] leading-relaxed">{job.description}</p>
               <div>
-                <p className="text-[10px] uppercase tracking-widest text-[#555] mb-3 font-semibold">
+                <p className="text-[12px] uppercase tracking-widest text-[#9CA3AF] mb-3 font-semibold">
                   Requirements
                 </p>
                 <ul className="space-y-2">
                   {job.requirements.map((r) => (
-                    <li key={r} className="flex items-start gap-3 text-[14px] text-[#aaa]">
+                    <li key={r} className="flex items-start gap-3 text-[14px] text-[#6B7280]">
                       <FaCircleCheck className="text-[#F26522] flex-shrink-0 mt-0.5" size={14} />
                       {r}
                     </li>
@@ -241,7 +241,7 @@ export default function Career() {
   const { ref: ctaRef,     inView: ctaInView }        = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <div className="min-h-screen bg-[#0A1628]">
+    <div className="min-h-screen bg-white">
       <Helmet>
         <title>Careers — Join AI Agentix</title>
         <meta
@@ -311,7 +311,7 @@ export default function Career() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-[17px] text-[#888] leading-relaxed max-w-xl"
+              className="text-[17px] text-[#94A3B8] leading-relaxed max-w-xl"
             >
               We are a remote-first team of engineers, researchers, and AI strategists building
               the next generation of agentic AI systems. If you are obsessed with making AI
@@ -332,7 +332,7 @@ export default function Career() {
               </a>
               <a
                 href="#culture"
-                className="inline-flex items-center gap-2 border border-[#1A3050] text-[#aaa] font-semibold text-[14px] px-7 py-3.5 rounded-lg hover:border-[#F26522] hover:text-white transition-colors duration-200"
+                className="inline-flex items-center gap-2 border border-[#1A3050] text-[#94A3B8] font-semibold text-[14px] px-7 py-3.5 rounded-lg hover:border-[#F26522] hover:text-white transition-colors duration-200"
               >
                 Our Culture
               </a>
@@ -386,7 +386,7 @@ export default function Career() {
                   { icon: FaRobot,  text: 'Working on frontier AI every single day' },
                   { icon: FaRocket, text: 'Shipping to enterprise clients in 30+ countries' },
                 ].map(({ icon: Icon, text }) => (
-                  <div key={text} className="flex items-center gap-3 text-[14px] text-[#aaa]">
+                  <div key={text} className="flex items-center gap-3 text-[14px] text-[#94A3B8]">
                     <Icon size={14} className="text-[#F26522] flex-shrink-0" />
                     <span>{text}</span>
                   </div>
@@ -419,13 +419,13 @@ export default function Career() {
                 initial={{ opacity: 0, y: 28 }}
                 animate={cultureInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white border border-[#e8edf4] rounded-xl p-7 hover:border-[#F26522] hover:shadow-lg transition-all duration-300 group"
+                className="bg-white border border-[#E5E7EB] rounded-xl p-7 hover:border-[#F26522] hover:shadow-lg transition-all duration-300 group"
               >
                 <div className="w-11 h-11 rounded-xl bg-[#F26522]/10 flex items-center justify-center mb-5 group-hover:bg-[#F26522]/20 transition-colors duration-200">
                   <item.icon className="text-[#F26522]" size={20} />
                 </div>
                 <h3 className="text-[15px] font-display font-bold text-[#0A1628] mb-2">{item.title}</h3>
-                <p className="text-[13px] text-[#777] leading-relaxed">{item.desc}</p>
+                <p className="text-[13px] text-[#6B7280] leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -433,14 +433,14 @@ export default function Career() {
       </section>
 
       {/* ── Benefits grid ─────────────────────────────────────────────────────── */}
-      <section className="bg-[#0A1628] py-24">
+      <section className="bg-[#f8f9fa] py-24">
         <div ref={benefitsRef} className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="mb-14">
             <p className="text-[11px] uppercase tracking-widest text-[#F26522] font-semibold mb-4">
               Perks &amp; Benefits
             </p>
             <h2
-              className="font-display font-black text-white leading-tight mb-4"
+              className="font-display font-black text-[#0D1E3A] leading-tight mb-4"
               style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)' }}
             >
               Why Work With Us
@@ -455,13 +455,13 @@ export default function Career() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={benefitsInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="border border-[#1A3050] bg-[#0D1E3A] rounded-xl p-7 hover:border-[#F26522] transition-colors duration-300 group cursor-default"
+                className="border border-[#E5E7EB] bg-white rounded-xl p-7 hover:border-[#F26522] transition-colors duration-300 group cursor-default"
               >
                 <div className="w-10 h-10 rounded-lg bg-[#F26522]/10 flex items-center justify-center mb-5 group-hover:bg-[#F26522]/20 transition-colors duration-200">
                   <b.icon className="text-[#F26522]" size={18} />
                 </div>
-                <h3 className="text-[15px] font-display font-bold text-white mb-2">{b.title}</h3>
-                <p className="text-[13px] text-[#666] leading-relaxed">{b.desc}</p>
+                <h3 className="text-[15px] font-display font-bold text-[#0D1E3A] mb-2">{b.title}</h3>
+                <p className="text-[13px] text-[#6B7280] leading-relaxed">{b.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -469,14 +469,14 @@ export default function Career() {
       </section>
 
       {/* ── Open Positions ─────────────────────────────────────────────────────── */}
-      <section id="open-positions" className="bg-[#0A1628] pb-24">
+      <section id="open-positions" className="bg-white pb-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="mb-12 border-t border-[#1A3050] pt-16">
+          <div className="mb-12 border-t border-[#E5E7EB] pt-16">
             <p className="text-[11px] uppercase tracking-widest text-[#F26522] font-semibold mb-4">
               Open Positions
             </p>
             <h2
-              className="font-display font-black text-white leading-tight mb-4"
+              className="font-display font-black text-[#0D1E3A] leading-tight mb-4"
               style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)' }}
             >
               Current Openings
@@ -496,15 +496,15 @@ export default function Career() {
             initial={{ opacity: 0, y: 24 }}
             animate={ctaInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55 }}
-            className="mt-10 p-8 bg-[#0D1E3A] border border-[#1A3050] rounded-xl"
+            className="mt-10 p-8 bg-white border border-[#E5E7EB] rounded-xl"
             style={{ borderLeft: '4px solid #F26522' }}
           >
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
               <div>
-                <h3 className="text-[18px] font-display font-bold text-white mb-2">
+                <h3 className="text-[18px] font-display font-bold text-[#0D1E3A] mb-2">
                   Don&rsquo;t see your role?
                 </h3>
-                <p className="text-[14px] text-[#888] leading-relaxed max-w-lg">
+                <p className="text-[14px] text-[#6B7280] leading-relaxed max-w-lg">
                   We hire exceptional people year-round. Send us your CV and tell us how
                   you&rsquo;d contribute — we&rsquo;re always looking.
                 </p>

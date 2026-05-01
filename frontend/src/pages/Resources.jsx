@@ -99,7 +99,7 @@ export default function Resources() {
       : RESOURCES.filter((r) => r.type === activeFilter);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0A1628' }}>
+    <div className="min-h-screen bg-white">
       <Helmet>
         <title>Resources & Knowledge Hub — AI Agentix</title>
         <meta
@@ -109,7 +109,7 @@ export default function Resources() {
       </Helmet>
 
       {/* ── HERO ── */}
-      <section className="pt-[140px] pb-20 px-6 md:px-12" style={{ backgroundColor: '#0A1628' }}>
+      <section className="pt-[140px] pb-20 px-6 md:px-12 bg-[#0A1628]">
         <div className="max-w-[1240px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -167,9 +167,9 @@ export default function Resources() {
       </section>
 
       {/* ── FILTER BAR ── */}
-      <div className="bg-white border-b border-[#e5e5e5] py-4 px-6 md:px-12 sticky top-[72px] z-10">
+      <div className="bg-white border-b border-[#E5E7EB] py-4 px-6 md:px-12 sticky top-[72px] z-10">
         <div className="max-w-[1240px] mx-auto flex items-center gap-3 flex-wrap">
-          <span className="text-[12px] text-[#999] font-semibold uppercase tracking-widest mr-2">Filter:</span>
+          <span className="text-[12px] text-[#9CA3AF] font-semibold uppercase tracking-widest mr-2">Filter:</span>
           {FILTERS.map((f) => (
             <button
               key={f}
@@ -177,20 +177,20 @@ export default function Resources() {
               className={`px-4 py-2 rounded-full text-[13px] font-semibold transition-all ${
                 activeFilter === f
                   ? 'bg-[#F26522] text-white shadow-sm'
-                  : 'border border-[#e5e5e5] text-[#555] hover:border-[#F26522] hover:text-[#F26522]'
+                  : 'border border-[#E5E7EB] text-[#6B7280] hover:border-[#F26522] hover:text-[#F26522]'
               }`}
             >
               {f}
             </button>
           ))}
-          <span className="ml-auto text-[12px] text-[#aaa]">
+          <span className="ml-auto text-[12px] text-[#9CA3AF]">
             {filtered.length} resource{filtered.length !== 1 ? 's' : ''}
           </span>
         </div>
       </div>
 
       {/* ── RESOURCES GRID ── */}
-      <section ref={gridRef} className="py-20 px-6 md:px-12 bg-[#f7f7f5]">
+      <section ref={gridRef} className="py-20 px-6 md:px-12 bg-[#f8f9fa]">
         <div className="max-w-[1240px] mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
@@ -209,7 +209,7 @@ export default function Resources() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={gridInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="bg-white border border-[#e5e5e5] rounded-xl overflow-hidden hover:border-[#F26522] hover:shadow-xl hover:scale-[1.015] transition-all duration-300 group flex flex-col"
+                    className="bg-white border border-[#E5E7EB] rounded-xl overflow-hidden hover:border-[#F26522] hover:shadow-xl hover:scale-[1.015] transition-all duration-300 group flex flex-col"
                   >
                     <div className={`h-1.5 w-full ${TYPE_BAR[r.type]}`} />
                     <div className="p-8 flex flex-col flex-1">
@@ -218,7 +218,7 @@ export default function Resources() {
                           <Icon className="text-[10px]" />
                           {r.type}
                         </span>
-                        <span className="text-[12px] text-[#aaa] font-medium">{r.pages}</span>
+                        <span className="text-[12px] text-[#9CA3AF] font-medium">{r.pages}</span>
                       </div>
                       <p className="text-[11px] uppercase tracking-widest text-[#F26522] font-semibold mb-3">
                         {r.category}
@@ -226,7 +226,7 @@ export default function Resources() {
                       <h3 className="text-[17px] font-display font-bold text-[#0D1E3A] leading-snug mb-3 group-hover:text-[#F26522] transition-colors flex-1">
                         {r.title}
                       </h3>
-                      <p className="text-[13px] text-[#666] leading-relaxed mb-6">{r.desc}</p>
+                      <p className="text-[13px] text-[#6B7280] leading-relaxed mb-6">{r.desc}</p>
                       <div className="flex items-center justify-between pt-4 border-t border-[#f0f0f0]">
                         <Link
                           to="/contact"
@@ -235,7 +235,7 @@ export default function Resources() {
                           Download Free
                           <FaArrowRight className="text-[11px]" />
                         </Link>
-                        <span className="text-[11px] text-[#bbb] font-medium px-2 py-1 bg-[#f7f7f5] rounded">
+                        <span className="text-[11px] text-[#9CA3AF] font-medium px-2 py-1 bg-[#f8f9fa] rounded">
                           {r.pages}
                         </span>
                       </div>

@@ -63,14 +63,14 @@ export default function Press() {
   const { ref: ctaRef, inView: ctaInView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0A1628' }}>
+    <div className="min-h-screen bg-white">
       <Helmet>
         <title>Press & Recognition — AI Agentix</title>
         <meta name="description" content="AI Agentix press coverage, industry awards, and recognition for enterprise AI innovation." />
       </Helmet>
 
       {/* ── HERO ── */}
-      <section className="pt-[140px] pb-20 px-6 md:px-12" style={{ backgroundColor: '#0A1628' }}>
+      <section className="pt-[140px] pb-20 px-6 md:px-12 bg-[#0A1628]">
         <div className="max-w-[1240px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div {...fadeUp(0)}>
@@ -124,9 +124,9 @@ export default function Press() {
       </section>
 
       {/* ── PRESS LOGOS STRIP ── */}
-      <section ref={logosRef} className="bg-white border-b border-[#e5e5e5] py-8 px-6 md:px-12">
+      <section ref={logosRef} className="bg-white border-b border-[#E5E7EB] py-8 px-6 md:px-12">
         <div className="max-w-[1240px] mx-auto">
-          <p className="text-center text-[11px] uppercase tracking-widest text-[#999] font-semibold mb-7">
+          <p className="text-center text-[11px] uppercase tracking-widest text-[#9CA3AF] font-semibold mb-7">
             As Featured In
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
@@ -136,7 +136,7 @@ export default function Press() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={logosInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: i * 0.08, duration: 0.4 }}
-                className="inline-block border border-[#e5e5e5] px-6 py-3 font-bold text-[#0D1E3A] text-lg rounded-full hover:border-[#F26522] hover:text-[#F26522] transition-colors cursor-default"
+                className="inline-block border border-[#E5E7EB] px-6 py-3 font-bold text-[#0D1E3A] text-lg rounded-full hover:border-[#F26522] hover:text-[#F26522] transition-colors cursor-default"
               >
                 {name}
               </motion.span>
@@ -146,7 +146,7 @@ export default function Press() {
       </section>
 
       {/* ── AWARDS GRID ── */}
-      <section ref={awardsRef} className="bg-[#f7f7f5] py-20 px-6 md:px-12">
+      <section ref={awardsRef} className="bg-[#f8f9fa] py-20 px-6 md:px-12">
         <div className="max-w-[1240px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -172,7 +172,7 @@ export default function Press() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={awardsInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="bg-white border border-[#e5e5e5] rounded-xl p-8 hover:border-[#F26522] hover:shadow-lg transition-all duration-300 group"
+                className="bg-white border border-[#E5E7EB] rounded-xl p-8 hover:border-[#F26522] hover:shadow-lg transition-all duration-300 group"
               >
                 <div className="flex items-center justify-between mb-5">
                   <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#0D1E3A] text-white">
@@ -184,7 +184,7 @@ export default function Press() {
                   {a.title}
                 </h3>
                 <p className="text-[13px] font-semibold text-[#F26522] mb-1">{a.body}</p>
-                <p className="text-[12px] text-[#888] uppercase tracking-wide">{a.category}</p>
+                <p className="text-[12px] text-[#9CA3AF] uppercase tracking-wide">{a.category}</p>
               </motion.div>
             ))}
           </div>
@@ -211,7 +211,7 @@ export default function Press() {
             </h2>
           </motion.div>
 
-          <div className="flex flex-col gap-0 divide-y divide-[#e5e5e5]">
+          <div className="flex flex-col gap-0 divide-y divide-[#E5E7EB]">
             {PRESS.map((p, i) => (
               <motion.div
                 key={i}
@@ -225,7 +225,7 @@ export default function Press() {
                     <span className="block text-[15px] font-display font-black text-[#0D1E3A] group-hover:text-[#F26522] transition-colors">
                       {p.outlet}
                     </span>
-                    <span className="block text-[11px] text-[#aaa] mt-1 uppercase tracking-wide">
+                    <span className="block text-[11px] text-[#9CA3AF] mt-1 uppercase tracking-wide">
                       {p.date}
                     </span>
                   </div>
@@ -233,7 +233,7 @@ export default function Press() {
                     <h3 className="text-[17px] font-display font-bold text-[#0D1E3A] mb-2 leading-snug group-hover:text-[#F26522] transition-colors">
                       {p.headline}
                     </h3>
-                    <p className="text-[14px] text-[#666] leading-relaxed mb-3">{p.excerpt}</p>
+                    <p className="text-[14px] text-[#6B7280] leading-relaxed mb-3">{p.excerpt}</p>
                     <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#F26522] group-hover:gap-3 transition-all">
                       Read article →
                     </span>

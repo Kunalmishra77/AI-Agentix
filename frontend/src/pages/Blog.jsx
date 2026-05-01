@@ -102,7 +102,7 @@ function FeaturedCard({ post }) {
       animate={inView ? 'visible' : 'hidden'}
       variants={fadeUp}
     >
-      <div className="grid grid-cols-1 lg:grid-cols-[45%_1fr] overflow-hidden rounded-2xl border border-[#1A3050] group hover:border-[#F26522]/50 transition-all duration-300">
+      <div className="grid grid-cols-1 lg:grid-cols-[45%_1fr] overflow-hidden rounded-2xl border border-[#E5E7EB] group hover:border-[#F26522]/50 transition-all duration-300">
         {/* Left — gradient visual */}
         <div
           className="relative min-h-[280px] flex items-center justify-center overflow-hidden"
@@ -122,21 +122,21 @@ function FeaturedCard({ post }) {
         </div>
 
         {/* Right — content */}
-        <div className="bg-[#0D1E3A] p-10 flex flex-col justify-center">
+        <div className="bg-white p-10 flex flex-col justify-center">
           <span
-            className="inline-block text-[10px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-full mb-5 w-fit"
+            className="inline-block text-[12px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-full mb-5 w-fit"
             style={{ background: 'rgba(242,101,34,0.15)', color: '#F26522' }}
           >
             {cat}
           </span>
-          <h2 className="font-display font-black text-white text-[1.6rem] leading-snug mb-4 group-hover:text-[#F26522] transition-colors">
+          <h2 className="font-display font-black text-[#0D1E3A] text-[1.6rem] leading-snug mb-4 group-hover:text-[#F26522] transition-colors">
             {post.title}
           </h2>
-          <p className="text-[#7A8FA6] text-[15px] leading-relaxed mb-6">
+          <p className="text-[#6B7280] text-[15px] leading-relaxed mb-6">
             {post.excerpt}
           </p>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4 text-[12px] text-[#4A6080]">
+            <div className="flex items-center gap-4 text-[12px] text-[#9CA3AF]">
               <span className="flex items-center gap-1.5"><FaClock size={11} /> {post.readTime} min read</span>
             </div>
             <span className="flex items-center gap-2 text-[#F26522] font-semibold text-[13px] group-hover:gap-3 transition-all">
@@ -163,7 +163,7 @@ function PostCard({ post, index }) {
       transition={{ delay: (index % 3) * 0.08 }}
       className="h-full"
     >
-      <div className="flex flex-col h-full rounded-xl border border-[#1A3050] bg-[#0D1E3A] overflow-hidden group hover:border-[#F26522]/40 hover:-translate-y-1 transition-all duration-300">
+      <div className="flex flex-col h-full rounded-xl border border-[#E5E7EB] bg-white overflow-hidden group hover:border-[#F26522]/40 hover:-translate-y-1 transition-all duration-300">
         {/* Top color bar */}
         <div className="h-1.5 w-full" style={{ background: gradient }} />
 
@@ -171,29 +171,29 @@ function PostCard({ post, index }) {
           {/* Category + date */}
           <div className="flex items-center justify-between mb-4">
             <span
-              className="text-[10px] uppercase tracking-widest font-bold px-2.5 py-1 rounded-full"
+              className="text-[12px] uppercase tracking-widest font-bold px-2.5 py-1 rounded-full"
               style={{ background: 'rgba(242,101,34,0.12)', color: '#F26522' }}
             >
               {cat}
             </span>
-            <span className="text-[11px] text-[#4A6080]">
+            <span className="text-[11px] text-[#9CA3AF]">
               {formatDate(post.publishedAt)}
             </span>
           </div>
 
           {/* Title */}
-          <h3 className="font-display font-bold text-white text-[16px] leading-snug mb-3 group-hover:text-[#F26522] transition-colors flex-1">
+          <h3 className="font-display font-bold text-[#0D1E3A] text-[16px] leading-snug mb-3 group-hover:text-[#F26522] transition-colors flex-1">
             {post.title}
           </h3>
 
           {/* Excerpt */}
-          <p className="text-[13px] text-[#5A7090] leading-relaxed mb-5">
+          <p className="text-[13px] text-[#6B7280] leading-relaxed mb-5">
             {(post.excerpt || '').slice(0, 120)}{post.excerpt?.length > 120 ? '…' : ''}
           </p>
 
           {/* Footer */}
-          <div className="flex items-center justify-between pt-4 border-t border-[#1A3050]">
-            <span className="flex items-center gap-1.5 text-[11px] text-[#4A6080]">
+          <div className="flex items-center justify-between pt-4 border-t border-[#E5E7EB]">
+            <span className="flex items-center gap-1.5 text-[11px] text-[#9CA3AF]">
               <FaClock size={10} /> {post.readTime} min
             </span>
             <span className="text-[12px] font-semibold text-[#F26522] opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
@@ -221,7 +221,7 @@ export default function Blog() {
     : allPosts.filter(p => p.categories?.[0] === activeCategory && p._id !== featuredPost?._id);
 
   return (
-    <div className="min-h-screen bg-[#0A1628]">
+    <div className="min-h-screen bg-white">
       <Helmet>
         <title>Blog — AI Agentix Insights & Research</title>
         <meta name="description" content="Insights, research, and practical guides on AI agents, n8n automation, LLM integration, and enterprise AI from the AI Agentix team." />
@@ -229,7 +229,7 @@ export default function Blog() {
       </Helmet>
 
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative border-b border-[#1A3050] overflow-hidden" style={{ paddingTop: '140px', paddingBottom: '60px' }}>
+      <section className="relative bg-[#0A1628] border-b border-[#1A3050] overflow-hidden" style={{ paddingTop: '140px', paddingBottom: '60px' }}>
         {/* Grid background */}
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -287,7 +287,7 @@ export default function Blog() {
       </section>
 
       {/* ── CATEGORY FILTER ──────────────────── */}
-      <div className="sticky top-[72px] z-10 bg-[#0A1628] border-b border-[#1A3050]">
+      <div className="sticky top-[72px] z-10 bg-white border-b border-[#E5E7EB]">
         <div className="max-w-[1240px] mx-auto px-12 py-4 flex gap-2 overflow-x-auto scrollbar-hide">
           {ALL_CATEGORIES.map(cat => (
             <button
@@ -296,8 +296,8 @@ export default function Blog() {
               className="flex-shrink-0 px-4 py-1.5 rounded-full text-[12px] font-semibold uppercase tracking-wide transition-all duration-200"
               style={{
                 background: activeCategory === cat ? '#F26522' : 'transparent',
-                color: activeCategory === cat ? '#fff' : '#4A6080',
-                border: activeCategory === cat ? '1px solid #F26522' : '1px solid #1A3050',
+                color: activeCategory === cat ? '#fff' : '#6B7280',
+                border: activeCategory === cat ? '1px solid #F26522' : '1px solid #E5E7EB',
               }}
             >
               {cat}
@@ -309,7 +309,7 @@ export default function Blog() {
       {/* ── FEATURED POST ────────────────────── */}
       {featuredPost && activeCategory === 'All' && (
         <section className="max-w-[1240px] mx-auto px-12 pt-14 pb-10">
-          <p className="text-[11px] uppercase tracking-widest text-[#4A6080] font-semibold mb-6">Featured</p>
+          <p className="text-[11px] uppercase tracking-widest text-[#9CA3AF] font-semibold mb-6">Featured</p>
           <FeaturedCard post={featuredPost} />
         </section>
       )}
@@ -317,7 +317,7 @@ export default function Blog() {
       {/* ── POSTS GRID ───────────────────────── */}
       <section className="max-w-[1240px] mx-auto px-12 pb-20" style={{ paddingTop: activeCategory === 'All' ? '0' : '48px' }}>
         {activeCategory !== 'All' && (
-          <p className="text-[11px] uppercase tracking-widest text-[#4A6080] font-semibold mb-6 flex items-center gap-2">
+          <p className="text-[11px] uppercase tracking-widest text-[#9CA3AF] font-semibold mb-6 flex items-center gap-2">
             <FaTag size={10} /> {activeCategory}
           </p>
         )}
@@ -325,12 +325,12 @@ export default function Blog() {
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="rounded-xl border border-[#1A3050] bg-[#0D1E3A] h-64 animate-pulse" />
+              <div key={i} className="rounded-xl border border-[#E5E7EB] bg-[#f8f9fa] h-64 animate-pulse" />
             ))}
           </div>
         ) : filtered.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-[#4A6080] text-[16px]">No articles in this category yet.</p>
+            <p className="text-[#6B7280] text-[16px]">No articles in this category yet.</p>
             <button
               onClick={() => setActiveCategory('All')}
               className="mt-4 text-[#F26522] font-semibold text-[14px] hover:underline"
@@ -358,7 +358,7 @@ export default function Blog() {
 
       {/* ── NEWSLETTER CTA ───────────────────── */}
       <section
-        className="border-t border-[#1A3050] py-20"
+        className="border-t border-[#E5E7EB] py-20"
         style={{ background: 'linear-gradient(135deg, #0D1E3A 0%, #0A1628 100%)' }}
       >
         <div className="max-w-[1240px] mx-auto px-12 text-center">

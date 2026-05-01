@@ -74,7 +74,7 @@ function FeaturedStudy({ cs }) {
       animate={inView ? 'visible' : 'hidden'}
       variants={fadeUp}
     >
-      <div className="grid grid-cols-1 lg:grid-cols-[40%_1fr] overflow-hidden rounded-2xl border border-[#1A3050] group hover:border-[#F26522]/40 transition-all duration-300">
+      <div className="grid grid-cols-1 lg:grid-cols-[40%_1fr] overflow-hidden rounded-2xl border border-[#E5E7EB] group hover:border-[#F26522]/40 transition-all duration-300">
         {/* Left — visual panel */}
         <div
           className="relative min-h-[320px] flex flex-col justify-between p-10 overflow-hidden"
@@ -84,7 +84,7 @@ function FeaturedStudy({ cs }) {
             style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)', backgroundSize: '40px 40px' }}
           />
           <div className="relative z-10">
-            <span className="inline-block text-[10px] uppercase tracking-widest bg-white/15 text-white font-bold px-3 py-1.5 rounded-full mb-3">
+            <span className="inline-block text-[12px] uppercase tracking-widest bg-white/15 text-white font-bold px-3 py-1.5 rounded-full mb-3">
               Featured Case Study
             </span>
             <p className="text-white/60 text-[12px] uppercase tracking-wider">{cs.industry}</p>
@@ -93,22 +93,22 @@ function FeaturedStudy({ cs }) {
             {cs.metrics?.map((m, i) => (
               <div key={i} className="bg-black/30 backdrop-blur-sm border border-white/20 rounded-xl px-4 py-3">
                 <p className="text-[26px] font-display font-black text-[#F26522] leading-none">{m.value}</p>
-                <p className="text-[10px] text-white/60 mt-0.5 uppercase tracking-wide">{m.label}</p>
+                <p className="text-[12px] text-white/60 mt-0.5 uppercase tracking-wide">{m.label}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Right — content */}
-        <div className="bg-[#0D1E3A] p-10 flex flex-col justify-between">
+        <div className="bg-white p-10 flex flex-col justify-between">
           <div>
-            <span className="inline-block text-[10px] uppercase tracking-widest bg-[#F26522]/15 text-[#F26522] font-bold px-3 py-1.5 rounded-full mb-5">
+            <span className="inline-block text-[12px] uppercase tracking-widest bg-[#F26522]/15 text-[#F26522] font-bold px-3 py-1.5 rounded-full mb-5">
               {cs.service}
             </span>
-            <h2 className="font-display font-black text-white text-[1.5rem] leading-snug mb-4 group-hover:text-[#F26522] transition-colors">
+            <h2 className="font-display font-black text-[#0D1E3A] text-[1.5rem] leading-snug mb-4 group-hover:text-[#F26522] transition-colors">
               {cs.title}
             </h2>
-            <p className="text-[#5A7090] text-[14px] leading-relaxed">
+            <p className="text-[#6B7280] text-[14px] leading-relaxed">
               {cs.result?.slice(0, 180)}{cs.result?.length > 180 ? '…' : ''}
             </p>
           </div>
@@ -132,41 +132,41 @@ function StudyCard({ cs, index }) {
       transition={{ delay: (index % 3) * 0.08 }}
       className="h-full"
     >
-      <div className="flex flex-col h-full rounded-xl border border-[#1A3050] bg-[#0D1E3A] overflow-hidden group hover:border-[#F26522]/40 hover:-translate-y-1 transition-all duration-300">
+      <div className="flex flex-col h-full rounded-xl border border-[#E5E7EB] bg-white overflow-hidden group hover:border-[#F26522]/40 hover:-translate-y-1 transition-all duration-300">
         {/* Top gradient accent */}
         <div className="h-1.5 w-full" style={{ background: cs.gradient || 'linear-gradient(90deg, #F26522, #38BDF8)' }} />
 
         <div className="p-8 flex flex-col flex-1">
           {/* Header */}
           <div className="flex items-start justify-between mb-4">
-            <span className="inline-block text-[10px] uppercase tracking-widest text-[#F26522] font-semibold bg-[#F26522]/10 px-2.5 py-1 rounded">
+            <span className="inline-block text-[12px] uppercase tracking-widest text-[#F26522] font-semibold bg-[#F26522]/10 px-2.5 py-1 rounded">
               {cs.industry}
             </span>
             {cs.service && (
-              <span className="flex items-center gap-1.5 text-[11px] text-[#3D5470]">
+              <span className="flex items-center gap-1.5 text-[11px] text-[#9CA3AF]">
                 <FaBriefcase size={9} /> {cs.service}
               </span>
             )}
           </div>
 
           {/* Title */}
-          <h3 className="text-[17px] font-display font-bold text-white leading-snug mb-3 group-hover:text-[#F26522] transition-colors flex-1">
+          <h3 className="text-[17px] font-display font-bold text-[#0D1E3A] leading-snug mb-3 group-hover:text-[#F26522] transition-colors flex-1">
             {cs.title}
           </h3>
 
           {/* Excerpt */}
-          <p className="text-[13px] text-[#4A6080] leading-relaxed mb-6">
+          <p className="text-[13px] text-[#6B7280] leading-relaxed mb-6">
             {(cs.result || '').slice(0, 120)}{(cs.result || '').length > 120 ? '…' : ''}
           </p>
 
           {/* Metrics */}
           {cs.metrics?.length > 0 && (
-            <div className="flex flex-wrap gap-3 mt-auto pt-4 border-t border-[#1A3050]">
+            <div className="flex flex-wrap gap-3 mt-auto pt-4 border-t border-[#E5E7EB]">
               {cs.metrics.slice(0, 2).map((m, i) => (
                 <div key={i} className="flex items-center gap-1.5">
                   <FaChartLine size={10} className="text-[#F26522]" />
                   <span className="text-[13px] font-display font-black text-[#F26522]">{m.value}</span>
-                  <span className="text-[11px] text-[#3D5470]">{m.label}</span>
+                  <span className="text-[11px] text-[#9CA3AF]">{m.label}</span>
                 </div>
               ))}
             </div>
@@ -191,7 +191,7 @@ export default function CaseStudies() {
     : allStudies.filter(s => s.industry === activeIndustry && s._id !== featuredStudy?._id);
 
   return (
-    <div className="min-h-screen bg-[#0A1628]">
+    <div className="min-h-screen bg-white">
       <Helmet>
         <title>Case Studies — AI Agentix Results</title>
         <meta name="description" content="Real results from AI Agentix projects: autonomous agents, n8n automation, LLM integrations. See how we deliver 3.9× ROI for enterprise clients." />
@@ -199,7 +199,7 @@ export default function CaseStudies() {
       </Helmet>
 
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative border-b border-[#1A3050] overflow-hidden" style={{ paddingTop: '140px', paddingBottom: '60px' }}>
+      <section className="relative bg-[#0A1628] border-b border-[#1A3050] overflow-hidden" style={{ paddingTop: '140px', paddingBottom: '60px' }}>
         <div className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: 'linear-gradient(#38BDF8 1px, transparent 1px), linear-gradient(90deg, #38BDF8 1px, transparent 1px)', backgroundSize: '60px 60px' }}
         />
@@ -247,7 +247,7 @@ export default function CaseStudies() {
       </section>
 
       {/* ── INDUSTRY FILTER ──────────────────── */}
-      <div className="sticky top-[72px] z-10 bg-[#0A1628] border-b border-[#1A3050]">
+      <div className="sticky top-[72px] z-10 bg-white border-b border-[#E5E7EB]">
         <div className="max-w-[1240px] mx-auto px-12 py-4 flex gap-2 overflow-x-auto">
           {INDUSTRIES.map(ind => (
             <button
@@ -256,8 +256,8 @@ export default function CaseStudies() {
               className="flex-shrink-0 px-4 py-1.5 rounded-full text-[12px] font-semibold uppercase tracking-wide transition-all duration-200"
               style={{
                 background: activeIndustry === ind ? '#F26522' : 'transparent',
-                color: activeIndustry === ind ? '#fff' : '#4A6080',
-                border: activeIndustry === ind ? '1px solid #F26522' : '1px solid #1A3050',
+                color: activeIndustry === ind ? '#fff' : '#6B7280',
+                border: activeIndustry === ind ? '1px solid #F26522' : '1px solid #E5E7EB',
               }}
             >
               {ind}
@@ -269,7 +269,7 @@ export default function CaseStudies() {
       {/* ── FEATURED STUDY ───────────────────── */}
       {featuredStudy && activeIndustry === 'All' && (
         <section className="max-w-[1240px] mx-auto px-12 pt-14 pb-10">
-          <p className="text-[11px] uppercase tracking-widest text-[#3D5470] font-semibold mb-6">Featured</p>
+          <p className="text-[11px] uppercase tracking-widest text-[#9CA3AF] font-semibold mb-6">Featured</p>
           <FeaturedStudy cs={featuredStudy} />
         </section>
       )}
@@ -279,12 +279,12 @@ export default function CaseStudies() {
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="rounded-xl border border-[#1A3050] bg-[#0D1E3A] h-64 animate-pulse" />
+              <div key={i} className="rounded-xl border border-[#E5E7EB] bg-[#f8f9fa] h-64 animate-pulse" />
             ))}
           </div>
         ) : filtered.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-[#4A6080] text-[16px]">No case studies in this industry yet.</p>
+            <p className="text-[#6B7280] text-[16px]">No case studies in this industry yet.</p>
             <button onClick={() => setActiveIndustry('All')} className="mt-4 text-[#F26522] font-semibold text-[14px] hover:underline">
               View all case studies →
             </button>
@@ -308,7 +308,7 @@ export default function CaseStudies() {
       </section>
 
       {/* ── CTA ──────────────────────────────── */}
-      <section className="border-t border-[#1A3050] py-20" style={{ background: 'linear-gradient(135deg, #F26522 0%, #C93D00 100%)' }}>
+      <section className="border-t border-[#E5E7EB] py-20" style={{ background: 'linear-gradient(135deg, #F26522 0%, #C93D00 100%)' }}>
         <div className="max-w-[1240px] mx-auto px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

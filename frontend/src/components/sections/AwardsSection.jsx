@@ -124,7 +124,7 @@ function AwardSquare({ award }) {
         </div>
 
         <span
-          className="text-[10px] font-medium tracking-wider uppercase"
+          className="text-[12px] font-medium tracking-wider uppercase"
           style={{ color: award.dark ? 'rgba(255,255,255,0.45)' : 'rgba(0,0,0,0.4)' }}
         >
           {award.year}
