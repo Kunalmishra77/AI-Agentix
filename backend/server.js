@@ -86,7 +86,7 @@ app.use('/api/v1/newsletter',    newsletterRoutes);
 app.use('/api/v1/contact',       contactLimiter, contactRoutes);
 
 // ── Health ────────────────────────────────────────────────────
-app.get('/health', async (_req, res) => {
+app.get(['/health', '/api/health'], async (_req, res) => {
   try {
     await pool.query('SELECT 1');
     res.json({ status: 'ok', timestamp: new Date().toISOString(), env: process.env.NODE_ENV, db: 'connected' });
