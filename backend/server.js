@@ -118,17 +118,20 @@ app.use((err, req, res, _next) => {
 // ── Server Start ─────────────────────────────────────────────
 const PORT = process.env.PORT || 5000;
 
-pool.query('SELECT 1')
-  .then(() => {
-    console.log('✅  PostgreSQL connected (Supabase)');
-    app.listen(PORT, () => {
-      console.log(`🚀  Server running on port ${PORT} (${process.env.NODE_ENV || 'development'})`);
-      console.log(`🌐  Frontend: ${process.env.CLIENT_URL || 'http://localhost:5173'}`);
+if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
+  pool.query('SELECT 1')
+    .then(() => {
+      console.log('✅  PostgreSQL connected (Supabase)');
+      app.listen(PORT, () => {
+        console.log(`🚀  Server running on port ${PORT} (${process.env.NODE_ENV || 'development'})`);
+        console.log(`🌐  Frontend: ${process.env.CLIENT_URL || 'http://localhost:5173'}`);
+      });
+    })
+    .catch(err => {
+      console.error('❌  Database connection error:', err.message);
+      // Don't exit in production/vercel, let the app handle errors
+      if (process.env.NODE_ENV !== 'production') process.exit(1);
     });
-  })
-  .catch(err => {
-    console.error('❌  Database connection error:', err.message);
-    process.exit(1);
-  });
+}
 
 export default app;
