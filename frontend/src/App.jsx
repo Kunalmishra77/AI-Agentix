@@ -19,10 +19,8 @@ import Press from './pages/Press.jsx';
 import PrivacyPolicy from './pages/Privacy.jsx';
 import TermsAndConditions from './pages/Terms.jsx';
 import CookiesPolicy from './pages/Cookies.jsx';
-import ServicePage from './pages/ServicePage.jsx';
-import SolutionPage from './pages/SolutionPage.jsx';
-import IndustryPage from './pages/IndustryPage.jsx';
-import ProductPage from './pages/ProductPage.jsx';
+import CategoryPage from './pages/CategoryPage.jsx';
+import ToolPage from './pages/ToolPage.jsx';
 
 export default function App() {
   const [bannerVisible, setBannerVisible] = useState(
@@ -56,17 +54,9 @@ export default function App() {
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/cookies" element={<CookiesPolicy />} />
 
-          {/* Service pages — all 16 slugs */}
-          <Route path="/services/:slug" element={<ServicePage />} />
-
-          {/* Solution pages — 5 slugs */}
-          <Route path="/solutions/:slug" element={<SolutionPage />} />
-
-          {/* Industry pages — 5 slugs */}
-          <Route path="/industries/:slug" element={<IndustryPage />} />
-
-          {/* Product pages — 3 slugs */}
-          <Route path="/products/:slug" element={<ProductPage />} />
+          {/* Marketplace routes */}
+          <Route path="/category/:slug" element={<CategoryPage />} />
+          <Route path="/tools/:slug" element={<ToolPage />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
