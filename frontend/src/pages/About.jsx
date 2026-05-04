@@ -1,25 +1,20 @@
-import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import {
-  FaBrain,
-  FaRobot,
-  FaDatabase,
-  FaGear,
-  FaCode,
-  FaChartLine,
-  FaUsers,
   FaGlobe,
-  FaShieldHalved,
-  FaRocket,
-  FaCheck,
   FaBolt,
+  FaHandshake,
+  FaChartLine,
   FaArrowRight,
+  FaPenNib,
+  FaChartBar,
+  FaMagnifyingGlass,
+  FaBriefcase,
 } from 'react-icons/fa6';
 
-/* ─── Reusable fade-up hook ─────────────────────────────────────────────── */
+/* ─── Animation helpers ─────────────────────────────────────────────────── */
 function useFadeUp(threshold = 0.15) {
   const [ref, inView] = useInView({ triggerOnce: true, threshold });
   const variants = {
@@ -29,10 +24,9 @@ function useFadeUp(threshold = 0.15) {
   return { ref, inView, variants };
 }
 
-/* ─── Stagger children wrapper ──────────────────────────────────────────── */
-const staggerContainer = {
+const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.13 } },
 };
 
 const fadeUpChild = {
@@ -47,132 +41,85 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>About AI Agentix — AI Engineers &amp; Strategists</title>
+        <title>About Agentix — AI Tools Marketplace</title>
         <meta
           name="description"
-          content="AI Agentix is a team of engineers, product builders, and AI strategists making agentic AI systems accessible and production-ready for every business."
+          content="Agentix is an AI tools marketplace with 16 ready-to-use tools across Content AI, Sales AI, Research AI, and Business AI — built for the AI-first business era."
         />
         <link rel="canonical" href="https://ai-agentix.com/about" />
       </Helmet>
 
-      {/* 1 ── HERO ──────────────────────────────────────────────────────── */}
       <HeroSection />
-
-      {/* 2 ── MISSION ───────────────────────────────────────────────────── */}
       <MissionSection />
-
-      {/* 3 ── WHAT WE BUILD ─────────────────────────────────────────────── */}
-      <WhatWeBuildSection />
-
-      {/* 4 ── OUR TEAM ──────────────────────────────────────────────────── */}
+      <WhatWeOfferSection />
+      <HowItWorksSection />
+      <ValuesSection />
       <TeamSection />
-
-      {/* 5 ── WHY CHOOSE US ─────────────────────────────────────────────── */}
-      <WhyChooseUsSection />
-
-      {/* 6 ── TECH STACK ────────────────────────────────────────────────── */}
-      <TechStackSection />
-
-      {/* 7 ── CTA BANNER ────────────────────────────────────────────────── */}
       <CtaBanner />
     </>
   );
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
-   1. HERO SECTION
+   1. HERO
 ═══════════════════════════════════════════════════════════════════════════ */
 function HeroSection() {
-  const { ref, inView, variants } = useFadeUp(0.1);
-
-  const stats = [
-    { value: '50+', label: 'AI Systems Shipped' },
-    { value: '30+', label: 'Enterprise Clients' },
-    { value: '3.9×', label: 'Avg ROI Delivered' },
-  ];
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
     <section
-      className="relative bg-[#0A1628] overflow-hidden pt-32 pb-24"
+      className="bg-[#0A1628] py-24 overflow-hidden"
       aria-label="Hero"
     >
-      {/* Grid overlay */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(56,189,248,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.05) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
-      />
-
-      {/* Radial glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-[500px] rounded-full opacity-20"
-        style={{
-          background:
-            'radial-gradient(ellipse at center, #38BDF8 0%, transparent 70%)',
-        }}
-      />
-
-      <div className="content-wrap relative z-10 px-6 sm:px-12">
+      <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
         <motion.div
           ref={ref}
-          variants={variants}
+          variants={stagger}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="max-w-4xl mx-auto text-center"
+          className="text-center max-w-3xl mx-auto"
         >
-          <p className="eyebrow text-[#F26522] mb-5 tracking-[0.2em] uppercase text-sm font-semibold">
-            Who We Are
-          </p>
-
-          <h1 className="font-display font-black text-white leading-[1.08] mb-6"
-            style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4.5rem)' }}>
-            We Build AI That{' '}
-            <span className="text-[#38BDF8]">Actually Works</span>
-          </h1>
-
-          {/* Orange accent line */}
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <div className="h-px w-16 bg-[#1A3050]" />
-            <div className="h-1 w-20 rounded-full bg-[#F26522]" />
-            <div className="h-px w-16 bg-[#1A3050]" />
-          </div>
-
-          <p className="text-[#8BA3C0] text-lg leading-relaxed max-w-2xl mx-auto mb-16">
-            We are a global team of engineers, architects, and AI specialists obsessed
-            with shipping production-grade AI systems that create real business value —
-            not demos, not decks, not hype.
-          </p>
-
-          {/* Stat cards */}
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-0 border border-[#1A3050] rounded-2xl overflow-hidden"
+          {/* Badge */}
+          <motion.span
+            variants={fadeUpChild}
+            className="inline-block bg-[#F26522]/10 border border-[#F26522]/30 text-[#F26522] text-xs font-semibold uppercase tracking-[0.18em] px-4 py-2 rounded-full mb-8"
           >
-            {stats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                variants={fadeUpChild}
-                className={`bg-[#0D1E3A] px-8 py-10 text-center
-                  ${i < stats.length - 1 ? 'border-b sm:border-b-0 sm:border-r border-[#1A3050]' : ''}`}
-              >
-                <p
-                  className="font-display font-black text-[#F26522] leading-none mb-2"
-                  style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)' }}
-                >
-                  {stat.value}
-                </p>
-                <p className="text-[#8BA3C0] text-sm uppercase tracking-widest">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
+            About Agentix
+          </motion.span>
+
+          <motion.h1
+            variants={fadeUpChild}
+            className="text-white font-black leading-[1.08] mb-6"
+            style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4rem)' }}
+          >
+            Built for the AI-first business era
+          </motion.h1>
+
+          <motion.p
+            variants={fadeUpChild}
+            className="text-[#8BA3C0] text-lg leading-relaxed max-w-2xl mx-auto mb-10"
+          >
+            We believe every company — regardless of size — deserves access to
+            enterprise-grade AI tools. Agentix makes that possible.
+          </motion.p>
+
+          <motion.div
+            variants={fadeUpChild}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <Link
+              to="/category/content"
+              className="inline-flex items-center justify-center gap-2 bg-[#F26522] hover:bg-[#d9541a] text-white font-semibold px-8 py-3.5 rounded-full transition-colors duration-250 text-[15px]"
+            >
+              Explore Our Tools
+              <FaArrowRight className="text-sm" />
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white text-white font-semibold px-8 py-3.5 rounded-full transition-colors duration-250 text-[15px]"
+            >
+              Get in Touch
+            </Link>
           </motion.div>
         </motion.div>
       </div>
@@ -181,80 +128,83 @@ function HeroSection() {
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
-   2. MISSION SECTION
+   2. MISSION
 ═══════════════════════════════════════════════════════════════════════════ */
-const pillars = [
-  {
-    title: 'Engineers, not consultants',
-    desc: 'We write the code. We own the deployment. We fix the bugs.',
-  },
-  {
-    title: 'Production-first mindset',
-    desc: 'Every solution is built to run reliably at scale from day one.',
-  },
-  {
-    title: 'No AI hype — only outcomes',
-    desc: 'We measure success in ROI, automation hours, and cost saved.',
-  },
-  {
-    title: 'Global remote team',
-    desc: 'Top-tier AI talent across 12 time zones, always available.',
-  },
+const missionStats = [
+  { value: '16', label: 'AI Tools' },
+  { value: '4', label: 'Categories' },
+  { value: '500+', label: 'Businesses' },
+  { value: '99.9%', label: 'Uptime' },
 ];
 
 function MissionSection() {
   const { ref, inView, variants } = useFadeUp();
 
   return (
-    <section className="bg-white section-pad" aria-label="Our Mission">
-      <div className="content-wrap">
+    <section className="bg-white py-20" aria-label="Our Mission">
+      <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
         <motion.div
           ref={ref}
-          variants={staggerContainer}
+          variants={stagger}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start"
         >
-          {/* Left — text */}
+          {/* Left — copy */}
           <motion.div variants={fadeUpChild}>
-            <p className="eyebrow text-[#F26522] mb-4 uppercase tracking-widest text-xs font-semibold">
-              Our Purpose
-            </p>
-            <h2 className="font-display font-black text-[#0A1628] leading-tight mb-6"
-              style={{ fontSize: 'clamp(1.9rem, 3.5vw, 2.8rem)' }}>
+            <p className="text-[#F26522] text-xs font-semibold uppercase tracking-[0.18em] mb-4">
               Our Mission
+            </p>
+            <h2
+              className="text-[#0D1E3A] font-black leading-tight mb-5"
+              style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.6rem)' }}
+            >
+              Democratizing AI — one tool at a time
             </h2>
             <div className="w-12 h-1 bg-[#F26522] rounded-full mb-8" />
-            <p className="text-[#4A5568] text-[17px] leading-relaxed mb-5">
-              AI Agentix exists to close the gap between AI potential and business
-              reality. We partner with forward-thinking companies to design, build, and
-              operate AI systems that actually move the needle — automating workflows,
-              augmenting teams, and unlocking revenue.
+            <p className="text-[#4B5563] text-[17px] leading-relaxed mb-5">
+              Agentix was founded on a simple belief: powerful AI should not be
+              locked behind six-figure custom development budgets. Every growing
+              business deserves the same automation edge that Fortune 500 companies
+              have — without the wait, cost, or complexity.
             </p>
-            <p className="text-[#4A5568] text-[17px] leading-relaxed">
-              We believe the best AI work happens when deep engineering craft meets
-              genuine business understanding. That is why every engagement is led by
-              senior engineers who have shipped AI in the real world — not junior
-              consultants reading playbooks.
+            <p className="text-[#4B5563] text-[17px] leading-relaxed mb-5">
+              Our marketplace puts 16 production-ready AI tools into your hands on
+              day one. Subscribe, connect your data, and start automating — whether
+              that means generating content at scale, qualifying leads automatically,
+              or tracking competitors in real time.
+            </p>
+            <p className="text-[#4B5563] text-[17px] leading-relaxed">
+              We remove the need for expensive custom AI development by shipping
+              battle-tested tools that solve the most common business challenges out
+              of the box.
             </p>
           </motion.div>
 
-          {/* Right — value pillars */}
-          <motion.div variants={fadeUpChild} className="space-y-5">
-            {pillars.map((p) => (
-              <div
-                key={p.title}
-                className="flex items-start gap-5 p-6 rounded-xl border border-[#E8EFF6] bg-[#F8FBFF] hover:border-[#F26522] transition-colors duration-300"
-              >
-                <span className="mt-1 flex-shrink-0 w-3 h-3 rounded-full bg-[#F26522]" />
-                <div>
-                  <p className="font-display font-black text-[#0A1628] text-[17px] mb-1">
-                    {p.title}
-                  </p>
-                  <p className="text-[#6B7280] text-[15px] leading-relaxed">{p.desc}</p>
-                </div>
+          {/* Right — stats card */}
+          <motion.div variants={fadeUpChild}>
+            <div className="rounded-2xl border border-[#E8EDF3] bg-white shadow-[0_4px_40px_rgba(13,30,58,0.07)] overflow-hidden">
+              <div className="grid grid-cols-2">
+                {missionStats.map(({ value, label }, i) => (
+                  <div
+                    key={label}
+                    className={`px-10 py-10 text-center
+                      ${i % 2 === 0 ? 'border-r border-[#E8EDF3]' : ''}
+                      ${i < 2 ? 'border-b border-[#E8EDF3]' : ''}`}
+                  >
+                    <p
+                      className="font-black leading-none mb-2 text-[#F26522]"
+                      style={{ fontSize: 'clamp(2rem, 3.5vw, 2.8rem)' }}
+                    >
+                      {value}
+                    </p>
+                    <p className="text-[#6B7280] text-sm uppercase tracking-widest">
+                      {label}
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </motion.div>
         </motion.div>
       </div>
@@ -263,110 +213,46 @@ function MissionSection() {
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
-   3. WHAT WE BUILD
+   3. WHAT WE OFFER
 ═══════════════════════════════════════════════════════════════════════════ */
-const capabilities = [
+const categories = [
   {
-    Icon: FaBrain,
-    title: 'Agentic AI Systems',
-    desc: 'Autonomous agents that reason, plan, and act across complex multi-step workflows without human hand-holding.',
+    color: '#7C3AED',
+    Icon: FaPenNib,
+    name: 'Content AI',
+    tagline: 'Create content at scale',
+    slug: 'content',
   },
   {
-    Icon: FaRobot,
-    title: 'LLM Integrations',
-    desc: 'GPT-4, Claude, Gemini, and open-source models wired into your product with streaming, tool-use, and memory.',
+    color: '#F26522',
+    Icon: FaChartBar,
+    name: 'Sales AI',
+    tagline: 'Automate your entire sales pipeline',
+    slug: 'sales',
   },
   {
-    Icon: FaDatabase,
-    title: 'RAG & Knowledge Bases',
-    desc: 'Retrieval-augmented generation pipelines that let AI query your private data accurately and at speed.',
+    color: '#0EA5E9',
+    Icon: FaMagnifyingGlass,
+    name: 'Research AI',
+    tagline: 'Know your market before competitors',
+    slug: 'research',
   },
   {
-    Icon: FaGear,
-    title: 'Workflow Automation',
-    desc: 'n8n, Zapier, and custom orchestration layers that eliminate repetitive work across your entire stack.',
-  },
-  {
-    Icon: FaCode,
-    title: 'Custom AI APIs',
-    desc: 'Production-hardened REST and GraphQL APIs exposing AI capabilities to your internal and external apps.',
-  },
-  {
-    Icon: FaChartLine,
-    title: 'AI Analytics & Insight',
-    desc: 'Dashboards and anomaly-detection systems powered by ML that surface the signals buried in your data.',
+    color: '#059669',
+    Icon: FaBriefcase,
+    name: 'Business AI',
+    tagline: 'Run operations on autopilot',
+    slug: 'business',
   },
 ];
 
-function WhatWeBuildSection() {
-  const { ref, inView, variants } = useFadeUp();
-
-  return (
-    <section className="bg-[#F0F7FF] section-pad" aria-label="What We Build">
-      <div className="content-wrap">
-        <motion.div
-          ref={ref}
-          variants={variants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          className="text-center mb-14"
-        >
-          <p className="eyebrow text-[#F26522] mb-4 uppercase tracking-widest text-xs font-semibold">
-            Capabilities
-          </p>
-          <h2 className="font-display font-black text-[#0A1628] leading-tight"
-            style={{ fontSize: 'clamp(1.9rem, 3.5vw, 2.8rem)' }}>
-            What We Build
-          </h2>
-          <div className="w-12 h-1 bg-[#F26522] rounded-full mx-auto mt-5" />
-        </motion.div>
-
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {capabilities.map(({ Icon, title, desc }) => (
-            <motion.div
-              key={title}
-              variants={fadeUpChild}
-              className="group bg-white rounded-2xl p-8 border border-[#D8E8F4] hover:border-[#38BDF8] hover:shadow-[0_8px_40px_rgba(56,189,248,0.12)] transition-all duration-350"
-            >
-              <div className="w-12 h-12 rounded-xl bg-[#EBF8FF] flex items-center justify-center mb-5 group-hover:bg-[#38BDF8] transition-colors duration-300">
-                <Icon className="text-[#38BDF8] group-hover:text-white text-xl transition-colors duration-300" />
-              </div>
-              <h3 className="font-display font-black text-[#0A1628] text-[18px] mb-3">
-                {title}
-              </h3>
-              <p className="text-[#6B7280] text-[15px] leading-relaxed">{desc}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-/* ════════════════════════════════════════════════════════════════════════════
-   4. TEAM SECTION
-═══════════════════════════════════════════════════════════════════════════ */
-const team = [
-  { initials: 'AK', name: 'Arjun Kapoor', role: 'Founder & AI Architect', color: '#F26522' },
-  { initials: 'SM', name: 'Sofia Martinez', role: 'Lead ML Engineer', color: '#38BDF8' },
-  { initials: 'JL', name: 'James Liu', role: 'Head of Automation', color: '#A78BFA' },
-  { initials: 'NB', name: 'Nadia Becker', role: 'Senior LLM Engineer', color: '#34D399' },
-  { initials: 'RP', name: 'Rohan Patel', role: 'AI Infrastructure Lead', color: '#F472B6' },
-  { initials: 'EO', name: 'Elena Osei', role: 'Product & AI Strategy', color: '#FBBF24' },
-];
-
-function TeamSection() {
+function WhatWeOfferSection() {
   const { ref, inView } = useFadeUp();
 
   return (
-    <section className="bg-[#0D1E3A] section-pad" aria-label="Our Team">
-      <div className="content-wrap">
+    <section className="bg-[#F8FAFC] py-20" aria-label="What We Offer">
+      <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
+        {/* Heading */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 32 }}
@@ -374,130 +260,67 @@ function TeamSection() {
           transition={{ duration: 0.65, ease: 'easeOut' }}
           className="text-center mb-14"
         >
-          <p className="eyebrow text-[#F26522] mb-4 uppercase tracking-widest text-xs font-semibold">
-            The People
+          <p className="text-[#F26522] text-xs font-semibold uppercase tracking-[0.18em] mb-4">
+            The Toolkit
           </p>
-          <h2 className="font-display font-black text-white leading-tight"
-            style={{ fontSize: 'clamp(1.9rem, 3.5vw, 2.8rem)' }}>
-            Our Team
-          </h2>
-          <div className="w-12 h-1 bg-[#F26522] rounded-full mx-auto mt-5" />
-          <p className="text-[#8BA3C0] mt-6 max-w-xl mx-auto text-[16px] leading-relaxed">
-            Senior engineers and AI specialists spread across the globe, united by a
-            shared obsession with building things that work.
-          </p>
-        </motion.div>
-
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {team.map(({ initials, name, role, color }) => (
-            <motion.div
-              key={name}
-              variants={fadeUpChild}
-              className="bg-[#0A1628] rounded-2xl p-8 border border-[#1A3050] hover:border-[#F26522] transition-colors duration-300 flex flex-col items-center text-center"
-            >
-              {/* Avatar */}
-              <div
-                className="w-16 h-16 rounded-full flex items-center justify-center mb-5 font-display font-black text-white text-xl"
-                style={{ background: `${color}22`, border: `2px solid ${color}` }}
-              >
-                <span style={{ color }}>{initials}</span>
-              </div>
-              <p className="font-display font-black text-white text-[17px] mb-1">{name}</p>
-              <p className="text-[#8BA3C0] text-[14px]">{role}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-/* ════════════════════════════════════════════════════════════════════════════
-   5. WHY CHOOSE US
-═══════════════════════════════════════════════════════════════════════════ */
-const differentiators = [
-  {
-    number: '01',
-    Icon: FaRocket,
-    title: 'Ship in Weeks, Not Months',
-    desc: 'Our battle-tested component library and deployment infrastructure cuts delivery time by 60%.',
-  },
-  {
-    number: '02',
-    Icon: FaShieldHalved,
-    title: 'Enterprise-Grade Security',
-    desc: 'SOC-2-ready architecture, data isolation, and zero-trust principles baked in from the start.',
-  },
-  {
-    number: '03',
-    Icon: FaBolt,
-    title: 'Obsessively Iterative',
-    desc: 'Weekly demos, live dashboards, and async-friendly collaboration — no black-box delivery.',
-  },
-  {
-    number: '04',
-    Icon: FaGlobe,
-    title: 'Built for Scale',
-    desc: 'Cloud-native, horizontally scalable architectures that grow with your ambitions.',
-  },
-];
-
-function WhyChooseUsSection() {
-  const { ref, inView } = useFadeUp();
-
-  return (
-    <section className="bg-white section-pad" aria-label="Why Choose Us">
-      <div className="content-wrap">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 32 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.65, ease: 'easeOut' }}
-          className="text-center mb-14"
-        >
-          <p className="eyebrow text-[#F26522] mb-4 uppercase tracking-widest text-xs font-semibold">
-            The Difference
-          </p>
-          <h2 className="font-display font-black text-[#0A1628] leading-tight"
-            style={{ fontSize: 'clamp(1.9rem, 3.5vw, 2.8rem)' }}>
-            Why Choose Us
+          <h2
+            className="text-[#0D1E3A] font-black leading-tight"
+            style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.6rem)' }}
+          >
+            The complete AI toolkit for modern business.
           </h2>
           <div className="w-12 h-1 bg-[#F26522] rounded-full mx-auto mt-5" />
         </motion.div>
 
+        {/* Cards */}
         <motion.div
-          variants={staggerContainer}
+          variants={stagger}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {differentiators.map(({ number, Icon, title, desc }) => (
+          {categories.map(({ color, Icon, name, tagline, slug }) => (
             <motion.div
-              key={title}
+              key={name}
               variants={fadeUpChild}
-              className="group relative rounded-2xl p-8 border border-[#E8EFF6] bg-[#F8FBFF] hover:border-[#F26522] hover:shadow-[0_8px_40px_rgba(242,101,34,0.10)] transition-all duration-350 overflow-hidden"
+              className="group rounded-2xl border border-[#E8EDF3] bg-white overflow-hidden hover:shadow-[0_8px_40px_rgba(13,30,58,0.10)] transition-shadow duration-300"
             >
-              {/* Big watermark number */}
-              <p
-                className="absolute top-4 right-5 font-display font-black text-[4rem] leading-none select-none pointer-events-none opacity-[0.06] text-[#0A1628]"
-              >
-                {number}
-              </p>
+              {/* Colored top border */}
+              <div className="h-1.5 w-full" style={{ background: color }} />
 
-              <div className="w-11 h-11 rounded-xl bg-[#FFF3EC] flex items-center justify-center mb-5 group-hover:bg-[#F26522] transition-colors duration-300">
-                <Icon className="text-[#F26522] group-hover:text-white text-lg transition-colors duration-300" />
+              <div className="p-7">
+                {/* Icon */}
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                  style={{ background: `${color}18` }}
+                >
+                  <Icon style={{ color }} className="text-xl" />
+                </div>
+
+                {/* Name */}
+                <p
+                  className="font-black text-[17px] mb-1"
+                  style={{ color }}
+                >
+                  {name}
+                </p>
+
+                {/* Tagline */}
+                <p className="text-[#4B5563] text-[15px] leading-relaxed mb-6">
+                  {tagline}
+                </p>
+
+                {/* Link */}
+                <Link
+                  to={`/category/${slug}`}
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors duration-200"
+                  style={{ color }}
+                >
+                  Explore tools
+                  <FaArrowRight className="text-xs" />
+                </Link>
               </div>
-              <h3 className="font-display font-black text-[#0A1628] text-[17px] mb-3">
-                {title}
-              </h3>
-              <p className="text-[#6B7280] text-[14px] leading-relaxed">{desc}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -507,20 +330,33 @@ function WhyChooseUsSection() {
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
-   6. TECH STACK
+   4. HOW IT WORKS
 ═══════════════════════════════════════════════════════════════════════════ */
-const techStack = [
-  'OpenAI GPT-4o', 'Anthropic Claude', 'Google Gemini', 'LangChain',
-  'LlamaIndex', 'Pinecone', 'Weaviate', 'n8n', 'FastAPI', 'Node.js',
-  'PostgreSQL', 'Redis', 'Docker', 'Kubernetes', 'AWS', 'Vercel',
+const steps = [
+  {
+    number: '1',
+    title: 'Choose your tools',
+    desc: 'Browse 16 AI tools across 4 categories and pick the ones that match your workflow. Start with one or activate an entire category — no minimums.',
+  },
+  {
+    number: '2',
+    title: 'Connect your stack',
+    desc: 'Link your existing apps and data sources with our one-click integrations. Agentix fits into your current workflow, not the other way around.',
+  },
+  {
+    number: '3',
+    title: 'Go live immediately',
+    desc: 'Your selected tools are ready to run the moment you connect. No training runs, no custom development, no waiting — just results from day one.',
+  },
 ];
 
-function TechStackSection() {
+function HowItWorksSection() {
   const { ref, inView } = useFadeUp();
 
   return (
-    <section className="bg-[#0A1628] section-pad" aria-label="Tech Stack">
-      <div className="content-wrap">
+    <section className="bg-white py-20" aria-label="How It Works">
+      <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
+        {/* Heading */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 32 }}
@@ -528,35 +364,168 @@ function TechStackSection() {
           transition={{ duration: 0.65, ease: 'easeOut' }}
           className="text-center mb-14"
         >
-          <p className="eyebrow text-[#F26522] mb-4 uppercase tracking-widest text-xs font-semibold">
-            Tools &amp; Platforms
+          <p className="text-[#F26522] text-xs font-semibold uppercase tracking-[0.18em] mb-4">
+            How It Works
           </p>
-          <h2 className="font-display font-black text-white leading-tight"
-            style={{ fontSize: 'clamp(1.9rem, 3.5vw, 2.8rem)' }}>
-            Our Tech Stack
+          <h2
+            className="text-[#0D1E3A] font-black leading-tight"
+            style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.6rem)' }}
+          >
+            Getting started takes minutes, not months.
           </h2>
           <div className="w-12 h-1 bg-[#F26522] rounded-full mx-auto mt-5" />
-          <p className="text-[#8BA3C0] mt-6 max-w-lg mx-auto text-[16px]">
-            Best-in-class tools, chosen for reliability and performance in production.
-          </p>
         </motion.div>
 
+        {/* Steps */}
         <motion.div
-          variants={staggerContainer}
+          variants={stagger}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="flex flex-wrap justify-center gap-3"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
-          {techStack.map((tech) => (
-            <motion.span
-              key={tech}
-              variants={fadeUpChild}
-              className="px-5 py-2.5 rounded-full border border-[#1A3050] bg-[#0D1E3A] text-[#8BA3C0] text-sm font-medium hover:border-[#38BDF8] hover:text-[#38BDF8] hover:bg-[#0D1E3A] transition-all duration-250 cursor-default"
-            >
-              {tech}
-            </motion.span>
+          {steps.map(({ number, title, desc }) => (
+            <motion.div key={number} variants={fadeUpChild} className="flex flex-col items-start">
+              {/* Orange circle number */}
+              <div className="w-12 h-12 rounded-full bg-[#F26522] flex items-center justify-center mb-5 flex-shrink-0">
+                <span className="text-white font-black text-lg leading-none">{number}</span>
+              </div>
+              <h3 className="text-[#0D1E3A] font-black text-[18px] mb-3">{title}</h3>
+              <p className="text-[#4B5563] text-[15px] leading-relaxed">{desc}</p>
+            </motion.div>
           ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   5. VALUES
+═══════════════════════════════════════════════════════════════════════════ */
+const values = [
+  {
+    Icon: FaGlobe,
+    title: 'AI for Everyone',
+    desc: 'Enterprise AI should not be a privilege. We price and package our tools so that any business — from seed-stage startups to mid-market teams — can compete at the highest level.',
+  },
+  {
+    Icon: FaBolt,
+    title: 'Speed to Value',
+    desc: 'Time is the one resource you cannot get back. Every Agentix tool is designed to deliver measurable output within hours of activation, not weeks of setup.',
+  },
+  {
+    Icon: FaHandshake,
+    title: 'Human + AI',
+    desc: 'We build tools that amplify your team, not replace them. The best outcomes happen when human creativity and judgment are paired with AI-scale execution.',
+  },
+  {
+    Icon: FaChartLine,
+    title: 'Relentless Improvement',
+    desc: 'Our tools are continuously trained and updated as AI evolves. What you deploy today will be smarter next month — automatically, at no extra cost.',
+  },
+];
+
+function ValuesSection() {
+  const { ref, inView } = useFadeUp();
+
+  return (
+    <section className="bg-[#F8FAFC] py-20" aria-label="Our Values">
+      <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
+        {/* Heading */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 32 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.65, ease: 'easeOut' }}
+          className="text-center mb-14"
+        >
+          <p className="text-[#F26522] text-xs font-semibold uppercase tracking-[0.18em] mb-4">
+            Values
+          </p>
+          <h2
+            className="text-[#0D1E3A] font-black leading-tight"
+            style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.6rem)' }}
+          >
+            What drives us.
+          </h2>
+          <div className="w-12 h-1 bg-[#F26522] rounded-full mx-auto mt-5" />
+        </motion.div>
+
+        {/* Grid 2×2 */}
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+        >
+          {values.map(({ Icon, title, desc }) => (
+            <motion.div
+              key={title}
+              variants={fadeUpChild}
+              className="rounded-2xl border border-[#E8EDF3] bg-white p-8 hover:shadow-[0_6px_32px_rgba(13,30,58,0.08)] transition-shadow duration-300"
+            >
+              {/* Icon in orange circle */}
+              <div className="w-12 h-12 rounded-full bg-[#F26522] flex items-center justify-center mb-5">
+                <Icon className="text-white text-lg" />
+              </div>
+              <h3 className="text-[#0D1E3A] font-black text-[18px] mb-3">{title}</h3>
+              <p className="text-[#4B5563] text-[15px] leading-relaxed">{desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   6. TEAM SECTION
+═══════════════════════════════════════════════════════════════════════════ */
+const principles = ['Remote-first', 'AI-native', 'Customer-obsessed'];
+
+function TeamSection() {
+  const { ref, inView } = useFadeUp();
+
+  return (
+    <section className="bg-white py-20" aria-label="Our Team">
+      <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 32 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.65, ease: 'easeOut' }}
+          className="max-w-2xl mx-auto text-center"
+        >
+          <p className="text-[#F26522] text-xs font-semibold uppercase tracking-[0.18em] mb-4">
+            The Team
+          </p>
+          <h2
+            className="text-[#0D1E3A] font-black leading-tight mb-5"
+            style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.6rem)' }}
+          >
+            A globally distributed team obsessed with AI.
+          </h2>
+          <div className="w-12 h-1 bg-[#F26522] rounded-full mx-auto mb-8" />
+          <p className="text-[#4B5563] text-[17px] leading-relaxed mb-10">
+            Agentix is built by engineers, product thinkers, and AI researchers
+            working across time zones with a single mission: make AI tools that
+            businesses actually use every day. No fluff, no demos — just tools that
+            run in production and deliver results.
+          </p>
+
+          {/* Principle chips */}
+          <div className="flex flex-wrap justify-center gap-3">
+            {principles.map((chip) => (
+              <span
+                key={chip}
+                className="inline-block bg-[#F8FAFC] border border-[#E8EDF3] text-[#0D1E3A] font-semibold text-sm px-5 py-2.5 rounded-full"
+              >
+                {chip}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
@@ -570,40 +539,37 @@ function CtaBanner() {
   const { ref, inView } = useFadeUp();
 
   return (
-    <section
-      aria-label="Call to Action"
-      style={{
-        background: 'linear-gradient(135deg, #F26522 0%, #E04F0C 50%, #C93D00 100%)',
-      }}
-    >
-      <div className="content-wrap py-20">
+    <section className="bg-white py-20" aria-label="Call to Action">
+      <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 32 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, ease: 'easeOut' }}
-          className="text-center"
         >
-          <p className="text-white/70 uppercase tracking-widest text-xs font-semibold mb-4">
-            Let's Build Together
-          </p>
-          <h2
-            className="font-display font-black text-white leading-tight mb-6"
-            style={{ fontSize: 'clamp(1.9rem, 4vw, 3.2rem)' }}
+          <div
+            className="rounded-2xl text-center px-8 py-16"
+            style={{
+              background: 'linear-gradient(135deg, #F26522 0%, #d9541a 60%, #c04100 100%)',
+            }}
           >
-            Ready to Build Something Exceptional?
-          </h2>
-          <p className="text-white/80 text-[17px] max-w-xl mx-auto mb-10 leading-relaxed">
-            Tell us what you need. We will come back within 24 hours with a clear plan,
-            no fluff.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-3 bg-white text-[#F26522] font-display font-black px-9 py-4 rounded-full hover:bg-[#0A1628] hover:text-white transition-all duration-300 text-[16px] shadow-lg hover:shadow-xl"
-          >
-            Start a Conversation
-            <FaArrowRight className="text-sm" />
-          </Link>
+            <h2
+              className="text-white font-black leading-tight mb-3"
+              style={{ fontSize: 'clamp(1.7rem, 3.5vw, 2.8rem)' }}
+            >
+              Ready to transform your business with AI?
+            </h2>
+            <p className="text-white/80 text-[17px] mb-8">
+              Start with any tool — free.
+            </p>
+            <Link
+              to="/category/content"
+              className="inline-flex items-center gap-2 bg-white text-[#F26522] font-black px-9 py-4 rounded-full hover:bg-[#0D1E3A] hover:text-white transition-all duration-300 text-[15px] shadow-lg"
+            >
+              Explore Tools
+              <FaArrowRight className="text-sm" />
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>
