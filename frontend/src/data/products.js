@@ -510,3 +510,48 @@ const PRODUCTS = [
 ];
 
 export default PRODUCTS;
+
+const PRODUCTS_FIXED = [
+  ...PRODUCTS,
+  {
+    slug: 'contextclue',
+    name: 'ContextClue',
+    tagline: 'Intelligent document analysis and retrieval powered by Generative AI.',
+    metaDesc: 'ContextClue provides automated text analysis, document creation based on templates and information retrieval for enterprise scale.',
+    badge: 'Generative AI',
+    gradient: 'linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 60%, #F0FDFA 100%)',
+    accentColor: '#14B8A6',
+    iconBg: 'rgba(20,184,166,0.10)',
+    heroStats: [
+      { value: '88%', label: 'Faster document review' },
+      { value: '100%', label: 'Template consistency' },
+      { value: '2.5×', label: 'More accurate data extraction' },
+    ],
+    overview: 'ContextClue is our innovative product powered by Generative AI that provides automated text analysis, document creation based on templates and information retrieval. It allows you to transform static documents into dynamic knowledge assets, enabling your team to find answers and generate content in seconds.',
+    features: [
+      { icon: 'magnifying-glass', title: 'Deep Retrieval', desc: 'Find exact answers within thousands of pages using semantic search that understands intent.' },
+      { icon: 'file-lines', title: 'Template-Based Generation', desc: 'Create new documents, contracts, or reports automatically based on your specific templates and data.' },
+      { icon: 'bolt', title: 'Real-Time Analysis', desc: 'Analyze incoming documents instantly to flag risks, extract key dates, and summarize content.' },
+    ],
+    howItWorks: [
+      { step: 1, title: 'Upload Documents', desc: 'Securely upload PDFs, Word docs, or connect to your cloud storage.' },
+      { step: 2, title: 'AI Indexing', desc: 'ContextClue indexes your data into a vector knowledge base for intelligent retrieval.' },
+      { step: 3, title: 'Interact & Generate', desc: 'Ask questions, extract data, or generate new documents via a natural language interface.' },
+    ],
+    useCases: [
+      { title: 'Legal & Compliance', desc: 'Automate the review of contracts and ensure compliance with internal policies.' },
+      { title: 'Insurance Underwriting', desc: 'Extract key risk factors from policy applications and historical data.' },
+    ],
+    integrations: ['Google Drive', 'SharePoint', 'Slack', 'Salesforce'],
+    results: [
+      { value: '88%', label: 'Time Saved', desc: 'In manual document processing' },
+      { value: 'Zero', label: 'Data Leaks', desc: 'Enterprise-grade security and isolation' },
+    ],
+    faq: [
+      { q: 'Is my data secure?', a: 'Yes. ContextClue uses tenant-isolation and enterprise-grade encryption to ensure your data is never used to train public models.' },
+    ]
+  }
+];
+
+export const PRODUCTS_LIST_EXPORT = PRODUCTS_FIXED;
+

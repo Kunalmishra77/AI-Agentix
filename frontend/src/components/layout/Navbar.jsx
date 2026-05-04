@@ -9,6 +9,7 @@ import {
   FaCompass, FaMessage, FaPlug, FaRocket,
   FaFileLines, FaBookOpen, FaBuilding, FaCode, FaEye,
   FaHeart, FaLandmark, FaBagShopping, FaIndustry, FaGraduationCap,
+  FaPlane, FaTruck,
   FaArrowRight,
 } from 'react-icons/fa6';
 
@@ -79,6 +80,8 @@ const SOLUTIONS_INDUSTRIES = [
   { name: 'Retail',            href: '/industries/retail',        Icon: FaBagShopping },
   { name: 'Manufacturing',     href: '/industries/manufacturing', Icon: FaIndustry },
   { name: 'Education',         href: '/industries/education',     Icon: FaGraduationCap },
+  { name: 'Aviation',          href: '/industries/aviation',      Icon: FaPlane },
+  { name: 'Logistics',         href: '/industries/logistics',     Icon: FaTruck },
 ];
 
 const PRODUCTS_LIST = [

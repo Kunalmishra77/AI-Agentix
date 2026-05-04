@@ -551,7 +551,7 @@ const INDUSTRIES = [
       {
         icon: 'chart-bar',
         title: 'Limited Learning Analytics',
-        desc: 'Educators lack real-time insight into student comprehension, engagement, and early warning signals that predict academic risk.',
+        desc: 'Educators lack real-time insight into student comprehension, engagement, and early warning signals that predict academic risk.',  
       },
     ],
     solutions: [
@@ -648,6 +648,42 @@ const INDUSTRIES = [
       },
     ],
   },
-];
-
+  {
+    slug: 'aviation',
+    title: 'Aviation & Aerospace',
+    tagline: 'Intelligent systems for safer, more efficient flight operations and passenger experiences.',
+    metaDesc: 'AI Agentix builds AI solutions for aviation — luggage tracking, stand assignment optimization, passenger experience bots, and real-time operational analytics.',
+    gradient: 'linear-gradient(135deg, #0A1628 0%, #1A3050 60%, #0A1628 100%)',
+    heroStats: [
+      { value: '34%', label: 'Reduction in turnaround time' },
+      { value: '99.1%', label: 'Baggage tracking accuracy' },
+      { value: '2.4×', label: 'Faster incident response' },
+    ],
+    overview: 'Aviation organisations trust AI Agentix to build intelligent systems that optimize every aspect of the airport and flight experience. From computer vision for baggage handling to RL-driven gate assignments.',
+    challenges: [{ title: 'Operational Inefficiency', desc: 'Manual processes lead to delays and high costs.' }],
+    solutions: [{ title: 'Baggage Tracking', desc: 'AI-powered vision systems for real-time tracking.' }],
+    useCases: [{ title: 'Smart Gate Assignment', desc: 'Optimizing turnarounds.' }],
+    technologies: ['Computer Vision', 'Python', 'RL'],
+    results: [{ value: '34%', label: 'Efficiency' }],
+    faq: [{ q: 'Is it real-time?', a: 'Yes.' }]
+  },
+  {
+    slug: 'logistics',
+    title: 'Logistics & Supply Chain',
+    tagline: 'AI that unifies data and optimises every shipment.',
+    metaDesc: 'Logistics operators leverage our AI for intermodal transportation data platforms and demand forecasting.',
+    gradient: 'linear-gradient(135deg, #2A1A0A 0%, #1A0A08 60%, #0A1628 100%)',
+    heroStats: [
+      { value: '31%', label: 'Cost reduction' },
+      { value: '94%', label: 'On-time delivery' },
+    ],
+    overview: 'Logistics is about data movement as much as physical movement. We unify fragmented data into a single source of truth.',
+    challenges: [{ title: 'Data Silos', desc: 'Fragmented data prevents optimization.' }],
+    solutions: [{ title: 'Route Optimization', desc: 'AI-driven routing for fleets.' }],
+    useCases: [{ title: 'Intermodal Tracking', desc: 'Unifying sea, air, and land data.' }],
+    technologies: ['Apache Kafka', 'Spark'],
+    results: [{ value: '31%', label: 'Savings' }],
+    faq: [{ q: 'Do you support multi-modal?', a: 'Yes.' }]
+  }
+  ];
 export default INDUSTRIES;

@@ -16,6 +16,9 @@ import NotFound from './pages/NotFound.jsx';
 import Resources from './pages/Resources.jsx';
 import UseCases from './pages/UseCases.jsx';
 import Press from './pages/Press.jsx';
+import PrivacyPolicy from './pages/Privacy.jsx';
+import TermsAndConditions from './pages/Terms.jsx';
+import CookiesPolicy from './pages/Cookies.jsx';
 import ServicePage from './pages/ServicePage.jsx';
 import SolutionPage from './pages/SolutionPage.jsx';
 import IndustryPage from './pages/IndustryPage.jsx';
@@ -49,6 +52,9 @@ export default function App() {
           <Route path="/resources" element={<Resources />} />
           <Route path="/use-cases" element={<UseCases />} />
           <Route path="/press" element={<Press />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/cookies" element={<CookiesPolicy />} />
 
           {/* Service pages — all 16 slugs */}
           <Route path="/services/:slug" element={<ServicePage />} />
