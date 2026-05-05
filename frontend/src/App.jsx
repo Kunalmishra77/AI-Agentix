@@ -4,6 +4,7 @@ import AnnouncementBanner from './components/layout/AnnouncementBanner.jsx';
 import Navbar from './components/layout/Navbar.jsx';
 import Footer from './components/layout/Footer.jsx';
 import ScrollToTop from './components/ui/ScrollToTop.jsx';
+import TalkToAgentix from './components/ui/TalkToAgentix.jsx';
 import Home from './pages/Home.jsx';
 import Contact from './pages/Contact.jsx';
 import CaseStudies from './pages/CaseStudies.jsx';
@@ -61,6 +62,7 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+      <TalkToAgentix />
       <Footer />
     </div>
   );

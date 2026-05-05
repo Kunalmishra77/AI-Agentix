@@ -17,65 +17,68 @@ import {
 const RESOURCES = [
   {
     type: 'Guide',
-    category: 'AI Strategy',
-    title: 'The 2026 Enterprise AI Readiness Guide',
-    desc: 'Everything you need to assess and accelerate your AI maturity — from data infrastructure to organisational change.',
-    pages: '48 pages',
-  },
-  {
-    type: 'Whitepaper',
-    category: 'Agentic AI',
-    title: 'Agentic AI: From Hype to Production',
-    desc: 'A technical deep-dive into building reliable AI agent systems that operate autonomously in enterprise environments.',
-    pages: '32 pages',
-  },
-  {
-    type: 'Ebook',
-    category: 'n8n Automation',
-    title: 'n8n Automation Playbook for Agencies',
-    desc: 'The definitive guide to building agency-grade n8n workflows — architecture, error handling, and scaling to 200+ nodes.',
-    pages: '60 pages',
+    category: 'Content AI',
+    title: 'Getting Started with Agentix Content AI',
+    desc: 'Step-by-step setup for the AI Content Generator, Social Media Scheduler, and Workflow Generator — from account creation to first publish.',
+    pages: '24 pages',
   },
   {
     type: 'Guide',
-    category: 'RAG & LLM',
-    title: 'RAG in Production: What Actually Works',
-    desc: 'The failure patterns behind 80% of RAG deployments — and the engineering practices that put you in the successful 20%.',
+    category: 'Sales AI',
+    title: 'The Complete AI Sales Playbook',
+    desc: 'How to use Lead Scraper, WhatsApp Automation, and Cold Calling Bot together for a fully automated pipeline — from ICP definition to closed deal.',
     pages: '36 pages',
   },
   {
     type: 'Whitepaper',
-    category: 'MLOps',
-    title: 'MLOps Maturity Model for Enterprises',
-    desc: 'A framework for assessing and advancing your ML engineering practices from experimentation to reliable production.',
+    category: 'ROI & Data',
+    title: 'ROI of AI Tools for SMBs in 2026',
+    desc: 'Data from 500+ Agentix customers on time saved, revenue generated, and operational costs reduced across all 4 tool categories.',
     pages: '28 pages',
   },
   {
+    type: 'Webinar',
+    category: 'Sales AI',
+    title: 'Live Demo: Agentix Sales AI in Action',
+    desc: 'Watch our team demo the full Sales AI suite — from lead generation to CRM sync — with a live Q&A at the end.',
+    pages: '60 min',
+  },
+  {
+    type: 'Guide',
+    category: 'Research AI',
+    title: 'Market Research AI: Zero to Insights in 48 Hours',
+    desc: 'How to use Competitor Analyzer and Pricing Intelligence together to build a complete competitive picture before your next product launch.',
+    pages: '20 pages',
+  },
+  {
     type: 'Ebook',
-    category: 'Data Engineering',
-    title: 'Building AI-Ready Data Platforms',
-    desc: 'Lakehouse architectures, real-time pipelines, and data governance patterns that support production AI at scale.',
-    pages: '52 pages',
+    category: 'Business AI',
+    title: 'Agentix Business AI: Complete Onboarding Guide',
+    desc: 'Your 30-step checklist for getting CRM, ERP, LMS, Website Builder, and E-Commerce tools live — with integration guides for every major platform.',
+    pages: '44 pages',
   },
 ];
 
-const FILTERS = ['All', 'Guide', 'Whitepaper', 'Ebook'];
+const FILTERS = ['All', 'Guide', 'Whitepaper', 'Webinar', 'Ebook'];
 
 const TYPE_BAR = {
   Guide: 'bg-[#38BDF8]',
   Whitepaper: 'bg-purple-400',
+  Webinar: 'bg-[#F26522]',
   Ebook: 'bg-emerald-400',
 };
 
 const TYPE_BADGE = {
   Guide: 'bg-blue-50 text-blue-700 border border-blue-200',
   Whitepaper: 'bg-purple-50 text-purple-700 border border-purple-200',
+  Webinar: 'bg-orange-50 text-orange-700 border border-orange-200',
   Ebook: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
 };
 
 const TYPE_ICON = {
   Guide: FaBookOpen,
   Whitepaper: FaFileLines,
+  Webinar: FaDatabase,
   Ebook: FaBook,
 };
 

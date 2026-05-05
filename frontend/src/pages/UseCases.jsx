@@ -14,56 +14,62 @@ import {
 
 const USE_CASES = [
   {
-    industry: 'Legal',
-    title: 'Contract Review AI',
-    desc: 'Automatically extract clauses, flag risk indicators, and compare contract terms against company standards — cutting review time by 68% while improving accuracy.',
-    outcomes: ['68% faster review', '99.4% clause extraction accuracy', '10× more docs per day'],
+    industry: 'Content AI',
+    title: 'Marketing Agency — 12× Content Output',
+    desc: 'A 10-person agency used the AI Content Generator and Social Media Scheduler to produce content for 25 clients simultaneously — without adding a single headcount.',
+    outcomes: ['12× content output', '94% brand voice accuracy', '4× more clients served'],
   },
   {
-    industry: 'Manufacturing',
-    title: 'Predictive Maintenance',
-    desc: 'ML models trained on sensor telemetry predict equipment failures days in advance, enabling scheduled maintenance that eliminates costly unplanned downtime.',
-    outcomes: ['28% less downtime', '91% failure prediction accuracy', '3.1× OEE improvement'],
+    industry: 'Sales AI',
+    title: 'SaaS Sales Team — 3× More Qualified Leads',
+    desc: 'A B2B SaaS company deployed Lead Scraper and Cold Calling Bot to replace manual prospecting entirely. The AI runs 1,000 outreach calls per day while the team focuses on closing.',
+    outcomes: ['3× qualified leads', '1,000 calls/day automated', '2× close rate'],
   },
   {
-    industry: 'Finance',
-    title: 'Real-Time Fraud Detection',
-    desc: 'Sub-second graph-based fraud scoring on every transaction — combining transaction patterns, device fingerprinting, and behavioural signals to catch fraud before it lands.',
-    outcomes: ['<300ms latency', '78% fewer false positives', '99.2% detection rate'],
+    industry: 'Research AI',
+    title: 'E-Commerce Brand — 18% Margin Improvement',
+    desc: 'An online retailer used Pricing Intelligence and Competitor Analyzer to dynamically reprice 8,000 SKUs daily. Real-time market data replaced weekly manual reviews.',
+    outcomes: ['18% margin improvement', 'Real-time repricing', '6hrs saved per week'],
   },
   {
-    industry: 'Retail',
-    title: 'AI Demand Forecasting',
-    desc: 'ML demand models trained on sales history, promotions, seasonality, and external signals produce store-level SKU forecasts that reduce overstock and eliminate stockouts.',
-    outcomes: ['18% overstock reduction', '23% fewer stockouts', '2.8× conversion uplift'],
+    industry: 'Business AI',
+    title: 'Retail Chain — 60% Operational Cost Reduction',
+    desc: 'A 12-location retail chain unified their CRM, ERP, and inventory management under the Agentix Business AI suite. One dashboard replaced five disconnected tools.',
+    outcomes: ['60% operational cost cut', 'All 12 locations in sync', '3hrs saved daily per manager'],
   },
   {
-    industry: 'Healthcare',
-    title: 'Clinical Document Processing',
-    desc: 'Automatically classify, extract, and route clinical documents — medical records, pathology reports, discharge summaries — with the accuracy required for regulated environments.',
-    outcomes: ['55% faster processing', '99.7% accuracy', '4× QA test coverage'],
+    industry: 'Content AI',
+    title: 'Personal Brand — 4.2× Follower Growth',
+    desc: 'A solo consultant used Social Media Scheduler and AI Content Generator to maintain a daily presence across LinkedIn, Twitter/X, and Instagram in just 30 minutes per week.',
+    outcomes: ['4.2× follower growth', '30 min/week investment', '3.8× engagement rate'],
   },
   {
-    industry: 'Enterprise',
-    title: 'AI Customer Support Bot',
-    desc: 'RAG-powered conversational AI trained on your knowledge base resolves 60%+ of support tickets without human intervention — escalating only when confidence is low.',
-    outcomes: ['60% ticket deflection', '<2s average response', '4.8/5 CSAT score'],
+    industry: 'Sales AI',
+    title: 'B2B Consultancy — Zero Manual Follow-Up',
+    desc: 'A consultancy deployed WhatsApp Automation and CRM Sync to handle all prospect follow-ups automatically. Every conversation synced to HubSpot in real time with zero data entry.',
+    outcomes: ['Zero manual follow-up', '98% message open rate', '2× deal close rate'],
   },
   {
-    industry: 'Manufacturing',
-    title: 'Visual Quality Control',
-    desc: 'Computer vision models deployed at the production line inspect components in real time — detecting surface defects, dimensional errors, and assembly mistakes at line speed.',
-    outcomes: ['91% defect detection', '0.3s inspection cycle', '40% QC cost reduction'],
+    industry: 'Research AI',
+    title: 'Product Launch — Full GTM in 48 Hours',
+    desc: 'A startup used Market Strategy Generator to produce a complete go-to-market strategy — market sizing, personas, channel mix, and competitive positioning — before their first sales call.',
+    outcomes: ['48hr full strategy', '200+ data sources analysed', 'Raised seed round in 3 weeks'],
   },
   {
-    industry: 'Engineering',
-    title: 'Knowledge Base RAG',
-    desc: 'Semantic search and retrieval-augmented generation over engineering documentation — CAD files, ERP records, SOPs — gives engineers instant cited answers without hunting through systems.',
-    outcomes: ['85% query accuracy', '60% less time searching', '3× faster onboarding'],
+    industry: 'Business AI',
+    title: 'Online Store — Live E-Commerce in 30 Minutes',
+    desc: 'A product entrepreneur used the E-Commerce Sites and Website Builder tools to go from idea to live, payment-enabled store in under 30 minutes — with AI-written product listings.',
+    outcomes: ['30 min to live store', 'AI-written listings', 'Multi-currency from day one'],
+  },
+  {
+    industry: 'Business AI',
+    title: 'Training Company — LMS Live in One Day',
+    desc: 'A corporate training company used the Agentix LMS System to migrate 200+ training modules online, with AI-generated quizzes and automated completion certificates.',
+    outcomes: ['94% completion rate', 'AI-personalised learning paths', '10× faster course creation'],
   },
 ];
 
-const FILTERS = ['All', 'Legal', 'Manufacturing', 'Finance', 'Retail', 'Healthcare', 'Enterprise', 'Engineering'];
+const FILTERS = ['All', 'Content AI', 'Sales AI', 'Research AI', 'Business AI'];
 
 const PROCESS_STEPS = [
   {
