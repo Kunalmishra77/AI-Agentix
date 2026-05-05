@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import {
   FaChevronDown,
-  FaChevronUp,
   FaArrowRight,
   FaBolt,
   FaRobot,
@@ -13,13 +12,18 @@ import {
   FaCheck,
   FaPuzzlePiece,
   FaCircleCheck,
+  FaArrowTrendUp,
 } from 'react-icons/fa6';
 import TOOLS from '../data/tools';
 
 /* ─── Animation variants ─────────────────────────── */
 const fadeUp = {
-  hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] } },
+  hidden: { opacity: 0, y: 36 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 
 const fadeIn = {
@@ -28,18 +32,27 @@ const fadeIn = {
 };
 
 const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } },
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.09 } },
 };
 
 const slideDown = {
   hidden: { height: 0, opacity: 0 },
-  visible: { height: 'auto', opacity: 1, transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] } },
-  exit: { height: 0, opacity: 0, transition: { duration: 0.25, ease: [0.4, 0, 0.2, 1] } },
+  visible: {
+    height: 'auto',
+    opacity: 1,
+    transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] },
+  },
+  exit: {
+    height: 0,
+    opacity: 0,
+    transition: { duration: 0.25, ease: [0.4, 0, 0.2, 1] },
+  },
 };
 
 /* ─── Scroll-triggered section wrapper ───────────── */
-function Section({ children, className = '', delay = 0 }) {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.08 });
+function Section({ children, className = '' }) {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.07 });
   return (
     <motion.div
       ref={ref}
@@ -47,7 +60,6 @@ function Section({ children, className = '', delay = 0 }) {
       animate={inView ? 'visible' : 'hidden'}
       variants={stagger}
       className={className}
-      style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
     </motion.div>
@@ -62,8 +74,46 @@ function hexToRgba(hex, alpha) {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
+/* ─── Dot-grid pattern style ─────────────────────── */
+const dotGrid = {
+  backgroundImage:
+    'radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px)',
+  backgroundSize: '28px 28px',
+};
+
 /* ─── Feature icon map (rotated per index) ───────── */
 const FEATURE_ICONS = [FaBolt, FaRobot, FaCircleCheck, FaPuzzlePiece];
+
+/* ─── Section heading component ─────────────────── */
+function SectionHeading({ eyebrow, title, subtitle, color, align = 'left', className = '' }) {
+  const alignClass = align === 'center' ? 'text-center mx-auto' : '';
+  return (
+    <div className={`${alignClass} ${className}`}>
+      <motion.p
+        variants={fadeUp}
+        className="text-xs font-bold uppercase tracking-widest mb-3"
+        style={{ color }}
+      >
+        {eyebrow}
+      </motion.p>
+      <motion.h2
+        variants={fadeUp}
+        className="font-black text-[#0D1E3A] leading-tight"
+        style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', letterSpacing: '-0.025em' }}
+      >
+        {title}
+      </motion.h2>
+      {subtitle && (
+        <motion.p
+          variants={fadeUp}
+          className={`text-[#4B5563] text-lg leading-relaxed mt-4 ${align === 'center' ? 'max-w-2xl mx-auto' : 'max-w-2xl'}`}
+        >
+          {subtitle}
+        </motion.p>
+      )}
+    </div>
+  );
+}
 
 export default function ToolPage() {
   const { slug } = useParams();
@@ -72,8 +122,10 @@ export default function ToolPage() {
 
   if (!tool) return <Navigate to="/404" replace />;
 
-  const tintColor = hexToRgba(tool.color, 0.08);
-  const tintBorder = hexToRgba(tool.color, 0.2);
+  const tint12 = hexToRgba(tool.color, 0.12);
+  const tint20 = hexToRgba(tool.color, 0.20);
+  const tint08 = hexToRgba(tool.color, 0.08);
+  const tintBorder = hexToRgba(tool.color, 0.22);
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
@@ -84,164 +136,189 @@ export default function ToolPage() {
       </Helmet>
 
       {/* ══════════════════════════════════════════
-          1. HERO SECTION
+          1. HERO
       ══════════════════════════════════════════ */}
       <section
-        className="relative w-full py-28 overflow-hidden"
+        className="relative w-full py-32 overflow-hidden"
         style={{ background: tool.gradient }}
       >
-        {/* Subtle noise / shimmer overlay */}
+        {/* Dot-grid overlay */}
+        <div className="absolute inset-0 pointer-events-none" style={dotGrid} />
+
+        {/* Glow orb — top right */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute -top-32 -right-32 w-[560px] h-[560px] rounded-full pointer-events-none"
           style={{
-            backgroundImage:
-              'radial-gradient(ellipse 80% 60% at 70% 40%, rgba(255,255,255,0.08) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(255,255,255,0.13) 0%, transparent 70%)',
+            filter: 'blur(40px)',
+          }}
+        />
+        {/* Glow orb — bottom left */}
+        <div
+          className="absolute -bottom-40 -left-20 w-[420px] h-[420px] rounded-full pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%)',
+            filter: 'blur(60px)',
           }}
         />
 
         <div className="relative max-w-[1240px] mx-auto px-6 sm:px-12">
-          <div className="flex flex-col lg:flex-row gap-14 lg:gap-20 items-center">
+          <div className="flex flex-col lg:flex-row gap-14 lg:gap-16 items-center">
 
-            {/* ── Left column ── */}
-            <div className="flex-1 min-w-0">
+            {/* ── Left column (60%) ── */}
+            <div className="flex-1 min-w-0 lg:max-w-[58%]">
               {/* Breadcrumb */}
               <motion.nav
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex items-center gap-2 text-white/60 text-sm mb-6 flex-wrap"
+                className="flex items-center gap-2 text-white/50 text-sm mb-7 flex-wrap"
               >
-                <Link to="/" className="hover:text-white transition-colors">Home</Link>
-                <span className="text-white/30">/</span>
-                <Link to="/tools" className="hover:text-white transition-colors">{tool.categoryLabel}</Link>
-                <span className="text-white/30">/</span>
-                <span className="text-white/90">{tool.name}</span>
+                <Link to="/" className="hover:text-white/90 transition-colors">Home</Link>
+                <span className="text-white/25">/</span>
+                <Link to="/tools" className="hover:text-white/90 transition-colors">
+                  {tool.categoryLabel}
+                </Link>
+                <span className="text-white/25">/</span>
+                <span className="text-white/80">{tool.name}</span>
               </motion.nav>
 
               {/* Category badge */}
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.05 }}
+                transition={{ duration: 0.5, delay: 0.06 }}
               >
-                <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-white/15 text-white border border-white/25 backdrop-blur-sm mb-5">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest bg-white/10 border border-white/20 backdrop-blur-sm text-white mb-6">
+                  <span
+                    className="w-2 h-2 rounded-full"
+                    style={{ background: 'rgba(255,255,255,0.8)' }}
+                  />
                   {tool.categoryLabel}
                 </span>
               </motion.div>
 
-              {/* Headline */}
+              {/* H1 */}
               <motion.h1
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="font-display font-black text-white leading-[1.05] mb-4"
-                style={{ fontSize: 'clamp(2.5rem, 5vw, 3.75rem)', letterSpacing: '-0.03em' }}
+                transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="font-black text-white leading-[1.04] mb-4"
+                style={{
+                  fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)',
+                  letterSpacing: '-0.035em',
+                }}
               >
                 {tool.name}
               </motion.h1>
 
               {/* Tagline */}
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.15 }}
-                className="text-xl font-display font-semibold text-white/80 mb-5 leading-snug"
+                transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                className="text-2xl font-light text-white mt-3 mb-4 leading-snug opacity-90"
               >
                 {tool.tagline}
               </motion.p>
 
               {/* Description */}
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-base text-white/70 leading-relaxed mb-10 max-w-xl"
+                transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="text-base text-white mt-4 opacity-75 max-w-lg leading-relaxed mb-10"
               >
                 {tool.description}
               </motion.p>
 
-              {/* CTA Buttons */}
+              {/* CTA row */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.25 }}
+                transition={{ duration: 0.65, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
                 className="flex flex-wrap gap-4"
               >
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#F26522] text-white font-display font-bold text-[15px] hover:bg-[#FF7A3D] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-200"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#F26522] text-white font-bold text-[15px] hover:bg-[#FF7A3D] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-200"
                 >
                   Get Early Access
                   <FaArrowRight size={13} />
                 </Link>
                 <a
                   href="#how-it-works"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl border-2 border-white/40 text-white font-display font-bold text-[15px] hover:bg-white/10 hover:border-white/70 transition-all duration-200 backdrop-blur-sm"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border-2 border-white/35 text-white font-bold text-[15px] hover:bg-white/10 hover:border-white/60 transition-all duration-200 backdrop-blur-sm"
                 >
                   See How It Works
                 </a>
               </motion.div>
             </div>
 
-            {/* ── Right column: Stats card ── */}
+            {/* ── Right column: Stats glass card (40%) ── */}
             <motion.div
-              initial={{ opacity: 0, x: 40, scale: 0.95 }}
+              initial={{ opacity: 0, x: 44, scale: 0.96 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.75, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
               className="w-full lg:w-[380px] flex-shrink-0"
             >
-              <div className="rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md p-8 shadow-2xl">
-                <p className="text-xs font-bold uppercase tracking-widest text-white/50 mb-6">
-                  By the numbers
-                </p>
-                <div className="grid grid-cols-1 divide-y divide-white/15">
+              <div
+                className="rounded-3xl border border-white/20 p-8 shadow-2xl"
+                style={{
+                  background: 'rgba(255,255,255,0.10)',
+                  backdropFilter: 'blur(24px)',
+                  WebkitBackdropFilter: 'blur(24px)',
+                }}
+              >
+                {/* Stats — vertical layout */}
+                <div className="flex flex-col divide-y divide-white/15">
                   {tool.stats.map((stat, i) => (
-                    <div key={i} className={`py-5 ${i === 0 ? 'pt-0' : ''} ${i === tool.stats.length - 1 ? 'pb-0' : ''}`}>
-                      <p
-                        className="font-display font-black text-white leading-none mb-1.5"
-                        style={{ fontSize: 'clamp(2rem, 5vw, 2.75rem)', letterSpacing: '-0.04em' }}
+                    <div
+                      key={i}
+                      className={`flex flex-col ${i === 0 ? 'pb-7' : i === tool.stats.length - 1 ? 'pt-7' : 'py-7'}`}
+                    >
+                      <span
+                        className="font-black text-white leading-none"
+                        style={{ fontSize: 'clamp(2.6rem, 5vw, 3.2rem)', letterSpacing: '-0.04em' }}
                       >
                         {stat.value}
-                      </p>
-                      <p className="text-sm text-white/60 leading-snug">{stat.label}</p>
+                      </span>
+                      <span className="text-sm text-white/60 mt-2 leading-snug">
+                        {stat.label}
+                      </span>
                     </div>
                   ))}
+                </div>
+
+                {/* Trust tag */}
+                <div className="mt-7 pt-5 border-t border-white/15">
+                  <p className="text-xs text-white/45 font-medium tracking-wide text-center">
+                    Trusted by forward-thinking teams
+                  </p>
                 </div>
               </div>
             </motion.div>
           </div>
         </div>
-
-        {/* Bottom fade-out to white */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-12 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.06))' }}
-        />
       </section>
 
       {/* ══════════════════════════════════════════
-          2. FEATURES SECTION
+          2. FEATURES
       ══════════════════════════════════════════ */}
       <section className="bg-white py-24">
         <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
           <Section className="mb-14">
-            <motion.p
-              variants={fadeUp}
-              className="text-xs font-bold uppercase tracking-widest mb-3"
-              style={{ color: tool.color }}
-            >
-              Capabilities
-            </motion.p>
-            <motion.h2
-              variants={fadeUp}
-              className="font-display font-black text-[#0D1E3A] leading-tight mb-4"
-              style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)', letterSpacing: '-0.02em' }}
-            >
-              Everything You Need — <span className="font-display" style={{ color: tool.color }}>{tool.name}</span>
-            </motion.h2>
-            <motion.p variants={fadeUp} className="text-[#4B5563] text-lg max-w-2xl leading-relaxed">
-              Four core capabilities engineered to eliminate manual effort and maximise output quality.
-            </motion.p>
+            <SectionHeading
+              eyebrow="Capabilities"
+              title={
+                <>
+                  Powerful features,{' '}
+                  <span style={{ color: tool.color }}>zero complexity</span>
+                </>
+              }
+              subtitle="Four core capabilities engineered to eliminate manual effort and maximise output quality."
+              color={tool.color}
+            />
           </Section>
 
           <Section className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -251,20 +328,27 @@ export default function ToolPage() {
                 <motion.div
                   key={i}
                   variants={fadeUp}
-                  className="group bg-white border border-[#E8EDF3] rounded-2xl p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  className="group bg-white border border-[#E8EDF3] rounded-2xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
+                  style={{ borderLeft: `4px solid ${tool.color}` }}
                 >
+                  {/* Subtle inner glow on hover */}
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
-                    style={{ background: tintColor, border: `1.5px solid ${tintBorder}` }}
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
+                    style={{ background: `radial-gradient(ellipse at top left, ${hexToRgba(tool.color, 0.05)} 0%, transparent 70%)` }}
+                  />
+
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 relative z-10"
+                    style={{ background: tint12 }}
                   >
                     <FeatureIcon size={20} style={{ color: tool.color }} />
                   </div>
-                  <h3
-                    className="font-display font-bold text-[#0D1E3A] text-[17px] mb-3 leading-snug"
-                  >
+                  <h3 className="font-bold text-[#0D1E3A] text-lg mb-3 leading-snug relative z-10">
                     {feature.title}
                   </h3>
-                  <p className="text-[#6B7280] text-[15px] leading-relaxed">{feature.desc}</p>
+                  <p className="text-sm text-[#6B7280] leading-relaxed relative z-10">
+                    {feature.desc}
+                  </p>
                 </motion.div>
               );
             })}
@@ -278,57 +362,63 @@ export default function ToolPage() {
       <section id="how-it-works" className="bg-[#F8FAFC] py-24">
         <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
           <Section className="mb-14 text-center">
-            <motion.p
-              variants={fadeUp}
-              className="text-xs font-bold uppercase tracking-widest mb-3"
-              style={{ color: tool.color }}
-            >
-              Process
-            </motion.p>
-            <motion.h2
-              variants={fadeUp}
-              className="font-display font-black text-[#0D1E3A] leading-tight"
-              style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)', letterSpacing: '-0.02em' }}
-            >
-              How It Works
-            </motion.h2>
+            <SectionHeading
+              eyebrow="Process"
+              title="Three steps to results"
+              color={tool.color}
+              align="center"
+            />
           </Section>
 
           <Section className="relative">
-            {/* Connecting dashed line — desktop only */}
-            <div
-              className="hidden lg:block absolute top-10 left-[calc(16.67%-1px)] right-[calc(16.67%-1px)] h-px"
-              style={{
-                backgroundImage: `repeating-linear-gradient(90deg, ${tool.color}40 0, ${tool.color}40 8px, transparent 8px, transparent 16px)`,
-              }}
-            />
+            {/* Dashed connector line — desktop only */}
+            <div className="hidden lg:block absolute top-[52px] left-[calc(16.67%+32px)] right-[calc(16.67%+32px)] pointer-events-none">
+              <div
+                style={{
+                  height: '2px',
+                  backgroundImage: `repeating-linear-gradient(90deg, ${hexToRgba(tool.color, 0.35)} 0, ${hexToRgba(tool.color, 0.35)} 8px, transparent 8px, transparent 18px)`,
+                }}
+              />
+            </div>
 
-            <motion.div
-              variants={stagger}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10"
-            >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
               {tool.howItWorks.map((step, i) => (
                 <motion.div
                   key={i}
                   variants={fadeUp}
-                  className="bg-white rounded-2xl border border-[#E8EDF3] p-8 text-center shadow-sm hover:shadow-md transition-shadow duration-300"
+                  className="bg-white rounded-2xl border border-[#E8EDF3] p-8 text-center shadow-sm hover:shadow-lg transition-shadow duration-300 relative overflow-hidden"
                 >
-                  <div
-                    className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mx-auto mb-5"
-                    style={{ background: tintColor }}
+                  {/* Large watermark step number */}
+                  <span
+                    className="absolute -top-4 left-1/2 -translate-x-1/2 font-black leading-none select-none pointer-events-none"
+                    style={{
+                      fontSize: '120px',
+                      color: '#0D1E3A',
+                      opacity: 0.035,
+                      lineHeight: 1,
+                    }}
                   >
-                    <span
-                      className="font-display font-black text-xl leading-none"
-                      style={{ color: tool.color }}
-                    >
+                    {i + 1}
+                  </span>
+
+                  {/* Colored step circle */}
+                  <div className="relative z-10 inline-flex items-center justify-center w-14 h-14 rounded-full mx-auto mb-6"
+                    style={{ background: tint12, border: `2px solid ${tintBorder}` }}
+                  >
+                    <span className="font-black text-base" style={{ color: tool.color }}>
                       {step.step}
                     </span>
                   </div>
-                  <h3 className="font-display font-bold text-[#0D1E3A] text-[17px] mb-3">{step.title}</h3>
-                  <p className="text-[#6B7280] text-[15px] leading-relaxed">{step.desc}</p>
+
+                  <h3 className="font-bold text-[#0D1E3A] text-lg mb-3 relative z-10">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-[#6B7280] leading-relaxed relative z-10">
+                    {step.desc}
+                  </p>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </Section>
         </div>
       </section>
@@ -339,90 +429,99 @@ export default function ToolPage() {
       <section className="bg-white py-24">
         <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
           <Section className="mb-14 text-center">
-            <motion.p
-              variants={fadeUp}
-              className="text-xs font-bold uppercase tracking-widest mb-3"
-              style={{ color: tool.color }}
-            >
-              Division of labour
-            </motion.p>
-            <motion.h2
-              variants={fadeUp}
-              className="font-display font-black text-[#0D1E3A] leading-tight max-w-2xl mx-auto"
-              style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)', letterSpacing: '-0.02em' }}
-            >
-              AI handles the heavy lifting.{' '}
-              <span style={{ color: tool.color }}>You make the decisions.</span>
-            </motion.h2>
+            <SectionHeading
+              eyebrow="Division of labour"
+              title="The perfect partnership"
+              color={tool.color}
+              align="center"
+            />
           </Section>
 
           <Section>
             <motion.div
               variants={fadeUp}
-              className="grid grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden border border-[#E8EDF3] shadow-sm"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-6"
             >
-              {/* AI Side */}
-              <div className="bg-[#0D1E3A] p-10 lg:p-12">
-                <div className="flex items-center gap-3 mb-6">
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: hexToRgba(tool.color, 0.2) }}
-                  >
-                    <FaRobot size={18} style={{ color: tool.color }} />
+              {/* AI card — dark */}
+              <div className="bg-[#0D1E3A] rounded-2xl p-8 lg:p-10 relative overflow-hidden">
+                {/* Subtle dot-grid on dark card */}
+                <div
+                  className="absolute inset-0 pointer-events-none opacity-20"
+                  style={{
+                    backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px)',
+                    backgroundSize: '24px 24px',
+                  }}
+                />
+                <div className="relative z-10">
+                  {/* Header */}
+                  <div className="flex items-center gap-3 mb-6">
+                    <div
+                      className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0"
+                      style={{ background: hexToRgba(tool.color, 0.25) }}
+                    >
+                      <FaRobot size={18} style={{ color: tool.color }} />
+                    </div>
+                    <div>
+                      <p className="text-xs uppercase tracking-widest font-bold" style={{ color: tool.color }}>
+                        AI handles
+                      </p>
+                      <p className="text-white font-bold text-[17px] leading-tight">What AI does</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-widest font-bold" style={{ color: tool.color }}>
-                      AI Role
-                    </p>
-                    <p className="text-white font-display font-bold text-[17px] leading-tight">
-                      What the AI does
-                    </p>
-                  </div>
-                </div>
-                <p className="text-white/75 text-[15px] leading-relaxed">{tool.aiRole}</p>
 
-                {/* Decorative bullet-points from aiRole sentences */}
-                <div className="mt-8 space-y-3">
-                  {tool.aiRole
-                    .split(/,\s*|\.\s+/)
-                    .filter(Boolean)
-                    .slice(0, 4)
-                    .map((item, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <FaCheck size={12} className="mt-1 flex-shrink-0" style={{ color: tool.color }} />
-                        <span className="text-white/60 text-sm leading-relaxed">{item.trim()}</span>
-                      </div>
-                    ))}
+                  <p className="text-white/70 text-[15px] leading-relaxed mb-7">
+                    {tool.aiRole}
+                  </p>
+
+                  <div className="space-y-3">
+                    {tool.aiRole
+                      .split(/\.\s+|,\s+/)
+                      .filter(Boolean)
+                      .slice(0, 4)
+                      .map((item, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <span
+                            className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
+                            style={{ background: hexToRgba(tool.color, 0.2) }}
+                          >
+                            <FaCheck size={9} style={{ color: tool.color }} />
+                          </span>
+                          <span className="text-white/60 text-sm leading-relaxed">{item.trim()}</span>
+                        </div>
+                      ))}
+                  </div>
                 </div>
               </div>
 
-              {/* Human Side */}
-              <div className="bg-white p-10 lg:p-12 border-t lg:border-t-0 lg:border-l border-[#E8EDF3]">
+              {/* Human card — light */}
+              <div className="bg-white rounded-2xl border border-[#E8EDF3] p-8 lg:p-10">
+                {/* Header */}
                 <div className="flex items-center gap-3 mb-6">
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-[#F8FAFC] border border-[#E8EDF3]"
-                  >
-                    <FaUser size={16} className="text-[#4B5563]" />
+                  <div className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 bg-blue-50 border border-blue-100">
+                    <FaUser size={16} className="text-[#3B82F6]" />
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-widest font-bold text-[#6B7280]">
-                      Your Role
+                    <p className="text-xs uppercase tracking-widest font-bold text-[#3B82F6]">
+                      You do
                     </p>
-                    <p className="text-[#0D1E3A] font-display font-bold text-[17px] leading-tight">
-                      What you do
-                    </p>
+                    <p className="text-[#0D1E3A] font-bold text-[17px] leading-tight">What you do</p>
                   </div>
                 </div>
-                <p className="text-[#4B5563] text-[15px] leading-relaxed">{tool.humanRole}</p>
 
-                <div className="mt-8 space-y-3">
+                <p className="text-[#4B5563] text-[15px] leading-relaxed mb-7">
+                  {tool.humanRole}
+                </p>
+
+                <div className="space-y-3">
                   {tool.humanRole
-                    .split(/,\s*|\.\s+/)
+                    .split(/\.\s+|,\s+/)
                     .filter(Boolean)
                     .slice(0, 4)
                     .map((item, i) => (
                       <div key={i} className="flex items-start gap-3">
-                        <FaCheck size={12} className="mt-1 flex-shrink-0 text-[#4B5563]" />
+                        <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center bg-blue-50 border border-blue-100">
+                          <FaCheck size={9} className="text-[#3B82F6]" />
+                        </span>
                         <span className="text-[#6B7280] text-sm leading-relaxed">{item.trim()}</span>
                       </div>
                     ))}
@@ -439,20 +538,11 @@ export default function ToolPage() {
       <section className="bg-[#F8FAFC] py-24">
         <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
           <Section className="mb-14">
-            <motion.p
-              variants={fadeUp}
-              className="text-xs font-bold uppercase tracking-widest mb-3"
-              style={{ color: tool.color }}
-            >
-              Real Results
-            </motion.p>
-            <motion.h2
-              variants={fadeUp}
-              className="font-display font-black text-[#0D1E3A] leading-tight"
-              style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)', letterSpacing: '-0.02em' }}
-            >
-              Who uses {tool.name}
-            </motion.h2>
+            <SectionHeading
+              eyebrow="Real Results"
+              title="Real results from real users"
+              color={tool.color}
+            />
           </Section>
 
           <Section className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -460,22 +550,34 @@ export default function ToolPage() {
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="bg-white rounded-2xl border border-[#E8EDF3] p-6 flex flex-col shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                className="bg-white rounded-2xl border border-[#E8EDF3] p-6 flex flex-col shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
-                <h3 className="font-display font-bold text-[#0D1E3A] text-[17px] mb-3">{uc.title}</h3>
-                <p className="text-[#4B5563] text-[15px] leading-relaxed mb-5 flex-1">{uc.desc}</p>
-
-                {/* Result chip */}
-                <div
-                  className="inline-flex items-start gap-2 rounded-xl px-4 py-3 text-sm font-semibold leading-snug"
+                {/* Company type badge */}
+                <span
+                  className="inline-block self-start text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full mb-4"
                   style={{
-                    background: tintColor,
-                    border: `1px solid ${tintBorder}`,
+                    background: tint08,
                     color: tool.color,
+                    border: `1px solid ${tintBorder}`,
                   }}
                 >
-                  <FaArrowRight size={13} className="mt-0.5 flex-shrink-0" />
-                  <span>{uc.result}</span>
+                  {uc.title}
+                </span>
+
+                <p className="text-sm text-[#6B7280] leading-relaxed flex-1 mb-5">{uc.desc}</p>
+
+                {/* Result banner */}
+                <div
+                  className="flex items-center gap-3 w-full rounded-xl px-4 py-3"
+                  style={{
+                    background: tint08,
+                    border: `1px solid ${tintBorder}`,
+                  }}
+                >
+                  <FaArrowTrendUp size={14} style={{ color: tool.color, flexShrink: 0 }} />
+                  <span className="text-sm font-semibold leading-snug" style={{ color: tool.color }}>
+                    {uc.result}
+                  </span>
                 </div>
               </motion.div>
             ))}
@@ -489,23 +591,13 @@ export default function ToolPage() {
       <section className="bg-white py-20">
         <div className="max-w-[1240px] mx-auto px-6 sm:px-12 text-center">
           <Section className="mb-12">
-            <motion.p
-              variants={fadeUp}
-              className="text-xs font-bold uppercase tracking-widest mb-3"
-              style={{ color: tool.color }}
-            >
-              Connects with
-            </motion.p>
-            <motion.h2
-              variants={fadeUp}
-              className="font-display font-black text-[#0D1E3A] leading-tight mb-4"
-              style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)', letterSpacing: '-0.02em' }}
-            >
-              Works with the tools you already use
-            </motion.h2>
-            <motion.p variants={fadeUp} className="text-[#4B5563] text-lg max-w-xl mx-auto leading-relaxed">
-              Native integrations with the most popular platforms — no complex setup required.
-            </motion.p>
+            <SectionHeading
+              eyebrow="Connects with"
+              title="Connects with tools you already use"
+              subtitle="Native integrations with the most popular platforms — no complex setup required."
+              color={tool.color}
+              align="center"
+            />
           </Section>
 
           <Section>
@@ -517,7 +609,7 @@ export default function ToolPage() {
                 <motion.span
                   key={i}
                   variants={fadeUp}
-                  className="inline-flex items-center gap-2 bg-white border border-[#E8EDF3] rounded-full px-5 py-2.5 font-display font-medium text-[#0D1E3A] text-[14px] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-default"
+                  className="inline-flex items-center gap-2.5 bg-white border border-[#E8EDF3] rounded-full px-6 py-3 font-medium text-[#0D1E3A] text-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-default"
                 >
                   <span
                     className="w-2 h-2 rounded-full flex-shrink-0"
@@ -532,52 +624,46 @@ export default function ToolPage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          7. FAQ SECTION
+          7. FAQ ACCORDION
       ══════════════════════════════════════════ */}
       <section className="bg-[#F8FAFC] py-24">
         <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
           <div className="max-w-[780px] mx-auto">
-            <Section className="mb-14 text-center">
-              <motion.p
-                variants={fadeUp}
-                className="text-xs font-bold uppercase tracking-widest mb-3"
-                style={{ color: tool.color }}
-              >
-                FAQ
-              </motion.p>
-              <motion.h2
-                variants={fadeUp}
-                className="font-display font-black text-[#0D1E3A] leading-tight"
-                style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)', letterSpacing: '-0.02em' }}
-              >
-                Frequently Asked Questions
-              </motion.h2>
+            <Section className="mb-12 text-center">
+              <SectionHeading
+                eyebrow="FAQ"
+                title="Common questions"
+                color={tool.color}
+                align="center"
+              />
             </Section>
 
-            <Section className="divide-y divide-[#E8EDF3] border-y border-[#E8EDF3] rounded-2xl overflow-hidden bg-white shadow-sm">
+            <Section className="space-y-3">
               {tool.faqs.map((faq, i) => {
                 const isOpen = openFaq === i;
                 return (
-                  <motion.div key={i} variants={fadeIn}>
+                  <motion.div
+                    key={i}
+                    variants={fadeIn}
+                    className="bg-white rounded-2xl border border-[#E8EDF3] overflow-hidden shadow-sm"
+                  >
                     <button
                       onClick={() => setOpenFaq(isOpen ? null : i)}
-                      className="w-full flex items-center justify-between gap-4 px-7 py-5 text-left transition-colors hover:bg-[#F8FAFC] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset"
-                      style={{ '--tw-ring-color': tool.color }}
+                      className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-[#F8FAFC] transition-colors focus:outline-none"
                       aria-expanded={isOpen}
                     >
-                      <span
-                        className="font-display font-semibold text-[#0D1E3A] text-[15px] leading-snug pr-4"
-                      >
+                      <span className="font-semibold text-[#0D1E3A] text-[15px] leading-snug pr-2">
                         {faq.q}
                       </span>
                       <span
-                        className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-colors duration-200"
+                        className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300"
                         style={{
-                          background: isOpen ? tintColor : '#F1F5F9',
+                          background: isOpen ? tint12 : '#F1F5F9',
                           color: isOpen ? tool.color : '#6B7280',
+                          transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
                         }}
                       >
-                        {isOpen ? <FaChevronUp size={11} /> : <FaChevronDown size={11} />}
+                        <FaChevronDown size={11} />
                       </span>
                     </button>
 
@@ -591,7 +677,9 @@ export default function ToolPage() {
                           variants={slideDown}
                           className="overflow-hidden"
                         >
-                          <p className="px-7 pb-6 text-[#4B5563] text-[15px] leading-relaxed">
+                          <p
+                            className="px-5 pb-5 text-sm text-[#6B7280] leading-relaxed pt-3 border-t border-[#F1F5F9] mt-0"
+                          >
                             {faq.a}
                           </p>
                         </motion.div>
@@ -608,58 +696,77 @@ export default function ToolPage() {
       {/* ══════════════════════════════════════════
           8. CTA BANNER
       ══════════════════════════════════════════ */}
-      <section className="relative overflow-hidden py-24" style={{ background: tool.gradient }}>
-        {/* Decorative glow orbs */}
+      <section
+        className="relative overflow-hidden py-24"
+        style={{ background: tool.gradient }}
+      >
+        {/* Dot-grid overlay */}
+        <div className="absolute inset-0 pointer-events-none" style={dotGrid} />
+
+        {/* Glow orbs */}
         <div
-          className="absolute -top-24 -right-24 w-96 h-96 rounded-full blur-3xl pointer-events-none opacity-20"
-          style={{ background: 'white' }}
+          className="absolute -top-24 -right-24 w-[480px] h-[480px] rounded-full pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 65%)',
+            filter: 'blur(50px)',
+          }}
         />
         <div
-          className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-10"
-          style={{ background: 'white' }}
+          className="absolute -bottom-32 -left-20 w-[360px] h-[360px] rounded-full pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 65%)',
+            filter: 'blur(60px)',
+          }}
         />
 
         <div className="relative max-w-[1240px] mx-auto px-6 sm:px-12 text-center">
           <Section>
             <motion.p
               variants={fadeUp}
-              className="text-xs font-bold uppercase tracking-widest text-white/60 mb-4"
+              className="text-xs font-bold uppercase tracking-widest text-white/50 mb-5"
             >
               Get started today
             </motion.p>
+
             <motion.h2
               variants={fadeUp}
-              className="font-display font-black text-white leading-tight mb-4"
-              style={{ fontSize: 'clamp(2rem, 4.5vw, 3.25rem)', letterSpacing: '-0.03em' }}
+              className="font-black text-white leading-tight mb-5"
+              style={{ fontSize: 'clamp(1.9rem, 4.5vw, 3.2rem)', letterSpacing: '-0.03em' }}
             >
-              Ready to supercharge your{' '}
+              Ready to supercharge your workflow{' '}
               <br className="hidden sm:block" />
-              <span className="text-white/80">{tool.categoryLabel.replace(' AI', '').toLowerCase()}</span> workflow?
+              with <span className="text-white/80">{tool.name}</span>?
             </motion.h2>
+
             <motion.p
               variants={fadeUp}
-              className="text-lg text-white/70 mb-10 max-w-xl mx-auto leading-relaxed"
+              className="text-lg text-white/65 mb-10 max-w-xl mx-auto leading-relaxed"
             >
-              Start with {tool.name} today and join thousands of teams already saving hours every week.
+              Join thousands of forward-thinking teams already saving hours every week.
             </motion.p>
+
             <motion.div
               variants={fadeUp}
-              className="flex flex-wrap items-center justify-center gap-4"
+              className="flex flex-wrap items-center justify-center gap-4 mb-8"
             >
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 px-9 py-4 rounded-xl bg-white text-[#0D1E3A] font-display font-bold text-[15px] hover:bg-white/90 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 duration-200"
+                className="inline-flex items-center gap-2 px-9 py-4 rounded-xl bg-white text-[#0D1E3A] font-bold text-[15px] hover:bg-white/90 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 duration-200"
               >
                 Get Early Access
                 <FaArrowRight size={13} />
               </Link>
               <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 px-9 py-4 rounded-xl border-2 border-white/40 text-white font-display font-bold text-[15px] hover:bg-white/10 hover:border-white/70 transition-all duration-200"
+                to={`/category/${tool.category}`}
+                className="inline-flex items-center gap-2 px-9 py-4 rounded-xl border-2 border-white/35 text-white font-bold text-[15px] hover:bg-white/10 hover:border-white/60 transition-all duration-200"
               >
-                Talk to Sales
+                View All {tool.categoryLabel} Tools
               </Link>
             </motion.div>
+
+            <motion.p variants={fadeUp} className="text-white/50 text-sm">
+              14-day free trial · No credit card · Cancel anytime
+            </motion.p>
           </Section>
         </div>
       </section>
