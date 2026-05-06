@@ -1,0 +1,59 @@
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.eco-card {
+  padding: 36px 32px;
+  display: flex; flex-direction: column; gap: 16px;
+  text-decoration: none;
+  position: relative; overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.2,0.7,0.2,1);
+  animation: fade-up 0.5s both;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  min-height: 260px;
+}
+.eco-card::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(400px 240px at 100% 0%, rgba(var(--accent-cat-rgb), 0.1), transparent 70%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.eco-card:hover { transform: translateY(-6px); border-color: var(--accent-cat); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+.eco-card:hover::before { opacity: 1; }
+.eco-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.eco-dot { width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 15px currentColor; }
+.eco-num { font-size: 11px; color: var(--ink-3); letter-spacing: 0.14em; font-weight: 700; }
+.eco-icon-wrap {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(var(--accent-cat-rgb, 232,117,32), 0.08);
+  border: 1px solid rgba(var(--accent-cat-rgb, 232,117,32), 0.15);
+  border-radius: var(--r-2);
+  margin: 4px 0;
+  transition: all 0.3s;
+}
+.eco-card:hover .eco-icon-wrap {
+  background: rgba(var(--accent-cat-rgb, 232,117,32), 0.14);
+  border-color: rgba(var(--accent-cat-rgb, 232,117,32), 0.3);
+}
+.eco-name { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--ink-0); margin-top: 4px; letter-spacing: -0.02em; line-height: 1.2; }
+.eco-desc { font-size: 13px; color: var(--ink-2); line-height: 1.6; flex: 1; }
+.eco-stats {
+  display: flex; gap: 8px;
+  margin-top: auto; padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 11px; color: var(--ink-3); letter-spacing: 0.08em;
+  font-family: var(--font-mono); font-weight: 600; text-transform: uppercase;
+}
+
+@media (max-width: 1200px) {
+  .ecosystem-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .ecosystem-grid { grid-template-columns: 1fr; }
+  .eco-card { padding: 32px 24px; min-height: auto; }
+}

@@ -1,23 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App.jsx';
+import Preloader from './components/agentix/Preloader.jsx';
 import './index.css';
 
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { staleTime: 5 * 60 * 1000, retry: 1 } },
-});
+const SHOW_MS = 2200;
+const FADE_MS = 500;
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
+function Root() {
+  const [show, setShow] = useState(true);
+  const [fadeOut, setFadeOut] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    const t1 = setTimeout(() => setFadeOut(true), SHOW_MS);
+    const t2 = setTimeout(() => {
+      setShow(false);
+      document.body.style.overflow = '';
+    }, SHOW_MS + FADE_MS);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
+
+  return (
+    <>
+      {show && <Preloader fadeOut={fadeOut} />}
+      <HelmetProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </QueryClientProvider>
-    </HelmetProvider>
+      </HelmetProvider>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <Root />
   </React.StrictMode>
 );
