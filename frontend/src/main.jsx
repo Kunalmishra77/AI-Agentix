@@ -6,14 +6,18 @@ import App from './App.jsx';
 import Preloader from './components/agentix/Preloader.jsx';
 import './index.css';
 
-const SHOW_MS = 2200;
-const FADE_MS = 500;
+const SHOW_MS = 1800;
+const FADE_MS = 400;
+const SESSION_KEY = 'ax_loaded';
 
 function Root() {
-  const [show, setShow] = useState(true);
+  const alreadySeen = sessionStorage.getItem(SESSION_KEY);
+  const [show, setShow] = useState(!alreadySeen);
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
+    if (alreadySeen) return;
+    sessionStorage.setItem(SESSION_KEY, '1');
     document.body.style.overflow = 'hidden';
     const t1 = setTimeout(() => setFadeOut(true), SHOW_MS);
     const t2 = setTimeout(() => {

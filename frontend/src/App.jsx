@@ -64,6 +64,7 @@ const pageCopy = {
   accessibility: ['Accessibility Statement', 'Agentix aims to support keyboard navigation, contrast, reduced motion, and readable layouts.', ['Commitment', 'Supported features', 'Known limits', 'Contact']],
   faq: ['FAQ', 'Answers about Agentix, tools, workflows, integrations, security, pricing, and human handoff.', ['Platform', 'Tools', 'Workflows', 'Security']],
   500: ['500', 'Something failed while loading this route. Retry, check status, or contact support.', ['Retry', 'Status', 'Support', 'Search']],
+  404: ['Page not found', 'This page does not exist or has moved. Use the links below to find what you need.', ['Browse tools', 'View categories', 'Search', 'Contact']],
 };
 
 const integrations = [
@@ -356,7 +357,7 @@ function GlobalFooter() {
             <FooterCol title="Categories" links={cats.slice(0, 5).map((category) => [category.name, `/category/${category.id}`, category.accent])} />
             <FooterCol title="More" links={cats.slice(5).map((category) => [category.name, `/category/${category.id}`, category.accent])} />
             <FooterCol title="Platform" links={[['Tools', '/tools'], ['Solutions', '/solutions'], ['Use cases', '/use-cases'], ['Pricing', '/pricing'], ['Demo', '/demo']]} />
-            <FooterCol title="Resources" links={[['Docs', '/docs'], ['Help', '/help'], ['FAQ', '/faq'], ['Security', '/security'], ['Status', '/status'], ['Contact', '/contact']]} />
+            <FooterCol title="Resources" links={[['Docs', '/docs'], ['Help', '/help'], ['FAQ', '/faq'], ['Security', '/security'], ['Changelog', '/changelog'], ['Contact', '/contact']]} />
           </div>
         </div>
         <div className="footer-bottom">
@@ -430,6 +431,38 @@ function SectionHead({ eyebrow: label, title, text, center = false }) {
   );
 }
 
+const stepDescMap = {
+  'Inputs required': 'Data, context, and constraints the AI needs before generation begins.',
+  'Outputs produced': 'Reviewed, formatted output ready for the next stage or human handoff.',
+  'Constraints': 'Brand rules, tone guardrails, and approval gates applied throughout.',
+  'Review path': 'Human or automated check before output moves downstream.',
+  'Owner': 'The person or role accountable for this stage in the workflow.',
+  'Reviewer': 'Who approves or rejects output before it progresses.',
+  'Status': 'Live state of the workflow — running, queued, blocked, or complete.',
+  'Next action': 'The routed next step after this stage resolves.',
+  'Talk to Agentix': 'Use the AI assistant to build your stack, define goals, and get recommendations.',
+  'Book Demo': 'See Agentix run a live workflow mapped to your business context.',
+  'Search': 'Explore 120+ tools, categories, and workflows across every domain.',
+  'Contact': 'Route your question to the right human — sales, support, or implementation.',
+  'Tools': 'Browse the full tool catalogue across 9 categories and 40+ subcategories.',
+  'Categories': 'Explore every business domain with subcategory and tool depth.',
+  'Solutions': 'Pre-built stacks mapped to business outcomes — deploy in hours.',
+  'Resources': 'Docs, help topics, integrations, and workflow guides for builders.',
+  'Find tools': 'Search 120+ AI tools across every business category.',
+  'Build stack': 'Get a recommended stack for your business type and goal.',
+  'Read docs': 'Access builder documentation and workflow guides.',
+  'Book demo': 'See Agentix run a workflow matched to your context.',
+};
+
+function stepDesc(item) {
+  if (stepDescMap[item]) return stepDescMap[item];
+  if (item.includes('Generator') || item.includes('Builder')) return `AI-powered ${item.toLowerCase()} — from goal to reviewed output in one workflow.`;
+  if (item.includes('Assistant')) return `${item} routes your intent and surfaces the right next action automatically.`;
+  if (item.includes('Dashboard') || item.includes('Analytics')) return `Live visibility into performance, status, and pipeline impact across your stack.`;
+  if (item.includes('Sync') || item.includes('Integration')) return `Connect ${item.toLowerCase().replace('sync', '').trim()} to Agentix so data flows without manual transfer.`;
+  return `${item} runs inside Agentix — connected to your stack and routed for review.`;
+}
+
 function StepCards({ items, accent = 'var(--accent)' }) {
   return (
     <div className="page-card-grid">
@@ -440,7 +473,7 @@ function StepCards({ items, accent = 'var(--accent)' }) {
             <span className="solution-cat mono">0{index + 1}</span>
           </div>
           <h3 className="solution-name" style={{ fontSize: 18, marginTop: 12 }}>{item}</h3>
-          <p className="solution-outcome" style={{ marginTop: 8 }}>Designed as a distinct Agentix section with clear spacing, action, and workflow context.</p>
+          <p className="solution-outcome" style={{ marginTop: 8 }}>{stepDesc(item)}</p>
         </div>
       ))}
     </div>
@@ -454,12 +487,19 @@ function WorkflowBand({ title = 'From goal to reviewed output.', accent = 'var(-
         <SectionHead eyebrow="Workflow sequence" title={title} text="Every route has a clear path from goal to reviewed output — with AI generation, human checks, and iteration built in." center />
         <div className="workflow-strip card" style={{ '--accent-cat': accent, marginTop: 48 }}>
           <div className="workflow-steps">
-            {['Goal', 'Inputs', 'Generate', 'Review', 'Handoff', 'Measure'].map((step, index) => (
+            {[
+              ['Goal', 'Define the business outcome this workflow is targeting.'],
+              ['Inputs', 'Gather the data, context, and constraints the AI needs.'],
+              ['Generate', 'AI produces first-pass output — copy, analysis, or plan.'],
+              ['Review', 'Human or automated check before output moves forward.'],
+              ['Handoff', 'Pass to the next person or system with full context.'],
+              ['Measure', 'Track outcomes against the goal set at the start.'],
+            ].map(([step, desc], index) => (
               <div key={step} className={`workflow-step ${index < 4 ? 'active' : ''}`}>
                 <span className="workflow-dot" />
                 <span className="workflow-num mono">0{index + 1}</span>
                 <span className="workflow-title">{step}</span>
-                <span className="workflow-desc">Agentix keeps this stage visible and routable.</span>
+                <span className="workflow-desc">{desc}</span>
               </div>
             ))}
           </div>
@@ -505,10 +545,15 @@ function FAQSection({ title = 'Questions answered.', accent = 'var(--accent)' })
           <h2 className="h-1" style={{ marginTop: 12 }}>{title}</h2>
         </div>
         <div className="faq-right">
-          {['What does this page help me decide?', 'How does Agentix route the workflow?', 'When does human handoff happen?', 'What should I open next?'].map((question) => (
+          {[
+            ['What does this page help me decide?', 'It shows you the exact tools, workflow path, and recommended stack for this context — so you can choose and move, not just browse.'],
+            ['How does Agentix route the workflow?', 'Agentix maps your goal to the right tools, sequences the stages, and assigns human review points where judgment is required.'],
+            ['When does human handoff happen?', 'Handoff triggers when AI confidence is low, a decision needs sign-off, or output is ready for the next person in your process.'],
+            ['What should I open next?', 'Use the Talk to Agentix assistant to build your stack, or book a demo to see the workflow run live against your business context.'],
+          ].map(([question, answer]) => (
             <div key={question} className="faq-item open" style={{ '--accent-cat': accent, borderBottom: '1px solid var(--line)' }}>
               <div className="faq-q" style={{ padding: '20px 0' }}><span>{question}</span><span className="faq-icon"><AgentixIcon name="chevron" size={12} /></span></div>
-              <div className="faq-a" style={{ paddingBottom: 20 }}><div>Use this page to understand the workflow, choose tools, review constraints, and move into assistant or demo routing.</div></div>
+              <div className="faq-a" style={{ paddingBottom: 20 }}><div>{answer}</div></div>
             </div>
           ))}
         </div>
@@ -938,9 +983,9 @@ function CollectionDetail({ type }) {
     <>
       <Helmet><title>{item.name} / Agentix</title></Helmet>
       <PageHero eyebrow={type} title={item.name} text={item.outcome ?? item.problem} />
-      <section className="section"><div className="container-wide"><SectionHead eyebrow="Overview" title="This page is an outcome workspace." text="The layout separates problem, stack, workflow, proof, handoff, and CTA instead of compressing everything into one card." /><StepCards items={(item.tools ?? item.stack ?? []).slice(0, 4)} /></div></section>
+      <section className="section"><div className="container-wide"><SectionHead eyebrow="Recommended stack" title={`Tools that power ${item.name}.`} text={`These tools connect inside Agentix — each one handles a specific stage of the ${item.name.toLowerCase()} workflow, from input to reviewed output.`} /><StepCards items={(item.tools ?? item.stack ?? []).slice(0, 4)} /></div></section>
       <WorkflowBand title={`${item.name} execution path.`} />
-      <section className="section page-band"><div className="container-wide page-split"><div><SectionHead eyebrow="Command center" title="The stack runs in one operating layer." /></div><div className="uc-dash"><div className="uc-dash-head"><span className="mono">{item.name}</span><span className="dot dot-accent" /></div><div className="uc-dash-list">{(item.tools ?? item.stack ?? []).map((tool) => <div key={tool} className="uc-dash-row"><span className="dot dot-accent" /><span>{tool}</span></div>)}</div></div></div></section>
+      <section className="section page-band"><div className="container-wide page-split"><div><SectionHead eyebrow="Command center" title={`${item.name} runs in one layer.`} text="Every tool, workflow, and handoff point is visible and controllable from the Agentix command center." /></div><div className="uc-dash"><div className="uc-dash-head"><span className="mono">{item.name}</span><span className="dot dot-accent" /></div><div className="uc-dash-list">{(item.tools ?? item.stack ?? []).map((tool) => <div key={tool} className="uc-dash-row"><span className="dot dot-accent" /><span>{tool}</span></div>)}</div></div></div></section>
       <AssistantPanelSection title={`Build ${item.name} with the assistant.`} />
       <FAQSection title={`${item.name} questions.`} />
       <FinalCTA />
@@ -1045,7 +1090,7 @@ function resourceConfig(type) {
 }
 
 function InfoPage({ id }) {
-  const copy = pageCopy[id] ?? [unslug(id), 'This Agentix page uses the same visual system and content rules from the handoff.', ['Overview', 'Workflow', 'Resources', 'CTA']];
+  const copy = pageCopy[id] ?? [unslug(id), `${unslug(id)} is part of the Agentix operating system — connecting tools, workflows, and human review in one layer.`, ['Overview', 'Workflow', 'Tools', 'Next steps']];
   const accent = id === 'security' ? 'var(--ok)' : id === 'pricing' ? 'var(--warn)' : 'var(--accent)';
   return (
     <>
@@ -1057,7 +1102,7 @@ function InfoPage({ id }) {
             <div key={item} className="solution-card card" style={{ '--accent-cat': accent }}>
               <div className="solution-head"><span className="solution-dot" style={{ background: accent }} /><span className="solution-cat mono">Section</span></div>
               <h3 className="solution-name" style={{ marginTop: 12 }}>{item}</h3>
-              <p className="solution-outcome" style={{ marginTop: 8 }}>Built in the Agentix command-center style from the handoff.</p>
+              <p className="solution-outcome" style={{ marginTop: 8 }}>Part of the Agentix operating system — tools, workflows, and handoff routes connected in one layer.</p>
             </div>
           ))}
         </div>
@@ -1065,7 +1110,7 @@ function InfoPage({ id }) {
       <section className="section page-band"><div className="container-wide page-split"><div><SectionHead eyebrow="Page role" title={`${copy[0]} has a dedicated conversion role.`} text="The page does not share a thin generic body. It separates route choice, forms or content, trust notes, and next action." /></div><div className="mock-report-grid">{copy[2].slice(0, 4).map((item) => <div key={item} className="mock-card"><div className="mock-field-label">Role</div><div className="mock-h2" style={{ fontSize: 16 }}>{item}</div></div>)}</div></div></section>
       <WorkflowBand title={`${copy[0]} decision path.`} accent={accent} />
       <section className="section"><div className="container-wide"><SectionHead eyebrow="Routing" title="Clear routes replace inert buttons." /><StepCards accent={accent} items={['Talk to Agentix', 'Book Demo', 'Search', 'Contact']} /></div></section>
-      <section className="section page-band"><div className="container-wide"><SectionHead eyebrow="Trust note" title="Claims stay grounded in the handoff structure." text="No fake logos or external content are added. The page uses the handoff content model and Agentix system language." /></div></section>
+      <section className="section page-band"><div className="container-wide"><SectionHead eyebrow="Platform" title="Every page connects to one operating layer." text="Tools, workflows, assistant routing, and human handoff all run inside the same Agentix system — no switching between products." /></div></section>
       <AssistantPanelSection title={`Ask Agentix about ${copy[0]}.`} />
       <FAQSection title={`${copy[0]} questions.`} accent={accent} />
       <FinalCTA />
@@ -1108,7 +1153,31 @@ function SearchPage() {
 }
 
 function NotFoundPage() {
-  return <InfoPage id="404" />;
+  return (
+    <>
+      <Helmet><title>Page not found / Agentix</title></Helmet>
+      <PageHero eyebrow="404" title="Page not found." text="This page does not exist or has moved. Use the links below to find what you need." />
+      <section className="section">
+        <div className="container-wide page-card-grid">
+          {[
+            ['Browse tools', '/tools', 'Explore 120+ AI tools across every business category and workflow.'],
+            ['View categories', '/category/content', 'Browse all 9 business domains with subcategory and tool depth.'],
+            ['Search', '/search', 'Find tools, categories, solutions, and use cases instantly.'],
+            ['Contact us', '/contact', 'Get help from the Agentix team — sales, support, or implementation.'],
+          ].map(([label, href, desc]) => (
+            <Link key={label} to={href} className="solution-card card" style={{ textDecoration: 'none' }}>
+              <div className="solution-head"><span className="solution-dot" style={{ background: 'var(--accent)' }} /><span className="solution-cat mono">Quick link</span></div>
+              <h3 className="solution-name" style={{ fontSize: 18, marginTop: 12 }}>{label}</h3>
+              <p className="solution-outcome" style={{ marginTop: 8 }}>{desc}</p>
+              <div className="solution-cta" style={{ marginTop: 'auto' }}>Go <AgentixIcon name="arrow" size={12} /></div>
+            </Link>
+          ))}
+        </div>
+      </section>
+      <AssistantPanelSection title="Can't find it? Ask Agentix." text="The assistant can find any tool, workflow, or page in the Agentix ecosystem." />
+      <FinalCTA />
+    </>
+  );
 }
 
 export default function App() {
