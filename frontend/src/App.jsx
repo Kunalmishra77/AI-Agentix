@@ -206,8 +206,8 @@ function GlobalNav() {
           </nav>
           <div className="nav-actions">
             <Link className="nav-link" to="/search"><AgentixIcon name="search" size={14} />Search</Link>
-            <Link className="btn btn-secondary nav-btn" to="/talk-to-agentix"><AgentixIcon name="mic" size={12} />Talk</Link>
-            <Link className="btn btn-primary nav-btn" to="/demo">Book Demo</Link>
+            <Link className="btn btn-secondary nav-btn talk-btn" to="/talk-to-agentix"><AgentixIcon name="mic" size={12} />Talk</Link>
+            <Link className="btn btn-primary nav-btn demo-btn" to="/demo">Book Demo</Link>
             <button className="nav-link mobile-menu-btn" onClick={() => setMobileOpen(true)} aria-label="Menu"><AgentixIcon name="menu" size={18} /></button>
           </div>
         </div>

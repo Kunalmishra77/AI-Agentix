@@ -69,6 +69,19 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
   .mobile-menu-btn { display: inline-flex !important; }
 }
 
+/* Hide "Book Demo" text at medium-small */
+@media (max-width: 860px) {
+  .nav-btn.demo-btn { display: none; }
+}
+
+/* At small mobile, hide both CTA buttons; keep only menu icon */
+@media (max-width: 600px) {
+  .talk-btn, .demo-btn { display: none !important; }
+  .nav-logo img { height: 30px; }
+  .nav { padding: 8px 0; }
+  .nav.scrolled { padding: 6px 0; }
+}
+
 /* Mega menu */
 .mega-overlay {
   position: fixed; inset: 0; z-index: 110;
@@ -257,6 +270,38 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
   .cat-page-hero { padding: 100px 0 48px; }
   .cat-featured-list { gap: 8px; }
   .tool-grid { grid-template-columns: 1fr 1fr; }
+  .page-card-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 480px) {
+  /* Footer */
+  .footer { padding: 64px 0 32px; }
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .footer-meta { flex-wrap: wrap; gap: 16px; justify-content: center; }
+  /* Nav inner spacing */
+  .nav-inner { gap: 12px; }
+  /* Mega menu */
+  .mega { border-radius: var(--r-3); }
+  .mega-head { padding: 14px 16px; }
+  .mega-detail { padding: 24px; }
+  .mega-subs { grid-template-columns: 1fr; gap: 12px; }
+  /* Dock */
+  .dock-panel { bottom: 0; right: 0; left: 0; width: 100%; max-width: 100%; border-radius: var(--r-4) var(--r-4) 0 0; }
+  .dock-fab-label { display: none; }
+  .dock-fab { gap: 0; padding: 10px 14px; }
+  /* Category page */
+  .cat-page-hero { padding: 90px 0 40px; }
+  .cat-page-hero-stats { gap: 16px; }
+  .cat-page-stat-n { font-size: 26px; }
+  .cat-sub-grid { grid-template-columns: 1fr; gap: 12px; }
+  .cat-featured-row { padding: 12px 14px; }
+  /* Tool grid */
+  .tool-grid { grid-template-columns: 1fr; }
+  .tool-card { padding: 18px 16px; }
+  /* Page card grid */
+  .page-card-grid { grid-template-columns: 1fr; }
+  /* Scroll-to-top — push up above dock panel space */
+  .scroll-top-btn { bottom: 16px; left: 16px; }
 }
 
 /* ─── Utility dots ─────────────────────────────────────────── */

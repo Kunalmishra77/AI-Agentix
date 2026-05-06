@@ -631,3 +631,94 @@
   .detail-layout-docs,
   .detail-layout-help { grid-template-columns: 1fr; }
 }
+
+/* ── 480px responsive pass — every page ──────────────────────── */
+@media (max-width: 480px) {
+  /* About */
+  .about-hero { padding: 90px 0 48px; }
+  .about-mission-inner { padding: 32px 24px; }
+  .about-stats-row { gap: 16px; }
+  .about-stat-n { font-size: 30px; }
+  .about-contrast-side { padding: 24px 18px; }
+  .about-domains { grid-template-columns: 1fr; }
+  .about-principles { grid-template-columns: 1fr; }
+  .about-layers { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .about-tl-item { grid-template-columns: 72px 24px 1fr; }
+  .about-tl-left { padding: 16px 8px 16px 0; }
+  .about-roles-grid { grid-template-columns: 1fr; gap: 8px; }
+
+  /* Pricing */
+  .pricing-grid { grid-template-columns: 1fr; gap: 16px; }
+  .pricing-card { padding: 24px 18px; }
+  .pricing-amount { font-size: 32px; }
+  .pricing-addons { grid-template-columns: 1fr; gap: 12px; }
+  .pricing-proof { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pricing-proof-stat { font-size: 26px; }
+  .pricing-enterprise { padding: 20px; gap: 20px; }
+  .pricing-table-head, .pricing-table-row { grid-template-columns: 1.5fr 1fr; padding: 10px 12px; }
+  .pricing-table-head > :nth-child(n+3), .pricing-table-row > :nth-child(n+3) { display: none; }
+  .pricing-usage-label { min-width: 110px; font-size: 12px; }
+  .pricing-toggle-btn { padding: 6px 12px; font-size: 13px; }
+
+  /* Contact */
+  .contact-routes { grid-template-columns: 1fr 1fr; }
+  .contact-route { padding: 14px 10px; }
+  .contact-detail { padding: 20px; }
+  .contact-form { padding: 20px; }
+  .contact-form-row { grid-template-columns: 1fr; }
+  .contact-channels { grid-template-columns: 1fr; }
+  .contact-slas { grid-template-columns: 1fr; }
+  .contact-resources { grid-template-columns: 1fr; }
+  .contact-assistant { padding: 20px; flex-direction: column; gap: 16px; }
+  .contact-assistant-left { flex-direction: column; gap: 12px; }
+
+  /* Demo */
+  .demo-meta-row { flex-direction: column; gap: 12px; }
+  .demo-personas { grid-template-columns: 1fr; gap: 10px; }
+  .demo-cal-times { grid-template-columns: repeat(2, 1fr); }
+  .demo-what { grid-template-columns: 1fr; gap: 10px; }
+  .demo-booking-wrap { grid-template-columns: 1fr; }
+  .demo-alts { grid-template-columns: 1fr; }
+  .demo-quotes { grid-template-columns: 1fr; }
+  .demo-path { padding: 18px; }
+
+  /* Talk */
+  .talk-entry { flex-direction: column; gap: 12px; max-width: 100%; }
+  .talk-use-cases { grid-template-columns: 1fr; gap: 10px; }
+  .talk-modes { grid-template-columns: 1fr; gap: 10px; }
+  .talk-mode { padding: 20px 18px; }
+  .talk-convo-body { padding: 16px; }
+
+  /* FAQ page */
+  .faq-stats { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .faq-stat { padding: 16px; }
+  .faq-stat-val { font-size: 24px; }
+  .faq-docs { grid-template-columns: 1fr; }
+  .faq-contact { padding: 20px; }
+  .faq-cats { gap: 6px; }
+
+  /* Security */
+  .security-pillars { grid-template-columns: 1fr; gap: 12px; }
+  .security-pillar { padding: 20px; }
+  .security-compliance { grid-template-columns: 1fr; gap: 10px; }
+  .security-compliance-item { padding: 16px; }
+  .security-contact { padding: 20px; grid-template-columns: 1fr; gap: 20px; }
+  .security-flow { padding: 20px; }
+
+  /* Status */
+  .status-services-head, .status-service-row { grid-template-columns: 1fr 1fr; padding: 10px 12px; }
+  .status-services-head > :nth-child(n+3), .status-service-row > :nth-child(n+3) { display: none; }
+  .status-uptime-summary { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .status-uptime-stat { padding: 14px; }
+  .status-history { padding: 16px; }
+  .status-subscribe { padding: 20px; }
+
+  /* Changelog */
+  .changelog-entry { gap: 8px; }
+  .changelog-entry-body { padding: 16px; }
+  .changelog-roadmap { grid-template-columns: 1fr; gap: 10px; }
+  .changelog-subscribe { padding: 20px; }
+
+  /* Detail pages */
+  .detail-main { padding: 24px 16px; }
+}

@@ -138,3 +138,14 @@
   .hero-meta { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .hero-map { max-width: 420px; }
 }
+@media (max-width: 480px) {
+  .hero { padding: 100px 0 48px; }
+  .hero-inner { gap: 48px; }
+  .hero-left { gap: 20px; }
+  .hero-meta { grid-template-columns: repeat(2, 1fr); gap: 16px; padding-top: 20px; margin-top: 20px; }
+  .hero-meta-num { font-size: 24px; }
+  .hero-preview { padding: 16px; }
+  .hero-ctas { flex-direction: column; align-items: stretch; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .hero-trust { flex-direction: column; align-items: center; gap: 8px; }
+}

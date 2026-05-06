@@ -276,6 +276,20 @@ body {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
+/* ─── Mobile container & section padding ────────────────── */
+@media (max-width: 600px) {
+  .container, .container-wide { padding: 0 16px; }
+  .section { padding: clamp(56px, 10vw, 80px) 0; }
+  .section-sm { padding: clamp(40px, 8vw, 64px) 0; }
+  .section-band { padding: clamp(56px, 10vw, 80px) 0; }
+  .btn-lg { padding: 12px 18px; font-size: 14px; }
+}
+@media (max-width: 380px) {
+  .container, .container-wide { padding: 0 12px; }
+  .h-1 { font-size: clamp(24px, 7vw, 32px); }
+  .h-display { font-size: clamp(30px, 8.5vw, 44px); }
+}
+
 /* ─── Link reset ─────────────────────────────────────────── */
 a { color: inherit; }
 

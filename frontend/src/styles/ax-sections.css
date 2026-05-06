@@ -326,6 +326,28 @@
   .theatre-stage-head { flex-direction: column; align-items: flex-start; gap: 16px; }
   .uc-dash-stats { grid-template-columns: 1fr; gap: 20px; }
 }
+@media (max-width: 480px) {
+  .cat-stage { padding: 20px 14px; }
+  .cat-rail-item { padding: 8px 12px; font-size: 13px; }
+  .workflow-steps { grid-template-columns: 1fr; }
+  .workflow-strip { padding: 32px 14px 24px; }
+  .how-step { padding: 24px 18px 20px; }
+  .how-step-title { font-size: 14px; }
+  .how-steps::before { display: none; }
+  .theatre-stage { padding: 20px 14px; }
+  .theatre-rail-item { padding: 8px 12px; font-size: 13px; }
+  .mock-pane { padding: 16px; }
+  .usecase-left { padding: 20px 14px; }
+  .usecase-right { padding: 20px 14px; }
+  .uc-dash { padding: 20px; }
+  .uc-dash-stats { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .uc-dash-stat-v { font-size: 18px; }
+  .solution-card { padding: 24px 18px; }
+  .solution-name { font-size: 17px; }
+  .mock-table-head, .mock-table-row { padding: 8px 12px; }
+  .mock-leads-stat { padding: 12px 14px; }
+  .mock-card { padding: 16px 18px; }
+}
 
 /* ─── Collection grid (solutions / use-cases) ─────────────── */
 .collection-grid {
