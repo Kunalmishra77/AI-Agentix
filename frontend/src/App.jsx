@@ -265,7 +265,7 @@ function MegaMenu({ open, onClose }) {
 }
 
 function MobileMenu({ onClose }) {
-  const links = [
+  const navLinks = [
     ['Tools', '/tools'],
     ['Solutions', '/solutions'],
     ['Use cases', '/use-cases'],
@@ -277,7 +277,7 @@ function MobileMenu({ onClose }) {
   ];
   return (
     <div className="mega-overlay" onClick={onClose}>
-      <div className="mega" onClick={(event) => event.stopPropagation()} style={{ maxWidth: 480 }}>
+      <div className="mega" onClick={(event) => event.stopPropagation()} style={{ maxWidth: 480, overflowY: 'auto', maxHeight: '90vh' }}>
         <div className="mega-head" style={{ padding: '16px 24px' }}>
           <span className="nav-logo"><img src="/assets/clients/logo.png" alt="Agentix" style={{ height: 26, width: 'auto' }} /></span>
           <button className="mega-close" onClick={onClose}><AgentixIcon name="close" size={14} /></button>
@@ -285,8 +285,17 @@ function MobileMenu({ onClose }) {
         <div className="dock-body" style={{ padding: 24 }}>
           <Link className="btn btn-primary" to="/talk-to-agentix" style={{ width: '100%', justifyContent: 'center' }}>Talk to Agentix</Link>
           <Link className="btn btn-secondary" to="/demo" style={{ width: '100%', justifyContent: 'center', marginTop: 12 }}>Book a Demo</Link>
-          <div style={{ marginTop: 32, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-            {links.map(([label, href]) => <Link key={href} className="dock-chip" to={href}>{label}</Link>)}
+          <div style={{ marginTop: 28, fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 10 }}>Categories</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {AGENTIX_DATA.categories.map((cat) => (
+              <Link key={cat.id} className="dock-chip" to={`/category/${cat.id}`} style={{ borderColor: `rgba(${cat.accentRgb},0.35)`, color: cat.accent }}>
+                <span className="chip-dot" style={{ background: cat.accent, width: 6, height: 6 }} />{cat.short}
+              </Link>
+            ))}
+          </div>
+          <div style={{ marginTop: 24, fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 10 }}>Platform</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {navLinks.map(([label, href]) => <Link key={href} className="dock-chip" to={href}>{label}</Link>)}
           </div>
         </div>
       </div>
@@ -1132,7 +1141,7 @@ function SearchPage() {
   return (
     <>
       <Helmet><title>Search / Agentix</title></Helmet>
-      <PageHero eyebrow="Search" title="Search the Agentix ecosystem." text="Find tools, categories, solutions, and use cases from the handoff taxonomy.">
+      <PageHero eyebrow="Search" title="Search the Agentix ecosystem." text="Find tools, categories, solutions, and use cases across every Agentix domain.">
         <form className="dock-input" style={{ marginTop: 32, maxWidth: 680, background: 'var(--bg-2)', border: '1px solid var(--line-bright)', padding: '14px 20px', borderRadius: 'var(--r-3)', boxShadow: '0 20px 50px rgba(0,0,0,0.4)' }} onSubmit={(event) => {
           event.preventDefault();
           navigate(`/search?q=${encodeURIComponent(query)}`);
@@ -1192,6 +1201,10 @@ export default function App() {
         <Route path="/solutions" element={<CollectionPage type="solutions" />} />
         <Route path="/solutions/:id" element={<CollectionDetail type="solutions" />} />
         <Route path="/use-cases" element={<CollectionPage type="use-cases" />} />
+        <Route path="/use-cases/founder-led-businesses" element={<Navigate to="/use-cases/founder-led" replace />} />
+        <Route path="/use-cases/operations-teams" element={<Navigate to="/use-cases/ops-teams" replace />} />
+        <Route path="/use-cases/saas" element={<Navigate to="/use-cases/saas-startups" replace />} />
+        <Route path="/use-cases/agencies" element={<Navigate to="/use-cases/b2b-agencies" replace />} />
         <Route path="/use-cases/:id" element={<CollectionDetail type="use-cases" />} />
         <Route path="/integrations" element={<ResourceIndex type="integrations" />} />
         <Route path="/integrations/:id" element={<ResourceDetail type="integrations" />} />

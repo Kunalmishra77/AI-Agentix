@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import AgentixIcon from './AgentixIcon';
 
 const theatres = [
-  { id: 'content', name: 'AI Content Generator', cat: 'Content & Creative', accent: '#FF8B6B', accentRgb: '255, 139, 107', kind: 'writer' },
-  { id: 'lead', name: 'Lead Enrichment & Scoring', cat: 'Sales & Revenue', accent: '#5B9BFF', accentRgb: '91, 155, 255', kind: 'leads' },
-  { id: 'support', name: 'AI Support Chat Agent', cat: 'Customer Experience', accent: '#7FD7FF', accentRgb: '127, 215, 255', kind: 'chat' },
-  { id: 'competitor', name: 'Competitor Analyzer', cat: 'Market Research', accent: '#B69BFF', accentRgb: '182, 155, 255', kind: 'report' },
-  { id: 'workflow', name: 'Workflow Orchestrator', cat: 'Operations', accent: '#FFB060', accentRgb: '255, 176, 96', kind: 'flow' },
-  { id: 'dash', name: 'Operations Dashboard', cat: 'Operations', accent: '#FFB060', accentRgb: '255, 176, 96', kind: 'dashboard' },
+  { id: 'ai-content-generator', name: 'AI Content Generator', cat: 'Content & Creative', accent: '#FF8B6B', accentRgb: '255, 139, 107', kind: 'writer' },
+  { id: 'lead-enrichment-and-scoring', name: 'Lead Enrichment & Scoring', cat: 'Sales & Revenue', accent: '#5B9BFF', accentRgb: '91, 155, 255', kind: 'leads' },
+  { id: 'ai-support-chat', name: 'AI Support Chat', cat: 'Customer Experience', accent: '#7FD7FF', accentRgb: '127, 215, 255', kind: 'chat' },
+  { id: 'competitor-analyzer', name: 'Competitor Analyzer', cat: 'Market Research', accent: '#B69BFF', accentRgb: '182, 155, 255', kind: 'report' },
+  { id: 'workflow-orchestrator', name: 'Workflow Orchestrator', cat: 'Operations', accent: '#FFB060', accentRgb: '255, 176, 96', kind: 'flow' },
+  { id: 'operations-dashboard', name: 'Operations Dashboard', cat: 'Operations', accent: '#FFB060', accentRgb: '255, 176, 96', kind: 'dashboard' },
 ];
 
 function ToolMock({ kind, accent, accentRgb }) {
