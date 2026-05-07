@@ -24,7 +24,7 @@ function HeroPreviewCard({ category, active, position }) {
       </div>
       
       <div className="hero-preview-greet" style={{ flexShrink: 0, marginBottom: '12px' }}>
-        <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700, color: 'var(--ink-0)' }}>{category.name}</h3>
+        <h3 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, color: 'var(--ink-0)' }}>{category.name}</h3>
         <p style={{ marginTop: 6, fontSize: '0.85rem', lineHeight: 1.4, color: 'var(--ink-2)' }}>{category.promise}</p>
       </div>
 
@@ -80,7 +80,8 @@ export default function HeroSection() {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (e.target.closest('.hero-map') || e.target.closest('.hero-ctas')) return;
+      // If clicking inside hero-right (the map area) or buttons, don't reset
+      if (e.target.closest('.hero-right') || e.target.closest('.hero-ctas')) return;
       setIsSystemActive(false);
       setActiveId(null);
     };
@@ -95,6 +96,7 @@ export default function HeroSection() {
     const dx = Math.cos(staticAngle);
     const dy = Math.sin(staticAngle);
 
+    // Dynamic but stable quadrant positioning
     const posX = dx > 0 ? '5%' : '55%';
     const posY = dy > 0 ? '5%' : '55%';
 
@@ -149,8 +151,6 @@ export default function HeroSection() {
         </div>
 
         <div className="hero-right" style={{ position: 'relative', minHeight: '600px' }}>
-          {/* Always render SystemMap but control its contents visibility via CSS or props if needed */}
-          {/* For now, we control the entire container's opacity but we'll show the CORE always */}
           <div 
             className="hero-map" 
             style={{ 
@@ -158,13 +158,13 @@ export default function HeroSection() {
               height: '100%',
               position: 'absolute',
               inset: 0,
-              zIndex: 5
-            }}
-          >
-            <div className="systemmap-wrap" style={{ 
-              opacity: isSystemActive ? 1 : 0.4, 
+              zIndex: 5,
+              opacity: isSystemActive ? 1 : 0.4,
               transition: 'opacity 0.8s ease'
-            }}>
+            }}
+            onMouseLeave={() => isSystemActive && setActiveId(null)}
+          >
+            <div className="systemmap-wrap">
               <SystemMap 
                 cats={cats} 
                 activeId={activeId} 
@@ -172,7 +172,6 @@ export default function HeroSection() {
                 onClick={isSystemActive ? setActiveId : () => setIsSystemActive(true)}
                 rotation={rotation}
               />
-              {isSystemActive && <div className="hero-map-mouseout" onMouseLeave={() => setActiveId(null)} style={{ position: 'absolute', inset: 0, zIndex: 1 }}/>}
               <HeroPreviewCard 
                 category={active} 
                 active={!!activeId && isSystemActive}
@@ -190,7 +189,7 @@ export default function HeroSection() {
               alignItems: 'center', 
               justifyContent: 'center',
               cursor: 'pointer'
-            }} onClick={() => setIsSystemActive(true)}>
+            }} onClick={(e) => { e.stopPropagation(); setIsSystemActive(true); }}>
                <div className="pulse-soft-anim" style={{ 
                  width: 140, 
                  height: 140, 
