@@ -1,14 +1,29 @@
+import { useState, useEffect } from 'react';
+
 export default function SystemMap({ cats, activeId, onHover, onClick }) {
   const cx = 220, cy = 220, r1 = 80, r2 = 165;
   const inner = cats.slice(0, 4);
   const outer = cats.slice(4);
 
-  function pos(index, total, radius, offsetAngle = 0) {
-    const angle = (index / total) * 2 * Math.PI + offsetAngle;
-    return {
-      x: cx + radius * Math.cos(angle),
-      y: cy + radius * Math.sin(angle),
-    };
+  const [innerAngle, setInnerAngle] = useState(0);
+  const [outerAngle, setOuterAngle] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setInnerAngle(a => (a + 0.006) % (2 * Math.PI));
+      setOuterAngle(a => (a - 0.004 + 2 * Math.PI) % (2 * Math.PI));
+    }, 50);
+    return () => clearInterval(id);
+  }, []);
+
+  function posInner(index) {
+    const angle = (index / 4) * 2 * Math.PI + Math.PI / 4 + innerAngle;
+    return { x: cx + r1 * Math.cos(angle), y: cy + r1 * Math.sin(angle) };
+  }
+
+  function posOuter(index) {
+    const angle = (index / outer.length) * 2 * Math.PI + (-Math.PI / 2 + Math.PI / outer.length) + outerAngle;
+    return { x: cx + r2 * Math.cos(angle), y: cy + r2 * Math.sin(angle) };
   }
 
   return (
@@ -17,28 +32,27 @@ export default function SystemMap({ cats, activeId, onHover, onClick }) {
       <circle cx={cx} cy={cy} r={r1} fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeDasharray="3 6"/>
       <circle cx={cx} cy={cy} r={r2} fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1" strokeDasharray="3 8"/>
 
-      {/* Connector lines */}
+      {/* Connector lines - inner */}
       {inner.map((cat, i) => {
-        const p = pos(i, 4, r1, Math.PI / 4);
+        const p = posInner(i);
         const isActive = cat.id === activeId;
         return (
           <line key={`li-${cat.id}`} x1={cx} y1={cy} x2={p.x} y2={p.y}
             stroke={isActive ? cat.accent : 'rgba(255,255,255,0.06)'}
             strokeWidth={isActive ? 1.5 : 0.8}
-            style={{ transition: 'stroke 0.2s, stroke-width 0.2s' }}
           />
         );
       })}
+
+      {/* Connector lines - outer to nearest inner */}
       {outer.map((cat, i) => {
-        const pi = pos(i, outer.length, r2, -Math.PI / 2 + Math.PI / outer.length);
-        const closest = inner[i % inner.length];
-        const pp = pos(i % 4, 4, r1, Math.PI / 4);
+        const po = posOuter(i);
+        const pi = posInner(i % 4);
         const isActive = cat.id === activeId;
         return (
-          <line key={`lo-${cat.id}`} x1={pp.x} y1={pp.y} x2={pi.x} y2={pi.y}
+          <line key={`lo-${cat.id}`} x1={pi.x} y1={pi.y} x2={po.x} y2={po.y}
             stroke={isActive ? cat.accent : 'rgba(255,255,255,0.04)'}
             strokeWidth={isActive ? 1.2 : 0.6}
-            style={{ transition: 'stroke 0.2s' }}
           />
         );
       })}
@@ -50,7 +64,7 @@ export default function SystemMap({ cats, activeId, onHover, onClick }) {
 
       {/* Inner ring nodes */}
       {inner.map((cat, i) => {
-        const p = pos(i, 4, r1, Math.PI / 4);
+        const p = posInner(i);
         const isActive = cat.id === activeId;
         return (
           <g key={cat.id} style={{ cursor: 'pointer' }}
@@ -61,12 +75,12 @@ export default function SystemMap({ cats, activeId, onHover, onClick }) {
             <circle cx={p.x} cy={p.y} r={isActive ? 10 : 7}
               fill={cat.accent}
               opacity={isActive ? 1 : 0.6}
-              style={{ filter: isActive ? `drop-shadow(0 0 12px ${cat.accent})` : 'none', transition: 'all 0.3s cubic-bezier(0.2,0.7,0.2,1)' }}
+              style={{ filter: isActive ? `drop-shadow(0 0 12px ${cat.accent})` : 'none', transition: 'r 0.3s, opacity 0.3s' }}
             />
             {isActive && <circle cx={p.x} cy={p.y} r={16} fill="none" stroke={cat.accent} strokeWidth="1.5" opacity="0.4" style={{ animation: 'pulse-glow 2s infinite' }}/>}
             <text x={p.x} y={p.y - 16} textAnchor="middle" fill={isActive ? cat.accent : 'var(--ink-2)'}
               fontSize={isActive ? 11 : 10} fontWeight={isActive ? '700' : '500'} fontFamily="monospace" letterSpacing="0.06em"
-              style={{ transition: 'all 0.2s', opacity: isActive ? 1 : 0.7 }}>
+              style={{ opacity: isActive ? 1 : 0.7 }}>
               {cat.short.toUpperCase()}
             </text>
           </g>
@@ -75,7 +89,7 @@ export default function SystemMap({ cats, activeId, onHover, onClick }) {
 
       {/* Outer ring nodes */}
       {outer.map((cat, i) => {
-        const p = pos(i, outer.length, r2, -Math.PI / 2 + Math.PI / outer.length);
+        const p = posOuter(i);
         const isActive = cat.id === activeId;
         return (
           <g key={cat.id} style={{ cursor: 'pointer' }}
@@ -86,12 +100,12 @@ export default function SystemMap({ cats, activeId, onHover, onClick }) {
             <circle cx={p.x} cy={p.y} r={isActive ? 9 : 6}
               fill={cat.accent}
               opacity={isActive ? 1 : 0.55}
-              style={{ filter: isActive ? `drop-shadow(0 0 15px ${cat.accent})` : 'none', transition: 'all 0.3s cubic-bezier(0.2,0.7,0.2,1)' }}
+              style={{ filter: isActive ? `drop-shadow(0 0 15px ${cat.accent})` : 'none', transition: 'r 0.3s, opacity 0.3s' }}
             />
             {isActive && <circle cx={p.x} cy={p.y} r={15} fill="none" stroke={cat.accent} strokeWidth="1.2" opacity="0.4" style={{ animation: 'pulse-glow 2s infinite' }}/>}
             <text x={p.x} y={p.y - 15} textAnchor="middle" fill={isActive ? cat.accent : 'var(--ink-3)'}
               fontSize={isActive ? 11 : 10} fontWeight={isActive ? '700' : '500'} fontFamily="monospace" letterSpacing="0.06em"
-              style={{ transition: 'all 0.2s', opacity: isActive ? 1 : 0.75 }}>
+              style={{ opacity: isActive ? 1 : 0.75 }}>
               {cat.short.toUpperCase()}
             </text>
           </g>

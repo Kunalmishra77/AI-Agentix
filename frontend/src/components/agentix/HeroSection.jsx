@@ -32,13 +32,16 @@ function HeroPreviewCard({ category, position, active }) {
             <p className="body-sm" style={{ marginTop: 8, lineHeight: 1.5 }}>{category.promise}</p>
           </div>
           <div className="hero-preview-list">
-            {category.featured.slice(0, 4).map(t => (
-              <div key={t} className="hero-preview-row">
-                <AgentixIcon name="node" size={10} color={category.accent}/>
-                <span style={{ flex: 1, fontSize: 13, color: 'var(--ink-0)', fontWeight: 500 }}>{t}</span>
-                <AgentixIcon name="arrow" size={12} color="var(--ink-3)"/>
-              </div>
-            ))}
+            {category.featured.slice(0, 4).map(t => {
+              const slug = t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+              return (
+                <Link key={t} to={`/tools/${slug}`} className="hero-preview-row">
+                  <AgentixIcon name="node" size={10} color={category.accent}/>
+                  <span style={{ flex: 1, fontSize: 13, color: 'var(--ink-0)', fontWeight: 500 }}>{t}</span>
+                  <AgentixIcon name="arrow" size={12} color="var(--ink-3)"/>
+                </Link>
+              );
+            })}
           </div>
           <Link to={`/category/${category.id}`} className="hero-preview-cta" style={{ '--cat-accent': category.accent }}>
             Open {category.short} workspace <AgentixIcon name="arrow" size={12}/>

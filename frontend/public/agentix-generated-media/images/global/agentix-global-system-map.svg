@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="38%" r="65%">
+      <stop offset="0%" stop-color="#18d3ff" stop-opacity="0.32"/>
+      <stop offset="42%" stop-color="#18d3ff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#07090f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#17202b" stop-opacity="0.94"/>
+      <stop offset="100%" stop-color="#0b0f17" stop-opacity="0.98"/>
+    </linearGradient>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1000" fill="#07090f"/>
+  <rect width="1600" height="1000" fill="url(#glow)"/>
+  <path d="M0 780 C320 640 550 880 860 750 C1180 610 1340 840 1600 700" fill="none" stroke="#18d3ff" stroke-opacity="0.28" stroke-width="2"/>
+  <text x="92" y="82" fill="#18d3ff" font-size="22" font-weight="700" font-family="Arial, Helvetica, sans-serif">Agentix</text>
+  <text x="92" y="148" fill="#f8fbff" font-size="54" font-weight="800" font-family="Arial, Helvetica, sans-serif">Agentix System Map</text>
+  <text x="96" y="248" fill="#aab4c4" font-size="24" font-weight="500" font-family="Arial, Helvetica, sans-serif">Connected AI workflows, product UI, assistant</text>
+<text x="96" y="276.32" fill="#aab4c4" font-size="24" font-weight="500" font-family="Arial, Helvetica, sans-serif">routing, and business automation.</text>
+  <circle cx="1040" cy="515" r="116" fill="#101722" stroke="#18d3ff" stroke-width="3"/>
+  <circle cx="1040" cy="515" r="72" fill="#18d3ff" opacity="0.18"/>
+  <text x="1040" y="507" text-anchor="middle" fill="#fff" font-size="30" font-weight="800" font-family="Arial, Helvetica, sans-serif">Agentix</text>
+  <text x="1040" y="543" text-anchor="middle" fill="#aab4c4" font-size="16" font-family="Arial, Helvetica, sans-serif">AI Core</text><path d="M1040 515 Q960 375 1040 235" fill="none" stroke="#18d3ff" stroke-opacity="0.42" stroke-width="2"/><g>
+    <circle cx="1040" cy="235" r="44" fill="#ff6b6b" opacity="0.08"/>
+    <circle cx="1040" cy="235" r="34" fill="#101722" stroke="#ff6b6b" stroke-width="3"/>
+    <text x="1040" y="297" text-anchor="middle" fill="#dce4ef" font-size="18" font-weight="700" font-family="Arial, Helvetica, sans-serif">Content</text>
+  </g><path d="M1040 515 Q1068.7067099065973 356.33076918841994 1219.980530712231 300.50755592668617" fill="none" stroke="#18d3ff" stroke-opacity="0.42" stroke-width="2"/><g>
+    <circle cx="1219.980530712231" cy="300.50755592668617" r="44" fill="#66e879" opacity="0.08"/>
+    <circle cx="1219.980530712231" cy="300.50755592668617" r="34" fill="#101722" stroke="#66e879" stroke-width="3"/>
+    <text x="1219.980530712231" y="362.50755592668617" text-anchor="middle" fill="#dce4ef" font-size="18" font-weight="700" font-family="Arial, Helvetica, sans-serif">Marketing</text>
+  </g><path d="M1040 515 Q1163.9812312083548 411.9046348856531 1315.7461708434182 466.3785102532595" fill="none" stroke="#18d3ff" stroke-opacity="0.42" stroke-width="2"/><g>
+    <circle cx="1315.7461708434182" cy="466.3785102532595" r="44" fill="#34a8ff" opacity="0.08"/>
+    <circle cx="1315.7461708434182" cy="466.3785102532595" r="34" fill="#101722" stroke="#34a8ff" stroke-width="3"/>
+    <text x="1315.7461708434182" y="528.3785102532595" text-anchor="middle" fill="#dce4ef" font-size="18" font-weight="700" font-family="Arial, Helvetica, sans-serif">Sales</text>
+  </g><path d="M1040 515 Q1201.2435565298215 515.717967697245 1282.4871130596428 655" fill="none" stroke="#18d3ff" stroke-opacity="0.42" stroke-width="2"/><g>
+    <circle cx="1282.4871130596428" cy="655" r="44" fill="#68d8ff" opacity="0.08"/>
+    <circle cx="1282.4871130596428" cy="655" r="34" fill="#101722" stroke="#68d8ff" stroke-width="3"/>
+    <text x="1282.4871130596428" y="717" text-anchor="middle" fill="#dce4ef" font-size="18" font-weight="700" font-family="Arial, Helvetica, sans-serif">Customer Experience</text>
+  </g><path d="M1040 515 Q1163.0582297284661 619.1953554439737 1135.7656401311872 778.1139338200544" fill="none" stroke="#18d3ff" stroke-opacity="0.42" stroke-width="2"/><g>
+    <circle cx="1135.7656401311872" cy="778.1139338200544" r="44" fill="#b78cff" opacity="0.08"/>
+    <circle cx="1135.7656401311872" cy="778.1139338200544" r="34" fill="#101722" stroke="#b78cff" stroke-width="3"/>
+    <text x="1135.7656401311872" y="840.1139338200544" text-anchor="middle" fill="#dce4ef" font-size="18" font-weight="700" font-family="Arial, Helvetica, sans-serif">Market Research</text>
+  </g><path d="M1040 515 Q1067.2925895972792 673.9185783760807 944.2343598688128 778.1139338200544" fill="none" stroke="#18d3ff" stroke-opacity="0.42" stroke-width="2"/><g>
+    <circle cx="944.2343598688128" cy="778.1139338200544" r="44" fill="#ff9f43" opacity="0.08"/>
+    <circle cx="944.2343598688128" cy="778.1139338200544" r="34" fill="#101722" stroke="#ff9f43" stroke-width="3"/>
+    <text x="944.2343598688128" y="840.1139338200544" text-anchor="middle" fill="#dce4ef" font-size="18" font-weight="700" font-family="Arial, Helvetica, sans-serif">Operations</text>
+  </g><path d="M1040 515 Q958.7564434701786 654.282032302755 797.5128869403572 655.0000000000001" fill="none" stroke="#18d3ff" stroke-opacity="0.42" stroke-width="2"/><g>
+    <circle cx="797.5128869403572" cy="655.0000000000001" r="44" fill="#5b7cfa" opacity="0.08"/>
+    <circle cx="797.5128869403572" cy="655.0000000000001" r="34" fill="#101722" stroke="#5b7cfa" stroke-width="3"/>
+    <text x="797.5128869403572" y="717.0000000000001" text-anchor="middle" fill="#dce4ef" font-size="18" font-weight="700" font-family="Arial, Helvetica, sans-serif">Business Systems</text>
+  </g><path d="M1040 515 Q888.2350603649365 569.4738753676064 764.2538291565818 466.3785102532596" fill="none" stroke="#18d3ff" stroke-opacity="0.42" stroke-width="2"/><g>
+    <circle cx="764.2538291565818" cy="466.3785102532596" r="44" fill="#3ddc97" opacity="0.08"/>
+    <circle cx="764.2538291565818" cy="466.3785102532596" r="34" fill="#101722" stroke="#3ddc97" stroke-width="3"/>
+    <text x="764.2538291565818" y="528.3785102532596" text-anchor="middle" fill="#dce4ef" font-size="18" font-weight="700" font-family="Arial, Helvetica, sans-serif">Product, Project</text>
+  </g><path d="M1040 515 Q888.7261791943663 459.1767867382663 860.019469287769 300.5075559266862" fill="none" stroke="#18d3ff" stroke-opacity="0.42" stroke-width="2"/><g>
+    <circle cx="860.019469287769" cy="300.5075559266862" r="44" fill="#d8b85a" opacity="0.08"/>
+    <circle cx="860.019469287769" cy="300.5075559266862" r="34" fill="#101722" stroke="#d8b85a" stroke-width="3"/>
+    <text x="860.019469287769" y="362.5075559266862" text-anchor="middle" fill="#dce4ef" font-size="18" font-weight="700" font-family="Arial, Helvetica, sans-serif">Finance, Admin</text>
+  </g>
+</svg>

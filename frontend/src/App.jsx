@@ -558,6 +558,18 @@ const stepDescMap = {
   'Build stack': 'Get a recommended stack for your business type and goal.',
   'Read docs': 'Access builder documentation and workflow guides.',
   'Book demo': 'See Agentix run a workflow matched to your context.',
+  'CRM': 'Sync contacts, pipeline data, and activities between your CRM and Agentix workflows automatically.',
+  'Email': 'Send, receive, and process email using AI-governed templates and delivery routing rules.',
+  'Calendar': 'Schedule meetings, tasks, and deadlines directly from workflow and assistant outputs.',
+  'Messaging': 'Post workflow updates and alerts to Slack, Teams, or Discord when states change.',
+  'Support': 'Route tickets, draft first responses, and escalate issues through your support platform.',
+  'Docs Storage': 'Read from and write to Google Drive, SharePoint, or Notion as part of any workflow.',
+  'Spreadsheets': 'Pull structured data in and push formatted results out — no manual exporting needed.',
+  'CMS': 'Publish approved content directly from the Agentix review layer to your CMS.',
+  'Analytics': 'Surface campaign, workflow, and tool performance data inside your analytics stack.',
+  'Payments': 'Trigger billing, invoicing, and payment workflows from approved Agentix outputs.',
+  'Databases': 'Query and update records in your database as workflow stages execute and complete.',
+  'APIs Webhooks': 'Connect any external system with webhooks and REST APIs — full two-way event routing.',
 };
 
 function stepDesc(item) {
@@ -955,12 +967,18 @@ function ToolPage() {
 
 function ToolWorkspaceVisual({ tool, variant }) {
   if (variant === 'split') {
+    const splitValues = {
+      'Business goal': `Scale ${tool.categoryName.toLowerCase()} output with AI-reviewed workflows`,
+      'Audience': tool.subcategoryName || tool.categoryName,
+      'Knowledge sources': `Brand docs, ${tool.categoryName.toLowerCase()} guidelines, approved content`,
+      'Review rules': 'Tone, accuracy, compliance — edge cases route to human',
+    };
     return (
       <div className="theatre card tool-variant-split" style={{ '--accent-cat': tool.accent }}>
         <div className="mock-pane">
           <div className="mock-pane-head"><span className="mock-pane-label mono">Input brief</span><span className="chip mono">approved</span></div>
           {['Business goal', 'Audience', 'Knowledge sources', 'Review rules'].map((item) => (
-            <div key={item} className="mock-field"><div className="mock-field-label">{item}</div><div className="mock-field-val">{tool.name} / {tool.subcategoryName}</div></div>
+            <div key={item} className="mock-field"><div className="mock-field-label">{item}</div><div className="mock-field-val">{splitValues[item]}</div></div>
           ))}
         </div>
         <div className="mock-pane">
@@ -988,12 +1006,25 @@ function ToolWorkspaceVisual({ tool, variant }) {
             </div>
           </div>
           <div className="mock-report-grid">
-            {['Signals', 'Recommendations', 'Risks', 'Next action'].map((item) => <div key={item} className="mock-card"><div className="mock-field-label">{item}</div><div className="mock-h2" style={{ fontSize: 16 }}>{tool.subcategoryName}</div></div>)}
+            {[
+              ['Signals', `Live ${tool.categoryName.toLowerCase()} signals from connected sources`],
+              ['Recommendations', `Next actions surfaced by ${tool.name}`],
+              ['Risks', 'Edge cases and compliance flags routed for review'],
+              ['Next action', `Route output or escalate to ${tool.subcategoryName} owner`],
+            ].map(([label, val]) => <div key={label} className="mock-card"><div className="mock-field-label">{label}</div><div className="mock-h2" style={{ fontSize: 14, lineHeight: 1.4, fontWeight: 500 }}>{val}</div></div>)}
           </div>
         </div>
       </div>
     );
   }
+  const ledgerDescs = {
+    'Trigger': `${tool.name} activates on request, schedule, or upstream workflow output.`,
+    'Validate': `Input is checked against ${tool.categoryName} rules before processing starts.`,
+    'Approve': `Human or auto-approval gate confirms the brief before execution.`,
+    'Execute': `${tool.name} runs the workflow and produces structured, reviewed output.`,
+    'Log': `Every action is logged for audit trail, compliance, and performance review.`,
+    'Report': `Output and decisions surface in your ${tool.categoryName} dashboard automatically.`,
+  };
   return (
     <div className="cc-frame">
       <div className="cc-chrome"><div className="cc-chrome-dots"><span/><span/><span/></div><div className="cc-chrome-url">workflow.agentix.ai / controls / {tool.id}</div><div className="cc-chrome-meta mono">governed</div></div>
@@ -1002,7 +1033,7 @@ function ToolWorkspaceVisual({ tool, variant }) {
           <div key={step} className="mock-card">
             <div className="mock-field-label">0{index + 1}</div>
             <div className="mock-h2" style={{ fontSize: 18 }}>{step}</div>
-            <p style={{ color: 'var(--ink-2)', fontSize: 13, marginTop: 8 }}>{tool.name} moves through this governed workflow state.</p>
+            <p style={{ color: 'var(--ink-2)', fontSize: 13, marginTop: 8 }}>{ledgerDescs[step]}</p>
           </div>
         ))}
       </div>

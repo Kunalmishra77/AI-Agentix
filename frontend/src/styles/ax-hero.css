@@ -95,6 +95,7 @@
   border-radius: 8px;
   transition: all 0.2s;
   background: rgba(255,255,255,0.02);
+  text-decoration: none; color: inherit; cursor: pointer;
 }
 .hero-preview-row:hover { background: rgba(255,255,255,0.06); }
 .hero-preview-cta {

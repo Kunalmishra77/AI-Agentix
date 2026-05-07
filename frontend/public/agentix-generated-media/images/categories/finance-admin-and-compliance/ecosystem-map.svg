@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="38%" r="65%">
+      <stop offset="0%" stop-color="#d8b85a" stop-opacity="0.32"/>
+      <stop offset="42%" stop-color="#d8b85a" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#07090f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#17202b" stop-opacity="0.94"/>
+      <stop offset="100%" stop-color="#0b0f17" stop-opacity="0.98"/>
+    </linearGradient>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1000" fill="#07090f"/>
+  <rect width="1600" height="1000" fill="url(#glow)"/>
+  <path d="M0 780 C320 640 550 880 860 750 C1180 610 1340 840 1600 700" fill="none" stroke="#d8b85a" stroke-opacity="0.28" stroke-width="2"/>
+  <text x="92" y="82" fill="#d8b85a" font-size="22" font-weight="700" font-family="Arial, Helvetica, sans-serif">Agentix</text>
+  <text x="92" y="148" fill="#f8fbff" font-size="54" font-weight="800" font-family="Arial, Helvetica, sans-serif">Finance, Admin &amp; Compliance</text>
+<text x="92" y="211.72" fill="#f8fbff" font-size="54" font-weight="800" font-family="Arial, Helvetica, sans-serif">Ecosystem</text>
+  <text x="96" y="248" fill="#aab4c4" font-size="24" font-weight="500" font-family="Arial, Helvetica, sans-serif">Connected AI workflows, product UI, assistant</text>
+<text x="96" y="276.32" fill="#aab4c4" font-size="24" font-weight="500" font-family="Arial, Helvetica, sans-serif">routing, and business automation.</text>
+  <circle cx="1040" cy="515" r="116" fill="#101722" stroke="#d8b85a" stroke-width="3"/>
+  <circle cx="1040" cy="515" r="72" fill="#d8b85a" opacity="0.18"/>
+  <text x="1040" y="507" text-anchor="middle" fill="#fff" font-size="30" font-weight="800" font-family="Arial, Helvetica, sans-serif">Agentix</text>
+  <text x="1040" y="543" text-anchor="middle" fill="#aab4c4" font-size="16" font-family="Arial, Helvetica, sans-serif">AI Core</text><path d="M1040 515 Q960 375 1040 235" fill="none" stroke="#d8b85a" stroke-opacity="0.42" stroke-width="2"/><g>
+    <circle cx="1040" cy="235" r="44" fill="#d8b85a" opacity="0.08"/>
+    <circle cx="1040" cy="235" r="34" fill="#101722" stroke="#d8b85a" stroke-width="3"/>
+    <text x="1040" y="297" text-anchor="middle" fill="#dce4ef" font-size="18" font-weight="700" font-family="Arial, Helvetica, sans-serif">Finance Operations</text>
+  </g><path d="M1040 515 Q1180 435 1320 515" fill="none" stroke="#d8b85a" stroke-opacity="0.42" stroke-width="2"/><g>
+    <circle cx="1320" cy="515" r="44" fill="#d8b85a" opacity="0.08"/>
+    <circle cx="1320" cy="515" r="34" fill="#101722" stroke="#d8b85a" stroke-width="3"/>
+    <text x="1320" y="577" text-anchor="middle" fill="#dce4ef" font-size="18" font-weight="700" font-family="Arial, Helvetica, sans-serif">Contracts, Proposals</text>
+  </g><path d="M1040 515 Q1120 655 1040 795" fill="none" stroke="#d8b85a" stroke-opacity="0.42" stroke-width="2"/><g>
+    <circle cx="1040" cy="795" r="44" fill="#d8b85a" opacity="0.08"/>
+    <circle cx="1040" cy="795" r="34" fill="#101722" stroke="#d8b85a" stroke-width="3"/>
+    <text x="1040" y="857" text-anchor="middle" fill="#dce4ef" font-size="18" font-weight="700" font-family="Arial, Helvetica, sans-serif">Compliance, Policy</text>
+  </g><path d="M1040 515 Q900 595 760 515" fill="none" stroke="#d8b85a" stroke-opacity="0.42" stroke-width="2"/><g>
+    <circle cx="760" cy="515" r="44" fill="#d8b85a" opacity="0.08"/>
+    <circle cx="760" cy="515" r="34" fill="#101722" stroke="#d8b85a" stroke-width="3"/>
+    <text x="760" y="577" text-anchor="middle" fill="#dce4ef" font-size="18" font-weight="700" font-family="Arial, Helvetica, sans-serif">Admin, HR</text>
+  </g>
+</svg>
