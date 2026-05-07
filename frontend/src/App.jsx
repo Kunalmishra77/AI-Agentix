@@ -16,7 +16,8 @@ import TrustLayer from './components/agentix/TrustLayer.jsx';
 import VoiceCTA from './components/agentix/VoiceCTA.jsx';
 import FAQ from './components/agentix/FAQ.jsx';
 import FinalCTA from './components/agentix/FinalCTA.jsx';
-import AGENTIX_DATA from './data/agentixData.js';
+import AGENTIX_DATA, { TOOL_DESCRIPTIONS } from './data/agentixData.js';
+import toolWorkspaces from './data/toolWorkspaces.js';
 import AboutPage from './pages/site/AboutPage.jsx';
 import PricingPage from './pages/site/PricingPage.jsx';
 import ContactPage from './pages/site/ContactPage.jsx';
@@ -44,7 +45,7 @@ const allTools = AGENTIX_DATA.categories.flatMap((category) =>
       subcategoryName: subcategory.name,
       accent: category.accent,
       accentRgb: category.accentRgb,
-      description: `${tool} helps ${category.short.toLowerCase()} teams move work from input to reviewed output inside Agentix.`,
+      description: TOOL_DESCRIPTIONS[tool] || `${tool} automates ${category.short.toLowerCase()} workflows by converting raw data into reviewed, high-impact outputs within the Agentix operating layer.`,
     }))
   )
 );
@@ -72,8 +73,8 @@ const integrations = [
 ].map((name) => ({
   id: slugify(name),
   name,
-  text: `Connect Agentix workflows with ${name.toLowerCase()} systems so data moves cleanly between tools, AI agents, and human review.`,
-  bullets: ['Supported apps', 'Common workflows', 'Setup requirements', 'Permissions and security'],
+  text: `Connect Agentix to your ${name.toLowerCase()} systems to automate data flow, trigger workflows from external signals, and keep core records synchronized across the operating layer.`,
+  bullets: ['Bi-directional sync', 'Workflow triggers', 'Data mapping rules', 'Security & permissions'],
 }));
 
 const docs = [
@@ -81,8 +82,8 @@ const docs = [
 ].map((name) => ({
   id: slugify(name),
   name,
-  text: `Documentation for ${name.toLowerCase()} inside the Agentix operating system.`,
-  bullets: ['Overview', 'Recommended path', 'Popular guides', 'Related collections'],
+  text: `Step-by-step implementation guides and technical references for ${name.toLowerCase()}, designed to help your team move from setup to first automated output.`,
+  bullets: ['Implementation guide', 'Core concepts', 'Configuration rules', 'Handoff patterns'],
 }));
 
 const helpTopics = [
@@ -90,8 +91,8 @@ const helpTopics = [
 ].map((name) => ({
   id: slugify(name),
   name,
-  text: `Help articles and troubleshooting paths for ${name.toLowerCase()} questions.`,
-  bullets: ['Common questions', 'Troubleshooting path', 'Related topics', 'Contact support'],
+  text: `Resolve ${name.toLowerCase()} issues and find troubleshooting paths to keep your business workflows running without delays or manual bottlenecks.`,
+  bullets: ['Common fixes', 'SLA support', 'Resolution paths', 'System status'],
 }));
 
 function catIconPath(categoryId) {
@@ -705,7 +706,7 @@ function CategoryPage() {
               {subcategory ? category.name : 'Operating Domain'}
             </div>
             <h1 className="h-display cat-page-hero-title">{subcategory ? subcategory.name : category.name}</h1>
-            <p className="body-lg" style={{ maxWidth: 620, marginTop: 24, lineHeight: 1.6 }}>{category.promise}</p>
+            <p className="body-lg" style={{ maxWidth: 620, marginTop: 24, lineHeight: 1.6 }}>{subcategory ? subcategory.description : category.promise}</p>
             <div className="cat-page-hero-stats">
               <div className="cat-page-stat"><span className="cat-page-stat-n">{category.subcategories.length}</span><span className="cat-page-stat-l">workflows</span></div>
               <div className="cat-page-stat"><span className="cat-page-stat-n">{totalTools}</span><span className="cat-page-stat-l">intelligent tools</span></div>
@@ -757,6 +758,7 @@ function CategoryPage() {
                     <span className="chip" style={{ fontSize: 10, borderColor: `rgba(${category.accentRgb},0.3)`, color: category.accent, fontWeight: 600 }}>{sub.tools.length} TOOLS</span>
                   </div>
                   <h3 className="cat-sub-card-name" style={{ fontSize: 18, marginTop: 12 }}>{sub.name}</h3>
+                  <p className="solution-outcome" style={{ marginTop: 8, fontSize: 13, color: 'var(--ink-2)' }}>{sub.description}</p>
                   <div className="cat-sub-card-tools">
                     {sub.tools.slice(0, 4).map((t) => <span key={t} className="cat-sub-card-tool">· {t}</span>)}
                     {sub.tools.length > 4 && <span className="cat-sub-card-more mono">+{sub.tools.length - 4} more</span>}
@@ -966,6 +968,43 @@ function ToolPage() {
 }
 
 function ToolWorkspaceVisual({ tool, variant }) {
+  const data = toolWorkspaces[tool.id];
+
+  if (data) {
+    return (
+      <div className="theatre card tool-variant-split" style={{ '--accent-cat': tool.accent }}>
+        <div className="mock-pane">
+          <div className="mock-pane-head">
+            <span className="mock-pane-label mono">{data.leftHeading || 'Input brief'}</span>
+            <span className="chip mono">{data.statusPill || 'approved'}</span>
+          </div>
+          {data.fields.map((field, idx) => (
+            <div key={idx} className="mock-field">
+              <div className="mock-field-label">{field.label}</div>
+              <div className="mock-field-val">{field.value}</div>
+            </div>
+          ))}
+        </div>
+        <div className="mock-pane">
+          <div className="mock-pane-head">
+            <span className="mock-pane-label mono">{data.rightHeading || 'Generated output'}</span>
+            <div className="flex items-center gap-2">
+              {data.indicatorText && <span className="mono" style={{ fontSize: 10, color: 'var(--ink-3)' }}>{data.indicatorText}</span>}
+              <span className="dot" style={{ background: tool.accent }} />
+            </div>
+          </div>
+          <div className="mock-doc">
+            <div className="mock-h1">{data.workspaceTitle || `${tool.name} workspace`}</div>
+            <p>{data.workspaceBody || `This page is tuned for ${tool.categoryName}: fast inputs, structured output, review, and publishing.`}</p>
+            <div className="mock-callout" style={{ marginTop: 24 }}>
+              <AgentixIcon name="check" size={14} color={tool.accent} /> {data.checkedStatus || 'Ready for human review and workflow routing.'}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (variant === 'split') {
     const splitValues = {
       'Business goal': `Scale ${tool.categoryName.toLowerCase()} output with AI-reviewed workflows`,
@@ -1238,7 +1277,7 @@ function InfoPage({ id }) {
             <div key={item} className="solution-card card" style={{ '--accent-cat': accent }}>
               <div className="solution-head"><span className="solution-dot" style={{ background: accent }} /><span className="solution-cat mono">Section</span></div>
               <h3 className="solution-name" style={{ marginTop: 12 }}>{item}</h3>
-              <p className="solution-outcome" style={{ marginTop: 8 }}>Part of the Agentix operating system — tools, workflows, and handoff routes connected in one layer.</p>
+              <p className="solution-outcome" style={{ marginTop: 8 }}>Automate the {item.toLowerCase()} stage of your business operations with specific Agentix tools and governed workflow paths.</p>
             </div>
           ))}
         </div>

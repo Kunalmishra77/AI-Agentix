@@ -1,0 +1,4328 @@
+Agentix Tool Workspace Table Replacements
+Generated: 2026-05-07
+Scope: replacement content for all visible text inside the highlighted tool workspace/table section across 121 tools. Labels have been improved and the content is unique per tool, while preserving a
+consistent UI structure.
+Category
+Tools
+Content & Creative Production
+16
+Marketing & Growth
+15
+Sales & Revenue
+15
+Customer Experience & Support
+12
+Market Research & Strategy
+15
+Operations & Workflow Automation
+12
+Business Systems & Knowledge
+12
+Product, Project & Delivery
+12
+Finance, Admin & Compliance
+12
+
+Content & Creative Production
+Highlighted table replacements for this category.
+1. AI Content Generator
+Subcategory: Content Creation & Copywriting
+UI area
+Replace visible text with
+Left panel heading
+AI Content Generator operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns a brief, audience, offer, and brand voice into polished drafts for emails, pages, ads, and social posts, with review notes before publish.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for content strategists, founders, marketers, and copy teams producing conversion-ready written assets.
+Field 3 label
+Required inputs
+Field 3 value
+Start with brief, audience segment, offer, channel, examples, tone rules, and required CTA.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+AI Content Generator command workspace
+Workspace body
+Use this workspace to build ai content generator outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+2. Blog & SEO Article Writer
+Subcategory: Content Creation & Copywriting
+UI area
+Replace visible text with
+Left panel heading
+Blog & SEO Article Writer operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Builds search-aware articles from keywords, SERP intent, outline, internal links, and brand guidance so content is useful, structured, and ready to edit.
+Field 2 label
+Best-fit user
+
+UI area
+Replace visible text with
+Field 2 value
+Built for content strategists, founders, marketers, and copy teams producing conversion-ready written assets.
+Field 3 label
+Required inputs
+Field 3 value
+Start with target keyword, search intent, outline, internal links, product angle, and SERP notes.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Blog & SEO Article Writer command workspace
+Workspace body
+Use this workspace to build blog & seo article writer outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+3. Script & Storyboard Writer
+Subcategory: Content Creation & Copywriting
+UI area
+Replace visible text with
+Left panel heading
+Script & Storyboard Writer operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Converts campaign ideas into scene-by-scene scripts, shot lists, hooks, voiceover cues, and storyboard notes for video or presentation production.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for content strategists, founders, marketers, and copy teams producing conversion-ready written assets.
+Field 3 label
+Required inputs
+Field 3 value
+Start with campaign idea, runtime, scene goal, visual references, voiceover tone, and channel format.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Script & Storyboard Writer command workspace
+Workspace body
+Use this workspace to build script & storyboard writer outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+
+4. Product & Sales Copy Builder
+Subcategory: Content Creation & Copywriting
+UI area
+Replace visible text with
+Left panel heading
+Product & Sales Copy Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Writes benefit-led product pages, sales emails, comparison copy, and objection-handling snippets from product facts, audience pain points, and proof.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for content strategists, founders, marketers, and copy teams producing conversion-ready written assets.
+Field 3 label
+Required inputs
+Field 3 value
+Start with product facts, buyer pain points, proof, objections, pricing context, and competitor alternatives.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Product & Sales Copy Builder command workspace
+Workspace body
+Use this workspace to build product & sales copy builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+5. AI Product Photography
+Subcategory: Visual & Brand Assets
+UI area
+Replace visible text with
+Left panel heading
+AI Product Photography operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Generates product-shot concepts, backgrounds, and scene prompts that make catalog images, ads, and launch visuals more premium and on-brand.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for brand, ecommerce, design, and campaign teams preparing visual assets for launch.
+Field 3 label
+Required inputs
+
+UI area
+Replace visible text with
+Field 3 value
+Start with product image, desired scene, background style, usage channel, aspect ratio, and brand mood.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+AI Product Photography command workspace
+Workspace body
+Use this workspace to produce ai product photography outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+6. Image Enhancement Studio
+Subcategory: Visual & Brand Assets
+UI area
+Replace visible text with
+Left panel heading
+Image Enhancement Studio operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Cleans, upscales, reframes, and prepares images for web, social, marketplace, or ad use while preserving product accuracy and brand polish.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for brand, ecommerce, design, and campaign teams preparing visual assets for launch.
+Field 3 label
+Required inputs
+Field 3 value
+Start with source image, cleanup goal, output size, platform requirements, product accuracy notes, and brand constraints.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Image Enhancement Studio command workspace
+Workspace body
+Use this workspace to produce image enhancement studio outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+7. Brand Asset Generator
+
+Subcategory: Visual & Brand Assets
+UI area
+Replace visible text with
+Left panel heading
+Brand Asset Generator operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates campaign visuals, style-consistent graphics, banners, and reusable brand elements from approved colors, typography, logo rules, and creative direction.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for brand, ecommerce, design, and campaign teams preparing visual assets for launch.
+Field 3 label
+Required inputs
+Field 3 value
+Start with logo rules, colors, fonts, campaign theme, asset size, and approved visual references.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Brand Asset Generator command workspace
+Workspace body
+Use this workspace to build brand asset generator outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+8. AI Voiceover Studio
+Subcategory: Voice, Avatar & Audio
+UI area
+Replace visible text with
+Left panel heading
+AI Voiceover Studio operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Produces clear voiceover drafts with tone, pacing, pronunciation, and script timing controls for ads, explainers, training, and product videos.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for video, enablement, learning, and brand teams creating spoken or presenter-led content.
+Field 3 label
+Required inputs
+Field 3 value
+Start with script, target tone, pronunciation notes, pacing, language, and intended channel.
+Field 4 label
+Review standard
+
+UI area
+Replace visible text with
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+AI Voiceover Studio command workspace
+Workspace body
+Use this workspace to assist ai voiceover studio outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+9. Voice Cloning
+Subcategory: Voice, Avatar & Audio
+UI area
+Replace visible text with
+Left panel heading
+Voice Cloning operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates controlled synthetic voice assets from approved samples, consent rules, and usage limits so narration can scale without losing brand familiarity.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for video, enablement, learning, and brand teams creating spoken or presenter-led content.
+Field 3 label
+Required inputs
+Field 3 value
+Start with approved voice sample, consent record, usage context, pronunciation guide, and brand safety limits.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Voice Cloning command workspace
+Workspace body
+Use this workspace to assist voice cloning outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+10. Avatar Presenter Studio
+Subcategory: Voice, Avatar & Audio
+
+UI area
+Replace visible text with
+Left panel heading
+Avatar Presenter Studio operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Builds presenter-style videos from scripts, slides, or product messages using avatars, voice, captions, and scene direction for fast explainers.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for video, enablement, learning, and brand teams creating spoken or presenter-led content.
+Field 3 label
+Required inputs
+Field 3 value
+Start with script, presenter style, slide or scene assets, language, captions, and audience context.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Avatar Presenter Studio command workspace
+Workspace body
+Use this workspace to produce avatar presenter studio outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+11. AI Video Generator
+Subcategory: Video Creation & Repurposing
+UI area
+Replace visible text with
+Left panel heading
+AI Video Generator operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns scripts, briefs, and assets into draft videos with scenes, motion direction, voiceover, captions, and edit-ready structure.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for video, social, product marketing, and localization teams turning ideas or footage into publishable clips.
+Field 3 label
+Required inputs
+Field 3 value
+Start with script, storyboard, source assets, visual style, format, music or voice direction, and CTA.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+
+UI area
+Replace visible text with
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+AI Video Generator command workspace
+Workspace body
+Use this workspace to build ai video generator outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+12. Video Clipper
+Subcategory: Video Creation & Repurposing
+UI area
+Replace visible text with
+Left panel heading
+Video Clipper operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Finds the strongest moments in long videos and converts them into channel-specific clips with hooks, titles, captions, and aspect ratios.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for video, social, product marketing, and localization teams turning ideas or footage into publishable clips.
+Field 3 label
+Required inputs
+Field 3 value
+Start with long-form video, target platforms, key themes, clip length, hook style, and caption rules.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Video Clipper command workspace
+Workspace body
+Use this workspace to produce video clipper outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+13. Subtitle & Localization
+Subcategory: Video Creation & Repurposing
+UI area
+Replace visible text with
+Left panel heading
+Subtitle & Localization operating brief
+
+UI area
+Replace visible text with
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates accurate captions, translations, timing, and market-specific phrasing so videos can travel across languages without losing meaning.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for video, social, product marketing, and localization teams turning ideas or footage into publishable clips.
+Field 3 label
+Required inputs
+Field 3 value
+Start with video file, transcript, target language, regional tone, terminology list, and timing rules.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Subtitle & Localization command workspace
+Workspace body
+Use this workspace to produce subtitle & localization outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+14. Social Media Scheduler
+Subcategory: Workflow & Publishing
+UI area
+Replace visible text with
+Left panel heading
+Social Media Scheduler operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Plans, queues, and adapts approved posts across channels using campaign timing, audience behavior, asset availability, and review status.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for content operations, social, brand, and compliance teams moving assets from approval to distribution.
+Field 3 label
+Required inputs
+Field 3 value
+Start with approved posts, channel rules, campaign calendar, audience timing, creative assets, and review status.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+
+UI area
+Replace visible text with
+Indicator text
+ready
+Workspace title
+Social Media Scheduler command workspace
+Workspace body
+Use this workspace to produce social media scheduler outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+15. Content Repurposing
+Subcategory: Workflow & Publishing
+UI area
+Replace visible text with
+Left panel heading
+Content Repurposing operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Transforms one approved asset into blogs, posts, emails, scripts, clips, and sales snippets while preserving the core message and proof.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for content operations, social, brand, and compliance teams moving assets from approval to distribution.
+Field 3 label
+Required inputs
+Field 3 value
+Start with pillar asset, target channels, desired formats, core message, proof points, and tone rules.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Content Repurposing command workspace
+Workspace body
+Use this workspace to produce content repurposing outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+16. Brand Compliance
+Subcategory: Workflow & Publishing
+UI area
+Replace visible text with
+Left panel heading
+Brand Compliance operating brief
+Status pill
+review-ready
+
+UI area
+Replace visible text with
+Field 1 label
+Workflow outcome
+Field 1 value
+Checks copy, visuals, claims, and tone against brand rules, legal sensitivities, and channel requirements before content moves to approval.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for content operations, social, brand, and compliance teams moving assets from approval to distribution.
+Field 3 label
+Required inputs
+Field 3 value
+Start with draft content, brand guidelines, claim rules, visual standards, legal sensitivities, and channel requirements.
+Field 4 label
+Review standard
+Field 4 value
+Check brand voice, factual accuracy, usage rights, claims, and final channel fit before publishing.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Brand Compliance command workspace
+Workspace body
+Use this workspace to produce brand compliance outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for creative review, brand approval, and channel routing.
+
+Marketing & Growth
+Highlighted table replacements for this category.
+17. Campaign Strategy Builder
+Subcategory: Campaign Strategy & Planning
+UI area
+Replace visible text with
+Left panel heading
+Campaign Strategy Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Converts goals, audience segments, budget, and offer context into a campaign plan with positioning, channels, milestones, assets, and KPIs.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for growth leaders, marketers, founders, and launch teams planning coordinated campaigns.
+Field 3 label
+Required inputs
+Field 3 value
+Start with business goal, target audience, offer, budget, timeline, channels, and success metrics.
+Field 4 label
+Review standard
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Campaign Strategy Builder command workspace
+Workspace body
+Use this workspace to build campaign strategy builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+18. GTM Launch Planner
+Subcategory: Campaign Strategy & Planning
+UI area
+Replace visible text with
+Left panel heading
+GTM Launch Planner operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Maps product, audience, pricing, messaging, enablement, and launch motions into a sequenced go-to-market plan with owners and dependencies.
+Field 2 label
+Best-fit user
+
+UI area
+Replace visible text with
+Field 2 value
+Built for growth leaders, marketers, founders, and launch teams planning coordinated campaigns.
+Field 3 label
+Required inputs
+Field 3 value
+Start with product context, audience segments, pricing, positioning, enablement needs, and launch timeline.
+Field 4 label
+Review standard
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+GTM Launch Planner command workspace
+Workspace body
+Use this workspace to plan gtm launch planner outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+19. Marketing Calendar
+Subcategory: Campaign Strategy & Planning
+UI area
+Replace visible text with
+Left panel heading
+Marketing Calendar operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Builds a coordinated calendar for campaigns, content, email, social, events, and launches so every asset has timing and accountability.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for growth leaders, marketers, founders, and launch teams planning coordinated campaigns.
+Field 3 label
+Required inputs
+Field 3 value
+Start with campaigns, channels, asset owners, launch dates, content themes, and approval milestones.
+Field 4 label
+Review standard
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Marketing Calendar command workspace
+Workspace body
+Use this workspace to plan marketing calendar outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+
+20. Landing Page Optimizer
+Subcategory: Funnel & Landing Page Optimization
+UI area
+Replace visible text with
+Left panel heading
+Landing Page Optimizer operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Reviews page structure, messaging, proof, CTAs, and conversion flow, then recommends specific improvements and test ideas.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for conversion, demand generation, and revenue teams improving visitor-to-lead performance.
+Field 3 label
+Required inputs
+Field 3 value
+Start with page URL or copy, traffic source, audience, conversion goal, analytics notes, and proof assets.
+Field 4 label
+Review standard
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Landing Page Optimizer command workspace
+Workspace body
+Use this workspace to produce landing page optimizer outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+21. Funnel Audit
+Subcategory: Funnel & Landing Page Optimization
+UI area
+Replace visible text with
+Left panel heading
+Funnel Audit operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Finds leaks across acquisition, capture, nurture, demo, purchase, and retention paths using data, page behavior, and journey logic.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for conversion, demand generation, and revenue teams improving visitor-to-lead performance.
+Field 3 label
+Required inputs
+
+UI area
+Replace visible text with
+Field 3 value
+Start with journey stages, analytics, traffic sources, conversion rates, forms, emails, and sales handoff data.
+Field 4 label
+Review standard
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Funnel Audit command workspace
+Workspace body
+Use this workspace to evaluate funnel audit outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+22. Lead Capture Optimizer
+Subcategory: Funnel & Landing Page Optimization
+UI area
+Replace visible text with
+Left panel heading
+Lead Capture Optimizer operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Improves forms, lead magnets, popups, chat prompts, and qualification steps so high-intent visitors become cleaner, more useful leads.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for conversion, demand generation, and revenue teams improving visitor-to-lead performance.
+Field 3 label
+Required inputs
+Field 3 value
+Start with form fields, offer, lead magnet, traffic source, qualification rules, and conversion data.
+Field 4 label
+Review standard
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Lead Capture Optimizer command workspace
+Workspace body
+Use this workspace to capture lead capture optimizer outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+23. SEO Topic Cluster Builder
+
+Subcategory: SEO & Content Growth
+UI area
+Replace visible text with
+Left panel heading
+SEO Topic Cluster Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Builds pillar pages, supporting articles, keyword groups, search intent maps, and internal-link plans around a strategic topic.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for SEO, content, and organic growth teams building durable search visibility.
+Field 3 label
+Required inputs
+Field 3 value
+Start with seed topic, keyword data, competitors, buyer intent, existing content, and product priorities.
+Field 4 label
+Review standard
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+SEO Topic Cluster Builder command workspace
+Workspace body
+Use this workspace to build seo topic cluster builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+24. Content Brief Tool
+Subcategory: SEO & Content Growth
+UI area
+Replace visible text with
+Left panel heading
+Content Brief Tool operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns target keyword, audience, SERP analysis, product angle, and competitor gaps into a clear writing brief for useful content.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for SEO, content, and organic growth teams building durable search visibility.
+Field 3 label
+Required inputs
+Field 3 value
+Start with keyword, audience, SERP findings, product angle, internal links, and required sections.
+Field 4 label
+Review standard
+
+UI area
+Replace visible text with
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Content Brief Tool command workspace
+Workspace body
+Use this workspace to produce content brief tool outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+25. Competitive SEO Intelligence
+Subcategory: SEO & Content Growth
+UI area
+Replace visible text with
+Left panel heading
+Competitive SEO Intelligence operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Compares search visibility, ranking gaps, content depth, backlinks, and keyword opportunities to prioritize realistic organic growth moves.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for SEO, content, and organic growth teams building durable search visibility.
+Field 3 label
+Required inputs
+Field 3 value
+Start with competitor domains, keyword targets, ranking data, content inventory, and backlink signals.
+Field 4 label
+Review standard
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Competitive SEO Intelligence command workspace
+Workspace body
+Use this workspace to produce competitive seo intelligence outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+26. Ad Creative Generator
+Subcategory: Paid Media & Ad Creative
+
+UI area
+Replace visible text with
+Left panel heading
+Ad Creative Generator operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates ad angles, headlines, hooks, visuals, and variant sets aligned to audience pains, offer strength, channel norms, and brand voice.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for performance marketers and creative strategists managing spend, messaging, and ad learning.
+Field 3 label
+Required inputs
+Field 3 value
+Start with audience, offer, channel, proof, objections, brand voice, creative examples, and campaign goal.
+Field 4 label
+Review standard
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Ad Creative Generator command workspace
+Workspace body
+Use this workspace to build ad creative generator outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+27. Paid Campaign Planner
+Subcategory: Paid Media & Ad Creative
+UI area
+Replace visible text with
+Left panel heading
+Paid Campaign Planner operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Plans paid campaigns across audiences, budgets, channels, creative sets, landing pages, measurement, and learning milestones.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for performance marketers and creative strategists managing spend, messaging, and ad learning.
+Field 3 label
+Required inputs
+Field 3 value
+Start with budget, channels, audience segments, offer, landing pages, creative inventory, and KPI targets.
+Field 4 label
+Review standard
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+
+UI area
+Replace visible text with
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Paid Campaign Planner command workspace
+Workspace body
+Use this workspace to plan paid campaign planner outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+28. Ad Performance Insight
+Subcategory: Paid Media & Ad Creative
+UI area
+Replace visible text with
+Left panel heading
+Ad Performance Insight operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Explains performance shifts by audience, creative, spend, placement, and funnel quality, then recommends what to scale, pause, or test.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for performance marketers and creative strategists managing spend, messaging, and ad learning.
+Field 3 label
+Required inputs
+Field 3 value
+Start with campaign data, spend, creative variants, audience segments, funnel metrics, and historical benchmarks.
+Field 4 label
+Review standard
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Ad Performance Insight command workspace
+Workspace body
+Use this workspace to produce ad performance insight outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+29. Growth Analytics Assistant
+Subcategory: Analytics & Experiments
+UI area
+Replace visible text with
+Left panel heading
+Growth Analytics Assistant operating brief
+
+UI area
+Replace visible text with
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns marketing dashboards into plain-language insight, KPI movement, anomaly explanations, and recommended next actions.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for growth, analytics, and marketing leaders deciding what to test, scale, or stop.
+Field 3 label
+Required inputs
+Field 3 value
+Start with marketing dashboards, KPI definitions, date ranges, campaign notes, and anomaly context.
+Field 4 label
+Review standard
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Growth Analytics Assistant command workspace
+Workspace body
+Use this workspace to assist growth analytics assistant outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+30. Experiment Roadmap
+Subcategory: Analytics & Experiments
+UI area
+Replace visible text with
+Left panel heading
+Experiment Roadmap operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Prioritizes conversion, messaging, pricing, lifecycle, and channel tests by expected impact, confidence, effort, and learning value.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for growth, analytics, and marketing leaders deciding what to test, scale, or stop.
+Field 3 label
+Required inputs
+Field 3 value
+Start with growth goal, backlog ideas, traffic levels, confidence estimates, effort notes, and learning priorities.
+Field 4 label
+Review standard
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+Right panel heading
+Workspace output
+
+UI area
+Replace visible text with
+Indicator text
+ready
+Workspace title
+Experiment Roadmap command workspace
+Workspace body
+Use this workspace to plan experiment roadmap outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+31. Attribution Explainer
+Subcategory: Analytics & Experiments
+UI area
+Replace visible text with
+Left panel heading
+Attribution Explainer operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Translates multi-touch performance into a clear story of what influenced pipeline, where data is weak, and what decisions are safe.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for growth, analytics, and marketing leaders deciding what to test, scale, or stop.
+Field 3 label
+Required inputs
+Field 3 value
+Start with source data, campaign history, CRM pipeline, conversion windows, channel definitions, and known tracking gaps.
+Field 4 label
+Review standard
+Field 4 value
+Review messaging, audience logic, offer strength, tracking assumptions, and budget or experiment risk before launch.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Attribution Explainer command workspace
+Workspace body
+Use this workspace to produce attribution explainer outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for campaign review, experiment setup, and performance tracking.
+
+Sales & Revenue
+Highlighted table replacements for this category.
+32. Lead Discovery
+Subcategory: Prospecting & Lead Intelligence
+UI area
+Replace visible text with
+Left panel heading
+Lead Discovery operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Builds target lead lists from ICP filters, trigger events, territories, and buying signals so prospecting starts with the right accounts.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for SDRs, AEs, RevOps, and founders building sharper target account motions.
+Field 3 label
+Required inputs
+Field 3 value
+Start with ICP filters, territory, industry, trigger events, exclusions, and target account criteria.
+Field 4 label
+Review standard
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Lead Discovery command workspace
+Workspace body
+Use this workspace to produce lead discovery outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+33. Lead Enrichment & Scoring
+Subcategory: Prospecting & Lead Intelligence
+UI area
+Replace visible text with
+Left panel heading
+Lead Enrichment & Scoring operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Adds company, role, intent, fit, and engagement data to leads, then ranks them for outreach priority and routing.
+Field 2 label
+Best-fit user
+
+UI area
+Replace visible text with
+Field 2 value
+Built for SDRs, AEs, RevOps, and founders building sharper target account motions.
+Field 3 label
+Required inputs
+Field 3 value
+Start with lead list, firmographic data, role data, engagement history, intent signals, and scoring rules.
+Field 4 label
+Review standard
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Lead Enrichment & Scoring command workspace
+Workspace body
+Use this workspace to produce lead enrichment & scoring outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+34. Account Research
+Subcategory: Prospecting & Lead Intelligence
+UI area
+Replace visible text with
+Left panel heading
+Account Research operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Produces account briefs with business context, priorities, stakeholders, recent signals, pain hypotheses, and likely entry points for outreach.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for SDRs, AEs, RevOps, and founders building sharper target account motions.
+Field 3 label
+Required inputs
+Field 3 value
+Start with target account, website, news, leadership context, tech stack clues, and buying trigger signals.
+Field 4 label
+Review standard
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Account Research command workspace
+Workspace body
+Use this workspace to produce account research outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+
+35. Multichannel Sequence Builder
+Subcategory: Outreach & Messaging
+UI area
+Replace visible text with
+Left panel heading
+Multichannel Sequence Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates coordinated email, LinkedIn, call, and follow-up sequences with timing, personalization fields, and clear conversion goals.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for sales teams creating relevant, sequenced buyer communication at scale.
+Field 3 label
+Required inputs
+Field 3 value
+Start with persona, offer, account context, channels, cadence rules, proof, and desired meeting outcome.
+Field 4 label
+Review standard
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Multichannel Sequence Builder command workspace
+Workspace body
+Use this workspace to build multichannel sequence builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+36. Cold Email Personalization
+Subcategory: Outreach & Messaging
+UI area
+Replace visible text with
+Left panel heading
+Cold Email Personalization operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns account research and buyer role into concise, relevant cold emails with specific hooks, proof, and low-friction CTAs.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for sales teams creating relevant, sequenced buyer communication at scale.
+Field 3 label
+Required inputs
+
+UI area
+Replace visible text with
+Field 3 value
+Start with account research, buyer role, pain hypothesis, proof point, CTA, and tone guardrails.
+Field 4 label
+Review standard
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Cold Email Personalization command workspace
+Workspace body
+Use this workspace to produce cold email personalization outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+37. Follow-Up Automation
+Subcategory: Outreach & Messaging
+UI area
+Replace visible text with
+Left panel heading
+Follow-Up Automation operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Tracks meetings, replies, silence, and next steps, then drafts timely follow-ups that move deals without sounding automated.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for sales teams creating relevant, sequenced buyer communication at scale.
+Field 3 label
+Required inputs
+Field 3 value
+Start with meeting notes, reply status, open tasks, deal stage, stakeholder context, and next-step timing.
+Field 4 label
+Review standard
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Follow-Up Automation command workspace
+Workspace body
+Use this workspace to produce follow-up automation outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+38. AI Sales Chat
+
+Subcategory: Conversational Sales Agents
+UI area
+Replace visible text with
+Left panel heading
+AI Sales Chat operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Qualifies website visitors, answers product questions, captures intent, recommends next steps, and hands high-value conversations to sales.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for sales, growth, and revenue teams qualifying intent and booking conversations.
+Field 3 label
+Required inputs
+Field 3 value
+Start with product knowledge, qualification rules, routing logic, FAQs, pricing guardrails, and meeting booking rules.
+Field 4 label
+Review standard
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+AI Sales Chat command workspace
+Workspace body
+Use this workspace to assist ai sales chat outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+39. AI Sales Voice
+Subcategory: Conversational Sales Agents
+UI area
+Replace visible text with
+Left panel heading
+AI Sales Voice operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Runs structured voice conversations for qualification, reminders, confirmations, and simple sales questions with clear escalation points.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for sales, growth, and revenue teams qualifying intent and booking conversations.
+Field 3 label
+Required inputs
+Field 3 value
+Start with call script, qualification criteria, consent requirements, escalation rules, and CRM capture fields.
+Field 4 label
+Review standard
+
+UI area
+Replace visible text with
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+AI Sales Voice command workspace
+Workspace body
+Use this workspace to assist ai sales voice outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+40. Meeting Booking Assistant
+Subcategory: Conversational Sales Agents
+UI area
+Replace visible text with
+Left panel heading
+Meeting Booking Assistant operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Finds availability, qualifies meeting intent, routes to the right rep, sends reminders, and records context before the call.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for sales, growth, and revenue teams qualifying intent and booking conversations.
+Field 3 label
+Required inputs
+Field 3 value
+Start with calendar availability, routing rules, qualification answers, rep assignment, and confirmation details.
+Field 4 label
+Review standard
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Meeting Booking Assistant command workspace
+Workspace body
+Use this workspace to assist meeting booking assistant outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+41. CRM Sync & Hygiene
+Subcategory: CRM & Pipeline
+
+UI area
+Replace visible text with
+Left panel heading
+CRM Sync & Hygiene operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Updates records, deduplicates contacts, standardizes fields, flags stale data, and keeps CRM activity aligned with real selling work.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for sales managers, RevOps, and account teams keeping deals and records accurate.
+Field 3 label
+Required inputs
+Field 3 value
+Start with CRM records, duplicate rules, required fields, activity logs, lifecycle stages, and data standards.
+Field 4 label
+Review standard
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+CRM Sync & Hygiene command workspace
+Workspace body
+Use this workspace to capture crm sync & hygiene outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+42. Deal Assistant
+Subcategory: CRM & Pipeline
+UI area
+Replace visible text with
+Left panel heading
+Deal Assistant operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Summarizes deal context, identifies blockers, recommends next actions, drafts stakeholder messages, and prepares reps for stage movement.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for sales managers, RevOps, and account teams keeping deals and records accurate.
+Field 3 label
+Required inputs
+Field 3 value
+Start with CRM deal record, meeting notes, stakeholders, blockers, next steps, and stage criteria.
+Field 4 label
+Review standard
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+
+UI area
+Replace visible text with
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Deal Assistant command workspace
+Workspace body
+Use this workspace to assist deal assistant outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+43. Proposal & Quote Generator
+Subcategory: CRM & Pipeline
+UI area
+Replace visible text with
+Left panel heading
+Proposal & Quote Generator operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates proposal and quote drafts from scope, pricing, terms, use case, and buyer priorities for faster review.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for sales managers, RevOps, and account teams keeping deals and records accurate.
+Field 3 label
+Required inputs
+Field 3 value
+Start with scope, pricing, buyer priorities, timeline, terms, assumptions, and approved proposal language.
+Field 4 label
+Review standard
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Proposal & Quote Generator command workspace
+Workspace body
+Use this workspace to build proposal & quote generator outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+44. Pipeline Forecasting
+Subcategory: RevOps & Forecasting
+UI area
+Replace visible text with
+Left panel heading
+Pipeline Forecasting operating brief
+
+UI area
+Replace visible text with
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Combines stage data, deal quality, activity signals, slippage risk, and historical patterns to explain forecast confidence.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for revenue leaders and operators improving pipeline discipline and forecast confidence.
+Field 3 label
+Required inputs
+Field 3 value
+Start with pipeline data, stage definitions, close dates, activity signals, historical win rates, and risk flags.
+Field 4 label
+Review standard
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Pipeline Forecasting command workspace
+Workspace body
+Use this workspace to monitor pipeline forecasting outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+45. Sales Process Audit
+Subcategory: RevOps & Forecasting
+UI area
+Replace visible text with
+Left panel heading
+Sales Process Audit operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Reviews funnel stages, handoffs, CRM discipline, response times, and conversion patterns to expose revenue process bottlenecks.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for revenue leaders and operators improving pipeline discipline and forecast confidence.
+Field 3 label
+Required inputs
+Field 3 value
+Start with funnel metrics, CRM hygiene, response times, stage movement, handoff rules, and conversion history.
+Field 4 label
+Review standard
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+Right panel heading
+Workspace output
+
+UI area
+Replace visible text with
+Indicator text
+ready
+Workspace title
+Sales Process Audit command workspace
+Workspace body
+Use this workspace to evaluate sales process audit outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+46. Sales Enablement Content
+Subcategory: RevOps & Forecasting
+UI area
+Replace visible text with
+Left panel heading
+Sales Enablement Content operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates battlecards, objection responses, talk tracks, one-pagers, and follow-up assets tied to persona, use case, and sales stage.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for revenue leaders and operators improving pipeline discipline and forecast confidence.
+Field 3 label
+Required inputs
+Field 3 value
+Start with persona, product positioning, objections, proof, competitor context, and sales stage.
+Field 4 label
+Review standard
+Field 4 value
+Confirm buyer relevance, CRM accuracy, promise discipline, pricing language, and human handoff before prospect contact.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Sales Enablement Content command workspace
+Workspace body
+Use this workspace to produce sales enablement content outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for rep review, CRM update, and buyer-safe follow-up.
+
+Customer Experience & Support
+Highlighted table replacements for this category.
+47. AI Support Chat
+Subcategory: AI Support & Helpdesk
+UI area
+Replace visible text with
+Left panel heading
+AI Support Chat operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Answers customer questions from approved knowledge, clarifies intent, suggests fixes, and escalates complex or sensitive cases to humans.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for support agents, CX leaders, and service teams handling customer questions and ticket queues.
+Field 3 label
+Required inputs
+Field 3 value
+Start with knowledge base, product docs, support policies, customer context, escalation rules, and tone standards.
+Field 4 label
+Review standard
+Field 4 value
+Validate policy accuracy, customer tone, escalation need, privacy sensitivity, and product correctness before reply.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+AI Support Chat command workspace
+Workspace body
+Use this workspace to assist ai support chat outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for support review, customer-safe response, and escalation routing.
+48. Ticket Triage & Routing
+Subcategory: AI Support & Helpdesk
+UI area
+Replace visible text with
+Left panel heading
+Ticket Triage & Routing operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Classifies issues, urgency, sentiment, product area, and customer value, then routes tickets to the right queue with context.
+Field 2 label
+Best-fit user
+
+UI area
+Replace visible text with
+Field 2 value
+Built for support agents, CX leaders, and service teams handling customer questions and ticket queues.
+Field 3 label
+Required inputs
+Field 3 value
+Start with incoming ticket, customer tier, sentiment, product area, urgency, SLA, and queue rules.
+Field 4 label
+Review standard
+Field 4 value
+Validate policy accuracy, customer tone, escalation need, privacy sensitivity, and product correctness before reply.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Ticket Triage & Routing command workspace
+Workspace body
+Use this workspace to produce ticket triage & routing outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for support review, customer-safe response, and escalation routing.
+49. Support Response Assistant
+Subcategory: AI Support & Helpdesk
+UI area
+Replace visible text with
+Left panel heading
+Support Response Assistant operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Drafts helpful replies from ticket history, policies, product docs, and tone guidance so agents respond faster and more consistently.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for support agents, CX leaders, and service teams handling customer questions and ticket queues.
+Field 3 label
+Required inputs
+Field 3 value
+Start with ticket history, policy notes, product docs, customer profile, tone rules, and known issue status.
+Field 4 label
+Review standard
+Field 4 value
+Validate policy accuracy, customer tone, escalation need, privacy sensitivity, and product correctness before reply.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Support Response Assistant command workspace
+Workspace body
+Use this workspace to assist support response assistant outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for support review, customer-safe response, and escalation routing.
+
+50. Onboarding Journey Builder
+Subcategory: Onboarding & Education
+UI area
+Replace visible text with
+Left panel heading
+Onboarding Journey Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates role-based onboarding plans, milestones, emails, checklists, and success criteria from customer goals and product setup needs.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for success, product education, and implementation teams helping customers reach first value.
+Field 3 label
+Required inputs
+Field 3 value
+Start with customer goals, product modules, user roles, timeline, milestone criteria, and success metrics.
+Field 4 label
+Review standard
+Field 4 value
+Validate policy accuracy, customer tone, escalation need, privacy sensitivity, and product correctness before reply.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Onboarding Journey Builder command workspace
+Workspace body
+Use this workspace to build onboarding journey builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for support review, customer-safe response, and escalation routing.
+51. Customer Training Generator
+Subcategory: Onboarding & Education
+UI area
+Replace visible text with
+Left panel heading
+Customer Training Generator operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns product features, workflows, and audience skill levels into training outlines, lessons, quizzes, and enablement assets.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for success, product education, and implementation teams helping customers reach first value.
+Field 3 label
+Required inputs
+
+UI area
+Replace visible text with
+Field 3 value
+Start with product workflow, learner role, skill level, examples, policy notes, and completion criteria.
+Field 4 label
+Review standard
+Field 4 value
+Validate policy accuracy, customer tone, escalation need, privacy sensitivity, and product correctness before reply.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Customer Training Generator command workspace
+Workspace body
+Use this workspace to build customer training generator outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for support review, customer-safe response, and escalation routing.
+52. Product Walkthrough
+Subcategory: Onboarding & Education
+UI area
+Replace visible text with
+Left panel heading
+Product Walkthrough operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Builds guided in-app or demo walkthrough scripts that explain workflows step by step and highlight the right next action.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for success, product education, and implementation teams helping customers reach first value.
+Field 3 label
+Required inputs
+Field 3 value
+Start with feature flow, user goal, screen steps, CTA, friction points, and success event.
+Field 4 label
+Review standard
+Field 4 value
+Validate policy accuracy, customer tone, escalation need, privacy sensitivity, and product correctness before reply.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Product Walkthrough command workspace
+Workspace body
+Use this workspace to produce product walkthrough outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for support review, customer-safe response, and escalation routing.
+53. Churn Risk Assistant
+
+Subcategory: Retention & Success
+UI area
+Replace visible text with
+Left panel heading
+Churn Risk Assistant operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Detects churn signals from usage, support history, sentiment, contract stage, and engagement, then recommends recovery actions.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for CSMs, account managers, and customer leaders protecting renewals and expansion potential.
+Field 3 label
+Required inputs
+Field 3 value
+Start with usage data, support history, renewal date, sentiment, adoption milestones, and account notes.
+Field 4 label
+Review standard
+Field 4 value
+Validate policy accuracy, customer tone, escalation need, privacy sensitivity, and product correctness before reply.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Churn Risk Assistant command workspace
+Workspace body
+Use this workspace to assist churn risk assistant outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for support review, customer-safe response, and escalation routing.
+54. Voice of Customer
+Subcategory: Retention & Success
+UI area
+Replace visible text with
+Left panel heading
+Voice of Customer operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Synthesizes tickets, calls, surveys, reviews, and interviews into themes, pain points, product requests, and executive-ready insights.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for CSMs, account managers, and customer leaders protecting renewals and expansion potential.
+Field 3 label
+Required inputs
+Field 3 value
+Start with tickets, calls, surveys, reviews, interviews, product feedback, and customer segments.
+Field 4 label
+Review standard
+
+UI area
+Replace visible text with
+Field 4 value
+Validate policy accuracy, customer tone, escalation need, privacy sensitivity, and product correctness before reply.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Voice of Customer command workspace
+Workspace body
+Use this workspace to assist voice of customer outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for support review, customer-safe response, and escalation routing.
+55. Renewal & Expansion
+Subcategory: Retention & Success
+UI area
+Replace visible text with
+Left panel heading
+Renewal & Expansion operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Prepares renewal briefs, value summaries, risk notes, stakeholder messages, and expansion opportunities from account data.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for CSMs, account managers, and customer leaders protecting renewals and expansion potential.
+Field 3 label
+Required inputs
+Field 3 value
+Start with account history, usage, outcomes, contract terms, stakeholder notes, and expansion signals.
+Field 4 label
+Review standard
+Field 4 value
+Validate policy accuracy, customer tone, escalation need, privacy sensitivity, and product correctness before reply.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Renewal & Expansion command workspace
+Workspace body
+Use this workspace to produce renewal & expansion outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for support review, customer-safe response, and escalation routing.
+56. Testimonial Builder
+Subcategory: Community & Reputation
+
+UI area
+Replace visible text with
+Left panel heading
+Testimonial Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns customer outcomes, quotes, metrics, and use cases into testimonial drafts, case-study angles, and approval-ready proof points.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for community, support, and brand teams managing public customer conversations.
+Field 3 label
+Required inputs
+Field 3 value
+Start with customer quote, outcome metric, use case, approval status, story arc, and proof points.
+Field 4 label
+Review standard
+Field 4 value
+Validate policy accuracy, customer tone, escalation need, privacy sensitivity, and product correctness before reply.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Testimonial Builder command workspace
+Workspace body
+Use this workspace to build testimonial builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for support review, customer-safe response, and escalation routing.
+57. Review Response
+Subcategory: Community & Reputation
+UI area
+Replace visible text with
+Left panel heading
+Review Response operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Drafts brand-safe responses to positive, neutral, and negative reviews while flagging issues that need service recovery.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for community, support, and brand teams managing public customer conversations.
+Field 3 label
+Required inputs
+Field 3 value
+Start with review text, rating, customer history, brand tone, issue category, and service recovery rules.
+Field 4 label
+Review standard
+Field 4 value
+Validate policy accuracy, customer tone, escalation need, privacy sensitivity, and product correctness before reply.
+
+UI area
+Replace visible text with
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Review Response command workspace
+Workspace body
+Use this workspace to evaluate review response outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for support review, customer-safe response, and escalation routing.
+58. Community Engagement
+Subcategory: Community & Reputation
+UI area
+Replace visible text with
+Left panel heading
+Community Engagement operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Plans and drafts community replies, prompts, announcements, and moderation guidance to keep customer spaces useful and active.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for community, support, and brand teams managing public customer conversations.
+Field 3 label
+Required inputs
+Field 3 value
+Start with community post, member context, moderation policy, product facts, tone rules, and next action.
+Field 4 label
+Review standard
+Field 4 value
+Validate policy accuracy, customer tone, escalation need, privacy sensitivity, and product correctness before reply.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Community Engagement command workspace
+Workspace body
+Use this workspace to produce community engagement outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for support review, customer-safe response, and escalation routing.
+
+Market Research & Strategy
+Highlighted table replacements for this category.
+59. Competitor Analyzer
+Subcategory: Competitive Intelligence
+UI area
+Replace visible text with
+Left panel heading
+Competitor Analyzer operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Builds competitor profiles across positioning, product, pricing, channels, proof, and weaknesses so teams can act with context.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for strategy, sales, product marketing, and leadership teams monitoring competitors.
+Field 3 label
+Required inputs
+Field 3 value
+Start with competitor website, pricing, product pages, reviews, ads, news, and sales notes.
+Field 4 label
+Review standard
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Competitor Analyzer command workspace
+Workspace body
+Use this workspace to evaluate competitor analyzer outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+60. Battlecard Builder
+Subcategory: Competitive Intelligence
+UI area
+Replace visible text with
+Left panel heading
+Battlecard Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates sales-ready battlecards with competitor claims, traps, differentiators, objection responses, and discovery questions.
+Field 2 label
+Best-fit user
+
+UI area
+Replace visible text with
+Field 2 value
+Built for strategy, sales, product marketing, and leadership teams monitoring competitors.
+Field 3 label
+Required inputs
+Field 3 value
+Start with competitor claims, differentiators, proof, objection history, pricing context, and sales scenarios.
+Field 4 label
+Review standard
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Battlecard Builder command workspace
+Workspace body
+Use this workspace to build battlecard builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+61. Market Movement Monitor
+Subcategory: Competitive Intelligence
+UI area
+Replace visible text with
+Left panel heading
+Market Movement Monitor operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Tracks launches, funding, hiring, messaging, pricing shifts, and news signals to alert teams when strategy should change.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for strategy, sales, product marketing, and leadership teams monitoring competitors.
+Field 3 label
+Required inputs
+Field 3 value
+Start with competitor feeds, news, funding, hiring, product launches, pricing pages, and messaging changes.
+Field 4 label
+Review standard
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Market Movement Monitor command workspace
+Workspace body
+Use this workspace to monitor market movement monitor outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+
+62. Persona Builder
+Subcategory: Audience & Customer Insight
+UI area
+Replace visible text with
+Left panel heading
+Persona Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates practical buyer personas from customer interviews, CRM data, reviews, jobs-to-be-done, pains, triggers, and decision criteria.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for research, product, marketing, and CX teams turning customer signals into decisions.
+Field 3 label
+Required inputs
+Field 3 value
+Start with interviews, CRM segments, reviews, surveys, buying triggers, objections, and jobs-to-be-done notes.
+Field 4 label
+Review standard
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Persona Builder command workspace
+Workspace body
+Use this workspace to build persona builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+63. Interview Synthesizer
+Subcategory: Audience & Customer Insight
+UI area
+Replace visible text with
+Left panel heading
+Interview Synthesizer operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns transcripts and notes into themes, quotes, evidence strength, unmet needs, objections, and product or marketing implications.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for research, product, marketing, and CX teams turning customer signals into decisions.
+Field 3 label
+Required inputs
+
+UI area
+Replace visible text with
+Field 3 value
+Start with transcripts, notes, research questions, participant tags, product themes, and evidence rules.
+Field 4 label
+Review standard
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Interview Synthesizer command workspace
+Workspace body
+Use this workspace to produce interview synthesizer outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+64. Review Insight Miner
+Subcategory: Audience & Customer Insight
+UI area
+Replace visible text with
+Left panel heading
+Review Insight Miner operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Analyzes reviews across products or competitors to surface recurring complaints, praise drivers, feature gaps, and message opportunities.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for research, product, marketing, and CX teams turning customer signals into decisions.
+Field 3 label
+Required inputs
+Field 3 value
+Start with review exports, competitor products, star ratings, themes, dates, and customer segments.
+Field 4 label
+Review standard
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Review Insight Miner command workspace
+Workspace body
+Use this workspace to evaluate review insight miner outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+65. Pricing Intelligence
+
+Subcategory: Pricing & Packaging
+UI area
+Replace visible text with
+Left panel heading
+Pricing Intelligence operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Compares plans, packaging, fences, discounts, usage limits, and buyer value signals to inform pricing and monetization choices.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for founders, product marketers, finance, and strategy teams improving monetization.
+Field 3 label
+Required inputs
+Field 3 value
+Start with pricing pages, plan limits, packaging rules, discount notes, competitor offers, and value drivers.
+Field 4 label
+Review standard
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Pricing Intelligence command workspace
+Workspace body
+Use this workspace to produce pricing intelligence outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+66. Offer Research
+Subcategory: Pricing & Packaging
+UI area
+Replace visible text with
+Left panel heading
+Offer Research operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Tests and refines offer angles using audience pains, proof, urgency, objections, alternatives, and perceived value.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for founders, product marketers, finance, and strategy teams improving monetization.
+Field 3 label
+Required inputs
+Field 3 value
+Start with audience pain, offer promise, proof, alternatives, objections, urgency drivers, and test channels.
+Field 4 label
+Review standard
+
+UI area
+Replace visible text with
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Offer Research command workspace
+Workspace body
+Use this workspace to produce offer research outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+67. Plan Builder
+Subcategory: Pricing & Packaging
+UI area
+Replace visible text with
+Left panel heading
+Plan Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Designs plan names, tiers, feature bundles, limits, and upgrade paths that align customer segments with business economics.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for founders, product marketers, finance, and strategy teams improving monetization.
+Field 3 label
+Required inputs
+Field 3 value
+Start with feature list, buyer segments, willingness-to-pay signals, limits, upgrade logic, and margin goals.
+Field 4 label
+Review standard
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Plan Builder command workspace
+Workspace body
+Use this workspace to build plan builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+68. Trend Finder
+Subcategory: Trend & Opportunity
+
+UI area
+Replace visible text with
+Left panel heading
+Trend Finder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Scans market signals, search behavior, content themes, and customer conversations to identify trends worth exploring.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for strategy, product, and growth teams scanning for emerging demand and market gaps.
+Field 3 label
+Required inputs
+Field 3 value
+Start with search trends, social signals, industry news, customer conversations, and competitor themes.
+Field 4 label
+Review standard
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Trend Finder command workspace
+Workspace body
+Use this workspace to produce trend finder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+69. Market Gap Finder
+Subcategory: Trend & Opportunity
+UI area
+Replace visible text with
+Left panel heading
+Market Gap Finder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Maps customer needs against competitor coverage to identify underserved segments, missing workflows, and differentiated product angles.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for strategy, product, and growth teams scanning for emerging demand and market gaps.
+Field 3 label
+Required inputs
+Field 3 value
+Start with customer needs, competitor coverage, review complaints, feature maps, and segment opportunities.
+Field 4 label
+Review standard
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+
+UI area
+Replace visible text with
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Market Gap Finder command workspace
+Workspace body
+Use this workspace to produce market gap finder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+70. Product Benchmarking
+Subcategory: Trend & Opportunity
+UI area
+Replace visible text with
+Left panel heading
+Product Benchmarking operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Compares features, UX patterns, pricing, performance claims, and customer feedback to clarify where a product leads or lags.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for strategy, product, and growth teams scanning for emerging demand and market gaps.
+Field 3 label
+Required inputs
+Field 3 value
+Start with feature set, competitor products, UX references, pricing, performance claims, and customer feedback.
+Field 4 label
+Review standard
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Product Benchmarking command workspace
+Workspace body
+Use this workspace to produce product benchmarking outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+71. Research Report Generator
+Subcategory: Strategic Reports
+UI area
+Replace visible text with
+Left panel heading
+Research Report Generator operating brief
+
+UI area
+Replace visible text with
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns collected evidence into structured reports with findings, implications, recommendations, risks, and source-backed assumptions.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for executives, consultants, and strategy teams packaging analysis into decisions.
+Field 3 label
+Required inputs
+Field 3 value
+Start with research notes, sources, findings, charts, assumptions, and target decision audience.
+Field 4 label
+Review standard
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Research Report Generator command workspace
+Workspace body
+Use this workspace to build research report generator outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+72. Positioning Assistant
+Subcategory: Strategic Reports
+UI area
+Replace visible text with
+Left panel heading
+Positioning Assistant operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Sharpens category narrative, audience promise, differentiation, proof points, and messaging hierarchy for a product or offer.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for executives, consultants, and strategy teams packaging analysis into decisions.
+Field 3 label
+Required inputs
+Field 3 value
+Start with product facts, audience, competitors, proof, category context, and differentiation hypotheses.
+Field 4 label
+Review standard
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+Right panel heading
+Workspace output
+
+UI area
+Replace visible text with
+Indicator text
+ready
+Workspace title
+Positioning Assistant command workspace
+Workspace body
+Use this workspace to assist positioning assistant outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+73. Decision Brief Builder
+Subcategory: Strategic Reports
+UI area
+Replace visible text with
+Left panel heading
+Decision Brief Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates concise executive briefs that frame the decision, evidence, options, tradeoffs, recommendation, and next steps.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for executives, consultants, and strategy teams packaging analysis into decisions.
+Field 3 label
+Required inputs
+Field 3 value
+Start with decision question, evidence, options, constraints, risks, stakeholders, and recommendation criteria.
+Field 4 label
+Review standard
+Field 4 value
+Separate evidence from inference, cite source context, flag confidence level, and route strategic calls to leadership.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Decision Brief Builder command workspace
+Workspace body
+Use this workspace to build decision brief builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for source review, confidence grading, and executive decision use.
+
+Operations & Workflow Automation
+Highlighted table replacements for this category.
+74. Workflow Orchestrator
+Subcategory: Workflow Orchestration
+UI area
+Replace visible text with
+Left panel heading
+Workflow Orchestrator operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Connects triggers, tools, approvals, data updates, and notifications into end-to-end workflows with clear ownership and error handling.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for operations leaders and automation teams designing reliable end-to-end workflows.
+Field 3 label
+Required inputs
+Field 3 value
+Start with trigger, systems, steps, owners, conditions, approvals, notifications, and exception rules.
+Field 4 label
+Review standard
+Field 4 value
+Confirm process owner, exception path, approval requirement, data destination, and failure handling before activation.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Workflow Orchestrator command workspace
+Workspace body
+Use this workspace to produce workflow orchestrator outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for process-owner review, automation build, and exception routing.
+75. Automation Blueprint
+Subcategory: Workflow Orchestration
+UI area
+Replace visible text with
+Left panel heading
+Automation Blueprint operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Documents process goals, inputs, systems, rules, dependencies, exceptions, and success metrics before automation is built.
+Field 2 label
+Best-fit user
+
+UI area
+Replace visible text with
+Field 2 value
+Built for operations leaders and automation teams designing reliable end-to-end workflows.
+Field 3 label
+Required inputs
+Field 3 value
+Start with process goal, inputs, systems, rules, dependencies, failure modes, and success metrics.
+Field 4 label
+Review standard
+Field 4 value
+Confirm process owner, exception path, approval requirement, data destination, and failure handling before activation.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Automation Blueprint command workspace
+Workspace body
+Use this workspace to produce automation blueprint outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for process-owner review, automation build, and exception routing.
+76. Process Mapping
+Subcategory: Workflow Orchestration
+UI area
+Replace visible text with
+Left panel heading
+Process Mapping operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Converts interviews and operating notes into step-by-step process maps that expose bottlenecks, duplicate work, and automation opportunities.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for operations leaders and automation teams designing reliable end-to-end workflows.
+Field 3 label
+Required inputs
+Field 3 value
+Start with process interviews, current steps, handoffs, systems, wait times, exceptions, and pain points.
+Field 4 label
+Review standard
+Field 4 value
+Confirm process owner, exception path, approval requirement, data destination, and failure handling before activation.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Process Mapping command workspace
+Workspace body
+Use this workspace to produce process mapping outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for process-owner review, automation build, and exception routing.
+
+77. Approval Engine
+Subcategory: Tasks, Approvals & Handoffs
+UI area
+Replace visible text with
+Left panel heading
+Approval Engine operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Routes requests through policy-based approvals, captures decisions, sends reminders, and records the audit trail.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for operations, finance, HR, delivery, and admin teams controlling internal handoffs.
+Field 3 label
+Required inputs
+Field 3 value
+Start with request type, approval policy, approvers, thresholds, SLA, evidence, and escalation path.
+Field 4 label
+Review standard
+Field 4 value
+Confirm process owner, exception path, approval requirement, data destination, and failure handling before activation.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Approval Engine command workspace
+Workspace body
+Use this workspace to produce approval engine outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for process-owner review, automation build, and exception routing.
+78. Task Routing
+Subcategory: Tasks, Approvals & Handoffs
+UI area
+Replace visible text with
+Left panel heading
+Task Routing operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Assigns work based on type, priority, capacity, SLA, skills, and ownership rules so tasks land with the right team.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for operations, finance, HR, delivery, and admin teams controlling internal handoffs.
+Field 3 label
+Required inputs
+
+UI area
+Replace visible text with
+Field 3 value
+Start with task type, priority, owner rules, capacity, SLA, required skills, and destination system.
+Field 4 label
+Review standard
+Field 4 value
+Confirm process owner, exception path, approval requirement, data destination, and failure handling before activation.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Task Routing command workspace
+Workspace body
+Use this workspace to produce task routing outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for process-owner review, automation build, and exception routing.
+79. Internal Follow-Up
+Subcategory: Tasks, Approvals & Handoffs
+UI area
+Replace visible text with
+Left panel heading
+Internal Follow-Up operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Monitors open requests, overdue items, missing inputs, and stalled handoffs, then sends contextual reminders or escalations.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for operations, finance, HR, delivery, and admin teams controlling internal handoffs.
+Field 3 label
+Required inputs
+Field 3 value
+Start with open tasks, due dates, owners, dependencies, blockers, reminder cadence, and escalation rules.
+Field 4 label
+Review standard
+Field 4 value
+Confirm process owner, exception path, approval requirement, data destination, and failure handling before activation.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Internal Follow-Up command workspace
+Workspace body
+Use this workspace to produce internal follow-up outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for process-owner review, automation build, and exception routing.
+80. Document Extraction
+
+Subcategory: Document & Data Automation
+UI area
+Replace visible text with
+Left panel heading
+Document Extraction operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Reads invoices, forms, contracts, PDFs, and uploaded files to extract structured fields for review, routing, or system entry.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for ops, finance, admin, and data teams extracting and cleaning business information.
+Field 3 label
+Required inputs
+Field 3 value
+Start with document file, target fields, validation rules, destination system, and exception handling requirements.
+Field 4 label
+Review standard
+Field 4 value
+Confirm process owner, exception path, approval requirement, data destination, and failure handling before activation.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Document Extraction command workspace
+Workspace body
+Use this workspace to capture document extraction outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for process-owner review, automation build, and exception routing.
+81. Form-to-Workflow
+Subcategory: Document & Data Automation
+UI area
+Replace visible text with
+Left panel heading
+Form-to-Workflow operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns form submissions into tasks, approvals, CRM records, emails, and notifications based on request type and business rules.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for ops, finance, admin, and data teams extracting and cleaning business information.
+Field 3 label
+Required inputs
+Field 3 value
+Start with form response, request type, routing logic, approval rules, notifications, and record creation needs.
+Field 4 label
+Review standard
+
+UI area
+Replace visible text with
+Field 4 value
+Confirm process owner, exception path, approval requirement, data destination, and failure handling before activation.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Form-to-Workflow command workspace
+Workspace body
+Use this workspace to produce form-to-workflow outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for process-owner review, automation build, and exception routing.
+82. Data Cleanup
+Subcategory: Document & Data Automation
+UI area
+Replace visible text with
+Left panel heading
+Data Cleanup operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Standardizes records, flags missing fields, deduplicates entries, and prepares messy data for reporting, migration, or automation.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for ops, finance, admin, and data teams extracting and cleaning business information.
+Field 3 label
+Required inputs
+Field 3 value
+Start with raw records, field standards, duplicate rules, validation requirements, and target reporting format.
+Field 4 label
+Review standard
+Field 4 value
+Confirm process owner, exception path, approval requirement, data destination, and failure handling before activation.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Data Cleanup command workspace
+Workspace body
+Use this workspace to produce data cleanup outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for process-owner review, automation build, and exception routing.
+83. Operations Dashboard
+Subcategory: Reporting & Visibility
+
+UI area
+Replace visible text with
+Left panel heading
+Operations Dashboard operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates an operational view of workload, status, bottlenecks, SLA risk, and team throughput from connected workflow data.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for managers and operators who need status, SLA, and performance visibility.
+Field 3 label
+Required inputs
+Field 3 value
+Start with workflow data, SLA targets, status fields, owners, bottleneck signals, and reporting cadence.
+Field 4 label
+Review standard
+Field 4 value
+Confirm process owner, exception path, approval requirement, data destination, and failure handling before activation.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Operations Dashboard command workspace
+Workspace body
+Use this workspace to monitor operations dashboard outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for process-owner review, automation build, and exception routing.
+84. Weekly Business Summary
+Subcategory: Reporting & Visibility
+UI area
+Replace visible text with
+Left panel heading
+Weekly Business Summary operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Summarizes progress, blockers, metrics, risks, decisions, and upcoming priorities into a leadership-ready weekly update.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for managers and operators who need status, SLA, and performance visibility.
+Field 3 label
+Required inputs
+Field 3 value
+Start with project updates, metrics, blockers, decisions, risks, wins, and next-week priorities.
+Field 4 label
+Review standard
+Field 4 value
+Confirm process owner, exception path, approval requirement, data destination, and failure handling before activation.
+
+UI area
+Replace visible text with
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Weekly Business Summary command workspace
+Workspace body
+Use this workspace to produce weekly business summary outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for process-owner review, automation build, and exception routing.
+85. SLA & Escalation
+Subcategory: Reporting & Visibility
+UI area
+Replace visible text with
+Left panel heading
+SLA & Escalation operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Tracks service commitments, warns teams before breaches, escalates overdue work, and documents resolution history.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for managers and operators who need status, SLA, and performance visibility.
+Field 3 label
+Required inputs
+Field 3 value
+Start with service commitments, due dates, ticket status, priority rules, owners, and escalation thresholds.
+Field 4 label
+Review standard
+Field 4 value
+Confirm process owner, exception path, approval requirement, data destination, and failure handling before activation.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+SLA & Escalation command workspace
+Workspace body
+Use this workspace to produce sla & escalation outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for process-owner review, automation build, and exception routing.
+
+Business Systems & Knowledge
+Highlighted table replacements for this category.
+86. Internal Knowledge Assistant
+Subcategory: Internal Knowledge & RAG
+UI area
+Replace visible text with
+Left panel heading
+Internal Knowledge Assistant operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Answers employee questions from approved knowledge sources, cites context, suggests actions, and flags gaps in documentation.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for employees, managers, and enablement teams using governed company knowledge.
+Field 3 label
+Required inputs
+Field 3 value
+Start with company docs, policies, SOPs, product notes, permission rules, and citation requirements.
+Field 4 label
+Review standard
+Field 4 value
+Check permissions, source freshness, system ownership, data mapping, and knowledge governance before deployment.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Internal Knowledge Assistant command workspace
+Workspace body
+Use this workspace to assist internal knowledge assistant outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for admin review, permission check, and system connection.
+87. Knowledge Base Builder
+Subcategory: Internal Knowledge & RAG
+UI area
+Replace visible text with
+Left panel heading
+Knowledge Base Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns scattered docs, tickets, policies, and product notes into organized articles, categories, FAQs, and update workflows.
+Field 2 label
+Best-fit user
+
+UI area
+Replace visible text with
+Field 2 value
+Built for employees, managers, and enablement teams using governed company knowledge.
+Field 3 label
+Required inputs
+Field 3 value
+Start with source docs, ticket history, product notes, categories, article owners, and update cadence.
+Field 4 label
+Review standard
+Field 4 value
+Check permissions, source freshness, system ownership, data mapping, and knowledge governance before deployment.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Knowledge Base Builder command workspace
+Workspace body
+Use this workspace to build knowledge base builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for admin review, permission check, and system connection.
+88. Policy & SOP Generator
+Subcategory: Internal Knowledge & RAG
+UI area
+Replace visible text with
+Left panel heading
+Policy & SOP Generator operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates practical policies and standard operating procedures with owners, steps, controls, exceptions, and review cycles.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for employees, managers, and enablement teams using governed company knowledge.
+Field 3 label
+Required inputs
+Field 3 value
+Start with process notes, policy requirements, owners, controls, exceptions, and review schedule.
+Field 4 label
+Review standard
+Field 4 value
+Check permissions, source freshness, system ownership, data mapping, and knowledge governance before deployment.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Policy & SOP Generator command workspace
+Workspace body
+Use this workspace to build policy & sop generator outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for admin review, permission check, and system connection.
+
+89. Lightweight CRM
+Subcategory: CRM, ERP & Core Systems
+UI area
+Replace visible text with
+Left panel heading
+Lightweight CRM operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Sets up a simple customer system for contacts, accounts, pipeline, activity history, reminders, and handoffs without enterprise complexity.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for small business operators and department heads centralizing core system workflows.
+Field 3 label
+Required inputs
+Field 3 value
+Start with contact records, accounts, stages, activity notes, reminders, custom fields, and reporting needs.
+Field 4 label
+Review standard
+Field 4 value
+Check permissions, source freshness, system ownership, data mapping, and knowledge governance before deployment.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Lightweight CRM command workspace
+Workspace body
+Use this workspace to produce lightweight crm outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for admin review, permission check, and system connection.
+90. Modular ERP
+Subcategory: CRM, ERP & Core Systems
+UI area
+Replace visible text with
+Left panel heading
+Modular ERP operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Designs lightweight modules for inventory, finance, procurement, operations, and reporting so core business data stays coordinated.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for small business operators and department heads centralizing core system workflows.
+Field 3 label
+Required inputs
+
+UI area
+Replace visible text with
+Field 3 value
+Start with operations data, inventory or finance modules, approval rules, reporting needs, and department workflows.
+Field 4 label
+Review standard
+Field 4 value
+Check permissions, source freshness, system ownership, data mapping, and knowledge governance before deployment.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Modular ERP command workspace
+Workspace body
+Use this workspace to produce modular erp outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for admin review, permission check, and system connection.
+91. LMS & Training
+Subcategory: CRM, ERP & Core Systems
+UI area
+Replace visible text with
+Left panel heading
+LMS & Training operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Builds role-based training paths, lessons, quizzes, completion tracking, and refresh schedules from internal knowledge and process docs.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for small business operators and department heads centralizing core system workflows.
+Field 3 label
+Required inputs
+Field 3 value
+Start with training content, learner roles, skill goals, lessons, quizzes, and completion tracking needs.
+Field 4 label
+Review standard
+Field 4 value
+Check permissions, source freshness, system ownership, data mapping, and knowledge governance before deployment.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+LMS & Training command workspace
+Workspace body
+Use this workspace to produce lms & training outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for admin review, permission check, and system connection.
+92. Integration Layer
+
+Subcategory: Integration & Data
+UI area
+Replace visible text with
+Left panel heading
+Integration Layer operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Defines and connects the data paths between business apps so workflows can trigger, update, and reconcile across systems.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for technical operators, automation builders, and business systems teams connecting apps.
+Field 3 label
+Required inputs
+Field 3 value
+Start with source apps, destination apps, field mappings, sync frequency, permissions, and failure rules.
+Field 4 label
+Review standard
+Field 4 value
+Check permissions, source freshness, system ownership, data mapping, and knowledge governance before deployment.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Integration Layer command workspace
+Workspace body
+Use this workspace to produce integration layer outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for admin review, permission check, and system connection.
+93. API & Webhook Workflows
+Subcategory: Integration & Data
+UI area
+Replace visible text with
+Left panel heading
+API & Webhook Workflows operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates event-driven workflows using APIs and webhooks to move data, trigger actions, and notify teams in real time.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for technical operators, automation builders, and business systems teams connecting apps.
+Field 3 label
+Required inputs
+Field 3 value
+Start with event trigger, API endpoints, payload fields, authentication, actions, and error handling.
+Field 4 label
+Review standard
+
+UI area
+Replace visible text with
+Field 4 value
+Check permissions, source freshness, system ownership, data mapping, and knowledge governance before deployment.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+API & Webhook Workflows command workspace
+Workspace body
+Use this workspace to produce api & webhook workflows outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for admin review, permission check, and system connection.
+94. Data Sync Monitor
+Subcategory: Integration & Data
+UI area
+Replace visible text with
+Left panel heading
+Data Sync Monitor operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Watches connected systems for failed syncs, stale records, mismatched fields, and integration errors that need attention.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for technical operators, automation builders, and business systems teams connecting apps.
+Field 3 label
+Required inputs
+Field 3 value
+Start with connected systems, sync logs, field mappings, freshness rules, and alert thresholds.
+Field 4 label
+Review standard
+Field 4 value
+Check permissions, source freshness, system ownership, data mapping, and knowledge governance before deployment.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Data Sync Monitor command workspace
+Workspace body
+Use this workspace to monitor data sync monitor outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for admin review, permission check, and system connection.
+95. AI Website Builder
+Subcategory: Websites & Portals
+
+UI area
+Replace visible text with
+Left panel heading
+AI Website Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Builds conversion-focused website drafts from brand, offer, audience, pages, content blocks, and action paths.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for web, operations, sales, and client-service teams creating self-serve digital experiences.
+Field 3 label
+Required inputs
+Field 3 value
+Start with brand details, offer, pages, audience, conversion goal, content blocks, and style direction.
+Field 4 label
+Review standard
+Field 4 value
+Check permissions, source freshness, system ownership, data mapping, and knowledge governance before deployment.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+AI Website Builder command workspace
+Workspace body
+Use this workspace to build ai website builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for admin review, permission check, and system connection.
+96. Client Portal Builder
+Subcategory: Websites & Portals
+UI area
+Replace visible text with
+Left panel heading
+Client Portal Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates secure portal structures for clients to view progress, share files, submit requests, approve work, and find key information.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for web, operations, sales, and client-service teams creating self-serve digital experiences.
+Field 3 label
+Required inputs
+Field 3 value
+Start with client roles, access rules, project data, files, requests, approvals, and notification needs.
+Field 4 label
+Review standard
+Field 4 value
+Check permissions, source freshness, system ownership, data mapping, and knowledge governance before deployment.
+
+UI area
+Replace visible text with
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Client Portal Builder command workspace
+Workspace body
+Use this workspace to build client portal builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for admin review, permission check, and system connection.
+97. Embedded AI Widget
+Subcategory: Websites & Portals
+UI area
+Replace visible text with
+Left panel heading
+Embedded AI Widget operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Adds an AI assistant to a site or portal that answers questions, qualifies users, starts workflows, and routes human help.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for web, operations, sales, and client-service teams creating self-serve digital experiences.
+Field 3 label
+Required inputs
+Field 3 value
+Start with site context, knowledge base, user intents, workflow triggers, routing rules, and brand tone.
+Field 4 label
+Review standard
+Field 4 value
+Check permissions, source freshness, system ownership, data mapping, and knowledge governance before deployment.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Embedded AI Widget command workspace
+Workspace body
+Use this workspace to produce embedded ai widget outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for admin review, permission check, and system connection.
+
+Product, Project & Delivery
+Highlighted table replacements for this category.
+98. PRD Generator
+Subcategory: Product Planning
+UI area
+Replace visible text with
+Left panel heading
+PRD Generator operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns product goals, user problems, requirements, constraints, and success metrics into a clear product requirements document.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for product managers, founders, designers, and engineering leads shaping product direction.
+Field 3 label
+Required inputs
+Field 3 value
+Start with product goal, user problem, requirements, constraints, success metrics, and stakeholder notes.
+Field 4 label
+Review standard
+Field 4 value
+Validate scope, dependencies, acceptance criteria, customer impact, and owner accountability before execution.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+PRD Generator command workspace
+Workspace body
+Use this workspace to build prd generator outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for delivery review, owner assignment, and milestone tracking.
+99. Roadmap Prioritization
+Subcategory: Product Planning
+UI area
+Replace visible text with
+Left panel heading
+Roadmap Prioritization operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Scores features by impact, effort, confidence, risk, customer demand, and strategic fit to support better roadmap decisions.
+Field 2 label
+Best-fit user
+
+UI area
+Replace visible text with
+Field 2 value
+Built for product managers, founders, designers, and engineering leads shaping product direction.
+Field 3 label
+Required inputs
+Field 3 value
+Start with feature backlog, customer evidence, impact scores, effort estimates, risk, and strategic goals.
+Field 4 label
+Review standard
+Field 4 value
+Validate scope, dependencies, acceptance criteria, customer impact, and owner accountability before execution.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Roadmap Prioritization command workspace
+Workspace body
+Use this workspace to plan roadmap prioritization outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for delivery review, owner assignment, and milestone tracking.
+100. Feature Spec Writer
+Subcategory: Product Planning
+UI area
+Replace visible text with
+Left panel heading
+Feature Spec Writer operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates feature specs with user stories, acceptance criteria, edge cases, dependencies, analytics needs, and rollout notes.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for product managers, founders, designers, and engineering leads shaping product direction.
+Field 3 label
+Required inputs
+Field 3 value
+Start with feature idea, user stories, edge cases, dependencies, analytics needs, and acceptance criteria.
+Field 4 label
+Review standard
+Field 4 value
+Validate scope, dependencies, acceptance criteria, customer impact, and owner accountability before execution.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Feature Spec Writer command workspace
+Workspace body
+Use this workspace to build feature spec writer outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for delivery review, owner assignment, and milestone tracking.
+
+101. Project Plan Builder
+Subcategory: Project Delivery
+UI area
+Replace visible text with
+Left panel heading
+Project Plan Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Converts scope, goals, timeline, team, dependencies, and risks into a project plan with milestones and owners.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for project managers, delivery teams, and operators coordinating execution.
+Field 3 label
+Required inputs
+Field 3 value
+Start with scope, goals, timeline, team, dependencies, milestones, risks, and communication cadence.
+Field 4 label
+Review standard
+Field 4 value
+Validate scope, dependencies, acceptance criteria, customer impact, and owner accountability before execution.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Project Plan Builder command workspace
+Workspace body
+Use this workspace to build project plan builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for delivery review, owner assignment, and milestone tracking.
+102. Sprint Planner
+Subcategory: Project Delivery
+UI area
+Replace visible text with
+Left panel heading
+Sprint Planner operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns backlog items, capacity, priority, and dependencies into a sprint plan with clear commitments and risk flags.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for project managers, delivery teams, and operators coordinating execution.
+Field 3 label
+Required inputs
+
+UI area
+Replace visible text with
+Field 3 value
+Start with backlog, velocity, capacity, priorities, dependencies, risks, and sprint goal.
+Field 4 label
+Review standard
+Field 4 value
+Validate scope, dependencies, acceptance criteria, customer impact, and owner accountability before execution.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Sprint Planner command workspace
+Workspace body
+Use this workspace to plan sprint planner outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for delivery review, owner assignment, and milestone tracking.
+103. Status Report Assistant
+Subcategory: Project Delivery
+UI area
+Replace visible text with
+Left panel heading
+Status Report Assistant operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates concise project updates with progress, blockers, decisions needed, timeline changes, risks, and next actions.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for project managers, delivery teams, and operators coordinating execution.
+Field 3 label
+Required inputs
+Field 3 value
+Start with project notes, milestones, blockers, risks, decisions, metric updates, and next actions.
+Field 4 label
+Review standard
+Field 4 value
+Validate scope, dependencies, acceptance criteria, customer impact, and owner accountability before execution.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Status Report Assistant command workspace
+Workspace body
+Use this workspace to assist status report assistant outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for delivery review, owner assignment, and milestone tracking.
+104. Client Onboarding
+
+Subcategory: Client Work
+UI area
+Replace visible text with
+Left panel heading
+Client Onboarding operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Builds onboarding checklists, kickoff agendas, intake forms, timelines, and communication plans for new client work.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for agencies, consultants, and service teams managing repeatable client delivery.
+Field 3 label
+Required inputs
+Field 3 value
+Start with client goals, contract scope, stakeholders, files, kickoff agenda, and milestone dates.
+Field 4 label
+Review standard
+Field 4 value
+Validate scope, dependencies, acceptance criteria, customer impact, and owner accountability before execution.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Client Onboarding command workspace
+Workspace body
+Use this workspace to produce client onboarding outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for delivery review, owner assignment, and milestone tracking.
+105. Brief & Scope Builder
+Subcategory: Client Work
+UI area
+Replace visible text with
+Left panel heading
+Brief & Scope Builder operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns discovery notes into a clear brief, scope, deliverables, assumptions, exclusions, timeline, and change-control language.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for agencies, consultants, and service teams managing repeatable client delivery.
+Field 3 label
+Required inputs
+Field 3 value
+Start with discovery notes, client goals, deliverables, assumptions, exclusions, timeline, and change rules.
+Field 4 label
+Review standard
+
+UI area
+Replace visible text with
+Field 4 value
+Validate scope, dependencies, acceptance criteria, customer impact, and owner accountability before execution.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Brief & Scope Builder command workspace
+Workspace body
+Use this workspace to build brief & scope builder outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for delivery review, owner assignment, and milestone tracking.
+106. Deliverable Review
+Subcategory: Client Work
+UI area
+Replace visible text with
+Left panel heading
+Deliverable Review operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Reviews drafts against brief, brand, scope, quality bar, and acceptance criteria, then produces revision notes.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for agencies, consultants, and service teams managing repeatable client delivery.
+Field 3 label
+Required inputs
+Field 3 value
+Start with draft deliverable, brief, scope, brand rules, acceptance criteria, and revision standards.
+Field 4 label
+Review standard
+Field 4 value
+Validate scope, dependencies, acceptance criteria, customer impact, and owner accountability before execution.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Deliverable Review command workspace
+Workspace body
+Use this workspace to evaluate deliverable review outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for delivery review, owner assignment, and milestone tracking.
+107. Release Notes Generator
+Subcategory: Releases
+
+UI area
+Replace visible text with
+Left panel heading
+Release Notes Generator operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns shipped work into clear release notes grouped by user value, feature, fix, known limitation, and next step.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for product, marketing, support, and customer teams preparing launches.
+Field 3 label
+Required inputs
+Field 3 value
+Start with completed work, user impact, fixes, known limits, screenshots, and rollout notes.
+Field 4 label
+Review standard
+Field 4 value
+Validate scope, dependencies, acceptance criteria, customer impact, and owner accountability before execution.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Release Notes Generator command workspace
+Workspace body
+Use this workspace to build release notes generator outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for delivery review, owner assignment, and milestone tracking.
+108. Launch Checklist
+Subcategory: Releases
+UI area
+Replace visible text with
+Left panel heading
+Launch Checklist operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates a launch readiness checklist across product, marketing, sales, support, analytics, legal, and operations.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for product, marketing, support, and customer teams preparing launches.
+Field 3 label
+Required inputs
+Field 3 value
+Start with launch goal, release date, product readiness, marketing assets, support docs, and owner list.
+Field 4 label
+Review standard
+Field 4 value
+Validate scope, dependencies, acceptance criteria, customer impact, and owner accountability before execution.
+
+UI area
+Replace visible text with
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Launch Checklist command workspace
+Workspace body
+Use this workspace to plan launch checklist outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for delivery review, owner assignment, and milestone tracking.
+109. Beta Feedback
+Subcategory: Releases
+UI area
+Replace visible text with
+Left panel heading
+Beta Feedback operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Synthesizes beta survey responses, interviews, usage notes, and bugs into themes, priority issues, and launch recommendations.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for product, marketing, support, and customer teams preparing launches.
+Field 3 label
+Required inputs
+Field 3 value
+Start with survey responses, interviews, usage notes, bug reports, tester segments, and release criteria.
+Field 4 label
+Review standard
+Field 4 value
+Validate scope, dependencies, acceptance criteria, customer impact, and owner accountability before execution.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Beta Feedback command workspace
+Workspace body
+Use this workspace to produce beta feedback outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for delivery review, owner assignment, and milestone tracking.
+
+Finance, Admin & Compliance
+Highlighted table replacements for this category.
+110. Invoice Processing
+Subcategory: Invoices & Reconciliation
+UI area
+Replace visible text with
+Left panel heading
+Invoice Processing operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Extracts vendor, amount, tax, due date, PO, and line items from invoices, then routes exceptions for finance review.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for finance and admin teams processing spend, invoices, and receipts.
+Field 3 label
+Required inputs
+Field 3 value
+Start with invoice, vendor data, PO, line items, tax, due date, and approval rules.
+Field 4 label
+Review standard
+Field 4 value
+Require human approval for money movement, legal-adjacent decisions, employee records, compliance claims, and vendor commitments.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Invoice Processing command workspace
+Workspace body
+Use this workspace to assist invoice processing outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for policy review, audit trail capture, and human approval.
+111. Expense Categorizer
+Subcategory: Invoices & Reconciliation
+UI area
+Replace visible text with
+Left panel heading
+Expense Categorizer operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Classifies expenses by policy, category, project, vendor, and anomaly risk so finance teams can review faster.
+Field 2 label
+Best-fit user
+
+UI area
+Replace visible text with
+Field 2 value
+Built for finance and admin teams processing spend, invoices, and receipts.
+Field 3 label
+Required inputs
+Field 3 value
+Start with expense record, receipt, policy, category rules, project codes, and anomaly thresholds.
+Field 4 label
+Review standard
+Field 4 value
+Require human approval for money movement, legal-adjacent decisions, employee records, compliance claims, and vendor commitments.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Expense Categorizer command workspace
+Workspace body
+Use this workspace to produce expense categorizer outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for policy review, audit trail capture, and human approval.
+112. Receipt Capture
+Subcategory: Invoices & Reconciliation
+UI area
+Replace visible text with
+Left panel heading
+Receipt Capture operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Reads receipts, captures key fields, matches spend to users or projects, and prepares clean records for reimbursement.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for finance and admin teams processing spend, invoices, and receipts.
+Field 3 label
+Required inputs
+Field 3 value
+Start with receipt image, employee or project ID, merchant, date, tax, category, and reimbursement rules.
+Field 4 label
+Review standard
+Field 4 value
+Require human approval for money movement, legal-adjacent decisions, employee records, compliance claims, and vendor commitments.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Receipt Capture command workspace
+Workspace body
+Use this workspace to capture receipt capture outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for policy review, audit trail capture, and human approval.
+
+113. Contract Review
+Subcategory: Contracts & Risk
+UI area
+Replace visible text with
+Left panel heading
+Contract Review operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Summarizes key terms, obligations, renewal dates, red flags, and negotiation points for human legal or business review.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for legal-adjacent, finance, procurement, and leadership teams reviewing obligations and risk.
+Field 3 label
+Required inputs
+Field 3 value
+Start with contract draft, clause library, commercial terms, obligations, renewal rules, and risk thresholds.
+Field 4 label
+Review standard
+Field 4 value
+Require human approval for money movement, legal-adjacent decisions, employee records, compliance claims, and vendor commitments.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Contract Review command workspace
+Workspace body
+Use this workspace to evaluate contract review outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for policy review, audit trail capture, and human approval.
+114. Risk Summary
+Subcategory: Contracts & Risk
+UI area
+Replace visible text with
+Left panel heading
+Risk Summary operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns contracts, incidents, vendors, or projects into a concise risk view with likelihood, impact, controls, and recommended actions.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for legal-adjacent, finance, procurement, and leadership teams reviewing obligations and risk.
+Field 3 label
+Required inputs
+
+UI area
+Replace visible text with
+Field 3 value
+Start with risk source, context, controls, likelihood, impact, owner, and mitigation options.
+Field 4 label
+Review standard
+Field 4 value
+Require human approval for money movement, legal-adjacent decisions, employee records, compliance claims, and vendor commitments.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Risk Summary command workspace
+Workspace body
+Use this workspace to produce risk summary outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for policy review, audit trail capture, and human approval.
+115. Clause Library
+Subcategory: Contracts & Risk
+UI area
+Replace visible text with
+Left panel heading
+Clause Library operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Organizes approved clauses, fallback positions, usage notes, and negotiation guidance so teams draft consistently.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for legal-adjacent, finance, procurement, and leadership teams reviewing obligations and risk.
+Field 3 label
+Required inputs
+Field 3 value
+Start with approved clauses, fallback language, usage notes, negotiation positions, and contract types.
+Field 4 label
+Review standard
+Field 4 value
+Require human approval for money movement, legal-adjacent decisions, employee records, compliance claims, and vendor commitments.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Clause Library command workspace
+Workspace body
+Use this workspace to produce clause library outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for policy review, audit trail capture, and human approval.
+116. Compliance Checklist
+
+Subcategory: Compliance
+UI area
+Replace visible text with
+Left panel heading
+Compliance Checklist operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Creates role-specific compliance checklists with evidence needed, owners, frequency, control mapping, and completion tracking.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for operations, finance, HR, and leadership teams preparing governance evidence.
+Field 3 label
+Required inputs
+Field 3 value
+Start with regulation or policy, controls, evidence requirements, owners, frequency, and completion status.
+Field 4 label
+Review standard
+Field 4 value
+Require human approval for money movement, legal-adjacent decisions, employee records, compliance claims, and vendor commitments.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Compliance Checklist command workspace
+Workspace body
+Use this workspace to plan compliance checklist outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for policy review, audit trail capture, and human approval.
+117. Policy Review
+Subcategory: Compliance
+UI area
+Replace visible text with
+Left panel heading
+Policy Review operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Reviews policies for clarity, coverage, outdated language, owner gaps, and alignment with internal standards.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for operations, finance, HR, and leadership teams preparing governance evidence.
+Field 3 label
+Required inputs
+Field 3 value
+Start with policy draft, internal standards, control requirements, owner notes, and outdated sections.
+Field 4 label
+Review standard
+
+UI area
+Replace visible text with
+Field 4 value
+Require human approval for money movement, legal-adjacent decisions, employee records, compliance claims, and vendor commitments.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Policy Review command workspace
+Workspace body
+Use this workspace to evaluate policy review outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for policy review, audit trail capture, and human approval.
+118. Audit Prep
+Subcategory: Compliance
+UI area
+Replace visible text with
+Left panel heading
+Audit Prep operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Collects evidence requests, maps controls, identifies missing documentation, prepares status updates, and tracks audit readiness.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for operations, finance, HR, and leadership teams preparing governance evidence.
+Field 3 label
+Required inputs
+Field 3 value
+Start with audit request list, control map, evidence links, owners, deadlines, and gap notes.
+Field 4 label
+Review standard
+Field 4 value
+Require human approval for money movement, legal-adjacent decisions, employee records, compliance claims, and vendor commitments.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Audit Prep command workspace
+Workspace body
+Use this workspace to evaluate audit prep outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for policy review, audit trail capture, and human approval.
+119. Employee On/Off-boarding
+Subcategory: HR & Admin
+
+UI area
+Replace visible text with
+Left panel heading
+Employee On/Off-boarding operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Coordinates access, equipment, documents, training, introductions, exit steps, and compliance tasks for employee lifecycle events.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for people, admin, operations, and leadership teams managing internal coordination.
+Field 3 label
+Required inputs
+Field 3 value
+Start with employee role, start or exit date, access list, equipment, training, and compliance tasks.
+Field 4 label
+Review standard
+Field 4 value
+Require human approval for money movement, legal-adjacent decisions, employee records, compliance claims, and vendor commitments.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Employee On/Off-boarding command workspace
+Workspace body
+Use this workspace to produce employee on/off-boarding outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for policy review, audit trail capture, and human approval.
+120. Meeting Notes & Actions
+Subcategory: HR & Admin
+UI area
+Replace visible text with
+Left panel heading
+Meeting Notes & Actions operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Turns meeting recordings or notes into decisions, action items, owners, deadlines, risks, and follow-up reminders.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for people, admin, operations, and leadership teams managing internal coordination.
+Field 3 label
+Required inputs
+Field 3 value
+Start with meeting transcript, attendees, agenda, decisions, action items, deadlines, and owners.
+Field 4 label
+Review standard
+Field 4 value
+Require human approval for money movement, legal-adjacent decisions, employee records, compliance claims, and vendor commitments.
+
+UI area
+Replace visible text with
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Meeting Notes & Actions command workspace
+Workspace body
+Use this workspace to produce meeting notes & actions outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for policy review, audit trail capture, and human approval.
+121. Vendor Management
+Subcategory: HR & Admin
+UI area
+Replace visible text with
+Left panel heading
+Vendor Management operating brief
+Status pill
+review-ready
+Field 1 label
+Workflow outcome
+Field 1 value
+Tracks vendor records, renewals, contracts, performance notes, compliance documents, and approval workflows in one managed process.
+Field 2 label
+Best-fit user
+Field 2 value
+Built for people, admin, operations, and leadership teams managing internal coordination.
+Field 3 label
+Required inputs
+Field 3 value
+Start with vendor profile, contract dates, renewal terms, performance notes, documents, and approval status.
+Field 4 label
+Review standard
+Field 4 value
+Require human approval for money movement, legal-adjacent decisions, employee records, compliance claims, and vendor commitments.
+Right panel heading
+Workspace output
+Indicator text
+ready
+Workspace title
+Vendor Management command workspace
+Workspace body
+Use this workspace to produce vendor management outputs from approved inputs, then move them through review, routing, and measurable next steps.
+Checked status line
+Ready for policy review, audit trail capture, and human approval.
+
