@@ -13,7 +13,8 @@ function HeroPreviewCard({ category, active, position }) {
       display: 'flex',
       flexDirection: 'column',
       maxHeight: '360px',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      zIndex: 100
     }}>
       <div className="hero-preview-head" style={{ flexShrink: 0, marginBottom: '12px' }}>
         <span className="chip" style={{ borderColor: `rgba(${category.accentRgb}, 0.4)`, color: category.accent }}>
@@ -79,8 +80,7 @@ export default function HeroSection() {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      // If clicking inside hero-right or buttons, don't reset
-      if (e.target.closest('.hero-right') || e.target.closest('.hero-ctas')) return;
+      if (e.target.closest('.hero-map') || e.target.closest('.hero-ctas')) return;
       setIsSystemActive(false);
       setActiveId(null);
     };
@@ -91,13 +91,10 @@ export default function HeroSection() {
   const cardPosition = useMemo(() => {
     if (!activeId) return { opacity: 0 };
     const index = cats.findIndex(c => c.id === activeId);
-    
-    // Use static index for quadrant to avoid revolving the card
     const staticAngle = (-Math.PI / 2) + (index / cats.length) * Math.PI * 2;
     const dx = Math.cos(staticAngle);
     const dy = Math.sin(staticAngle);
 
-    // Position the card in the opposite quadrant relative to the center
     const posX = dx > 0 ? '5%' : '55%';
     const posY = dy > 0 ? '5%' : '55%';
 
@@ -152,57 +149,64 @@ export default function HeroSection() {
         </div>
 
         <div className="hero-right" style={{ position: 'relative', minHeight: '600px' }}>
+          {/* Always render SystemMap but control its contents visibility via CSS or props if needed */}
+          {/* For now, we control the entire container's opacity but we'll show the CORE always */}
           <div 
             className="hero-map" 
             style={{ 
-              opacity: isSystemActive ? 1 : 0, 
-              visibility: isSystemActive ? 'visible' : 'hidden',
-              pointerEvents: isSystemActive ? 'auto' : 'none',
               width: '100%',
-              height: '100%'
+              height: '100%',
+              position: 'absolute',
+              inset: 0,
+              zIndex: 5
             }}
           >
-            <div className="systemmap-wrap">
+            <div className="systemmap-wrap" style={{ 
+              opacity: isSystemActive ? 1 : 0.4, 
+              transition: 'opacity 0.8s ease'
+            }}>
               <SystemMap 
                 cats={cats} 
                 activeId={activeId} 
-                onHover={setActiveId} 
-                onClick={setActiveId}
+                onHover={isSystemActive ? setActiveId : null} 
+                onClick={isSystemActive ? setActiveId : () => setIsSystemActive(true)}
                 rotation={rotation}
               />
-              <div className="hero-map-mouseout" onMouseLeave={() => setActiveId(null)}/>
+              {isSystemActive && <div className="hero-map-mouseout" onMouseLeave={() => setActiveId(null)} style={{ position: 'absolute', inset: 0, zIndex: 1 }}/>}
               <HeroPreviewCard 
                 category={active} 
-                active={!!activeId}
+                active={!!activeId && isSystemActive}
                 position={cardPosition}
               />
             </div>
           </div>
-          
-          <div className="hero-map-placeholder" style={{ 
-            position: 'absolute', 
-            inset: 0, 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            opacity: isSystemActive ? 0 : 1,
-            pointerEvents: isSystemActive ? 'none' : 'auto',
-            transition: 'opacity 0.5s ease'
-          }}>
-             <div className="pulse-soft-anim" style={{ 
-               width: 120, 
-               height: 120, 
-               borderRadius: '50%', 
-               background: 'radial-gradient(circle, rgba(0, 242, 255, 0.1) 0%, transparent 70%)', 
-               border: '1px solid rgba(0, 242, 255, 0.2)', 
-               display: 'flex', 
-               alignItems: 'center', 
-               justifyContent: 'center', 
-               cursor: 'pointer' 
-             }} onClick={(e) => { e.stopPropagation(); setIsSystemActive(true); }}>
-                <AgentixIcon name="node" size={32} color="#00f2ff" />
-             </div>
-          </div>
+
+          {!isSystemActive && (
+            <div className="hero-map-overlay" style={{ 
+              position: 'absolute', 
+              inset: 0, 
+              zIndex: 10,
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center',
+              cursor: 'pointer'
+            }} onClick={() => setIsSystemActive(true)}>
+               <div className="pulse-soft-anim" style={{ 
+                 width: 140, 
+                 height: 140, 
+                 borderRadius: '50%', 
+                 background: 'radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 70%)', 
+                 display: 'flex', 
+                 alignItems: 'center', 
+                 justifyContent: 'center'
+               }}>
+                  <div style={{ textAlign: 'center' }}>
+                    <AgentixIcon name="node" size={32} color="#00f2ff" />
+                    <div className="mono" style={{ fontSize: 9, marginTop: 8, color: '#00f2ff', opacity: 0.8, letterSpacing: '0.1em' }}>INITIALIZE</div>
+                  </div>
+               </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
