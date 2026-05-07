@@ -39,10 +39,7 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
 }
 .nav-logo:hover { opacity: 0.85; }
 .nav-logo img {
-  height: 38px; width: auto; display: block; object-fit: contain;
-  /* Invert so the dark navy text reads white on the dark nav,
-     orange (#E87520) inverts to a teal but the brand shape stays clear.
-     Use a hue-rotate trick to shift the inverted orange back toward orange. */
+  height: 52px; width: auto; display: block; object-fit: contain;
   filter: invert(1) hue-rotate(180deg);
 }
 .nav-links { display: flex; gap: 4px; flex: 1; justify-content: center; }
@@ -67,6 +64,39 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
 @media (max-width: 980px) {
   .nav-links { display: none; }
   .mobile-menu-btn { display: inline-flex !important; }
+  /* Push menu button to far right */
+  .nav-actions { margin-left: auto; }
+}
+
+/* Mobile menu panel */
+.mobile-menu-overlay {
+  position: fixed; inset: 0; z-index: 120;
+  background: rgba(0,0,0,0.7); backdrop-filter: blur(10px);
+  animation: fade-in 0.2s;
+  display: flex; align-items: stretch; justify-content: flex-end;
+}
+.mobile-menu-panel {
+  width: min(400px, 92vw);
+  background: var(--bg-1);
+  border-left: 1px solid var(--line-strong);
+  display: flex; flex-direction: column;
+  animation: slide-in-right 0.3s cubic-bezier(0.2,0.7,0.2,1);
+  overflow: hidden;
+}
+.mobile-menu-section-label {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-3); margin: 22px 0 10px;
+}
+.mobile-menu-cat-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px; border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.mobile-menu-cat-row:hover { background: rgba(255,255,255,0.05); }
+.mobile-menu-cat-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  box-shadow: 0 0 8px currentColor;
 }
 
 /* Hide "Book Demo" text at medium-small */
@@ -77,7 +107,7 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
 /* At small mobile, hide both CTA buttons; keep only menu icon */
 @media (max-width: 600px) {
   .talk-btn, .demo-btn { display: none !important; }
-  .nav-logo img { height: 30px; }
+  .nav-logo img { height: 40px; }
   .nav { padding: 8px 0; }
   .nav.scrolled { padding: 6px 0; }
 }
@@ -85,9 +115,10 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
 /* Mega menu */
 .mega-overlay {
   position: fixed; inset: 0; z-index: 110;
-  background: rgba(0,0,0,0.75); backdrop-filter: blur(12px);
-  animation: fade-in 0.3s;
-  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.65); backdrop-filter: blur(10px);
+  animation: fade-in 0.2s;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding-top: 72px;
 }
 .mega {
   width: 94%; max-width: 1200px;
@@ -96,8 +127,18 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
   border-radius: var(--r-4);
   box-shadow: 0 40px 100px rgba(0,0,0,0.7);
   overflow: hidden;
-  animation: fade-up 0.4s cubic-bezier(0.2,0.7,0.2,1);
-  max-height: 85vh; display: flex; flex-direction: column;
+  animation: fade-up 0.3s cubic-bezier(0.2,0.7,0.2,1);
+  max-height: calc(85vh - 72px); display: flex; flex-direction: column;
+}
+/* Mobile: slide from right */
+.mega-dropdown { }
+@media (max-width: 980px) {
+  .mega-overlay { align-items: flex-start; justify-content: flex-end; padding-top: 0; }
+  .mega { max-width: 400px; height: 100vh; max-height: 100vh; border-radius: 0; animation: slide-in-right 0.3s cubic-bezier(0.2,0.7,0.2,1); }
+}
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 .mega-head {
   display: flex; align-items: center; justify-content: space-between;

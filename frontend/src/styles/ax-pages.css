@@ -722,3 +722,44 @@
   /* Detail pages */
   .detail-main { padding: 24px 16px; }
 }
+
+/* ─── 380px micro-breakpoint — very small phones ─────────────── */
+@media (max-width: 380px) {
+  .about-hero { padding: 80px 0 36px; }
+  .about-stat-n { font-size: 26px; }
+  .about-mission-inner { padding: 24px 16px; }
+  .about-mission-quote { font-size: 18px; }
+  .about-tl-item { grid-template-columns: 60px 20px 1fr; }
+  .about-tl-year { font-size: 11px; }
+
+  .pricing-card { padding: 20px 14px; }
+  .pricing-amount { font-size: 28px; }
+  .pricing-grid { gap: 12px; }
+  .pricing-proof { grid-template-columns: 1fr; }
+  .pricing-table-head, .pricing-table-row { padding: 8px 10px; font-size: 12px; }
+  .pricing-enterprise { padding: 16px; }
+
+  .contact-routes { grid-template-columns: 1fr; }
+  .contact-route { padding: 12px; }
+  .contact-detail { padding: 16px; }
+  .contact-form { padding: 16px; }
+
+  .demo-persona { padding: 16px; }
+  .demo-calendar { padding: 18px; }
+  .demo-cal-times { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+
+  .talk-modes { gap: 8px; }
+  .talk-mode { padding: 16px; }
+
+  .faq-stats { grid-template-columns: 1fr; }
+  .faq-stat { padding: 12px; }
+
+  .security-pillar { padding: 16px; }
+  .security-flow { padding: 14px; }
+
+  .status-uptime-stat { padding: 10px; }
+  .status-uptime-val { font-size: 22px; }
+
+  .changelog-entry-body { padding: 12px; }
+  .changelog-roadmap-item { padding: 16px; }
+}

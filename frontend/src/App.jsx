@@ -109,8 +109,72 @@ function catIconPath(categoryId) {
   return `/agentix-generated-media/icons/categories/${map[categoryId] ?? categoryId}.svg`;
 }
 
+const TOOL_ICON_MAP = {
+  'AI Content Generator':'ai-content-generator','Blog & SEO Article Writer':'blog-and-seo-article-writer',
+  'Script & Storyboard Writer':'script-and-storyboard-writer','Product & Sales Copy Builder':'product-and-sales-copy-builder',
+  'AI Product Photography':'ai-product-photography-and-scene-builder','Image Enhancement Studio':'image-enhancement-and-cleanup-studio',
+  'Brand Asset Generator':'brand-asset-generator','AI Voiceover Studio':'ai-voiceover-and-narration-studio',
+  'Voice Cloning':'voice-cloning-and-brand-voice-tool','Avatar Presenter Studio':'avatar-presenter-studio',
+  'AI Video Generator':'ai-video-generator','Video Clipper':'video-clipper-and-repurposing-tool',
+  'Subtitle & Localization':'subtitle-caption-and-localization-studio','Social Media Scheduler':'social-media-content-workflow-and-scheduler',
+  'Content Repurposing':'content-repurposing-workflow','Brand Compliance':'content-approval-and-brand-compliance-tool',
+  'Campaign Strategy Builder':'campaign-strategy-builder','GTM Launch Planner':'go-to-market-launch-planner',
+  'Marketing Calendar':'marketing-calendar-and-execution-planner','Landing Page Optimizer':'landing-page-optimizer',
+  'Funnel Audit':'funnel-audit-and-fix-tool','Lead Capture Optimizer':'form-and-lead-capture-optimizer',
+  'SEO Topic Cluster Builder':'seo-strategy-and-topic-cluster-builder','Content Brief Tool':'content-brief-and-optimization-tool',
+  'Competitive SEO Intelligence':'competitive-seo-intelligence-tool','Ad Creative Generator':'ad-creative-and-copy-generator',
+  'Paid Campaign Planner':'paid-campaign-planner','Ad Performance Insight':'ad-performance-insight-tool',
+  'Growth Analytics Assistant':'growth-analytics-assistant','Experiment Roadmap':'experiment-roadmap-generator',
+  'Attribution Explainer':'attribution-and-roi-explainer','Lead Discovery':'lead-discovery-and-list-builder',
+  'Lead Enrichment & Scoring':'lead-enrichment-and-scoring-tool','Account Research':'account-research-assistant',
+  'Multichannel Sequence Builder':'multichannel-outreach-sequence-builder','Cold Email Personalization':'cold-email-personalization-tool',
+  'Follow-Up Automation':'follow-up-automation-assistant','AI Sales Chat':'ai-sales-chat-agent',
+  'AI Sales Voice':'ai-sales-voice-agent','Meeting Booking Assistant':'meeting-booking-and-qualification-assistant',
+  'CRM Sync & Hygiene':'crm-sync-and-data-hygiene-tool','Deal Assistant':'deal-assistant',
+  'Proposal & Quote Generator':'proposal-and-quote-generator','Pipeline Forecasting':'pipeline-forecasting-assistant',
+  'Sales Process Audit':'sales-process-audit-tool','Sales Enablement Content':'sales-enablement-content-assistant',
+  'AI Support Chat':'ai-support-chat-agent','Ticket Triage & Routing':'ticket-triage-and-routing-tool',
+  'Support Response Assistant':'support-response-assistant','Onboarding Journey Builder':'onboarding-journey-builder',
+  'Customer Training Generator':'customer-training-content-generator','Product Walkthrough':'product-walkthrough-assistant',
+  'Churn Risk Assistant':'customer-health-and-churn-risk-assistant','Voice of Customer':'feedback-analysis-and-voice-of-customer-tool',
+  'Renewal & Expansion':'renewal-and-expansion-assistant','Testimonial Builder':'testimonial-and-case-study-builder',
+  'Review Response':'review-and-reputation-response-assistant','Community Engagement':'community-engagement-assistant',
+  'Competitor Analyzer':'competitor-analyzer','Battlecard Builder':'competitive-battlecard-builder',
+  'Market Movement Monitor':'market-movement-monitor','Persona Builder':'audience-persona-builder',
+  'Interview Synthesizer':'customer-interview-synthesizer','Review Insight Miner':'review-and-community-insight-miner',
+  'Pricing Intelligence':'pricing-intelligence-tool','Offer Research':'offer-research-and-positioning-tool',
+  'Plan Builder':'packaging-and-plan-builder','Trend Finder':'trend-finder',
+  'Market Gap Finder':'market-gap-finder','Product Benchmarking':'product-benchmarking-tool',
+  'Research Report Generator':'market-research-report-generator','Positioning Assistant':'positioning-assistant',
+  'Decision Brief Builder':'strategic-decision-brief-builder','Workflow Orchestrator':'workflow-orchestrator',
+  'Automation Blueprint':'automation-blueprint-builder','Process Mapping':'process-mapping-assistant',
+  'Approval Engine':'approval-engine','Task Routing':'task-routing-and-assignment-tool',
+  'Internal Follow-Up':'internal-follow-up-assistant','Document Extraction':'document-intake-and-extraction-tool',
+  'Form-to-Workflow':'form-to-workflow-builder','Data Cleanup':'data-cleanup-and-standardization-tool',
+  'Operations Dashboard':'operations-dashboard-generator','Weekly Business Summary':'weekly-business-summary-assistant',
+  'SLA & Escalation':'sla-and-escalation-monitor','Internal Knowledge Assistant':'internal-knowledge-assistant',
+  'Knowledge Base Builder':'knowledge-base-builder','Policy & SOP Generator':'policy-and-sop-generator',
+  'Lightweight CRM':'lightweight-crm-system','Modular ERP':'modular-erp-workspace',
+  'LMS & Training':'lms-and-training-system','Integration Layer':'integration-layer',
+  'API & Webhook Workflows':'api-and-webhook-workflow-tool','Data Sync Monitor':'data-sync-monitor',
+  'AI Website Builder':'ai-website-and-landing-page-builder','Client Portal Builder':'client-portal-builder',
+  'Embedded AI Widget':'embedded-ai-widget-builder','PRD Generator':'product-requirements-generator',
+  'Roadmap Prioritization':'roadmap-prioritization-assistant','Feature Spec Writer':'feature-validation-planner',
+  'Project Plan Builder':'project-plan-and-task-breakdown-tool','Sprint Planner':'sprint-planning-assistant',
+  'Status Report Assistant':'project-risk-and-status-reporter','Client Onboarding':'client-onboarding-workflow',
+  'Brief & Scope Builder':'scope-and-change-request-assistant','Deliverable Review':'qa-scenario-generator',
+  'Release Notes Generator':'release-notes-and-changelog-generator','Launch Checklist':'go-to-market-launch-planner',
+  'Beta Feedback':'feedback-analysis-and-voice-of-customer-tool','Invoice Processing':'invoice-processing-and-reconciliation-tool',
+  'Expense Categorizer':'expense-review-assistant','Receipt Capture':'cash-flow-and-revenue-summary-assistant',
+  'Contract Review':'contract-review-and-risk-summary-tool','Risk Summary':'risk-register-assistant',
+  'Clause Library':'contract-drafting-assistant','Compliance Checklist':'compliance-checklist-builder',
+  'Policy Review':'policy-generator-and-review-assistant','Audit Prep':'risk-register-assistant',
+  'Employee On/Off-boarding':'employee-onboarding-and-offboarding-assistant','Meeting Notes & Actions':'meeting-notes-and-action-assistant',
+  'Vendor Management':'internal-request-desk',
+};
+
 function toolIconPath(toolName) {
-  const slug = toolName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  const slug = TOOL_ICON_MAP[toolName] ?? toolName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   return `/agentix-generated-media/icons/tools/${slug}.svg`;
 }
 
@@ -198,34 +262,40 @@ function GlobalNav() {
             <img src="/assets/clients/logo.png" alt="Agentix" />
           </Link>
           <nav className="nav-links">
-            <button className="nav-link" onClick={() => setMegaOpen(true)}>Categories <AgentixIcon name="chevdown" size={10} /></button>
+            <button
+              className="nav-link"
+              onMouseEnter={() => setMegaOpen(true)}
+              onClick={() => setMegaOpen((o) => !o)}
+            >
+              Categories <AgentixIcon name="chevdown" size={10} />
+            </button>
             <Link className="nav-link" to="/solutions">Solutions</Link>
             <Link className="nav-link" to="/tools">Tools</Link>
             <Link className="nav-link" to="/use-cases">Use cases</Link>
             <Link className="nav-link" to="/pricing">Pricing</Link>
-            <Link className="nav-link" to="/docs">Docs</Link>
+            <Link className="nav-link" to="/about">About</Link>
+            <Link className="nav-link" to="/contact">Contact</Link>
           </nav>
           <div className="nav-actions">
             <Link className="nav-link" to="/search"><AgentixIcon name="search" size={14} />Search</Link>
             <Link className="btn btn-secondary nav-btn talk-btn" to="/talk-to-agentix"><AgentixIcon name="mic" size={12} />Talk</Link>
             <Link className="btn btn-primary nav-btn demo-btn" to="/demo">Book Demo</Link>
-            <button className="nav-link mobile-menu-btn" onClick={() => setMobileOpen(true)} aria-label="Menu"><AgentixIcon name="menu" size={18} /></button>
+            <button className="nav-link mobile-menu-btn" onClick={() => setMobileOpen((o) => !o)} aria-label="Menu"><AgentixIcon name="menu" size={18} /></button>
           </div>
         </div>
       </header>
-      <MegaMenu open={megaOpen} onClose={() => setMegaOpen(false)} />
+      {megaOpen && <MegaMenu onClose={() => setMegaOpen(false)} />}
       {mobileOpen && <MobileMenu onClose={() => setMobileOpen(false)} />}
     </>
   );
 }
 
-function MegaMenu({ open, onClose }) {
+function MegaMenu({ onClose }) {
   const [hover, setHover] = useState(AGENTIX_DATA.categories[0].id);
   const cur = findCategory(hover);
-  if (!open) return null;
   return (
-    <div className="mega-overlay" onClick={onClose}>
-      <div className="mega" onClick={(event) => event.stopPropagation()}>
+    <div className="mega-overlay" onMouseLeave={onClose} onClick={onClose}>
+      <div className="mega mega-dropdown" onClick={(event) => event.stopPropagation()} onMouseEnter={() => {}}>
         <div className="mega-head">
           <span className="eyebrow">All categories / {AGENTIX_DATA.categories.length}</span>
           <button className="mega-close" onClick={onClose}><AgentixIcon name="close" size={14} /></button>
@@ -266,34 +336,37 @@ function MegaMenu({ open, onClose }) {
 
 function MobileMenu({ onClose }) {
   const navLinks = [
-    ['Tools', '/tools'],
-    ['Solutions', '/solutions'],
-    ['Use cases', '/use-cases'],
-    ['Pricing', '/pricing'],
-    ['Docs', '/docs'],
-    ['Help', '/help'],
-    ['Security', '/security'],
-    ['Contact', '/contact'],
+    ['Tools', '/tools'], ['Solutions', '/solutions'], ['Use cases', '/use-cases'],
+    ['Pricing', '/pricing'], ['About', '/about'], ['Blog', '/docs'],
+    ['Docs', '/docs'], ['Help', '/help'], ['Security', '/security'], ['Contact', '/contact'],
   ];
   return (
-    <div className="mega-overlay" onClick={onClose}>
-      <div className="mega" onClick={(event) => event.stopPropagation()} style={{ maxWidth: 480, overflowY: 'auto', maxHeight: '90vh' }}>
-        <div className="mega-head" style={{ padding: '16px 24px' }}>
-          <span className="nav-logo"><img src="/assets/clients/logo.png" alt="Agentix" style={{ height: 26, width: 'auto' }} /></span>
+    <div className="mobile-menu-overlay" onClick={onClose}>
+      <div className="mobile-menu-panel" onClick={(e) => e.stopPropagation()}>
+        <div className="mega-head" style={{ padding: '14px 20px', flexShrink: 0 }}>
+          <span className="nav-logo" style={{ filter: 'invert(1) hue-rotate(180deg)' }}>
+            <img src="/assets/clients/logo.png" alt="Agentix" style={{ height: 36, width: 'auto' }} />
+          </span>
           <button className="mega-close" onClick={onClose}><AgentixIcon name="close" size={14} /></button>
         </div>
-        <div className="dock-body" style={{ padding: 24 }}>
-          <Link className="btn btn-primary" to="/talk-to-agentix" style={{ width: '100%', justifyContent: 'center' }}>Talk to Agentix</Link>
-          <Link className="btn btn-secondary" to="/demo" style={{ width: '100%', justifyContent: 'center', marginTop: 12 }}>Book a Demo</Link>
-          <div style={{ marginTop: 28, fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 10 }}>Categories</div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+        <div style={{ padding: '20px 20px 32px', overflowY: 'auto', flex: 1 }}>
+          <Link className="btn btn-primary" to="/talk-to-agentix" style={{ width: '100%', justifyContent: 'center' }}>
+            <AgentixIcon name="mic" size={13} />Talk to Agentix
+          </Link>
+          <Link className="btn btn-secondary" to="/demo" style={{ width: '100%', justifyContent: 'center', marginTop: 10 }}>
+            Book a Demo
+          </Link>
+          <div className="mobile-menu-section-label">Categories</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             {AGENTIX_DATA.categories.map((cat) => (
-              <Link key={cat.id} className="dock-chip" to={`/category/${cat.id}`} style={{ borderColor: `rgba(${cat.accentRgb},0.35)`, color: cat.accent }}>
-                <span className="chip-dot" style={{ background: cat.accent, width: 6, height: 6 }} />{cat.short}
+              <Link key={cat.id} to={`/category/${cat.id}`} className="mobile-menu-cat-row">
+                <span className="mobile-menu-cat-dot" style={{ background: cat.accent }} />
+                <span style={{ flex: 1, fontSize: 14, fontWeight: 500, color: 'var(--ink-0)' }}>{cat.name}</span>
+                <AgentixIcon name="arrow" size={11} color="var(--ink-3)" />
               </Link>
             ))}
           </div>
-          <div style={{ marginTop: 24, fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 10 }}>Platform</div>
+          <div className="mobile-menu-section-label" style={{ marginTop: 20 }}>Platform</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {navLinks.map(([label, href]) => <Link key={href} className="dock-chip" to={href}>{label}</Link>)}
           </div>
@@ -356,7 +429,7 @@ function GlobalFooter() {
         <div className="footer-top">
           <div>
             <Link to="/" className="nav-logo">
-              <img src="/assets/clients/logo.png" alt="Agentix" style={{ height: 28, width: 'auto', display: 'block' }} />
+              <img src="/assets/clients/logo.png" alt="Agentix" style={{ height: 44, width: 'auto', display: 'block', filter: 'invert(1) hue-rotate(180deg)' }} />
             </Link>
             <p style={{ maxWidth: 320, marginTop: 20, color: 'var(--ink-2)', fontSize: 14, lineHeight: 1.6 }}>
               The AI operating system for ambitious teams. Replace the stack. Run the business.
@@ -439,6 +512,30 @@ function SectionHead({ eyebrow: label, title, text, center = false }) {
     </div>
   );
 }
+
+const CAT_ROLES = {
+  content: [['Creative Directors','Manage brand output across formats with AI-generated drafts and built-in compliance gates.'],['Copywriters','Scale creative output without sacrificing voice — AI writes first, you approve and ship.'],['Brand Managers','Enforce guidelines automatically. Every output passes your brand rules before publishing.'],['Agencies','Run client content production at scale with trackable, repeatable AI workflows.']],
+  marketing: [['Growth Leads','Run demand gen and pipeline operations from one connected campaign layer.'],['Campaign Managers','Plan, execute, and analyze campaigns without switching between tools.'],['SEO Specialists','Build content clusters, track rankings, and brief writers — all from one system.'],['Performance Marketers','Optimize ads, landing pages, and funnels with AI-powered recommendations.']],
+  sales: [['Sales Leaders','Forecast accurately, enforce process, and see exactly where pipeline stalls.'],['Account Executives','Spend time selling — not on CRM updates, research, and manual follow-up.'],['SDRs / BDRs','Personalize outreach at scale with enriched data and AI-generated sequences.'],['RevOps','Automate pipeline hygiene, routing, and reporting across the full funnel.']],
+  cx: [['Support Leads','Manage ticket volume, quality, and SLAs — AI handles first response, humans handle escalations.'],['Customer Success','Spot churn risk early and automate renewals, QBRs, and health scoring.'],['Onboarding Teams','Build repeatable onboarding journeys with AI-generated guides and automated check-ins.'],['Community Managers','Scale engagement, reviews, and testimonials with AI-powered response workflows.']],
+  research: [['Strategy Leads','Turn competitor signals and market data into positioning briefs in hours.'],['Research Analysts','Synthesize interviews, reviews, and signals into structured reports automatically.'],['Product Marketers','Build battlecards, persona docs, and pricing strategy from live data.'],['Founders','Get the market intelligence you need without a full research team.']],
+  ops: [['Operations Leads','Formalize tribal knowledge into documented, automated workflows with clear owners.'],['Process Managers','Map every workflow, assign owners, and track completion from one layer.'],['Executives','Get weekly visibility into operations — approvals, blockers, and performance trends.'],['Finance & Admin','Automate document processing, approvals, and compliance workflows end to end.']],
+  systems: [['IT Leads','Build and maintain a connected AI infrastructure without custom engineering.'],['Knowledge Managers','Centralise documentation, SOPs, and institutional knowledge into searchable AI.'],['System Admins','Manage access controls, integrations, and CRM/ERP data from one governed layer.'],['Developers','Extend Agentix with APIs, webhooks, and embedded widgets — no rebuild required.']],
+  product: [['Product Managers','Write PRDs, plan sprints, and ship features with AI-generated specs and checklists.'],['Project Leads','Track delivery, manage blockers, and generate status reports automatically.'],['Client-Facing Teams','Onboard clients, manage scope, and review deliverables from one project layer.'],['Engineering Leads','Generate release notes, QA scenarios, and launch checklists with zero manual writing.']],
+  finance: [['Finance Leads','Automate invoice processing, reconciliation, and month-end close workflows.'],['Legal / Compliance','Review contracts, build compliance checklists, and prepare for audits systematically.'],['HR Managers','Automate onboarding, offboarding, policy updates, and vendor management tasks.'],['Founders / Admins','Replace manual finance and admin tasks with governed, trackable AI workflows.']],
+};
+
+const CAT_FAQS = {
+  content: [['How does Agentix handle brand voice?','You upload brand guidelines, tone examples, and approved content as knowledge sources. The AI generates drafts matching your defined voice — and every output passes a brand compliance check.'],['Can I review content before it publishes?','Yes. Every workflow includes mandatory human review checkpoints. Nothing moves forward or publishes without your sign-off.'],['Does it work for multiple content formats?','Yes — blog, social, scripts, video, audio, and ads all live in one operating layer. Each format has its own tool with shared brand context.'],['How does content repurposing work?','Upload any approved piece. Agentix generates format-specific variants using your brand voice and original context — captions, email copy, video script.']],
+  marketing: [['Can Agentix run my entire campaign?','Agentix handles strategy, brief creation, ad copy, landing pages, and performance analysis. You own the channel spend and final approval — Agentix handles everything else.'],['How does it connect to my ad platforms?','Through integrations with Google, Meta, and LinkedIn. Agentix reads performance data, generates copy variants, and routes approvals — you control deployment.'],['Does it work for early-stage teams?','Yes. Growth starts on Starter with a single workflow. As you add channels, you scale tools — not headcount.'],['How does SEO content connect to campaigns?','Your SEO topic cluster and campaign calendar share the same knowledge base. SEO content can be repurposed as campaign assets automatically.']],
+  sales: [['How does Agentix score leads?','Lead scoring uses firmographic data, intent signals, and ICP criteria you define. Scores update automatically as data enriches across the workflow.'],['Does it replace my CRM?','No — it connects to your existing CRM and keeps it clean. Agentix writes notes, updates fields, and routes follow-ups automatically.'],['How does AI outreach personalization work?','Each sequence is generated using account research, persona context, and your approved tone. Every message is unique — no mail-merge placeholders.'],['What triggers human review in the sales workflow?','Large deals, enterprise accounts, legal-adjacent questions, and sensitive pricing discussions route to a human with full conversation context attached.']],
+  cx: [['How does AI handle support without wrong answers?','Agentix grounds all responses in your approved knowledge base. Questions outside your defined context escalate to a human — never fabricated answers.'],['What does human handoff look like in support?','When AI confidence drops below threshold, the ticket routes to a human with full conversation history, account context, and recommended next action.'],['Can customers tell they are talking to AI?','You control the framing. Most teams use AI for instant first response with clear escalation paths. Both transparent and human-first setups are supported.'],['Does it integrate with Zendesk or Intercom?','Yes. Agentix enriches your existing helpdesk — not replaces it. Tickets flow in, are triaged by AI, and routed back as structured responses.']],
+  research: [['How often is competitor data refreshed?','The Monitor tool checks competitor signals on your defined schedule — weekly by default, daily on Pro and Enterprise. You receive a structured change digest each run.'],['Can I use my own interview data as input?','Yes. Upload call recordings, transcripts, or survey responses. Agentix synthesizes themes, quotes, and recommendations into structured research output.'],['How does pricing intelligence work?','The tool tracks public pricing pages, packaging changes, and customer reviews from competitors. It flags changes and recommends response options.'],['Is research output ready for stakeholders?','Yes. Every report is generated in a structured format — executive summary, findings, evidence, and recommended next steps included.']],
+  ops: [['How do we migrate existing workflows into Agentix?','The Automation Blueprint tool maps your current processes, identifies manual steps, and generates a recommended workflow structure. Migration support is included on Pro.'],['What happens when a workflow gets blocked?','Agentix detects stalled steps, escalates to the assigned owner, and logs the blocker. You get visibility without chasing people in Slack.'],['Can we set up approval gates?','Yes. The Approval Engine lets you define who approves what, at which stage, and with what SLA. Unapproved items escalate automatically.'],['How does Agentix handle document processing?','The Document Extraction tool ingests PDFs and forms, extracts structured data, and routes it into the right workflow — no manual data entry required.']],
+  systems: [['What does the RAG knowledge base support?','It supports PDFs, Word docs, Markdown files, URLs, and Notion pages. Content is chunked, embedded, and cited in AI responses with source attribution.'],['How does access control work?','You define roles (admin, editor, viewer) at the workspace, category, and tool level. SSO is available on Enterprise. All access is logged.'],['Can we build on top of Agentix with APIs?','Yes. The API & Webhook Workflows tool lets you trigger Agentix workflows from external systems, receive output via webhooks, and embed AI widgets in your own interfaces.'],['What systems does Agentix integrate with natively?','CRM, Email, Docs, Support, Analytics, and 40+ more. Custom integrations are available on Enterprise.']],
+  product: [['How does Agentix help with product planning?','The PRD Generator turns feature requests into structured requirements. The Roadmap tool prioritizes by impact and effort. All decisions are logged with rationale.'],['Can it manage client projects?','Yes. Client Onboarding and Brief & Scope Builder handle the full project lifecycle with client-facing summaries generated automatically.'],['How does it integrate with existing project tools?','Agentix connects to Jira, Linear, Asana, and Notion. Tasks sync to your tool of choice — no need to change how your team works.'],['What gets automated in product delivery?','Sprint planning, status reports, release notes, QA checklists, and launch coordination are all automated. Your team focuses on building.']],
+  finance: [['How does Agentix handle sensitive financial data?','All data is encrypted at rest and in transit. Finance workflows run with role-based access and full audit logs for compliance review.'],['Can it process invoices automatically?','Yes. Invoice Processing extracts line items, matches them to POs, flags discrepancies, and routes approvals — no manual data entry.'],['Does it replace our accounting software?','No — it connects to QuickBooks, Xero, and similar platforms. Agentix automates the upstream process: capture, categorization, approval, and sync.'],['How does contract review work?','Upload any contract. Agentix extracts key terms, flags risk clauses, generates a risk summary, and routes for legal review with highlighted sections pre-marked.']],
+};
 
 const stepDescMap = {
   'Inputs required': 'Data, context, and constraints the AI needs before generation begins.',
@@ -545,7 +642,15 @@ function AssistantPanelSection({ title = 'Assistant-guided next step.', text = '
   );
 }
 
-function FAQSection({ title = 'Questions answered.', accent = 'var(--accent)' }) {
+const DEFAULT_FAQS = [
+  ['What does this page help me decide?', 'It shows you the exact tools, workflow path, and recommended stack for this context — so you can choose and move, not just browse.'],
+  ['How does Agentix route the workflow?', 'Agentix maps your goal to the right tools, sequences the stages, and assigns human review points where judgment is required.'],
+  ['When does human handoff happen?', 'Handoff triggers when AI confidence is low, a decision needs sign-off, or output is ready for the next person in your process.'],
+  ['What should I open next?', 'Use the Talk to Agentix assistant to build your stack, or book a demo to see the workflow run live against your business context.'],
+];
+
+function FAQSection({ title = 'Questions answered.', accent = 'var(--accent)', faqs }) {
+  const items = faqs ?? DEFAULT_FAQS;
   return (
     <section className="section page-band">
       <div className="container-wide faq-grid">
@@ -554,12 +659,7 @@ function FAQSection({ title = 'Questions answered.', accent = 'var(--accent)' })
           <h2 className="h-1" style={{ marginTop: 12 }}>{title}</h2>
         </div>
         <div className="faq-right">
-          {[
-            ['What does this page help me decide?', 'It shows you the exact tools, workflow path, and recommended stack for this context — so you can choose and move, not just browse.'],
-            ['How does Agentix route the workflow?', 'Agentix maps your goal to the right tools, sequences the stages, and assigns human review points where judgment is required.'],
-            ['When does human handoff happen?', 'Handoff triggers when AI confidence is low, a decision needs sign-off, or output is ready for the next person in your process.'],
-            ['What should I open next?', 'Use the Talk to Agentix assistant to build your stack, or book a demo to see the workflow run live against your business context.'],
-          ].map(([question, answer]) => (
+          {items.map(([question, answer]) => (
             <div key={question} className="faq-item open" style={{ '--accent-cat': accent, borderBottom: '1px solid var(--line)' }}>
               <div className="faq-q" style={{ padding: '20px 0' }}><span>{question}</span><span className="faq-icon"><AgentixIcon name="chevron" size={12} /></span></div>
               <div className="faq-a" style={{ paddingBottom: 20 }}><div>{answer}</div></div>
@@ -694,17 +794,13 @@ function CategoryPage() {
         <div className="container-wide">
           <SectionHead eyebrow="Team alignment" title="Who manages this domain." />
           <div className="page-card-grid">
-            {[['Founders', 'Consolidate multiple tool subscriptions into one governed operating layer.'],
-              ['Operations', 'Formalize tribal knowledge into repeatable, observable AI workflows.'],
-              ['Managers', 'Maintain high quality standards with mandatory review checkpoints.'],
-              ['Agencies', 'Provide clients with a transparent, high-output production environment.']
-            ].map(([role, desc]) => (
+            {(CAT_ROLES[category.id] ?? CAT_ROLES.ops).map(([role, desc]) => (
               <div key={role} className="solution-card card" style={{ '--accent-cat': category.accent }}>
                 <div className="solution-head">
                   <span className="solution-dot" style={{ background: category.accent }} />
                   <span className="solution-cat mono">{role}</span>
                 </div>
-                <h4 className="h-4" style={{ marginTop: 16 }}>{role} workflow</h4>
+                <h4 className="h-4" style={{ marginTop: 16 }}>{role}</h4>
                 <p className="solution-outcome" style={{ marginTop: 10 }}>{desc}</p>
               </div>
             ))}
@@ -712,8 +808,8 @@ function CategoryPage() {
         </div>
       </section>
 
-      <AssistantPanelSection title={`Build your ${category.short} workspace.`} />
-      <FAQSection title={`Frequently asked — ${category.short}.`} accent={category.accent} />
+      <AssistantPanelSection title={`Build your ${category.short} workspace.`} text={`The assistant maps your goal to the right ${category.short} tools, workflows, and human handoff rules — then guides you from setup to first output.`} />
+      <FAQSection title={`Frequently asked — ${category.short}.`} accent={category.accent} faqs={CAT_FAQS[category.id]} />
       <FinalCTA />
     </>
   );
