@@ -18,11 +18,11 @@ function HeroPreviewCard({ category, active, position }) {
     }}>
       <div className="hero-preview-head" style={{ flexShrink: 0, marginBottom: '12px' }}>
         <span className="chip" style={{ borderColor: `rgba(${category.accentRgb}, 0.4)`, color: category.accent }}>
-          <span className="chip-dot" style={{ background: category.accent }}/>{category.short}
+          <span className="chip-dot" style={{ background: category.accent }} />{category.short}
         </span>
         <span className="mono" style={{ fontSize: 10, color: 'var(--ink-3)' }}>{category.id}.agentix</span>
       </div>
-      
+
       <div className="hero-preview-greet" style={{ flexShrink: 0, marginBottom: '12px' }}>
         <h3 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, color: 'var(--ink-0)' }}>{category.name}</h3>
         <p style={{ marginTop: 6, fontSize: '0.85rem', lineHeight: 1.4, color: 'var(--ink-2)' }}>{category.promise}</p>
@@ -33,16 +33,16 @@ function HeroPreviewCard({ category, active, position }) {
           const slug = t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
           return (
             <Link key={t} to={`/tools/${slug}`} className="hero-preview-row" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 0', textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-              <AgentixIcon name="node" size={10} color={category.accent}/>
+              <AgentixIcon name="node" size={10} color={category.accent} />
               <span style={{ flex: 1, fontSize: 12, color: 'var(--ink-1)' }}>{t}</span>
-              <AgentixIcon name="arrow" size={12} color="var(--ink-3)"/>
+              <AgentixIcon name="arrow" size={12} color="var(--ink-3)" />
             </Link>
           );
         })}
       </div>
 
       <div className="hero-preview-footer" style={{ flexShrink: 0 }}>
-        <Link to={`/category/${category.id}`} className="hero-preview-cta" style={{ 
+        <Link to={`/category/${category.id}`} className="hero-preview-cta" style={{
           '--cat-accent': category.accent,
           display: 'flex',
           alignItems: 'center',
@@ -57,7 +57,7 @@ function HeroPreviewCard({ category, active, position }) {
           fontWeight: 600,
           border: '1px solid rgba(255,255,255,0.1)'
         }}>
-          Open {category.short} workspace <AgentixIcon name="arrow" size={12}/>
+          Open {category.short} workspace <AgentixIcon name="arrow" size={12} />
         </Link>
       </div>
     </div>
@@ -66,7 +66,6 @@ function HeroPreviewCard({ category, active, position }) {
 
 export default function HeroSection() {
   const [activeId, setActiveId] = useState(null);
-  const [isSystemActive, setIsSystemActive] = useState(false);
   const [rotation, setRotation] = useState(0);
   const cats = AGENTIX_DATA.categories;
   const active = cats.find(c => c.id === activeId);
@@ -80,9 +79,10 @@ export default function HeroSection() {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      // If clicking inside hero-right (the map area) or buttons, don't reset
-      if (e.target.closest('.hero-right') || e.target.closest('.hero-ctas')) return;
-      setIsSystemActive(false);
+      // If clicking inside the preview card, don't hide it
+      if (e.target.closest('.hero-preview')) return;
+      
+      // Clear activeId on any other click to hide the card
       setActiveId(null);
     };
     window.addEventListener('click', handleClickOutside);
@@ -110,16 +110,12 @@ export default function HeroSection() {
 
   return (
     <section className="hero">
-      <div className="hero-bg-glow"/>
+      <div className="hero-bg-glow" />
       <div className="container-wide hero-inner">
         <div className="hero-left">
-          <div className="hero-eyebrow chip">
-            <span className="chip-dot" style={{ background: 'var(--accent)' }}/>
-            <span style={{ color: 'var(--ink-1)' }}>The AI operating system · v4 release</span>
-          </div>
           <h1 className="h-display hero-headline">
             <span className="hero-line">An AI Operating System.</span> <br />
-            <span className="hero-line" style={{ color: 'var(--ink-2)' }}>Not another stack of tools.</span>
+            <span className="hero-line" style={{ color: 'var(--ink-2)' }}>Not another stack of disconnected tools.</span>
           </h1>
           <p className="body-lg hero-sub fade-up" style={{ animationDelay: '0.4s', maxWidth: 560 }}>
             Content, growth, sales, research, support, operations, and business systems —
@@ -127,13 +123,13 @@ export default function HeroSection() {
           </p>
           <div className="hero-ctas fade-up" style={{ animationDelay: '0.55s' }}>
             <Link to="/talk-to-agentix" className="btn btn-primary btn-lg">
-              <AgentixIcon name="mic" size={14}/>Talk to Agentix
+              <AgentixIcon name="mic" size={14} />Talk to Agentix
             </Link>
-            <button 
+            <button
               className="btn btn-secondary btn-lg"
-              onClick={(e) => { e.stopPropagation(); setIsSystemActive(true); }}
+              onClick={(e) => { e.stopPropagation(); setActiveId(null); }}
             >
-              Explore Ecosystem <AgentixIcon name="arrow" size={14}/>
+              Explore Ecosystem <AgentixIcon name="arrow" size={14} />
             </button>
           </div>
           <div className="hero-trust fade-up" style={{ animationDelay: '0.7s' }}>
@@ -141,7 +137,7 @@ export default function HeroSection() {
             <span style={{ color: 'var(--ink-2)', fontSize: 13 }}>B2B startups · SMEs · agencies · founder-led teams</span>
           </div>
           <div className="hero-meta">
-            {[['9','categories'],['40','subcategories'],['121','tools'],['1','assistant']].map(([n, l]) => (
+            {[['9', 'categories'], ['40', 'subcategories'], ['121', 'tools'], ['1', 'assistant']].map(([n, l]) => (
               <div key={l} className="hero-meta-item">
                 <div className="hero-meta-num">{n}</div>
                 <div className="hero-meta-label">{l}</div>
@@ -150,62 +146,34 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="hero-right" style={{ position: 'relative', minHeight: '600px' }}>
-          <div 
-            className="hero-map" 
-            style={{ 
+        <div className="hero-right">
+          <div
+            className="hero-map"
+            style={{
               width: '100%',
               height: '100%',
               position: 'absolute',
               inset: 0,
               zIndex: 5,
-              opacity: isSystemActive ? 1 : 0.4,
+              opacity: 1,
               transition: 'opacity 0.8s ease'
             }}
-            onMouseLeave={() => isSystemActive && setActiveId(null)}
           >
             <div className="systemmap-wrap">
-              <SystemMap 
-                cats={cats} 
-                activeId={activeId} 
-                onHover={isSystemActive ? setActiveId : null} 
-                onClick={isSystemActive ? setActiveId : () => setIsSystemActive(true)}
+              <SystemMap
+                cats={cats}
+                activeId={activeId}
+                onHover={setActiveId}
+                onClick={setActiveId}
                 rotation={rotation}
               />
-              <HeroPreviewCard 
-                category={active} 
-                active={!!activeId && isSystemActive}
+              <HeroPreviewCard
+                category={active}
+                active={!!activeId}
                 position={cardPosition}
               />
             </div>
           </div>
-
-          {!isSystemActive && (
-            <div className="hero-map-overlay" style={{ 
-              position: 'absolute', 
-              inset: 0, 
-              zIndex: 10,
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center',
-              cursor: 'pointer'
-            }} onClick={(e) => { e.stopPropagation(); setIsSystemActive(true); }}>
-               <div className="pulse-soft-anim" style={{ 
-                 width: 140, 
-                 height: 140, 
-                 borderRadius: '50%', 
-                 background: 'radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 70%)', 
-                 display: 'flex', 
-                 alignItems: 'center', 
-                 justifyContent: 'center'
-               }}>
-                  <div style={{ textAlign: 'center' }}>
-                    <AgentixIcon name="node" size={32} color="#00f2ff" />
-                    <div className="mono" style={{ fontSize: 9, marginTop: 8, color: '#00f2ff', opacity: 0.8, letterSpacing: '0.1em' }}>INITIALIZE</div>
-                  </div>
-               </div>
-            </div>
-          )}
         </div>
       </div>
     </section>
