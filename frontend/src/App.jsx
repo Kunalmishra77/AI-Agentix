@@ -27,6 +27,7 @@ import FAQPage from './pages/site/FAQPage.jsx';
 import SecurityPage from './pages/site/SecurityPage.jsx';
 import StatusPage from './pages/site/StatusPage.jsx';
 import ChangelogPage from './pages/site/ChangelogPage.jsx';
+import VoiceExperience from './voice-agent/VoiceExperience.jsx';
 import './styles/ax-tokens.css';
 import './styles/ax-hero.css';
 import './styles/ax-ecosystem.css';
@@ -234,6 +235,7 @@ function Layout({ children }) {
       <GlobalNav />
       <main>{children}</main>
       <AssistantDock />
+      <VoiceExperience />
       <ScrollTopBtn />
       <GlobalFooter />
     </>

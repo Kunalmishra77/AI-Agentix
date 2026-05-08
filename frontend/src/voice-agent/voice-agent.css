@@ -1,0 +1,492 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   AGENTiX Voice Experience — Complete Stylesheet
+   All classes scoped to va- prefix. Zero conflicts with existing site.
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. VOICE GATE ──────────────────────────────────────────────────────── */
+.va-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: radial-gradient(ellipse at 50% 40%, #0b2530 0%, #030c10 65%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  animation: va-gate-in 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.va-gate--exit {
+  animation: va-gate-out 0.55s cubic-bezier(0.4, 0, 1, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes va-gate-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes va-gate-out {
+  0%   { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.08); }
+}
+
+/* Grid texture */
+.va-gate-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,200,160,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,200,160,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* Ambient corner glows */
+.va-gate-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(120px);
+  opacity: 0.15;
+}
+.va-gate-glow--tl { top: -200px; left: -200px; background: #00c8a0; }
+.va-gate-glow--br { bottom: -200px; right: -200px; background: #0088ff; }
+
+/* Central content */
+.va-gate-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+  animation: va-content-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+@keyframes va-content-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* The animated orb */
+.va-gate-orb {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.va-gate-orb-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 200, 160, 0.3);
+  animation: va-gate-ring 3s ease-out infinite;
+}
+.va-gate-orb-ring--1 { inset: 0;    animation-delay: 0s;    border-color: rgba(0,200,160,0.4); }
+.va-gate-orb-ring--2 { inset: -18px; animation-delay: 0.6s; border-color: rgba(0,200,160,0.25); }
+.va-gate-orb-ring--3 { inset: -36px; animation-delay: 1.2s; border-color: rgba(0,200,160,0.12); }
+
+@keyframes va-gate-ring {
+  0%   { transform: scale(0.9); opacity: 0.8; }
+  60%  { transform: scale(1.1); opacity: 0.2; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+
+.va-gate-orb-core {
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle at 35% 35%, rgba(0,220,175,0.9), rgba(0,150,120,0.8));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 40px rgba(0,200,160,0.5),
+    0 0 80px rgba(0,200,160,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+  animation: va-core-breathe 3s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes va-core-breathe {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(0,200,160,0.5), 0 0 80px rgba(0,200,160,0.2); }
+  50%       { transform: scale(1.06); box-shadow: 0 0 60px rgba(0,200,160,0.7), 0 0 120px rgba(0,200,160,0.3); }
+}
+
+.va-gate-title {
+  font-family: 'Manrope', 'Inter', sans-serif;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 800;
+  color: #f0faf8;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin: 0;
+}
+
+.va-gate-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(14px, 2vw, 18px);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  margin: 0;
+}
+
+.va-gate-cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: rgba(0,200,160,0.8);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  animation: va-cta-blink 2s ease-in-out infinite;
+}
+
+@keyframes va-cta-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.va-gate-cta-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00c8a0;
+  animation: va-cta-blink 2s ease-in-out infinite;
+}
+
+.va-gate-brand {
+  position: absolute;
+  bottom: 24px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.06em;
+  z-index: 2;
+}
+
+/* ── 2. VOICE ORB ───────────────────────────────────────────────────────── */
+.va-orb {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px 12px 14px;
+  background: linear-gradient(135deg, #00c8a0 0%, #00a078 100%);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(0,200,160,0.4), 0 2px 8px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, padding 0.3s ease, width 0.3s ease;
+  animation: va-orb-enter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  outline: none;
+}
+
+@keyframes va-orb-enter {
+  from { opacity: 0; transform: scale(0.5) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.va-orb:hover { transform: translateY(-2px) scale(1.03); }
+
+/* Speaking — teal glow rings */
+.va-orb--speaking {
+  box-shadow: 0 4px 32px rgba(0,200,160,0.6), 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Listening — red */
+.va-orb--listening {
+  background: linear-gradient(135deg, #ff4d6d, #cc2244);
+  box-shadow: 0 4px 32px rgba(255,77,109,0.6);
+  animation: va-orb-enter 0.5s cubic-bezier(0.34,1.56,0.64,1), va-listen-pulse 1s ease-in-out infinite;
+}
+@keyframes va-listen-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,77,109,0.5), 0 4px 20px rgba(255,77,109,0.4); }
+  50%       { box-shadow: 0 0 0 14px rgba(255,77,109,0), 0 4px 30px rgba(255,77,109,0.6); }
+}
+
+/* Thinking — amber shimmer */
+.va-orb--thinking {
+  background: linear-gradient(135deg, #f5a623, #e08800);
+  animation: va-orb-enter 0.5s cubic-bezier(0.34,1.56,0.64,1), va-think-shimmer 1.5s linear infinite;
+}
+@keyframes va-think-shimmer {
+  0%   { filter: brightness(1); }
+  50%  { filter: brightness(1.3); }
+  100% { filter: brightness(1); }
+}
+
+/* Minimized — small corner dot */
+.va-orb--minimized {
+  padding: 10px;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  justify-content: center;
+  opacity: 0.7;
+}
+.va-orb--minimized:hover { opacity: 1; transform: scale(1.1); }
+
+/* Orb rings (speaking) */
+.va-orb-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50px;
+  border: 1.5px solid rgba(0,200,160,0.6);
+  animation: va-speak-ring 1.2s ease-out infinite;
+  pointer-events: none;
+}
+.va-orb-ring--2 { inset: -10px; animation-delay: 0.3s; border-color: rgba(0,200,160,0.35); }
+.va-orb-ring--3 { inset: -18px; animation-delay: 0.6s; border-color: rgba(0,200,160,0.15); }
+
+@keyframes va-speak-ring {
+  0%   { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.3); }
+}
+
+/* Orb core */
+.va-orb-core {
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.va-orb--minimized .va-orb-core {
+  width: 24px;
+  height: 24px;
+}
+
+/* Waveform bars (listening) */
+.va-orb-wave { display: flex; align-items: center; gap: 2px; }
+.va-orb-bar {
+  width: 3px;
+  background: white;
+  border-radius: 2px;
+  animation: va-bar-dance 0.7s ease-in-out infinite;
+}
+.va-orb-bar--1 { height: 6px;  animation-delay: 0s;    }
+.va-orb-bar--2 { height: 14px; animation-delay: 0.1s;  }
+.va-orb-bar--3 { height: 20px; animation-delay: 0.2s;  }
+.va-orb-bar--4 { height: 14px; animation-delay: 0.3s;  }
+.va-orb-bar--5 { height: 6px;  animation-delay: 0.4s;  }
+@keyframes va-bar-dance {
+  0%, 100% { transform: scaleY(0.4); }
+  50%       { transform: scaleY(1.2); }
+}
+
+/* Thinking dots */
+.va-orb-dots { display: flex; gap: 3px; align-items: center; }
+.va-orb-dots span {
+  width: 5px; height: 5px;
+  background: white; border-radius: 50%;
+  animation: va-dot-bounce 1s ease-in-out infinite;
+}
+.va-orb-dots span:nth-child(2) { animation-delay: 0.2s; }
+.va-orb-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes va-dot-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+  40%            { transform: translateY(-5px); opacity: 1; }
+}
+
+/* Orb label text */
+.va-orb-label {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+/* ── 3. SUBTITLE BAND ───────────────────────────────────────────────────── */
+.va-subtitle {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9998;
+  padding: 18px 40px 28px;
+  background: linear-gradient(to top, rgba(3,12,16,0.92) 0%, rgba(3,12,16,0.6) 70%, transparent 100%);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.va-subtitle--visible { opacity: 1; animation: va-sub-in 0.25s ease; }
+.va-subtitle--fade    { opacity: 0; }
+
+@keyframes va-sub-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.va-subtitle-text {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(15px, 2.2vw, 20px);
+  font-weight: 500;
+  text-align: center;
+  max-width: 800px;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+.va-subtitle--agent  .va-subtitle-text { color: #e8f4f2; }
+.va-subtitle--user   .va-subtitle-text { color: #00e0b0; display: flex; align-items: center; gap: 8px; }
+.va-subtitle--system .va-subtitle-text { color: rgba(255,255,255,0.4); font-style: italic; font-size: 14px; }
+
+.va-subtitle-user-dot {
+  width: 8px; height: 8px;
+  background: #ff4d6d;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: va-cta-blink 1s ease-in-out infinite;
+}
+
+/* ── 4. FLOATING LEAD FORM CARD ─────────────────────────────────────────── */
+.va-form-card {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  z-index: 9999;
+  width: 340px;
+  background: rgba(10, 22, 28, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0,200,160,0.25);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+  animation: va-form-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@keyframes va-form-in {
+  from { opacity: 0; transform: scale(0.85) translateY(20px); transform-origin: bottom right; }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.va-form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.va-form-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  color: #00c8a0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.va-form-close {
+  width: 24px; height: 24px;
+  border: none; border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+.va-form-close:hover { background: rgba(255,255,255,0.13); color: white; }
+
+.va-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.va-form-input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #e8f4f2;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.va-form-input::placeholder { color: rgba(255,255,255,0.3); }
+.va-form-input:focus { border-color: rgba(0,200,160,0.4); }
+.va-form-input--full { width: 100%; }
+
+.va-form-error {
+  font-size: 11px; color: #ff6b6b;
+  text-align: center; font-family: 'Inter', sans-serif;
+}
+
+.va-form-submit {
+  background: linear-gradient(135deg, #00c8a0, #009e7e);
+  border: none; border-radius: 8px;
+  padding: 11px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px; font-weight: 700;
+  color: white; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.va-form-submit:hover   { opacity: 0.9; transform: translateY(-1px); }
+.va-form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* Success state */
+.va-form-card--success {
+  align-items: center; text-align: center; gap: 12px;
+}
+.va-form-success-icon  { font-size: 28px; }
+.va-form-success-title { font-family: 'Manrope',sans-serif; font-size: 15px; font-weight: 700; color: #f0faf8; }
+.va-form-success-text  { font-family: 'Inter',sans-serif; font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+/* ── 5. STT NOT SUPPORTED NOTICE ─────────────────────────────────────────── */
+.va-no-stt {
+  position: fixed;
+  top: 80px; left: 50%; transform: translateX(-50%);
+  z-index: 9998;
+  background: rgba(255,180,0,0.12);
+  border: 1px solid rgba(255,180,0,0.3);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: 'Inter',sans-serif;
+  font-size: 12px;
+  color: rgba(255,210,100,0.85);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ── 6. RESPONSIVE ──────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .va-orb { bottom: 16px; right: 16px; }
+  .va-form-card { right: 12px; left: 12px; width: auto; bottom: 90px; }
+  .va-subtitle { padding: 14px 20px 22px; }
+  .va-gate-title { font-size: 26px; }
+}

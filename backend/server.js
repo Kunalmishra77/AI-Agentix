@@ -72,6 +72,9 @@ import authRoutes       from './routes/auth.js';
 import uploadRoutes     from './routes/upload.js';
 import newsletterRoutes from './routes/newsletter.js';
 import contactRoutes    from './routes/contact.js';
+import voiceAgentRoutes from './routes/voiceAgent.js';
+import voiceAgentBookRoutes from './routes/voiceAgentBook.js';
+import voiceAgentOAuthRoutes from './routes/voiceAgentOAuth.js';
 
 app.use('/api/v1/posts',         postRoutes);
 app.use('/api/v1/case-studies',  caseStudyRoutes);
@@ -83,7 +86,10 @@ app.use('/api/v1/awards',        awardRoutes);
 app.use('/api/v1/auth',          authRoutes);
 app.use('/api/v1/upload',        uploadRoutes);
 app.use('/api/v1/newsletter',    newsletterRoutes);
-app.use('/api/v1/contact',       contactLimiter, contactRoutes);
+app.use('/api/v1/contact',           contactLimiter, contactRoutes);
+app.use('/api/v1/voice-agent',       voiceAgentRoutes);
+app.use('/api/v1/voice-agent',       voiceAgentBookRoutes);
+app.use('/api/v1/voice-agent/oauth', voiceAgentOAuthRoutes);
 
 // ── Health ────────────────────────────────────────────────────
 app.get(['/health', '/api/health'], async (_req, res) => {
