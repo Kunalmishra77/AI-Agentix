@@ -262,14 +262,15 @@
 }
 
 @media (max-width: 1080px) {
-  .hero { padding: 140px 0 80px; height: auto; min-height: auto; }
-  .hero-inner { grid-template-columns: 1fr; gap: 80px; text-align: center; }
+  .hero { padding: 120px 0 60px; height: auto; min-height: auto; display: block; }
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; text-align: center; }
   .hero-left { max-width: none; align-items: center; }
   .hero-headline { max-width: 840px; }
   .hero-ctas { justify-content: center; }
   .hero-trust { justify-content: center; }
   .hero-meta { grid-template-columns: repeat(4, 1fr); max-width: 680px; margin: 40px auto 0; }
-  .hero-preview { position: relative; left: auto !important; right: auto !important; bottom: auto; top: auto; width: 100%; max-width: 440px; margin: 48px auto 0; transform: none !important; }
+  .hero-right { transform: none; min-height: auto; margin-top: 40px; }
+  .hero-preview { position: relative; left: auto !important; right: auto !important; bottom: auto; top: auto; width: 100%; max-width: 440px; margin: 32px auto 0; transform: none !important; }
 }
 @media (max-width: 720px) {
   .hero { padding: 120px 0 60px; }
