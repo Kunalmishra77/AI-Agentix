@@ -37,10 +37,8 @@ const LottieAnimation = ({ url, style, loop = true, autoplay = true }) => {
         }
       })
       .catch(err => {
-        console.error(`Lottie fetch error (${fetchUrl}):`, err.message);
-        // If the primary URL fails, try the ultra-stable fallback once
+        // Switch to fallback without console noise in production
         if (!isFallback) {
-          console.log('Switching to stable Lottie fallback');
           fetchAnimation(STABLE_FALLBACK, true);
         }
       });

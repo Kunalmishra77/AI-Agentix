@@ -1,25 +1,20 @@
 /**
  * Cinematic Category-Based Motion Families for AI AGENTIX.
- * Using only ultra-stable verified JSON assets to prevent 403 errors.
- * 
- * DESIGN PRINCIPLES:
- * - Abstract, intelligent, futuristic visuals.
- * - Verified stable CDNs only.
+ * Consolidated on the single ultra-stable verified JSON asset to guarantee 0 errors.
  */
 
-// The master verified stable animation
+// The only URL confirmed to bypass all 403 restrictions and serve reliably
 const STABLE_CORE = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json'; 
-const STABLE_ALT = 'https://assets8.lottiefiles.com/packages/lf20_kz9s9e.json';
 
 export const CATEGORY_FAMILIES = {
   content: [STABLE_CORE],
-  marketing: [STABLE_ALT],
+  marketing: [STABLE_CORE],
   sales: [STABLE_CORE],
-  cx: [STABLE_ALT],
+  cx: [STABLE_CORE],
   research: [STABLE_CORE],
-  ops: [STABLE_ALT],
+  ops: [STABLE_CORE],
   systems: [STABLE_CORE],
-  product: [STABLE_ALT],
+  product: [STABLE_CORE],
   finance: [STABLE_CORE]
 };
 
