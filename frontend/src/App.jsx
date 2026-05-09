@@ -1,7 +1,25 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { 
+  Search, 
+  Edit3, 
+  Rocket, 
+  Zap, 
+  MessageCircle, 
+  GitBranch, 
+  Cpu, 
+  Layers, 
+  Shield, 
+  Star, 
+  ArrowRight,
+  Workflow
+} from 'lucide-react';
 import AgentixIcon from './components/agentix/AgentixIcon.jsx';
+import LottieAnimation from './components/agentix/LottieAnimation.jsx';
+import { getCategoryAnimation, getLottieUrl } from './data/lottieMappings.js';
+import { getRelatedWorkflow, POPULAR_TEMPLATES } from './data/workflowConnections.js';
+import FeaturedSpotlight from './components/agentix/FeaturedSpotlight.jsx';
 import HeroSection from './components/agentix/HeroSection.jsx';
 import CategoryEcosystem from './components/agentix/CategoryEcosystem.jsx';
 import CategoryConstellation from './components/agentix/CategoryConstellation.jsx';
@@ -49,6 +67,33 @@ const allTools = AGENTIX_DATA.categories.flatMap((category) =>
     }))
   )
 );
+
+/**
+ * Intelligent State Management Hook.
+ * Handles recently viewed tools and favorite bookmarks.
+ */
+function useIntelligence() {
+  const [recent, setRecent] = useState(() => JSON.parse(localStorage.getItem('ax_recent') || '[]'));
+  const [favs, setFavorites] = useState(() => JSON.parse(localStorage.getItem('ax_favs') || '[]'));
+
+  const addView = (toolId) => {
+    setRecent(prev => {
+      const next = [toolId, ...prev.filter(id => id !== toolId)].slice(0, 12);
+      localStorage.setItem('ax_recent', JSON.stringify(next));
+      return next;
+    });
+  };
+
+  const toggleFav = (toolId) => {
+    setFavorites(prev => {
+      const next = prev.includes(toolId) ? prev.filter(id => id !== toolId) : [toolId, ...prev];
+      localStorage.setItem('ax_favs', JSON.stringify(next));
+      return next;
+    });
+  };
+
+  return { recent, favs, addView, toggleFav };
+}
 
 const pageCopy = {
   pricing: ['Pricing', 'Start with one workflow. Scale into an AI operating system.', ['Starter', 'Growth', 'Pro', 'Enterprise', 'Custom Build']],
@@ -474,6 +519,8 @@ function HomePage() {
       <Helmet><title>Agentix.ai / The AI Operating System for Modern Business</title></Helmet>
       <HeroSection />
       <CategoryEcosystem />
+      <FeaturedSpotlight />
+      <WorkflowTemplates />
       <CategoryConstellation />
       <WorkflowStrip />
       <ToolTheatre />
@@ -490,15 +537,70 @@ function HomePage() {
   );
 }
 
-function PageHero({ eyebrow, title, text, accent = 'var(--accent)', children }) {
+function WorkflowTemplates() {
+  return (
+    <section className="section" style={{ background: 'rgba(255,255,255,0.01)', borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)' }}>
+      <div className="container-wide">
+        <SectionHead 
+          eyebrow="Workflow Orchestration" 
+          title="Pre-built high-impact templates." 
+          text="Deploy complete end-to-end sequences that bridge multiple domains and tools instantly."
+        />
+        
+        <div className="template-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: 32, marginTop: 56 }}>
+          {POPULAR_TEMPLATES.map(tpl => (
+            <div key={tpl.id} className="template-card card" style={{ padding: 40, display: 'flex', flexDirection: 'column', gap: 24, background: 'var(--bg-2)' }}>
+              <div className="template-head" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ width: 44, height: 44, background: `${tpl.accent}10`, borderRadius: 12, display: 'flex', alignItems: 'center', justifyCenter: 'center', border: `1px solid ${tpl.accent}30` }}>
+                  <AgentixIcon name="workflow" size={20} color={tpl.accent} />
+                </div>
+                <span className="chip" style={{ fontSize: 10, borderColor: tpl.accent, color: tpl.accent }}>TEMPLATE</span>
+              </div>
+              <div>
+                <h3 className="h-3" style={{ fontSize: 22 }}>{tpl.name}</h3>
+                <p style={{ marginTop: 12, color: 'var(--ink-2)', fontSize: 15, lineHeight: 1.6 }}>{tpl.description}</p>
+              </div>
+              <div className="template-steps" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {tpl.steps.map((stepId, i) => {
+                  const t = allTools.find(tool => tool.id === stepId);
+                  return t ? (
+                    <Link key={stepId} to={`/tools/${t.id}`} className="template-step-row" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
+                      <span className="mono" style={{ fontSize: 10, color: 'var(--ink-3)', width: 16 }}>0{i+1}</span>
+                      <span style={{ fontSize: 14, color: 'var(--ink-1)' }}>{t.name}</span>
+                      <AgentixIcon name="arrow" size={10} style={{ marginLeft: 'auto', opacity: 0.3 }} />
+                    </Link>
+                  ) : null;
+                })}
+              </div>
+              <div className="hero-ctas" style={{ marginTop: 'auto', paddingTop: 16 }}>
+                <Link to="/talk-to-agentix" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>Deploy template</Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PageHero({ eyebrow, title, text, accent = 'var(--accent)', children, rightSlot }) {
   return (
     <section className="hero page-hero">
       <div className="hero-bg-glow" />
       <div className="container-wide">
-        <div className="chip" style={{ borderColor: accent, color: accent }}><span className="chip-dot" style={{ background: accent }} />{eyebrow}</div>
-        <h1 className="h-display" style={{ margin: '22px 0 24px', maxWidth: 960 }}>{title}</h1>
-        <p className="body-lg" style={{ maxWidth: 720, lineHeight: 1.6 }}>{text}</p>
-        {children}
+        <div className="page-hero-flex" style={{ display: 'flex', alignItems: 'center', gap: 60, flexWrap: 'wrap' }}>
+          <div className="page-hero-left" style={{ flex: 1, minWidth: 320 }}>
+            <div className="chip" style={{ borderColor: accent, color: accent }}><span className="chip-dot" style={{ background: accent }} />{eyebrow}</div>
+            <h1 className="h-display" style={{ margin: '22px 0 24px' }}>{title}</h1>
+            <p className="body-lg" style={{ maxWidth: 720, lineHeight: 1.6 }}>{text}</p>
+            {children}
+          </div>
+          {rightSlot && (
+            <div className="page-hero-right" style={{ flexShrink: 0 }}>
+              {rightSlot}
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
@@ -585,16 +687,27 @@ function stepDesc(item) {
 function StepCards({ items, accent = 'var(--accent)' }) {
   return (
     <div className="page-card-grid">
-      {items.map((item, index) => (
-        <div key={item} className="solution-card card" style={{ '--accent-cat': accent }}>
-          <div className="solution-head">
-            <span className="solution-dot" style={{ background: accent }} />
-            <span className="solution-cat mono">0{index + 1}</span>
+      {items.map((item, index) => {
+        const tool = allTools.find(t => t.name === item);
+        const lottieUrl = tool ? getLottieUrl(tool.name, tool.categoryId) : null;
+        
+        return (
+          <div key={item} className="solution-card card" style={{ '--accent-cat': accent }}>
+            <div className="solution-head">
+              {lottieUrl ? (
+                <div className="tool-card-anim" style={{ width: 32, height: 32, padding: 4 }}>
+                  <LottieAnimation url={lottieUrl} />
+                </div>
+              ) : (
+                <span className="solution-dot" style={{ background: accent }} />
+              )}
+              <span className="solution-cat mono">0{index + 1}</span>
+            </div>
+            <h3 className="solution-name" style={{ fontSize: 18, marginTop: 12 }}>{item}</h3>
+            <p className="solution-outcome" style={{ marginTop: 8 }}>{stepDesc(item)}</p>
           </div>
-          <h3 className="solution-name" style={{ fontSize: 18, marginTop: 12 }}>{item}</h3>
-          <p className="solution-outcome" style={{ marginTop: 8 }}>{stepDesc(item)}</p>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -834,6 +947,8 @@ function ToolsPage() {
   const [activeCategory, setActiveCategory] = useState(null);
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState(params.get('q') ?? '');
+  const { recent, favs } = useIntelligence();
+  const [visibleCount, setVisibleCount] = useState(8);
   
   const q = searchValue.toLowerCase();
   const tools = useMemo(() => {
@@ -842,6 +957,15 @@ function ToolsPage() {
     if (activeCategory) result = result.filter((tool) => tool.categoryId === activeCategory);
     return result;
   }, [q, activeCategory]);
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setVisibleCount(8);
+  }, [activeCategory, searchValue]);
+
+  const visibleTools = tools.slice(0, visibleCount);
+  const recentTools = recent.map(id => allTools.find(t => t.id === id)).filter(Boolean).slice(0, 4);
+  const savedTools = favs.map(id => allTools.find(t => t.id === id)).filter(Boolean).slice(0, 4);
 
   return (
     <>
@@ -856,7 +980,8 @@ function ToolsPage() {
           </form>
         </div>
       </PageHero>
-      <section className="section" style={{ paddingTop: 0 }}>
+
+      <section className="section">
         <div className="container-wide">
           {/* Category filter tabs */}
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 32 }}>
@@ -869,9 +994,50 @@ function ToolsPage() {
               </button>
             ))}
           </div>
+          
           <div className="tool-grid">
-            {tools.map((tool) => <ToolCard key={tool.id} tool={tool} />)}
+            {visibleTools.map((tool) => <ToolCard key={tool.id} tool={tool} />)}
           </div>
+
+          {/* OS-Grade Grid Capacity Control */}
+          {tools.length > 8 && (
+            <div className="grid-controls-wrap" style={{ marginTop: 80, padding: '40px 0', borderTop: '1px solid rgba(255,255,255,0.03)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24 }}>
+              <div className="mono" style={{ fontSize: 10, color: 'var(--ink-3)', letterSpacing: '0.2em' }}>GRID_CAPACITY_CONTROL</div>
+              
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, background: 'rgba(255,255,255,0.02)', padding: '6px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <button 
+                  className={`btn btn-secondary ${visibleCount <= 8 ? 'disabled' : ''}`} 
+                  onClick={() => setVisibleCount(prev => Math.max(prev - 8, 8))}
+                  disabled={visibleCount <= 8}
+                  style={{ padding: '12px 24px', fontSize: 13, border: 0, background: visibleCount <= 8 ? 'transparent' : 'rgba(255,255,255,0.03)' }}
+                >
+                  <ArrowRight size={14} style={{ transform: 'rotate(180deg)', marginRight: 8 }} /> Reduce Load
+                </button>
+                
+                <div style={{ width: '1px', height: '24px', background: 'rgba(255,255,255,0.1)' }} />
+                
+                <div className="mono" style={{ padding: '0 20px', fontSize: 12, fontWeight: 700, color: 'var(--accent)' }}>
+                  {visibleCount} / {tools.length}
+                </div>
+
+                <div style={{ width: '1px', height: '24px', background: 'rgba(255,255,255,0.1)' }} />
+
+                <button 
+                  className={`btn btn-primary ${visibleCount >= tools.length ? 'disabled' : ''}`} 
+                  onClick={() => setVisibleCount(prev => Math.min(prev + 8, tools.length))}
+                  disabled={visibleCount >= tools.length}
+                  style={{ padding: '12px 24px', fontSize: 13, minWidth: 160, justifyContent: 'center' }}
+                >
+                  Load More tools <ArrowRight size={14} style={{ marginLeft: 8 }} />
+                </button>
+              </div>
+
+              <div style={{ width: '200px', height: '2px', background: 'rgba(255,255,255,0.03)', borderRadius: 1, overflow: 'hidden' }}>
+                 <div style={{ width: `${(visibleCount / tools.length) * 100}%`, height: '100%', background: 'var(--accent)', transition: 'width 0.6s cubic-bezier(0.16, 1, 0.3, 1)' }} />
+              </div>
+            </div>
+          )}
+
           {tools.length === 0 && (
             <div style={{ padding: '60px 0', textAlign: 'center', color: 'var(--ink-3)' }}>
               <p>No tools match your search. <button className="btn btn-secondary" onClick={() => { setActiveCategory(null); navigate('/tools'); }} style={{ marginLeft: 12 }}>Clear filters</button></p>
@@ -909,17 +1075,50 @@ function ToolsPage() {
   );
 }
 
+const CATEGORY_ICONS = {
+  content: Edit3,
+  marketing: Rocket,
+  sales: Zap,
+  cx: MessageCircle,
+  research: Search,
+  ops: GitBranch,
+  systems: Cpu,
+  product: Layers,
+  finance: Shield,
+};
+
 function ToolCard({ tool }) {
   if (!tool) return null;
+  const Icon = CATEGORY_ICONS[tool.categoryId] || Workflow;
+  
   return (
-    <Link to={`/tools/${tool.id}`} className="tool-card card" style={{ '--accent-cat': tool.accent }}>
+    <Link to={`/tools/${tool.id}`} className="tool-card card" style={{ '--accent-cat': tool.accent, '--accent-cat-rgb': tool.accentRgb }}>
       <div className="tool-card-head">
-        <img src={toolIconPath(tool.name)} alt="" className="tool-card-icon" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-        <span className="solution-dot" style={{ background: tool.accent }} />
+        <div className="tool-card-icon-wrap" style={{ 
+          width: '44px', 
+          height: '44px', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
+          borderRadius: '12px',
+          background: `rgba(${tool.accentRgb}, 0.05)`,
+          border: `1px solid rgba(${tool.accentRgb}, 0.1)`,
+          color: tool.accent
+        }}>
+          <Icon size={20} strokeWidth={1.5} />
+        </div>
+        <div className="tool-card-cat-badge">
+          <AgentixIcon name={tool.categoryId} size={14} color={tool.accent} />
+        </div>
       </div>
-      <h3 className="tool-card-name">{tool.name}</h3>
-      <p className="tool-card-sub">{tool.subcategoryName}</p>
-      <div className="tool-card-cta">Open tool <AgentixIcon name="arrow" size={11} /></div>
+      <div className="tool-card-content">
+        <h3 className="tool-card-name">{tool.name}</h3>
+        <p className="tool-card-sub">{tool.subcategoryName}</p>
+      </div>
+      <div className="tool-card-cta">
+        <span>Configure workflow</span>
+        <ArrowRight size={12} />
+      </div>
     </Link>
   );
 }
@@ -927,8 +1126,18 @@ function ToolCard({ tool }) {
 function ToolPage() {
   const { toolId } = useParams();
   const tool = findTool(toolId);
+  const { addView, toggleFav, favs } = useIntelligence();
+
+  useEffect(() => {
+    if (tool) addView(tool.id);
+  }, [toolId]);
+
   if (!tool) return <Navigate to="/404" replace />;
+  
+  const isFav = favs.includes(tool.id);
   const related = allTools.filter((item) => item.id !== tool.id && item.categoryId === tool.categoryId).slice(0, 6);
+  const lottieUrl = getCategoryAnimation(tool.categoryId, tool.id);
+  
   const variant = ['content', 'marketing', 'sales'].includes(tool.categoryId)
     ? 'split'
     : ['cx', 'research', 'systems'].includes(tool.categoryId)
@@ -937,10 +1146,55 @@ function ToolPage() {
   return (
     <>
       <Helmet><title>{tool.name} / Agentix</title></Helmet>
-      <PageHero eyebrow={tool.categoryName} title={tool.name} text={tool.description} accent={tool.accent}>
-        <div className="hero-ctas" style={{ marginTop: 28 }}>
+      <PageHero 
+        eyebrow={tool.categoryName} 
+        title={tool.name} 
+        text={tool.description} 
+        accent={tool.accent}
+        rightSlot={
+          <div className="hero-anim-box" style={{ 
+            width: '100%', 
+            maxWidth: 400, 
+            height: 360, 
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'visible'
+          }}>
+            {/* Cinematic Background Glow */}
+            <div style={{ 
+              position: 'absolute', 
+              width: '100%', 
+              height: '100%', 
+              background: `radial-gradient(circle at center, rgba(${tool.accentRgb}, 0.08), transparent 70%)`, 
+              filter: 'blur(40px)', 
+              zIndex: 0 
+            }} />
+            
+            {/* Category Motion Family Variation */}
+            <LottieAnimation 
+              url={lottieUrl} 
+              style={{ 
+                position: 'relative', 
+                zIndex: 1, 
+                transform: 'scale(1.0)',
+                filter: 'drop-shadow(0 0 15px rgba(255,255,255,0.02))'
+              }} 
+            />
+          </div>
+        }
+      >
+        <div className="hero-ctas" style={{ marginTop: 28, display: 'flex', gap: 12, alignItems: 'center' }}>
           <Link to="/talk-to-agentix" className="btn btn-primary">Try this tool</Link>
-          <Link to={`/category/${tool.categoryId}`} className="btn btn-secondary">View category</Link>
+          <button 
+            className={`btn btn-secondary ${isFav ? 'btn-active' : ''}`}
+            onClick={() => toggleFav(tool.id)}
+            style={{ display: 'flex', gap: 8, alignItems: 'center' }}
+          >
+            <Star size={14} fill={isFav ? tool.accent : 'none'} color={isFav ? tool.accent : 'currentColor'} />
+            {isFav ? 'Saved to workspace' : 'Save tool'}
+          </button>
         </div>
       </PageHero>
       <section className="section">
@@ -957,6 +1211,10 @@ function ToolPage() {
         </div>
       </section>
       <section className="section page-band"><div className="container-wide"><SectionHead eyebrow="What it does" title={`${tool.name} turns intent into reviewed output.`} text={tool.description} /><StepCards accent={tool.accent} items={['Inputs required', 'Outputs produced', 'Constraints', 'Review path']} /></div></section>
+      
+      {/* Intelligent Ecosystem Connectivity Section */}
+      <EcosystemConnectivity tool={tool} />
+
       <WorkflowBand title={`${tool.name} workflow placement.`} accent={tool.accent} />
       <section className="section"><div className="container-wide page-split"><div><SectionHead eyebrow="Integrations" title="Connect the systems this tool touches." /></div><StepCards accent={tool.accent} items={integrations.slice(0, 4).map((item) => item.name)} /></div></section>
       <section className="section page-band"><div className="container-wide"><SectionHead eyebrow="Human handoff" title="Review stays attached to the tool." text="Risk, compliance, legal-adjacent claims, customer escalation, and finance/admin actions route to a person." /></div></section>
@@ -964,6 +1222,80 @@ function ToolPage() {
       <FAQSection title={`${tool.name} questions.`} accent={tool.accent} />
       <FinalCTA />
     </>
+  );
+}
+
+function EcosystemConnectivity({ tool }) {
+  const workflow = getRelatedWorkflow(tool.id);
+  const nextTools = (workflow.next || []).map(id => allTools.find(t => t.id === id)).filter(Boolean);
+  const prevTools = (workflow.prev || []).map(id => allTools.find(t => t.id === id)).filter(Boolean);
+
+  if (nextTools.length === 0 && prevTools.length === 0) return null;
+
+  return (
+    <section className="section" style={{ background: 'var(--bg-1)', borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)', padding: '100px 0' }}>
+      <div className="container-wide">
+        <SectionHead 
+          eyebrow="Ecosystem Context" 
+          title="Intelligent workflow connectivity." 
+          text={`${tool.name} is not an island. It functions as a high-performance node within a connected business operating system, consuming upstream signals and delivering downstream value.`}
+          center
+        />
+        
+        <div className="workflow-connectivity-main" style={{ marginTop: 80, position: 'relative' }}>
+          {/* Visual connection line background */}
+          <div style={{ position: 'absolute', top: '50%', left: '10%', right: '10%', height: '1px', background: 'linear-gradient(90deg, transparent, var(--line), transparent)', zIndex: 0, opacity: 0.3 }} />
+          
+          <div className="workflow-connectivity-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: 60, position: 'relative', zIndex: 1 }}>
+            {prevTools.length > 0 && (
+              <div className="connectivity-col">
+                <div className="eyebrow" style={{ marginBottom: 24, textAlign: 'center', opacity: 0.6 }}>Upstream Logic</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                  {prevTools.map(t => {
+                    const Icon = CATEGORY_ICONS[t.categoryId] || Workflow;
+                    return (
+                      <Link key={t.id} to={`/tools/${t.id}`} className="connectivity-card card" style={{ padding: '28px', display: 'flex', alignItems: 'center', gap: 24, textDecoration: 'none', background: 'var(--bg-2)', border: '1px solid rgba(255,255,255,0.03)' }}>
+                        <div className="connectivity-icon-wrap" style={{ width: '48px', height: '48px', background: `rgba(${t.accentRgb}, 0.04)`, borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid rgba(${t.accentRgb}, 0.1)`, color: t.accent }}>
+                          <Icon size={22} strokeWidth={1.5} />
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--ink-0)', letterSpacing: '-0.01em' }}>{t.name}</div>
+                          <div style={{ fontSize: 12, color: 'var(--ink-3)', marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.05em' }} className="mono">{t.categoryName}</div>
+                        </div>
+                        <div style={{ opacity: 0.3 }}><ArrowRight size={14} style={{ transform: 'rotate(180deg)' }} /></div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {nextTools.length > 0 && (
+              <div className="connectivity-col">
+                <div className="eyebrow" style={{ marginBottom: 24, textAlign: 'center', opacity: 0.6 }}>Downstream Execution</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                  {nextTools.map(t => {
+                    const Icon = CATEGORY_ICONS[t.categoryId] || Workflow;
+                    return (
+                      <Link key={t.id} to={`/tools/${t.id}`} className="connectivity-card card" style={{ padding: '28px', display: 'flex', alignItems: 'center', gap: 24, textDecoration: 'none', background: 'var(--bg-2)', border: '1px solid rgba(255,255,255,0.03)' }}>
+                        <div className="connectivity-icon-wrap" style={{ width: '48px', height: '48px', background: `rgba(${t.accentRgb}, 0.04)`, borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid rgba(${t.accentRgb}, 0.1)`, color: t.accent }}>
+                          <Icon size={22} strokeWidth={1.5} />
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--ink-0)', letterSpacing: '-0.01em' }}>{t.name}</div>
+                          <div style={{ fontSize: 12, color: 'var(--ink-3)', marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.05em' }} className="mono">{t.categoryName}</div>
+                        </div>
+                        <div style={{ color: tool.accent }}><ArrowRight size={14} /></div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
