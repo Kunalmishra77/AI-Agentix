@@ -185,7 +185,7 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
 
 /* Assistant dock */
 .dock-fab {
-  position: fixed; bottom: 32px; right: 32px; z-index: 90;
+  position: fixed; bottom: 32px; left: 32px; z-index: 9990;
   display: inline-flex; align-items: center; gap: 12px;
   padding: 12px 20px 12px 14px;
   background: var(--glass-strong);
@@ -208,7 +208,7 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
 }
 
 .dock-panel {
-  position: fixed; bottom: 32px; right: 32px; z-index: 100;
+  position: fixed; bottom: 32px; left: 32px; z-index: 10000;
   width: 400px; max-width: calc(100vw - 40px);
   background: var(--bg-2);
   border: 1px solid var(--line-strong);
@@ -329,7 +329,7 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
   /* Dock */
   .dock-panel { bottom: 0; right: 0; left: 0; width: 100%; max-width: 100%; border-radius: var(--r-4) var(--r-4) 0 0; }
   .dock-fab-label { display: none; }
-  .dock-fab { gap: 0; padding: 10px 14px; }
+  .dock-fab { bottom: 16px; left: 16px; gap: 0; padding: 10px 14px; }
   /* Category page */
   .cat-page-hero { padding: 90px 0 40px; }
   .cat-page-hero-stats { gap: 16px; }
@@ -707,9 +707,9 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
 /* ─── Scroll-to-top button ───────────────────────────────── */
 .scroll-top-btn {
   position: fixed;
-  bottom: 32px;
+  bottom: 96px;
   left: 32px;
-  z-index: 90;
+  z-index: 9990;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -738,7 +738,7 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
   box-shadow: 0 4px 24px rgba(232,117,32,0.25);
 }
 @media (max-width: 600px) {
-  .scroll-top-btn { bottom: 20px; left: 20px; width: 40px; height: 40px; }
+  .scroll-top-btn { bottom: 84px; left: 20px; width: 40px; height: 40px; }
 }
 
 /* ─── CategoryEcosystem linked to category pages ─────────── */

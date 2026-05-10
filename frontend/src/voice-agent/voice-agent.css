@@ -7,7 +7,7 @@
 .va-gate {
   position: fixed;
   inset: 0;
-  z-index: 10000;
+  z-index: 10002;
   background: radial-gradient(ellipse at 50% 40%, #0b2530 0%, #030c10 65%);
   display: flex;
   flex-direction: column;
@@ -370,7 +370,7 @@
   position: fixed;
   bottom: 100px;
   right: 24px;
-  z-index: 9999;
+  z-index: 10001;
   width: 340px;
   background: rgba(10, 22, 28, 0.95);
   backdrop-filter: blur(20px);
