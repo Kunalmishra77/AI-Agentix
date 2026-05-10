@@ -31,7 +31,7 @@ function Root() {
     <>
       {show && <Preloader fadeOut={fadeOut} />}
       <HelmetProvider>
-        <BrowserRouter>
+        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <App />
         </BrowserRouter>
       </HelmetProvider>

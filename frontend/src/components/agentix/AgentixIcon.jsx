@@ -32,6 +32,9 @@ const AgentixIcon = ({ name, size = 18, color = 'currentColor', strokeWidth = 1.
     case 'globe':     return <svg {...props}><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>;
     case 'code':      return <svg {...props}><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M14 4l-4 16"/></svg>;
     case 'doc':       return <svg {...props}><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/></svg>;
+    case 'star':      return <svg {...props}><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>;
+    case 'star-fill': return <svg {...props} fill={color}><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>;
+    case 'workflow':  return <svg {...props}><path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8-8-3.6-8-8z"/><path d="M12 8l4 4-4 4"/></svg>;
     default:          return null;
   }
 };
