@@ -34,6 +34,7 @@ import TrustLayer from './components/agentix/TrustLayer.jsx';
 import VoiceCTA from './components/agentix/VoiceCTA.jsx';
 import FAQ from './components/agentix/FAQ.jsx';
 import FinalCTA from './components/agentix/FinalCTA.jsx';
+import ToolHeroMedia from './components/agentix/ToolHeroMedia.jsx';
 import AGENTIX_DATA, { TOOL_DESCRIPTIONS } from './data/agentixData.js';
 import toolWorkspaces from './data/toolWorkspaces.js';
 import AboutPage from './pages/site/AboutPage.jsx';
@@ -430,10 +431,23 @@ function AssistantDock() {
   return (
     <>
       {!open && (
-        <button className="dock-fab" onClick={() => setOpen(true)} aria-label="Open assistant">
-          <span className="dock-fab-orb" />
-          <span className="dock-fab-label">Ask Agentix</span>
-          <span className="chip mono" style={{ fontSize: 10, marginLeft: 4 }}>AI</span>
+        <button className="dock-trigger-node" onClick={() => setOpen(true)} aria-label="Open assistant">
+          <div className="dock-node-media">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain'
+              }}
+            >
+              <source src="/assets/ai-chatbot-icon.webm" type="video/webm" />
+              <source src="/assets/AI-Chatbot-Icon.mp4" type="video/mp4" />
+            </video>
+          </div>
         </button>
       )}
       {open && (
@@ -1154,37 +1168,12 @@ function ToolPage() {
         text={tool.description} 
         accent={tool.accent}
         rightSlot={
-          <div className="hero-anim-box" style={{ 
-            width: '100%', 
-            maxWidth: 400, 
-            height: 360, 
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            overflow: 'visible'
-          }}>
-            {/* Cinematic Background Glow */}
-            <div style={{ 
-              position: 'absolute', 
-              width: '100%', 
-              height: '100%', 
-              background: `radial-gradient(circle at center, rgba(${tool.accentRgb}, 0.08), transparent 70%)`, 
-              filter: 'blur(40px)', 
-              zIndex: 0 
-            }} />
-            
-            {/* Category Motion Family Variation */}
-            <LottieAnimation 
-              url={lottieUrl} 
-              style={{ 
-                position: 'relative', 
-                zIndex: 1, 
-                transform: 'scale(1.0)',
-                filter: 'drop-shadow(0 0 15px rgba(255,255,255,0.02))'
-              }} 
-            />
-          </div>
+          <ToolHeroMedia 
+            toolName={tool.name} 
+            categoryId={tool.categoryId} 
+            accentRgb={tool.accentRgb} 
+            lottieUrl={lottieUrl} 
+          />
         }
       >
         <div className="hero-ctas" style={{ marginTop: 28, display: 'flex', gap: 12, alignItems: 'center' }}>
