@@ -3,7 +3,6 @@ import LottieAnimation from './LottieAnimation';
 
 /**
  * STABLE EXPLICIT MAPPING for Marketing & Growth tools.
- * Using professionally cleaned transparent WebM assets.
  */
 const MARKETING_GROWTH_VIDEO_MAP = {
   'Ad Creative Generator': '/categories/marketing-growth/ad-creative-copy-generator.webm',
@@ -81,6 +80,81 @@ const FINANCE_ADMIN_COMPLIANCE_VIDEO_MAP = {
 };
 
 /**
+ * STABLE EXPLICIT MAPPING for Product, Project & Delivery tools.
+ */
+const PRODUCT_PROJECT_DELIVERY_VIDEO_MAP = {
+  'PRD Generator': '/categories/product-project-delivery/prd-generator.webm',
+  'Roadmap Prioritization': '/categories/product-project-delivery/roadmap-prioritization.webm',
+  'Feature Spec Writer': '/categories/product-project-delivery/feature-spec-writer.webm',
+  'Project Plan Builder': '/categories/product-project-delivery/project-plan-builder.webm',
+  'Sprint Planner': '/categories/product-project-delivery/sprint-planner.webm',
+  'Status Report Assistant': '/categories/product-project-delivery/status-report-assistant.webm',
+  'Client Onboarding': '/categories/product-project-delivery/client-onboarding.webm',
+  'Brief & Scope Builder': '/categories/product-project-delivery/brief-scope-builder.webm',
+  'Deliverable Review': '/categories/product-project-delivery/deliverable-review.webm',
+  'Release Notes Generator': '/categories/product-project-delivery/release-notes-generator.webm',
+  'Launch Checklist': '/categories/product-project-delivery/launch-checklist.webm',
+  'Beta Feedback': '/categories/product-project-delivery/beta-feedback.webm',
+};
+
+/**
+ * STABLE EXPLICIT MAPPING for Business Systems & Knowledge tools.
+ */
+const BUSINESS_SYSTEMS_KNOWLEDGE_VIDEO_MAP = {
+  'Internal Knowledge Assistant': '/categories/business-systems-knowledge/internal-knowledge-assistant.webm',
+  'Knowledge Base Builder': '/categories/business-systems-knowledge/knowledge-base-builder.webm',
+  'Policy & SOP Generator': '/categories/business-systems-knowledge/policy-sop-generator.webm',
+  'Lightweight CRM': '/categories/business-systems-knowledge/lightweight-crm.webm',
+  'Modular ERP': '/categories/business-systems-knowledge/modular-erp.webm',
+  'LMS & Training': '/categories/business-systems-knowledge/lms-training.webm',
+  'Integration Layer': '/categories/business-systems-knowledge/integration-layer.webm',
+  'API & Webhook Workflows': '/categories/business-systems-knowledge/api-webhook-workflows.webm',
+  'Data Sync Monitor': '/categories/business-systems-knowledge/data-sync-monitor.webm',
+  'AI Website Builder': '/categories/business-systems-knowledge/ai-website-builder.webm',
+  'Client Portal Builder': '/categories/business-systems-knowledge/client-portal-builder.webm',
+  'Embedded AI Widget': '/categories/business-systems-knowledge/embedded-ai-widget.webm',
+};
+
+/**
+ * STABLE EXPLICIT MAPPING for Operations & Workflow Automation tools.
+ */
+const OPERATIONS_WORKFLOW_VIDEO_MAP = {
+  'Workflow Orchestrator': '/categories/operations-workflow-automation/workflow-orchestrator.webm',
+  'Automation Blueprint': '/categories/operations-workflow-automation/automation-blueprint.webm',
+  'Process Mapping': '/categories/operations-workflow-automation/process-mapping.webm',
+  'Approval Engine': '/categories/operations-workflow-automation/approval-engine.webm',
+  'Task Routing': '/categories/operations-workflow-automation/task-routing.webm',
+  'Internal Follow-Up': '/categories/operations-workflow-automation/internal-follow-up.webm',
+  'Document Extraction': '/categories/operations-workflow-automation/document-extraction.webm',
+  'Form-to-Workflow': '/categories/operations-workflow-automation/form-to-workflow.webm',
+  'Data Cleanup': '/categories/operations-workflow-automation/data-cleanup.webm',
+  'Operations Dashboard': '/categories/operations-workflow-automation/operations-dashboard.webm',
+  'Weekly Business Summary': '/categories/operations-workflow-automation/weekly-business-summary.webm',
+  'SLA & Escalation': '/categories/operations-workflow-automation/sla-escalation.webm',
+};
+
+/**
+ * STABLE EXPLICIT MAPPING for Market Research & Strategy tools.
+ */
+const MARKET_RESEARCH_STRATEGY_VIDEO_MAP = {
+  'Competitor Analyzer': '/categories/market-research-strategy/competitor-analyzer.webm',
+  'Battlecard Builder': '/categories/market-research-strategy/battlecard-builder.webm',
+  'Market Movement Monitor': '/categories/market-research-strategy/market-movement-monitor.webm',
+  'Persona Builder': '/categories/market-research-strategy/persona-builder.webm',
+  'Interview Synthesizer': '/categories/market-research-strategy/interview-synthesizer.webm',
+  'Review Insight Miner': '/categories/market-research-strategy/review-insight-miner.webm',
+  'Pricing Intelligence': '/categories/market-research-strategy/pricing-intelligence.webm',
+  'Offer Research': '/categories/market-research-strategy/offer-research.webm',
+  'Plan Builder': '/categories/market-research-strategy/plan-builder.webm',
+  'Trend Finder': '/categories/market-research-strategy/trend-finder.webm',
+  'Market Gap Finder': '/categories/market-research-strategy/market-gap-finder.webm',
+  'Product Benchmarking': '/categories/market-research-strategy/product-benchmarking.webm',
+  'Research Report Generator': '/categories/market-research-strategy/research-report-generator.webm',
+  'Positioning Assistant': '/categories/market-research-strategy/positioning-assistant.webm',
+  'Decision Brief Builder': '/categories/market-research-strategy/decision-brief-builder.webm',
+};
+
+/**
  * ToolHeroMedia - Dynamic Cinematic Media Handler
  * Optimized for Production Stability and REAL Transparency
  */
@@ -138,6 +212,42 @@ const ToolHeroMedia = ({ toolName, categoryId, accentRgb, lottieUrl }) => {
       }
     } else if (categoryId === 'finance') {
       const path = FINANCE_ADMIN_COMPLIANCE_VIDEO_MAP[tool];
+      if (path) {
+        setMediaUrl(path);
+        setMediaType('video');
+      } else {
+        setMediaType('lottie');
+        setMediaUrl(null);
+      }
+    } else if (categoryId === 'product') {
+      const path = PRODUCT_PROJECT_DELIVERY_VIDEO_MAP[tool];
+      if (path) {
+        setMediaUrl(path);
+        setMediaType('video');
+      } else {
+        setMediaType('lottie');
+        setMediaUrl(null);
+      }
+    } else if (categoryId === 'systems') {
+      const path = BUSINESS_SYSTEMS_KNOWLEDGE_VIDEO_MAP[tool];
+      if (path) {
+        setMediaUrl(path);
+        setMediaType('video');
+      } else {
+        setMediaType('lottie');
+        setMediaUrl(null);
+      }
+    } else if (categoryId === 'ops') {
+      const path = OPERATIONS_WORKFLOW_VIDEO_MAP[tool];
+      if (path) {
+        setMediaUrl(path);
+        setMediaType('video');
+      } else {
+        setMediaType('lottie');
+        setMediaUrl(null);
+      }
+    } else if (categoryId === 'research') {
+      const path = MARKET_RESEARCH_STRATEGY_VIDEO_MAP[tool];
       if (path) {
         setMediaUrl(path);
         setMediaType('video');
