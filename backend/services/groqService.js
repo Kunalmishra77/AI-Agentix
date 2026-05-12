@@ -12,7 +12,10 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
  */
 export async function chatWithGroq(messages) {
   const now = new Date();
-  const dateCtx = `Today is ${now.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}. Current time is ${now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' })} IST. If the user mentions a date or time for the demo that is already in the past, tell them that slot has passed and suggest tomorrow or the day after instead.`;
+  // Use ISO format — works on every Node.js build regardless of ICU/locale support
+  const dateStr = now.toISOString().split('T')[0]; // e.g. 2026-05-12
+  const timeStr = now.toISOString().split('T')[1].substring(0, 5); // e.g. 15:35 UTC
+  const dateCtx = `Today's date is ${dateStr} (YYYY-MM-DD). Current UTC time is ${timeStr}. If the user mentions a demo date or time that is already in the past, tell them that slot has passed and suggest booking for tomorrow or the day after instead.`;
 
   const completion = await groq.chat.completions.create({
     model: 'llama-3.3-70b-versatile',
