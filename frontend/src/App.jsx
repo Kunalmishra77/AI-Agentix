@@ -317,12 +317,38 @@ function AgentScanEffect() {
   }, [active, scanKey]);
 
   useEffect(() => {
-    const handler = () => {
+    const handler = (e) => {
+      const toolId = e?.detail?.toolId || null;
       clearTimeout(timerRef.current);
       setTimeout(() => {
         setScanKey((k) => k + 1);
         setActive(true);
         timerRef.current = setTimeout(() => setActive(false), 3800);
+
+        // After the new page renders, scroll to the relevant section.
+        // If we have a specific toolId, scroll to that card and add a glow ring.
+        // Otherwise just scroll to the tool grid so tools are visible during the scan.
+        setTimeout(() => {
+          let scrollTarget = null;
+
+          if (toolId) {
+            scrollTarget = document.querySelector(`[data-tool-id="${toolId}"]`);
+            if (scrollTarget) {
+              scrollTarget.classList.add('agent-tool-highlight');
+              setTimeout(() => scrollTarget && scrollTarget.classList.remove('agent-tool-highlight'), 3500);
+            }
+          }
+
+          if (!scrollTarget) {
+            scrollTarget = document.querySelector('.tool-grid');
+          }
+
+          if (scrollTarget) {
+            const rect = scrollTarget.getBoundingClientRect();
+            const target = window.scrollY + rect.top - 96;
+            window.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
+          }
+        }, 480);
       }, 80);
     };
     window.addEventListener('agent-navigate', handler);
@@ -1251,7 +1277,7 @@ function ToolCard({ tool }) {
   const Icon = CATEGORY_ICONS[tool.categoryId] || Workflow;
   
   return (
-    <Link to={`/tools/${tool.id}`} className="tool-card card" style={{ '--accent-cat': tool.accent, '--accent-cat-rgb': tool.accentRgb }}>
+    <Link to={`/tools/${tool.id}`} className="tool-card card" data-tool-id={tool.id} style={{ '--accent-cat': tool.accent, '--accent-cat-rgb': tool.accentRgb }}>
       <div className="tool-card-head">
         <div className="tool-card-icon-wrap" style={{ 
           width: '44px', 

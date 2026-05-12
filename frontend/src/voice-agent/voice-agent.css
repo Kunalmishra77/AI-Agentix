@@ -296,6 +296,20 @@
 }
 .va-orb--minimized:hover { opacity: 1; transform: scale(1.1); }
 
+/* Persistent glow ring — idle / minimized only */
+.va-orb-glow-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50px;
+  border: 1px solid rgba(0,200,160,0.35);
+  animation: va-glow-ring-pulse 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes va-glow-ring-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50%       { opacity: 0.8; transform: scale(1.06); box-shadow: 0 0 18px rgba(0,200,160,0.4); }
+}
+
 /* Orb rings (speaking) */
 .va-orb-ring {
   position: absolute;
@@ -372,7 +386,85 @@
   letter-spacing: 0.01em;
 }
 
-/* ── 3. SUBTITLE BAND ───────────────────────────────────────────────────── */
+/* ── ANIMATED FACE ──────────────────────────────────────────────────────── */
+
+/* Eyes — periodic slow blink */
+.va-face-eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: va-eye-blink 5s ease-in-out infinite;
+}
+/* Stagger right eye very slightly so both eyes don't blink in perfect sync */
+.va-face-eye + .va-face-eye { animation-delay: 0.08s; }
+
+@keyframes va-eye-blink {
+  0%, 85%, 100% { transform: scaleY(1); }
+  91%           { transform: scaleY(0.08); }
+}
+
+/* Listening — wide, attentive eyes */
+.va-face-eye--listening {
+  animation: va-eye-wide 0.3s ease forwards;
+}
+@keyframes va-eye-wide {
+  to { transform: scale(1.35); }
+}
+
+/* Thinking — eyes drift slightly to the right */
+.va-face-eye--thinking {
+  animation: va-eye-think 2s ease-in-out infinite;
+}
+@keyframes va-eye-think {
+  0%, 100% { transform: translateX(0); }
+  35%       { transform: translateX(1.8px); }
+  65%       { transform: translateX(-1px); }
+}
+
+/* Speaking mouth waveform bars */
+.va-face-bar {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: va-face-wave 0.55s ease-in-out infinite alternate;
+}
+.va-face-bar--1 { animation-delay: 0s;     animation-duration: 0.50s; }
+.va-face-bar--2 { animation-delay: 0.08s;  animation-duration: 0.45s; }
+.va-face-bar--3 { animation-delay: 0.16s;  animation-duration: 0.60s; }
+.va-face-bar--4 { animation-delay: 0.08s;  animation-duration: 0.45s; }
+.va-face-bar--5 { animation-delay: 0s;     animation-duration: 0.50s; }
+
+@keyframes va-face-wave {
+  from { transform: scaleY(0.25); }
+  to   { transform: scaleY(1.1); }
+}
+
+/* Thinking mouth dots */
+.va-face-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: va-face-dot-pop 1.1s ease-in-out infinite;
+}
+.va-face-dot--2 { animation-delay: 0.22s; }
+.va-face-dot--3 { animation-delay: 0.44s; }
+
+@keyframes va-face-dot-pop {
+  0%, 70%, 100% { transform: scale(0.6); opacity: 0.45; }
+  35%            { transform: scale(1.2); opacity: 1; }
+}
+
+/* ── AGENT TOOL HIGHLIGHT — glow ring on the specific tool card ─────────── */
+.agent-tool-highlight {
+  outline: 2px solid rgba(0, 200, 160, 0.85) !important;
+  outline-offset: 3px;
+  box-shadow:
+    0 0 0 4px rgba(0, 200, 160, 0.15),
+    0 0 32px rgba(0, 200, 160, 0.25) !important;
+  transform: translateY(-3px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, outline 0.2s ease !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── 3. SUBTITLE BAND (kept for reference, not rendered) ───────────────── */
 .va-subtitle {
   position: fixed;
   bottom: 88px;          /* sits above the orb row — doesn't cover orb or chat widget */

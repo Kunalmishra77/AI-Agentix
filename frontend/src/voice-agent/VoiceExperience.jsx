@@ -4,15 +4,14 @@
 
 import { PHASES } from './agentFlow';
 import { useVoiceLoop } from './useVoiceLoop';
-import VoiceGate      from './VoiceGate';
-import VoiceOrb       from './VoiceOrb';
-import SubtitleBand   from './SubtitleBand';
-import VoiceLeadForm  from './VoiceLeadForm';
+import VoiceGate     from './VoiceGate';
+import VoiceOrb      from './VoiceOrb';
+import VoiceLeadForm from './VoiceLeadForm';
 import './voice-agent.css';
 
 export default function VoiceExperience() {
   const {
-    phase, orbState, subtitle, showGate,
+    phase, orbState, showGate,
     showLeadForm, lead, bookingDone, bookingError,
     sttSupported,
     onGateClick, onOrbClick,
@@ -32,8 +31,7 @@ export default function VoiceExperience() {
         <VoiceOrb orbState={orbState} onClick={onOrbClick} />
       )}
 
-      {/* 3 — Subtitle caption band (bottom of screen) */}
-      <SubtitleBand subtitle={subtitle} />
+      {/* 3 — Subtitle band intentionally removed; voice only, no on-screen CC */}
 
       {/* 4 — Floating booking form (appears mid-conversation) */}
       {showLeadForm && (

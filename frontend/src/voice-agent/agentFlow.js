@@ -76,6 +76,44 @@ export function routeFromKeywords(transcript) {
   return null;
 }
 
+// ── Specific tool hint — scroll-to and highlight on category page ─────────────
+// Returns the tool's slug ID (same as slugify(toolName) in App.jsx).
+const KEYWORD_TOOL_HINTS = [
+  [/blog|seo article|blog post|write.*blog|content.*writ/i,       'blog-and-seo-article-writer'],
+  [/ai.*video|make.*video|video.*generat/i,                        'ai-video-generator'],
+  [/social media|instagram|twitter|facebook.*post|social.*sched/i, 'social-media-scheduler'],
+  [/ad copy|product.*copy|sales.*copy|copywriting/i,               'product-and-sales-copy-builder'],
+  [/voiceover|narrat|audio.*content/i,                             'ai-voiceover-studio'],
+  [/cold email|outreach.*email|email.*sequence|follow.up.*email/i, 'cold-email-personalization'],
+  [/find.*lead|lead.*generat|lead.*discov/i,                       'lead-discovery'],
+  [/crm|pipeline.*hygiene|sales.*pipeline.*data/i,                 'crm-sync-and-hygiene'],
+  [/customer.*support|helpdesk|support.*chat|ai.*support/i,        'ai-support-chat'],
+  [/ticket.*rout|ticket.*triage|triage/i,                          'ticket-triage-and-routing'],
+  [/onboard/i,                                                      'onboarding-journey-builder'],
+  [/competitor|battlecard/i,                                        'competitor-analyzer'],
+  [/market.*research|research.*report/i,                           'research-report-generator'],
+  [/automate.*workflow|workflow.*automat|process.*automat/i,       'workflow-orchestrator'],
+  [/invoice|billing.*process/i,                                    'invoice-processing'],
+  [/contract.*review|legal.*review/i,                              'contract-review'],
+  [/knowledge.*base|internal.*wiki|rag.*knowl/i,                   'knowledge-base-builder'],
+  [/landing.*page|opt.in.*page|conversion.*page/i,                 'landing-page-optimizer'],
+  [/seo.*strateg|keyword.*research|topic.*cluster/i,               'seo-topic-cluster-builder'],
+  [/book.*meeting|meeting.*book|schedule.*call|appointment/i,      'meeting-booking-assistant'],
+  [/roadmap|feature.*priorit/i,                                    'roadmap-prioritization'],
+  [/prospect.*outreach|sales.*sequence|multichannel.*outreach/i,   'multichannel-sequence-builder'],
+  [/lead.*enrich|account.*research|lead.*scor/i,                   'lead-enrichment-and-scoring'],
+  [/campaign.*strateg/i,                                           'campaign-strategy-builder'],
+  [/seo.*article|content.*brief/i,                                 'content-brief-tool'],
+  [/churn|customer.*health|retention.*risk/i,                      'churn-risk-assistant'],
+];
+
+export function toolHintFromKeywords(transcript) {
+  for (const [regex, toolId] of KEYWORD_TOOL_HINTS) {
+    if (regex.test(transcript)) return toolId;
+  }
+  return null;
+}
+
 // ── Empty lead shape ──────────────────────────────────────────────────────────
 export function createEmptyLead() {
   return { name: '', email: '', company: '', solutionNeed: '', preferredDate: '', preferredTime: '' };
