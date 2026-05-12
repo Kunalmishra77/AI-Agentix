@@ -334,8 +334,9 @@ function AgentScanEffect() {
           if (toolId) {
             scrollTarget = document.querySelector(`[data-tool-id="${toolId}"]`);
             if (scrollTarget) {
-              scrollTarget.classList.add('agent-tool-highlight');
-              setTimeout(() => scrollTarget && scrollTarget.classList.remove('agent-tool-highlight'), 3500);
+              // Spotlight = strong glow + "AI Recommends" badge via CSS ::before
+              scrollTarget.classList.add('agent-tool-spotlight');
+              setTimeout(() => scrollTarget && scrollTarget.classList.remove('agent-tool-spotlight'), 4500);
             }
           }
 

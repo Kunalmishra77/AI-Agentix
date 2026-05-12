@@ -47,12 +47,14 @@ export function isAgreeingToDemo(transcript) {
   return positives.some((r) => r.test(t));
 }
 
-// ── Parse [NAVIGATE:/path] hint from LLM reply ────────────────────────────────
+// ── Parse [NAVIGATE:/path] and optional [TOOL:slug] hints from LLM reply ─────
 export function parseNavHint(text) {
-  const m = text.match(/\[NAVIGATE:([^\]]+)\]/);
+  const navMatch  = text.match(/\[NAVIGATE:([^\]]+)\]/);
+  const toolMatch = text.match(/\[TOOL:([^\]]+)\]/);
   return {
-    clean: text.replace(/\[NAVIGATE:[^\]]+\]/g, '').trim(),
-    route: m ? m[1] : null,
+    clean:  text.replace(/\[NAVIGATE:[^\]]+\]/g, '').replace(/\[TOOL:[^\]]+\]/g, '').trim(),
+    route:  navMatch  ? navMatch[1].trim()  : null,
+    toolId: toolMatch ? toolMatch[1].trim() : null,
   };
 }
 

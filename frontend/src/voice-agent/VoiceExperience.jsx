@@ -6,12 +6,13 @@ import { PHASES } from './agentFlow';
 import { useVoiceLoop } from './useVoiceLoop';
 import VoiceGate     from './VoiceGate';
 import VoiceOrb      from './VoiceOrb';
+import SubtitleBand  from './SubtitleBand';
 import VoiceLeadForm from './VoiceLeadForm';
 import './voice-agent.css';
 
 export default function VoiceExperience() {
   const {
-    phase, orbState, showGate,
+    phase, orbState, subtitle, showGate,
     showLeadForm, lead, bookingDone, bookingError,
     sttSupported,
     onGateClick, onOrbClick,
@@ -31,7 +32,8 @@ export default function VoiceExperience() {
         <VoiceOrb orbState={orbState} onClick={onOrbClick} />
       )}
 
-      {/* 3 — Subtitle band intentionally removed; voice only, no on-screen CC */}
+      {/* 3 — Glassmorphism caption card (agent speech + user interim transcript) */}
+      {!showGate && <SubtitleBand subtitle={subtitle} />}
 
       {/* 4 — Floating booking form (appears mid-conversation) */}
       {showLeadForm && (

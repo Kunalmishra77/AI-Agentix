@@ -1,10 +1,10 @@
-// ─── SubtitleBand — Full-Width Caption Strip ──────────────────────────────────
+// ─── SubtitleBand — Glassmorphism Caption Card ────────────────────────────────
 import { useEffect, useRef } from 'react';
 
 export default function SubtitleBand({ subtitle }) {
   const prevRef = useRef(null);
 
-  // Keep showing last subtitle briefly when new one comes in
+  // Keep last subtitle briefly visible while new one fades in
   const display = subtitle || prevRef.current;
   useEffect(() => {
     if (subtitle) prevRef.current = subtitle;
@@ -12,16 +12,22 @@ export default function SubtitleBand({ subtitle }) {
 
   if (!display) return null;
 
+  const speaker = display.speaker || 'agent';
+  const showDot = speaker !== 'system';
+
   return (
     <div
-      className={`va-subtitle ${subtitle ? 'va-subtitle--visible' : 'va-subtitle--fade'}`}
+      className={`va-caption ${subtitle ? 'va-caption--visible' : 'va-caption--fade'}`}
       aria-live="polite"
       aria-label="Voice agent caption"
-      id="va-subtitle-band"
     >
-      <div className={`va-subtitle-text va-subtitle--${display.speaker}`}>
-        {display.speaker === 'user' && <span className="va-subtitle-user-dot" />}
-        {display.text}
+      <div className="va-caption-inner">
+        {showDot && (
+          <span className={`va-caption-dot va-caption-dot--${speaker}`} />
+        )}
+        <span className={`va-caption-text va-caption-text--${speaker}`}>
+          {display.text}
+        </span>
       </div>
     </div>
   );

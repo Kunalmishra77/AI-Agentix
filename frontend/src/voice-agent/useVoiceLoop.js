@@ -134,10 +134,10 @@ export function useVoiceLoop() {
 
       try {
         const reply = await sendMessage(transcript);
-        const { clean, route: llmRoute } = parseNavHint(reply);
-        const route = llmRoute || routeFromKeywords(transcript);
+        const { clean, route: llmRoute, toolId: llmToolId } = parseNavHint(reply);
+        const route  = llmRoute  || routeFromKeywords(transcript);
+        const toolId = llmToolId || toolHintFromKeywords(transcript);
         if (route) {
-          const toolId = toolHintFromKeywords(transcript);
           navigate(route);
           window.dispatchEvent(new CustomEvent('agent-navigate', { detail: { route, toolId } }));
         }
