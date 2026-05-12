@@ -53,9 +53,10 @@ export default function VoiceLeadForm({ lead, phase, error, bookingDone, onChang
       <input className="va-form-input va-form-input--full" placeholder="Email address *" type="email"
         value={lead.email} onChange={(e) => onChange('email', e.target.value)} id="va-field-email"/>
       <div className="va-form-row">
-        <input className="va-form-input" placeholder="Preferred date (e.g. May 20)"
+        <input className="va-form-input" type="date"
+          min={new Date().toISOString().split('T')[0]}
           value={lead.preferredDate} onChange={(e) => onChange('preferredDate', e.target.value)} id="va-field-date"/>
-        <input className="va-form-input" placeholder="Time (e.g. 2 PM IST)"
+        <input className="va-form-input" type="time"
           value={lead.preferredTime} onChange={(e) => onChange('preferredTime', e.target.value)} id="va-field-time"/>
       </div>
 

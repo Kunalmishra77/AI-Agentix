@@ -75,6 +75,8 @@ import contactRoutes    from './routes/contact.js';
 import voiceAgentRoutes from './routes/voiceAgent.js';
 import voiceAgentBookRoutes from './routes/voiceAgentBook.js';
 import voiceAgentOAuthRoutes from './routes/voiceAgentOAuth.js';
+import textAgentRoutes from './routes/textAgent.js';
+import demoBookRoutes  from './routes/demoBook.js';
 
 app.use('/api/v1/posts',         postRoutes);
 app.use('/api/v1/case-studies',  caseStudyRoutes);
@@ -90,6 +92,8 @@ app.use('/api/v1/contact',           contactLimiter, contactRoutes);
 app.use('/api/v1/voice-agent',       voiceAgentRoutes);
 app.use('/api/v1/voice-agent',       voiceAgentBookRoutes);
 app.use('/api/v1/voice-agent/oauth', voiceAgentOAuthRoutes);
+app.use('/api/v1/text-agent',        textAgentRoutes);
+app.use('/api/v1/demo',              demoBookRoutes);
 
 // ── Health ────────────────────────────────────────────────────
 app.get(['/health', '/api/health'], async (_req, res) => {
@@ -135,8 +139,11 @@ if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
     })
     .catch(err => {
       console.error('❌  Database connection error:', err.message);
-      // Don't exit in production/vercel, let the app handle errors
-      if (process.env.NODE_ENV !== 'production') process.exit(1);
+      // Still start the server so non-DB routes (like voice chat) can work
+      app.listen(PORT, () => {
+        console.log(`🚀  Server running on port ${PORT} (${process.env.NODE_ENV || 'development'}) (DB offline)`);
+        console.log(`🌐  Frontend: ${process.env.CLIENT_URL || 'http://localhost:5173'}`);
+      });
     });
 }
 
