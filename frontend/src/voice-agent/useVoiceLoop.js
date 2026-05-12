@@ -7,7 +7,7 @@ import { useGroqChat } from './useGroqChat';
 import {
   PHASES, ORB_STATES,
   MSG_WELCOME,
-  shouldShowLeadForm, parseNavHint, createEmptyLead,
+  shouldShowLeadForm, parseNavHint, routeFromKeywords, createEmptyLead,
 } from './agentFlow';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
@@ -122,7 +122,8 @@ export function useVoiceLoop() {
     if (currentPhase === PHASES.GUIDED || currentPhase === PHASES.AWAITING_REPLY) {
       try {
         const reply = await sendMessage(transcript);
-        const { clean, route } = parseNavHint(reply);
+        const { clean, route: llmRoute } = parseNavHint(reply);
+        const route = llmRoute || routeFromKeywords(transcript);
         if (route) {
           navigate(route);
           window.dispatchEvent(new CustomEvent('agent-navigate', { detail: { route } }));
@@ -217,8 +218,7 @@ export function useVoiceLoop() {
 
     if (phaseRef.current === PHASES.BROWSING || phaseRef.current === PHASES.GATE || phaseRef.current === PHASES.COLLECTING) {
       setOrbState(ORB_STATES.SPEAKING);
-      const msg = "Hi there! How can I help you today?";
-      agentSay(msg, PHASES.GUIDED, true);
+      agentSay(MSG_WELCOME, PHASES.GUIDED, true);
     } else {
       // Toggle mic if already in guided mode
       if (

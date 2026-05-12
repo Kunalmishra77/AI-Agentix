@@ -37,9 +37,29 @@ export function shouldShowLeadForm(text) {
 export function parseNavHint(text) {
   const m = text.match(/\[NAVIGATE:([^\]]+)\]/);
   return {
-    clean: text.replace(/\[NAVIGATE:[^\]]+\]/, '').trim(),
+    clean: text.replace(/\[NAVIGATE:[^\]]+\]/g, '').trim(),
     route: m ? m[1] : null,
   };
+}
+
+// ── Keyword-based route fallback (used when LLM omits the NAVIGATE tag) ───────
+const KEYWORD_ROUTES = [
+  [/content|blog|video|creative|copywriting|social media|voiceover|script|write/i, '/category/content'],
+  [/sales|outreach|lead generation|prospect|cold email|crm|pipeline|deal|revenue/i, '/category/sales'],
+  [/marketing|campaign|seo|ad |ads |funnel|landing page|growth hacking|paid media/i, '/category/marketing'],
+  [/customer support|helpdesk|ticket|onboarding|churn|retention|review response/i, '/category/cx'],
+  [/research|competitor|market analysis|persona|trend|pricing intelligence|strategy/i, '/category/research'],
+  [/operations|workflow automation|approval|process mapping|task routing|document extract/i, '/category/ops'],
+  [/knowledge base|internal wiki|erp|client portal|website builder|api integration|data sync/i, '/category/systems'],
+  [/product|roadmap|sprint|delivery|requirements|prd|feature spec/i, '/category/product'],
+  [/finance|invoice|expense|contract|compliance|accounting|receipt/i, '/category/finance'],
+];
+
+export function routeFromKeywords(transcript) {
+  for (const [regex, route] of KEYWORD_ROUTES) {
+    if (regex.test(transcript)) return route;
+  }
+  return null;
 }
 
 // ── Empty lead shape ──────────────────────────────────────────────────────────
