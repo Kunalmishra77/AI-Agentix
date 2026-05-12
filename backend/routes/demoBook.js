@@ -45,12 +45,25 @@ router.post('/book', async (req, res) => {
       const slot    = new Date(slotStr);
       const now     = new Date();
 
+      // Tomorrow at 00:00 local
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(0, 0, 0, 0);
+
+      const sevenDaysOut = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+
       if (!isNaN(slot.getTime())) {
-        if (slot < now) {
+        if (slot < tomorrow) {
           return res.status(400).json({
             success: false,
-            error: { message: 'The selected date and time has already passed. Please choose a future slot.' },
+            error: { message: 'Demos must be booked from tomorrow onwards. Please pick a future date.' },
             pastDate: true,
+          });
+        }
+        if (slot > sevenDaysOut) {
+          return res.status(400).json({
+            success: false,
+            error: { message: 'Please pick a date within the next 7 days so we can confirm your slot quickly.' },
           });
         }
         const threeDaysOut = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);

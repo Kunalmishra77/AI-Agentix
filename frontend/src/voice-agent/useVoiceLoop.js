@@ -7,11 +7,10 @@ import { useGroqChat } from './useGroqChat';
 import {
   PHASES, ORB_STATES,
   MSG_WELCOME,
-  shouldShowLeadForm, parseNavHint, routeFromKeywords, createEmptyLead,
+  shouldShowLeadForm, isAgreeingToDemo, parseNavHint, routeFromKeywords, createEmptyLead,
 } from './agentFlow';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-const SESSION_NAME_KEY = 'va_visitor_name';
 const SESSION_SEEN_KEY = 'va_gate_seen';
 
 export function useVoiceLoop() {
@@ -41,7 +40,7 @@ export function useVoiceLoop() {
 
   // ── Hooks ─────────────────────────────────────────────────────────────────
   const { speak, stop: stopTTS } = useTTS();
-  const { sendMessage, resetHistory } = useGroqChat();
+  const { sendMessage } = useGroqChat();
 
   // ── STT setup (defined after agentSay, so we forward-ref it) ─────────────
   const startSTTRef = useRef(null);
@@ -120,6 +119,17 @@ export function useVoiceLoop() {
 
     // ── Guided LLM conversation ─────────────────────────────────────────
     if (currentPhase === PHASES.GUIDED || currentPhase === PHASES.AWAITING_REPLY) {
+      // If user is agreeing to book, open the form directly — no LLM call needed,
+      // no verbal form-filling. Agent just confirms and lets them type.
+      if (isAgreeingToDemo(transcript)) {
+        setShowLeadForm(true);
+        agentSay(
+          "Perfect! Fill in the form — name, email, and pick a date within the next three days. I'll be right here.",
+          PHASES.COLLECTING, false
+        );
+        return;
+      }
+
       try {
         const reply = await sendMessage(transcript);
         const { clean, route: llmRoute } = parseNavHint(reply);
@@ -128,10 +138,10 @@ export function useVoiceLoop() {
           navigate(route);
           window.dispatchEvent(new CustomEvent('agent-navigate', { detail: { route } }));
         }
-        
+
         if (shouldShowLeadForm(clean)) {
           setShowLeadForm(true);
-          agentSay(clean, PHASES.COLLECTING, false); // Don't auto listen, let them type
+          agentSay(clean, PHASES.COLLECTING, false);
         } else {
           agentSay(clean, PHASES.GUIDED, true);
         }
@@ -268,16 +278,28 @@ export function useVoiceLoop() {
       const slot    = new Date(slotStr);
       const now     = new Date();
 
+      // Tomorrow midnight local time
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(0, 0, 0, 0);
+
+      // 7 days out
+      const sevenDaysOut = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+
       if (!isNaN(slot.getTime())) {
-        if (slot < now) {
-          setBookingError("That date and time has already passed — please pick a future slot.");
+        if (slot < tomorrow) {
+          setBookingError("Demos must be booked from tomorrow onwards — please pick a date starting tomorrow.");
+          return;
+        }
+        if (slot > sevenDaysOut) {
+          setBookingError("Please pick a date within the next 7 days so we can confirm your slot quickly.");
           return;
         }
         // Nudge if booking is more than 3 days out
         const threeDaysOut = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
         if (slot > threeDaysOut) {
           agentSay(
-            "We can hold that slot for you — just a heads-up that we also have openings tomorrow and the day after if you'd like to get started sooner.",
+            "Noted — we also have slots tomorrow and the day after if you'd like to get started sooner.",
             PHASES.COLLECTING, false
           );
         }

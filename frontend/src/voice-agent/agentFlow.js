@@ -23,14 +23,28 @@ export const ORB_STATES = {
 export const MSG_WELCOME =
   "Hey, I'm the Agentix advisor. What's the biggest time sink your team is dealing with right now?";
 
-// ── Detect booking intent in LLM reply ───────────────────────────────────────
+// ── Detect when LLM reply signals form should open ───────────────────────────
 export function shouldShowLeadForm(text) {
   const triggers = [
     'fill in your details', 'just fill in', 'details below',
-    'book a demo', 'schedule a call', 'book that demo',
+    'fill in the form', 'fill out the form', 'book that demo',
     'capture your details', 'collect a few details',
   ];
   return triggers.some((t) => text.toLowerCase().includes(t));
+}
+
+// ── Detect user agreeing to book a demo (from their speech) ──────────────────
+export function isAgreeingToDemo(transcript) {
+  const t = transcript.toLowerCase().trim();
+  const positives = [
+    /^(yes|yeah|yep|yup|sure|okay|ok|alright|absolutely|definitely|of course)[\s.,!]*$/,
+    /\b(yes please|go ahead|let's do it|let's go|book it|schedule it|set it up|sounds good|that works|i'm in|i'm interested)\b/,
+    /\b(book|schedule|set up|arrange).*(demo|call|meeting|appointment)\b/,
+    /\b(demo|call|meeting).*(book|schedule|yes|please|now|today|sure)\b/,
+    /\bhelp me.*(book|schedule|demo)\b/,
+    /\bi (want|would like|need|d like).*(demo|call|book|schedule)\b/,
+  ];
+  return positives.some((r) => r.test(t));
 }
 
 // ── Parse [NAVIGATE:/path] hint from LLM reply ────────────────────────────────
