@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { 
@@ -21,7 +21,7 @@ import { getCategoryAnimation, getLottieUrl } from './data/lottieMappings.js';
 import { getRelatedWorkflow, POPULAR_TEMPLATES } from './data/workflowConnections.js';
 import FeaturedSpotlight from './components/agentix/FeaturedSpotlight.jsx';
 import HeroSection from './components/agentix/HeroSection.jsx';
-import CategoryEcosystem from './components/agentix/CategoryEcosystem.jsx';
+import ArcCarousel from './components/agentix/ArcCarousel.jsx';
 import CategoryConstellation from './components/agentix/CategoryConstellation.jsx';
 import WorkflowStrip from './components/agentix/WorkflowStrip.jsx';
 import ToolTheatre from './components/agentix/ToolTheatre.jsx';
@@ -36,16 +36,17 @@ import FAQ from './components/agentix/FAQ.jsx';
 import FinalCTA from './components/agentix/FinalCTA.jsx';
 import ToolHeroMedia from './components/agentix/ToolHeroMedia.jsx';
 import AGENTIX_DATA, { TOOL_DESCRIPTIONS } from './data/agentixData.js';
-import toolWorkspaces from './data/toolWorkspaces.js';
-import AboutPage from './pages/site/AboutPage.jsx';
-import PricingPage from './pages/site/PricingPage.jsx';
-import ContactPage from './pages/site/ContactPage.jsx';
-import DemoPage from './pages/site/DemoPage.jsx';
-import TalkPage from './pages/site/TalkPage.jsx';
-import FAQPage from './pages/site/FAQPage.jsx';
-import SecurityPage from './pages/site/SecurityPage.jsx';
-import StatusPage from './pages/site/StatusPage.jsx';
-import ChangelogPage from './pages/site/ChangelogPage.jsx';
+// toolWorkspaces loaded dynamically inside ToolWorkspaceVisual — keeps it out of initial bundle
+const AboutPage     = lazy(() => import('./pages/site/AboutPage.jsx'));
+const PricingPage   = lazy(() => import('./pages/site/PricingPage.jsx'));
+const ContactPage   = lazy(() => import('./pages/site/ContactPage.jsx'));
+const DemoPage      = lazy(() => import('./pages/site/DemoPage.jsx'));
+const TalkPage      = lazy(() => import('./pages/site/TalkPage.jsx'));
+const FAQPage       = lazy(() => import('./pages/site/FAQPage.jsx'));
+const SecurityPage  = lazy(() => import('./pages/site/SecurityPage.jsx'));
+const StatusPage    = lazy(() => import('./pages/site/StatusPage.jsx'));
+const ChangelogPage = lazy(() => import('./pages/site/ChangelogPage.jsx'));
+const AdminApp      = lazy(() => import('./admin/AdminApp.jsx'));
 import VoiceExperience from './voice-agent/VoiceExperience.jsx';
 import './styles/ax-tokens.css';
 import './styles/ax-hero.css';
@@ -534,7 +535,7 @@ function HomePage() {
     <>
       <Helmet><title>Agentix.ai / The AI Operating System for Modern Business</title></Helmet>
       <HeroSection />
-      <CategoryEcosystem />
+      <ArcCarousel />
       <FeaturedSpotlight />
       <WorkflowTemplates />
       <CategoryConstellation />
@@ -1291,7 +1292,12 @@ function EcosystemConnectivity({ tool }) {
 }
 
 function ToolWorkspaceVisual({ tool, variant }) {
-  const data = toolWorkspaces[tool.id];
+  const [toolWorkspaces, setToolWorkspaces] = useState(null);
+  useEffect(() => {
+    import('./data/toolWorkspaces.js').then(m => setToolWorkspaces(m.default));
+  }, []);
+
+  const data = toolWorkspaces?.[tool.id];
 
   if (data) {
     return (
@@ -1678,9 +1684,14 @@ function NotFoundPage() {
   );
 }
 
+function PageSkeleton() {
+  return <div style={{ minHeight: '100vh', background: 'var(--ax-bg, #07080A)' }} />;
+}
+
 export default function App() {
   return (
     <Layout>
+      <Suspense fallback={<PageSkeleton />}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/tools" element={<ToolsPage />} />
@@ -1714,9 +1725,12 @@ export default function App() {
         {['privacy', 'privacy-policy', 'terms', 'cookies', 'cookie-preferences', 'accessibility', '500'].map((id) => (
           <Route key={id} path={`/${id}`} element={<InfoPage id={id === 'privacy-policy' ? 'privacy' : id === 'cookies' ? 'cookie-preferences' : id} />} />
         ))}
+        {/* Admin panel — lazy loaded, never bundled with public site */}
+        <Route path="/admin/*" element={<AdminApp />} />
         <Route path="/404" element={<NotFoundPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      </Suspense>
     </Layout>
   );
 }

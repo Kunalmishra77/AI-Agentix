@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import LottieAnimation from './LottieAnimation';
 
 /**
@@ -159,8 +159,16 @@ const MARKET_RESEARCH_STRATEGY_VIDEO_MAP = {
  * Optimized for Production Stability and REAL Transparency
  */
 const ToolHeroMedia = ({ toolName, categoryId, accentRgb, lottieUrl }) => {
+  const canPlayVideo = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    if (window.innerWidth < 768) return false;
+    const conn = navigator.connection;
+    if (conn && (conn.saveData || conn.effectiveType === '2g')) return false;
+    return true;
+  }, []);
+
   const [mediaUrl, setMediaUrl] = useState(null);
-  const [mediaType, setMediaType] = useState('video'); 
+  const [mediaType, setMediaType] = useState('video');
   const videoRef = useRef(null);
 
   const slugify = (value) => {
@@ -296,7 +304,7 @@ const ToolHeroMedia = ({ toolName, categoryId, accentRgb, lottieUrl }) => {
         pointerEvents: 'none'
       }} />
       
-      {mediaType === 'video' && mediaUrl ? (
+      {canPlayVideo && mediaType === 'video' && mediaUrl ? (
         <video
           ref={videoRef}
           autoPlay

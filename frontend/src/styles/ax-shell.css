@@ -752,6 +752,14 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
 /* ─── CategoryEcosystem linked to category pages ─────────── */
 .eco-card-link-wrapper { text-decoration: none; }
 
+/* ─── Safe area handling (iOS notch / Android bar) ──────── */
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.nav {
+  padding-top: max(clamp(10px, 2vw, 16px), env(safe-area-inset-top));
+}
 /* ─── Cinematic Hero Media Animations ────────────────────── */
 @keyframes hero-media-float {
   0%, 100% { transform: translateY(0) scale(1); }

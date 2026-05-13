@@ -183,6 +183,7 @@ export default function PreloaderGate({ onEnter }) {
                 src="/assets/clients/logo.png"
                 alt="Agentix"
                 className="pg-logo"
+                fetchpriority="high"
                 animate={{ width: isAtGate ? '80px' : '140px' }}
                 transition={{ duration: 0.5, ease: EASE_SPRING }}
               />

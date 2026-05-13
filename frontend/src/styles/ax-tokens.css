@@ -51,9 +51,9 @@
   --err: #FF7B7B;
 
   /* Type */
-  --font-display: 'Geist', 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-body: 'Geist', 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-mono: 'Geist Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --font-display: 'Manrope', 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 
   /* Radius */
   --r-1: 6px;
@@ -67,7 +67,7 @@
   --shadow-2: 0 1px 0 rgba(255,255,255,0.05) inset, 0 8px 30px rgba(0,0,0,0.55);
   --shadow-glow: 0 0 0 1px rgba(232,117,32,0.28), 0 12px 60px rgba(232,117,32,0.20);
 
-  /* Spacing scale */
+  /* Spacing scale — component-level (fixed) */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -79,6 +79,24 @@
   --space-12: 56px;
   --space-16: 80px;
   --space-20: 120px;
+
+  /* Spacing scale — page-level (fluid) */
+  --space-page-x:   clamp(16px, 5vw, 48px);
+  --space-section:  clamp(64px, 10vw, 140px);
+  --space-section-sm: clamp(48px, 7vw, 96px);
+
+  /* Fluid typography tokens — single source of truth */
+  --text-display-xl: clamp(2.5rem, 6vw + 1rem, 5.5rem);
+  --text-display-lg: clamp(2rem, 4vw + 0.5rem, 3.75rem);
+  --text-display-md: clamp(1.5rem, 2.5vw + 0.5rem, 2.5rem);
+  --text-display-sm: clamp(1.125rem, 1.5vw + 0.25rem, 1.5rem);
+  --text-base: 15px;
+  --text-sm: 13px;
+  --text-xs: 11px;
+  --text-2xs: 10px;
+  --lh-display: 1.08;
+  --lh-heading: 1.2;
+  --lh-body: 1.55;
 
   /* Container */
   --container: 1280px;
@@ -119,7 +137,13 @@ body {
   -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
 }
 
-/* Type scale */
+/* Fluid display helpers — new system using --text-display-* tokens */
+.t-display-xl { font-size: var(--text-display-xl); line-height: var(--lh-display); font-weight: 600; letter-spacing: -0.035em; font-family: var(--font-display); }
+.t-display-lg { font-size: var(--text-display-lg); line-height: var(--lh-heading); font-weight: 600; letter-spacing: -0.025em; font-family: var(--font-display); }
+.t-display-md { font-size: var(--text-display-md); line-height: var(--lh-heading); font-weight: 500; letter-spacing: -0.02em; font-family: var(--font-display); }
+.t-display-sm { font-size: var(--text-display-sm); line-height: var(--lh-body); font-weight: 500; }
+
+/* Type scale — legacy classes kept for existing usage */
 .h-display {
   font-family: var(--font-display);
   font-weight: 600;
@@ -276,6 +300,14 @@ body {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
+/* Heavy desktop-only animations — disable on mobile to save CPU/battery */
+@media (max-width: 767px) {
+  .animate-on-desktop {
+    animation: none !important;
+    transition: opacity 0.2s ease !important;
+  }
+}
+
 /* ─── Mobile container & section padding ────────────────── */
 @media (max-width: 600px) {
   .container, .container-wide { padding: 0 16px; }
@@ -333,3 +365,33 @@ a { color: inherit; }
   cursor: pointer;
 }
 .interactive-row:hover { background: rgba(255,255,255,0.04); }
+
+/* ─── Canonical breakpoints ─────────────────────────────── */
+/* Use in JS: getComputedStyle(document.documentElement).getPropertyValue('--bp-sm') */
+/* Use in CSS media queries as literal pixel values:
+     xs: 480px  — portrait mobile
+     sm: 768px  — tablet / landscape phone
+     md: 1080px — small laptop
+     lg: 1440px — desktop
+     xl: 1920px — wide display
+*/
+:root {
+  --bp-xs: 480;
+  --bp-sm: 768;
+  --bp-md: 1080;
+  --bp-lg: 1440;
+  --bp-xl: 1920;
+}
+
+/* Responsive container padding */
+@media (max-width: 1080px) {
+  .container, .container-wide { padding: 0 20px; }
+}
+@media (max-width: 768px) {
+  .container, .container-wide { padding: 0 16px; }
+  .section { padding: clamp(56px, 10vw, 100px) 0; }
+  .section-sm { padding: clamp(40px, 8vw, 72px) 0; }
+}
+@media (max-width: 480px) {
+  .container, .container-wide { padding: 0 14px; }
+}

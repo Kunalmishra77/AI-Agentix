@@ -66,16 +66,8 @@ function HeroPreviewCard({ category, active, position }) {
 
 export default function HeroSection() {
   const [activeId, setActiveId] = useState(null);
-  const [rotation, setRotation] = useState(0);
   const cats = AGENTIX_DATA.categories;
   const active = cats.find(c => c.id === activeId);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setRotation(r => (r + 0.0015) % (Math.PI * 2));
-    }, 30);
-    return () => clearInterval(id);
-  }, []);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -165,7 +157,7 @@ export default function HeroSection() {
                 activeId={activeId}
                 onHover={setActiveId}
                 onClick={setActiveId}
-                rotation={rotation}
+                rotation={0}
               />
               <HeroPreviewCard
                 category={active}
@@ -173,6 +165,18 @@ export default function HeroSection() {
                 position={cardPosition}
               />
             </div>
+          </div>
+        </div>
+
+        {/* Lightweight mobile alternative — no SVG, no timers */}
+        <div className="hero-right-mobile">
+          <div className="hero-cat-grid">
+            {cats.map(cat => (
+              <Link key={cat.id} to={`/category/${cat.id}`} className="hero-cat-pill">
+                <span className="hero-cat-dot" style={{ background: cat.accent }} />
+                {cat.short}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
