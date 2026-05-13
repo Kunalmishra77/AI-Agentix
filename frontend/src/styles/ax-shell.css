@@ -186,8 +186,9 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
 /* Assistant dock trigger node */
 .dock-trigger-node {
   position: fixed; 
-  bottom: 32px; /* Base anchor */
-  left: 92px; 
+  bottom: 96px; /* Above Voice Orb */
+  right: 28px; 
+  left: auto;
   z-index: 9990;
   display: flex; align-items: center; justify-content: center;
   width: 64px; height: 64px;
@@ -197,29 +198,38 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
 }
 .dock-trigger-node:hover { transform: scale(1.1) translateY(-4px); }
 
-.dock-node-media {
-  width: 64px; height: 64px; /* Substantially increased for prominent visibility (1.45x of arrow button) */
+.dock-node-icon-wrapper {
+  width: 56px; height: 56px;
   display: flex; align-items: center; justify-content: center;
   position: relative;
-  overflow: visible;
-  filter: drop-shadow(0 0 15px rgba(var(--accent-rgb), 0.2));
-  transition: filter 0.4s ease;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, rgba(var(--accent-rgb), 0.7) 100%);
+  box-shadow: 0 4px 20px rgba(var(--accent-rgb), 0.4);
 }
-.dock-trigger-node:hover .dock-node-media {
-  filter: drop-shadow(0 0 30px rgba(var(--accent-rgb), 0.6));
+.dock-node-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--accent-rgb), 0.5);
+  animation: ax-pulse-ring 2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  pointer-events: none;
 }
-.dock-node-media::after {
-  content: ""; position: absolute; inset: -12px;
-  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.2), transparent 70%);
-  filter: blur(16px); z-index: -1;
-  opacity: 0.6; transition: opacity 0.4s ease;
+.dock-node-ring-2 {
+  inset: -12px;
+  animation-delay: 0.3s;
+  border-color: rgba(var(--accent-rgb), 0.2);
 }
-.dock-trigger-node:hover .dock-node-media::after {
-  opacity: 1;
+@keyframes ax-pulse-ring {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
+.dock-node-core {
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2;
 }
 
 .dock-panel {
-  position: fixed; bottom: 32px; left: 32px; z-index: 10000;
+  position: fixed; bottom: 96px; right: 28px; left: auto; z-index: 10000;
   width: 400px; max-width: calc(100vw - 40px);
   background: var(--bg-2);
   border: 1px solid var(--line-strong);
@@ -237,13 +247,33 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
 }
 .dock-close { width: 28px; height: 28px; border: 0; background: transparent; color: var(--ink-2); cursor: pointer; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
 .dock-close:hover { color: var(--ink-0); background: rgba(255,255,255,0.06); }
-.dock-body { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.dock-body { padding: 24px; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; max-height: 400px; }
+.dock-chat-history { scroll-behavior: smooth; }
 .dock-msg {
-  padding: 16px 18px;
-  background: var(--bg-3); border: 1px solid var(--line);
+  padding: 12px 16px;
   border-radius: 14px;
-  font-size: 14px; line-height: 1.6; color: var(--ink-1);
+  font-size: 14px; line-height: 1.5; color: var(--ink-1);
+  max-width: 85%;
+  word-wrap: break-word;
 }
+.dock-msg-assistant {
+  background: var(--bg-3); border: 1px solid var(--line);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+.dock-msg-user {
+  background: rgba(var(--accent-rgb), 0.15); border: 1px solid rgba(var(--accent-rgb), 0.3);
+  color: var(--ink-0);
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.dock-msg-loading span {
+  animation: dock-dot-blink 1.4s infinite both;
+  font-size: 18px; line-height: 1;
+}
+.dock-msg-loading span:nth-child(2) { animation-delay: 0.2s; }
+.dock-msg-loading span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes dock-dot-blink { 0% { opacity: 0.2; } 20% { opacity: 1; } 100% { opacity: 0.2; } }
 .dock-suggest { display: flex; flex-wrap: wrap; gap: 8px; }
 .dock-chip {
   padding: 8px 14px; font-size: 13px;
@@ -352,7 +382,7 @@ body[data-density="spacious"] .section { padding: clamp(80px, 12vw, 160px) 0; }
   .page-card-grid { grid-template-columns: 1fr; }
   /* Scroll-to-top & AI Node Side-by-side */
   .scroll-top-btn { bottom: 20px; left: 20px; width: 40px; height: 40px; }
-  .dock-trigger-node { bottom: 20px; left: 76px; width: 48px; height: 48px; }
+  .dock-trigger-node { bottom: 84px; right: 16px; left: auto; width: 48px; height: 48px; }
   .dock-node-media { width: 40px; height: 40px; }
 }
 

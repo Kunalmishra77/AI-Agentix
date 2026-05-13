@@ -6,24 +6,24 @@ import { useTTS } from './useTTS';
 import { useGroqChat } from './useGroqChat';
 import {
   PHASES, ORB_STATES,
-  MSG_WELCOME, MSG_CHOICE, MSG_GUIDE_START, MSG_BROWSE_START, MSG_UNCLEAR,
-  extractName, detectGuideIntent, shouldShowLeadForm, parseNavHint, createEmptyLead,
+  MSG_WELCOME,
+  shouldShowLeadForm, isAgreeingToDemo,
+  parseNavHint, routeFromKeywords, toolHintFromKeywords,
+  createEmptyLead,
 } from './agentFlow';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-const SESSION_NAME_KEY = 'va_visitor_name';
 const SESSION_SEEN_KEY = 'va_gate_seen';
 
 export function useVoiceLoop() {
   const navigate = useNavigate();
 
   // ── Core state ────────────────────────────────────────────────────────────
-  const [phase, setPhase]         = useState(PHASES.GATE);
-  const [orbState, setOrbState]   = useState(ORB_STATES.IDLE);
-  const [subtitle, setSubtitle]   = useState(null); // { text, speaker:'agent'|'user'|'system' }
-  const [visitorName, setVisitorName] = useState(
-    () => sessionStorage.getItem(SESSION_NAME_KEY) || ''
+  const [phase, setPhase] = useState(() =>
+    sessionStorage.getItem(SESSION_SEEN_KEY) ? PHASES.BROWSING : PHASES.GATE
   );
+  const [orbState, setOrbState]   = useState(ORB_STATES.IDLE);
+  const [subtitle, setSubtitle]   = useState(null);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [lead, setLead]           = useState(createEmptyLead());
   const [bookingDone, setBookingDone] = useState(false);
@@ -32,19 +32,26 @@ export function useVoiceLoop() {
   const phaseRef = useRef(phase);
   useEffect(() => { phaseRef.current = phase; }, [phase]);
 
-  const visitorNameRef = useRef(visitorName);
-  useEffect(() => { visitorNameRef.current = visitorName; }, [visitorName]);
+  const orbStateRef = useRef(orbState);
+  useEffect(() => { orbStateRef.current = orbState; }, [orbState]);
+
+  // True once the first real conversation exchange starts — prevents
+  // replaying the welcome message when user pauses and re-taps mid-session.
+  const conversationStartedRef = useRef(false);
+
+  // Set by onOrbClick "stop" path so onSTTEnd doesn't fire the no-response nudge.
+  const intentionalStopRef = useRef(false);
 
   // Form idle timers
   const formIdleTimerRef = useRef(null);
 
   // ── Hooks ─────────────────────────────────────────────────────────────────
   const { speak, stop: stopTTS } = useTTS();
-  const { sendMessage, resetHistory } = useGroqChat();
+  const { sendMessage } = useGroqChat();
 
-  // ── STT setup (defined after agentSay, so we forward-ref it) ─────────────
+  // ── STT setup (forward-ref so agentSay can call it) ───────────────────────
   const startSTTRef = useRef(null);
-  const stopSTTRef = useRef(null);
+  const stopSTTRef  = useRef(null);
 
   // ── Core: agent speaks, then optionally auto-activates mic ───────────────
   const agentSay = useCallback((text, nextPhase, autoListen = false) => {
@@ -57,12 +64,12 @@ export function useVoiceLoop() {
         setSubtitle(null);
         if (autoListen && startSTTRef.current) {
           setTimeout(() => {
+            intentionalStopRef.current = false;
             setOrbState(ORB_STATES.LISTENING);
             setSubtitle({ text: 'Listening…', speaker: 'system' });
             startSTTRef.current();
           }, 450);
         } else {
-          // If we are collecting a lead, keep orb idle, wait for typing
           if (nextPhase === PHASES.COLLECTING || nextPhase === PHASES.BROWSING) {
             setOrbState(nextPhase === PHASES.BROWSING ? ORB_STATES.MINIMIZED : ORB_STATES.IDLE);
           } else {
@@ -82,13 +89,10 @@ export function useVoiceLoop() {
     clearTimeout(formIdleTimerRef.current);
     if (phaseRef.current === PHASES.COLLECTING && showLeadForm) {
       formIdleTimerRef.current = setTimeout(() => {
-        // 15 seconds of no typing
-        agentSay("Just checking in — let me know if you need any help filling out those details.", PHASES.COLLECTING, false);
-        
-        // Second timer for abandonment
+        agentSay("Just checking in — let me know if you need help filling that out.", PHASES.COLLECTING, false);
         formIdleTimerRef.current = setTimeout(() => {
           setShowLeadForm(false);
-          agentSay("Looks like you stepped away. I'm right here when you're ready to continue.", PHASES.BROWSING, false);
+          agentSay("Looks like you stepped away. I'm right here when you're ready.", PHASES.BROWSING, false);
           setTimeout(() => setOrbState(ORB_STATES.MINIMIZED), 2000);
         }, 15000);
       }, 15000);
@@ -104,7 +108,6 @@ export function useVoiceLoop() {
     return () => clearTimeout(formIdleTimerRef.current);
   }, [showLeadForm, phase, resetFormTimer]);
 
-
   // ── STT callbacks ─────────────────────────────────────────────────────────
   const onSTTInterim = useCallback((text) => {
     setSubtitle({ text, speaker: 'user' });
@@ -117,49 +120,31 @@ export function useVoiceLoop() {
 
     const currentPhase = phaseRef.current;
 
-    // ── Name capture ────────────────────────────────────────────────────
-    if (currentPhase === PHASES.AWAITING_NAME) {
-      const name = extractName(transcript);
-      setVisitorName(name);
-      visitorNameRef.current = name;
-      sessionStorage.setItem(SESSION_NAME_KEY, name);
-      setTimeout(() => {
-        agentSay(MSG_CHOICE(name), PHASES.AWAITING_CHOICE, true);
-      }, 400);
-      return;
-    }
-
-    // ── Guide-or-browse choice ──────────────────────────────────────────
-    if (currentPhase === PHASES.AWAITING_CHOICE) {
-      const wants = detectGuideIntent(transcript);
-      if (wants === null) {
-        agentSay(MSG_UNCLEAR, PHASES.AWAITING_CHOICE, true);
-        return;
-      }
-      const name = visitorNameRef.current;
-      if (wants) {
-        setTimeout(() => {
-          agentSay(MSG_GUIDE_START(name), PHASES.GUIDED, true);
-        }, 300);
-      } else {
-        agentSay(MSG_BROWSE_START(name), PHASES.BROWSING, false);
-        setTimeout(() => setOrbState(ORB_STATES.MINIMIZED), 2000);
-      }
-      return;
-    }
-
     // ── Guided LLM conversation ─────────────────────────────────────────
     if (currentPhase === PHASES.GUIDED || currentPhase === PHASES.AWAITING_REPLY) {
+      // User agreed to book — open form directly, no verbal form-filling
+      if (isAgreeingToDemo(transcript)) {
+        setShowLeadForm(true);
+        agentSay(
+          "Perfect! Fill in the form — name, email, and a date within the next three days. I'll be right here.",
+          PHASES.COLLECTING, false
+        );
+        return;
+      }
+
       try {
-        const nameCtx = visitorNameRef.current
-          ? ` [Visitor's name: ${visitorNameRef.current}]` : '';
-        const reply = await sendMessage(transcript + nameCtx);
-        const { clean, route } = parseNavHint(reply);
-        if (route) navigate(route);
-        
+        const reply = await sendMessage(transcript);
+        const { clean, route: llmRoute, toolId: llmToolId } = parseNavHint(reply);
+        const route  = llmRoute  || routeFromKeywords(transcript);
+        const toolId = llmToolId || toolHintFromKeywords(transcript);
+        if (route) {
+          navigate(route);
+          window.dispatchEvent(new CustomEvent('agent-navigate', { detail: { route, toolId } }));
+        }
+
         if (shouldShowLeadForm(clean)) {
           setShowLeadForm(true);
-          agentSay(clean, PHASES.COLLECTING, false); // Don't auto listen, let them type
+          agentSay(clean, PHASES.COLLECTING, false);
         } else {
           agentSay(clean, PHASES.GUIDED, true);
         }
@@ -167,14 +152,12 @@ export function useVoiceLoop() {
         agentSay("I'm having a quick issue — give me just a moment.", PHASES.GUIDED, true);
       }
     }
-    
+
     // ── Interacting during form collection ──────────────────────────────
     if (currentPhase === PHASES.COLLECTING) {
-      clearTimeout(formIdleTimerRef.current); // Stop idle timers if they talk
+      clearTimeout(formIdleTimerRef.current);
       try {
-        const nameCtx = visitorNameRef.current
-          ? ` [Visitor's name: ${visitorNameRef.current}]` : '';
-        const reply = await sendMessage(transcript + nameCtx);
+        const reply = await sendMessage(transcript);
         const { clean } = parseNavHint(reply);
         agentSay(clean, PHASES.COLLECTING, false);
       } catch {
@@ -184,14 +167,28 @@ export function useVoiceLoop() {
   }, [agentSay, sendMessage, navigate]);
 
   const onSTTStart = useCallback(() => {
+    intentionalStopRef.current = false;
     setOrbState(ORB_STATES.LISTENING);
     setSubtitle({ text: 'Listening…', speaker: 'system' });
   }, []);
 
+  // Called when STT stops with NO speech detected (no-speech or watchdog timeout).
+  // If user intentionally stopped, skip the nudge.
   const onSTTEnd = useCallback(() => {
-    if (phaseRef.current !== PHASES.BROWSING) setSubtitle(null);
+    setSubtitle(null);
     setOrbState((prev) => prev === ORB_STATES.LISTENING ? ORB_STATES.IDLE : prev);
-  }, []);
+
+    if (
+      !intentionalStopRef.current &&
+      (phaseRef.current === PHASES.GUIDED || phaseRef.current === PHASES.AWAITING_REPLY)
+    ) {
+      agentSay(
+        "I didn't catch that — I'm right here. Just tap me when you're ready.",
+        PHASES.BROWSING, false
+      );
+      setTimeout(() => setOrbState(ORB_STATES.MINIMIZED), 2500);
+    }
+  }, [agentSay]);
 
   const onSTTError = useCallback((err) => {
     setOrbState(ORB_STATES.IDLE);
@@ -202,57 +199,90 @@ export function useVoiceLoop() {
   }, [agentSay]);
 
   const { start: startSTT, stop: stopSTT, isSupported: sttSupported } = useSTT({
-    onResult: onSTTResult,
+    onResult:  onSTTResult,
     onInterim: onSTTInterim,
-    onStart:  onSTTStart,
-    onEnd:    onSTTEnd,
-    onError:  onSTTError,
+    onStart:   onSTTStart,
+    onEnd:     onSTTEnd,
+    onError:   onSTTError,
   });
 
-  // Wire STT methods into refs so agentSay/orbClick can call them
-  useEffect(() => { 
-    startSTTRef.current = startSTT; 
-    stopSTTRef.current = stopSTT;
-    
-    // DEBUG HOOK FOR AUTOMATED TESTING
+  useEffect(() => {
+    startSTTRef.current = startSTT;
+    stopSTTRef.current  = stopSTT;
     window.__simulateSTTResult = onSTTResult;
   }, [startSTT, stopSTT, onSTTResult]);
 
-  // ── Gate click — starts the whole experience ──────────────────────────────
+  // ── Gate click — first-time entry ─────────────────────────────────────────
   const onGateClick = useCallback(() => {
     sessionStorage.setItem(SESSION_SEEN_KEY, '1');
+    conversationStartedRef.current = true;
     setPhase(PHASES.GREETING);
-    // Small delay so the gate fade-out animation plays first
     setTimeout(() => {
-      agentSay(MSG_WELCOME, PHASES.AWAITING_NAME, true);
+      agentSay(MSG_WELCOME, PHASES.GUIDED, true);
     }, 600);
   }, [agentSay]);
 
-  // ── Orb click — robust resume ─────────────────────────────────────────────
+  // ── Orb click — pause / resume ────────────────────────────────────────────
   const onOrbClick = useCallback(() => {
+    // Tap while active → STOP
+    if (
+      orbStateRef.current === ORB_STATES.LISTENING ||
+      orbStateRef.current === ORB_STATES.SPEAKING  ||
+      orbStateRef.current === ORB_STATES.THINKING
+    ) {
+      intentionalStopRef.current = true;
+      stopTTS();
+      if (stopSTTRef.current) stopSTTRef.current();
+      setOrbState(ORB_STATES.IDLE);
+      setSubtitle(null);
+      return;
+    }
+
     stopTTS();
     if (stopSTTRef.current) stopSTTRef.current();
 
     if (phaseRef.current === PHASES.BROWSING || phaseRef.current === PHASES.GATE || phaseRef.current === PHASES.COLLECTING) {
-      const name = visitorNameRef.current;
-      setOrbState(ORB_STATES.SPEAKING);
-      const msg = name
-        ? `Welcome back, ${name}! How can I help you?`
-        : "Hi there! How can I help you?";
-      agentSay(msg, PHASES.GUIDED, true);
-    } else {
-      // Toggle mic if already in guided mode
-      if (phaseRef.current === PHASES.GUIDED || phaseRef.current === PHASES.AWAITING_REPLY) {
-        setOrbState(ORB_STATES.LISTENING);
-        setSubtitle({ text: 'Listening…', speaker: 'system' });
-        if (startSTTRef.current) startSTTRef.current();
+      if (conversationStartedRef.current) {
+        // Mid-session resume — skip the intro, just restart mic directly
+        phaseRef.current = PHASES.GUIDED;
+        setPhase(PHASES.GUIDED);
+        intentionalStopRef.current = false;
+        setTimeout(() => {
+          setOrbState(ORB_STATES.LISTENING);
+          if (startSTTRef.current) startSTTRef.current();
+        }, 120);
+      } else {
+        // First ever click — play welcome
+        conversationStartedRef.current = true;
+        agentSay(MSG_WELCOME, PHASES.GUIDED, true);
       }
+    } else if (phaseRef.current === PHASES.GUIDED || phaseRef.current === PHASES.AWAITING_REPLY) {
+      // Already in guided — toggle mic
+      intentionalStopRef.current = false;
+      setOrbState(ORB_STATES.LISTENING);
+      setSubtitle({ text: 'Listening…', speaker: 'system' });
+      if (startSTTRef.current) startSTTRef.current();
     }
   }, [agentSay, stopTTS]);
 
+  // External "open voice agent" signal (nav Talk button, etc.)
+  useEffect(() => {
+    const handler = () => {
+      const cur = phaseRef.current;
+      if (cur === PHASES.GATE) {
+        sessionStorage.setItem(SESSION_SEEN_KEY, '1');
+        phaseRef.current = PHASES.BROWSING;
+        setPhase(PHASES.BROWSING);
+      }
+      setTimeout(() => onOrbClick(), 80);
+    };
+    window.addEventListener('open-voice-agent', handler);
+    return () => window.removeEventListener('open-voice-agent', handler);
+  }, [onOrbClick]);
+
   // ── Lead form handlers ────────────────────────────────────────────────────
   const updateLead = useCallback((field, value) => {
-    resetFormTimer(); // reset idle timer when they type
+    resetFormTimer();
     setLead((prev) => ({ ...prev, [field]: value }));
   }, [resetFormTimer]);
 
@@ -261,22 +291,59 @@ export function useVoiceLoop() {
       setBookingError('Please enter your name and email.');
       return;
     }
+
+    // ── Date validation (Layer 2 — frontend) ──────────────────────────────
+    if (lead.preferredDate) {
+      const slotStr = `${lead.preferredDate}T${lead.preferredTime || '09:00'}`;
+      const slot    = new Date(slotStr);
+      const now     = new Date();
+
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(0, 0, 0, 0);
+
+      const sevenDaysOut = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+      if (!isNaN(slot.getTime())) {
+        if (slot < tomorrow) {
+          setBookingError("Demos must be booked from tomorrow onwards — please pick a future date.");
+          return;
+        }
+        if (slot > sevenDaysOut) {
+          setBookingError("Please pick a date within the next 7 days so we can confirm your slot quickly.");
+          return;
+        }
+        const threeDaysOut = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
+        if (slot > threeDaysOut) {
+          agentSay(
+            "Noted — we also have slots tomorrow and the day after if you'd like to get started sooner.",
+            PHASES.COLLECTING, false
+          );
+        }
+      }
+    }
+
     clearTimeout(formIdleTimerRef.current);
     setBookingError('');
     setPhase(PHASES.BOOKING);
     try {
-      const res = await fetch(`${API_BASE}/api/v1/voice-agent/book`, {
+      const res = await fetch(`${API_BASE}/api/v1/demo/book`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...lead, solutionNeed: lead.solutionNeed || visitorNameRef.current }),
+        body: JSON.stringify({ ...lead, source: 'voice' }),
       });
-      if (!res.ok) throw new Error();
+      const data = await res.json();
+      if (!res.ok) {
+        setBookingError(data?.error?.message || 'Booking failed. Please try again.');
+        setPhase(PHASES.GUIDED);
+        return;
+      }
       setBookingDone(true);
-      setTimeout(() => setShowLeadForm(false), 5000); // hide success card after 5s
+      setTimeout(() => setShowLeadForm(false), 5000);
       setPhase(PHASES.DONE);
-      const firstName = lead.name.split(' ')[0];
+      const firstName = lead.name.split(' ')[0] || 'there';
       agentSay(
-        `You're all set, ${firstName}! A calendar invite is on its way to ${lead.email}. The AGENTiX team will confirm your slot. It was great speaking with you today.`,
+        `You're all set, ${firstName}! A calendar invite is on its way to ${lead.email}. The AGENTiX team will confirm your slot shortly.`,
         PHASES.DONE, false
       );
       setTimeout(() => setOrbState(ORB_STATES.MINIMIZED), 3000);
@@ -286,15 +353,13 @@ export function useVoiceLoop() {
     }
   }, [lead, agentSay]);
 
-  // ── Whether gate should show ──────────────────────────────────────────────
   const showGate = phase === PHASES.GATE;
 
   return {
-    phase, orbState, subtitle, visitorName,
+    phase, orbState, subtitle,
     showGate, showLeadForm, lead, bookingDone, bookingError,
     sttSupported,
     onGateClick, onOrbClick,
     updateLead, submitBooking,
   };
 }
-

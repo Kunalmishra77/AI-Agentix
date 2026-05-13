@@ -48,6 +48,8 @@ const StatusPage    = lazy(() => import('./pages/site/StatusPage.jsx'));
 const ChangelogPage = lazy(() => import('./pages/site/ChangelogPage.jsx'));
 const AdminApp      = lazy(() => import('./admin/AdminApp.jsx'));
 import VoiceExperience from './voice-agent/VoiceExperience.jsx';
+import { useGroqTextChat } from './voice-agent/useGroqTextChat.js';
+import { useRef } from 'react';
 import './styles/ax-tokens.css';
 import './styles/ax-hero.css';
 import './styles/ax-ecosystem.css';
@@ -231,6 +233,8 @@ function slugify(value) {
   return value.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
+const openVoiceAgent = () => window.dispatchEvent(new CustomEvent('open-voice-agent'));
+
 function unslug(value) {
   return value.split('-').map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(' ');
 }
@@ -270,17 +274,138 @@ function ScrollTopBtn() {
   );
 }
 
+// ── Agent page-scan effect — Comet-style full-window aura ────────────────────
+// All four edges glow simultaneously. rAF drives opacity so no CSS media query
+// can silence it. Fires whenever the voice/text agent navigates to a new page.
+const CORNER_STYLE_BASE = {
+  position: 'fixed', width: 22, height: 22, zIndex: 99999,
+  borderColor: 'rgba(0,200,160,0.9)', borderStyle: 'solid',
+};
+
+function AgentScanEffect() {
+  const [active,  setActive]  = useState(false);
+  const [scanKey, setScanKey] = useState(0);
+  const containerRef = useRef(null);
+  const animRef      = useRef(null);
+  const timerRef     = useRef(null);
+
+  // Pulse curve: quick fade-in → breathe once → fade-out
+  useEffect(() => {
+    if (!active) return;
+    const el = containerRef.current;
+    if (!el) return;
+
+    let start = null;
+    const DURATION = 3200;
+
+    function pulse(t) {
+      if (t < 0.08) return t / 0.08;                            // fast fade-in
+      if (t < 0.42) return 1;                                   // hold bright
+      if (t < 0.56) return 1 - ((t - 0.42) / 0.14) * 0.35;    // dip (breathe)
+      if (t < 0.70) return 0.65 + ((t - 0.56) / 0.14) * 0.35; // recover
+      return Math.max(0, 1 - (t - 0.70) / 0.30);               // fade-out
+    }
+
+    function tick(ts) {
+      if (!start) start = ts;
+      const t = Math.min((ts - start) / DURATION, 1);
+      el.style.opacity = pulse(t);
+      if (t < 1) animRef.current = requestAnimationFrame(tick);
+    }
+
+    animRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(animRef.current);
+  }, [active, scanKey]);
+
+  useEffect(() => {
+    const handler = (e) => {
+      const toolId = e?.detail?.toolId || null;
+      clearTimeout(timerRef.current);
+      setTimeout(() => {
+        setScanKey((k) => k + 1);
+        setActive(true);
+        timerRef.current = setTimeout(() => setActive(false), 3800);
+
+        // After the new page renders, scroll to the relevant section.
+        // If we have a specific toolId, scroll to that card and add a glow ring.
+        // Otherwise just scroll to the tool grid so tools are visible during the scan.
+        setTimeout(() => {
+          let scrollTarget = null;
+
+          if (toolId) {
+            scrollTarget = document.querySelector(`[data-tool-id="${toolId}"]`);
+            if (scrollTarget) {
+              // Spotlight = strong glow + "AI Recommends" badge via CSS ::before
+              scrollTarget.classList.add('agent-tool-spotlight');
+              setTimeout(() => scrollTarget && scrollTarget.classList.remove('agent-tool-spotlight'), 4500);
+            }
+          }
+
+          if (!scrollTarget) {
+            scrollTarget = document.querySelector('.tool-grid');
+          }
+
+          if (scrollTarget) {
+            const rect = scrollTarget.getBoundingClientRect();
+            const target = window.scrollY + rect.top - 96;
+            window.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
+          }
+        }, 480);
+      }, 80);
+    };
+    window.addEventListener('agent-navigate', handler);
+    return () => {
+      window.removeEventListener('agent-navigate', handler);
+      clearTimeout(timerRef.current);
+    };
+  }, []);
+
+  if (!active) return null;
+
+  return (
+    <div key={scanKey} style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 99999 }} aria-hidden="true">
+      {/* Aura + corners share one opacity driven by rAF */}
+      <div ref={containerRef} style={{ position: 'fixed', inset: 0, opacity: 0 }}>
+        {/* Full-window border glow — all 4 edges at once */}
+        <div style={{
+          position: 'fixed', inset: 0,
+          boxShadow: [
+            'inset 0 0  50px 16px rgba(0,200,160,0.30)',
+            'inset 0 0 120px 48px rgba(0,200,160,0.13)',
+            'inset 0 0 220px 80px rgba(0,200,160,0.06)',
+            'inset 0 0   0px  1px rgba(0,200,160,0.60)',
+          ].join(', '),
+          background: 'radial-gradient(ellipse at center, transparent 55%, rgba(0,200,160,0.04) 100%)',
+        }} />
+        {/* Corner brackets */}
+        <div style={{ ...CORNER_STYLE_BASE, top: 14, left: 14,  borderWidth: '2px 0 0 2px' }} />
+        <div style={{ ...CORNER_STYLE_BASE, top: 14, right: 14, borderWidth: '2px 2px 0 0' }} />
+        <div style={{ ...CORNER_STYLE_BASE, bottom: 14, left: 14,  borderWidth: '0 0 2px 2px' }} />
+        <div style={{ ...CORNER_STYLE_BASE, bottom: 14, right: 14, borderWidth: '0 2px 2px 0' }} />
+      </div>
+      {/* Badge animates independently via CSS so it can linger longer */}
+      <div className="agent-scan-badge">
+        <span className="agent-scan-dot" />
+        AI navigating
+      </div>
+    </div>
+  );
+}
+
 function Layout({ children }) {
   useScrollToTop();
+
   useEffect(() => {
     document.body.dataset.theme = 'dark';
     document.body.dataset.density = 'spacious';
   }, []);
+
   return (
     <>
       <div className="app-bg" />
       <GlobalNav />
       <main>{children}</main>
+      <AgentScanEffect />
       <AssistantDock />
       <VoiceExperience />
       <ScrollTopBtn />
@@ -328,7 +453,7 @@ function GlobalNav() {
           </nav>
           <div className="nav-actions">
             <Link className="nav-link" to="/search"><AgentixIcon name="search" size={14} />Search</Link>
-            <Link className="btn btn-secondary nav-btn talk-btn" to="/talk-to-agentix"><AgentixIcon name="mic" size={12} />Talk</Link>
+            <button className="btn btn-secondary nav-btn talk-btn" onClick={() => window.dispatchEvent(new CustomEvent('open-voice-agent'))}><AgentixIcon name="mic" size={12} />Talk</button>
             <Link className="btn btn-primary nav-btn demo-btn" to="/demo">Book Demo</Link>
             <button className="nav-link mobile-menu-btn" onClick={() => setMobileOpen((o) => !o)} aria-label="Menu"><AgentixIcon name="menu" size={18} /></button>
           </div>
@@ -400,9 +525,9 @@ function MobileMenu({ onClose }) {
           <button className="mega-close" onClick={onClose}><AgentixIcon name="close" size={14} /></button>
         </div>
         <div style={{ padding: '20px 20px 32px', overflowY: 'auto', flex: 1 }}>
-          <Link className="btn btn-primary" to="/talk-to-agentix" style={{ width: '100%', justifyContent: 'center' }}>
+          <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={openVoiceAgent}>
             <AgentixIcon name="mic" size={13} />Talk to Agentix
-          </Link>
+          </button>
           <Link className="btn btn-secondary" to="/demo" style={{ width: '100%', justifyContent: 'center', marginTop: 10 }}>
             Book a Demo
           </Link>
@@ -429,25 +554,62 @@ function MobileMenu({ onClose }) {
 function AssistantDock() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const { sendMessage } = useGroqTextChat();
+  const [messages, setMessages] = useState([
+    { role: 'assistant', content: "Hi. I can help you find a tool, build a workflow, or choose a demo route. What's your goal today?" }
+  ]);
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    if (open) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages, open]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const input = form.search;
+    const q = input.value.trim();
+    if (!q || isLoading) return;
+
+    input.value = '';
+    setMessages(prev => [...prev, { role: 'user', content: q }]);
+    setIsLoading(true);
+
+    try {
+      let reply = await sendMessage(q);
+      
+      const navMatch = reply.match(/\[NAVIGATE:([^\]]+)\]/i);
+      let cleanReply = reply;
+      if (navMatch) {
+        const path = navMatch[1];
+        cleanReply = reply.replace(/\[NAVIGATE:([^\]]+)\]/gi, '').trim();
+        setTimeout(() => {
+          navigate(path);
+          window.dispatchEvent(new CustomEvent('agent-navigate', { detail: { route: path } }));
+        }, 1500);
+      }
+      
+      setMessages(prev => [...prev, { role: 'assistant', content: cleanReply }]);
+    } catch (err) {
+      setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, I'm having trouble connecting right now." }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       {!open && (
         <button className="dock-trigger-node" onClick={() => setOpen(true)} aria-label="Open assistant">
-          <div className="dock-node-media">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain'
-              }}
-            >
-              <source src="/assets/ai-chatbot-icon.webm" type="video/webm" />
-              <source src="/assets/AI-Chatbot-Icon.mp4" type="video/mp4" />
-            </video>
+          <div className="dock-node-icon-wrapper">
+            <div className="dock-node-ring dock-node-ring-1" />
+            <div className="dock-node-ring dock-node-ring-2" />
+            <div className="dock-node-core">
+              <MessageCircle size={28} color="white" strokeWidth={1.5} />
+            </div>
           </div>
         </button>
       )}
@@ -458,25 +620,33 @@ function AssistantDock() {
             <span style={{ fontSize: 14, fontWeight: 600, flex: 1 }}>Agentix Assistant</span>
             <button className="dock-close" onClick={() => setOpen(false)}><AgentixIcon name="close" size={12} /></button>
           </div>
-          <div className="dock-body">
-            <div className="dock-msg">Hi. I can help you find a tool, build a workflow, or choose a demo route. What's your goal today?</div>
-            <div className="dock-suggest">
-              {[
-                ['Find a sales tool', '/category/sales'],
-                ['Build a content stack', '/solutions/content-studio'],
-                ['Compare plans', '/pricing'],
-                ['Talk to a human', '/contact'],
-              ].map(([label, href]) => <Link key={href} className="dock-chip" to={href}>{label}</Link>)}
-            </div>
+          <div className="dock-body dock-chat-history">
+            {messages.map((msg, i) => (
+              <div key={i} className={`dock-msg dock-msg-${msg.role}`}>
+                {msg.content}
+              </div>
+            ))}
+            {isLoading && (
+              <div className="dock-msg dock-msg-assistant dock-msg-loading">
+                <span>.</span><span>.</span><span>.</span>
+              </div>
+            )}
+            {messages.length === 1 && (
+              <div className="dock-suggest">
+                {[
+                  ['Find a sales tool', '/category/sales'],
+                  ['Build a content stack', '/solutions/content-studio'],
+                  ['Compare plans', '/pricing'],
+                  ['Talk to a human', '/contact'],
+                ].map(([label, href]) => <Link key={label} className="dock-chip" to={href} onClick={() => setOpen(false)}>{label}</Link>)}
+              </div>
+            )}
+            <div ref={messagesEndRef} />
           </div>
-          <form className="dock-input" onSubmit={(e) => {
-            e.preventDefault();
-            const q = e.currentTarget.search.value.trim();
-            if (q) navigate(`/search?q=${encodeURIComponent(q)}`);
-          }}>
+          <form className="dock-input" onSubmit={handleSubmit}>
             <AgentixIcon name="mic" size={16} color="var(--accent)" />
-            <input name="search" placeholder="Ask anything..." autoComplete="off" />
-            <button type="submit" className="dock-send"><AgentixIcon name="arrow" size={11} color="#02141A" /></button>
+            <input name="search" placeholder="Type a message..." autoComplete="off" disabled={isLoading} />
+            <button type="submit" className="dock-send" disabled={isLoading}><AgentixIcon name="arrow" size={11} color="#02141A" /></button>
           </form>
         </div>
       )}
@@ -590,7 +760,7 @@ function WorkflowTemplates() {
                 })}
               </div>
               <div className="hero-ctas" style={{ marginTop: 'auto', paddingTop: 16 }}>
-                <Link to="/talk-to-agentix" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>Deploy template</Link>
+                <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={openVoiceAgent}>Deploy template</button>
               </div>
             </div>
           ))}
@@ -767,7 +937,7 @@ function AssistantPanelSection({ title = 'Assistant-guided next step.', text = '
           <h2 className="h-1" style={{ marginTop: 12 }}>{title}</h2>
           <p className="body-lg" style={{ marginTop: 20 }}>{text}</p>
           <div className="hero-ctas" style={{ marginTop: 32 }}>
-            <Link to="/talk-to-agentix" className="btn btn-primary"><AgentixIcon name="mic" size={14} />Talk to Agentix</Link>
+            <button className="btn btn-primary" onClick={openVoiceAgent}><AgentixIcon name="mic" size={14} />Talk to Agentix</button>
             <Link to="/contact" className="btn btn-secondary">Human handoff</Link>
           </div>
         </div>
@@ -843,7 +1013,7 @@ function CategoryPage() {
               <div className="cat-page-stat"><span className="cat-page-stat-n">01</span><span className="cat-page-stat-l">unified layer</span></div>
             </div>
             <div className="hero-ctas" style={{ marginTop: 40 }}>
-              <Link to="/talk-to-agentix" className="btn btn-primary btn-lg"><AgentixIcon name="mic" size={16} />Build this workflow</Link>
+              <button className="btn btn-primary btn-lg" onClick={openVoiceAgent}><AgentixIcon name="mic" size={16} />Build this workflow</button>
               <Link to="/demo" className="btn btn-secondary btn-lg">See it in action <AgentixIcon name="arrow" size={16} /></Link>
             </div>
           </div>
@@ -909,9 +1079,9 @@ function CategoryPage() {
           <div>
             <SectionHead eyebrow="Spotlight" title={`Core tools for ${category.short}.`} text="These featured tools represent the highest-frequency entry points for teams building in this domain." />
             <div style={{ marginTop: 32 }}>
-              <Link to="/talk-to-agentix" className="btn btn-primary">
+              <button className="btn btn-primary" onClick={openVoiceAgent}>
                 <AgentixIcon name="mic" size={14} />Ask the assistant
-              </Link>
+              </button>
             </div>
           </div>
           <div className="cat-featured-list">
@@ -1109,7 +1279,7 @@ function ToolCard({ tool }) {
   const Icon = CATEGORY_ICONS[tool.categoryId] || Workflow;
   
   return (
-    <Link to={`/tools/${tool.id}`} className="tool-card card" style={{ '--accent-cat': tool.accent, '--accent-cat-rgb': tool.accentRgb }}>
+    <Link to={`/tools/${tool.id}`} className="tool-card card" data-tool-id={tool.id} style={{ '--accent-cat': tool.accent, '--accent-cat-rgb': tool.accentRgb }}>
       <div className="tool-card-head">
         <div className="tool-card-icon-wrap" style={{ 
           width: '44px', 
@@ -1178,7 +1348,7 @@ function ToolPage() {
         }
       >
         <div className="hero-ctas" style={{ marginTop: 28, display: 'flex', gap: 12, alignItems: 'center' }}>
-          <Link to="/talk-to-agentix" className="btn btn-primary">Try this tool</Link>
+          <button className="btn btn-primary" onClick={openVoiceAgent}>Try this tool</button>
           <button 
             className={`btn btn-secondary ${isFav ? 'btn-active' : ''}`}
             onClick={() => toggleFav(tool.id)}
@@ -1717,7 +1887,7 @@ export default function App() {
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/demo" element={<DemoPage />} />
-        <Route path="/talk-to-agentix" element={<TalkPage />} />
+        <Route path="/talk-to-agentix" element={<Navigate to="/" replace />} />
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/security" element={<SecurityPage />} />
         <Route path="/status" element={<StatusPage />} />

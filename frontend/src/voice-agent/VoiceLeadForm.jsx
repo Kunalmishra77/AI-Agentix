@@ -1,6 +1,12 @@
 // ─── VoiceLeadForm — Minimal Floating Booking Card ───────────────────────────
 import { PHASES } from './agentFlow';
 
+function dateOffset(days) {
+  const d = new Date();
+  d.setDate(d.getDate() + days);
+  return d.toISOString().split('T')[0];
+}
+
 const CalIcon = () => (
   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
     strokeWidth="2" strokeLinecap="round">
@@ -53,9 +59,11 @@ export default function VoiceLeadForm({ lead, phase, error, bookingDone, onChang
       <input className="va-form-input va-form-input--full" placeholder="Email address *" type="email"
         value={lead.email} onChange={(e) => onChange('email', e.target.value)} id="va-field-email"/>
       <div className="va-form-row">
-        <input className="va-form-input" placeholder="Preferred date (e.g. May 20)"
+        <input className="va-form-input" type="date"
+          min={dateOffset(1)}
+          max={dateOffset(7)}
           value={lead.preferredDate} onChange={(e) => onChange('preferredDate', e.target.value)} id="va-field-date"/>
-        <input className="va-form-input" placeholder="Time (e.g. 2 PM IST)"
+        <input className="va-form-input" type="time"
           value={lead.preferredTime} onChange={(e) => onChange('preferredTime', e.target.value)} id="va-field-time"/>
       </div>
 

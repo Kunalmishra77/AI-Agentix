@@ -3,9 +3,6 @@
 export const PHASES = {
   GATE:            'gate',           // waiting for first click
   GREETING:        'greeting',       // agent speaks welcome
-  AWAITING_NAME:   'awaiting_name',  // mic on, listening for name
-  ASKING_CHOICE:   'asking_choice',  // agent speaks guide-or-browse
-  AWAITING_CHOICE: 'awaiting_choice',// mic on, listening for choice
   GUIDED:          'guided',         // LLM drives, site navigates
   AWAITING_REPLY:  'awaiting_reply', // mic on in guided mode
   BROWSING:        'browsing',       // user browses, orb minimized
@@ -24,61 +21,99 @@ export const ORB_STATES = {
 
 // ── Greeting messages ────────────────────────────────────────────────────────
 export const MSG_WELCOME =
-  "Welcome to AGENTiX. I'm your personal AI guide. " +
-  "Before we start, may I know your name please?";
+  "Hey, I'm the Agentix advisor. What's the biggest time sink your team is dealing with right now?";
 
-export const MSG_CHOICE = (name) =>
-  `Great to meet you, ${name}! I can walk you through everything AGENTiX offers, ` +
-  `or you can explore on your own and call on me whenever you need. Which would you prefer?`;
-
-export const MSG_GUIDE_START = (name) =>
-  `Perfect, ${name}! Let's get started. What kind of business problem are you trying to solve with AI today?`;
-
-export const MSG_BROWSE_START = (name) =>
-  `No problem at all, ${name}! I'll stay right here in the corner. Just click the orb anytime you need me.`;
-
-export const MSG_UNCLEAR =
-  "I didn't quite catch that. Just say 'guide me' or 'on my own'.";
-
-// ── Extract a clean first name from STT transcript ───────────────────────────
-export function extractName(transcript) {
-  const clean = transcript
-    .replace(/^(my name is|i am|i'm|it's|call me|this is|hi i'm|hello i'm|hey i'm)\s+/i, '')
-    .replace(/[^a-zA-Z\s''-]/g, '')
-    .trim();
-  const words = clean.split(/\s+/).filter(Boolean);
-  if (!words.length) return transcript.trim() || 'there';
-  const cap = (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
-  return words.length >= 2 ? `${cap(words[0])} ${cap(words[1])}` : cap(words[0]);
-}
-
-// ── Detect guide vs browse intent ─────────────────────────────────────────────
-export function detectGuideIntent(transcript) {
-  const t = transcript.toLowerCase();
-  const yes = ['guide','yes','please','help','sure','show','walk','take me','go ahead','okay','ok','yeah','yep','do it','let','you decide'];
-  const no  = ['own','myself','no','browse','explore','alone','self','independent','skip','not now','free'];
-  if (yes.some((w) => t.includes(w))) return true;
-  if (no.some((w) => t.includes(w)))  return false;
-  return null; // ambiguous
-}
-
-// ── Detect booking intent in LLM reply ───────────────────────────────────────
+// ── Detect when LLM reply signals form should open ───────────────────────────
 export function shouldShowLeadForm(text) {
   const triggers = [
     'fill in your details', 'just fill in', 'details below',
-    'book a demo', 'schedule a call', 'book that demo',
+    'fill in the form', 'fill out the form', 'book that demo',
     'capture your details', 'collect a few details',
   ];
   return triggers.some((t) => text.toLowerCase().includes(t));
 }
 
-// ── Parse [NAVIGATE:/path] hint from LLM reply ────────────────────────────────
+// ── Detect user agreeing to book a demo (from their speech) ──────────────────
+export function isAgreeingToDemo(transcript) {
+  const t = transcript.toLowerCase().trim();
+  const positives = [
+    /^(yes|yeah|yep|yup|sure|okay|ok|alright|absolutely|definitely|of course)[\s.,!]*$/,
+    /\b(yes please|go ahead|let's do it|let's go|book it|schedule it|set it up|sounds good|that works|i'm in|i'm interested)\b/,
+    /\b(book|schedule|set up|arrange).*(demo|call|meeting|appointment)\b/,
+    /\b(demo|call|meeting).*(book|schedule|yes|please|now|today|sure)\b/,
+    /\bhelp me.*(book|schedule|demo)\b/,
+    /\bi (want|would like|need|d like).*(demo|call|book|schedule)\b/,
+  ];
+  return positives.some((r) => r.test(t));
+}
+
+// ── Parse [NAVIGATE:/path] and optional [TOOL:slug] hints from LLM reply ─────
 export function parseNavHint(text) {
-  const m = text.match(/\[NAVIGATE:([^\]]+)\]/);
+  const navMatch  = text.match(/\[NAVIGATE:([^\]]+)\]/);
+  const toolMatch = text.match(/\[TOOL:([^\]]+)\]/);
   return {
-    clean: text.replace(/\[NAVIGATE:[^\]]+\]/, '').trim(),
-    route: m ? m[1] : null,
+    clean:  text.replace(/\[NAVIGATE:[^\]]+\]/g, '').replace(/\[TOOL:[^\]]+\]/g, '').trim(),
+    route:  navMatch  ? navMatch[1].trim()  : null,
+    toolId: toolMatch ? toolMatch[1].trim() : null,
   };
+}
+
+// ── Keyword-based route fallback (used when LLM omits the NAVIGATE tag) ───────
+const KEYWORD_ROUTES = [
+  [/content|blog|video|creative|copywriting|social media|voiceover|script|write/i, '/category/content'],
+  [/sales|outreach|lead generation|prospect|cold email|crm|pipeline|deal|revenue/i, '/category/sales'],
+  [/marketing|campaign|seo|ad |ads |funnel|landing page|growth hacking|paid media/i, '/category/marketing'],
+  [/customer support|helpdesk|ticket|onboarding|churn|retention|review response/i, '/category/cx'],
+  [/research|competitor|market analysis|persona|trend|pricing intelligence|strategy/i, '/category/research'],
+  [/operations|workflow automation|approval|process mapping|task routing|document extract/i, '/category/ops'],
+  [/knowledge base|internal wiki|erp|client portal|website builder|api integration|data sync/i, '/category/systems'],
+  [/product|roadmap|sprint|delivery|requirements|prd|feature spec/i, '/category/product'],
+  [/finance|invoice|expense|contract|compliance|accounting|receipt/i, '/category/finance'],
+];
+
+export function routeFromKeywords(transcript) {
+  for (const [regex, route] of KEYWORD_ROUTES) {
+    if (regex.test(transcript)) return route;
+  }
+  return null;
+}
+
+// ── Specific tool hint — scroll-to and highlight on category page ─────────────
+// Returns the tool's slug ID (same as slugify(toolName) in App.jsx).
+const KEYWORD_TOOL_HINTS = [
+  [/blog|seo article|blog post|write.*blog|content.*writ/i,       'blog-and-seo-article-writer'],
+  [/ai.*video|make.*video|video.*generat/i,                        'ai-video-generator'],
+  [/social media|instagram|twitter|facebook.*post|social.*sched/i, 'social-media-scheduler'],
+  [/ad copy|product.*copy|sales.*copy|copywriting/i,               'product-and-sales-copy-builder'],
+  [/voiceover|narrat|audio.*content/i,                             'ai-voiceover-studio'],
+  [/cold email|outreach.*email|email.*sequence|follow.up.*email/i, 'cold-email-personalization'],
+  [/find.*lead|lead.*generat|lead.*discov/i,                       'lead-discovery'],
+  [/crm|pipeline.*hygiene|sales.*pipeline.*data/i,                 'crm-sync-and-hygiene'],
+  [/customer.*support|helpdesk|support.*chat|ai.*support/i,        'ai-support-chat'],
+  [/ticket.*rout|ticket.*triage|triage/i,                          'ticket-triage-and-routing'],
+  [/onboard/i,                                                      'onboarding-journey-builder'],
+  [/competitor|battlecard/i,                                        'competitor-analyzer'],
+  [/market.*research|research.*report/i,                           'research-report-generator'],
+  [/automate.*workflow|workflow.*automat|process.*automat/i,       'workflow-orchestrator'],
+  [/invoice|billing.*process/i,                                    'invoice-processing'],
+  [/contract.*review|legal.*review/i,                              'contract-review'],
+  [/knowledge.*base|internal.*wiki|rag.*knowl/i,                   'knowledge-base-builder'],
+  [/landing.*page|opt.in.*page|conversion.*page/i,                 'landing-page-optimizer'],
+  [/seo.*strateg|keyword.*research|topic.*cluster/i,               'seo-topic-cluster-builder'],
+  [/book.*meeting|meeting.*book|schedule.*call|appointment/i,      'meeting-booking-assistant'],
+  [/roadmap|feature.*priorit/i,                                    'roadmap-prioritization'],
+  [/prospect.*outreach|sales.*sequence|multichannel.*outreach/i,   'multichannel-sequence-builder'],
+  [/lead.*enrich|account.*research|lead.*scor/i,                   'lead-enrichment-and-scoring'],
+  [/campaign.*strateg/i,                                           'campaign-strategy-builder'],
+  [/seo.*article|content.*brief/i,                                 'content-brief-tool'],
+  [/churn|customer.*health|retention.*risk/i,                      'churn-risk-assistant'],
+];
+
+export function toolHintFromKeywords(transcript) {
+  for (const [regex, toolId] of KEYWORD_TOOL_HINTS) {
+    if (regex.test(transcript)) return toolId;
+  }
+  return null;
 }
 
 // ── Empty lead shape ──────────────────────────────────────────────────────────

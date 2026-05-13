@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import AgentixIcon from '../../components/agentix/AgentixIcon.jsx';
 import FinalCTA from '../../components/agentix/FinalCTA.jsx';
 
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const PERSONAS = [
   {
     id: 'founder',
@@ -41,14 +43,62 @@ const DEMO_WHAT = [
 ];
 
 const TIMES = ['9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'];
-const DAYS = ['Mon 12', 'Tue 13', 'Wed 14', 'Thu 15', 'Fri 16'];
+const DAYS  = ['Mon 12', 'Tue 13', 'Wed 14', 'Thu 15', 'Fri 16'];
 
 export default function DemoPage() {
   const [persona, setPersona] = useState('founder');
-  const [day, setDay] = useState('Wed 14');
-  const [time, setTime] = useState('2:00 PM');
-  const [booked, setBooked] = useState(false);
+  const [day,     setDay]     = useState('Wed 14');
+  const [time,    setTime]    = useState('2:00 PM');
+
+  // Contact form state
+  const [name,    setName]    = useState('');
+  const [email,   setEmail]   = useState('');
+  const [company, setCompany] = useState('');
+
+  // Submission state
+  const [submitting, setSubmitting] = useState(false);
+  const [booked,     setBooked]     = useState(false);
+  const [bookError,  setBookError]  = useState('');
+
   const active = PERSONAS.find((p) => p.id === persona);
+
+  const handleBook = async () => {
+    if (!name.trim() || !email.trim()) {
+      setBookError('Please enter your name and email to continue.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setBookError('Please enter a valid email address.');
+      return;
+    }
+    setBookError('');
+    setSubmitting(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/v1/demo/book`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source:        'manual',
+          name:          name.trim(),
+          email:         email.trim(),
+          company:       company.trim() || undefined,
+          preferredDate: day,
+          preferredTime: time,
+          solutionNeed:  active?.goal || '',
+          notes:         `Persona: ${active?.label || ''}`,
+        }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error?.message || 'Booking failed.');
+      }
+      setBooked(true);
+    } catch (err) {
+      setBookError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -152,7 +202,7 @@ export default function DemoPage() {
                 <div className="dot dot-ok" style={{ width: 48, height: 48, margin: '0 auto 20px' }} />
                 <h3 className="h-3" style={{ textAlign: 'center' }}>Demo booked!</h3>
                 <p className="body" style={{ textAlign: 'center', marginTop: 8 }}>
-                  {day} at {time}. You'll receive a calendar invite and prep guide within the next 15 minutes.
+                  {day} at {time}. A calendar invite is on its way to <strong>{email}</strong>. The AGENTiX team will confirm shortly.
                 </p>
                 <Link to="/docs" className="btn btn-secondary" style={{ marginTop: 20, width: '100%', justifyContent: 'center' }}>
                   Read docs while you wait
@@ -160,6 +210,32 @@ export default function DemoPage() {
               </div>
             ) : (
               <div className="demo-calendar card">
+                {/* Contact fields */}
+                <div className="demo-cal-fields" style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
+                  <input
+                    className="va-input"
+                    placeholder="Your name *"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    style={{ background: 'var(--surface-1)', border: '1px solid var(--border)', borderRadius: 8, padding: '10px 14px', color: 'var(--ink-0)', fontSize: 14 }}
+                  />
+                  <input
+                    className="va-input"
+                    placeholder="Email address *"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    style={{ background: 'var(--surface-1)', border: '1px solid var(--border)', borderRadius: 8, padding: '10px 14px', color: 'var(--ink-0)', fontSize: 14 }}
+                  />
+                  <input
+                    className="va-input"
+                    placeholder="Company (optional)"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                    style={{ background: 'var(--surface-1)', border: '1px solid var(--border)', borderRadius: 8, padding: '10px 14px', color: 'var(--ink-0)', fontSize: 14 }}
+                  />
+                </div>
+
                 <div className="demo-cal-head">
                   <span className="eyebrow">May 2026</span>
                   <span className="mono" style={{ fontSize: 11, color: 'var(--ink-3)' }}>Your timezone · GMT</span>
@@ -177,8 +253,16 @@ export default function DemoPage() {
                 <div className="demo-cal-selected mono" style={{ fontSize: 12, color: 'var(--ink-2)', marginTop: 16 }}>
                   Selected: {day} · {time}
                 </div>
-                <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 16 }} onClick={() => setBooked(true)}>
-                  Book this slot <AgentixIcon name="arrow" size={14} />
+                {bookError && (
+                  <p style={{ fontSize: 13, color: 'var(--error, #f87171)', marginTop: 10 }}>{bookError}</p>
+                )}
+                <button
+                  className="btn btn-primary"
+                  style={{ width: '100%', justifyContent: 'center', marginTop: 16, opacity: submitting ? 0.7 : 1 }}
+                  onClick={handleBook}
+                  disabled={submitting}
+                >
+                  {submitting ? 'Booking…' : 'Book this slot'} {!submitting && <AgentixIcon name="arrow" size={14} />}
                 </button>
               </div>
             )}
@@ -248,7 +332,13 @@ export default function DemoPage() {
           </div>
           <div className="demo-alts">
             {[
-              { label: 'Talk to Agentix', desc: 'Use the assistant now — no booking, no form. State your goal and watch the system route it.', href: '/talk-to-agentix', cta: 'Start talking', color: 'var(--accent)' },
+              {
+                label: 'Talk to Agentix',
+                desc:  'Use the voice assistant now — no booking, no form. State your goal and watch the system route it.',
+                cta:   'Start talking',
+                color: 'var(--accent)',
+                onClick: () => window.dispatchEvent(new CustomEvent('open-voice-agent')),
+              },
               { label: 'Read the docs', desc: 'Builder documentation for the workflow engine, tool ecosystem, and integration layer.', href: '/docs', cta: 'Open docs', color: '#B6F26A' },
               { label: 'Browse solutions', desc: 'Pre-built outcome stacks for common business goals. Start with one that matches your situation.', href: '/solutions', cta: 'View solutions', color: '#B69BFF' },
               { label: 'Contact sales', desc: 'Skip the demo and go straight to a pricing conversation with the sales team.', href: '/contact', cta: 'Get in touch', color: '#FFB060' },
@@ -256,9 +346,15 @@ export default function DemoPage() {
               <div key={a.label} className="demo-alt card">
                 <div className="demo-alt-label" style={{ color: a.color }}>{a.label}</div>
                 <div className="demo-alt-desc">{a.desc}</div>
-                <Link to={a.href} className="btn btn-ghost" style={{ marginTop: 'auto', color: a.color, paddingLeft: 0 }}>
-                  {a.cta} <AgentixIcon name="arrow" size={12} />
-                </Link>
+                {a.onClick ? (
+                  <button className="btn btn-ghost" style={{ marginTop: 'auto', color: a.color, paddingLeft: 0, background: 'none', border: 'none', cursor: 'pointer' }} onClick={a.onClick}>
+                    {a.cta} <AgentixIcon name="arrow" size={12} />
+                  </button>
+                ) : (
+                  <Link to={a.href} className="btn btn-ghost" style={{ marginTop: 'auto', color: a.color, paddingLeft: 0 }}>
+                    {a.cta} <AgentixIcon name="arrow" size={12} />
+                  </Link>
+                )}
               </div>
             ))}
           </div>
