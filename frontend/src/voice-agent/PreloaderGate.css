@@ -1,0 +1,273 @@
+/* ── PreloaderGate — "The Awakening" Entry Sequence ─────────────────────── */
+/* Scoped to pg- prefix. Zero collisions with site styles. */
+
+.pg-root {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: #07080A;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+  user-select: none;
+  overflow: hidden;
+  outline: none;
+}
+
+/* Slowly drifting ambient glow behind everything */
+.pg-ambient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 800px 600px at 50% 50%,
+    rgba(232, 117, 32, 0.06) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  animation: pg-drift 20s ease-in-out infinite;
+}
+
+@keyframes pg-drift {
+  0%,  100% { transform: translate(0,     0);    }
+  25%        { transform: translate(40px, -30px); }
+  50%        { transform: translate(-20px, 40px); }
+  75%        { transform: translate(-50px, -20px);}
+}
+
+/* Subtle grid — same micro-grid as the app background */
+.pg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 75%);
+  pointer-events: none;
+}
+
+/* The ember — single glowing orange point at viewport center */
+.pg-ember {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 210, 120, 1) 0%,
+    #E87520 55%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 14px 5px rgba(232, 117, 32, 0.7),
+    0 0 50px 14px rgba(232, 117, 32, 0.25);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Flex column — logo above, content below */
+.pg-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 4;
+}
+
+/* Logo container */
+.pg-logo-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pg-logo {
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 28px rgba(232, 117, 32, 0.4));
+}
+
+/* Boot text block */
+.pg-boot {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  width: 290px;
+}
+
+.pg-boot-line {
+  font-family: var(--font-mono, 'Geist Mono', ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+
+/* Razor-thin laser progress line */
+.pg-progress-track {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 14px;
+}
+
+.pg-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #E87520 0%, #5BE3E3 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 6px 1px rgba(232, 117, 32, 0.9);
+}
+
+/* Gate content — orb + title stack */
+.pg-gate-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Orb wrapper — holds rings + core */
+.pg-orb-wrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pulse rings — animated by Framer Motion */
+.pg-orb-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(232, 117, 32, 0.45);
+  pointer-events: none;
+}
+
+/* Orb core — the glowing orange sphere */
+.pg-orb-core {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 38% 35%,
+    rgba(255, 185, 90, 0.96) 0%,
+    #E87520 42%,
+    #C95F10 78%
+  );
+  box-shadow:
+    0 0 0 1px rgba(232, 117, 32, 0.35),
+    0 0 40px rgba(232, 117, 32, 0.55),
+    0 0 80px rgba(232, 117, 32, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  cursor: none;
+}
+
+/* Waveform icon inside orb */
+.pg-waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.pg-wave-bar {
+  display: inline-block;
+  width: 3px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 2px;
+  transform-origin: center;
+}
+
+/* Gate title */
+.pg-title {
+  font-family: var(--font-display, 'Geist', 'Inter', sans-serif);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 600;
+  color: #F4F5F7;
+  letter-spacing: -0.03em;
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+}
+
+/* Gate sub-copy */
+.pg-sub {
+  font-family: var(--font-body, 'Geist', 'Inter', sans-serif);
+  font-size: clamp(14px, 2vw, 17px);
+  color: #8B919C;
+  text-align: center;
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+}
+
+/* Subtle touch hint — pulsed opacity only, no blinking dot */
+.pg-touch {
+  font-family: var(--font-mono, 'Geist Mono', ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(232, 117, 32, 0.65);
+  margin-top: 4px;
+}
+
+/* Bottom brand watermark */
+.pg-brand {
+  position: absolute;
+  bottom: 24px;
+  font-family: var(--font-mono, 'Geist Mono', ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  color: rgba(255, 255, 255, 0.14);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Iris portal — expands on click from the orb's exact centre */
+.pg-iris {
+  position: fixed;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 38% 35%,
+    rgba(255, 185, 90, 0.96) 0%,
+    #E87520 42%,
+    #C95F10 78%
+  );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 99999;
+}
+
+/* ── Mobile ─────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .pg-orb-wrap { width: 100px; height: 100px; }
+  .pg-orb-core { width: 76px; height: 76px; }
+  .pg-boot { width: 240px; font-size: 10px; }
+  .pg-brand { font-size: 9px; bottom: 16px; }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .pg-ambient { animation: none !important; }
+}

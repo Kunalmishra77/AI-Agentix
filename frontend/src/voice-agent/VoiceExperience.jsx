@@ -1,10 +1,10 @@
 // ─── VoiceExperience — Root Composer ─────────────────────────────────────────
-// Assembles: VoiceGate + VoiceOrb + SubtitleBand + VoiceLeadForm
+// Assembles: PreloaderGate + VoiceOrb + SubtitleBand + VoiceLeadForm
 // No chat panel. The website IS the display.
 
 import { PHASES } from './agentFlow';
 import { useVoiceLoop } from './useVoiceLoop';
-import VoiceGate      from './VoiceGate';
+import PreloaderGate  from './PreloaderGate';
 import VoiceOrb       from './VoiceOrb';
 import SubtitleBand   from './SubtitleBand';
 import VoiceLeadForm  from './VoiceLeadForm';
@@ -25,7 +25,7 @@ export default function VoiceExperience() {
   return (
     <>
       {/* 1 — Entry gate (full-screen, first visit only) */}
-      {showGate && <VoiceGate onEnter={onGateClick} />}
+      {showGate && <PreloaderGate onEnter={onGateClick} />}
 
       {/* 2 — Floating orb */}
       {showOrb && (
