@@ -1,71 +1,59 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import Lottie from 'lottie-react';
 
-// Constant for the ultra-stable fallback to prevent runtime crashes
 const STABLE_FALLBACK = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json';
 
-/**
- * Technically Stabilized Lottie Component for AI AGENTIX.
- * Features:
- * 1. Defensive fetch logic with content-type verification.
- * 2. Automated fallback to stable assets if primary fetch fails.
- * 3. Prevents runtime crashes from invalid data formats.
- */
 const LottieAnimation = ({ url, style, loop = true, autoplay = true }) => {
+  const { ref, inView } = useInView({ rootMargin: '200px', triggerOnce: true });
   const [animationData, setAnimationData] = useState(null);
   const [isReady, setIsReady] = useState(false);
 
-  const fetchAnimation = (fetchUrl, isFallback = false) => {
+  function fetchAnimation(fetchUrl, isFallback = false) {
     if (!fetchUrl) return;
-    
     fetch(fetchUrl)
       .then(res => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const contentType = res.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
-          throw new Error('Invalid content type: expected JSON');
-        }
+        const ct = res.headers.get('content-type');
+        if (!ct || !ct.includes('application/json')) throw new Error('Invalid content type');
         return res.json();
       })
       .then(data => {
-        // Robust check for valid Lottie JSON structure (fr, nm, layers are common keys)
         if (data && data.layers && Array.isArray(data.layers)) {
           setAnimationData(data);
           setTimeout(() => setIsReady(true), 100);
         } else {
-          throw new Error('Invalid Lottie JSON structure');
+          throw new Error('Invalid Lottie JSON');
         }
       })
-      .catch(err => {
-        // Switch to fallback without console noise in production
-        if (!isFallback) {
-          fetchAnimation(STABLE_FALLBACK, true);
-        }
+      .catch(() => {
+        if (!isFallback) fetchAnimation(STABLE_FALLBACK, true);
       });
-  };
+  }
 
   useEffect(() => {
+    if (!inView) return;
     setIsReady(false);
     fetchAnimation(url);
-  }, [url]);
-
-  if (!animationData) return null;
+  }, [inView, url]);
 
   return (
-    <div style={{ 
-      width: '100%', 
-      height: '100%', 
-      opacity: isReady ? 1 : 0,
-      transition: 'opacity 0.8s ease-in-out',
-      pointerEvents: 'none',
-      ...style 
-    }}>
-      <Lottie 
-        animationData={animationData} 
-        loop={loop} 
-        autoplay={autoplay} 
-        style={{ width: '100%', height: '100%' }} 
-      />
+    <div ref={ref} style={{ width: '100%', height: '100%', ...style }}>
+      {animationData && (
+        <div style={{
+          width: '100%', height: '100%',
+          opacity: isReady ? 1 : 0,
+          transition: 'opacity 0.8s ease-in-out',
+          pointerEvents: 'none',
+        }}>
+          <Lottie
+            animationData={animationData}
+            loop={loop}
+            autoplay={autoplay}
+            style={{ width: '100%', height: '100%' }}
+          />
+        </div>
+      )}
     </div>
   );
 };

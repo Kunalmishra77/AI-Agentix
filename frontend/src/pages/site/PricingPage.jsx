@@ -1,83 +1,90 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import AgentixIcon from '../../components/agentix/AgentixIcon.jsx';
 import FinalCTA from '../../components/agentix/FinalCTA.jsx';
 
-const PLANS = [
+const COST_CATEGORIES = [
   {
-    id: 'starter',
-    name: 'Starter',
-    price: { monthly: 49, annual: 39 },
-    tagline: "One workflow. See what's possible.",
+    id: 'tool',
+    number: '01',
+    title: 'Tool Cost',
     color: '#E87520',
-    features: ['1 active workflow', '5 tools included', 'Assistant routing', 'Docs + Help access', 'Community support'],
-    cta: 'Start free trial',
-    href: '/demo',
+    icon: 'tools',
+    tagline: 'What we build for you.',
+    description:
+      'Every Agentix deployment is a custom-built tool or set of tools designed around your specific business goal, workflow, and team structure. Tool cost covers the design, development, configuration, and integration of the AI agents and automation layer built for your use case.',
+    includes: [
+      'Custom tool taxonomy mapped to your business domain',
+      'AI agent configuration and prompt engineering',
+      'Workflow logic, routing rules, and handoff conditions',
+      'UI and dashboard setup for your team',
+      'Initial integration with your existing systems',
+    ],
+    note: 'Varies based on complexity, number of tools, and integration depth.',
   },
   {
-    id: 'growth',
-    name: 'Growth',
-    price: { monthly: 149, annual: 119 },
-    tagline: 'Multiple workflows. Real operating leverage.',
+    id: 'api',
+    number: '02',
+    title: 'API Cost',
     color: '#B6F26A',
-    features: ['10 active workflows', '40 tools included', 'Full assistant layer', 'Integrations (CRM, Email, Docs)', 'Email support', 'Workflow templates'],
-    cta: 'Start free trial',
-    href: '/demo',
+    icon: 'api',
+    tagline: 'What the AI runs on.',
+    description:
+      'The intelligence behind every Agentix tool is powered by large language model APIs and supporting AI infrastructure. API cost reflects the actual compute consumed by your workflows — the number of AI calls, token volumes, model selection, and usage frequency across your team.',
+    includes: [
+      'LLM API usage (OpenAI, Anthropic, Groq, or custom models)',
+      'Voice and speech processing (STT / TTS) if applicable',
+      'Embedding and retrieval for knowledge base features',
+      'Third-party API calls triggered by your workflows',
+      'Usage scales with your team size and workflow frequency',
+    ],
+    note: 'Billed based on actual consumption — not a flat rate. Light usage costs less; heavy automation costs more.',
   },
   {
-    id: 'pro',
-    name: 'Pro',
-    price: { monthly: 349, annual: 279 },
-    tagline: 'Full operating system for ambitious teams.',
+    id: 'maintenance',
+    number: '03',
+    title: 'Maintenance Cost',
     color: '#B69BFF',
-    featured: true,
-    features: ['Unlimited workflows', '130+ tools', 'Advanced assistant routing', 'RAG knowledge base', 'Human handoff rules', 'Priority support', 'Admin controls', 'Audit logging'],
-    cta: 'Start free trial',
-    href: '/demo',
+    icon: 'settings',
+    tagline: 'What keeps it running.',
+    description:
+      'AI systems and business workflows evolve. Maintenance cost covers the ongoing health, updates, and improvements to your Agentix deployment — including model updates, prompt refinements as your business changes, integration upkeep, monitoring, and access to the Agentix team for support and iteration.',
+    includes: [
+      'Ongoing prompt and model tuning as outputs drift',
+      'Integration updates when connected systems change',
+      'Performance monitoring and error resolution',
+      'New workflow additions and tool expansions',
+      'Priority access to the Agentix team for iteration',
+    ],
+    note: 'Maintenance can be handled by your team or Agentix — we scope it based on your capacity.',
   },
-  {
-    id: 'enterprise',
-    name: 'Enterprise',
-    price: { monthly: null, annual: null },
-    tagline: 'Custom build. Full governance.',
-    color: '#FFB060',
-    features: ['Everything in Pro', 'Custom tool taxonomy', 'SSO + access controls', 'Dedicated implementation', 'SLA + uptime guarantee', 'Security review', 'Custom integrations', 'Dedicated success manager'],
-    cta: 'Talk to sales',
-    href: '/contact',
-  },
-];
-
-const FEATURE_ROWS = [
-  { label: 'Active workflows', starter: '1', growth: '10', pro: 'Unlimited', enterprise: 'Custom' },
-  { label: 'Tools included', starter: '5', growth: '40', pro: '130+', enterprise: 'Custom' },
-  { label: 'Assistant routing', starter: 'Basic', growth: 'Full', pro: 'Advanced', enterprise: 'Custom' },
-  { label: 'RAG knowledge base', starter: '—', growth: '—', pro: '✓', enterprise: '✓' },
-  { label: 'Human handoff rules', starter: '—', growth: 'Basic', pro: '✓', enterprise: '✓' },
-  { label: 'Integrations', starter: '—', growth: '8 apps', pro: 'All', enterprise: 'Custom' },
-  { label: 'Audit logging', starter: '—', growth: '—', pro: '✓', enterprise: '✓' },
-  { label: 'SSO', starter: '—', growth: '—', pro: '—', enterprise: '✓' },
-  { label: 'SLA', starter: '—', growth: '—', pro: '99.9%', enterprise: 'Custom' },
-  { label: 'Support', starter: 'Community', growth: 'Email', pro: 'Priority', enterprise: 'Dedicated' },
-];
-
-const ADDONS = [
-  { name: 'Extra workflow packs', price: '$29/mo per 5 workflows', desc: 'Add more active workflows to any plan.' },
-  { name: 'Custom domain', price: '$19/mo', desc: 'Run Agentix under your own domain and branding.' },
-  { name: 'Advanced RAG', price: '$79/mo', desc: 'Larger knowledge base with citation tracking and source permissions.' },
-  { name: 'Implementation package', price: 'from $2,400', desc: 'Dedicated setup, taxonomy build, and workflow migration by the Agentix team.' },
 ];
 
 const FAQS = [
-  { q: 'What counts as an "active workflow"?', a: "A workflow is any goal-to-output sequence you've configured in Agentix — from a single-step content generator to a multi-tool sales pipeline. Inactive workflows don't count against your limit." },
-  { q: 'Can I switch plans mid-cycle?', a: 'Yes. Upgrades take effect immediately and are prorated. Downgrades take effect at the next billing cycle.' },
-  { q: 'Is there a free trial?', a: 'Every paid plan includes a 14-day free trial with full feature access and no card required to start.' },
-  { q: 'What is the annual discount?', a: 'Annual plans are billed once per year at a 20% discount compared to monthly billing.' },
-  { q: 'How does enterprise pricing work?', a: 'Enterprise is scoped to your team size, tool taxonomy, integration requirements, and implementation needs. Contact sales to build a custom quote.' },
+  {
+    q: 'Why no fixed pricing on this page?',
+    a: "Because every Agentix deployment is built for a specific business goal, team structure, and integration environment. A single-tool content workflow costs very differently from a multi-domain operating system with 30 integrations. Fixed pricing would be misleading — we'd rather give you an accurate quote after understanding your actual situation.",
+  },
+  {
+    q: 'What does a typical engagement cost?',
+    a: 'That depends on the three cost categories above and how they apply to your use case. The best way to get an accurate number is a demo call — we scope the tool cost, estimate API usage based on your volume, and discuss maintenance options. Most teams have a clear budget picture within one conversation.',
+  },
+  {
+    q: 'Can we start small and expand?',
+    a: 'Yes. Most clients start with one workflow or one domain (e.g., content production or sales outreach), validate the output, and then expand. We design the system to grow — adding tools, workflows, and integrations without rebuilding from scratch.',
+  },
+  {
+    q: 'Is there an ongoing commitment?',
+    a: "Tool cost is typically a one-time or phased project engagement. API cost runs as long as your workflows run. Maintenance is optional — some teams manage it internally, others keep us on retainer. We'll make a recommendation after the demo.",
+  },
+  {
+    q: 'How long does it take to get started?',
+    a: "Most teams go from demo call to first working workflow in under two weeks. Complex multi-tool systems with many integrations take longer — we'll give you a realistic timeline in the scoping conversation.",
+  },
 ];
 
 export default function PricingPage() {
-  const [annual, setAnnual] = useState(true);
+  const handleTalk = () => window.dispatchEvent(new CustomEvent('open-voice-agent'));
 
   return (
     <>
@@ -90,207 +97,170 @@ export default function PricingPage() {
           <div className="chip" style={{ borderColor: 'var(--warn)', color: 'var(--warn)' }}>
             <span className="chip-dot" style={{ background: 'var(--warn)' }} />Pricing
           </div>
-          <h1 className="h-display" style={{ margin: '22px 0 18px', maxWidth: 840 }}>
-            Start with one workflow.<br />Scale into an operating system.
+          <h1 className="h-display" style={{ margin: '22px 0 18px', maxWidth: 900 }}>
+            Three things that determine<br />what Agentix costs you.
           </h1>
-          <p className="body-lg" style={{ maxWidth: 600 }}>
-            Every plan includes the full assistant, workflow engine, and handoff layer. You grow the number of tools and workflows — the architecture stays the same.
+          <p className="body-lg" style={{ maxWidth: 640 }}>
+            Every deployment is custom-built around your business goal, team, and systems. Pricing varies based on what you're building, how heavily it runs, and how much support you want around it.
           </p>
-          {/* Billing toggle */}
-          <div className="pricing-toggle" style={{ marginTop: 36 }}>
-            <button className={`pricing-toggle-btn ${!annual ? 'active' : ''}`} onClick={() => setAnnual(false)}>Monthly</button>
-            <button className={`pricing-toggle-btn ${annual ? 'active' : ''}`} onClick={() => setAnnual(true)}>
-              Annual <span className="pricing-badge">Save 20%</span>
+          <div className="hero-ctas" style={{ marginTop: 36 }}>
+            <Link to="/demo" className="btn btn-primary btn-lg">
+              Book a demo call <AgentixIcon name="arrow" size={16} />
+            </Link>
+            <button className="btn btn-secondary btn-lg" onClick={handleTalk}>
+              <AgentixIcon name="mic" size={14} />Ask about pricing
             </button>
           </div>
         </div>
       </section>
 
-      {/* ── 2. Plan cards ── */}
+      {/* ── 2. Three cost categories ── */}
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container-wide">
-          <div className="pricing-grid">
-            {PLANS.map((plan) => (
-              <div key={plan.id} className={`pricing-card card ${plan.featured ? 'pricing-featured' : ''}`} style={{ '--pcolor': plan.color }}>
-                {plan.featured && <div className="pricing-featured-badge">Most popular</div>}
-                <div className="pricing-card-top">
-                  <div className="pricing-dot" style={{ background: plan.color }} />
-                  <div className="pricing-name">{plan.name}</div>
+          <div className="sec-head">
+            <span className="eyebrow">Cost breakdown</span>
+            <h2 className="h-1" style={{ maxWidth: 560, marginTop: 12 }}>Every quote is built from these three components.</h2>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 32, marginTop: 48 }}>
+            {COST_CATEGORIES.map((cat) => (
+              <div key={cat.id} className="card" style={{
+                borderLeft: `4px solid ${cat.color}`,
+                padding: '36px 40px',
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: 40,
+                alignItems: 'start',
+              }}>
+                {/* Left col */}
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
+                    <span className="mono" style={{ fontSize: 11, color: cat.color, letterSpacing: '0.08em' }}>{cat.number}</span>
+                    <h3 className="h-2" style={{ color: cat.color, margin: 0 }}>{cat.title}</h3>
+                  </div>
+                  <p className="body-lg" style={{ color: 'var(--ink-1)', marginBottom: 16 }}>
+                    <em>{cat.tagline}</em>
+                  </p>
+                  <p className="body" style={{ color: 'var(--ink-2)', lineHeight: 1.7 }}>
+                    {cat.description}
+                  </p>
+                  <div className="chip" style={{ marginTop: 20, borderColor: cat.color, color: cat.color, width: 'fit-content' }}>
+                    {cat.note}
+                  </div>
                 </div>
-                <div className="pricing-price">
-                  {plan.price.monthly ? (
-                    <>
-                      <span className="pricing-amount">${annual ? plan.price.annual : plan.price.monthly}</span>
-                      <span className="pricing-period">/mo</span>
-                      {annual && <div className="pricing-save mono">billed annually</div>}
-                    </>
-                  ) : (
-                    <span className="pricing-amount pricing-custom">Custom</span>
-                  )}
+                {/* Right col — what's included */}
+                <div>
+                  <div className="eyebrow" style={{ marginBottom: 20 }}>What this covers</div>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
+                    {cat.includes.map((item) => (
+                      <li key={item} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                        <span style={{
+                          width: 6, height: 6, borderRadius: '50%', background: cat.color,
+                          flexShrink: 0, marginTop: 6,
+                        }} />
+                        <span style={{ fontSize: 14, color: 'var(--ink-1)', lineHeight: 1.6 }}>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <p className="pricing-tagline">{plan.tagline}</p>
-                <div className="pricing-divider" />
-                <ul className="pricing-features">
-                  {plan.features.map((f) => (
-                    <li key={f} className="pricing-feature">
-                      <AgentixIcon name="check" size={13} color={plan.color} />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link to={plan.href} className={`btn ${plan.featured ? 'btn-primary' : 'btn-secondary'} pricing-cta`} style={plan.featured ? {} : { borderColor: plan.color, color: plan.color }}>
-                  {plan.cta}
-                </Link>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── 3. Feature comparison table ── */}
+      {/* ── 3. Pricing variable callout ── */}
       <section className="section page-band">
         <div className="container-wide">
-          <div className="sec-head-center sec-head">
-            <span className="eyebrow">Full comparison</span>
-            <h2 className="h-1" style={{ maxWidth: 640, margin: '12px auto 0' }}>Everything, side by side.</h2>
-          </div>
-          <div className="pricing-table card">
-            <div className="pricing-table-head">
-              <div className="pricing-table-feature">Feature</div>
-              {PLANS.map((p) => <div key={p.id} className="pricing-table-col" style={{ color: p.color }}>{p.name}</div>)}
+          <div className="card" style={{
+            background: 'linear-gradient(135deg, rgba(0,200,160,0.06) 0%, transparent 60%)',
+            border: '1px solid rgba(0,200,160,0.2)',
+            padding: '52px 60px',
+            textAlign: 'center',
+            maxWidth: 860,
+            margin: '0 auto',
+          }}>
+            <div className="chip" style={{ borderColor: 'var(--accent)', color: 'var(--accent)', margin: '0 auto 24px' }}>
+              <span className="chip-dot" style={{ background: 'var(--accent)' }} />Variable pricing
             </div>
-            {FEATURE_ROWS.map((row, i) => (
-              <div key={row.label} className={`pricing-table-row ${i % 2 === 0 ? 'pricing-table-even' : ''}`}>
-                <div className="pricing-table-feature">{row.label}</div>
-                {['starter', 'growth', 'pro', 'enterprise'].map((k) => (
-                  <div key={k} className="pricing-table-col">
-                    {row[k] === '✓' ? <AgentixIcon name="check" size={14} color="var(--ok)" /> : <span style={{ color: row[k] === '—' ? 'var(--ink-4)' : 'var(--ink-1)' }}>{row[k]}</span>}
-                  </div>
-                ))}
-              </div>
-            ))}
+            <h2 className="h-1" style={{ maxWidth: 680, margin: '0 auto 20px' }}>
+              Pricing depends entirely on what we build for you.
+            </h2>
+            <p className="body-lg" style={{ maxWidth: 560, margin: '0 auto 32px', color: 'var(--ink-2)' }}>
+              A single-tool deployment for a 3-person team is priced very differently from a 12-domain operating system for a 200-person company. The right number comes from a real conversation about your goal, volume, and timeline — not a pricing table.
+            </p>
+            <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link to="/demo" className="btn btn-primary btn-lg" style={{ background: 'var(--accent)', color: '#001a14' }}>
+                Discuss pricing on a demo call <AgentixIcon name="arrow" size={16} />
+              </Link>
+              <Link to="/contact" className="btn btn-secondary btn-lg">
+                Send us a question
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── 4. Usage context ── */}
+      {/* ── 4. What the demo call covers ── */}
       <section className="section">
         <div className="container-wide">
           <div className="page-split">
             <div>
-              <span className="eyebrow">Usage model</span>
-              <h2 className="h-1" style={{ marginTop: 12 }}>Pay for what the system produces — not what it attempts.</h2>
+              <span className="eyebrow">The demo call</span>
+              <h2 className="h-1" style={{ marginTop: 12 }}>30 minutes to a real quote and a working workflow.</h2>
               <p className="body-lg" style={{ marginTop: 16 }}>
-                Agentix pricing is based on active workflows, not API calls or seat count. A workflow that produces a reviewed output costs the same as one you run once a month.
+                The demo is where we scope your deployment. You leave with a clear picture of all three cost components, a recommended starting point, and usually a working example of your first workflow.
               </p>
-              <div className="hero-ctas" style={{ marginTop: 24 }}>
-                <Link to="/docs" className="btn btn-secondary">Read the docs</Link>
-              </div>
+              <Link to="/demo" className="btn btn-primary" style={{ marginTop: 28 }}>
+                Book the demo <AgentixIcon name="arrow" size={14} />
+              </Link>
             </div>
-            <div className="pricing-usage-visual card">
+            <div className="card" style={{ padding: '32px 36px' }}>
+              <div className="eyebrow" style={{ marginBottom: 24 }}>What we cover in the call</div>
               {[
-                { label: 'Content workflows', pct: 78, color: '#FF8B6B' },
-                { label: 'Sales workflows', pct: 62, color: '#5B9BFF' },
-                { label: 'Operations workflows', pct: 55, color: '#FFB060' },
-                { label: 'Research workflows', pct: 41, color: '#B69BFF' },
-              ].map((item) => (
-                <div key={item.label} className="pricing-usage-row">
-                  <div className="pricing-usage-label">{item.label}</div>
-                  <div className="pricing-usage-bar">
-                    <div className="pricing-usage-fill" style={{ width: `${item.pct}%`, background: item.color }} />
+                ['Your goal', "We start with the business outcome you're trying to achieve — not features."],
+                ['Tool scope', 'We map which tools, workflows, and domains apply to your use case.'],
+                ['API estimate', 'Based on your team size and usage patterns, we estimate real API volumes.'],
+                ['Maintenance path', "We discuss whether your team handles upkeep or we stay involved."],
+                ['Implementation timeline', 'You get a realistic path from zero to first output in production.'],
+                ['Pricing breakdown', 'All three cost components, scoped to your specific situation.'],
+              ].map(([label, desc]) => (
+                <div key={label} style={{ display: 'flex', gap: 14, marginBottom: 20, alignItems: 'flex-start' }}>
+                  <AgentixIcon name="check" size={15} color="var(--accent)" style={{ marginTop: 2, flexShrink: 0 }} />
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink-0)' }}>{label}</div>
+                    <div style={{ fontSize: 13, color: 'var(--ink-3)', marginTop: 3 }}>{desc}</div>
                   </div>
-                  <div className="pricing-usage-pct mono">{item.pct}%</div>
                 </div>
               ))}
-              <div className="pricing-usage-note mono" style={{ marginTop: 20, color: 'var(--ink-3)', fontSize: 11 }}>
-                Average workflow utilization by category across Growth plans
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── 5. Add-ons ── */}
+      {/* ── 5. FAQ ── */}
       <section className="section page-band">
-        <div className="container-wide">
-          <div className="sec-head">
-            <span className="eyebrow">Add-ons</span>
-            <h2 className="h-1" style={{ maxWidth: 560, marginTop: 12 }}>Extend any plan. Pay only for what you need.</h2>
-          </div>
-          <div className="pricing-addons">
-            {ADDONS.map((a) => (
-              <div key={a.name} className="pricing-addon card">
-                <div className="pricing-addon-name">{a.name}</div>
-                <div className="pricing-addon-price" style={{ color: 'var(--accent)' }}>{a.price}</div>
-                <div className="pricing-addon-desc">{a.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 6. Social proof stats ── */}
-      <section className="section">
-        <div className="container-wide">
-          <div className="sec-head-center sec-head">
-            <span className="eyebrow">Why teams choose Agentix</span>
-            <h2 className="h-1" style={{ maxWidth: 560, margin: '12px auto 0' }}>The operating layer pays for itself.</h2>
-          </div>
-          <div className="pricing-proof">
-            {[
-              { stat: '3×', label: 'faster goal-to-output', sub: 'vs. previous manual process' },
-              { stat: '14h', label: 'saved per week', sub: 'average per operator' },
-              { stat: '< 1 week', label: 'to first workflow', sub: 'median time-to-value' },
-              { stat: '97%', label: 'handoff accuracy', sub: 'human review routing' },
-            ].map((p) => (
-              <div key={p.label} className="pricing-proof-card card">
-                <div className="pricing-proof-stat" style={{ color: 'var(--accent)' }}>{p.stat}</div>
-                <div className="pricing-proof-label">{p.label}</div>
-                <div className="pricing-proof-sub mono">{p.sub}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 7. Enterprise CTA ── */}
-      <section className="section page-band">
-        <div className="container-wide">
-          <div className="pricing-enterprise card">
-            <div className="pricing-enterprise-left">
-              <div className="chip" style={{ borderColor: '#FFB060', color: '#FFB060' }}>
-                <span className="chip-dot" style={{ background: '#FFB060' }} />Enterprise
-              </div>
-              <h2 className="h-1" style={{ marginTop: 16, maxWidth: 580 }}>Need a custom build? We scope it with you.</h2>
-              <p className="body-lg" style={{ marginTop: 16 }}>
-                Custom tool taxonomy, dedicated implementation, SSO, SLA, and a team that builds the system around your operating structure — not a generic template.
-              </p>
-            </div>
-            <div className="pricing-enterprise-right">
-              <Link to="/contact" className="btn btn-primary btn-lg" style={{ background: '#FFB060', boxShadow: '0 8px 30px rgba(255,176,96,0.3)', color: '#1A0D00' }}>
-                Talk to sales <AgentixIcon name="arrow" size={16} />
-              </Link>
-              <Link to="/demo" className="btn btn-secondary btn-lg" style={{ marginTop: 12 }}>Book a demo first</Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 8. FAQ ── */}
-      <section className="section">
         <div className="container-wide">
           <div className="faq-grid">
             <div>
               <span className="eyebrow">FAQ</span>
-              <h2 className="h-1" style={{ marginTop: 12 }}>Pricing questions answered.</h2>
+              <h2 className="h-1" style={{ marginTop: 12 }}>Pricing questions.</h2>
               <p className="body" style={{ marginTop: 16 }}>
-                Still have questions? <Link to="/contact" style={{ color: 'var(--accent)' }}>Talk to us</Link>.
+                Still unclear? <Link to="/contact" style={{ color: 'var(--accent)' }}>Write to us</Link> or{' '}
+                <button
+                  style={{ background: 'none', border: 'none', padding: 0, color: 'var(--accent)', cursor: 'pointer', fontSize: 'inherit' }}
+                  onClick={handleTalk}
+                >
+                  ask the assistant
+                </button>.
               </p>
             </div>
             <div className="faq-right">
               {FAQS.map((item) => (
                 <div key={item.q} className="faq-item open">
-                  <div className="faq-q"><span>{item.q}</span><span className="faq-icon"><AgentixIcon name="chevron" size={12} /></span></div>
+                  <div className="faq-q">
+                    <span>{item.q}</span>
+                    <span className="faq-icon"><AgentixIcon name="chevron" size={12} /></span>
+                  </div>
                   <div className="faq-a"><div>{item.a}</div></div>
                 </div>
               ))}
