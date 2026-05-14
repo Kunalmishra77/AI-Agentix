@@ -135,7 +135,7 @@ export default function SettingsPage() {
                     </div>
                     <button
                       type="button"
-                      data-on={toggles[t.key] ? '' : undefined}
+                      data-on={toggles[t.key] ? 'true' : 'false'}
                       className="adm-toggle"
                       onClick={() => setToggles(prev => ({ ...prev, [t.key]: !prev[t.key] }))}
                     />

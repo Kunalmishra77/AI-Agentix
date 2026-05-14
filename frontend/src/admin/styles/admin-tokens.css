@@ -41,9 +41,11 @@
 
   /* ── Semantic Status ── */
   --adm-green:    #10B981;
+  --adm-green-30: rgba(16,185,129,0.30);
   --adm-green-20: rgba(16,185,129,0.20);
   --adm-green-10: rgba(16,185,129,0.10);
   --adm-amber:    #F59E0B;
+  --adm-amber-30: rgba(245,158,11,0.30);
   --adm-amber-20: rgba(245,158,11,0.20);
   --adm-amber-10: rgba(245,158,11,0.10);
   --adm-red:      #F43F5E;

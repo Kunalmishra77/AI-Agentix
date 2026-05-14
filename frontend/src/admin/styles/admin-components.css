@@ -208,8 +208,12 @@
   animation: adm-pulse 2s ease-in-out infinite;
 }
 @keyframes adm-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+@keyframes admPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -389,9 +393,27 @@
 .adm-toggle[data-on="true"]  { background: var(--adm-orange); }
 .adm-toggle[data-on="false"] { background: rgba(255,255,255,0.10); }
 
+/* Thumb via ::after — no child element needed */
+.adm-toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: left var(--adm-dur-base) var(--adm-spring);
+  box-shadow: var(--adm-shadow-sm);
+}
+.adm-toggle[data-on="true"]::after  { left: 21px; }
+.adm-toggle[data-on="false"]::after { left: 3px; }
+
+/* Legacy child-based thumb (kept for compatibility) */
 .adm-toggle-thumb {
   position: absolute;
   top: 3px;
+  left: 3px;
   width: 16px;
   height: 16px;
   border-radius: 50%;

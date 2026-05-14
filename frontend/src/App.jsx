@@ -1860,47 +1860,53 @@ function PageSkeleton() {
 
 export default function App() {
   return (
-    <Layout>
-      <Suspense fallback={<PageSkeleton />}>
+    <Suspense fallback={<PageSkeleton />}>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/tools" element={<ToolsPage />} />
-        <Route path="/tools/:toolId" element={<ToolPage />} />
-        <Route path="/category/:categoryId" element={<CategoryPage />} />
-        <Route path="/category/:categoryId/:subId" element={<CategoryPage />} />
-        <Route path="/solutions" element={<CollectionPage type="solutions" />} />
-        <Route path="/solutions/:id" element={<CollectionDetail type="solutions" />} />
-        <Route path="/use-cases" element={<CollectionPage type="use-cases" />} />
-        <Route path="/use-cases/founder-led-businesses" element={<Navigate to="/use-cases/founder-led" replace />} />
-        <Route path="/use-cases/operations-teams" element={<Navigate to="/use-cases/ops-teams" replace />} />
-        <Route path="/use-cases/saas" element={<Navigate to="/use-cases/saas-startups" replace />} />
-        <Route path="/use-cases/agencies" element={<Navigate to="/use-cases/b2b-agencies" replace />} />
-        <Route path="/use-cases/:id" element={<CollectionDetail type="use-cases" />} />
-        <Route path="/integrations" element={<ResourceIndex type="integrations" />} />
-        <Route path="/integrations/:id" element={<ResourceDetail type="integrations" />} />
-        <Route path="/docs" element={<ResourceIndex type="docs" />} />
-        <Route path="/docs/:id" element={<ResourceDetail type="docs" />} />
-        <Route path="/help" element={<ResourceIndex type="help" />} />
-        <Route path="/help/:id" element={<ResourceDetail type="help" />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/pricing" element={<PricingPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/demo" element={<DemoPage />} />
-        <Route path="/talk-to-agentix" element={<Navigate to="/" replace />} />
-        <Route path="/faq" element={<FAQPage />} />
-        <Route path="/security" element={<SecurityPage />} />
-        <Route path="/status" element={<StatusPage />} />
-        <Route path="/changelog" element={<ChangelogPage />} />
-        {['privacy', 'privacy-policy', 'terms', 'cookies', 'cookie-preferences', 'accessibility', '500'].map((id) => (
-          <Route key={id} path={`/${id}`} element={<InfoPage id={id === 'privacy-policy' ? 'privacy' : id === 'cookies' ? 'cookie-preferences' : id} />} />
-        ))}
-        {/* Admin panel — lazy loaded, never bundled with public site */}
+        {/* ── Admin panel — completely isolated from public site chrome ── */}
         <Route path="/admin/*" element={<AdminApp />} />
-        <Route path="/404" element={<NotFoundPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+
+        {/* ── All public routes — wrapped in Layout (nav, footer, voice) ── */}
+        <Route path="/*" element={
+          <Layout>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/tools" element={<ToolsPage />} />
+              <Route path="/tools/:toolId" element={<ToolPage />} />
+              <Route path="/category/:categoryId" element={<CategoryPage />} />
+              <Route path="/category/:categoryId/:subId" element={<CategoryPage />} />
+              <Route path="/solutions" element={<CollectionPage type="solutions" />} />
+              <Route path="/solutions/:id" element={<CollectionDetail type="solutions" />} />
+              <Route path="/use-cases" element={<CollectionPage type="use-cases" />} />
+              <Route path="/use-cases/founder-led-businesses" element={<Navigate to="/use-cases/founder-led" replace />} />
+              <Route path="/use-cases/operations-teams" element={<Navigate to="/use-cases/ops-teams" replace />} />
+              <Route path="/use-cases/saas" element={<Navigate to="/use-cases/saas-startups" replace />} />
+              <Route path="/use-cases/agencies" element={<Navigate to="/use-cases/b2b-agencies" replace />} />
+              <Route path="/use-cases/:id" element={<CollectionDetail type="use-cases" />} />
+              <Route path="/integrations" element={<ResourceIndex type="integrations" />} />
+              <Route path="/integrations/:id" element={<ResourceDetail type="integrations" />} />
+              <Route path="/docs" element={<ResourceIndex type="docs" />} />
+              <Route path="/docs/:id" element={<ResourceDetail type="docs" />} />
+              <Route path="/help" element={<ResourceIndex type="help" />} />
+              <Route path="/help/:id" element={<ResourceDetail type="help" />} />
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/pricing" element={<PricingPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/demo" element={<DemoPage />} />
+              <Route path="/talk-to-agentix" element={<Navigate to="/" replace />} />
+              <Route path="/faq" element={<FAQPage />} />
+              <Route path="/security" element={<SecurityPage />} />
+              <Route path="/status" element={<StatusPage />} />
+              <Route path="/changelog" element={<ChangelogPage />} />
+              {['privacy', 'privacy-policy', 'terms', 'cookies', 'cookie-preferences', 'accessibility', '500'].map((id) => (
+                <Route key={id} path={`/${id}`} element={<InfoPage id={id === 'privacy-policy' ? 'privacy' : id === 'cookies' ? 'cookie-preferences' : id} />} />
+              ))}
+              <Route path="/404" element={<NotFoundPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Layout>
+        } />
       </Routes>
-      </Suspense>
-    </Layout>
+    </Suspense>
   );
 }
