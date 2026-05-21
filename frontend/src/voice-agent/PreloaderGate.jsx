@@ -81,15 +81,15 @@ export default function PreloaderGate({ onEnter }) {
   // ── Boot line stagger ─────────────────────────────────────────────────────
   useEffect(() => {
     if (phase !== PH.BOOT) return;
-    const timers = BOOT_LINES.map((_, i) =>
+    const MathTimers = BOOT_LINES.map((_, i) =>
       setTimeout(() => setVisibleLines(i + 1), i * 480)
     );
-    return () => timers.forEach(clearTimeout);
+    return () => MathTimers.forEach(clearTimeout);
   }, [phase]);
 
   // ── Click / tap handler ───────────────────────────────────────────────────
   const handleClick = useCallback(() => {
-    if (phase !== PH.INVITATION) return;
+    if (phase !== PH.INVITATION && phase !== PH.GATE_FORM) return;
 
     // Capture the orb's exact screen centre so the iris expands from it
     let x = '50%';
@@ -103,6 +103,14 @@ export default function PreloaderGate({ onEnter }) {
     setPhase(PH.EXITING);
     setIrisActive(true);
   }, [phase]);
+
+  // ── Auto-transition ───────────────────────────────────────────────────────
+  useEffect(() => {
+    if (phase === PH.INVITATION) {
+      const timer = setTimeout(handleClick, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [phase, handleClick]);
 
   // Called by Framer Motion after the iris animation fully completes
   const handleIrisComplete = useCallback(() => {
@@ -305,25 +313,6 @@ export default function PreloaderGate({ onEnter }) {
               >
                 Your AI Operating System is ready
               </motion.p>
-
-              {/* Touch hint — invitation phase only, slow opacity pulse */}
-              {phase === PH.INVITATION && (
-                <motion.div
-                  className="pg-touch"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0.65, 0.3, 0.65] }}
-                  transition={{
-                    duration: 2.3,
-                    repeat:   Infinity,
-                    ease:     'easeInOut',
-                    delay:    0.5,
-                  }}
-                >
-                  {typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0
-                    ? 'TAP ANYWHERE'
-                    : 'TOUCH ANYWHERE'}
-                </motion.div>
-              )}
             </motion.div>
           )}
         </AnimatePresence>

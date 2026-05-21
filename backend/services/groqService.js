@@ -3,7 +3,12 @@ import Groq from 'groq-sdk';
 import { SYSTEM_PROMPT } from '../voice-agent-config.js';
 import { TEXT_SYSTEM_PROMPT } from '../text-agent-config.js';
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+let groq = null;
+if (process.env.GROQ_API_KEY) {
+  groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+} else {
+  console.warn('⚠️  GROQ_API_KEY is missing. AI features will be disabled.');
+}
 
 /**
  * Send a multi-turn conversation to Groq and return the assistant's reply.
@@ -11,6 +16,10 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
  * @returns {Promise<string>} assistant message
  */
 export async function chatWithGroq(messages) {
+  if (!groq) {
+    return "I'm sorry, my AI brain is currently disconnected (missing GROQ_API_KEY). How else can I help you today?";
+  }
+
   const now = new Date();
   // Use ISO format — works on every Node.js build regardless of ICU/locale support
   const dateStr = now.toISOString().split('T')[0]; // e.g. 2026-05-12
@@ -39,6 +48,10 @@ export async function chatWithGroq(messages) {
  * @returns {Promise<string>} assistant message
  */
 export async function chatWithGroqText(messages) {
+  if (!groq) {
+    return "The text agent is currently unavailable because the Groq API key is missing.";
+  }
+
   const completion = await groq.chat.completions.create({
     model: 'llama-3.3-70b-versatile',
     messages: [
