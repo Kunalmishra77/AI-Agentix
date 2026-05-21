@@ -114,12 +114,19 @@ export default function HeroSection() {
             <span style={{ color: 'var(--ink-0)' }}> connected in one intelligent platform.</span>
           </p>
           <div className="hero-ctas fade-up" style={{ animationDelay: '0.55s' }}>
-            <Link to="/talk-to-agentix" className="btn btn-primary btn-lg">
+            <button 
+              className="btn btn-primary btn-lg"
+              onClick={() => window.dispatchEvent(new CustomEvent('open-voice-agent'))}
+            >
               <AgentixIcon name="mic" size={14} />Talk to Agentix
-            </Link>
+            </button>
             <button
               className="btn btn-secondary btn-lg"
-              onClick={(e) => { e.stopPropagation(); setActiveId(null); }}
+              onClick={(e) => { 
+                e.stopPropagation(); 
+                setActiveId(null);
+                document.getElementById('ecosystem')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               Explore Ecosystem <AgentixIcon name="arrow" size={14} />
             </button>

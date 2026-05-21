@@ -215,12 +215,9 @@ export function useVoiceLoop() {
   // ── Gate click — first-time entry ─────────────────────────────────────────
   const onGateClick = useCallback(() => {
     sessionStorage.setItem(SESSION_SEEN_KEY, '1');
-    conversationStartedRef.current = true;
-    setPhase(PHASES.GREETING);
-    setTimeout(() => {
-      agentSay(MSG_WELCOME, PHASES.GUIDED, true);
-    }, 600);
-  }, [agentSay]);
+    // Silently transition to browsing phase on entry
+    setPhase(PHASES.BROWSING);
+  }, []);
 
   // ── Orb click — pause / resume ────────────────────────────────────────────
   const onOrbClick = useCallback(() => {
