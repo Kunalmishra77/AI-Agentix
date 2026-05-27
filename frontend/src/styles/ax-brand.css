@@ -247,11 +247,6 @@
 .ax-reveal-delay-4 { transition-delay: 0.5s; }
 
 /* ── Marquee ─────────────────────────────────────────── */
-.ax-marquee-track {
-  display: flex; gap: 48px;
-  animation: ax-marquee 30s linear infinite; width: max-content;
-}
-.ax-marquee-track:hover { animation-play-state: paused; }
 @keyframes ax-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ── Animations ──────────────────────────────────────── */
@@ -330,22 +325,33 @@
 .ax-input:focus { border-color: rgba(232,99,26,0.5); }
 .ax-input::placeholder { color: rgba(255,255,255,0.35); }
 
-/* ── Marquee inner ───────────────────────────────────── */
-.ax-marquee-inner {
-  display: flex; gap: 48px; align-items: center;
-  animation: ax-marquee 30s linear infinite; width: max-content;
+/* ── Marquee track + inner ───────────────────────────── */
+.ax-marquee-track {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
-.ax-marquee-inner:hover { animation-play-state: paused; }
-.ax-marquee-track { overflow: hidden; }
+.ax-marquee-inner {
+  display: flex; gap: 32px; align-items: center;
+  width: max-content;
+  animation: ax-marquee 28s linear infinite;
+}
+.ax-marquee-track:hover .ax-marquee-inner { animation-play-state: paused; }
 
 /* ── Partner logo chip ───────────────────────────────── */
 .ax-partner-logo {
-  display: inline-flex; align-items: center;
-  font-family: var(--font-body); font-size: 14px; font-weight: 600;
-  color: rgba(255,255,255,0.45); white-space: nowrap;
-  padding: 10px 24px; border: 1px solid rgba(255,255,255,0.08);
-  border-radius: var(--r-sm); background: rgba(255,255,255,0.03);
-  transition: var(--trans);
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,0.55); white-space: nowrap;
+  padding: 10px 20px; border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 999px; background: rgba(255,255,255,0.04);
+  transition: border-color 0.2s, color 0.2s;
+  letter-spacing: 0.01em;
+}
+.ax-partner-logo:hover {
+  border-color: rgba(232,99,26,0.4);
+  color: rgba(255,255,255,0.85);
 }
 
 /* ── Footer additions ────────────────────────────────── */

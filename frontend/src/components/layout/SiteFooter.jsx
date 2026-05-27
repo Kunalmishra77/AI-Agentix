@@ -3,7 +3,18 @@ import { motion } from 'framer-motion';
 import { Linkedin, Youtube, Instagram, ArrowRight } from 'lucide-react';
 import BrandLogo from './BrandLogo.jsx';
 
-const PARTNERS = ['OpenAI', 'n8n', 'Make', 'Meta', 'Google Cloud', 'AWS', 'Razorpay', 'Twilio', 'OpenAI', 'n8n', 'Make', 'Meta', 'Google Cloud', 'AWS', 'Razorpay', 'Twilio'];
+const PARTNER_COLORS = {
+  'OpenAI':       '#10a37f',
+  'Google Cloud': '#4285F4',
+  'AWS':          '#FF9900',
+  'Meta':         '#1877F2',
+  'Twilio':       '#F22F46',
+  'Razorpay':     '#3395FF',
+  'n8n':          '#EA4B71',
+  'Make':         '#6D00CC',
+};
+const PARTNERS_BASE = ['OpenAI', 'Google Cloud', 'AWS', 'Meta', 'Twilio', 'Razorpay', 'n8n', 'Make'];
+const PARTNERS = [...PARTNERS_BASE, ...PARTNERS_BASE];
 
 const SOCIALS = [
   { icon: <Linkedin size={16} />, href: 'https://linkedin.com/company/aiagentex', label: 'LinkedIn' },
@@ -15,14 +26,17 @@ export default function SiteFooter() {
   return (
     <footer className="ax-footer">
       {/* Partner marquee */}
-      <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: 32, marginBottom: 64 }}>
-        <p style={{ textAlign: 'center', fontFamily: 'var(--font-body)', fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 24, marginTop: 0 }}>
+      <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingTop: 48, paddingBottom: 40, marginBottom: 64 }}>
+        <p style={{ textAlign: 'center', fontFamily: 'var(--font-body)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 28, marginTop: 0 }}>
           Built on the world's most powerful AI platforms
         </p>
         <div className="ax-marquee-track">
           <div className="ax-marquee-inner">
             {PARTNERS.map((p, i) => (
-              <span key={i} className="ax-partner-logo">{p}</span>
+              <span key={i} className="ax-partner-logo">
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: PARTNER_COLORS[p] ?? '#aaa', flexShrink: 0, display: 'inline-block' }} />
+                {p}
+              </span>
             ))}
           </div>
         </div>
