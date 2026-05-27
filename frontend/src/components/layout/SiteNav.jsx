@@ -75,11 +75,12 @@ export default function SiteNav() {
                 onMouseEnter={() => link.mega && setMegaOpen(link.label)}
                 onMouseLeave={() => setMegaOpen(null)}>
                 <Link to={link.to} style={{
-                  display: 'flex', alignItems: 'center', gap: 4, padding: '8px 14px',
-                  fontFamily: 'var(--font-body)', fontSize: 16, fontWeight: 500,
+                  display: 'flex', alignItems: 'center', gap: 4, padding: '8px 12px',
+                  fontFamily: 'var(--font-body)', fontSize: 15, fontWeight: 500,
                   color: isActive(link.to) ? 'var(--or)' : 'rgba(255,255,255,0.85)',
                   textDecoration: 'none', borderRadius: 8, transition: 'all 0.2s ease',
                   background: isActive(link.to) ? 'rgba(232,99,26,0.1)' : 'transparent',
+                  whiteSpace: 'nowrap',
                 }}
                   onMouseEnter={e => !isActive(link.to) && (e.currentTarget.style.color = '#fff')}
                   onMouseLeave={e => !isActive(link.to) && (e.currentTarget.style.color = 'rgba(255,255,255,0.85)')}>
@@ -117,7 +118,7 @@ export default function SiteNav() {
 
           {/* Right CTA */}
           <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexShrink: 0 }} className="ax-nav-desktop">
-            <Link to="/contact" style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-body)', fontSize: 15, fontWeight: 600, color: 'var(--or)', textDecoration: 'none', padding: '10px 20px', border: '1.5px solid var(--or)', borderRadius: 8, transition: 'all 0.2s ease' }}
+            <Link to="/contact" style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 600, color: 'var(--or)', textDecoration: 'none', padding: '9px 16px', border: '1.5px solid var(--or)', borderRadius: 8, transition: 'all 0.2s ease', whiteSpace: 'nowrap' }}
               onMouseEnter={e => { e.currentTarget.style.background = 'var(--or)'; e.currentTarget.style.color = '#fff'; }}
               onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--or)'; }}>
               Get a Free AI Audit <ArrowRight size={14} />
@@ -157,7 +158,20 @@ export default function SiteNav() {
       </AnimatePresence>
 
       <style>{`
-        @media (max-width: 1024px) {
+        /* ── Nav items: never wrap ── */
+        .ax-nav-desktop a { white-space: nowrap !important; }
+
+        /* ── Shrink font+padding at tight widths before hamburger kicks in ── */
+        @media (max-width: 1280px) {
+          .ax-nav-desktop a { font-size: 13px !important; padding: 6px 8px !important; }
+          .ax-nav-desktop > div { gap: 0 !important; }
+        }
+        @media (max-width: 1100px) {
+          .ax-nav-desktop a { font-size: 12px !important; padding: 5px 6px !important; }
+        }
+
+        /* ── Switch to hamburger below 960px ── */
+        @media (max-width: 960px) {
           .ax-nav-desktop { display: none !important; }
           .ax-nav-mobile  { display: flex !important; margin-left: auto; }
           .ax-nav > div   { justify-content: space-between; }

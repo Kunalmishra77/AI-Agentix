@@ -60,9 +60,9 @@ const VALUES = [
 ];
 
 const TEAM = [
-  { name: 'Arjun Mehta', role: 'Co-Founder & CEO', bg: '#E8631A', initial: 'A', desc: '10 years in enterprise software. Ex-TCS, IIM Ahmedabad. Obsessed with making AI accessible to every Indian business.', linkedin: '#' },
-  { name: 'Priya Nair', role: 'Co-Founder & CTO', bg: '#6366F1', initial: 'P', desc: 'ML Engineer from IIT Bombay. Previously at Google Research. Builds the AI models that power our agents.', linkedin: '#' },
-  { name: 'Rahul Singh', role: 'Head of Delivery', bg: '#10B981', initial: 'R', desc: '8 years in automation consulting. Manages every client engagement from discovery to go-live.', linkedin: '#' },
+  { name: 'Anant Sanadhya', role: 'Founder & CEO', bg: '#E8631A', initial: 'A', desc: 'Visionary entrepreneur and AI strategist. Founded AGENTiX to make cutting-edge AI automation accessible to every Indian business, from startups to enterprises.', linkedin: '#' },
+  { name: 'Priya Nair', role: 'Head of Technology', bg: '#6366F1', initial: 'P', desc: 'ML Engineer with deep expertise in LLMs and agentic systems. Builds the AI models and automation pipelines that power our client deployments.', linkedin: '#' },
+  { name: 'Rahul Singh', role: 'Head of Delivery', bg: '#10B981', initial: 'R', desc: '8 years in automation consulting. Manages every client engagement from discovery to go-live, ensuring on-time delivery every time.', linkedin: '#' },
   { name: 'Sneha Kapoor', role: 'Head of Growth', bg: '#F59E0B', initial: 'S', desc: 'Growth marketer turned AI advocate. Runs partnerships, events, and the India-wide expansion strategy.', linkedin: '#' },
 ];
 
