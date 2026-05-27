@@ -156,73 +156,78 @@ export default function SiteNav() {
                   position: 'absolute', top: '100%', left: '50%',
                   transform: 'translateX(-50%)',
                   width: 'min(680px, calc(100vw - 32px))',
+                  maxHeight: 'calc(100vh - 90px)',
                   background: 'rgba(9,20,38,0.98)',
                   backdropFilter: 'blur(24px)',
-                  borderRadius: 20,
+                  borderRadius: 16,
                   border: '1px solid rgba(255,255,255,0.1)',
-                  boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
+                  boxShadow: '0 24px 60px rgba(0,0,0,0.55)',
                   zIndex: 1001,
                   overflow: 'hidden',
+                  display: 'flex', flexDirection: 'column',
                 }}>
 
                 {/* Header strip */}
                 <div style={{
-                  padding: '20px 24px 16px',
+                  padding: '14px 20px 12px',
                   borderBottom: '1px solid rgba(255,255,255,0.07)',
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                   background: `linear-gradient(90deg, ${meta.accent}10, transparent)`,
+                  flexShrink: 0,
                 }}>
                   <div>
-                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 16, fontWeight: 700, color: '#fff' }}>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>
                       {meta.title}
                     </div>
-                    <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-body)', marginTop: 3 }}>
+                    <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-body)', marginTop: 2 }}>
                       {meta.tagline}
                     </div>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                     <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontFamily: 'var(--font-number)', fontSize: 20, fontWeight: 700, color: meta.accent, lineHeight: 1 }}>
+                      <div style={{ fontFamily: 'var(--font-number)', fontSize: 18, fontWeight: 700, color: meta.accent, lineHeight: 1 }}>
                         {meta.stat.value}
                       </div>
-                      <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-body)', marginTop: 2 }}>
+                      <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-body)', marginTop: 1 }}>
                         {meta.stat.label}
                       </div>
                     </div>
                     <Link to={meta.cta.to}
                       style={{
                         display: 'flex', alignItems: 'center', gap: 5,
-                        padding: '7px 14px', borderRadius: 8,
+                        padding: '6px 12px', borderRadius: 7,
                         background: meta.accent, color: '#fff',
                         fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600,
                         textDecoration: 'none', whiteSpace: 'nowrap',
                       }}>
-                      {meta.cta.label} <ArrowRight size={11} />
+                      {meta.cta.label} <ArrowRight size={10} />
                     </Link>
                   </div>
                 </div>
 
-                {/* Items grid */}
+                {/* Items grid — scrollable if too tall */}
                 <div style={{
                   display: 'grid',
-                  gridTemplateColumns: `repeat(${cols}, 1fr)`,
-                  gap: 2,
-                  padding: '12px',
+                  gridTemplateColumns: 'repeat(2, 1fr)',
+                  gap: 1,
+                  padding: '8px',
+                  overflowY: 'auto',
+                  flex: 1,
                 }}>
                   {link.mega.map((item) => (
                     <Link key={item.to} to={item.to}
                       style={{
-                        display: 'flex', alignItems: 'flex-start', gap: 12,
-                        padding: '12px 14px', borderRadius: 12,
+                        display: 'flex', alignItems: 'center', gap: 10,
+                        padding: '10px 12px', borderRadius: 10,
                         textDecoration: 'none', transition: 'background 0.15s',
                         background: 'transparent',
                       }}
                       onMouseEnter={e => e.currentTarget.style.background = `${meta.accent}12`}
                       onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
                       <div style={{
-                        width: 36, height: 36, flexShrink: 0, borderRadius: 10,
+                        width: 32, height: 32, flexShrink: 0, borderRadius: 9,
                         background: `${meta.accent}15`,
-                        border: `1px solid ${meta.accent}35`,
+                        border: `1px solid ${meta.accent}30`,
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         color: meta.accent,
                       }}>
@@ -230,15 +235,16 @@ export default function SiteNav() {
                       </div>
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{
-                          fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 600,
-                          color: '#fff', lineHeight: 1.2, whiteSpace: 'nowrap',
-                          overflow: 'hidden', textOverflow: 'ellipsis',
+                          fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 600,
+                          color: '#fff', lineHeight: 1.2,
                         }}>
                           {item.label}
                         </div>
                         <div style={{
-                          fontSize: 11.5, color: 'rgba(255,255,255,0.42)',
-                          fontFamily: 'var(--font-body)', marginTop: 3, lineHeight: 1.4,
+                          fontSize: 11, color: 'rgba(255,255,255,0.4)',
+                          fontFamily: 'var(--font-body)', marginTop: 2, lineHeight: 1.35,
+                          display: '-webkit-box', WebkitLineClamp: 1,
+                          WebkitBoxOrient: 'vertical', overflow: 'hidden',
                         }}>
                           {item.desc}
                         </div>
