@@ -86,7 +86,7 @@ export default function SiteNav() {
           <BrandLogo variant="original" height={48} />
 
           {/* Desktop Nav Links */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 2, flex: 1 }} className="ax-nav-desktop">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, flex: 1 }} className="ax-nav-desktop">
             {NAV_LINKS.map((link) => (
               <div key={link.to}
                 style={{ position: 'relative' }}
