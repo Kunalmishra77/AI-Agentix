@@ -435,10 +435,10 @@ const RESPONSIVE_CSS = `
 /* Hero 2-col grid */
 .ax-hero-grid {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 60px; align-items: center; padding: 60px 0;
+  gap: 60px; align-items: center; width: 100%;
 }
 @media (max-width: 900px) {
-  .ax-hero-grid { grid-template-columns: 1fr; padding: 48px 0; gap: 32px; }
+  .ax-hero-grid { grid-template-columns: 1fr; gap: 32px; }
   .ax-hero-right { display: none; }
 }
 
@@ -630,7 +630,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           1. HERO — Dark #0D1B2E, 2-col split
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: 'linear-gradient(135deg, #0D1B2E 0%, #0F2240 60%, #0D1B2E 100%)', minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: 100, position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: 'linear-gradient(135deg, #0D1B2E 0%, #0F2240 60%, #0D1B2E 100%)', height: '100vh', minHeight: 640, display: 'flex', alignItems: 'center', paddingTop: 80, paddingBottom: 0, boxSizing: 'border-box', position: 'relative', overflow: 'hidden' }}>
         {/* Ambient glows */}
         <div style={{ position: 'absolute', top: '15%', right: '5%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(232,99,26,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: '10%', left: '0%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
@@ -692,8 +692,10 @@ export default function HomePage() {
         </div>
 
         {/* Scroll hint */}
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2 }} style={{ position: 'absolute', bottom: 30, left: '50%', transform: 'translateX(-50%)', color: 'rgba(255,255,255,0.3)' }}>
-          <ChevronDown size={24} />
+        <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2 }}
+          style={{ position: 'absolute', bottom: 24, left: '50%', transform: 'translateX(-50%)', color: 'rgba(255,255,255,0.25)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+          <span style={{ fontSize: 10, fontFamily: 'var(--font-body)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>scroll</span>
+          <ChevronDown size={18} />
         </motion.div>
       </section>
 
