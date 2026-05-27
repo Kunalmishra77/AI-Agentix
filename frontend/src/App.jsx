@@ -47,6 +47,31 @@ const SecurityPage  = lazy(() => import('./pages/site/SecurityPage.jsx'));
 const StatusPage    = lazy(() => import('./pages/site/StatusPage.jsx'));
 const ChangelogPage = lazy(() => import('./pages/site/ChangelogPage.jsx'));
 const AdminApp      = lazy(() => import('./admin/AdminApp.jsx'));
+const MktHomePage       = lazy(() => import('./pages/marketing/HomePage.jsx'));
+const MktAboutPage      = lazy(() => import('./pages/marketing/AboutPage.jsx'));
+const MktSolutionsPage  = lazy(() => import('./pages/marketing/SolutionsPage.jsx'));
+const MktIndustriesPage = lazy(() => import('./pages/marketing/IndustriesPage.jsx'));
+const MktAIStudioPage   = lazy(() => import('./pages/marketing/AIStudioPage.jsx'));
+const MktTechnologyPage = lazy(() => import('./pages/marketing/TechnologyPage.jsx'));
+const MktCaseStudiesPage = lazy(() => import('./pages/marketing/CaseStudiesPage.jsx'));
+const MktContactPage    = lazy(() => import('./pages/marketing/ContactPage.jsx'));
+// Solutions sub-pages
+const SalesAutomationPage     = lazy(() => import('./pages/marketing/solutions/SalesAutomationPage.jsx'));
+const MarketingAutomationPage = lazy(() => import('./pages/marketing/solutions/MarketingAutomationPage.jsx'));
+const HRMSHiringPage          = lazy(() => import('./pages/marketing/solutions/HRMSHiringPage.jsx'));
+const OperationsPage          = lazy(() => import('./pages/marketing/solutions/OperationsPage.jsx'));
+const SupplyChainPage         = lazy(() => import('./pages/marketing/solutions/SupplyChainPage.jsx'));
+const FinanceAccountsPage     = lazy(() => import('./pages/marketing/solutions/FinanceAccountsPage.jsx'));
+const AIVoiceChatPage         = lazy(() => import('./pages/marketing/solutions/AIVoiceChatPage.jsx'));
+const ManufacturingSolutionPage = lazy(() => import('./pages/marketing/solutions/ManufacturingSolutionPage.jsx'));
+// Industry sub-pages
+const HealthcarePage          = lazy(() => import('./pages/marketing/industries/HealthcarePage.jsx'));
+const EducationPage           = lazy(() => import('./pages/marketing/industries/EducationPage.jsx'));
+const HospitalityPage         = lazy(() => import('./pages/marketing/industries/HospitalityPage.jsx'));
+const RealEstatePage          = lazy(() => import('./pages/marketing/industries/RealEstatePage.jsx'));
+const RetailEcommercePage     = lazy(() => import('./pages/marketing/industries/RetailEcommercePage.jsx'));
+const ManufacturingIndustryPage = lazy(() => import('./pages/marketing/industries/ManufacturingIndustryPage.jsx'));
+const LogisticsPage           = lazy(() => import('./pages/marketing/industries/LogisticsPage.jsx'));
 import VoiceExperience from './voice-agent/VoiceExperience.jsx';
 import { useGroqTextChat } from './voice-agent/useGroqTextChat.js';
 import { useRef } from 'react';
@@ -393,8 +418,6 @@ function AgentScanEffect() {
 }
 
 function Layout({ children }) {
-  useScrollToTop();
-
   useEffect(() => {
     document.body.dataset.theme = 'dark';
     document.body.dataset.density = 'spacious';
@@ -408,7 +431,6 @@ function Layout({ children }) {
       <AgentScanEffect />
       <AssistantDock />
       <VoiceExperience />
-      <ScrollTopBtn />
       <GlobalFooter />
     </>
   );
@@ -1859,23 +1881,49 @@ function PageSkeleton() {
 }
 
 export default function App() {
+  useScrollToTop();
   return (
+    <>
     <Suspense fallback={<PageSkeleton />}>
       <Routes>
-        {/* ── Admin panel — completely isolated from public site chrome ── */}
+        {/* ── Admin panel — completely isolated ── */}
         <Route path="/admin/*" element={<AdminApp />} />
 
-        {/* ── All public routes — wrapped in Layout (nav, footer, voice) ── */}
+        {/* ── Marketing pages — own nav/footer, NO Layout wrapper ── */}
+        <Route path="/" element={<MktHomePage />} />
+        <Route path="/about" element={<MktAboutPage />} />
+        <Route path="/solutions" element={<MktSolutionsPage />} />
+        <Route path="/solutions/sales-automation" element={<SalesAutomationPage />} />
+        <Route path="/solutions/marketing-automation" element={<MarketingAutomationPage />} />
+        <Route path="/solutions/hrms-hiring" element={<HRMSHiringPage />} />
+        <Route path="/solutions/operations" element={<OperationsPage />} />
+        <Route path="/solutions/supply-chain" element={<SupplyChainPage />} />
+        <Route path="/solutions/finance-accounts" element={<FinanceAccountsPage />} />
+        <Route path="/solutions/ai-voice-chat" element={<AIVoiceChatPage />} />
+        <Route path="/solutions/manufacturing" element={<ManufacturingSolutionPage />} />
+        <Route path="/industries" element={<MktIndustriesPage />} />
+        <Route path="/industries/healthcare" element={<HealthcarePage />} />
+        <Route path="/industries/education" element={<EducationPage />} />
+        <Route path="/industries/hospitality" element={<HospitalityPage />} />
+        <Route path="/industries/real-estate" element={<RealEstatePage />} />
+        <Route path="/industries/retail-ecommerce" element={<RetailEcommercePage />} />
+        <Route path="/industries/manufacturing" element={<ManufacturingIndustryPage />} />
+        <Route path="/industries/logistics" element={<LogisticsPage />} />
+        <Route path="/ai-studio" element={<MktAIStudioPage />} />
+        <Route path="/technology" element={<MktTechnologyPage />} />
+        <Route path="/case-studies" element={<MktCaseStudiesPage />} />
+        <Route path="/contact" element={<MktContactPage />} />
+
+        {/* ── Platform tool-discovery pages — wrapped in Layout ── */}
         <Route path="/*" element={
           <Layout>
             <Routes>
-              <Route path="/" element={<HomePage />} />
               <Route path="/tools" element={<ToolsPage />} />
               <Route path="/tools/:toolId" element={<ToolPage />} />
               <Route path="/category/:categoryId" element={<CategoryPage />} />
               <Route path="/category/:categoryId/:subId" element={<CategoryPage />} />
-              <Route path="/solutions" element={<CollectionPage type="solutions" />} />
-              <Route path="/solutions/:id" element={<CollectionDetail type="solutions" />} />
+              <Route path="/platform/solutions" element={<CollectionPage type="solutions" />} />
+              <Route path="/platform/solutions/:id" element={<CollectionDetail type="solutions" />} />
               <Route path="/use-cases" element={<CollectionPage type="use-cases" />} />
               <Route path="/use-cases/founder-led-businesses" element={<Navigate to="/use-cases/founder-led" replace />} />
               <Route path="/use-cases/operations-teams" element={<Navigate to="/use-cases/ops-teams" replace />} />
@@ -1889,9 +1937,7 @@ export default function App() {
               <Route path="/help" element={<ResourceIndex type="help" />} />
               <Route path="/help/:id" element={<ResourceDetail type="help" />} />
               <Route path="/search" element={<SearchPage />} />
-              <Route path="/about" element={<AboutPage />} />
               <Route path="/pricing" element={<PricingPage />} />
-              <Route path="/contact" element={<ContactPage />} />
               <Route path="/demo" element={<DemoPage />} />
               <Route path="/talk-to-agentix" element={<Navigate to="/" replace />} />
               <Route path="/faq" element={<FAQPage />} />
@@ -1908,5 +1954,7 @@ export default function App() {
         } />
       </Routes>
     </Suspense>
+    <ScrollTopBtn />
+    </>
   );
 }

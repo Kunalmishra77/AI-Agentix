@@ -21,12 +21,12 @@
   --ink-3: #5A5F6A;
   --ink-4: #3A3E47;
 
-  /* Primary brand — Agentix Orange (from logo.png) */
-  --accent: #E87520;
-  --accent-rgb: 232, 117, 32;
-  --accent-2: #C95F10;
-  --accent-soft: rgba(232, 117, 32, 0.12);
-  --accent-glow: rgba(232, 117, 32, 0.4);
+  /* Primary brand — Agentix Orange (from logo.png, matches ax-brand.css --or) */
+  --accent: #E8631A;
+  --accent-rgb: 232, 99, 26;
+  --accent-2: #C4511A;
+  --accent-soft: rgba(232, 99, 26, 0.12);
+  --accent-glow: rgba(232, 99, 26, 0.4);
 
   /* Secondary brand — Agentix Cyan (from app interface) */
   --accent-cyan: #5BE3E3;
@@ -50,9 +50,9 @@
   --warn: #FFBB40;
   --err: #FF7B7B;
 
-  /* Type */
-  --font-display: 'Manrope', 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  /* Type — marketing pages override these via ax-brand.css (Poppins/Bebas Neue) */
+  --font-display: 'Poppins', 'Manrope', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body: 'Poppins', 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 
   /* Radius */

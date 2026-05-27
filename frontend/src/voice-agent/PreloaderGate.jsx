@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import BootText      from './BootText';
 import ParticleField from './ParticleField';
 import { useMagneticCursor } from './useMagneticCursor';
+import BrandLogo from '../components/layout/BrandLogo.jsx';
 import './PreloaderGate.css';
 
 // ── Phase identifiers ────────────────────────────────────────────────────────
@@ -107,7 +108,7 @@ export default function PreloaderGate({ onEnter }) {
   // ── Auto-transition ───────────────────────────────────────────────────────
   useEffect(() => {
     if (phase === PH.INVITATION) {
-      const timer = setTimeout(handleClick, 800);
+      const timer = setTimeout(handleClick, 2000);
       return () => clearTimeout(timer);
     }
   }, [phase, handleClick]);
@@ -179,7 +180,7 @@ export default function PreloaderGate({ onEnter }) {
               className="pg-logo-wrap"
               initial={{ opacity: 0, scale: 0.82, filter: 'blur(14px)' }}
               animate={{
-                opacity:      isAtGate ? 0.52 : 1,
+                opacity:      isAtGate ? 0.55 : 1,
                 scale:        1,
                 filter:       'blur(0px)',
                 marginBottom: isAtGate ? '48px' : '28px',
@@ -187,14 +188,14 @@ export default function PreloaderGate({ onEnter }) {
               exit={{ opacity: 0, transition: { duration: 0.25 } }}
               transition={{ duration: 0.85, ease: EASE_SPRING }}
             >
-              <motion.img
-                src="/assets/clients/logo.png"
-                alt="Agentix"
-                className="pg-logo"
-                fetchpriority="high"
-                animate={{ width: isAtGate ? '80px' : '140px' }}
-                transition={{ duration: 0.5, ease: EASE_SPRING }}
+              {/* ── Real logo — scales with phase ── */}
+              <BrandLogo
+                as="div"
+                variant="original"
+                height={isAtGate ? 56 : 100}
+                style={{ transition: 'height 0.5s ease' }}
               />
+
               {/* Particles coalesce during MATERIALIZE */}
               <ParticleField active={phase === PH.MATERIALIZE} />
             </motion.div>

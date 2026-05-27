@@ -1,5 +1,32 @@
 // ─── AGENTiX Voice Experience — State Machine + Helpers ─────────────────────
 
+// Widget-level agent states (used by VoiceAgentWidget)
+export const AGENT_STATES = {
+  IDLE:       'idle',
+  GREETING:   'greeting',
+  LISTENING:  'listening',
+  THINKING:   'thinking',
+  SPEAKING:   'speaking',
+  COLLECTING: 'collecting',
+  BOOKING:    'booking',
+  DONE:       'done',
+};
+
+// Greeting shown when the widget opens
+export const GREETING_MESSAGE =
+  "Hi! I'm Agentix, your AI business advisor. What's the biggest challenge your team is facing right now — leads, operations, or something else?";
+
+// Detect when agent reply should show the lead/demo form
+export function shouldCollectLead(text) {
+  const triggers = [
+    'fill in your details', 'just fill in', 'details below',
+    'fill in the form', 'fill out the form', 'book that demo',
+    'capture your details', 'collect a few details',
+    "let's book", "book a demo", "schedule a call",
+  ];
+  return triggers.some((t) => text.toLowerCase().includes(t));
+}
+
 export const PHASES = {
   GATE:            'gate',           // waiting for first click
   GREETING:        'greeting',       // agent speaks welcome

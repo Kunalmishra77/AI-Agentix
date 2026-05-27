@@ -16,51 +16,59 @@ const NAV_GROUPS = [
   {
     label: 'Overview',
     items: [
-      { label: 'Dashboard',    path: '/admin',           icon: LayoutDashboard, exact: true },
-      { label: 'Analytics',   path: '/admin/analytics', icon: BarChart3 },
+      { label: 'Dashboard',    path: '/admin',            icon: LayoutDashboard, exact: true },
+      { label: 'Analytics',    path: '/admin/analytics',  icon: BarChart3 },
+    ],
+  },
+  {
+    label: 'CRM',
+    items: [
+      { label: 'Leads',        path: '/admin/leads',      icon: Users },
+      { label: 'Bookings',     path: '/admin/bookings',   icon: Activity },
     ],
   },
   {
     label: 'Platform',
     items: [
-      { label: 'Users',       path: '/admin/users',     icon: Users,     badge: '3.8K' },
-      { label: 'AI Agents',   path: '/admin/agents',    icon: Bot,       badge: '247' },
-      { label: 'AI Management', path: '/admin/ai',      icon: Brain },
-      { label: 'Content / CMS', path: '/admin/content', icon: FileText },
-      { label: 'Media Library', path: '/admin/media',   icon: Image },
+      { label: 'AI Agents',    path: '/admin/agents',     icon: Bot },
+      { label: 'AI Management',path: '/admin/ai',         icon: Brain },
+      { label: 'Content / CMS',path: '/admin/content',   icon: FileText },
+      { label: 'Media Library',path: '/admin/media',      icon: Image },
     ],
   },
   {
     label: 'Operations',
     items: [
-      { label: 'API Monitor', path: '/admin/api',       icon: Activity },
-      { label: 'Logs',        path: '/admin/logs',      icon: Terminal },
-      { label: 'Billing',     path: '/admin/billing',   icon: CreditCard },
-      { label: 'System',      path: '/admin/system',    icon: Server },
+      { label: 'API Monitor',  path: '/admin/api',        icon: Activity },
+      { label: 'Logs',         path: '/admin/logs',       icon: Terminal },
+      { label: 'Billing',      path: '/admin/billing',    icon: CreditCard },
+      { label: 'System',       path: '/admin/system',     icon: Server },
     ],
   },
   {
     label: 'Config',
     items: [
-      { label: 'Settings',    path: '/admin/settings',  icon: Settings },
+      { label: 'Settings',     path: '/admin/settings',   icon: Settings },
     ],
   },
 ];
 
 // Map path → breadcrumb label
 const BREADCRUMB_MAP = {
-  '/admin':           ['Dashboard'],
-  '/admin/analytics': ['Analytics'],
-  '/admin/users':     ['Platform', 'Users'],
-  '/admin/agents':    ['Platform', 'AI Agents'],
-  '/admin/ai':        ['Platform', 'AI Management'],
-  '/admin/content':   ['Platform', 'Content / CMS'],
-  '/admin/media':     ['Platform', 'Media Library'],
-  '/admin/api':       ['Operations', 'API Monitor'],
-  '/admin/logs':      ['Operations', 'Logs'],
-  '/admin/billing':   ['Operations', 'Billing'],
-  '/admin/system':    ['Operations', 'System'],
-  '/admin/settings':  ['Config', 'Settings'],
+  '/admin':             ['Dashboard'],
+  '/admin/analytics':   ['Analytics'],
+  '/admin/leads':       ['CRM', 'Leads'],
+  '/admin/bookings':    ['CRM', 'Bookings'],
+  '/admin/users':       ['Platform', 'Users'],
+  '/admin/agents':      ['Platform', 'AI Agents'],
+  '/admin/ai':          ['Platform', 'AI Management'],
+  '/admin/content':     ['Platform', 'Content / CMS'],
+  '/admin/media':       ['Platform', 'Media Library'],
+  '/admin/api':         ['Operations', 'API Monitor'],
+  '/admin/logs':        ['Operations', 'Logs'],
+  '/admin/billing':     ['Operations', 'Billing'],
+  '/admin/system':      ['Operations', 'System'],
+  '/admin/settings':    ['Config', 'Settings'],
 };
 
 function isActive(path, pathname, exact) {
@@ -68,7 +76,7 @@ function isActive(path, pathname, exact) {
 }
 
 export default function AdminShell({ children }) {
-  const { logout } = useAdminAuth();
+  const { logout, admin } = useAdminAuth();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -146,11 +154,11 @@ export default function AdminShell({ children }) {
               <span className="adm-env-label">DEV · v1.0.0</span>
             </div>
 
-            <div className="adm-user-row" title={collapsed ? 'Admin — Super Admin' : undefined}>
-              <div className="adm-avatar">A</div>
+            <div className="adm-user-row" title={collapsed ? `${admin?.name ?? 'Admin'} — Super Admin` : undefined}>
+              <div className="adm-avatar">{(admin?.name ?? 'A')[0].toUpperCase()}</div>
               <div className="adm-user-info">
-                <div className="adm-user-name">Admin</div>
-                <div className="adm-user-role">Super Admin</div>
+                <div className="adm-user-name">{admin?.name ?? 'Admin'}</div>
+                <div className="adm-user-role">{admin?.email ?? 'Super Admin'}</div>
               </div>
               <button
                 onClick={logout}
@@ -229,10 +237,10 @@ export default function AdminShell({ children }) {
 
             <div
               className="adm-topbar-avatar"
-              title="Admin — Super Admin"
+              title={`${admin?.name ?? 'Admin'} — click to sign out`}
               onClick={logout}
             >
-              A
+              {(admin?.name ?? 'A')[0].toUpperCase()}
             </div>
           </div>
         </header>

@@ -3,6 +3,8 @@ import { AdminAuthContext, useAdminAuthState } from './auth/useAdminAuth';
 import AdminLogin     from './auth/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import UsersPage      from './pages/UsersPage';
+import LeadsPage      from './pages/LeadsPage';
+import BookingsPage   from './pages/BookingsPage';
 import AgentsPage     from './pages/AgentsPage';
 import AnalyticsPage  from './pages/AnalyticsPage';
 import ApiMonitorPage from './pages/ApiMonitorPage';
@@ -30,6 +32,8 @@ export default function AdminApp() {
           auth.authed ? (
             <Routes>
               <Route index             element={<AdminDashboard />} />
+              <Route path="leads"      element={<LeadsPage />} />
+              <Route path="bookings"   element={<BookingsPage />} />
               <Route path="users"      element={<UsersPage />} />
               <Route path="agents"     element={<AgentsPage />} />
               <Route path="analytics"  element={<AnalyticsPage />} />

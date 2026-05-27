@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSTT } from './useSTT';
 import { useTTS } from './useTTS';
 import { useGroqChat } from './useGroqChat';
+import { useGroqTextChat } from './useGroqTextChat';
 import {
   AGENT_STATES,
   GREETING_MESSAGE,
@@ -115,7 +116,8 @@ export default function VoiceAgentWidget() {
 
   // Hooks
   const { speak, stop: stopTTS } = useTTS();
-  const { sendMessage, resetHistory } = useGroqChat();
+  const { sendMessage: sendVoiceMessage } = useGroqChat();
+  const { sendMessage: sendTextMessage }  = useGroqTextChat();
 
   // ── Helpers ──────────────────────────────────────────────────────────────
   const addMessage = useCallback((role, text) => {
@@ -146,7 +148,7 @@ export default function VoiceAgentWidget() {
     setAgentState(AGENT_STATES.THINKING);
 
     try {
-      const reply = await sendMessage(transcript);
+      const reply = await sendVoiceMessage(transcript);
       const { clean, route } = parseNavHint(reply);
 
       if (route) {
@@ -161,7 +163,7 @@ export default function VoiceAgentWidget() {
     } catch (err) {
       agentSay("I'm having trouble connecting right now. Please try again in a moment.", AGENT_STATES.IDLE);
     }
-  }, [stopTTS, addMessage, sendMessage, agentSay]);
+  }, [stopTTS, addMessage, sendVoiceMessage, agentSay]);
 
   const onSTTStart = useCallback(() => setAgentState(AGENT_STATES.LISTENING), []);
   const onSTTEnd   = useCallback(() => {
@@ -221,7 +223,7 @@ export default function VoiceAgentWidget() {
     setAgentState(AGENT_STATES.THINKING);
 
     try {
-      const reply = await sendMessage(text);
+      const reply = await sendTextMessage(text);
       const { clean, route } = parseNavHint(reply);
       if (route) setNavSuggestion({ route, label: route });
       if (shouldCollectLead(clean)) setShowLeadForm(true);
@@ -229,7 +231,7 @@ export default function VoiceAgentWidget() {
     } catch {
       agentSay("I'm having trouble connecting. Please try again in a moment.", AGENT_STATES.IDLE);
     }
-  }, [textInput, stopTTS, addMessage, sendMessage, agentSay]);
+  }, [textInput, stopTTS, addMessage, sendTextMessage, agentSay]);
 
   const handleKeyDown = useCallback((e) => {
     if (e.key === 'Enter' && !e.shiftKey) {

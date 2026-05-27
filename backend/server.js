@@ -21,11 +21,13 @@ const allowedOrigins = [
   'https://ai-agentix.com',
   'https://www.ai-agentix.com',
 ];
-const localhostRe = /^http:\/\/localhost:\d+$/;
+const localhostRe  = /^http:\/\/localhost:\d+$/;
+const vercelRe     = /^https:\/\/[\w-]+(\.vercel\.app)$/;
 app.use(cors({
   origin: (origin, cb) => {
     if (!origin) return cb(null, true);
-    if (process.env.NODE_ENV !== 'production' && localhostRe.test(origin)) return cb(null, true);
+    if (localhostRe.test(origin)) return cb(null, true);
+    if (vercelRe.test(origin)) return cb(null, true);
     if (allowedOrigins.includes(origin)) return cb(null, true);
     cb(new Error('CORS blocked'));
   },
@@ -77,6 +79,7 @@ import voiceAgentBookRoutes from './routes/voiceAgentBook.js';
 import voiceAgentOAuthRoutes from './routes/voiceAgentOAuth.js';
 import textAgentRoutes from './routes/textAgent.js';
 import demoBookRoutes  from './routes/demoBook.js';
+import adminRoutes     from './routes/admin.js';
 
 app.use('/api/v1/posts',         postRoutes);
 app.use('/api/v1/case-studies',  caseStudyRoutes);
@@ -94,6 +97,7 @@ app.use('/api/v1/voice-agent',       voiceAgentBookRoutes);
 app.use('/api/v1/voice-agent/oauth', voiceAgentOAuthRoutes);
 app.use('/api/v1/text-agent',        textAgentRoutes);
 app.use('/api/v1/demo',              demoBookRoutes);
+app.use('/api/v1/admin',             adminRoutes);
 
 // ── Health ────────────────────────────────────────────────────
 app.get(['/health', '/api/health'], async (_req, res) => {

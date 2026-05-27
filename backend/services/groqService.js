@@ -1,70 +1,79 @@
-// ─── Groq LLM Service ──────────────────────────────────────────────────────
-import Groq from 'groq-sdk';
+// ─── OpenRouter LLM Service ─────────────────────────────────────────────────
+// Drop-in replacement for groq-sdk — same exported function names.
+// Uses OpenRouter's OpenAI-compatible endpoint with meta-llama/llama-3.3-70b-instruct
 import { SYSTEM_PROMPT } from '../voice-agent-config.js';
 import { TEXT_SYSTEM_PROMPT } from '../text-agent-config.js';
 
-let groq = null;
-if (process.env.GROQ_API_KEY) {
-  groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-} else {
-  console.warn('⚠️  GROQ_API_KEY is missing. AI features will be disabled.');
+const OR_URL   = 'https://openrouter.ai/api/v1/chat/completions';
+const OR_MODEL = 'meta-llama/llama-3.3-70b-instruct';
+
+function getHeaders() {
+  return {
+    'Content-Type':  'application/json',
+    'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+    'HTTP-Referer':  'https://ai-agentix.com',
+    'X-Title':       'AI Agentix',
+  };
 }
 
-/**
- * Send a multi-turn conversation to Groq and return the assistant's reply.
- * @param {Array<{role: string, content: string}>} messages - conversation history
- * @returns {Promise<string>} assistant message
- */
-export async function chatWithGroq(messages) {
-  if (!groq) {
-    return "I'm sorry, my AI brain is currently disconnected (missing GROQ_API_KEY). How else can I help you today?";
+async function callOpenRouter(messages, { temperature = 0.5, maxTokens = 300 } = {}) {
+  if (!process.env.OPENROUTER_API_KEY) {
+    throw new Error('OPENROUTER_API_KEY is not configured');
   }
 
-  const now = new Date();
-  // Use ISO format — works on every Node.js build regardless of ICU/locale support
-  const dateStr = now.toISOString().split('T')[0]; // e.g. 2026-05-12
-  const timeStr = now.toISOString().split('T')[1].substring(0, 5); // e.g. 15:35 UTC
-  const dateCtx = `Today's date is ${dateStr} (YYYY-MM-DD). Current UTC time is ${timeStr}. If the user mentions a demo date or time that is already in the past, tell them that slot has passed and suggest booking for tomorrow or the day after instead.`;
+  const res = await fetch(OR_URL, {
+    method:  'POST',
+    headers: getHeaders(),
+    body: JSON.stringify({
+      model:       OR_MODEL,
+      messages,
+      temperature,
+      max_tokens:  maxTokens,
+    }),
+  });
 
-  const completion = await groq.chat.completions.create({
-    model: 'llama-3.3-70b-versatile',
-    messages: [
+  if (!res.ok) {
+    const text = await res.text().catch(() => '');
+    throw new Error(`OpenRouter ${res.status}: ${text}`);
+  }
+
+  const data = await res.json();
+  const reply = data.choices?.[0]?.message?.content?.trim() ?? '';
+  if (!reply) throw new Error('Empty response from OpenRouter');
+  return reply;
+}
+
+// ── Voice agent ──────────────────────────────────────────────────────────────
+export async function chatWithGroq(messages) {
+  if (!process.env.OPENROUTER_API_KEY) {
+    return "I'm sorry, my AI brain is currently disconnected. How else can I help you today?";
+  }
+
+  const now     = new Date();
+  const dateStr = now.toISOString().split('T')[0];
+  const timeStr = now.toISOString().split('T')[1].substring(0, 5);
+  const dateCtx = `Today's date is ${dateStr}. Current UTC time is ${timeStr}. If the user mentions a demo date that is in the past, suggest tomorrow or the day after.`;
+
+  return callOpenRouter(
+    [
       { role: 'system', content: `${SYSTEM_PROMPT}\n\n${dateCtx}` },
       ...messages,
     ],
-    temperature: 0.45,
-    max_tokens: 200,
-    stream: false,
-  });
-
-  const reply = completion.choices?.[0]?.message?.content ?? '';
-  if (!reply) throw new Error('Empty response from Groq');
-  return reply;
+    { temperature: 0.45, maxTokens: 200 }
+  );
 }
 
-/**
- * Send a multi-turn conversation to Groq and return the assistant's reply for text chat.
- * @param {Array<{role: string, content: string}>} messages - conversation history
- * @returns {Promise<string>} assistant message
- */
+// ── Text chat agent ──────────────────────────────────────────────────────────
 export async function chatWithGroqText(messages) {
-  if (!groq) {
-    return "The text agent is currently unavailable because the Groq API key is missing.";
+  if (!process.env.OPENROUTER_API_KEY) {
+    return 'The text agent is currently unavailable because the OpenRouter API key is missing.';
   }
 
-  const completion = await groq.chat.completions.create({
-    model: 'llama-3.3-70b-versatile',
-    messages: [
+  return callOpenRouter(
+    [
       { role: 'system', content: TEXT_SYSTEM_PROMPT },
       ...messages,
     ],
-    temperature: 0.6,
-    max_tokens: 500, // allow longer responses for text
-    stream: false,
-  });
-
-  const reply = completion.choices?.[0]?.message?.content ?? '';
-  if (!reply) throw new Error('Empty response from Groq');
-  return reply;
+    { temperature: 0.6, maxTokens: 500 }
+  );
 }
-
