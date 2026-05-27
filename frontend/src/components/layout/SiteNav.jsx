@@ -108,6 +108,116 @@ export default function SiteNav() {
                         transform: megaOpen === link.label ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                   )}
                 </Link>
+
+                {/* ── Per-item mega dropdown — anchored right below trigger ── */}
+                <AnimatePresence>
+                  {link.mega && megaOpen === link.label && (() => {
+                    const meta = MEGA_META[link.label];
+                    if (!meta) return null;
+                    return (
+                      <motion.div
+                        key={link.label}
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -4 }}
+                        transition={{ duration: 0.15, ease: 'easeOut' }}
+                        style={{
+                          position: 'absolute',
+                          top: '100%',
+                          left: 0,
+                          width: 'min(660px, calc(100vw - 32px))',
+                          maxHeight: 'calc(100vh - 80px)',
+                          background: 'rgba(9,20,38,0.99)',
+                          backdropFilter: 'blur(24px)',
+                          borderRadius: 14,
+                          border: '1px solid rgba(255,255,255,0.1)',
+                          boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
+                          zIndex: 1001,
+                          overflow: 'hidden',
+                          display: 'flex', flexDirection: 'column',
+                        }}>
+                        {/* Header */}
+                        <div style={{
+                          padding: '13px 18px 11px',
+                          borderBottom: '1px solid rgba(255,255,255,0.07)',
+                          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                          background: `linear-gradient(90deg, ${meta.accent}12, transparent)`,
+                          flexShrink: 0,
+                        }}>
+                          <div>
+                            <div style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: '#fff' }}>
+                              {meta.title}
+                            </div>
+                            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.38)', fontFamily: 'var(--font-body)', marginTop: 1 }}>
+                              {meta.tagline}
+                            </div>
+                          </div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                            <div style={{ textAlign: 'right' }}>
+                              <div style={{ fontFamily: 'var(--font-number)', fontSize: 17, fontWeight: 700, color: meta.accent, lineHeight: 1 }}>
+                                {meta.stat.value}
+                              </div>
+                              <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)', marginTop: 1 }}>
+                                {meta.stat.label}
+                              </div>
+                            </div>
+                            <Link to={meta.cta.to}
+                              style={{
+                                display: 'flex', alignItems: 'center', gap: 4,
+                                padding: '5px 11px', borderRadius: 7,
+                                background: meta.accent, color: '#fff',
+                                fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 600,
+                                textDecoration: 'none', whiteSpace: 'nowrap',
+                              }}>
+                              {meta.cta.label} <ArrowRight size={10} />
+                            </Link>
+                          </div>
+                        </div>
+
+                        {/* Items */}
+                        <div style={{
+                          display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)',
+                          gap: 1, padding: '8px', overflowY: 'auto', flex: 1,
+                        }}>
+                          {link.mega.map((item) => (
+                            <Link key={item.to} to={item.to}
+                              style={{
+                                display: 'flex', alignItems: 'center', gap: 10,
+                                padding: '9px 11px', borderRadius: 9,
+                                textDecoration: 'none', transition: 'background 0.13s',
+                              }}
+                              onMouseEnter={e => e.currentTarget.style.background = `${meta.accent}14`}
+                              onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                              <div style={{
+                                width: 30, height: 30, flexShrink: 0, borderRadius: 8,
+                                background: `${meta.accent}14`, border: `1px solid ${meta.accent}28`,
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                color: meta.accent,
+                              }}>
+                                {item.icon}
+                              </div>
+                              <div style={{ flex: 1, minWidth: 0 }}>
+                                <div style={{
+                                  fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 600,
+                                  color: '#fff', lineHeight: 1.2,
+                                }}>
+                                  {item.label}
+                                </div>
+                                <div style={{
+                                  fontSize: 11, color: 'rgba(255,255,255,0.38)',
+                                  fontFamily: 'var(--font-body)', marginTop: 1,
+                                  overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis',
+                                }}>
+                                  {item.desc}
+                                </div>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    );
+                  })()}
+                </AnimatePresence>
               </div>
             ))}
           </div>
@@ -136,126 +246,6 @@ export default function SiteNav() {
           </button>
         </div>
 
-        {/* ── Mega Dropdown ─────────────────────────────────── */}
-        <AnimatePresence>
-          {megaOpen && (() => {
-            const link = NAV_LINKS.find(l => l.label === megaOpen);
-            const meta = MEGA_META[megaOpen];
-            if (!link?.mega || !meta) return null;
-            const cols = link.mega.length > 6 ? 2 : 2;
-            const half = Math.ceil(link.mega.length / cols);
-
-            return (
-              <motion.div
-                key={megaOpen}
-                initial={{ opacity: 0, y: -6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.18, ease: 'easeOut' }}
-                style={{
-                  position: 'absolute', top: '100%', left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: 'min(680px, calc(100vw - 32px))',
-                  maxHeight: 'calc(100vh - 90px)',
-                  background: 'rgba(9,20,38,0.98)',
-                  backdropFilter: 'blur(24px)',
-                  borderRadius: 16,
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  boxShadow: '0 24px 60px rgba(0,0,0,0.55)',
-                  zIndex: 1001,
-                  overflow: 'hidden',
-                  display: 'flex', flexDirection: 'column',
-                }}>
-
-                {/* Header strip */}
-                <div style={{
-                  padding: '14px 20px 12px',
-                  borderBottom: '1px solid rgba(255,255,255,0.07)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  background: `linear-gradient(90deg, ${meta.accent}10, transparent)`,
-                  flexShrink: 0,
-                }}>
-                  <div>
-                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>
-                      {meta.title}
-                    </div>
-                    <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-body)', marginTop: 2 }}>
-                      {meta.tagline}
-                    </div>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                    <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontFamily: 'var(--font-number)', fontSize: 18, fontWeight: 700, color: meta.accent, lineHeight: 1 }}>
-                        {meta.stat.value}
-                      </div>
-                      <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-body)', marginTop: 1 }}>
-                        {meta.stat.label}
-                      </div>
-                    </div>
-                    <Link to={meta.cta.to}
-                      style={{
-                        display: 'flex', alignItems: 'center', gap: 5,
-                        padding: '6px 12px', borderRadius: 7,
-                        background: meta.accent, color: '#fff',
-                        fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600,
-                        textDecoration: 'none', whiteSpace: 'nowrap',
-                      }}>
-                      {meta.cta.label} <ArrowRight size={10} />
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Items grid — scrollable if too tall */}
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(2, 1fr)',
-                  gap: 1,
-                  padding: '8px',
-                  overflowY: 'auto',
-                  flex: 1,
-                }}>
-                  {link.mega.map((item) => (
-                    <Link key={item.to} to={item.to}
-                      style={{
-                        display: 'flex', alignItems: 'center', gap: 10,
-                        padding: '10px 12px', borderRadius: 10,
-                        textDecoration: 'none', transition: 'background 0.15s',
-                        background: 'transparent',
-                      }}
-                      onMouseEnter={e => e.currentTarget.style.background = `${meta.accent}12`}
-                      onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
-                      <div style={{
-                        width: 32, height: 32, flexShrink: 0, borderRadius: 9,
-                        background: `${meta.accent}15`,
-                        border: `1px solid ${meta.accent}30`,
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        color: meta.accent,
-                      }}>
-                        {item.icon}
-                      </div>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{
-                          fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 600,
-                          color: '#fff', lineHeight: 1.2,
-                        }}>
-                          {item.label}
-                        </div>
-                        <div style={{
-                          fontSize: 11, color: 'rgba(255,255,255,0.4)',
-                          fontFamily: 'var(--font-body)', marginTop: 2, lineHeight: 1.35,
-                          display: '-webkit-box', WebkitLineClamp: 1,
-                          WebkitBoxOrient: 'vertical', overflow: 'hidden',
-                        }}>
-                          {item.desc}
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })()}
-        </AnimatePresence>
       </nav>
 
       {/* Mobile Menu */}
