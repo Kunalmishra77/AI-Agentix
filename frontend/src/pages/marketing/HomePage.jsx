@@ -341,13 +341,32 @@ const WHY_ROWS = [
   { label: 'Error Rate', bad: 'Human error built-in', good: 'Near-zero with automation' },
 ];
 
+/* ── Sparkline SVG helper ─────────────────────────── */
+function Sparkline({ data, color }) {
+  const max = Math.max(...data);
+  const min = Math.min(...data);
+  const w = 52, h = 20;
+  const pts = data.map((v, i) => [
+    (i / (data.length - 1)) * w,
+    h - ((v - min) / (max - min + 0.001)) * (h - 4) - 2,
+  ]);
+  const [lx, ly] = pts[pts.length - 1];
+  return (
+    <svg width={w} height={h} style={{ overflow: 'visible', flexShrink: 0 }}>
+      <polyline points={pts.map(([x, y]) => `${x},${y}`).join(' ')}
+        fill="none" stroke={color} strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx={lx} cy={ly} r={2} fill={color} />
+    </svg>
+  );
+}
+
 /* ── DashboardMock for Hero ──────────────────────── */
 const LIVE_EVENTS = [
-  { msg: 'Lead from IndiaMart qualified & routed', tag: 'Sales AI', color: '#E8631A' },
-  { msg: 'Support ticket #4821 auto-resolved', tag: 'Support AI', color: '#10B981' },
+  { msg: 'Lead from IndiaMart qualified & routed to Raj', tag: 'Sales AI', color: '#E8631A' },
+  { msg: 'Support ticket #4821 auto-resolved in 12s', tag: 'Support AI', color: '#10B981' },
   { msg: 'WhatsApp follow-up sent to 47 leads', tag: 'Outreach', color: '#6366F1' },
-  { msg: 'Invoice #INV-2294 generated & sent', tag: 'Finance', color: '#F59E0B' },
-  { msg: 'New hire onboarding flow triggered', tag: 'HR AI', color: '#EC4899' },
+  { msg: 'Invoice INV-2294 generated & emailed to client', tag: 'Finance', color: '#F59E0B' },
+  { msg: 'New hire onboarding triggered for Priya S.', tag: 'HR AI', color: '#EC4899' },
 ];
 function HeroDashboard() {
   const [active, setActive] = useState(0);
@@ -357,60 +376,151 @@ function HeroDashboard() {
     const t2 = setInterval(() => setEventIdx(p => (p + 1) % LIVE_EVENTS.length), 1800);
     return () => { clearInterval(t1); clearInterval(t2); };
   }, []);
+
   const metrics = [
-    { label: 'Leads Qualified', value: '2,847', change: '+34%', color: '#E8631A' },
-    { label: 'Tickets Resolved', value: '98.2%', change: 'Auto', color: '#10B981' },
-    { label: 'Revenue Impact', value: '₹4.2Cr', change: '+18% MoM', color: '#6366F1' },
+    { label: 'Leads Qualified',  value: '2,847',  change: '+34%',     spark: [40,55,45,70,60,80,75], color: '#E8631A' },
+    { label: 'Tickets Resolved', value: '98.2%',  change: '↑ Auto',   spark: [60,70,65,80,75,90,95], color: '#10B981' },
+    { label: 'Revenue Impact',   value: '₹4.2Cr', change: '+18% MoM', spark: [30,45,40,60,55,70,85], color: '#6366F1' },
   ];
   const bars = [65, 80, 55, 90, 72, 88, 95];
   const ev = LIVE_EVENTS[eventIdx];
+
   return (
-    <div style={{ background: 'rgba(13,27,46,0.7)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 20, padding: 24, backdropFilter: 'blur(20px)', boxShadow: '0 24px 80px rgba(0,0,0,0.5)' }}>
-      {/* Chrome bar */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20, paddingBottom: 16, borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-        {['#FF5F57','#FFBD2E','#28C840'].map(c => <div key={c} style={{ width: 11, height: 11, borderRadius: '50%', background: c }} />)}
-        <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', marginLeft: 8, fontFamily: 'var(--font-body)', flex: 1 }}>agentix.ai / dashboard</span>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.25)', borderRadius: 100, padding: '3px 10px' }}>
-          <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#10B981', boxShadow: '0 0 6px #10B981' }} />
-          <span style={{ fontSize: 10, color: '#10B981', fontFamily: 'var(--font-body)' }}>LIVE</span>
+    <div style={{
+      background: 'rgba(7,14,28,0.97)',
+      border: '1px solid rgba(255,255,255,0.1)',
+      borderRadius: 18,
+      overflow: 'hidden',
+      backdropFilter: 'blur(24px)',
+      boxShadow: '0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.07)',
+    }}>
+      {/* ── Browser chrome ── */}
+      <div style={{ background: 'rgba(255,255,255,0.04)', borderBottom: '1px solid rgba(255,255,255,0.07)', padding: '9px 14px', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ display: 'flex', gap: 5 }}>
+          {['#FF5F57','#FFBD2E','#28C840'].map(c => <div key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c }} />)}
         </div>
-      </div>
-      {/* Metrics */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, marginBottom: 18 }}>
-        {metrics.map((m, i) => (
-          <motion.div key={m.label} animate={{ borderColor: active === i ? m.color : 'rgba(255,255,255,0.07)', background: active === i ? `${m.color}14` : 'rgba(255,255,255,0.025)' }} transition={{ duration: 0.4 }}
-            style={{ padding: '12px 10px', border: `1px solid`, borderRadius: 12 }}>
-            <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', marginBottom: 6, fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: 0.5 }}>{m.label}</div>
-            <div style={{ fontSize: 17, fontWeight: 700, color: active === i ? m.color : '#fff', fontFamily: 'var(--font-display)' }}>{m.value}</div>
-            <div style={{ fontSize: 10, color: '#10B981', marginTop: 3, fontFamily: 'var(--font-body)' }}>↑ {m.change}</div>
-          </motion.div>
-        ))}
-      </div>
-      {/* Bar chart */}
-      <div style={{ marginBottom: 16 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-          <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: 0.5 }}>Automation Activity — 7 days</span>
-          <span style={{ fontSize: 10, color: '#E8631A', fontFamily: 'var(--font-body)' }}>+24% WoW</span>
+        <div style={{ flex: 1, background: 'rgba(255,255,255,0.07)', borderRadius: 5, padding: '3px 10px', display: 'flex', alignItems: 'center', gap: 6, margin: '0 8px' }}>
+          <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#10B981', flexShrink: 0 }} />
+          <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.32)', fontFamily: 'monospace', letterSpacing: 0.2 }}>app.agentix.ai/dashboard</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 5, height: 52 }}>
-          {bars.map((h, i) => (
-            <motion.div key={i} initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ delay: i * 0.08, duration: 0.5, ease: 'easeOut' }}
-              style={{ flex: 1, background: i === bars.length - 1 ? `linear-gradient(to top, #E8631A, #F59E0B)` : `rgba(232,99,26,${0.3 + h * 0.004})`, borderRadius: '3px 3px 0 0', height: `${h}%`, transformOrigin: 'bottom' }} />
+        <motion.div animate={{ opacity: [1, 0.4, 1] }} transition={{ repeat: Infinity, duration: 1.6 }}
+          style={{ display: 'flex', alignItems: 'center', gap: 5, background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.22)', borderRadius: 100, padding: '3px 9px' }}>
+          <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#10B981' }} />
+          <span style={{ fontSize: 9, color: '#10B981', fontFamily: 'var(--font-body)', fontWeight: 700, letterSpacing: 0.8 }}>LIVE</span>
+        </motion.div>
+      </div>
+
+      {/* ── Dashboard header row ── */}
+      <div style={{ padding: '10px 16px 9px', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div>
+          <div style={{ fontSize: 12, fontWeight: 700, color: '#fff', fontFamily: 'var(--font-display)', letterSpacing: 0.2 }}>Operations Dashboard</div>
+          <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.27)', fontFamily: 'var(--font-body)', marginTop: 1 }}>Updated just now · 5 agents active</div>
+        </div>
+        <div style={{ display: 'flex', gap: 4 }}>
+          {['Today', '7d', '30d'].map((t, i) => (
+            <div key={t} style={{ background: i === 0 ? 'rgba(232,99,26,0.15)' : 'rgba(255,255,255,0.05)', border: i === 0 ? '1px solid rgba(232,99,26,0.3)' : '1px solid rgba(255,255,255,0.08)', borderRadius: 5, padding: '3px 8px', fontSize: 9, color: i === 0 ? '#E8631A' : 'rgba(255,255,255,0.32)', fontFamily: 'var(--font-body)', fontWeight: i === 0 ? 700 : 400 }}>{t}</div>
           ))}
         </div>
       </div>
-      {/* Live event feed */}
-      <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: 10, padding: '12px 14px', minHeight: 52, overflow: 'hidden', position: 'relative' }}>
-        <AnimatePresence mode="wait">
-          <motion.div key={eventIdx}
-            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 7, height: 7, borderRadius: '50%', background: ev.color, boxShadow: `0 0 6px ${ev.color}`, flexShrink: 0 }} />
-            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)', fontFamily: 'var(--font-body)', flex: 1 }}>{ev.msg}</span>
-            <span style={{ fontSize: 10, color: ev.color, background: ev.color + '18', border: `1px solid ${ev.color}33`, borderRadius: 100, padding: '2px 8px', flexShrink: 0, fontFamily: 'var(--font-body)' }}>{ev.tag}</span>
-          </motion.div>
-        </AnimatePresence>
+
+      <div style={{ padding: '13px 16px', display: 'flex', flexDirection: 'column', gap: 11 }}>
+        {/* ── 3 KPI cards with sparklines ── */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
+          {metrics.map((m, i) => (
+            <motion.div key={m.label}
+              animate={{
+                borderColor: active === i ? m.color + '55' : 'rgba(255,255,255,0.07)',
+                background: active === i ? m.color + '12' : 'rgba(255,255,255,0.03)',
+              }}
+              transition={{ duration: 0.4 }}
+              style={{ padding: '10px 10px 9px', border: '1px solid', borderRadius: 10 }}>
+              <div style={{ fontSize: 8, color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: 0.7, fontFamily: 'var(--font-body)', marginBottom: 5, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{m.label}</div>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 700, color: active === i ? m.color : '#fff', lineHeight: 1, marginBottom: 6 }}>{m.value}</div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                <span style={{ fontSize: 9, color: '#10B981', fontFamily: 'var(--font-body)', fontWeight: 600 }}>↑ {m.change}</span>
+                <Sparkline data={m.spark} color={active === i ? m.color : 'rgba(255,255,255,0.13)'} />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* ── Bar chart with day labels & grid ── */}
+        <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 11, padding: '11px 12px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 9 }}>
+            <div>
+              <span style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.52)', fontFamily: 'var(--font-body)' }}>Automation Activity</span>
+              <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.2)', fontFamily: 'var(--font-body)', marginLeft: 5 }}>tasks/day · 7d</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'rgba(232,99,26,0.1)', border: '1px solid rgba(232,99,26,0.2)', borderRadius: 100, padding: '2px 7px' }}>
+              <TrendingUp size={8} color="#E8631A" />
+              <span style={{ fontSize: 9, color: '#E8631A', fontFamily: 'var(--font-body)', fontWeight: 600 }}>+24% WoW</span>
+            </div>
+          </div>
+          <div style={{ position: 'relative', height: 48 }}>
+            {[0.33, 0.66, 1.0].map(f => (
+              <div key={f} style={{ position: 'absolute', left: 0, right: 0, bottom: `${f * 48}px`, borderBottom: '1px dashed rgba(255,255,255,0.05)', pointerEvents: 'none' }} />
+            ))}
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 4, height: '100%' }}>
+              {bars.map((h, i) => (
+                <motion.div key={i}
+                  initial={{ scaleY: 0 }} animate={{ scaleY: 1 }}
+                  transition={{ delay: i * 0.08, duration: 0.5, ease: 'easeOut' }}
+                  style={{ flex: 1, background: i === bars.length - 1 ? 'linear-gradient(to top, #E8631A, #F59E0B)' : `rgba(232,99,26,${0.28 + h * 0.005})`, borderRadius: '3px 3px 0 0', height: `${h}%`, transformOrigin: 'bottom' }}
+                />
+              ))}
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: 4, marginTop: 5 }}>
+            {['M','T','W','T','F','S','S'].map((d, i) => (
+              <div key={i} style={{ flex: 1, textAlign: 'center', fontSize: 7.5, color: i === 6 ? '#E8631A' : 'rgba(255,255,255,0.18)', fontFamily: 'var(--font-body)', fontWeight: i === 6 ? 700 : 400 }}>{d}</div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Active agents + live events ── */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 8 }}>
+          {/* Agents panel */}
+          <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 10, padding: '10px 11px' }}>
+            <div style={{ fontSize: 8.5, fontWeight: 700, color: 'rgba(255,255,255,0.32)', textTransform: 'uppercase', letterSpacing: 0.8, fontFamily: 'var(--font-body)', marginBottom: 8 }}>Active Agents</div>
+            {[
+              { name: 'Lead Qualifier', status: 'running', color: '#10B981', count: '1.2k' },
+              { name: 'Support AI',     status: 'running', color: '#10B981', count: '482' },
+              { name: 'WhatsApp Bot',   status: 'running', color: '#10B981', count: '847' },
+              { name: 'Invoice Auto',   status: 'idle',    color: '#F59E0B', count: '—' },
+            ].map(a => (
+              <div key={a.name} style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
+                <motion.div
+                  animate={a.status === 'running' ? { opacity: [1, 0.3, 1] } : {}}
+                  transition={{ repeat: Infinity, duration: 1.8 }}
+                  style={{ width: 5, height: 5, borderRadius: '50%', background: a.color, flexShrink: 0 }} />
+                <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.52)', fontFamily: 'var(--font-body)', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{a.name}</span>
+                <span style={{ fontSize: 8, color: 'rgba(255,255,255,0.22)', fontFamily: 'var(--font-body)' }}>{a.count}</span>
+              </div>
+            ))}
+          </div>
+          {/* Live events panel */}
+          <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 10, padding: '10px 11px', overflow: 'hidden' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+              <div style={{ fontSize: 8.5, fontWeight: 700, color: 'rgba(255,255,255,0.32)', textTransform: 'uppercase', letterSpacing: 0.8, fontFamily: 'var(--font-body)' }}>Live Events</div>
+              <motion.div animate={{ opacity: [1, 0.3, 1] }} transition={{ repeat: Infinity, duration: 1.4 }}
+                style={{ width: 5, height: 5, borderRadius: '50%', background: '#10B981' }} />
+            </div>
+            <AnimatePresence mode="wait">
+              <motion.div key={eventIdx}
+                initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 7, marginBottom: 6 }}>
+                  <div style={{ width: 6, height: 6, borderRadius: '50%', background: ev.color, flexShrink: 0, marginTop: 2 }} />
+                  <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.7)', fontFamily: 'var(--font-body)', lineHeight: 1.4 }}>{ev.msg}</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, paddingLeft: 13 }}>
+                  <span style={{ fontSize: 8.5, color: ev.color, background: ev.color + '18', border: `1px solid ${ev.color}33`, borderRadius: 100, padding: '1px 7px', fontFamily: 'var(--font-body)', fontWeight: 600 }}>{ev.tag}</span>
+                  <span style={{ fontSize: 8, color: 'rgba(255,255,255,0.2)', fontFamily: 'var(--font-body)' }}>just now</span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -687,7 +797,9 @@ export default function HomePage() {
 
           {/* Right: dashboard mock */}
           <motion.div {...right(0.3)} className="ax-hero-right">
-            <HeroDashboard />
+            <div style={{ transform: 'translateY(-36px) translateX(18px)' }}>
+              <HeroDashboard />
+            </div>
           </motion.div>
         </div>
 
