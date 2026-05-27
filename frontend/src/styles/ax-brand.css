@@ -227,12 +227,13 @@
 /* ── Nav ─────────────────────────────────────────────── */
 .ax-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  height: 88px; display: flex; align-items: center;
-  transition: var(--trans-med); background: transparent;
+  height: 72px; display: flex; align-items: center;
+  transition: background 0.3s ease, box-shadow 0.3s ease, height 0.3s ease;
+  background: #0D1B2E;
 }
 .ax-nav.scrolled {
-  background: rgba(13,27,46,0.96); backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px); height: 72px; box-shadow: var(--sh-nav);
+  background: rgba(13,27,46,0.97); backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); height: 64px; box-shadow: var(--sh-nav);
 }
 
 /* ── Scroll reveal ──────────────────────────────────── */
