@@ -417,15 +417,15 @@ function HeroDashboard() {
 }
 
 /* ── CountUpStat ──────────────────────────────────── */
-function CountUpStat({ num, suffix, label, sub, light }) {
+function CountUpStat({ num, suffix, label, sub, dark }) {
   const [count, ref] = useCountUp(num, 1800);
   return (
     <div ref={ref} style={{ textAlign: 'center', padding: '0 20px' }}>
-      <div style={{ fontFamily: 'var(--font-number)', fontSize: 'clamp(44px,4.5vw,68px)', fontWeight: 700, color: '#E8631A', lineHeight: 1 }}>
+      <div style={{ fontFamily: 'var(--font-number)', fontSize: 'clamp(40px,4vw,64px)', fontWeight: 700, color: '#E8631A', lineHeight: 1 }}>
         {count}{suffix}
       </div>
-      <div style={{ fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 700, color: light ? 'rgba(255,255,255,0.9)' : '#0D1B2E', marginTop: 10 }}>{label}</div>
-      <div style={{ fontSize: 12, color: light ? 'rgba(255,255,255,0.5)' : '#9CA3AF', marginTop: 4, fontFamily: 'var(--font-body)' }}>{sub}</div>
+      <div style={{ fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 700, color: dark ? '#fff' : '#0D1B2E', marginTop: 10 }}>{label}</div>
+      <div style={{ fontSize: 13, color: dark ? 'rgba(255,255,255,0.5)' : '#6B7280', marginTop: 4, fontFamily: 'var(--font-body)' }}>{sub}</div>
     </div>
   );
 }
@@ -799,7 +799,7 @@ export default function HomePage() {
           <motion.div {...up(0.1)} className="ax-stats-grid">
             {STAT_DATA.map((s, i) => (
               <div key={s.label} style={{ position: 'relative', padding: '0 8px', borderRight: i < STAT_DATA.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none' }}>
-                <CountUpStat num={s.num} suffix={s.suffix} label={s.label} sub={s.sub} light={false} />
+                <CountUpStat num={s.num} suffix={s.suffix} label={s.label} sub={s.sub} dark={true} />
               </div>
             ))}
           </motion.div>
@@ -1163,7 +1163,7 @@ export default function HomePage() {
           <motion.div {...up(0.1)} className="ax-roi-grid">
             {ROI_ITEMS.map((item, i) => (
               <div key={item.label} style={{ textAlign: 'center', padding: '0 16px', borderRight: i < ROI_ITEMS.length - 1 ? '1px solid #E5E7EB' : 'none' }}>
-                <CountUpStat num={item.num} suffix={item.suffix} label={item.label} sub={item.sub} light={false} />
+                <CountUpStat num={item.num} suffix={item.suffix} label={item.label} sub={item.sub} dark={false} />
               </div>
             ))}
           </motion.div>
