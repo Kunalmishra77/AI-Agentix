@@ -976,35 +976,53 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          3. PAIN SECTION — WHITE background, row layout
+          3. PAIN SECTION — Dark split: headline left, cards right
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#ffffff', padding: '100px 0' }}>
-        <div className="ax-container" style={{ maxWidth: 900 }}>
-          <motion.div {...up(0)} style={{ marginBottom: 16 }}>
-            <span style={{ fontSize: 13, fontWeight: 600, color: '#DC2626', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>The Problem</span>
-          </motion.div>
-          <motion.h2 {...up(0.06)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px,3.5vw,46px)', fontWeight: 800, color: '#0D1B2E', lineHeight: 1.2, marginBottom: 12 }}>
-            Manual Work Is Quietly<br />Killing Your Growth
-          </motion.h2>
-          <motion.p {...up(0.1)} style={{ fontSize: 17, color: '#6B7280', lineHeight: 1.7, maxWidth: 580, marginBottom: 64, fontFamily: 'var(--font-body)' }}>
-            While you're managing spreadsheets and chasing follow-ups, automated competitors are moving faster. Here's what it's costing you.
-          </motion.p>
+      <section style={{ background: '#0C1220', padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
+        {/* Subtle red ambient */}
+        <div style={{ position: 'absolute', top: '50%', left: '20%', transform: 'translate(-50%,-50%)', width: 600, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(220,38,38,0.07) 0%, transparent 65%)', pointerEvents: 'none' }} />
 
-          {PAIN_ITEMS.map((item, i) => (
-            <motion.div key={item.title} {...up(i * 0.1)} className="ax-pain-item" style={{ padding: '28px 0', borderBottom: i < PAIN_ITEMS.length - 1 ? '1px solid #F3F4F6' : 'none' }}>
-              <div style={{ width: 56, height: 56, borderRadius: 14, background: '#FEF2F2', border: '1px solid #FEE2E2', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#DC2626', flexShrink: 0 }}>
-                {item.icon}
+        <div className="ax-container">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 72, alignItems: 'center' }}>
+
+            {/* Left: headline + context */}
+            <motion.div {...left(0)}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: 'rgba(220,38,38,0.1)', border: '1px solid rgba(220,38,38,0.25)', borderRadius: 100, padding: '5px 14px', marginBottom: 24 }}>
+                <AlertCircle size={12} color="#DC2626" />
+                <span style={{ fontSize: 12, fontWeight: 600, color: '#DC2626', letterSpacing: 1.5, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>The Problem</span>
               </div>
-              <div>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 700, color: '#111827', marginBottom: 6 }}>{item.title}</div>
-                <div style={{ fontSize: 14, color: '#6B7280', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>{item.desc}</div>
-              </div>
-              <div className="ax-pain-stat" style={{ textAlign: 'right', flexShrink: 0, minWidth: 110 }}>
-                <div style={{ fontFamily: 'var(--font-number)', fontSize: 32, fontWeight: 700, color: '#DC2626', lineHeight: 1 }}>{item.stat}</div>
-                <div style={{ fontSize: 11, color: '#9CA3AF', marginTop: 4, fontFamily: 'var(--font-body)' }}>{item.statSub}</div>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px,3vw,46px)', fontWeight: 800, color: '#fff', lineHeight: 1.15, marginBottom: 20 }}>
+                Manual Work Is<br />
+                <span style={{ color: '#DC2626' }}>Quietly Killing</span><br />
+                Your Growth
+              </h2>
+              <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.45)', lineHeight: 1.75, marginBottom: 36, fontFamily: 'var(--font-body)' }}>
+                While you're managing spreadsheets and chasing follow-ups, automated competitors are responding in seconds and winning deals you didn't even know you lost.
+              </p>
+              {/* Total cost callout */}
+              <div style={{ background: 'rgba(220,38,38,0.08)', border: '1px solid rgba(220,38,38,0.2)', borderRadius: 14, padding: '20px 24px' }}>
+                <div style={{ fontSize: 11, color: 'rgba(220,38,38,0.7)', fontFamily: 'var(--font-body)', fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', marginBottom: 6 }}>Estimated Annual Impact</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: 32, fontWeight: 800, color: '#DC2626', lineHeight: 1, marginBottom: 4 }}>₹1.2 Cr+</div>
+                <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)' }}>Lost per year by a typical 20-person business running manual ops</div>
               </div>
             </motion.div>
-          ))}
+
+            {/* Right: 2×2 alarm cards */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              {PAIN_ITEMS.map((item, i) => (
+                <motion.div key={item.title} {...up(0.1 + i * 0.08)}
+                  style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(220,38,38,0.15)', borderTop: '3px solid #DC2626', borderRadius: 14, padding: '24px 20px' }}>
+                  <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(220,38,38,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#DC2626', marginBottom: 16 }}>
+                    {item.icon}
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 800, color: '#DC2626', lineHeight: 1, marginBottom: 6 }}>{item.stat}</div>
+                  <div style={{ fontSize: 11, color: 'rgba(220,38,38,0.6)', fontFamily: 'var(--font-body)', marginBottom: 10, letterSpacing: 0.3 }}>{item.statSub}</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.75)', lineHeight: 1.4 }}>{item.title.split('—')[0].split(' Per ')[0].trim()}</div>
+                </motion.div>
+              ))}
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -1283,43 +1301,43 @@ export default function HomePage() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
             {RESULTS.map((r, i) => {
-              const isLight = i % 2 !== 0;
+              const flipped = i % 2 !== 0;
+              const company = (
+                <div>
+                  <div style={{ display: 'inline-block', fontSize: 11, color: r.color, fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: 2, marginBottom: 8, background: r.color + '18', border: `1px solid ${r.color}33`, borderRadius: 100, padding: '3px 10px' }}>{r.industry}</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 700, color: '#fff', lineHeight: 1.3 }}>{r.company}</div>
+                </div>
+              );
+              const detail = (
+                <div>
+                  <div className="ax-result-body">
+                    <div>
+                      <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)', marginBottom: 6, letterSpacing: 1, textTransform: 'uppercase' }}>Challenge</div>
+                      <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>{r.challenge}</div>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)', marginBottom: 6, letterSpacing: 1, textTransform: 'uppercase' }}>Solution</div>
+                      <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>{r.solution}</div>
+                    </div>
+                  </div>
+                  <div className="ax-result-stats-row">
+                    {[r.stat1, r.stat2, r.stat3].map(st => (
+                      <div key={st.label}>
+                        <div style={{ fontFamily: 'var(--font-number)', fontSize: 26, fontWeight: 700, color: r.color, lineHeight: 1 }}>{st.num}</div>
+                        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 6, fontFamily: 'var(--font-body)', lineHeight: 1.4 }}>{st.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
               return (
                 <motion.div key={r.company} {...up(i * 0.1)}
-                  style={{
-                    background: isLight ? '#ffffff' : 'rgba(255,255,255,0.04)',
-                    border: isLight ? `1px solid ${r.color}33` : `1px solid rgba(255,255,255,0.08)`,
-                    borderLeft: `4px solid ${r.color}`,
-                    borderRadius: 16,
-                    padding: '36px 40px',
+                  style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid rgba(255,255,255,0.08)`, borderRadius: 16, padding: '36px 40px',
+                    borderLeft: flipped ? 'none' : `4px solid ${r.color}`,
+                    borderRight: flipped ? `4px solid ${r.color}` : 'none',
                   }}>
-                  <div className="ax-result-card">
-                    {/* Company */}
-                    <div>
-                      <div style={{ display: 'inline-block', fontSize: 11, color: r.color, fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: 2, marginBottom: 8, background: r.color + '18', border: `1px solid ${r.color}33`, borderRadius: 100, padding: '3px 10px' }}>{r.industry}</div>
-                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 700, color: isLight ? '#0D1B2E' : '#fff', lineHeight: 1.3 }}>{r.company}</div>
-                    </div>
-                    {/* Detail: challenge + solution + stats */}
-                    <div>
-                      <div className="ax-result-body">
-                        <div>
-                          <div style={{ fontSize: 11, color: isLight ? '#9CA3AF' : 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)', marginBottom: 6, letterSpacing: 1, textTransform: 'uppercase' }}>Challenge</div>
-                          <div style={{ fontSize: 13, color: isLight ? '#4B5563' : 'rgba(255,255,255,0.65)', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>{r.challenge}</div>
-                        </div>
-                        <div>
-                          <div style={{ fontSize: 11, color: isLight ? '#9CA3AF' : 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)', marginBottom: 6, letterSpacing: 1, textTransform: 'uppercase' }}>Solution</div>
-                          <div style={{ fontSize: 13, color: isLight ? '#4B5563' : 'rgba(255,255,255,0.65)', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>{r.solution}</div>
-                        </div>
-                      </div>
-                      <div className={`ax-result-stats-row${isLight ? ' ax-result-stats-row--light' : ''}`}>
-                        {[r.stat1, r.stat2, r.stat3].map(st => (
-                          <div key={st.label}>
-                            <div style={{ fontFamily: 'var(--font-number)', fontSize: 26, fontWeight: 700, color: r.color, lineHeight: 1 }}>{st.num}</div>
-                            <div style={{ fontSize: 11, color: isLight ? '#6B7280' : 'rgba(255,255,255,0.4)', marginTop: 6, fontFamily: 'var(--font-body)', lineHeight: 1.4 }}>{st.label}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                  <div className="ax-result-card" style={{ gridTemplateColumns: flipped ? '1fr 170px' : '170px 1fr' }}>
+                    {flipped ? <>{detail}{company}</> : <>{company}{detail}</>}
                   </div>
                 </motion.div>
               );
@@ -1366,30 +1384,24 @@ export default function HomePage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {WHY_ROWS.map((row, i) => (
               <motion.div key={row.label} {...up(0.14 + i * 0.07)} className="ax-why-v2-cols">
-                {/* Bad card */}
+                {/* Bad card — stat + description only, no repeated label */}
                 <div style={{ background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.14)', borderRadius: 14, padding: '20px 24px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-                    <div style={{ color: 'rgba(239,68,68,0.6)' }}>{row.icon}</div>
-                    <span style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700, color: 'rgba(239,68,68,0.7)', textTransform: 'uppercase', letterSpacing: 0.6 }}>{row.label}</span>
-                  </div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 800, color: '#ef4444', lineHeight: 1, marginBottom: 7 }}>{row.badStat}</div>
-                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.3)', fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>{row.bad}</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 800, color: '#ef4444', lineHeight: 1, marginBottom: 8 }}>{row.badStat}</div>
+                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.32)', fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>{row.bad}</div>
                 </div>
 
-                {/* Gain badge — center col */}
-                <div className="ax-why-gain" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <div style={{ background: 'rgba(232,99,26,0.12)', border: '1px solid rgba(232,99,26,0.3)', borderRadius: 100, padding: '5px 10px', textAlign: 'center' }}>
-                    <div style={{ fontSize: 9, color: '#E8631A', fontWeight: 700, letterSpacing: 0.6, fontFamily: 'var(--font-body)', whiteSpace: 'nowrap' }}>{row.gain}</div>
+                {/* Center: icon + category label + gain badge */}
+                <div className="ax-why-gain" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+                  <div style={{ width: 32, height: 32, borderRadius: 8, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.4)' }}>{row.icon}</div>
+                  <div style={{ fontSize: 8.5, color: 'rgba(255,255,255,0.25)', fontFamily: 'var(--font-body)', fontWeight: 700, letterSpacing: 0.7, textTransform: 'uppercase', textAlign: 'center', lineHeight: 1.3 }}>{row.label}</div>
+                  <div style={{ background: 'rgba(232,99,26,0.12)', border: '1px solid rgba(232,99,26,0.28)', borderRadius: 100, padding: '3px 9px' }}>
+                    <div style={{ fontSize: 8, color: '#E8631A', fontWeight: 700, letterSpacing: 0.5, fontFamily: 'var(--font-body)', whiteSpace: 'nowrap' }}>{row.gain}</div>
                   </div>
                 </div>
 
-                {/* Good card */}
+                {/* Good card — stat + description only, no repeated label */}
                 <div style={{ background: 'rgba(232,99,26,0.05)', border: '1px solid rgba(232,99,26,0.18)', borderRadius: 14, padding: '20px 24px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-                    <div style={{ color: '#E8631A' }}>{row.icon}</div>
-                    <span style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700, color: '#E8631A', textTransform: 'uppercase', letterSpacing: 0.6 }}>{row.label}</span>
-                  </div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 800, color: '#E8631A', lineHeight: 1, marginBottom: 7 }}>{row.goodStat}</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 800, color: '#E8631A', lineHeight: 1, marginBottom: 8 }}>{row.goodStat}</div>
                   <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.62)', fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>{row.good}</div>
                 </div>
               </motion.div>
