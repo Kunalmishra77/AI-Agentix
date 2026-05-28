@@ -384,11 +384,11 @@ const ROI_ITEMS = [
 ];
 
 const WHY_ROWS = [
-  { label: 'Response Time', bad: 'Hours or days', good: 'Under 2 minutes, always' },
-  { label: 'Scalability', bad: 'Hire more people', good: 'AI scales instantly' },
-  { label: 'Consistency', bad: 'Depends on the person', good: 'Same quality, every time' },
-  { label: 'Data Visibility', bad: 'Monthly spreadsheets', good: 'Real-time dashboards' },
-  { label: 'Error Rate', bad: 'Human error built-in', good: 'Near-zero with automation' },
+  { label: 'Response Time',   icon: <Timer size={18} />,       bad: 'Hours or days delay',         badStat: '4+ hrs avg.',   good: 'Responds in seconds, always',    goodStat: '< 90 sec',    gain: '160x faster'   },
+  { label: 'Scalability',     icon: <TrendingUp size={18} />,  bad: 'Hire more staff to grow',     badStat: '+₹5L per hire', good: 'AI scales with zero extra cost', goodStat: '10x capacity', gain: 'Zero extra cost' },
+  { label: 'Accuracy',        icon: <CheckCircle size={18} />, bad: 'Human errors every day',      badStat: '23% error rate',good: 'Consistent, auditable output',   goodStat: '< 0.1% errors',gain: '99.9% accuracy' },
+  { label: 'Data Visibility', icon: <BarChart3 size={18} />,   bad: 'Monthly spreadsheet reports', badStat: '30-day lag',    good: 'Live dashboards, instant alerts',goodStat: '< 5 sec data', gain: 'Real-time'      },
+  { label: 'Operating Cost',  icon: <DollarSign size={18} />,  bad: 'Manual overhead + errors',    badStat: '₹8L+/mo waste', good: 'Automated, lean operations',    goodStat: '60% cut',      gain: 'Save ₹8L/mo'   },
 ];
 
 /* ── Dashboard data ──────────────────────────────── */
@@ -762,14 +762,13 @@ const RESPONSIVE_CSS = `
   .ax-result-stats-row > div { min-width: 90px; margin-bottom: 12px; border-right: none; }
 }
 
-/* Why Us comparison */
-.ax-why-header { display: grid; grid-template-columns: 1fr 1fr 1fr; background: #0D1B2E; }
-.ax-why-row { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+/* Why Us comparison v2 */
+.ax-why-v2-cols { display: grid; grid-template-columns: 1fr 88px 1fr; gap: 12px; align-items: center; }
+.ax-result-stats-row--light { border-top: 1px solid #E5E7EB !important; }
+.ax-result-stats-row--light > div { border-right: 1px solid #E5E7EB !important; }
 @media (max-width: 640px) {
-  .ax-why-header > div:not(:first-child) { display: none; }
-  .ax-why-header { grid-template-columns: 1fr; }
-  .ax-why-row { grid-template-columns: 1fr; }
-  .ax-why-row > div { padding: 10px 16px !important; justify-content: flex-start !important; }
+  .ax-why-v2-cols { grid-template-columns: 1fr; }
+  .ax-why-v2-cols > .ax-why-gain { display: none; }
 }
 
 /* ROI strip 5-col */
@@ -834,7 +833,6 @@ export default function HomePage() {
   const [buildTab, setBuildTab] = useState(0);
   const [activeSolution, setActiveSolution] = useState('sales');
   const [preloaderDone, setPreloaderDone] = useState(false);
-  const industriesRef = useRef(null);
 
   const activeSol = SOLUTIONS.find(s => s.id === activeSolution);
 
@@ -1251,21 +1249,23 @@ export default function HomePage() {
             </Link>
           </motion.div>
 
-          <motion.div {...up(0.1)} ref={industriesRef}
-            style={{ display: 'flex', gap: 20, overflowX: 'auto', paddingBottom: 12, scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            {INDUSTRIES.map((ind, i) => (
-              <Link key={ind.label} to={ind.to} style={{ textDecoration: 'none', flexShrink: 0 }}>
-                <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.2 }}
-                  style={{ width: 180, background: '#fff', borderRadius: 16, padding: '28px 20px', borderTop: `4px solid ${ind.color}`, boxShadow: '0 2px 20px rgba(0,0,0,0.06)', cursor: 'pointer' }}>
-                  <div style={{ width: 52, height: 52, borderRadius: 14, background: `${ind.color}12`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: ind.color, marginBottom: 14 }}>
-                    {ind.icon}
-                  </div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15, color: '#0D1B2E', marginBottom: 8 }}>{ind.label}</div>
-                  <div style={{ fontFamily: 'var(--font-number)', fontSize: 14, fontWeight: 700, color: ind.color }}>{ind.stat}</div>
-                </motion.div>
-              </Link>
-            ))}
-          </motion.div>
+          {/* Infinite marquee — same engine as platform strip */}
+          <div className="ax-mq-wrap" style={{ padding: '8px 0 24px' }}>
+            <div className="ax-mq-track" style={{ animation: 'ax-scroll-left 34s linear infinite', alignItems: 'stretch' }}>
+              {[...INDUSTRIES, ...INDUSTRIES].map((ind, i) => (
+                <Link key={i} to={ind.to} style={{ textDecoration: 'none', flexShrink: 0, margin: '0 10px' }}>
+                  <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.2 }}
+                    style={{ width: 184, background: '#fff', borderRadius: 16, padding: '28px 20px', borderTop: `4px solid ${ind.color}`, boxShadow: '0 4px 24px rgba(0,0,0,0.07)', cursor: 'pointer' }}>
+                    <div style={{ width: 52, height: 52, borderRadius: 14, background: `${ind.color}12`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: ind.color, marginBottom: 14 }}>
+                      {ind.icon}
+                    </div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15, color: '#0D1B2E', marginBottom: 8 }}>{ind.label}</div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: ind.color }}>{ind.stat}</div>
+                  </motion.div>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1282,80 +1282,128 @@ export default function HomePage() {
           </motion.h2>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-            {RESULTS.map((r, i) => (
-              <motion.div key={r.company} {...up(i * 0.1)}
-                style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid rgba(255,255,255,0.08)`, borderLeft: `4px solid ${r.color}`, borderRadius: 16, padding: '36px 40px' }}>
-                <div className="ax-result-card">
-                  {/* Company */}
-                  <div>
-                    <div style={{ display: 'inline-block', fontSize: 11, color: r.color, fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: 2, marginBottom: 8, background: r.color + '18', border: `1px solid ${r.color}33`, borderRadius: 100, padding: '3px 10px' }}>{r.industry}</div>
-                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 700, color: '#fff', lineHeight: 1.3 }}>{r.company}</div>
-                  </div>
-                  {/* Detail: challenge + solution + stats */}
-                  <div>
-                    <div className="ax-result-body">
-                      <div>
-                        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)', marginBottom: 6, letterSpacing: 1, textTransform: 'uppercase' }}>Challenge</div>
-                        <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>{r.challenge}</div>
-                      </div>
-                      <div>
-                        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)', marginBottom: 6, letterSpacing: 1, textTransform: 'uppercase' }}>Solution</div>
-                        <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>{r.solution}</div>
-                      </div>
+            {RESULTS.map((r, i) => {
+              const isLight = i % 2 !== 0;
+              return (
+                <motion.div key={r.company} {...up(i * 0.1)}
+                  style={{
+                    background: isLight ? '#ffffff' : 'rgba(255,255,255,0.04)',
+                    border: isLight ? `1px solid ${r.color}33` : `1px solid rgba(255,255,255,0.08)`,
+                    borderLeft: `4px solid ${r.color}`,
+                    borderRadius: 16,
+                    padding: '36px 40px',
+                  }}>
+                  <div className="ax-result-card">
+                    {/* Company */}
+                    <div>
+                      <div style={{ display: 'inline-block', fontSize: 11, color: r.color, fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: 2, marginBottom: 8, background: r.color + '18', border: `1px solid ${r.color}33`, borderRadius: 100, padding: '3px 10px' }}>{r.industry}</div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 700, color: isLight ? '#0D1B2E' : '#fff', lineHeight: 1.3 }}>{r.company}</div>
                     </div>
-                    <div className="ax-result-stats-row">
-                      {[r.stat1, r.stat2, r.stat3].map(st => (
-                        <div key={st.label}>
-                          <div style={{ fontFamily: 'var(--font-number)', fontSize: 26, fontWeight: 700, color: r.color, lineHeight: 1 }}>{st.num}</div>
-                          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 6, fontFamily: 'var(--font-body)', lineHeight: 1.4 }}>{st.label}</div>
+                    {/* Detail: challenge + solution + stats */}
+                    <div>
+                      <div className="ax-result-body">
+                        <div>
+                          <div style={{ fontSize: 11, color: isLight ? '#9CA3AF' : 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)', marginBottom: 6, letterSpacing: 1, textTransform: 'uppercase' }}>Challenge</div>
+                          <div style={{ fontSize: 13, color: isLight ? '#4B5563' : 'rgba(255,255,255,0.65)', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>{r.challenge}</div>
                         </div>
-                      ))}
+                        <div>
+                          <div style={{ fontSize: 11, color: isLight ? '#9CA3AF' : 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)', marginBottom: 6, letterSpacing: 1, textTransform: 'uppercase' }}>Solution</div>
+                          <div style={{ fontSize: 13, color: isLight ? '#4B5563' : 'rgba(255,255,255,0.65)', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>{r.solution}</div>
+                        </div>
+                      </div>
+                      <div className={`ax-result-stats-row${isLight ? ' ax-result-stats-row--light' : ''}`}>
+                        {[r.stat1, r.stat2, r.stat3].map(st => (
+                          <div key={st.label}>
+                            <div style={{ fontFamily: 'var(--font-number)', fontSize: 26, fontWeight: 700, color: r.color, lineHeight: 1 }}>{st.num}</div>
+                            <div style={{ fontSize: 11, color: isLight ? '#6B7280' : 'rgba(255,255,255,0.4)', marginTop: 6, fontFamily: 'var(--font-body)', lineHeight: 1.4 }}>{st.label}</div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════
-          10. WHY US — WHITE background, comparison layout
+          10. WHY US — Dark, visual battle-card layout
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#ffffff', padding: '100px 0' }}>
-        <div className="ax-container">
-          <motion.div {...up(0)} style={{ marginBottom: 8 }}>
+      <section style={{ background: '#050E1A', padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
+        {/* Dot-grid background */}
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(232,99,26,0.045) 1px, transparent 1px)', backgroundSize: '32px 32px', pointerEvents: 'none' }} />
+        {/* Ambient glow */}
+        <div style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%,-50%)', width: 900, height: 500, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(232,99,26,0.06) 0%, transparent 65%)', pointerEvents: 'none' }} />
+
+        <div className="ax-container" style={{ position: 'relative', zIndex: 1 }}>
+          {/* Header */}
+          <motion.div {...up(0)} style={{ textAlign: 'center', marginBottom: 10 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Why AI Agentix</span>
           </motion.div>
-          <motion.h2 {...up(0.06)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#0D1B2E', marginBottom: 56 }}>
-            The Difference Is in the Details
+          <motion.h2 {...up(0.06)} style={{ textAlign: 'center', fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#fff', marginBottom: 12 }}>
+            Old Way vs. The AI Way
           </motion.h2>
+          <motion.p {...up(0.1)} style={{ textAlign: 'center', fontSize: 16, color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-body)', maxWidth: 500, margin: '0 auto 52px' }}>
+            Every manual process is a liability. See exactly what changes when you automate with us.
+          </motion.p>
 
-          <div style={{ background: '#F9FAFB', borderRadius: 20, overflow: 'hidden', border: '1px solid #E5E7EB' }}>
-            {/* Header */}
-            <div className="ax-why-header">
-              <div style={{ padding: '18px 28px', fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.5)' }}>Capability</div>
-              <div style={{ padding: '18px 28px', fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 600, color: '#ef4444', textAlign: 'center' }}>Without Automation</div>
-              <div style={{ padding: '18px 28px', fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 600, color: '#E8631A', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-                <Zap size={14} /> With AI Agentix
-              </div>
+          {/* Column header labels */}
+          <motion.div {...up(0.12)} className="ax-why-v2-cols" style={{ marginBottom: 14 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 20px', background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.18)', borderRadius: 10 }}>
+              <X size={14} color="#ef4444" />
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 0.5 }}>WITHOUT AUTOMATION</span>
             </div>
+            <div />
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 20px', background: 'rgba(232,99,26,0.08)', border: '1px solid rgba(232,99,26,0.25)', borderRadius: 10 }}>
+              <Zap size={14} color="#E8631A" />
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: '#E8631A', letterSpacing: 0.5 }}>WITH AI AGENTIX</span>
+            </div>
+          </motion.div>
 
+          {/* Comparison rows */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {WHY_ROWS.map((row, i) => (
-              <motion.div key={row.label} {...up(i * 0.06)}
-                className="ax-why-row" style={{ borderBottom: i < WHY_ROWS.length - 1 ? '1px solid #E5E7EB' : 'none', background: i % 2 === 0 ? '#fff' : '#F9FAFB' }}>
-                <div style={{ padding: '20px 28px', fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 700, color: '#0D1B2E' }}>{row.label}</div>
-                <div style={{ padding: '20px 28px', display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'center' }}>
-                  <X size={14} color="#ef4444" />
-                  <span style={{ fontSize: 14, color: '#6B7280', fontFamily: 'var(--font-body)' }}>{row.bad}</span>
+              <motion.div key={row.label} {...up(0.14 + i * 0.07)} className="ax-why-v2-cols">
+                {/* Bad card */}
+                <div style={{ background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.14)', borderRadius: 14, padding: '20px 24px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                    <div style={{ color: 'rgba(239,68,68,0.6)' }}>{row.icon}</div>
+                    <span style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700, color: 'rgba(239,68,68,0.7)', textTransform: 'uppercase', letterSpacing: 0.6 }}>{row.label}</span>
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 800, color: '#ef4444', lineHeight: 1, marginBottom: 7 }}>{row.badStat}</div>
+                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.3)', fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>{row.bad}</div>
                 </div>
-                <div style={{ padding: '20px 28px', display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'center' }}>
-                  <Check size={14} color="#E8631A" />
-                  <span style={{ fontSize: 14, color: '#0D1B2E', fontFamily: 'var(--font-display)', fontWeight: 600 }}>{row.good}</span>
+
+                {/* Gain badge — center col */}
+                <div className="ax-why-gain" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ background: 'rgba(232,99,26,0.12)', border: '1px solid rgba(232,99,26,0.3)', borderRadius: 100, padding: '5px 10px', textAlign: 'center' }}>
+                    <div style={{ fontSize: 9, color: '#E8631A', fontWeight: 700, letterSpacing: 0.6, fontFamily: 'var(--font-body)', whiteSpace: 'nowrap' }}>{row.gain}</div>
+                  </div>
+                </div>
+
+                {/* Good card */}
+                <div style={{ background: 'rgba(232,99,26,0.05)', border: '1px solid rgba(232,99,26,0.18)', borderRadius: 14, padding: '20px 24px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                    <div style={{ color: '#E8631A' }}>{row.icon}</div>
+                    <span style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700, color: '#E8631A', textTransform: 'uppercase', letterSpacing: 0.6 }}>{row.label}</span>
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 800, color: '#E8631A', lineHeight: 1, marginBottom: 7 }}>{row.goodStat}</div>
+                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.62)', fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>{row.good}</div>
                 </div>
               </motion.div>
             ))}
           </div>
+
+          {/* Bottom CTA */}
+          <motion.div {...up(0.5)} style={{ textAlign: 'center', marginTop: 52 }}>
+            <Link to="/contact"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'linear-gradient(90deg, #E8631A, #F59E0B)', color: '#fff', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 16, padding: '15px 32px', borderRadius: 12, textDecoration: 'none', boxShadow: '0 8px 32px rgba(232,99,26,0.35)' }}>
+              See AI Agentix in Action <ArrowRight size={18} />
+            </Link>
+            <div style={{ marginTop: 14, fontSize: 13, color: 'rgba(255,255,255,0.25)', fontFamily: 'var(--font-body)' }}>Free strategy call · No commitment · Results guaranteed</div>
+          </motion.div>
         </div>
       </section>
 
@@ -1378,9 +1426,6 @@ export default function HomePage() {
                 Transformed With Us
               </span>
             </h2>
-            <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.45)', maxWidth: 340, lineHeight: 1.6, fontFamily: 'var(--font-body)', margin: 0 }}>
-              Real results from real businesses across India. Hover to pause and read.
-            </p>
           </motion.div>
         </div>
 

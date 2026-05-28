@@ -6,7 +6,7 @@ import {
   ArrowRight, Zap, Brain, Target, HeartHandshake, Shield, Award,
   TrendingUp, Users, Globe, CheckCircle, Star, Quote,
   Lightbulb, Rocket, Clock, BarChart3, ChevronRight,
-  Code2, Sparkles, Heart, Building2,
+  Code2, Sparkles, Heart, Building2, Check, X,
 } from 'lucide-react';
 import SiteNav from '../../components/layout/SiteNav.jsx';
 import SiteFooter from '../../components/layout/SiteFooter.jsx';
@@ -85,11 +85,11 @@ const TEAM = [
 ];
 
 const WHY_US = [
-  { label: 'Team', us: '15+ ML engineers + domain consultants', them: 'Freelancers or generalist agencies' },
-  { label: 'Focus', us: 'India-specific: WhatsApp, GST, multilingual', them: 'Western tools retrofitted for India' },
-  { label: 'Approach', us: 'Custom-built for your workflows', them: 'Off-the-shelf templates' },
-  { label: 'Support', us: 'Dedicated account manager + 4hr SLA', them: 'Ticket queue, no dedicated contact' },
-  { label: 'Pricing', us: 'Transparent, value-based', them: 'Hidden fees, per-seat charges' },
+  { label: 'Expertise',  icon: <Users size={16} />,       us: '15+ ML engineers + India domain consultants', them: 'Freelancers or generalist agencies' },
+  { label: 'Focus',      icon: <Globe size={16} />,       us: 'India-first: WhatsApp, GST, multilingual AI', them: 'Western tools retrofitted for India' },
+  { label: 'Approach',   icon: <Brain size={16} />,       us: 'Custom-built automation for your exact workflow', them: 'Off-the-shelf templates, minimal customisation' },
+  { label: 'Support',    icon: <HeartHandshake size={16} />, us: 'Dedicated account manager + 4hr response SLA', them: 'Ticket queue, no dedicated contact' },
+  { label: 'Pricing',    icon: <BarChart3 size={16} />,   us: 'Transparent, milestone-based, results-tied', them: 'Hidden fees, per-seat charges, annual lock-in' },
 ];
 
 function StatBlock({ num, suffix, label }) {
@@ -114,10 +114,10 @@ export default function AboutPage() {
       <SiteNav />
 
       {/* ⓀⓀ 1. HERO "" Dark, left-copy + right orbital ⓀⓀ */}
-      <section style={{ background: 'linear-gradient(135deg, #0D1B2E 0%, #0F2240 100%)', minHeight: '72vh', display: 'flex', alignItems: 'center', paddingTop: 100, position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: 'linear-gradient(135deg, #0D1B2E 0%, #0F2240 100%)', minHeight: '72vh', display: 'flex', alignItems: 'flex-start', paddingTop: 80, position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '20%', right: '8%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(232,99,26,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: 0, left: '0', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%)', pointerEvents: 'none' }} />
-        <div className="ax-container" style={{ padding: '60px 40px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
+        <div className="ax-container" style={{ padding: '32px 40px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
           <div>
             <motion.div {...up(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(232,99,26,0.12)', border: '1px solid rgba(232,99,26,0.3)', borderRadius: 100, padding: '6px 16px', marginBottom: 24 }}>
               <Sparkles size={13} color="#E8631A" />
@@ -294,53 +294,106 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ⓀⓀ 6. TEAM "" CREAM background ⓀⓀ */}
+      {/* ⓀⓀ 6. DIFFERENTIATORS "" CREAM background ⓀⓀ */}
       <section style={{ background: '#F8F6F2', padding: '100px 0' }}>
         <div className="ax-container" style={{ padding: '0 40px' }}>
-          <motion.div {...up(0)} style={{ marginBottom: 56 }}>
-            <span style={{ fontSize: 12, fontWeight: 600, color: '#E8631A', letterSpacing: 3, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>The Team</span>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#0D1B2E', marginTop: 12 }}>Built by Engineers, Guided by Operators</h2>
-            <p style={{ fontSize: 16, color: '#6B7280', maxWidth: 560, marginTop: 12, fontFamily: 'var(--font-body)' }}>Every person at AI Agentix has either built software or run a business "" often both. That's why our solutions work in the real world.</p>
+          <motion.div {...up(0)} style={{ marginBottom: 56, maxWidth: 580 }}>
+            <span style={{ fontSize: 12, fontWeight: 600, color: '#E8631A', letterSpacing: 3, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Why We're Different</span>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#0D1B2E', marginTop: 12 }}>What Sets Our Work Apart</h2>
+            <p style={{ fontSize: 16, color: '#6B7280', maxWidth: 520, marginTop: 12, fontFamily: 'var(--font-body)' }}>Four non-negotiables that govern every project — and why 200+ businesses come back to us.</p>
           </motion.div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 24 }}>
-            {TEAM.map((t, i) => (
-              <motion.div key={t.name} {...up(i * 0.08)} whileHover={{ y: -6 }} transition={{ duration: 0.2 }}
-                style={{ background: '#fff', borderRadius: 20, padding: 28, boxShadow: '0 2px 20px rgba(0,0,0,0.06)', cursor: 'pointer' }}>
-                <div style={{ width: 64, height: 64, borderRadius: 18, background: `linear-gradient(135deg, ${t.bg}, ${t.bg}aa)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 800, color: '#fff', marginBottom: 16 }}>{t.initial}</div>
-                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 16, color: '#0D1B2E', marginBottom: 4 }}>{t.name}</div>
-                <div style={{ fontSize: 12, fontWeight: 600, color: t.bg, fontFamily: 'var(--font-body)', marginBottom: 12 }}>{t.role}</div>
-                <p style={{ fontSize: 13, color: '#6B7280', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>{t.desc}</p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 24 }}>
+            {[
+              { icon: <Clock size={26} />, color: '#E8631A', num: '14 days', numLabel: 'avg. first automation live', title: 'Speed Without Shortcuts', desc: 'Our pre-built Indian integrations and reusable AI components cut delivery time by 70%. You see your first automation running in two weeks, not three months.' },
+              { icon: <Globe size={26} />, color: '#6366F1', num: '15+', numLabel: 'Indian languages supported', title: 'Built for India, Not Retrofitted', desc: 'Every system is designed for WhatsApp-first workflows, Hindi/regional NLP, GST APIs, Razorpay, and Tally — not Western tools forced to work in an Indian context.' },
+              { icon: <Brain size={26} />, color: '#10B981', num: '100%', numLabel: 'custom-built, zero templates', title: 'Real AI, Not Prompt Wrappers', desc: 'We architect from scratch and select the right model — GPT-4, Claude, Gemini, Llama — for each specific task. One model does not fit every problem.' },
+              { icon: <Shield size={26} />, color: '#F59E0B', num: '0', numLabel: 'lock-in or hidden fees', title: 'You Own Everything', desc: 'No platform licensing. No vendor lock-in. You own the code, the models, and your data. Month-to-month contracts with transparent, results-tied pricing.' },
+            ].map((p, i) => (
+              <motion.div key={p.title} {...up(i * 0.08)} whileHover={{ y: -5 }} transition={{ duration: 0.2 }}
+                style={{ background: '#fff', borderRadius: 20, padding: '36px', boxShadow: '0 2px 28px rgba(0,0,0,0.07)', borderTop: `4px solid ${p.color}`, position: 'relative', overflow: 'hidden' }}>
+                {/* Decorative corner wash */}
+                <div style={{ position: 'absolute', top: 0, right: 0, width: 130, height: 130, borderRadius: '0 0 0 130px', background: `${p.color}07`, pointerEvents: 'none' }} />
+                {/* Icon */}
+                <div style={{ width: 52, height: 52, borderRadius: 14, background: `${p.color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: p.color, marginBottom: 20 }}>
+                  {p.icon}
+                </div>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 800, color: '#0D1B2E', marginBottom: 10 }}>{p.title}</h3>
+                <p style={{ fontSize: 14, color: '#6B7280', lineHeight: 1.7, fontFamily: 'var(--font-body)', marginBottom: 24 }}>{p.desc}</p>
+                {/* Metric bar */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px', background: `${p.color}0D`, borderRadius: 10, border: `1px solid ${p.color}22` }}>
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 800, color: p.color, lineHeight: 1 }}>{p.num}</span>
+                  <span style={{ fontSize: 12, color: '#6B7280', fontFamily: 'var(--font-body)' }}>{p.numLabel}</span>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ⓀⓀ 7. WHY US vs OTHERS "" Dark, comparison table ⓀⓀ */}
-      <section style={{ background: '#0D1B2E', padding: '100px 0' }}>
-        <div className="ax-container" style={{ padding: '0 40px' }}>
-          <motion.div {...up(0)} style={{ marginBottom: 56 }}>
+      {/* ⓀⓀ 7. WHY US vs OTHERS "" Dark, premium face-off ⓀⓀ */}
+      <section style={{ background: '#050E1A', padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
+        {/* Dot grid */}
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(232,99,26,0.04) 1px, transparent 1px)', backgroundSize: '32px 32px', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%,-50%)', width: 800, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(232,99,26,0.05) 0%, transparent 65%)', pointerEvents: 'none' }} />
+
+        <div className="ax-container" style={{ padding: '0 40px', position: 'relative', zIndex: 1 }}>
+          {/* Header */}
+          <motion.div {...up(0)} style={{ marginBottom: 12, textAlign: 'center' }}>
             <span style={{ fontSize: 12, fontWeight: 600, color: '#E8631A', letterSpacing: 3, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Why Choose Us</span>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#fff', marginTop: 12 }}>AI Agentix vs The Alternatives</h2>
           </motion.div>
-          <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 20, overflow: 'hidden' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', background: 'rgba(255,255,255,0.06)' }}>
-              {['Category', 'Typical Agencies', 'AI Agentix'].map((h, i) => (
-                <div key={h} style={{ padding: '18px 28px', fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: i === 2 ? '#E8631A' : 'rgba(255,255,255,0.5)' }}>{h}</div>
-              ))}
+          <motion.h2 {...up(0.06)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#fff', marginTop: 12, textAlign: 'center' }}>
+            AI Agentix vs The Alternatives
+          </motion.h2>
+          <motion.p {...up(0.1)} style={{ textAlign: 'center', fontSize: 16, color: 'rgba(255,255,255,0.38)', fontFamily: 'var(--font-body)', maxWidth: 480, margin: '12px auto 48px' }}>
+            Side by side — so you can see exactly what you're choosing.
+          </motion.p>
+
+          {/* Column header labels */}
+          <motion.div {...up(0.12)} style={{ display: 'grid', gridTemplateColumns: '1fr 80px 1fr', gap: 10, marginBottom: 12 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 20px', background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.18)', borderRadius: 10 }}>
+              <X size={14} color="#ef4444" />
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 0.5 }}>TYPICAL AGENCIES</span>
             </div>
+            <div />
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 20px', background: 'rgba(232,99,26,0.08)', border: '1px solid rgba(232,99,26,0.25)', borderRadius: 10 }}>
+              <Zap size={14} color="#E8631A" />
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: '#E8631A', letterSpacing: 0.5 }}>AI AGENTIX</span>
+            </div>
+          </motion.div>
+
+          {/* Comparison rows */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {WHY_US.map((row, i) => (
-              <motion.div key={row.label} {...up(i * 0.06)} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: '1px solid rgba(255,255,255,0.06)', background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.02)' }}>
-                <div style={{ padding: '18px 28px', fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: '#fff' }}>{row.label}</div>
-                <div style={{ padding: '18px 28px', fontSize: 13, color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-body)', display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#ef4444', flexShrink: 0, display: 'inline-block' }} />{row.them}
+              <motion.div key={row.label} {...up(0.14 + i * 0.06)}
+                style={{ display: 'grid', gridTemplateColumns: '1fr 80px 1fr', gap: 10, alignItems: 'center' }}>
+                {/* Their cell */}
+                <div style={{ background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.12)', borderRadius: 14, padding: '18px 22px', display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                  <X size={15} color="rgba(239,68,68,0.5)" style={{ flexShrink: 0, marginTop: 2 }} />
+                  <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>{row.them}</span>
                 </div>
-                <div style={{ padding: '18px 28px', fontSize: 13, color: 'rgba(255,255,255,0.85)', fontFamily: 'var(--font-body)', display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#E8631A', flexShrink: 0, display: 'inline-block' }} />{row.us}
+                {/* Center: label + icon */}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5 }}>
+                  <div style={{ color: 'rgba(255,255,255,0.28)' }}>{row.icon}</div>
+                  <div style={{ fontSize: 8.5, color: 'rgba(255,255,255,0.22)', fontFamily: 'var(--font-body)', fontWeight: 700, letterSpacing: 0.8, textTransform: 'uppercase', textAlign: 'center', lineHeight: 1.3 }}>{row.label}</div>
+                </div>
+                {/* Our cell */}
+                <div style={{ background: 'rgba(232,99,26,0.06)', border: '1px solid rgba(232,99,26,0.18)', borderRadius: 14, padding: '18px 22px', display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                  <Check size={15} color="#E8631A" style={{ flexShrink: 0, marginTop: 2 }} />
+                  <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.78)', fontFamily: 'var(--font-display)', fontWeight: 600, lineHeight: 1.5 }}>{row.us}</span>
                 </div>
               </motion.div>
             ))}
           </div>
+
+          {/* Bottom CTA */}
+          <motion.div {...up(0.52)} style={{ textAlign: 'center', marginTop: 52 }}>
+            <Link to="/contact"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'linear-gradient(90deg, #E8631A, #F59E0B)', color: '#fff', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 16, padding: '15px 32px', borderRadius: 12, textDecoration: 'none', boxShadow: '0 8px 32px rgba(232,99,26,0.35)' }}>
+              Work With AI Agentix <ArrowRight size={18} />
+            </Link>
+            <div style={{ marginTop: 12, fontSize: 13, color: 'rgba(255,255,255,0.22)', fontFamily: 'var(--font-body)' }}>Free strategy call · No pitch decks · Just honest advice</div>
+          </motion.div>
         </div>
       </section>
 
