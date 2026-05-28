@@ -736,11 +736,13 @@ const RESPONSIVE_CSS = `
   .ax-how-sticky { position: static !important; top: auto !important; }
 }
 
-/* Pain items */
-.ax-pain-item { display: grid; grid-template-columns: 56px 1fr auto; gap: 28px; align-items: center; }
-@media (max-width: 640px) {
-  .ax-pain-item { grid-template-columns: 56px 1fr; }
-  .ax-pain-stat { display: none; }
+/* Pain cards 4-col grid */
+.ax-pain-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+@media (max-width: 960px) {
+  .ax-pain-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 560px) {
+  .ax-pain-grid { grid-template-columns: 1fr; }
 }
 
 /* Industries header */
@@ -976,53 +978,58 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          3. PAIN SECTION — Dark split: headline left, cards right
+          3. PAIN SECTION — Light, centered header + 4 problem cards
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#0C1220', padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
-        {/* Subtle red ambient */}
-        <div style={{ position: 'absolute', top: '50%', left: '20%', transform: 'translate(-50%,-50%)', width: 600, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(220,38,38,0.07) 0%, transparent 65%)', pointerEvents: 'none' }} />
-
+      <section style={{ background: '#F9FAFB', padding: '100px 0' }}>
         <div className="ax-container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 72, alignItems: 'center' }}>
-
-            {/* Left: headline + context */}
-            <motion.div {...left(0)}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: 'rgba(220,38,38,0.1)', border: '1px solid rgba(220,38,38,0.25)', borderRadius: 100, padding: '5px 14px', marginBottom: 24 }}>
-                <AlertCircle size={12} color="#DC2626" />
-                <span style={{ fontSize: 12, fontWeight: 600, color: '#DC2626', letterSpacing: 1.5, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>The Problem</span>
-              </div>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px,3vw,46px)', fontWeight: 800, color: '#fff', lineHeight: 1.15, marginBottom: 20 }}>
-                Manual Work Is<br />
-                <span style={{ color: '#DC2626' }}>Quietly Killing</span><br />
-                Your Growth
-              </h2>
-              <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.45)', lineHeight: 1.75, marginBottom: 36, fontFamily: 'var(--font-body)' }}>
-                While you're managing spreadsheets and chasing follow-ups, automated competitors are responding in seconds and winning deals you didn't even know you lost.
-              </p>
-              {/* Total cost callout */}
-              <div style={{ background: 'rgba(220,38,38,0.08)', border: '1px solid rgba(220,38,38,0.2)', borderRadius: 14, padding: '20px 24px' }}>
-                <div style={{ fontSize: 11, color: 'rgba(220,38,38,0.7)', fontFamily: 'var(--font-body)', fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', marginBottom: 6 }}>Estimated Annual Impact</div>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 32, fontWeight: 800, color: '#DC2626', lineHeight: 1, marginBottom: 4 }}>₹1.2 Cr+</div>
-                <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)' }}>Lost per year by a typical 20-person business running manual ops</div>
-              </div>
-            </motion.div>
-
-            {/* Right: 2×2 alarm cards */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-              {PAIN_ITEMS.map((item, i) => (
-                <motion.div key={item.title} {...up(0.1 + i * 0.08)}
-                  style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(220,38,38,0.15)', borderTop: '3px solid #DC2626', borderRadius: 14, padding: '24px 20px' }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(220,38,38,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#DC2626', marginBottom: 16 }}>
-                    {item.icon}
-                  </div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 800, color: '#DC2626', lineHeight: 1, marginBottom: 6 }}>{item.stat}</div>
-                  <div style={{ fontSize: 11, color: 'rgba(220,38,38,0.6)', fontFamily: 'var(--font-body)', marginBottom: 10, letterSpacing: 0.3 }}>{item.statSub}</div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.75)', lineHeight: 1.4 }}>{item.title.split('—')[0].split(' Per ')[0].trim()}</div>
-                </motion.div>
-              ))}
+          {/* Centered header */}
+          <motion.div {...up(0)} style={{ textAlign: 'center', marginBottom: 64, maxWidth: 640, margin: '0 auto 64px' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#FEF2F2', border: '1px solid #FEE2E2', borderRadius: 100, padding: '5px 14px', marginBottom: 20 }}>
+              <AlertCircle size={12} color="#DC2626" />
+              <span style={{ fontSize: 12, fontWeight: 600, color: '#DC2626', letterSpacing: 1.5, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>The Problem</span>
             </div>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px,3.5vw,46px)', fontWeight: 800, color: '#0D1B2E', lineHeight: 1.15, marginBottom: 16 }}>
+              Manual Work Is Quietly<br />Killing Your Growth
+            </h2>
+            <p style={{ fontSize: 17, color: '#6B7280', lineHeight: 1.7, fontFamily: 'var(--font-body)' }}>
+              While you're chasing spreadsheets and follow-ups, automated competitors respond in seconds. Here's exactly what it's costing you.
+            </p>
+          </motion.div>
 
+          {/* 4 problem cards — each: problem title → description → stat as evidence */}
+          <div className="ax-pain-grid">
+            {PAIN_ITEMS.map((item, i) => (
+              <motion.div key={item.title} {...up(0.08 + i * 0.07)} whileHover={{ y: -5 }} transition={{ duration: 0.2 }}
+                style={{ background: '#fff', borderRadius: 18, padding: '28px 24px 24px', boxShadow: '0 2px 20px rgba(0,0,0,0.06)', borderTop: '4px solid #DC2626', display: 'flex', flexDirection: 'column', gap: 0 }}>
+                {/* Icon */}
+                <div style={{ width: 44, height: 44, borderRadius: 12, background: '#FEF2F2', border: '1px solid #FEE2E2', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#DC2626', marginBottom: 18 }}>
+                  {item.icon}
+                </div>
+                {/* Problem title */}
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 800, color: '#111827', lineHeight: 1.4, marginBottom: 10 }}>{item.title}</div>
+                {/* Description */}
+                <div style={{ fontSize: 13, color: '#6B7280', lineHeight: 1.65, fontFamily: 'var(--font-body)', marginBottom: 'auto', paddingBottom: 20 }}>{item.desc}</div>
+                {/* Stat badge at bottom — evidence, not headline */}
+                <div style={{ borderTop: '1px solid #F3F4F6', paddingTop: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 800, color: '#DC2626', lineHeight: 1 }}>{item.stat}</span>
+                  <span style={{ fontSize: 11, color: '#9CA3AF', fontFamily: 'var(--font-body)', lineHeight: 1.3 }}>{item.statSub}</span>
+                </div>
+              </motion.div>
+            ))}
           </div>
+
+          {/* Bottom: total impact callout */}
+          <motion.div {...up(0.38)} style={{ marginTop: 32, background: '#FEF2F2', border: '1px solid #FEE2E2', borderRadius: 16, padding: '20px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+              <AlertCircle size={20} color="#DC2626" />
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 700, color: '#111827' }}>
+                Combined, these four problems cost a 20-person business over <span style={{ color: '#DC2626' }}>₹1.2 Cr per year</span> in lost revenue and wasted time.
+              </span>
+            </div>
+            <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#DC2626', color: '#fff', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 14, padding: '11px 22px', borderRadius: 10, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
+              Fix This Now <ArrowRight size={15} />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
