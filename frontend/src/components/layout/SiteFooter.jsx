@@ -8,18 +8,18 @@ import {
 import BrandLogo from './BrandLogo.jsx';
 
 const PARTNERS_BASE = [
-  { name: 'OpenAI',       Icon: SiOpenai,       color: '#10A37F' },
-  { name: 'Google Cloud', Icon: SiGooglecloud,  color: '#4285F4' },
-  { name: 'AWS',          abbr: 'AWS',          color: '#FF9900' },
-  { name: 'Meta AI',      Icon: SiMeta,         color: '#1877F2' },
-  { name: 'Twilio',       Icon: SiTwilio,       color: '#F22F46' },
-  { name: 'Razorpay',     Icon: SiRazorpay,     color: '#3395FF' },
-  { name: 'n8n',          abbr: 'N8',           color: '#EA4B71' },
-  { name: 'Make',         Icon: SiMake,         color: '#6D00CC' },
-  { name: 'Anthropic',    Icon: SiAnthropic,    color: '#C96442' },
-  { name: 'WhatsApp',     Icon: SiWhatsapp,     color: '#25D366' },
-  { name: 'HubSpot',      Icon: SiHubspot,      color: '#FF7A59' },
-  { name: 'LangChain',    Icon: SiLangchain,    color: '#F0A500' },
+  { name: 'OpenAI', color: '#10A37F' },
+  { name: 'Google Cloud', color: '#4285F4' },
+  { name: 'AWS',  color: '#FF9900' },
+  { name: 'Meta AI',       color: '#1877F2' },
+  { name: 'Twilio',        color: '#F22F46' },
+  { name: 'Razorpay',     color: '#3395FF' },
+  { name: 'n8n',         color: '#EA4B71' },
+  { name: 'Make',            color: '#6D00CC' },
+  { name: 'Anthropic',  color: '#C96442' },
+  { name: 'WhatsApp',      color: '#25D366' },
+  { name: 'HubSpot',      color: '#FF7A59' },
+  { name: 'LangChain',    color: '#F0A500' },
 ];
 const PARTNERS = [...PARTNERS_BASE, ...PARTNERS_BASE];
 
@@ -35,18 +35,13 @@ export default function SiteFooter() {
       {/* Partner marquee */}
       <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingTop: 48, paddingBottom: 40, marginBottom: 64 }}>
         <p style={{ textAlign: 'center', fontFamily: 'var(--font-body)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 28, marginTop: 0 }}>
-          Built on the world's most powerful AI platforms
+          Powered by the world's most powerful AI platforms
         </p>
         <div className="ax-mq-wrap">
           <div className="ax-mq-track" style={{ animation: 'ax-scroll-left 40s linear infinite' }}>
             {PARTNERS.map((p, i) => (
               <div key={i} className="ax-mq-pill">
-                <div className="ax-mq-logo" style={{ background: p.color + '22', border: `1px solid ${p.color}44` }}>
-                  {p.Icon
-                    ? <p.Icon style={{ color: p.color, fontSize: 14 }} />
-                    : <span style={{ color: p.color, fontSize: 10, fontWeight: 800 }}>{p.abbr}</span>
-                  }
-                </div>
+                
                 <span className="ax-mq-label">{p.name}</span>
               </div>
             ))}

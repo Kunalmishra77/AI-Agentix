@@ -149,6 +149,36 @@ const BUILD_TABS = [
     metricLabel: 'content output increase',
     color: '#EC4899',
   },
+  {
+    label: 'Voice AI Agents',
+    icon: <Phone size={18} />,
+    headline: '24/7 Voice Agents That Sound Human',
+    desc: 'Deploy AI-powered voice agents for inbound calls, appointment booking, and customer queries. Works on phone, WhatsApp voice, and web — in Hindi and English.',
+    features: ['Natural language call handling', 'Appointment scheduling & reminders', 'Hindi + English + 12 regional langs', 'CRM sync after every call'],
+    metric: '3x',
+    metricLabel: 'more calls handled daily',
+    color: '#0EA5E9',
+  },
+  {
+    label: 'Finance Automation',
+    icon: <BarChart3 size={18} />,
+    headline: 'Zero-Error Finance Ops on Autopilot',
+    desc: 'Automate invoicing, GST filing, bank reconciliation, and expense management. Integrated with Tally, Zoho Books, and all major Indian accounting platforms.',
+    features: ['Auto invoice generation & dispatch', 'GST return preparation', 'Bank reconciliation automation', 'Real-time expense dashboards'],
+    metric: '85%',
+    metricLabel: 'reduction in manual finance work',
+    color: '#10B981',
+  },
+  {
+    label: 'Data Intelligence',
+    icon: <Cpu size={18} />,
+    headline: 'From Raw Data to Revenue Decisions',
+    desc: 'Pull data from every tool you use into unified dashboards. AI surfaces trends, predicts churn, forecasts demand, and delivers insights before problems escalate.',
+    features: ['Multi-source data unification', 'Predictive churn & demand models', 'Anomaly detection & auto-alerts', 'Custom executive KPI dashboards'],
+    metric: '2.4x',
+    metricLabel: 'faster strategic decisions',
+    color: '#F59E0B',
+  },
 ];
 
 const HOW_STEPS = [
@@ -209,6 +239,21 @@ const SOLUTIONS = [
     desc: 'Automate inventory updates, order processing, abandoned cart recovery, and customer win-back campaigns across Shopify, WooCommerce, and more.',
     bullets: ['Real-time inventory sync', 'Abandoned cart recovery flows', 'Auto order status updates', 'Review request sequences'],
     stat: '28%', statLabel: 'increase in repeat purchases' },
+  { id: 'voice', label: 'Voice AI Agents', icon: <Phone size={16} />, color: '#0EA5E9',
+    headline: 'Calls Answered. Leads Captured. 24/7.',
+    desc: 'AI voice agents that handle inbound calls, book appointments, qualify leads, and answer FAQs — in Hindi, English, and 12+ regional languages. No human needed.',
+    bullets: ['Natural-sounding voice conversations', 'Appointment booking & confirmation', 'Lead capture to CRM in real-time', 'Works on IVR, WhatsApp & web'],
+    stat: '3x', statLabel: 'more calls handled per day' },
+  { id: 'finance', label: 'Finance & GST Automation', icon: <BarChart3 size={16} />, color: '#10B981',
+    headline: 'Finance Ops Without the Errors',
+    desc: 'Automate invoice generation, GST filing, bank reconciliation, and MIS reports. Integrated with Tally, Zoho Books, and Razorpay for seamless Indian accounting.',
+    bullets: ['Auto invoice dispatch & tracking', 'GST return preparation & filing', 'Bank reconciliation automation', 'Real-time P&L dashboards'],
+    stat: '85%', statLabel: 'reduction in manual finance tasks' },
+  { id: 'whatsapp', label: 'WhatsApp Marketing', icon: <MessageSquare size={16} />, color: '#25D366',
+    headline: 'Your Best Salesperson Runs on WhatsApp',
+    desc: 'Build automated WhatsApp sequences for lead nurturing, re-engagement, and post-sale follow-up. Personalised, compliant with WABA policies, and measurable.',
+    bullets: ['Drip campaigns with smart branching', 'Broadcast to segmented contact lists', 'Opt-in/opt-out compliance built-in', 'Analytics: open, click & reply rates'],
+    stat: '62%', statLabel: 'higher conversion than email' },
 ];
 
 const INDUSTRIES = [
@@ -900,7 +945,7 @@ export default function HomePage() {
             <span style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>What We Build</span>
           </motion.div>
           <motion.h2 {...up(0.06)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#fff', marginBottom: 56 }}>
-            Three Core Capabilities.<br />One Integrated System.
+            Six Core Capabilities.<br />One Integrated System.
           </motion.h2>
 
           <div className="ax-side-panel-grid">
@@ -964,6 +1009,45 @@ export default function HomePage() {
               <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#E8631A', color: '#fff', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, padding: '13px 24px', borderRadius: 10, textDecoration: 'none' }}>
                 Start Your Project <ArrowRight size={16} />
               </Link>
+            </motion.div>
+
+            {/* Trust signals below CTA */}
+            <motion.div {...left(0.24)} style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 14 }}>
+              {[
+                { icon: <Clock size={15} />, label: '14-day avg. delivery', sub: 'First automation live in 2 weeks' },
+                { icon: <Shield size={15} />, label: 'No lock-in contract', sub: 'Month-to-month, cancel anytime' },
+                { icon: <CheckCircle size={15} />, label: '24/7 post-launch support', sub: 'We stay with you after go-live' },
+                { icon: <Award size={15} />, label: 'Results-backed pricing', sub: 'Milestones tied to your KPIs' },
+              ].map(({ icon, label, sub }) => (
+                <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <div style={{ width: 34, height: 34, borderRadius: 9, background: 'rgba(232,99,26,0.1)', border: '1px solid rgba(232,99,26,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#E8631A', flexShrink: 0 }}>
+                    {icon}
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: '#0D1B2E', lineHeight: 1.2 }}>{label}</div>
+                    <div style={{ fontSize: 12, color: '#6B7280', fontFamily: 'var(--font-body)', marginTop: 2 }}>{sub}</div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Mini testimonial */}
+            <motion.div {...left(0.3)} style={{ marginTop: 32, background: '#fff', border: '1px solid #E5E7EB', borderRadius: 14, padding: '18px 20px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+              <div style={{ display: 'flex', gap: 2, marginBottom: 10 }}>
+                {[...Array(5)].map((_, k) => <Star key={k} size={12} color="#F59E0B" fill="#F59E0B" />)}
+              </div>
+              <p style={{ fontSize: 13, color: '#374151', lineHeight: 1.6, fontFamily: 'var(--font-body)', margin: '0 0 12px', fontStyle: 'italic' }}>
+                "From first call to live automation in 11 days. The process was seamless — exactly as described."
+              </p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg, #E8631A, #F59E0B)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: '#fff', fontFamily: 'var(--font-display)' }}>R</span>
+                </div>
+                <div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: '#111827', fontFamily: 'var(--font-display)' }}>Rajiv Mehta</div>
+                  <div style={{ fontSize: 11, color: '#9CA3AF', fontFamily: 'var(--font-body)' }}>Founder, RealEdge Properties</div>
+                </div>
+              </div>
             </motion.div>
           </div>
 

@@ -51,12 +51,30 @@ const TIMELINE = [
 ];
 
 const VALUES = [
-  { icon: <Target size={24} />, title: 'Results First', desc: 'Every engagement starts with a measurable ROI target. We don\'t ship unless the numbers move.', color: '#E8631A' },
-  { icon: <HeartHandshake size={24} />, title: 'Partnership Mindset', desc: 'We\'re not vendors. We\'re embedded in your team until the system works "" and after.', color: '#6366F1' },
-  { icon: <Lightbulb size={24} />, title: 'Radical Simplicity', desc: 'Complex AI, simple interfaces. If your team can\'t use it in 2 hours, we rebuild it.', color: '#10B981' },
-  { icon: <Shield size={24} />, title: 'Enterprise Grade Security', desc: 'SOC 2 compliant, ISO 27001 aligned. Your data never leaves Indian servers without consent.', color: '#F59E0B' },
-  { icon: <TrendingUp size={24} />, title: 'Continuous Improvement', desc: 'We monitor every automation post-launch and retrain models on your data every quarter.', color: '#EC4899' },
-  { icon: <Globe size={24} />, title: 'Indian Context Expertise', desc: 'Built for India "" multilingual, WhatsApp-first, Razorpay-integrated, GST-aware automation.', color: '#0EA5E9' },
+  { icon: <Target size={24} />, title: 'Results First',
+    desc: 'Every engagement starts with a measurable ROI target. We don\'t ship unless the numbers move.',
+    items: ['Defined KPIs before project kickoff', 'Live ROI dashboard from day one', 'Monthly performance reviews', 'Results-tied milestone payments'],
+    stat: '8x', statLabel: 'average client ROI', color: '#E8631A' },
+  { icon: <HeartHandshake size={24} />, title: 'Partnership Mindset',
+    desc: 'We\'re not vendors. We\'re embedded in your team until the system works — and well after.',
+    items: ['Dedicated account manager per client', 'Weekly sync calls included', 'Slack access to engineering team', 'No ghosting after go-live'],
+    stat: '97%', statLabel: 'client retention rate', color: '#6366F1' },
+  { icon: <Lightbulb size={24} />, title: 'Radical Simplicity',
+    desc: 'Complex AI, simple interfaces. If your team can\'t use it in 2 hours, we rebuild it.',
+    items: ['No-code dashboards for non-tech teams', 'Training sessions for all users', '2-hour onboarding guarantee', 'Plain-language documentation'],
+    stat: '2 hrs', statLabel: 'avg. team onboarding time', color: '#10B981' },
+  { icon: <Shield size={24} />, title: 'Enterprise Grade Security',
+    desc: 'ISO 27001 aligned. Your data never leaves Indian servers without explicit consent.',
+    items: ['Data hosted on Indian cloud servers', 'End-to-end encryption at rest & transit', 'Role-based access controls', 'DPDP Act 2023 compliant'],
+    stat: '0', statLabel: 'data breaches since founding', color: '#F59E0B' },
+  { icon: <TrendingUp size={24} />, title: 'Continuous Improvement',
+    desc: 'We monitor every automation post-launch and retrain models on your data every quarter.',
+    items: ['Automated performance monitoring', 'Quarterly model retraining included', 'Proactive alert on anomalies', 'Free minor updates for 12 months'],
+    stat: '99.6%', statLabel: 'average system uptime', color: '#EC4899' },
+  { icon: <Globe size={24} />, title: 'Indian Context Expertise',
+    desc: 'Built for India — multilingual, WhatsApp-first, Razorpay-integrated, GST-aware automation.',
+    items: ['Hindi, Tamil, Marathi, Bengali AI', 'WhatsApp Business API certified', 'Tally, Zoho, Razorpay integrations', 'GST & Indian compliance baked in'],
+    stat: '15+', statLabel: 'Indian languages supported', color: '#0EA5E9' },
 ];
 
 const TEAM = [
@@ -122,23 +140,33 @@ export default function AboutPage() {
             </motion.div>
           </div>
           {/* Right: orbital rings with stat nodes */}
-          <motion.div {...right(0.25)} style={{ position: 'relative', height: 360, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            {[200, 280, 340].map((r, i) => (
-              <motion.div key={r} animate={{ rotate: i % 2 === 0 ? 360 : -360 }} transition={{ duration: 20 + i * 8, repeat: Infinity, ease: 'linear' }}
-                style={{ position: 'absolute', width: r, height: r, borderRadius: '50%', border: `1px solid rgba(232,99,26,${0.15 - i * 0.04})` }} />
+          <motion.div {...right(0.25)} style={{ position: 'relative', width: 400, height: 400, flexShrink: 0, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            {/* Ambient glow */}
+            <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'radial-gradient(circle, rgba(232,99,26,0.18) 0%, transparent 68%)', pointerEvents: 'none' }} />
+            {/* Rotating rings */}
+            {[{ r: 110, speed: 14 }, { r: 155, speed: 22 }, { r: 190, speed: 32 }].map(({ r, speed }, i) => (
+              <motion.div key={r}
+                animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
+                transition={{ duration: speed, repeat: Infinity, ease: 'linear' }}
+                style={{ position: 'absolute', width: r * 2, height: r * 2, borderRadius: '50%', border: `1.5px solid rgba(232,99,26,${0.28 - i * 0.06})` }}>
+                {/* Orbiting dot */}
+                <div style={{ position: 'absolute', top: -4, left: '50%', marginLeft: -4, width: 8, height: 8, borderRadius: '50%', background: `rgba(232,99,26,${0.7 - i * 0.2})`, boxShadow: `0 0 10px rgba(232,99,26,0.7)` }} />
+              </motion.div>
             ))}
-            <div style={{ width: 90, height: 90, borderRadius: '50%', background: 'linear-gradient(135deg,#E8631A,#F59E0B)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 40px rgba(232,99,26,0.4)' }}>
-              <Brain size={36} color="#fff" />
+            {/* Center brain */}
+            <div style={{ position: 'relative', zIndex: 2, width: 88, height: 88, borderRadius: '50%', background: 'linear-gradient(135deg, #E8631A, #F59E0B)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 0 10px rgba(232,99,26,0.12), 0 0 40px rgba(232,99,26,0.45)' }}>
+              <Brain size={34} color="#fff" />
             </div>
+            {/* Stat nodes at cardinal positions */}
             {[
-              { top: '8%', left: '50%', label: '200+', sub: 'Clients', color: '#E8631A' },
-              { top: '50%', left: '2%', label: '97%', sub: 'Satisfaction', color: '#6366F1' },
-              { top: '80%', left: '55%', label: '₹50Cr', sub: 'Generated', color: '#10B981' },
-              { top: '30%', right: '0%', label: '4+ Yrs', sub: 'Experience', color: '#F59E0B' },
-            ].map(({ label, sub, color, ...pos }) => (
-              <div key={label} style={{ position: 'absolute', ...pos, background: '#0D1B2E', border: `1px solid ${color}50`, borderRadius: 10, padding: '8px 12px', textAlign: 'center' }}>
-                <div style={{ fontFamily: 'var(--font-number)', fontSize: 16, fontWeight: 700, color }}>{label}</div>
-                <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-body)' }}>{sub}</div>
+              { label: '200+', sub: 'Clients',      color: '#E8631A', style: { top: 0,    left: '50%', transform: 'translateX(-50%)' } },
+              { label: '97%',  sub: 'Satisfaction', color: '#6366F1', style: { top: '50%',left: 0,     transform: 'translateY(-50%)' } },
+              { label: '₹50Cr',sub: 'Generated',    color: '#10B981', style: { bottom: 0, left: '50%', transform: 'translateX(-50%)' } },
+              { label: '4+ Yrs',sub: 'Experience',  color: '#F59E0B', style: { top: '50%',right: 0,    transform: 'translateY(-50%)' } },
+            ].map(({ label, sub, color, style }) => (
+              <div key={label} style={{ position: 'absolute', ...style, background: '#0D1B2E', border: `1px solid ${color}55`, borderRadius: 10, padding: '8px 14px', textAlign: 'center', zIndex: 3, boxShadow: `0 4px 20px rgba(0,0,0,0.4), 0 0 0 1px ${color}22` }}>
+                <div style={{ fontFamily: 'var(--font-number)', fontSize: 18, fontWeight: 700, color, lineHeight: 1 }}>{label}</div>
+                <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-body)', marginTop: 3 }}>{sub}</div>
               </div>
             ))}
           </motion.div>
@@ -240,12 +268,26 @@ export default function AboutPage() {
             {/* Right: detail panel */}
             <AnimatePresence mode="wait">
               <motion.div key={activeValue} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.3 }}
-                style={{ background: `${VALUES[activeValue].color}08`, border: `1px solid ${VALUES[activeValue].color}25`, borderRadius: 20, padding: 44, minHeight: 280, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <div style={{ width: 60, height: 60, borderRadius: 16, background: `${VALUES[activeValue].color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: VALUES[activeValue].color, marginBottom: 24 }}>
-                  {VALUES[activeValue].icon}
+                style={{ background: `${VALUES[activeValue].color}08`, border: `1px solid ${VALUES[activeValue].color}25`, borderRadius: 20, padding: '36px 40px', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20 }}>
+                  <div style={{ width: 56, height: 56, borderRadius: 14, background: `${VALUES[activeValue].color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: VALUES[activeValue].color, flexShrink: 0 }}>
+                    {VALUES[activeValue].icon}
+                  </div>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 800, color: '#0D1B2E', margin: 0 }}>{VALUES[activeValue].title}</h3>
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 24, fontWeight: 800, color: '#0D1B2E', marginBottom: 16 }}>{VALUES[activeValue].title}</h3>
-                <p style={{ fontSize: 16, color: '#4B5563', lineHeight: 1.75, fontFamily: 'var(--font-body)' }}>{VALUES[activeValue].desc}</p>
+                <p style={{ fontSize: 15, color: '#4B5563', lineHeight: 1.75, fontFamily: 'var(--font-body)', marginBottom: 24 }}>{VALUES[activeValue].desc}</p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28 }}>
+                  {VALUES[activeValue].items.map(item => (
+                    <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                      <CheckCircle size={15} color={VALUES[activeValue].color} style={{ flexShrink: 0 }} />
+                      <span style={{ fontSize: 14, color: '#374151', fontFamily: 'var(--font-body)' }}>{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ background: `${VALUES[activeValue].color}12`, border: `1px solid ${VALUES[activeValue].color}28`, borderRadius: 12, padding: '14px 20px', display: 'flex', alignItems: 'center', gap: 12, marginTop: 'auto' }}>
+                  <span style={{ fontFamily: 'var(--font-number)', fontSize: 30, fontWeight: 700, color: VALUES[activeValue].color, lineHeight: 1 }}>{VALUES[activeValue].stat}</span>
+                  <span style={{ fontSize: 13, color: '#6B7280', fontFamily: 'var(--font-body)' }}>{VALUES[activeValue].statLabel}</span>
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>
