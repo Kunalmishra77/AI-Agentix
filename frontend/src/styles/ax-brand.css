@@ -7,11 +7,11 @@
 :root {
   --font-display: 'Poppins', sans-serif;
   --font-body:    'Poppins', sans-serif;
-  --font-number:  'Bebas Neue', cursive;
+  --font-number:  'Poppins', sans-serif;
   /* backward-compat aliases */
   --font-d: 'Poppins', sans-serif;
   --font-b: 'Poppins', sans-serif;
-  --font-n: 'Bebas Neue', cursive;
+  --font-n: 'Poppins', sans-serif;
 
   --or:   #E8631A;
   --orl:  #F47B35;

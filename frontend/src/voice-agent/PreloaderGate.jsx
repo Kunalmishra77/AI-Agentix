@@ -137,8 +137,18 @@ export default function PreloaderGate({ onEnter }) {
         if (e.key === 'Enter' || e.key === ' ') handleClick();
       }}
     >
-      {/* Slowly drifting ambient orange glow */}
+      {/* Corner accent brackets */}
+      <div className="pg-corner pg-corner--tl" />
+      <div className="pg-corner pg-corner--tr" />
+      <div className="pg-corner pg-corner--bl" />
+      <div className="pg-corner pg-corner--br" />
+
+      {/* Ambient glows */}
       <div className="pg-ambient" />
+      <div className="pg-ambient-2" />
+
+      {/* Dot grid */}
+      <div className="pg-dots" />
 
       {/* Micro-grid — fades in out of VOID */}
       <AnimatePresence>
@@ -314,6 +324,17 @@ export default function PreloaderGate({ onEnter }) {
               >
                 Your AI Operating System is ready
               </motion.p>
+
+              {/* Live status indicator */}
+              <motion.div
+                className="pg-status-row"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.45, delay: 0.52 }}
+              >
+                <div className="pg-status-dot" />
+                <span className="pg-status-text">5 agents active · all systems go</span>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
