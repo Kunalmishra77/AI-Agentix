@@ -12,7 +12,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 import {
-  SiOpenai, SiAnthropic, SiGooglecloud, SiMeta, SiMicrosoftazure,
+  SiOpenai, SiAnthropic, SiGooglecloud, SiMeta,
   SiHubspot, SiMake, SiWhatsapp, SiTwilio, SiRazorpay, SiLangchain,
   SiZapier, SiSlack,
 } from 'react-icons/si';
