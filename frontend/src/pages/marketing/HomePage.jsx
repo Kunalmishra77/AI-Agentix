@@ -11,6 +11,11 @@ import {
   AlertCircle, DollarSign, Timer, Cpu, Layers, Rocket, Quote,
   ChevronDown
 } from 'lucide-react';
+import {
+  SiOpenai, SiAnthropic, SiGooglecloud, SiMeta, SiMicrosoftazure,
+  SiHubspot, SiMake, SiWhatsapp, SiTwilio, SiRazorpay, SiLangchain,
+  SiZapier, SiSlack,
+} from 'react-icons/si';
 import SiteNav from '../../components/layout/SiteNav.jsx';
 import SiteFooter from '../../components/layout/SiteFooter.jsx';
 import PreloaderGate from '../../voice-agent/PreloaderGate.jsx';
@@ -638,45 +643,8 @@ const RESPONSIVE_CSS = `
 }
 `;
 
-/* Marquee CSS injected once — guarantees seamless infinite loop */
+/* Testimonial marquee CSS only (ax-mq-* now in ax-brand.css) */
 const MARQUEE_CSS = `
-@keyframes ax-scroll-left {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-.ax-mq-track {
-  display: flex; align-items: center; width: max-content;
-  animation: ax-scroll-left 48s linear infinite;
-  will-change: transform;
-}
-.ax-mq-wrap:hover .ax-mq-track {
-  animation-play-state: paused;
-}
-.ax-mq-pill {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 10px 20px; margin: 0 8px;
-  border-radius: 100px; flex-shrink: 0; white-space: nowrap;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(8px);
-  transition: border-color 0.2s, background 0.2s;
-  cursor: default;
-}
-.ax-mq-pill:hover {
-  border-color: rgba(255,255,255,0.22);
-  background: rgba(255,255,255,0.08);
-}
-.ax-mq-logo {
-  width: 26px; height: 26px; border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 800; color: #fff; flex-shrink: 0;
-  font-family: var(--font-display);
-}
-.ax-mq-label {
-  font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.82);
-  font-family: var(--font-display); letter-spacing: 0.1px;
-}
-
 /* ── Testimonial card marquee ── */
 @keyframes ax-tm-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .ax-tm-track {
@@ -700,22 +668,22 @@ const MARQUEE_CSS = `
 `;
 
 const ALL_PLATFORMS = [
-  { name: 'OpenAI',          abbr: 'AI',  color: '#10A37F' },
-  { name: 'Anthropic',       abbr: 'AN',  color: '#C96442' },
-  { name: 'Google Cloud',    abbr: 'GC',  color: '#4285F4' },
-  { name: 'AWS',             abbr: 'AW',  color: '#FF9900' },
-  { name: 'Meta AI',         abbr: 'ME',  color: '#0866FF' },
-  { name: 'Microsoft Azure', abbr: 'AZ',  color: '#0078D4' },
-  { name: 'HubSpot',         abbr: 'HS',  color: '#FF7A59' },
-  { name: 'Make',            abbr: 'MK',  color: '#6D00CC' },
-  { name: 'WhatsApp',        abbr: 'WA',  color: '#25D366' },
-  { name: 'Twilio',          abbr: 'TW',  color: '#F22F46' },
-  { name: 'Razorpay',        abbr: 'RZ',  color: '#3395FF' },
-  { name: 'ElevenLabs',      abbr: 'EL',  color: '#5C6AC4' },
-  { name: 'Pinecone',        abbr: 'PC',  color: '#1DB954' },
-  { name: 'LangChain',       abbr: 'LC',  color: '#F0A500' },
-  { name: 'n8n',             abbr: 'N8',  color: '#EA4B71' },
-  { name: 'Groq',            abbr: 'GQ',  color: '#F55036' },
+  { name: 'OpenAI',          Icon: SiOpenai,      color: '#10A37F' },
+  { name: 'Anthropic',       Icon: SiAnthropic,   color: '#C96442' },
+  { name: 'Google Cloud',    Icon: SiGooglecloud, color: '#4285F4' },
+  { name: 'AWS',             abbr: 'AWS',         color: '#FF9900' },
+  { name: 'Meta AI',         Icon: SiMeta,        color: '#0866FF' },
+  { name: 'Azure',           abbr: 'AZ',          color: '#0078D4' },
+  { name: 'HubSpot',         Icon: SiHubspot,     color: '#FF7A59' },
+  { name: 'Make',            Icon: SiMake,        color: '#6D00CC' },
+  { name: 'WhatsApp',        Icon: SiWhatsapp,    color: '#25D366' },
+  { name: 'Twilio',          Icon: SiTwilio,      color: '#F22F46' },
+  { name: 'Razorpay',        Icon: SiRazorpay,    color: '#3395FF' },
+  { name: 'LangChain',       Icon: SiLangchain,   color: '#F0A500' },
+  { name: 'n8n',             abbr: 'N8',          color: '#EA4B71' },
+  { name: 'Groq',            abbr: 'GQ',          color: '#F55036' },
+  { name: 'Zapier',          Icon: SiZapier,      color: '#FF4A00' },
+  { name: 'Slack',           Icon: SiSlack,       color: '#4A154B' },
 ];
 
 /* ══════════════════════════════════════════════════ */
@@ -836,7 +804,7 @@ export default function HomePage() {
             fontFamily: 'var(--font-body)',
             textTransform: 'uppercase',
           }}>
-            Built on the World's Most Powerful AI Platforms
+            Powered By World's Most Powerful AI Platforms
           </span>
           <div style={{ width: 40, height: 2, background: 'linear-gradient(90deg, #E8631A, #F59E0B)', borderRadius: 2, margin: '10px auto 0' }} />
         </div>
@@ -854,7 +822,10 @@ export default function HomePage() {
             {[...ALL_PLATFORMS, ...ALL_PLATFORMS].map((p, i) => (
               <div key={i} className="ax-mq-pill">
                 <div className="ax-mq-logo" style={{ background: p.color + '22', border: `1px solid ${p.color}44` }}>
-                  <span style={{ color: p.color }}>{p.abbr}</span>
+                  {p.Icon
+                    ? <p.Icon style={{ color: p.color, fontSize: 15 }} />
+                    : <span style={{ color: p.color, fontSize: 10, fontWeight: 800 }}>{p.abbr}</span>
+                  }
                 </div>
                 <span className="ax-mq-label">{p.name}</span>
               </div>
