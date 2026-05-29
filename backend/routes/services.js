@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { query, queryOne, toCamel, toCamelAll } from '../config/database.js';
+import { randomUUID } from 'crypto';
+import { query, queryOne, insertOne, updateOne, toCamel, toCamelAll } from '../config/database.js';
 import { protect } from '../middleware/auth.js';
 import slugify from 'slugify';
 
@@ -14,7 +15,7 @@ router.get('/', async (_req, res, next) => {
 
 router.get('/:slug', async (req, res, next) => {
   try {
-    const row = await queryOne('SELECT * FROM services WHERE slug = $1', [req.params.slug]);
+    const row = await queryOne('SELECT * FROM services WHERE slug = ?', [req.params.slug]);
     if (!row) return res.status(404).json({ success: false, error: { message: 'Not found' } });
     res.json({ success: true, data: toCamel(row) });
   } catch (e) { next(e); }
@@ -23,11 +24,13 @@ router.get('/:slug', async (req, res, next) => {
 router.post('/', protect, async (req, res, next) => {
   try {
     const { title, tagline, description, icon, features, isFeatured, sortOrder } = req.body;
+    const id = randomUUID();
     const slug = slugify(title, { lower: true, strict: true });
-    const row = await queryOne(
-      `INSERT INTO services (title, slug, tagline, description, icon, features, is_featured, sort_order)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *`,
-      [title, slug, tagline, description, icon, features || [], !!isFeatured, sortOrder || 0]
+    const row = await insertOne('services',
+      `INSERT INTO services (id, title, slug, tagline, description, icon, features, is_featured, sort_order)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [id, title, slug, tagline, description, icon, JSON.stringify(features || []), isFeatured ? 1 : 0, sortOrder || 0],
+      id
     );
     res.status(201).json({ success: true, data: toCamel(row) });
   } catch (e) { next(e); }
@@ -36,10 +39,10 @@ router.post('/', protect, async (req, res, next) => {
 router.put('/:id', protect, async (req, res, next) => {
   try {
     const { title, tagline, description, icon, features, isFeatured, sortOrder } = req.body;
-    const row = await queryOne(
-      `UPDATE services SET title=$1, tagline=$2, description=$3, icon=$4, features=$5, is_featured=$6, sort_order=$7
-       WHERE id=$8 RETURNING *`,
-      [title, tagline, description, icon, features || [], !!isFeatured, sortOrder || 0, req.params.id]
+    const row = await updateOne('services',
+      `UPDATE services SET title=?, tagline=?, description=?, icon=?, features=?, is_featured=?, sort_order=? WHERE id=?`,
+      [title, tagline, description, icon, JSON.stringify(features || []), isFeatured ? 1 : 0, sortOrder || 0, req.params.id],
+      req.params.id
     );
     res.json({ success: true, data: toCamel(row) });
   } catch (e) { next(e); }
@@ -47,7 +50,7 @@ router.put('/:id', protect, async (req, res, next) => {
 
 router.delete('/:id', protect, async (req, res, next) => {
   try {
-    await query('DELETE FROM services WHERE id = $1', [req.params.id]);
+    await query('DELETE FROM services WHERE id = ?', [req.params.id]);
     res.json({ success: true, data: {} });
   } catch (e) { next(e); }
 });
