@@ -210,7 +210,6 @@ export default function SiteFooter() {
               { label: 'Privacy Policy',   to: '/privacy' },
               { label: 'Terms of Service', to: '/terms' },
               { label: 'Refund Policy',    to: '/refund' },
-              { label: 'Sitemap',          to: '/sitemap.xml' },
             ].map((l) => (
               <Link key={l.label} to={l.to} style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'rgba(255,255,255,0.35)', textDecoration: 'none', transition: 'color 0.2s' }}
                 onMouseEnter={e => e.currentTarget.style.color = 'var(--or)'}

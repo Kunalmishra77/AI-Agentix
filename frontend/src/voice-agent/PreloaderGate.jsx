@@ -32,9 +32,9 @@ const DURATIONS = {
 };
 
 const BOOT_LINES = [
-  { text: '> AGENTIX OS v4 · INITIALIZING', ready: false },
-  { text: '> NEURAL PATHWAYS · LOADING',    ready: false },
-  { text: '> VOICE SYSTEMS · READY',        ready: true  },
+  { text: '> AI AGENTIX · INITIALIZING AUTOMATION ENGINE', ready: false },
+  { text: '> CONNECTING AI AGENTS ACROSS YOUR WORKFLOWS',  ready: false },
+  { text: '> VOICE ASSISTANT · READY TO AUTOMATE',         ready: true  },
 ];
 
 const EASE_SPRING   = [0.16, 1, 0.3, 1];
@@ -315,7 +315,7 @@ export default function PreloaderGate({ onEnter }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.22, ease: EASE_SPRING }}
               >
-                AGENTiX
+                AI AGENTiX
               </motion.h1>
 
               {/* Sub-copy */}
@@ -325,7 +325,7 @@ export default function PreloaderGate({ onEnter }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.38, ease: EASE_SPRING }}
               >
-                Your AI Operating System is ready
+                India's #1 AI Automation Partner — Ask us anything
               </motion.p>
 
               {/* Live status indicator */}
@@ -336,7 +336,7 @@ export default function PreloaderGate({ onEnter }) {
                 transition={{ duration: 0.45, delay: 0.52 }}
               >
                 <div className="pg-status-dot" />
-                <span className="pg-status-text">5 agents active · all systems go</span>
+                <span className="pg-status-text">AI agents active · automating 15+ industries</span>
               </motion.div>
             </motion.div>
           )}
@@ -345,7 +345,7 @@ export default function PreloaderGate({ onEnter }) {
 
       {/* Bottom brand watermark */}
       <div className="pg-brand">
-        Powered by AGENTiX AI · Voice-First Experience
+        AI Agentix · Powering India's Automation Revolution · New Delhi
       </div>
 
       {/* Iris portal — expands from orb centre, stays opaque, fills screen */}
