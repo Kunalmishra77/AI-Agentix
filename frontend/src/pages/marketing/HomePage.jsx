@@ -20,7 +20,9 @@ import SiteNav from '../../components/layout/SiteNav.jsx';
 import SiteFooter from '../../components/layout/SiteFooter.jsx';
 import PreloaderGate from '../../voice-agent/PreloaderGate.jsx';
 import VoiceAgentWidget from '../../voice-agent/VoiceAgentWidget.jsx';
+import ScrollProgress from '../../components/ui/ScrollProgress.jsx';
 import '../../styles/ax-brand.css';
+import '../../styles/ax-premium.css';
 
 /* ── Animation helpers ────────────────────────────── */
 const VP = { once: true, margin: '-80px' };
@@ -830,6 +832,43 @@ const ALL_PLATFORMS = [
   { name: 'Slack',           Icon: SiSlack,       color: '#4A154B' },
 ];
 
+/* ── RotatingWord — animated headline switcher ─────── */
+const HERO_WORDS = ['Automated.', 'Transformed.', 'Supercharged.', 'Unstoppable.'];
+
+function RotatingWord() {
+  const [idx, setIdx] = useState(0);
+  const [out, setOut] = useState(false);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setOut(true);
+      setTimeout(() => {
+        setIdx(p => (p + 1) % HERO_WORDS.length);
+        setOut(false);
+      }, 320);
+    }, 2800);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <span
+      style={{
+        display: 'inline-block',
+        background: 'linear-gradient(90deg, #E8631A, #F59E0B)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text',
+        transition: 'opacity 0.28s ease, transform 0.28s cubic-bezier(0.34,1.56,0.64,1)',
+        opacity: out ? 0 : 1,
+        transform: out ? 'translateY(-12px)' : 'translateY(0)',
+        willChange: 'transform',
+      }}
+    >
+      {HERO_WORDS[idx]}
+    </span>
+  );
+}
+
 /* ══════════════════════════════════════════════════ */
 export default function HomePage() {
   const [buildTab, setBuildTab] = useState(0);
@@ -842,6 +881,7 @@ export default function HomePage() {
     <>
       {!preloaderDone && <PreloaderGate onEnter={() => setPreloaderDone(true)} />}
       <VoiceAgentWidget />
+      <ScrollProgress />
       <Helmet>
         <title>AI Agentix — AI Automation Experts for Indian Businesses</title>
         <meta name="description" content="Deploy agentic AI and automation that cuts costs, generates leads, and scales operations. Trusted by 200+ businesses across India." />
@@ -852,9 +892,11 @@ export default function HomePage() {
           1. HERO — Dark #0D1B2E, 2-col split
       ═══════════════════════════════════════════════ */}
       <section style={{ background: 'linear-gradient(135deg, #0D1B2E 0%, #0F2240 60%, #0D1B2E 100%)', height: '100vh', minHeight: 640, display: 'flex', alignItems: 'center', paddingTop: 80, paddingBottom: 0, boxSizing: 'border-box', position: 'relative', overflow: 'hidden' }}>
+        {/* Subtle grid overlay */}
+        <div className="ax-hero-grid-bg" />
         {/* Ambient glows */}
-        <div style={{ position: 'absolute', top: '15%', right: '5%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(232,99,26,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', bottom: '10%', left: '0%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
+        <div className="ax-orb ax-orb-orange" style={{ width: 640, height: 640, top: '5%', right: '-4%' }} />
+        <div className="ax-orb ax-orb-indigo" style={{ width: 480, height: 480, bottom: '5%', left: '-4%' }} />
 
         <div className="ax-container ax-hero-grid">
           {/* Left: copy */}
@@ -866,9 +908,7 @@ export default function HomePage() {
 
             <motion.h1 {...up(0.08)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(40px,4.5vw,64px)', fontWeight: 800, color: '#fff', lineHeight: 1.1, marginBottom: 24 }}>
               Your Business,<br />
-              <span style={{ background: 'linear-gradient(90deg, #E8631A, #F59E0B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                Automated.
-              </span>
+              <RotatingWord />
             </motion.h1>
 
             <motion.p {...up(0.16)} style={{ fontSize: 18, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, marginBottom: 36, maxWidth: 500, fontFamily: 'var(--font-body)' }}>
@@ -923,7 +963,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          2. PLATFORM MARQUEE — dual-row infinite scroll
+          2. PLATFORM MARQUEE — Dark strip
       ═══════════════════════════════════════════════ */}
       <style>{MARQUEE_CSS}</style>
       <style>{RESPONSIVE_CSS}</style>
@@ -982,7 +1022,6 @@ export default function HomePage() {
       ═══════════════════════════════════════════════ */}
       <section style={{ background: '#F9FAFB', padding: '100px 0' }}>
         <div className="ax-container">
-          {/* Centered header */}
           <motion.div {...up(0)} style={{ textAlign: 'center', marginBottom: 64, maxWidth: 640, margin: '0 auto 64px' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#FEF2F2', border: '1px solid #FEE2E2', borderRadius: 100, padding: '5px 14px', marginBottom: 20 }}>
               <AlertCircle size={12} color="#DC2626" />
@@ -996,20 +1035,15 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          {/* 4 problem cards — each: problem title → description → stat as evidence */}
           <div className="ax-pain-grid">
             {PAIN_ITEMS.map((item, i) => (
               <motion.div key={item.title} {...up(0.08 + i * 0.07)} whileHover={{ y: -5 }} transition={{ duration: 0.2 }}
                 style={{ background: '#fff', borderRadius: 18, padding: '28px 24px 24px', boxShadow: '0 2px 20px rgba(0,0,0,0.06)', borderTop: '4px solid #DC2626', display: 'flex', flexDirection: 'column', gap: 0 }}>
-                {/* Icon */}
                 <div style={{ width: 44, height: 44, borderRadius: 12, background: '#FEF2F2', border: '1px solid #FEE2E2', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#DC2626', marginBottom: 18 }}>
                   {item.icon}
                 </div>
-                {/* Problem title */}
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 800, color: '#111827', lineHeight: 1.4, marginBottom: 10 }}>{item.title}</div>
-                {/* Description */}
                 <div style={{ fontSize: 13, color: '#6B7280', lineHeight: 1.65, fontFamily: 'var(--font-body)', marginBottom: 'auto', paddingBottom: 20 }}>{item.desc}</div>
-                {/* Stat badge at bottom — evidence, not headline */}
                 <div style={{ borderTop: '1px solid #F3F4F6', paddingTop: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
                   <span style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 800, color: '#DC2626', lineHeight: 1 }}>{item.stat}</span>
                   <span style={{ fontSize: 11, color: '#9CA3AF', fontFamily: 'var(--font-body)', lineHeight: 1.3 }}>{item.statSub}</span>
@@ -1018,7 +1052,6 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Bottom: total impact callout */}
           <motion.div {...up(0.38)} style={{ marginTop: 32, background: '#FEF2F2', border: '1px solid #FEE2E2', borderRadius: 16, padding: '20px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               <AlertCircle size={20} color="#DC2626" />
@@ -1058,14 +1091,14 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          5. WHAT WE BUILD — Dark, TABBED layout
+          5. WHAT WE BUILD — Light, TABBED layout
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#0D1B2E', padding: '100px 0' }}>
+      <section style={{ background: '#F9FAFB', padding: '100px 0' }}>
         <div className="ax-container">
           <motion.div {...up(0)} style={{ marginBottom: 8 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>What We Build</span>
           </motion.div>
-          <motion.h2 {...up(0.06)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#fff', marginBottom: 56 }}>
+          <motion.h2 {...up(0.06)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#0D1B2E', marginBottom: 56 }}>
             Six Core Capabilities.<br />One Integrated System.
           </motion.h2>
 
@@ -1074,9 +1107,9 @@ export default function HomePage() {
             <div className="ax-side-tab-list">
               {BUILD_TABS.map((tab, i) => (
                 <button key={tab.label} onClick={() => setBuildTab(i)}
-                  style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '18px 20px', borderRadius: 12, border: 'none', cursor: 'pointer', textAlign: 'left', background: buildTab === i ? `${tab.color}15` : 'transparent', borderLeft: `3px solid ${buildTab === i ? tab.color : 'transparent'}`, transition: 'all 0.25s' }}>
-                  <span style={{ color: buildTab === i ? tab.color : 'rgba(255,255,255,0.35)' }}>{tab.icon}</span>
-                  <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: buildTab === i ? '#fff' : 'rgba(255,255,255,0.45)' }}>{tab.label}</span>
+                  style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '18px 20px', borderRadius: 12, border: 'none', cursor: 'pointer', textAlign: 'left', background: buildTab === i ? `${tab.color}12` : 'rgba(0,0,0,0.02)', borderLeft: `3px solid ${buildTab === i ? tab.color : 'transparent'}`, transition: 'all 0.25s', boxShadow: buildTab === i ? `0 2px 12px ${tab.color}20` : 'none' }}>
+                  <span style={{ color: buildTab === i ? tab.color : '#9CA3AF' }}>{tab.icon}</span>
+                  <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: buildTab === i ? '#0D1B2E' : '#6B7280' }}>{tab.label}</span>
                 </button>
               ))}
             </div>
@@ -1086,23 +1119,23 @@ export default function HomePage() {
               <motion.div key={buildTab}
                 initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.35 }}
-                style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid ${BUILD_TABS[buildTab].color}30`, borderRadius: 20, padding: 40 }}>
-                <div style={{ display: 'inline-block', background: `${BUILD_TABS[buildTab].color}20`, border: `1px solid ${BUILD_TABS[buildTab].color}40`, borderRadius: 8, padding: '4px 12px', marginBottom: 20 }}>
+                style={{ background: '#fff', border: `1px solid ${BUILD_TABS[buildTab].color}25`, borderRadius: 20, padding: 40, boxShadow: '0 4px 32px rgba(0,0,0,0.06)' }}>
+                <div style={{ display: 'inline-block', background: `${BUILD_TABS[buildTab].color}12`, border: `1px solid ${BUILD_TABS[buildTab].color}35`, borderRadius: 8, padding: '4px 12px', marginBottom: 20 }}>
                   <span style={{ fontSize: 12, fontWeight: 600, color: BUILD_TABS[buildTab].color, fontFamily: 'var(--font-body)' }}>{BUILD_TABS[buildTab].label}</span>
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 800, color: '#fff', marginBottom: 14 }}>{BUILD_TABS[buildTab].headline}</h3>
-                <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, marginBottom: 28, fontFamily: 'var(--font-body)' }}>{BUILD_TABS[buildTab].desc}</p>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 800, color: '#0D1B2E', marginBottom: 14 }}>{BUILD_TABS[buildTab].headline}</h3>
+                <p style={{ fontSize: 15, color: '#4B5563', lineHeight: 1.7, marginBottom: 28, fontFamily: 'var(--font-body)' }}>{BUILD_TABS[buildTab].desc}</p>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 28 }}>
                   {BUILD_TABS[buildTab].features.map(f => (
                     <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                       <CheckCircle size={15} color={BUILD_TABS[buildTab].color} />
-                      <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', fontFamily: 'var(--font-body)' }}>{f}</span>
+                      <span style={{ fontSize: 14, color: '#374151', fontFamily: 'var(--font-body)' }}>{f}</span>
                     </div>
                   ))}
                 </div>
-                <div style={{ background: `${BUILD_TABS[buildTab].color}12`, border: `1px solid ${BUILD_TABS[buildTab].color}25`, borderRadius: 12, padding: '16px 20px', display: 'inline-block' }}>
+                <div style={{ background: `${BUILD_TABS[buildTab].color}08`, border: `1px solid ${BUILD_TABS[buildTab].color}20`, borderRadius: 12, padding: '16px 20px', display: 'inline-block' }}>
                   <span style={{ fontFamily: 'var(--font-number)', fontSize: 32, fontWeight: 700, color: BUILD_TABS[buildTab].color }}>{BUILD_TABS[buildTab].metric}</span>
-                  <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', marginLeft: 10, fontFamily: 'var(--font-body)' }}>{BUILD_TABS[buildTab].metricLabel}</span>
+                  <span style={{ fontSize: 14, color: '#6B7280', marginLeft: 10, fontFamily: 'var(--font-body)' }}>{BUILD_TABS[buildTab].metricLabel}</span>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -1111,19 +1144,21 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          6. HOW IT WORKS — LIGHT ICE, timeline layout
+          6. HOW IT WORKS — Dark, timeline layout
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#F0F4F8', padding: '100px 0' }}>
-        <div className="ax-container ax-how-grid">
+      <section style={{ background: '#0D1B2E', padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
+        {/* Ambient glow */}
+        <div style={{ position: 'absolute', top: '30%', right: '-10%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(232,99,26,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
+        <div className="ax-container ax-how-grid" style={{ position: 'relative', zIndex: 1 }}>
           {/* Left: intro */}
           <div className="ax-how-sticky" style={{ position: 'sticky', top: 120 }}>
             <motion.div {...left(0)} style={{ marginBottom: 12 }}>
               <span style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Our Process</span>
             </motion.div>
-            <motion.h2 {...left(0.06)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#0D1B2E', lineHeight: 1.2, marginBottom: 20 }}>
+            <motion.h2 {...left(0.06)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#fff', lineHeight: 1.2, marginBottom: 20 }}>
               From First Call to<br />Full Automation
             </motion.h2>
-            <motion.p {...left(0.12)} style={{ fontSize: 16, color: '#4B5563', lineHeight: 1.75, marginBottom: 32, fontFamily: 'var(--font-body)' }}>
+            <motion.p {...left(0.12)} style={{ fontSize: 16, color: 'rgba(255,255,255,0.58)', lineHeight: 1.75, marginBottom: 32, fontFamily: 'var(--font-body)' }}>
               We don't sell software. We build custom automation systems for your specific workflows. Here's exactly how it works — no surprises, no scope creep.
             </motion.p>
             <motion.div {...left(0.18)}>
@@ -1145,19 +1180,19 @@ export default function HomePage() {
                     {icon}
                   </div>
                   <div>
-                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: '#0D1B2E', lineHeight: 1.2 }}>{label}</div>
-                    <div style={{ fontSize: 12, color: '#6B7280', fontFamily: 'var(--font-body)', marginTop: 2 }}>{sub}</div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>{label}</div>
+                    <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-body)', marginTop: 2 }}>{sub}</div>
                   </div>
                 </div>
               ))}
             </motion.div>
 
             {/* Mini testimonial */}
-            <motion.div {...left(0.3)} style={{ marginTop: 32, background: '#fff', border: '1px solid #E5E7EB', borderRadius: 14, padding: '18px 20px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+            <motion.div {...left(0.3)} style={{ marginTop: 32, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 14, padding: '18px 20px' }}>
               <div style={{ display: 'flex', gap: 2, marginBottom: 10 }}>
                 {[...Array(5)].map((_, k) => <Star key={k} size={12} color="#F59E0B" fill="#F59E0B" />)}
               </div>
-              <p style={{ fontSize: 13, color: '#374151', lineHeight: 1.6, fontFamily: 'var(--font-body)', margin: '0 0 12px', fontStyle: 'italic' }}>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, fontFamily: 'var(--font-body)', margin: '0 0 12px', fontStyle: 'italic' }}>
                 "From first call to live automation in 11 days. The process was seamless — exactly as described."
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -1165,8 +1200,8 @@ export default function HomePage() {
                   <span style={{ fontSize: 11, fontWeight: 700, color: '#fff', fontFamily: 'var(--font-display)' }}>R</span>
                 </div>
                 <div>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: '#111827', fontFamily: 'var(--font-display)' }}>Rajiv Mehta</div>
-                  <div style={{ fontSize: 11, color: '#9CA3AF', fontFamily: 'var(--font-body)' }}>Founder, RealEdge Properties</div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: '#fff', fontFamily: 'var(--font-display)' }}>Rajiv Mehta</div>
+                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-body)' }}>Founder, RealEdge Properties</div>
                 </div>
               </div>
             </motion.div>
@@ -1180,13 +1215,13 @@ export default function HomePage() {
             {HOW_STEPS.map((step, i) => (
               <motion.div key={step.num} {...up(i * 0.1)} style={{ position: 'relative', marginBottom: 48 }}>
                 {/* Dot */}
-                <div style={{ position: 'absolute', left: -40, top: 6, width: 16, height: 16, borderRadius: '50%', background: '#E8631A', border: '3px solid #F0F4F8', boxShadow: '0 0 0 3px #E8631A40' }} />
+                <div style={{ position: 'absolute', left: -40, top: 6, width: 16, height: 16, borderRadius: '50%', background: '#E8631A', border: '3px solid #0D1B2E', boxShadow: '0 0 0 3px rgba(232,99,26,0.3)' }} />
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
                   <span style={{ fontFamily: 'var(--font-number)', fontSize: 13, fontWeight: 700, color: '#E8631A', letterSpacing: 1 }}>STEP {step.num}</span>
-                  <span style={{ fontSize: 11, background: '#fff', border: '1px solid #E5E7EB', borderRadius: 100, padding: '3px 10px', color: '#6B7280', fontFamily: 'var(--font-body)' }}>{step.duration}</span>
+                  <span style={{ fontSize: 11, background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 100, padding: '3px 10px', color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-body)' }}>{step.duration}</span>
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 700, color: '#0D1B2E', marginBottom: 8 }}>{step.title}</h3>
-                <p style={{ fontSize: 14, color: '#4B5563', lineHeight: 1.7, fontFamily: 'var(--font-body)' }}>{step.desc}</p>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 700, color: '#fff', marginBottom: 8 }}>{step.title}</h3>
+                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, fontFamily: 'var(--font-body)' }}>{step.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -1194,14 +1229,14 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          7. SOLUTIONS PREVIEW — Dark, left-list + right-panel
+          7. SOLUTIONS PREVIEW — Light, left-list + right-panel
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#091525', padding: '100px 0' }}>
+      <section style={{ background: '#F0F4F8', padding: '100px 0' }}>
         <div className="ax-container">
           <motion.div {...up(0)} style={{ marginBottom: 8 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Solutions</span>
           </motion.div>
-          <motion.h2 {...up(0.06)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#fff', marginBottom: 56 }}>
+          <motion.h2 {...up(0.06)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#0D1B2E', marginBottom: 56 }}>
             Built for Every Business Function
           </motion.h2>
 
@@ -1210,9 +1245,9 @@ export default function HomePage() {
             <div className="ax-side-tab-list">
               {SOLUTIONS.map(sol => (
                 <button key={sol.id} onClick={() => setActiveSolution(sol.id)}
-                  style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 18px', borderRadius: 10, border: 'none', cursor: 'pointer', textAlign: 'left', background: activeSolution === sol.id ? `${sol.color}15` : 'transparent', borderLeft: `3px solid ${activeSolution === sol.id ? sol.color : 'transparent'}`, transition: 'all 0.2s' }}>
-                  <span style={{ color: activeSolution === sol.id ? sol.color : 'rgba(255,255,255,0.3)' }}>{sol.icon}</span>
-                  <span style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 14, color: activeSolution === sol.id ? '#fff' : 'rgba(255,255,255,0.4)' }}>{sol.label}</span>
+                  style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 18px', borderRadius: 10, border: 'none', cursor: 'pointer', textAlign: 'left', background: activeSolution === sol.id ? `${sol.color}12` : 'rgba(0,0,0,0.02)', borderLeft: `3px solid ${activeSolution === sol.id ? sol.color : 'transparent'}`, transition: 'all 0.2s', boxShadow: activeSolution === sol.id ? `0 2px 10px ${sol.color}18` : 'none' }}>
+                  <span style={{ color: activeSolution === sol.id ? sol.color : '#9CA3AF' }}>{sol.icon}</span>
+                  <span style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 14, color: activeSolution === sol.id ? '#0D1B2E' : '#6B7280' }}>{sol.label}</span>
                   {activeSolution === sol.id && <ChevronRight size={14} color={sol.color} style={{ marginLeft: 'auto' }} />}
                 </button>
               ))}
@@ -1223,29 +1258,29 @@ export default function HomePage() {
               <motion.div key={activeSolution}
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.3 }}
-                style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid ${activeSol?.color || '#E8631A'}30`, borderRadius: 20, padding: 44 }}>
+                style={{ background: '#fff', border: `1px solid ${activeSol?.color || '#E8631A'}25`, borderRadius: 20, padding: 44, boxShadow: '0 4px 32px rgba(0,0,0,0.07)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
-                  <div style={{ width: 44, height: 44, borderRadius: 12, background: `${activeSol?.color}20`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: activeSol?.color }}>
+                  <div style={{ width: 44, height: 44, borderRadius: 12, background: `${activeSol?.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: activeSol?.color }}>
                     {activeSol?.icon}
                   </div>
                   <div>
-                    <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: 2, marginBottom: 2 }}>{activeSol?.label}</div>
-                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 800, color: '#fff', margin: 0 }}>{activeSol?.headline}</h3>
+                    <div style={{ fontSize: 11, color: '#9CA3AF', fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: 2, marginBottom: 2 }}>{activeSol?.label}</div>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 800, color: '#0D1B2E', margin: 0 }}>{activeSol?.headline}</h3>
                   </div>
                 </div>
-                <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, marginBottom: 28, fontFamily: 'var(--font-body)' }}>{activeSol?.desc}</p>
+                <p style={{ fontSize: 15, color: '#4B5563', lineHeight: 1.75, marginBottom: 28, fontFamily: 'var(--font-body)' }}>{activeSol?.desc}</p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 32 }}>
                   {activeSol?.bullets.map(b => (
                     <div key={b} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                       <div style={{ width: 6, height: 6, borderRadius: '50%', background: activeSol?.color, flexShrink: 0 }} />
-                      <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', fontFamily: 'var(--font-body)' }}>{b}</span>
+                      <span style={{ fontSize: 14, color: '#374151', fontFamily: 'var(--font-body)' }}>{b}</span>
                     </div>
                   ))}
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <div style={{ background: `${activeSol?.color}15`, border: `1px solid ${activeSol?.color}30`, borderRadius: 10, padding: '12px 20px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
+                  <div style={{ background: `${activeSol?.color}08`, border: `1px solid ${activeSol?.color}22`, borderRadius: 10, padding: '12px 20px' }}>
                     <span style={{ fontFamily: 'var(--font-number)', fontSize: 28, fontWeight: 700, color: activeSol?.color }}>{activeSol?.stat}</span>
-                    <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', marginLeft: 10, fontFamily: 'var(--font-body)' }}>{activeSol?.statLabel}</span>
+                    <span style={{ fontSize: 13, color: '#6B7280', marginLeft: 10, fontFamily: 'var(--font-body)' }}>{activeSol?.statLabel}</span>
                   </div>
                   <Link to="/solutions" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: activeSol?.color, fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 14, textDecoration: 'none' }}>
                     See full case study <ArrowRight size={14} />
@@ -1258,14 +1293,16 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          8. INDUSTRIES STRIP — CREAM, horizontal scroll
+          8. INDUSTRIES STRIP — Dark, horizontal scroll
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#F8F6F2', padding: '80px 0' }}>
-        <div className="ax-container">
+      <section style={{ background: '#0A1628', padding: '80px 0', position: 'relative', overflow: 'hidden' }}>
+        {/* Subtle dot grid */}
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(232,99,26,0.055) 1px, transparent 1px)', backgroundSize: '32px 32px', pointerEvents: 'none' }} />
+        <div className="ax-container" style={{ position: 'relative', zIndex: 1 }}>
           <motion.div {...up(0)} className="ax-ind-header">
             <div>
               <div style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)', marginBottom: 8 }}>Industries</div>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px,2.8vw,38px)', fontWeight: 800, color: '#0D1B2E', margin: 0 }}>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px,2.8vw,38px)', fontWeight: 800, color: '#fff', margin: 0 }}>
                 We Speak Your Industry's Language
               </h2>
             </div>
@@ -1274,17 +1311,17 @@ export default function HomePage() {
             </Link>
           </motion.div>
 
-          {/* Infinite marquee — same engine as platform strip */}
+          {/* Infinite marquee */}
           <div className="ax-mq-wrap" style={{ padding: '8px 0 24px' }}>
             <div className="ax-mq-track" style={{ animation: 'ax-scroll-left 34s linear infinite', alignItems: 'stretch' }}>
               {[...INDUSTRIES, ...INDUSTRIES].map((ind, i) => (
                 <Link key={i} to={ind.to} style={{ textDecoration: 'none', flexShrink: 0, margin: '0 10px' }}>
                   <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.2 }}
-                    style={{ width: 184, background: '#fff', borderRadius: 16, padding: '28px 20px', borderTop: `4px solid ${ind.color}`, boxShadow: '0 4px 24px rgba(0,0,0,0.07)', cursor: 'pointer' }}>
-                    <div style={{ width: 52, height: 52, borderRadius: 14, background: `${ind.color}12`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: ind.color, marginBottom: 14 }}>
+                    style={{ width: 184, background: 'rgba(255,255,255,0.04)', border: `1px solid rgba(255,255,255,0.08)`, borderRadius: 16, padding: '28px 20px', borderTop: `4px solid ${ind.color}`, cursor: 'pointer' }}>
+                    <div style={{ width: 52, height: 52, borderRadius: 14, background: `${ind.color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: ind.color, marginBottom: 14 }}>
                       {ind.icon}
                     </div>
-                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15, color: '#0D1B2E', marginBottom: 8 }}>{ind.label}</div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15, color: '#fff', marginBottom: 8 }}>{ind.label}</div>
                     <div style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: ind.color }}>{ind.stat}</div>
                   </motion.div>
                 </Link>
@@ -1295,14 +1332,14 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          9. RESULTS — Dark, full-width horizontal strips
+          9. RESULTS — Light, full-width horizontal strips
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#0D1B2E', padding: '100px 0' }}>
+      <section style={{ background: '#F9FAFB', padding: '100px 0' }}>
         <div className="ax-container">
           <motion.div {...up(0)} style={{ marginBottom: 8 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Case Studies</span>
           </motion.div>
-          <motion.h2 {...up(0.06)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#fff', marginBottom: 56 }}>
+          <motion.h2 {...up(0.06)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#0D1B2E', marginBottom: 56 }}>
             Real Results. Real Businesses.
           </motion.h2>
 
@@ -1311,27 +1348,27 @@ export default function HomePage() {
               const flipped = i % 2 !== 0;
               const company = (
                 <div>
-                  <div style={{ display: 'inline-block', fontSize: 11, color: r.color, fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: 2, marginBottom: 8, background: r.color + '18', border: `1px solid ${r.color}33`, borderRadius: 100, padding: '3px 10px' }}>{r.industry}</div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 700, color: '#fff', lineHeight: 1.3 }}>{r.company}</div>
+                  <div style={{ display: 'inline-block', fontSize: 11, color: r.color, fontFamily: 'var(--font-body)', textTransform: 'uppercase', letterSpacing: 2, marginBottom: 8, background: r.color + '12', border: `1px solid ${r.color}28`, borderRadius: 100, padding: '3px 10px' }}>{r.industry}</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 700, color: '#0D1B2E', lineHeight: 1.3 }}>{r.company}</div>
                 </div>
               );
               const detail = (
                 <div>
                   <div className="ax-result-body">
                     <div>
-                      <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)', marginBottom: 6, letterSpacing: 1, textTransform: 'uppercase' }}>Challenge</div>
-                      <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>{r.challenge}</div>
+                      <div style={{ fontSize: 11, color: '#9CA3AF', fontFamily: 'var(--font-body)', marginBottom: 6, letterSpacing: 1, textTransform: 'uppercase' }}>Challenge</div>
+                      <div style={{ fontSize: 13, color: '#4B5563', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>{r.challenge}</div>
                     </div>
                     <div>
-                      <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)', marginBottom: 6, letterSpacing: 1, textTransform: 'uppercase' }}>Solution</div>
-                      <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>{r.solution}</div>
+                      <div style={{ fontSize: 11, color: '#9CA3AF', fontFamily: 'var(--font-body)', marginBottom: 6, letterSpacing: 1, textTransform: 'uppercase' }}>Solution</div>
+                      <div style={{ fontSize: 13, color: '#4B5563', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>{r.solution}</div>
                     </div>
                   </div>
-                  <div className="ax-result-stats-row">
+                  <div className="ax-result-stats-row--light ax-result-stats-row">
                     {[r.stat1, r.stat2, r.stat3].map(st => (
                       <div key={st.label}>
                         <div style={{ fontFamily: 'var(--font-number)', fontSize: 26, fontWeight: 700, color: r.color, lineHeight: 1 }}>{st.num}</div>
-                        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 6, fontFamily: 'var(--font-body)', lineHeight: 1.4 }}>{st.label}</div>
+                        <div style={{ fontSize: 11, color: '#6B7280', marginTop: 6, fontFamily: 'var(--font-body)', lineHeight: 1.4 }}>{st.label}</div>
                       </div>
                     ))}
                   </div>
@@ -1339,9 +1376,10 @@ export default function HomePage() {
               );
               return (
                 <motion.div key={r.company} {...up(i * 0.1)}
-                  style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid rgba(255,255,255,0.08)`, borderRadius: 16, padding: '36px 40px',
+                  style={{ background: '#fff', border: `1px solid #E5E7EB`, borderRadius: 16, padding: '36px 40px',
                     borderLeft: flipped ? 'none' : `4px solid ${r.color}`,
                     borderRight: flipped ? `4px solid ${r.color}` : 'none',
+                    boxShadow: '0 2px 16px rgba(0,0,0,0.05)',
                   }}>
                   <div className="ax-result-card" style={{ gridTemplateColumns: flipped ? '1fr 170px' : '170px 1fr' }}>
                     {flipped ? <>{detail}{company}</> : <>{company}{detail}</>}
@@ -1427,19 +1465,16 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          11. TESTIMONIALS — Dark, infinite scroll marquee
+          11. TESTIMONIALS — Light, infinite scroll marquee
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#0E1A2E', padding: '100px 0', overflow: 'hidden', position: 'relative' }}>
-        {/* Ambient glow */}
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 800, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(232,99,26,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
-
+      <section style={{ background: '#F8F6F2', padding: '100px 0', overflow: 'hidden', position: 'relative' }}>
         {/* Header */}
         <div className="ax-container" style={{ marginBottom: 52, position: 'relative', zIndex: 1 }}>
           <motion.div {...up(0)} style={{ marginBottom: 8 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Client Stories</span>
           </motion.div>
           <motion.div {...up(0.06)} style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#fff', lineHeight: 1.15, margin: 0 }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#0D1B2E', lineHeight: 1.15, margin: 0 }}>
               Businesses That<br />
               <span style={{ background: 'linear-gradient(90deg, #E8631A, #F59E0B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 Transformed With Us
@@ -1448,7 +1483,7 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        {/* Single infinite-scroll row — all testimonials combined */}
+        {/* Single infinite-scroll row */}
         <motion.div {...up(0.1)} className="ax-tm-wrap" style={{
           overflow: 'hidden',
           maskImage: 'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
@@ -1456,22 +1491,22 @@ export default function HomePage() {
         }}>
           <div className="ax-tm-track">
             {[...TESTIMONIALS_ROW1, ...TESTIMONIALS_ROW2, ...TESTIMONIALS_ROW1, ...TESTIMONIALS_ROW2].map((t, i) => (
-              <div key={i} className="ax-tm-card" style={{ borderTopColor: t.color + '55' }}>
+              <div key={i} className="ax-tm-card" style={{ background: '#fff', borderColor: '#E5E7EB', borderTopColor: t.color + '66', borderTopWidth: 3 }}>
                 <div style={{ display: 'flex', gap: 3, marginBottom: 16 }}>
                   {[...Array(5)].map((_, k) => <Star key={k} size={13} color="#F59E0B" fill="#F59E0B" />)}
                 </div>
-                <p style={{ flex: 1, fontSize: 14, color: 'rgba(255,255,255,0.75)', lineHeight: 1.68, fontFamily: 'var(--font-body)', marginBottom: 22 }}>
+                <p style={{ flex: 1, fontSize: 14, color: '#374151', lineHeight: 1.68, fontFamily: 'var(--font-body)', marginBottom: 22 }}>
                   "{t.quote}"
                 </p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <div style={{ width: 36, height: 36, borderRadius: '50%', background: t.color + '22', border: `2px solid ${t.color}66`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: t.color, fontFamily: 'var(--font-display)', flexShrink: 0 }}>
+                  <div style={{ width: 36, height: 36, borderRadius: '50%', background: t.color + '15', border: `2px solid ${t.color}50`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: t.color, fontFamily: 'var(--font-display)', flexShrink: 0 }}>
                     {t.author[0]}
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: '#fff', fontFamily: 'var(--font-display)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.author}</div>
-                    <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-body)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.role}</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#0D1B2E', fontFamily: 'var(--font-display)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.author}</div>
+                    <div style={{ fontSize: 11, color: '#6B7280', fontFamily: 'var(--font-body)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.role}</div>
                   </div>
-                  <span style={{ fontSize: 11, fontWeight: 700, color: t.color, background: t.color + '18', border: `1px solid ${t.color}33`, borderRadius: 100, padding: '3px 10px', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: t.color, background: t.color + '12', border: `1px solid ${t.color}28`, borderRadius: 100, padding: '3px 10px', whiteSpace: 'nowrap', flexShrink: 0 }}>
                     {t.result}
                   </span>
                 </div>
@@ -1482,7 +1517,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          12. ROI STRIP — White background, orange numbers
+          12. ROI STRIP — Light background, orange numbers
       ═══════════════════════════════════════════════ */}
       <section style={{ background: '#ffffff', padding: '80px 0', borderTop: '1px solid #F3F4F6', borderBottom: '1px solid #F3F4F6' }}>
         <div className="ax-container">
