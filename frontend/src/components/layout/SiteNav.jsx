@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Menu, X, ChevronDown, ArrowRight,
   Users, TrendingUp, Bot, Workflow, Globe, BarChart3, Zap, Factory,
-  Heart, GraduationCap, Hotel, Building2, ShoppingCart, Truck,
+  Heart, GraduationCap, Hotel, Building2, ShoppingCart, Truck, Palette,
 } from 'lucide-react';
 import BrandLogo from './BrandLogo.jsx';
 
@@ -18,6 +18,7 @@ const SOLUTIONS_MEGA = [
   { label: 'AI Voice & Chat',       to: '/solutions/ai-voice-chat',         icon: <Bot size={18} />,         desc: '24/7 voice agents & WhatsApp bots' },
   { label: 'Manufacturing',         to: '/solutions/manufacturing',         icon: <Factory size={18} />,     desc: 'Predictive maintenance & quality inspection' },
   { label: 'Hospital Management',   to: '/solutions/hospital-management',   icon: <Heart size={18} />,       desc: 'End-to-end HMS automation for modern hospitals' },
+  { label: 'AI Studio',             to: '/ai-studio',                       icon: <Palette size={18} />,     desc: 'AI content, videos, social & email on autopilot' },
 ];
 
 const INDUSTRIES_MEGA = [
@@ -52,7 +53,6 @@ const NAV_LINKS = [
   { label: 'About',        to: '/about' },
   { label: 'Solutions',    to: '/solutions',   mega: SOLUTIONS_MEGA },
   { label: 'Industries',   to: '/industries',  mega: INDUSTRIES_MEGA },
-  { label: 'AI Studio',    to: '/ai-studio' },
   { label: 'Technology',   to: '/technology' },
   { label: 'Case Studies', to: '/case-studies' },
   { label: 'Contact',      to: '/contact' },

@@ -6,7 +6,7 @@ import {
   Brain, Workflow, Database, Shield, Zap, CheckCircle, ArrowRight,
   Globe, Lock, Cpu, Network, Layers, GitBranch, Eye, RefreshCw,
   MessageSquare, Phone, Mail, BarChart3, Package, Code2, ChevronRight,
-  Server, CloudLightning, Bot, Sparkles,
+  Server, CloudLightning, Bot, Sparkles, Users, Activity, Fingerprint,
 } from 'lucide-react';
 import SiteNav from '../../components/layout/SiteNav.jsx';
 import SiteFooter from '../../components/layout/SiteFooter.jsx';
@@ -22,7 +22,7 @@ const AGENT_TYPES = [
   {
     id: 'sales', label: 'Sales Agent', icon: <Zap size={18} />, color: '#E8631A',
     headline: 'Lead Qualification & Follow-Up',
-    desc: 'Ingests leads from every source, scores by intent, routes to the right rep, and executes multi-step follow-up sequences "" all without human intervention.',
+    desc: 'Ingests leads from every source, scores by intent, routes to the right rep, and executes multi-step follow-up sequences — all without human intervention.',
     flow: ['Lead captured from portal/form/WhatsApp', 'NLP intent classification model runs', 'Scored & enriched with company data', 'Routed to rep or automated sequence', 'CRM updated in real-time'],
     tech: ['GPT-4 fine-tuned on sales data', 'Proprietary intent scoring model', 'WhatsApp Business API + webhook', 'HubSpot / Zoho / Salesforce sync'],
   },
@@ -50,34 +50,63 @@ const AGENT_TYPES = [
   {
     id: 'voice', label: 'Voice Agent', icon: <Phone size={18} />, color: '#10B981',
     headline: 'Inbound Calls & Outbound Outreach',
-    desc: 'Handles inbound phone calls in English and Hindi "" booking appointments, answering FAQs, qualifying leads, and escalating to humans when needed.',
+    desc: 'Handles inbound phone calls in English and Hindi — booking appointments, answering FAQs, qualifying leads, and escalating to humans when needed.',
     flow: ['Inbound call received (Twilio/Exotel)', 'Speech-to-text transcription', 'Intent classification & routing logic', 'TTS response in caller\'s language', 'Call summary logged to CRM'],
     tech: ['Whisper ASR for STT', 'ElevenLabs / Polly for TTS', 'Exotel / Twilio for telephony', 'Real-time latency < 800ms'],
+  },
+  {
+    id: 'hr', label: 'HR Agent', icon: <Users size={18} />, color: '#F59E0B',
+    headline: 'Hiring, Onboarding & HR Ops',
+    desc: 'Screens resumes at scale, sends interview invites, answers candidate FAQs via WhatsApp, automates offer letters, and manages the full onboarding checklist — all without an HR coordinator.',
+    flow: ['JD published, applications collected', 'Resume parsed & scored vs. JD criteria', 'Shortlisted candidates messaged on WhatsApp', 'Interview slots auto-scheduled via Calendar API', 'Offer letter generated & sent digitally'],
+    tech: ['LLM-based resume parsing (Claude/GPT-4)', 'Google Calendar / Cal.com API', 'Darwinbox / Keka / Zoho People sync', 'DocuSign / DigiLocker for digital docs'],
+  },
+  {
+    id: 'finance', label: 'Finance Agent', icon: <Package size={18} />, color: '#0EA5E9',
+    headline: 'Invoicing, Reconciliation & GST',
+    desc: 'Processes incoming invoices, matches line items to POs, flags discrepancies, auto-reconciles bank statements, prepares GST returns, and sends payment reminders — fully automated.',
+    flow: ['Invoice received (email / WhatsApp / portal)', 'OCR extraction of line items & vendor data', 'PO matching & discrepancy detection', 'Bank reconciliation run against statement', 'GST data prepared and exported to Tally'],
+    tech: ['Google Document AI / Nanonets OCR', 'Tally Prime API integration', 'Razorpay / HDFC Bank webhook', 'GST computation engine (GSTN API)'],
+  },
+  {
+    id: 'document', label: 'Document Agent', icon: <Globe size={18} />, color: '#8B5CF6',
+    headline: 'Contract Review & Document Processing',
+    desc: 'Reads any document — contracts, NDAs, policy files, compliance forms — extracts key clauses, flags risk, generates summaries, and routes for approval with context pre-filled.',
+    flow: ['Document uploaded (PDF/Word/scan)', 'OCR + layout parsing applied', 'Clause extraction & risk classification', 'Summary generated in plain language', 'Routed for e-sign or human review'],
+    tech: ['Claude 3.5 for long-context analysis', 'Nanonets / AWS Textract OCR', 'Custom clause library (Indian law)', 'DigiLocker / DocuSign e-signature API'],
   },
 ];
 
 const INTEGRATIONS = [
-  { cat: 'CRM', items: ['HubSpot', 'Salesforce', 'Zoho CRM', 'Freshsales', 'Pipedrive'] },
-  { cat: 'Communication', items: ['WhatsApp Business', 'Slack', 'Gmail', 'Outlook', 'Twilio'] },
-  { cat: 'E-commerce', items: ['Shopify', 'WooCommerce', 'Razorpay', 'PayU', 'Instamojo'] },
-  { cat: 'Productivity', items: ['Google Workspace', 'Notion', 'Airtable', 'ClickUp', 'Jira'] },
-  { cat: 'Support', items: ['Freshdesk', 'Zendesk', 'Intercom', 'Crisp', 'Tidio'] },
-  { cat: 'Analytics', items: ['Google Analytics', 'Mixpanel', 'Metabase', 'Looker', 'Tableau'] },
+  { cat: 'CRM', items: ['HubSpot', 'Salesforce', 'Zoho CRM', 'Freshsales', 'Pipedrive', 'Leadsquared', 'Kylas'] },
+  { cat: 'Communication', items: ['WhatsApp Business API', 'Slack', 'Gmail', 'Outlook', 'Twilio', 'Exotel', 'MSG91', 'Kaleyra'] },
+  { cat: 'E-commerce', items: ['Shopify', 'WooCommerce', 'Razorpay', 'PayU', 'Cashfree', 'Instamojo', 'Paytm Business', 'Amazon Seller'] },
+  { cat: 'Productivity', items: ['Google Workspace', 'Microsoft 365', 'Notion', 'Airtable', 'ClickUp', 'Jira', 'Trello', 'Monday.com'] },
+  { cat: 'Support', items: ['Freshdesk', 'Zendesk', 'Intercom', 'Crisp', 'Tidio', 'Helpscout', 'Gorgias'] },
+  { cat: 'Analytics', items: ['Google Analytics 4', 'Mixpanel', 'Metabase', 'Looker Studio', 'Tableau', 'Power BI', 'Amplitude'] },
+  { cat: 'HR / HRMS', items: ['Darwinbox', 'Keka', 'Zoho People', 'BambooHR', 'greytHR', 'HROne', 'PeopleStrong'] },
+  { cat: 'Finance / ERP', items: ['Tally Prime', 'Zoho Books', 'QuickBooks', 'SAP B1', 'Oracle NetSuite', 'Busy Accounting', 'GSTN API'] },
+  { cat: 'Marketing', items: ['Mailchimp', 'Brevo (Sendinblue)', 'SendGrid', 'ActiveCampaign', 'Klaviyo', 'Google Ads', 'Meta Ads API'] },
+  { cat: 'Telephony', items: ['Exotel', 'Twilio', 'Knowlarity', 'MyOperator', 'Servetel', 'Tata Tele', 'Ozonetel'] },
 ];
 
 const SECURITY = [
-  { icon: <Lock size={20} />, title: 'End-to-End Encryption', desc: 'All data encrypted in transit (TLS 1.3) and at rest (AES-256). Keys rotated quarterly.', color: '#10B981' },
-  { icon: <Shield size={20} />, title: 'SOC 2 Type II Compliant', desc: 'Annual third-party audits across Security, Availability, and Confidentiality trust services.', color: '#6366F1' },
-  { icon: <Server size={20} />, title: 'Indian Data Residency', desc: 'All client data stored on AWS Mumbai (ap-south-1). Data never leaves Indian borders without written consent.', color: '#E8631A' },
-  { icon: <Eye size={20} />, title: 'Zero Data Sharing', desc: 'Your data is never used to train models for other clients. Isolated fine-tuning environments per client.', color: '#F59E0B' },
+  { icon: <Lock size={20} />, title: 'End-to-End Encryption', desc: 'All data encrypted in transit (TLS 1.3) and at rest (AES-256). Encryption keys are rotated quarterly and stored in AWS KMS.', color: '#10B981' },
+  { icon: <Shield size={20} />, title: 'DPDPA 2023 Compliant', desc: 'Fully aligned with India\'s Digital Personal Data Protection Act 2023. Consent management, data minimization, and breach notification within 72 hours.', color: '#6366F1' },
+  { icon: <Server size={20} />, title: 'Indian Data Residency', desc: 'All client data stored on AWS Mumbai (ap-south-1). Data never leaves Indian borders without written consent. No cross-border transfer by default.', color: '#E8631A' },
+  { icon: <Eye size={20} />, title: 'Zero Data Sharing', desc: 'Your data is never used to train models for other clients. Each client gets isolated fine-tuning environments — fully air-gapped from other deployments.', color: '#F59E0B' },
+  { icon: <Activity size={20} />, title: 'Real-Time Audit Logs', desc: 'Every agent action, API call, and data access is logged with a tamper-proof audit trail. Full visibility for compliance and forensic review.', color: '#EC4899' },
+  { icon: <Fingerprint size={20} />, title: 'Role-Based Access Control', desc: 'Granular RBAC down to field level. SSO support (Google, Microsoft). MFA enforced by default. Access auto-revoked on employee offboarding.', color: '#0EA5E9' },
 ];
 
 const STACK_LAYERS = [
-  { layer: 'AI Models', items: ['Claude 3.5 Sonnet', 'GPT-4 Turbo', 'Whisper STT', 'ElevenLabs TTS'], color: '#E8631A' },
-  { layer: 'Agent Runtime', items: ['LangChain / LangGraph', 'Custom RAG Pipeline', 'Tool-calling Framework', 'Memory Management'], color: '#6366F1' },
-  { layer: 'Data Layer', items: ['Pinecone Vector DB', 'PostgreSQL', 'Redis Cache', 'S3 Storage'], color: '#10B981' },
-  { layer: 'Integration Layer', items: ['REST / Webhook APIs', 'n8n / Zapier Flows', 'WhatsApp Business API', 'Telephony (Exotel/Twilio)'], color: '#F59E0B' },
-  { layer: 'Infrastructure', items: ['AWS Mumbai (ap-south-1)', 'Docker / Kubernetes', 'CI/CD via GitHub Actions', 'SOC 2 Compliant'], color: '#0EA5E9' },
+  { layer: 'AI Models', items: ['Claude 3.5 Sonnet', 'GPT-4o / GPT-4 Turbo', 'Gemini 1.5 Pro', 'Llama 3 (on-prem)', 'Mistral 7B (fine-tuned)', 'Sarvam AI (Hindi NLP)'], color: '#E8631A' },
+  { layer: 'Voice Layer', items: ['OpenAI Whisper STT', 'ElevenLabs TTS', 'Azure Speech Services', 'Sarvam Indic TTS', 'Google Cloud Speech-to-Text', 'Deepgram ASR'], color: '#EC4899' },
+  { layer: 'Agent Runtime', items: ['LangChain / LangGraph', 'Custom RAG Pipeline', 'Tool-calling Framework', 'Multi-agent Orchestration', 'Memory & Context Management', 'CrewAI Agents'], color: '#6366F1' },
+  { layer: 'Data Layer', items: ['Pinecone Vector DB', 'Weaviate', 'PostgreSQL / Supabase', 'Redis Cache', 'AWS S3 Storage', 'Google Document AI (OCR)', 'Nanonets OCR'], color: '#10B981' },
+  { layer: 'Integration Layer', items: ['REST / Webhook APIs', 'n8n Workflow Engine', 'Zapier / Make (Integromat)', 'WhatsApp Business API', 'Telephony (Exotel/Twilio)', 'RPA (UiPath / Power Automate)'], color: '#F59E0B' },
+  { layer: 'Frontend / Interfaces', items: ['React 18 + Vite', 'Next.js (SSR pages)', 'Framer Motion', 'WebSockets (real-time)', 'Vercel Edge Deployment', 'PWA / Mobile-ready'], color: '#8B5CF6' },
+  { layer: 'Infrastructure', items: ['AWS Mumbai (ap-south-1)', 'Docker / Kubernetes (EKS)', 'CI/CD via GitHub Actions', 'Cloudflare CDN + WAF', 'Grafana / Datadog Monitoring', 'PagerDuty Alerts'], color: '#0EA5E9' },
 ];
 
 export default function TechnologyPage() {
@@ -120,10 +149,14 @@ export default function TechnologyPage() {
             <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 20, padding: 28 }}>
               <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: 'var(--font-body)', marginBottom: 16, letterSpacing: 2, textTransform: 'uppercase' }}>Live Agent Status</div>
               {[
-                { name: 'Sales Agent', status: 'Processing 47 leads', color: '#E8631A', dot: '#10B981' },
-                { name: 'Support Agent', status: 'Resolved 12 tickets', color: '#6366F1', dot: '#10B981' },
-                { name: 'Voice Agent', status: 'On 3 simultaneous calls', color: '#10B981', dot: '#10B981' },
-                { name: 'Content Agent', status: 'Drafting 2 articles', color: '#EC4899', dot: '#F59E0B' },
+                { name: 'Sales Agent',     status: 'Processing 47 leads',          color: '#E8631A', dot: '#10B981' },
+                { name: 'Support Agent',   status: 'Resolved 12 tickets today',     color: '#6366F1', dot: '#10B981' },
+                { name: 'Voice Agent',     status: 'On 3 simultaneous calls',       color: '#10B981', dot: '#10B981' },
+                { name: 'Content Agent',   status: 'Publishing 2 blog articles',    color: '#EC4899', dot: '#10B981' },
+                { name: 'HR Agent',        status: 'Screening 18 resumes',          color: '#F59E0B', dot: '#10B981' },
+                { name: 'Finance Agent',   status: 'Processing 9 invoices',         color: '#0EA5E9', dot: '#10B981' },
+                { name: 'Analytics Agent', status: 'Monitoring 14 KPI dashboards',  color: '#8B5CF6', dot: '#10B981' },
+                { name: 'Document Agent',  status: 'Reviewing 3 contracts',         color: '#F97316', dot: '#F59E0B' },
               ].map(a => (
                 <div key={a.name} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', background: 'rgba(255,255,255,0.03)', borderRadius: 10, marginBottom: 8, border: '1px solid rgba(255,255,255,0.06)' }}>
                   <div style={{ width: 8, height: 8, borderRadius: '50%', background: a.dot, boxShadow: `0 0 6px ${a.dot}` }} />
@@ -148,7 +181,7 @@ export default function TechnologyPage() {
         <div className="ax-container" style={{ padding: '0 40px' }}>
           <motion.div {...up(0)} style={{ marginBottom: 56 }}>
             <span style={{ fontSize: 12, fontWeight: 600, color: '#E8631A', letterSpacing: 3, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Agent Types</span>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#0D1B2E', marginTop: 12 }}>Five Agents. One Unified Platform.</h2>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#0D1B2E', marginTop: 12 }}>Eight Agents. One Unified Platform.</h2>
           </motion.div>
           <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: 40 }}>
             {/* Tab list */}
@@ -224,7 +257,7 @@ export default function TechnologyPage() {
         <div className="ax-container" style={{ padding: '0 40px' }}>
           <motion.div {...up(0)} style={{ marginBottom: 40 }}>
             <span style={{ fontSize: 12, fontWeight: 600, color: '#E8631A', letterSpacing: 3, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Integrations</span>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#0D1B2E', marginTop: 12 }}>200+ Tools We Connect With</h2>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#0D1B2E', marginTop: 12 }}>300+ Tools We Connect With</h2>
           </motion.div>
           {/* Category tabs */}
           <motion.div {...up(0.06)} style={{ display: 'flex', gap: 10, marginBottom: 36, flexWrap: 'wrap' }}>

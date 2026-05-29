@@ -6,6 +6,7 @@ import {
   Video, Smartphone, Mail, Target, PenLine, MessageSquare,
   Instagram, Linkedin, Youtube, Search, Globe, Brain,
   Check, ArrowRight, Zap, CheckCircle, TrendingUp, Clock, Star,
+  Monitor, Phone, Package, Film, Bell, FileText, Mic2,
 } from 'lucide-react';
 import SiteNav from '../../components/layout/SiteNav.jsx';
 import SiteFooter from '../../components/layout/SiteFooter.jsx';
@@ -18,12 +19,19 @@ const left = (d = 0) => ({ initial: { opacity: 0, x: -40 }, whileInView: { opaci
 const right = (d = 0) => ({ initial: { opacity: 0, x: 40 }, whileInView: { opacity: 1, x: 0 }, viewport: VP, transition: { duration: 0.65, delay: d, ease: [0.25, 0.1, 0.25, 1] } });
 
 const CONTENT_TYPES = [
-  { icon: <Video size={24} />, title: 'AI Videos', color: '#E8631A', desc: 'Explainer videos, reels, product demos "" scripted, voiced, and edited by AI.', sample: 'Product launch reel "" 30s, branded, auto-published to Instagram.' },
-  { icon: <Smartphone size={24} />, title: 'Social Posts', color: '#6366F1', desc: 'Daily posts, carousels, stories across Instagram, LinkedIn, Facebook "" planned and published by AI agents.', sample: 'LinkedIn thought-leadership "" 800 words, industry-specific, 2.4K impressions.' },
-  { icon: <Mail size={24} />, title: 'Email Campaigns', color: '#10B981', desc: 'Full nurture sequences, newsletters, transactional emails "" written and sent at the right time.', sample: 'Welcome sequence "" 7 emails, behaviour-triggered, 42% open rate.' },
-  { icon: <Target size={24} />, title: 'Ad Creatives', color: '#F59E0B', desc: 'Google and Meta ad copy, creative briefs, A/B variants "" generated and optimised autonomously.', sample: 'Facebook lead-gen "" 5 variants, auto-optimised, ₹85 CPL.' },
-  { icon: <PenLine size={24} />, title: 'Blog Articles', color: '#EC4899', desc: 'SEO-optimized blog content targeting buyer-intent keywords "" researched, written, and published weekly.', sample: 'Blog: "AI in Indian Real Estate" "" 1,200 words, rank on page 1.' },
-  { icon: <MessageSquare size={24} />, title: 'WhatsApp Campaigns', color: '#25D366', desc: 'Targeted broadcasts, drip sequences, and personalised follow-ups via WhatsApp Business API.', sample: 'Diwali offer "" 2,400 contacts, 98% delivered, 34% opened.' },
+  { icon: <Video size={24} />, title: 'AI Videos', color: '#E8631A', desc: 'Explainer videos, reels, product demos — scripted, voiced, and edited by AI.', sample: 'Product launch reel — 30s, branded, auto-published to Instagram.' },
+  { icon: <Smartphone size={24} />, title: 'Social Posts', color: '#6366F1', desc: 'Daily posts, carousels, stories across Instagram, LinkedIn, Facebook — planned and published by AI agents.', sample: 'LinkedIn thought-leadership — 800 words, industry-specific, 2.4K impressions.' },
+  { icon: <Mail size={24} />, title: 'Email Campaigns', color: '#10B981', desc: 'Full nurture sequences, newsletters, transactional emails — written and sent at the right time.', sample: 'Welcome sequence — 7 emails, behaviour-triggered, 42% open rate.' },
+  { icon: <Target size={24} />, title: 'Ad Creatives', color: '#F59E0B', desc: 'Google and Meta ad copy, creative briefs, A/B variants — generated and optimised autonomously.', sample: 'Facebook lead-gen — 5 variants, auto-optimised, ₹85 CPL.' },
+  { icon: <PenLine size={24} />, title: 'Blog Articles', color: '#EC4899', desc: 'SEO-optimized blog content targeting buyer-intent keywords — researched, written, and published weekly.', sample: 'Blog: "AI in Indian Real Estate" — 1,200 words, rank on page 1.' },
+  { icon: <MessageSquare size={24} />, title: 'WhatsApp Campaigns', color: '#25D366', desc: 'Targeted broadcasts, drip sequences, and personalised follow-ups via WhatsApp Business API.', sample: 'Diwali offer — 2,400 contacts, 98% delivered, 34% opened.' },
+  { icon: <Monitor size={24} />, title: 'Landing Pages', color: '#0EA5E9', desc: 'High-converting campaign landing pages — written, designed (Webflow/WordPress), A/B tested, and published automatically.', sample: 'Lead gen page — 38% conversion rate, auto-connected to CRM.' },
+  { icon: <Phone size={24} />, title: 'SMS / RCS Campaigns', color: '#8B5CF6', desc: 'Personalised SMS drip campaigns with smart reply triggers — timed to user behaviour and purchase events.', sample: 'Abandoned cart SMS — 3-step sequence, 18% recovery rate.' },
+  { icon: <Package size={24} />, title: 'Product Descriptions', color: '#F97316', desc: 'E-commerce product listings — SEO-optimised, benefit-led, auto-updated across Shopify, WooCommerce, and Amazon.', sample: '500 SKUs updated overnight — consistent tone, keyword-rich.' },
+  { icon: <Film size={24} />, title: 'YouTube Shorts & Scripts', color: '#EF4444', desc: 'Short-form video scripts, thumbnails, titles, and descriptions — auto-published with scheduling and analytics.', sample: 'Weekly Shorts: "AI tip of the week" — 4.2K average views.' },
+  { icon: <Bell size={24} />, title: 'Push Notifications', color: '#14B8A6', desc: 'Browser and app push campaigns — timed to user behaviour, personalised by segment, A/B tested automatically.', sample: 'Re-engagement push — 22% click-through, 11% conversion.' },
+  { icon: <Mic2 size={24} />, title: 'Podcast & Audio Content', color: '#F59E0B', desc: 'Podcast show notes, transcriptions, audiograms, and short clips — repurposed from recordings automatically.', sample: 'Episode transcript → blog + 3 social clips in under 5 minutes.' },
+  { icon: <FileText size={24} />, title: 'Case Studies & Reports', color: '#6366F1', desc: 'Client success stories, ROI reports, and thought leadership documents — drafted from data and published on schedule.', sample: 'Case study: ₹18L/month saved — formatted, PDF + web version.' },
 ];
 
 const PLATFORMS = [
