@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Linkedin, Youtube, Instagram, ArrowRight, CheckCircle, Loader } from 'lucide-react';
+import { Linkedin, Instagram, Facebook, Twitter, ArrowRight, CheckCircle, Loader, MessageCircle } from 'lucide-react';
 import {
   SiOpenai, SiGooglecloud, SiMeta, SiTwilio, SiRazorpay, SiMake,
   SiAnthropic, SiWhatsapp, SiHubspot, SiLangchain,
@@ -25,9 +25,11 @@ const PARTNERS_BASE = [
 const PARTNERS = [...PARTNERS_BASE, ...PARTNERS_BASE];
 
 const SOCIALS = [
-  { icon: <Linkedin size={16} />, href: 'https://linkedin.com/company/aiagentex', label: 'LinkedIn' },
-  { icon: <Youtube size={16} />, href: 'https://youtube.com/@aiagentex', label: 'YouTube' },
-  { icon: <Instagram size={16} />, href: 'https://instagram.com/aiagentex', label: 'Instagram' },
+  { icon: <Linkedin size={16} />, href: 'https://www.linkedin.com/company/ai-agentix/about/', label: 'LinkedIn' },
+  { icon: <Instagram size={16} />, href: 'https://www.instagram.com/ai_agentix', label: 'Instagram' },
+  { icon: <Facebook size={16} />, href: 'https://www.facebook.com/aiagentix', label: 'Facebook' },
+  { icon: <Twitter size={16} />, href: 'https://x.com/ai_agentix', label: 'Twitter / X' },
+  { icon: <MessageCircle size={16} />, href: 'https://wa.me/919217064245', label: 'WhatsApp' },
 ];
 
 const API = import.meta.env.VITE_API_URL ?? 'http://localhost:5000/api/v1';
@@ -187,9 +189,9 @@ export default function SiteFooter() {
             <div style={{ marginTop: 24 }}>
               <p className="ax-footer-title">Contact</p>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.5)', margin: 0, lineHeight: 1.8 }}>
-                hello@aiagentex.in<br />
-                +91-XXXXXXXXXX<br />
-                India
+                myai@ai-agentix.com<br />
+                +91 92170 64245<br />
+                New Delhi, India
               </p>
             </div>
           </div>

@@ -35,7 +35,7 @@ const SECTIONS = [
   {
     icon: <Clock size={22} />, color: '#6366F1', title: '4. Refund Process & Timeline',
     paras: [
-      'To request a refund, email billing@aiagentix.in with your project details, invoice number, and the reason for your request. Please include any supporting documentation.',
+      'To request a refund, email myai@ai-agentix.com with your project details, invoice number, and the reason for your request. Please include any supporting documentation.',
       'We will acknowledge your request within 2 business days and complete our review within 10 business days. If your refund is approved, the amount will be credited to your original payment method within 7–10 business days after approval.',
       'Refunds are processed via the same payment method used for the original transaction (Razorpay/bank transfer). Processing times may vary depending on your bank or payment provider.',
     ],
@@ -43,15 +43,15 @@ const SECTIONS = [
   {
     icon: <AlertTriangle size={22} />, color: '#F59E0B', title: '5. Disputes',
     paras: [
-      'If you are not satisfied with our refund decision, you may escalate by writing to grievances@aiagentix.in. We will appoint a senior team member to review your case independently.',
-      'We strongly encourage resolving disputes amicably. If a resolution cannot be reached, disputes shall be subject to the jurisdiction of Pune, Maharashtra, India as specified in our Terms of Service.',
+      'If you are not satisfied with our refund decision, you may escalate by writing to myai@ai-agentix.com. We will appoint a senior team member to review your case independently.',
+      'We strongly encourage resolving disputes amicably. If a resolution cannot be reached, disputes shall be subject to the jurisdiction of New Delhi, India as specified in our Terms of Service.',
     ],
   },
   {
     icon: <Mail size={22} />, color: '#0EA5E9', title: '6. Contact for Refund Requests',
     paras: [
       'This Refund Policy was last updated on 1 January 2025. We may revise it from time to time — updates will be published on this page.',
-      'To initiate a refund request or ask questions about this policy, contact us at: billing@aiagentix.in or write to Santure AI Private Limited, Pune, Maharashtra, India.',
+      'To initiate a refund request or ask questions about this policy, contact us at: myai@ai-agentix.com or write to Santure AI Private Limited, New Delhi, India.',
     ],
   },
 ];
@@ -111,9 +111,9 @@ export default function RefundPage() {
           <motion.p {...up(0.06)} style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', marginBottom: 24, fontFamily: 'var(--font-body)' }}>
             Email our billing team directly with your invoice number and details.
           </motion.p>
-          <motion.a {...up(0.1)} href="mailto:billing@aiagentix.in"
+          <motion.a {...up(0.1)} href="mailto:myai@ai-agentix.com"
             style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.3)', color: '#10B981', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 14, padding: '12px 28px', borderRadius: 10, textDecoration: 'none' }}>
-            <Mail size={15} /> billing@aiagentix.in
+            <Mail size={15} /> myai@ai-agentix.com
           </motion.a>
         </div>
       </section>

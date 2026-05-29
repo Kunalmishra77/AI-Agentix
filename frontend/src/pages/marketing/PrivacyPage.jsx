@@ -38,7 +38,7 @@ const SECTIONS = [
     icon: <Shield size={22} />, color: '#F59E0B', title: '4. Your Rights',
     paras: [
       'Under the DPDPA 2023 and general data protection principles, you have the right to access, correct, or request deletion of your personal data at any time.',
-      'You can withdraw consent for marketing communications by clicking "Unsubscribe" in any email or by writing to us at privacy@aiagentix.in.',
+      'You can withdraw consent for marketing communications by clicking "Unsubscribe" in any email or by writing to us at myai@ai-agentix.com.',
       'We will respond to data access or deletion requests within 30 days. Verification of identity may be required before processing such requests.',
     ],
   },
@@ -53,7 +53,7 @@ const SECTIONS = [
     icon: <Mail size={22} />, color: '#0EA5E9', title: '6. Contact & Updates',
     paras: [
       'This policy was last updated on 1 January 2025. We may update it periodically — significant changes will be communicated via email or a notice on our website.',
-      'For any privacy-related queries, please contact our Data Protection Officer at: privacy@aiagentix.in or write to Santure AI Private Limited, Pune, Maharashtra, India.',
+      'For any privacy-related queries, please contact our Data Protection Officer at: myai@ai-agentix.com or write to Santure AI Private Limited, New Delhi, India.',
     ],
   },
 ];
@@ -113,9 +113,9 @@ export default function PrivacyPage() {
           <motion.p {...up(0.06)} style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', marginBottom: 24, fontFamily: 'var(--font-body)' }}>
             Email our Data Protection Officer directly.
           </motion.p>
-          <motion.a {...up(0.1)} href="mailto:privacy@aiagentix.in"
+          <motion.a {...up(0.1)} href="mailto:myai@ai-agentix.com"
             style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(232,99,26,0.12)', border: '1px solid rgba(232,99,26,0.3)', color: '#E8631A', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 14, padding: '12px 28px', borderRadius: 10, textDecoration: 'none' }}>
-            <Mail size={15} /> privacy@aiagentix.in
+            <Mail size={15} /> myai@ai-agentix.com
           </motion.a>
         </div>
       </section>

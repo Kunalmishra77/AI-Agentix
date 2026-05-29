@@ -199,7 +199,7 @@ export default function ContactPage() {
               { step: '01', label: 'Critical incident', action: 'Email security@agentix.ai immediately', color: 'var(--err)' },
               { step: '02', label: 'Platform down', action: 'Check status.agentix.ai then email support', color: 'var(--warn)' },
               { step: '03', label: 'Data concern', action: 'Use the privacy contact form with subject: DATA', color: '#B69BFF' },
-              { step: '04', label: 'Billing dispute', action: 'Email billing@agentix.ai with your invoice number', color: 'var(--ok)' },
+              { step: '04', label: 'Billing dispute', action: 'Email myai@ai-agentix.com with your invoice number', color: 'var(--ok)' },
             ].map((e) => (
               <div key={e.step} className="contact-esc-row">
                 <span className="mono" style={{ fontSize: 11, color: 'var(--ink-3)', flexShrink: 0 }}>{e.step}</span>

@@ -42,8 +42,8 @@ const STATS = [
 ];
 
 const TIMELINE = [
-  { year: 'Jan 2025', title: 'Founded in Pune', desc: 'Started with a small founding team obsessed with one idea: make AI automation practical and affordable for Indian businesses of every size.', color: '#E8631A' },
-  { year: 'Feb 2025', title: 'First Clients Live', desc: 'Deployed our first AI voice agent for a Pune-based real estate firm, automating lead follow-up over WhatsApp. Reduced manual calling by 80%.', color: '#6366F1' },
+  { year: 'Jan 2025', title: 'Founded in New Delhi', desc: 'Started with a small founding team obsessed with one idea: make AI automation practical and affordable for Indian businesses of every size.', color: '#E8631A' },
+  { year: 'Feb 2025', title: 'First Clients Live', desc: 'Deployed our first AI voice agent for a Delhi-based real estate firm, automating lead follow-up over WhatsApp. Reduced manual calling by 80%.', color: '#6366F1' },
   { year: 'Apr 2025', title: 'Healthcare & Education Wins', desc: 'Expanded into healthcare — built an appointment booking agent for a clinic chain that cut no-shows by 60%. Onboarded our first ed-tech client.', color: '#10B981' },
   { year: 'Jun 2025', title: 'Platform Launch', desc: 'Released the AI Agentix client dashboard — a unified hub for tracking live automations, ROI metrics, and agent performance in real time.', color: '#F59E0B' },
   { year: 'Sep 2025', title: 'Team & Stack Growing', desc: 'Grew to a 10-person team. Added multilingual AI (Hindi, Marathi, Tamil) and native integrations for Tally, Razorpay, and WhatsApp Business API.', color: '#EC4899' },

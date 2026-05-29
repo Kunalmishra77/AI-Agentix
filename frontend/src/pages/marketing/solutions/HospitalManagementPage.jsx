@@ -293,7 +293,7 @@ export default function HospitalManagementPage() {
           </motion.div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
             {[
-              { name: '80-bed Multi-Speciality, Pune',   result: '70% reduction in front-desk staff work', detail: 'OPD queue, billing & lab reports fully automated. Staff redirected to patient care.', time: '6 weeks' },
+              { name: '80-bed Multi-Speciality, New Delhi',   result: '70% reduction in front-desk staff work', detail: 'OPD queue, billing & lab reports fully automated. Staff redirected to patient care.', time: '6 weeks' },
               { name: 'Diagnostic Centre Chain, Delhi',   result: '₹18L/year saved on billing errors',     detail: 'AI-validated claims cut rejection rate from 22% to under 2% across 4 branches.',  time: '3 months' },
               { name: 'Super-Speciality Hospital, Hyderabad', result: '3x patient throughput in OPD',     detail: 'Smart scheduling and auto-reminders increased confirmed appointments by 85%.', time: '2 months' },
             ].map((r, i) => (

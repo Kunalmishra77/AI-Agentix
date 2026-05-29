@@ -53,7 +53,7 @@ const SECTIONS = [
     icon: <ChevronRight size={22} />, color: '#0EA5E9', title: '6. Termination & Governing Law',
     paras: [
       'Either party may terminate a service agreement with 30 days written notice, subject to the termination clauses in the individual service agreement. Work completed up to termination date shall be invoiced and paid.',
-      'These terms are governed by the laws of India, and the courts of Pune, Maharashtra shall have exclusive jurisdiction over any disputes arising from or related to these terms.',
+      'These terms are governed by the laws of India, and the courts of New Delhi shall have exclusive jurisdiction over any disputes arising from or related to these terms.',
       'If any provision of these terms is found to be unenforceable, the remaining provisions shall continue in full force and effect.',
     ],
   },
@@ -61,7 +61,7 @@ const SECTIONS = [
     icon: <Mail size={22} />, color: '#E8631A', title: '7. Contact & Updates',
     paras: [
       'These Terms of Service were last updated on 1 January 2025. We may update them periodically — significant changes will be communicated via email or a prominent notice on our website at least 14 days in advance.',
-      'For any questions regarding these terms, please contact us at: legal@aiagentix.in or write to Santure AI Private Limited, Pune, Maharashtra, India.',
+      'For any questions regarding these terms, please contact us at: myai@ai-agentix.com or write to Santure AI Private Limited, New Delhi, India.',
     ],
   },
 ];
@@ -121,9 +121,9 @@ export default function TermsPage() {
           <motion.p {...up(0.06)} style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', marginBottom: 24, fontFamily: 'var(--font-body)' }}>
             Our team is happy to walk you through anything that needs clarification.
           </motion.p>
-          <motion.a {...up(0.1)} href="mailto:legal@aiagentix.in"
+          <motion.a {...up(0.1)} href="mailto:myai@ai-agentix.com"
             style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.3)', color: '#6366F1', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 14, padding: '12px 28px', borderRadius: 10, textDecoration: 'none' }}>
-            <Mail size={15} /> legal@aiagentix.in
+            <Mail size={15} /> myai@ai-agentix.com
           </motion.a>
         </div>
       </section>

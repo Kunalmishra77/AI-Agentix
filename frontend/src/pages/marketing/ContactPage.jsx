@@ -70,7 +70,7 @@ function AuditForm({ onSuccess }) {
         <p style={{ margin: 0, fontSize: 13, color: '#92400E', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>We'll analyse your top 3 automation opportunities and send you a <strong>custom AI Audit Report</strong> — free, no pitch, no pressure.</p>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
-        {[{name:'name',label:'Full Name',ph:'Rajesh Kumar',req:true},{name:'phone',label:'Phone / WhatsApp',ph:'+91 98765 43210',req:true}].map(f=>(
+        {[{name:'name',label:'Full Name',ph:'Rajesh Kumar',req:true},{name:'phone',label:'Phone / WhatsApp',ph:'+91 92170 64245',req:true}].map(f=>(
           <div key={f.name}><label style={labelStyle}>{f.label}</label><input name={f.name} value={fd[f.name]} onChange={set} placeholder={f.ph} required={f.req} style={iStyle}/></div>
         ))}
       </div>
@@ -142,7 +142,7 @@ function DemoForm({ onSuccess }) {
         ))}
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
-        {[{name:'phone',label:'Phone / WhatsApp',ph:'+91 98765 43210'},{name:'company',label:'Company Name',ph:'Acme Solutions Pvt Ltd'}].map(f=>(
+        {[{name:'phone',label:'Phone / WhatsApp',ph:'+91 92170 64245'},{name:'company',label:'Company Name',ph:'Acme Solutions Pvt Ltd'}].map(f=>(
           <div key={f.name}><label style={labelStyle}>{f.label}</label><input name={f.name} value={fd[f.name]} onChange={set} placeholder={f.ph} style={iStyle}/></div>
         ))}
       </div>
@@ -233,7 +233,7 @@ function PartnerForm({ onSuccess }) {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
         <div>
           <label style={labelStyle}>Phone / WhatsApp</label>
-          <input name="phone" value={fd.phone} onChange={set} placeholder="+91 98765 43210" style={iStyle}/>
+          <input name="phone" value={fd.phone} onChange={set} placeholder="+91 92170 64245" style={iStyle}/>
         </div>
         <div>
           <label style={labelStyle}>Current Client Base</label>
@@ -340,9 +340,9 @@ export default function ContactPage() {
             <div style={{ background: '#0D1B2E', borderRadius: 20, padding: 32, marginBottom: 24 }}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 16, color: '#fff', marginBottom: 20 }}>Reach Us Directly</div>
               {[
-                { icon: <Phone size={16} />, label: 'Call / WhatsApp', value: '+91 98765 43210', color: '#10B981' },
-                { icon: <Mail size={16} />, label: 'Email', value: 'hello@aiagentix.in', color: '#6366F1' },
-                { icon: <MapPin size={16} />, label: 'Office', value: 'Pune Â· Mumbai Â· Bangalore', color: '#E8631A' },
+                { icon: <Phone size={16} />, label: 'Call / WhatsApp', value: '+91 92170 64245', color: '#10B981' },
+                { icon: <Mail size={16} />, label: 'Email', value: 'myai@ai-agentix.com', color: '#6366F1' },
+                { icon: <MapPin size={16} />, label: 'Office', value: 'New Delhi, India', color: '#E8631A' },
               ].map(cm => (
                 <div key={cm.label} style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
                   <div style={{ width: 38, height: 38, borderRadius: 10, background: `${cm.color}20`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: cm.color, flexShrink: 0 }}>{cm.icon}</div>

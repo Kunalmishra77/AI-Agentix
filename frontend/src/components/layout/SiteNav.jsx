@@ -78,7 +78,7 @@ export default function SiteNav() {
   return (
     <>
       <nav className={`ax-nav${scrolled ? ' scrolled' : ''}`}
-        style={{ padding: '0 clamp(20px,5vw,80px)', position: 'relative' }}
+        style={{ padding: '0 clamp(20px,5vw,80px)' }}
         onMouseLeave={() => setMegaOpen(null)}>
 
         <div style={{ maxWidth: 1280, margin: '0 auto', width: '100%', display: 'flex', alignItems: 'center', gap: 32 }}>
