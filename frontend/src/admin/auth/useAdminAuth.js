@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useState } from 'react';
 
-const API       = import.meta.env.VITE_API_URL        ?? 'http://localhost:5000/api/v1';
+const API       = (import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/v1';
 const FB_EMAIL  = import.meta.env.VITE_ADMIN_EMAIL    ?? 'aiagentix2025@gmail.com';
 const FB_PASS   = import.meta.env.VITE_ADMIN_PASSWORD ?? 'AGENTiX@2025';
 const TOKEN_KEY = 'ax_admin_token';

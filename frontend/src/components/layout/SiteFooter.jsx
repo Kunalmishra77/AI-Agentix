@@ -32,7 +32,7 @@ const SOCIALS = [
   { icon: <MessageCircle size={16} />, href: 'https://wa.me/919217064245', label: 'WhatsApp' },
 ];
 
-const API = import.meta.env.VITE_API_URL ?? 'http://localhost:5000/api/v1';
+const API = (import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/v1';
 
 function NewsletterForm() {
   const [email,   setEmail]   = useState('');

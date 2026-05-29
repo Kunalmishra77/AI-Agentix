@@ -1,6 +1,6 @@
 // Thin fetch wrapper for admin API calls — attaches JWT from sessionStorage
 
-const BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:5000/api/v1';
+const BASE = (import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/v1';
 const TOKEN_KEY = 'ax_admin_token';
 
 function getToken() {
