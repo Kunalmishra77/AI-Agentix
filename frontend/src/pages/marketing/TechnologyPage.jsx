@@ -93,7 +93,7 @@ export default function TechnologyPage() {
       <SiteNav />
 
       {/* ⓀⓀ 1. HERO "" Dark ⓀⓀ */}
-      <section style={{ background: 'linear-gradient(135deg,#0D1B2E 0%,#0A1525 100%)', minHeight: '60vh', display: 'flex', alignItems: 'center', paddingTop: 100, position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: 'linear-gradient(135deg,#0D1B2E 0%,#0A1525 100%)', minHeight: '60vh', display: 'flex', alignItems: 'center', paddingTop: 40, position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '10%', left: '5%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: '10%', right: '5%', width: 350, height: 350, borderRadius: '50%', background: 'radial-gradient(circle, rgba(232,99,26,0.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div className="ax-container" style={{ padding: '60px 40px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>

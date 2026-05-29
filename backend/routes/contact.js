@@ -9,7 +9,7 @@ const router = Router();
 const validate = [
   body('name').trim().notEmpty().withMessage('Name is required'),
   body('email').isEmail().normalizeEmail().withMessage('Valid email required'),
-  body('message').trim().isLength({ min: 10 }).withMessage('Message must be at least 10 chars'),
+  body('message').optional({ nullable: true, checkFalsy: true }).trim(),
 ];
 
 // POST /api/v1/contact
@@ -22,13 +22,33 @@ router.post('/', validate, async (req, res, next) => {
     });
   }
   try {
-    const { name, email, company, phone, service, message, budget, source } = req.body;
+    const { name, email, company, phone, service, message, budget, source,
+            // Audit fields
+            industry, teamSize, goals,
+            // Demo fields
+            preferredDate, timeSlot, demoFocus, attendees,
+            // Partner fields
+            website, partnerType, clientBase,
+          } = req.body;
+
+    const msgText = message || [
+      industry && `Industry: ${industry}`,
+      teamSize && `Team size: ${teamSize}`,
+      goals && `Goals: ${goals}`,
+      preferredDate && `Preferred date: ${preferredDate}`,
+      timeSlot && `Time slot: ${timeSlot}`,
+      demoFocus && `Demo focus: ${demoFocus}`,
+      attendees && `Attendees: ${attendees}`,
+      website && `Website: ${website}`,
+      partnerType && `Partner type: ${partnerType}`,
+      clientBase && `Client base: ${clientBase}`,
+    ].filter(Boolean).join(' | ') || '—';
 
     // Save to DB
     const submission = await queryOne(
       `INSERT INTO contacts (name, email, company, phone, service, message, budget)
        VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *`,
-      [name, email, company || null, phone || null, service || null, message, budget || null]
+      [name, email, company || null, phone || null, service || source || null, msgText, budget || null]
     );
 
     // Send notification email
@@ -36,32 +56,45 @@ router.post('/', validate, async (req, res, next) => {
       host:   process.env.EMAIL_HOST,
       port:   Number(process.env.EMAIL_PORT) || 587,
       secure: false,
+      requireTLS: true,
       auth:   { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+      tls:    { rejectUnauthorized: false },
     });
+
+    const extraRows = [
+      industry    && `<tr><td style="padding:6px 0;font-weight:600;width:130px">Industry:</td><td>${industry}</td></tr>`,
+      teamSize    && `<tr><td style="padding:6px 0;font-weight:600">Team Size:</td><td>${teamSize}</td></tr>`,
+      goals       && `<tr><td style="padding:6px 0;font-weight:600">Goals:</td><td>${goals}</td></tr>`,
+      preferredDate && `<tr><td style="padding:6px 0;font-weight:600">Demo Date:</td><td>${preferredDate} ${timeSlot || ''}</td></tr>`,
+      demoFocus   && `<tr><td style="padding:6px 0;font-weight:600">Demo Focus:</td><td>${demoFocus}</td></tr>`,
+      attendees   && `<tr><td style="padding:6px 0;font-weight:600">Attendees:</td><td>${attendees}</td></tr>`,
+      website     && `<tr><td style="padding:6px 0;font-weight:600">Website:</td><td><a href="${website}">${website}</a></td></tr>`,
+      partnerType && `<tr><td style="padding:6px 0;font-weight:600">Partner Type:</td><td>${partnerType}</td></tr>`,
+      clientBase  && `<tr><td style="padding:6px 0;font-weight:600">Client Base:</td><td>${clientBase}</td></tr>`,
+    ].filter(Boolean).join('');
 
     const adminMailOptions = {
       from:    process.env.EMAIL_FROM,
       to:      process.env.EMAIL_TO,
-      subject: `🚀 New Contact: ${name} from ${company || 'unknown company'}`,
+      subject: `🚀 New ${source || 'Contact'}: ${name} — ${company || email}`,
       html: `
         <div style="font-family:Inter,sans-serif;max-width:600px;margin:0 auto">
           <div style="background:#e84d1c;padding:24px;text-align:center">
-            <h2 style="color:#fff;margin:0;font-size:20px">New Contact Submission</h2>
+            <h2 style="color:#fff;margin:0;font-size:20px">New ${source || 'Contact'} Submission</h2>
           </div>
           <div style="padding:32px;background:#f7f7f5;border:1px solid #e5e5e5">
             <table style="width:100%;border-collapse:collapse">
-              <tr><td style="padding:8px 0;font-weight:600;width:130px">Name:</td><td>${name}</td></tr>
+              <tr><td style="padding:8px 0;font-weight:600;width:130px">Source:</td><td><strong style="color:#e84d1c">${source || '—'}</strong></td></tr>
+              <tr><td style="padding:8px 0;font-weight:600">Name:</td><td>${name}</td></tr>
               <tr><td style="padding:8px 0;font-weight:600">Email:</td><td><a href="mailto:${email}">${email}</a></td></tr>
-              <tr><td style="padding:8px 0;font-weight:600">Company:</td><td>${company || '—'}</td></tr>
               <tr><td style="padding:8px 0;font-weight:600">Phone:</td><td>${phone || '—'}</td></tr>
-              <tr><td style="padding:8px 0;font-weight:600">Service:</td><td>${service || '—'}</td></tr>
-              <tr><td style="padding:8px 0;font-weight:600">Budget:</td><td>${budget || '—'}</td></tr>
-              <tr><td style="padding:8px 0;font-weight:600">Source:</td><td>${source || '—'}</td></tr>
+              <tr><td style="padding:8px 0;font-weight:600">Company:</td><td>${company || '—'}</td></tr>
+              ${extraRows}
             </table>
-            <hr style="margin:20px 0;border-color:#e5e5e5"/>
-            <p style="font-weight:600;margin-bottom:8px">Message:</p>
-            <p style="white-space:pre-wrap;background:#fff;padding:16px;border-left:3px solid #e84d1c">${message}</p>
-            <p style="color:#999;font-size:12px;margin-top:20px">Submission ID: ${submission.id}</p>
+            ${msgText !== '—' ? `<hr style="margin:20px 0;border-color:#e5e5e5"/>
+            <p style="font-weight:600;margin-bottom:8px">Details / Message:</p>
+            <p style="white-space:pre-wrap;background:#fff;padding:16px;border-left:3px solid #e84d1c">${msgText}</p>` : ''}
+            <p style="color:#999;font-size:12px;margin-top:20px">ID: ${submission.id} · ${new Date().toLocaleString('en-IN', {timeZone:'Asia/Kolkata'})}</p>
           </div>
         </div>
       `,
@@ -103,11 +136,15 @@ router.post('/', validate, async (req, res, next) => {
       `,
     };
 
-    // Fire emails (don't block response)
+    // Fire both emails — log full error if either fails
     Promise.all([
       transporter.sendMail(adminMailOptions),
       transporter.sendMail(autoReplyOptions),
-    ]).catch(err => console.error('Email error:', err.message));
+    ]).then(() => {
+      console.log(`Emails sent for contact ${submission.id}`);
+    }).catch(err => {
+      console.error('Email send failed:', err.message, err.code, err.responseCode);
+    });
 
     res.status(201).json({
       success: true,

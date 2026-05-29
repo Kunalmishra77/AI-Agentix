@@ -64,6 +64,11 @@ const SupplyChainPage         = lazy(() => import('./pages/marketing/solutions/S
 const FinanceAccountsPage     = lazy(() => import('./pages/marketing/solutions/FinanceAccountsPage.jsx'));
 const AIVoiceChatPage         = lazy(() => import('./pages/marketing/solutions/AIVoiceChatPage.jsx'));
 const ManufacturingSolutionPage = lazy(() => import('./pages/marketing/solutions/ManufacturingSolutionPage.jsx'));
+const HospitalManagementPage    = lazy(() => import('./pages/marketing/solutions/HospitalManagementPage.jsx'));
+// Legal pages
+const MktPrivacyPage = lazy(() => import('./pages/marketing/PrivacyPage.jsx'));
+const MktTermsPage   = lazy(() => import('./pages/marketing/TermsPage.jsx'));
+const MktRefundPage  = lazy(() => import('./pages/marketing/RefundPage.jsx'));
 // Industry sub-pages
 const HealthcarePage          = lazy(() => import('./pages/marketing/industries/HealthcarePage.jsx'));
 const EducationPage           = lazy(() => import('./pages/marketing/industries/EducationPage.jsx'));
@@ -1901,6 +1906,7 @@ export default function App() {
         <Route path="/solutions/finance-accounts" element={<FinanceAccountsPage />} />
         <Route path="/solutions/ai-voice-chat" element={<AIVoiceChatPage />} />
         <Route path="/solutions/manufacturing" element={<ManufacturingSolutionPage />} />
+        <Route path="/solutions/hospital-management" element={<HospitalManagementPage />} />
         <Route path="/industries" element={<MktIndustriesPage />} />
         <Route path="/industries/healthcare" element={<HealthcarePage />} />
         <Route path="/industries/education" element={<EducationPage />} />
@@ -1913,6 +1919,9 @@ export default function App() {
         <Route path="/technology" element={<MktTechnologyPage />} />
         <Route path="/case-studies" element={<MktCaseStudiesPage />} />
         <Route path="/contact" element={<MktContactPage />} />
+        <Route path="/privacy" element={<MktPrivacyPage />} />
+        <Route path="/terms" element={<MktTermsPage />} />
+        <Route path="/refund" element={<MktRefundPage />} />
 
         {/* ── Platform tool-discovery pages — wrapped in Layout ── */}
         <Route path="/*" element={
@@ -1944,7 +1953,7 @@ export default function App() {
               <Route path="/security" element={<SecurityPage />} />
               <Route path="/status" element={<StatusPage />} />
               <Route path="/changelog" element={<ChangelogPage />} />
-              {['privacy', 'privacy-policy', 'terms', 'cookies', 'cookie-preferences', 'accessibility', '500'].map((id) => (
+              {['privacy-policy', 'cookies', 'cookie-preferences', 'accessibility', '500'].map((id) => (
                 <Route key={id} path={`/${id}`} element={<InfoPage id={id === 'privacy-policy' ? 'privacy' : id === 'cookies' ? 'cookie-preferences' : id} />} />
               ))}
               <Route path="/404" element={<NotFoundPage />} />

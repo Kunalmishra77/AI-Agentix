@@ -24,11 +24,11 @@ const PH = {
 
 // How long each phase persists (ms) before the NEXT phase begins
 const DURATIONS = {
-  [PH.VOID]:        400,
-  [PH.EMBER]:       800,
-  [PH.MATERIALIZE]: 1200,
-  [PH.BOOT]:        1400,
-  [PH.GATE_FORM]:   700,
+  [PH.VOID]:        250,
+  [PH.EMBER]:       500,
+  [PH.MATERIALIZE]: 700,
+  [PH.BOOT]:        900,
+  [PH.GATE_FORM]:   400,
 };
 
 const BOOT_LINES = [
@@ -83,7 +83,7 @@ export default function PreloaderGate({ onEnter }) {
   useEffect(() => {
     if (phase !== PH.BOOT) return;
     const MathTimers = BOOT_LINES.map((_, i) =>
-      setTimeout(() => setVisibleLines(i + 1), i * 480)
+      setTimeout(() => setVisibleLines(i + 1), i * 280)
     );
     return () => MathTimers.forEach(clearTimeout);
   }, [phase]);
@@ -108,14 +108,15 @@ export default function PreloaderGate({ onEnter }) {
   // ── Auto-transition ───────────────────────────────────────────────────────
   useEffect(() => {
     if (phase === PH.INVITATION) {
-      const timer = setTimeout(handleClick, 2000);
+      const timer = setTimeout(handleClick, 1200);
       return () => clearTimeout(timer);
     }
   }, [phase, handleClick]);
 
-  // Called by Framer Motion after the iris animation fully completes
+  // Called by Framer Motion after the iris fills the screen
+  // onEnter() sets showGate→false; AnimatePresence then fades the root out
   const handleIrisComplete = useCallback(() => {
-    onEnter(); // → useVoiceLoop sets phase to LISTENING, showGate → false
+    onEnter();
   }, [onEnter]);
 
   // ── Derived render flags ──────────────────────────────────────────────────
@@ -127,8 +128,10 @@ export default function PreloaderGate({ onEnter }) {
 
   // ── Render ────────────────────────────────────────────────────────────────
   return (
-    <div
+    <motion.div
       className="pg-root"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0, transition: { duration: 0.55, ease: 'easeInOut' } }}
       onClick={handleClick}
       role="button"
       aria-label="Activate voice experience"
@@ -345,24 +348,17 @@ export default function PreloaderGate({ onEnter }) {
         Powered by AGENTiX AI · Voice-First Experience
       </div>
 
-      {/* Iris portal — expands from orb centre on click */}
+      {/* Iris portal — expands from orb centre, stays opaque, fills screen */}
       {irisActive && (
         <motion.div
           className="pg-iris"
           style={{ left: irisPos.x, top: irisPos.y }}
-          initial={{ scale: 1, opacity: 1 }}
-          animate={{
-            scale:   [1, 0.88, 1.35, 55],
-            opacity: [1, 1,    1,    0 ],
-          }}
-          transition={{
-            duration: 0.65,
-            times:    [0, 0.12, 0.18, 1],
-            ease:     [0.4, 0, 1, 1],
-          }}
+          initial={{ scale: 0.8, opacity: 1 }}
+          animate={{ scale: 60, opacity: 1 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           onAnimationComplete={handleIrisComplete}
         />
       )}
-    </div>
+    </motion.div>
   );
 }

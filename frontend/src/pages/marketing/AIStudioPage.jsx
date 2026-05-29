@@ -79,7 +79,7 @@ export default function AIStudioPage() {
       <SiteNav />
 
       {/* ⓀⓀ 1. HERO "" Dark, 2-col ⓀⓀ */}
-      <section style={{ background: 'linear-gradient(135deg,#0D1B2E 0%,#0F2240 100%)', minHeight: '85vh', display: 'flex', alignItems: 'center', paddingTop: 100, position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: 'linear-gradient(135deg,#0D1B2E 0%,#0F2240 100%)', minHeight: '85vh', display: 'flex', alignItems: 'center', paddingTop: 40, position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 20% 50%, rgba(232,99,26,0.08) 0%, transparent 50%)', pointerEvents: 'none' }} />
         <div className="ax-container" style={{ padding: '60px 40px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
           <div>

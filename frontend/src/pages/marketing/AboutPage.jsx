@@ -35,19 +35,19 @@ function useCountUp(target, dur = 1800) {
 }
 
 const STATS = [
-  { num: 200, suffix: '+', label: 'Businesses Automated' },
-  { num: 97, suffix: '%', label: 'Client Satisfaction' },
-  { num: 50, suffix: 'Cr+', label: 'Revenue Generated' },
-  { num: 4, suffix: '+', label: 'Years of Experience' },
+  { num: 25, suffix: '+', label: 'Businesses Automated' },
+  { num: 96, suffix: '%', label: 'Client Satisfaction' },
+  { num: 1, suffix: 'Cr+', label: 'Revenue Generated for Clients' },
+  { num: 1, suffix: ' Year', label: 'Of Building & Shipping' },
 ];
 
 const TIMELINE = [
-  { year: '2020', title: 'Founded in Pune', desc: 'Started as a 3-person team building chatbots for local businesses. First client: a real estate firm that needed automated lead follow-up.', color: '#E8631A' },
-  { year: '2021', title: 'First 10 Clients', desc: 'Expanded to healthcare and education sectors. Built our first AI voice agent for a hospital chain, reducing no-shows by 65%.', color: '#6366F1' },
-  { year: '2022', title: 'Scaling Up', desc: 'Grew to 25 team members. Launched our proprietary automation framework. Revenue generated for clients crossed ₹10 Crore.', color: '#10B981' },
-  { year: '2023', title: 'Pan-India Expansion', desc: 'Offices in Mumbai, Bangalore, Delhi. 100+ active deployments. Featured in Economic Times as a top AI startup to watch.', color: '#F59E0B' },
-  { year: '2024', title: 'AI-First Platform', desc: 'Launched the AI Agentix platform "" a unified dashboard for deploying, managing, and optimizing all automations in one place.', color: '#EC4899' },
-  { year: '2025', title: 'Market Leader', desc: '200+ businesses, ₹50Cr+ revenue generated, 97% client satisfaction. Building the next generation of agentic AI for Indian businesses.', color: '#E8631A' },
+  { year: 'Jan 2025', title: 'Founded in Pune', desc: 'Started with a small founding team obsessed with one idea: make AI automation practical and affordable for Indian businesses of every size.', color: '#E8631A' },
+  { year: 'Feb 2025', title: 'First Clients Live', desc: 'Deployed our first AI voice agent for a Pune-based real estate firm, automating lead follow-up over WhatsApp. Reduced manual calling by 80%.', color: '#6366F1' },
+  { year: 'Apr 2025', title: 'Healthcare & Education Wins', desc: 'Expanded into healthcare — built an appointment booking agent for a clinic chain that cut no-shows by 60%. Onboarded our first ed-tech client.', color: '#10B981' },
+  { year: 'Jun 2025', title: 'Platform Launch', desc: 'Released the AI Agentix client dashboard — a unified hub for tracking live automations, ROI metrics, and agent performance in real time.', color: '#F59E0B' },
+  { year: 'Sep 2025', title: 'Team & Stack Growing', desc: 'Grew to a 10-person team. Added multilingual AI (Hindi, Marathi, Tamil) and native integrations for Tally, Razorpay, and WhatsApp Business API.', color: '#EC4899' },
+  { year: 'Now', title: '25+ Businesses Automated', desc: 'Active deployments across real estate, healthcare, education, hospitality, and retail. Building toward 100 clients and a Pan-India presence by end of 2026.', color: '#E8631A' },
 ];
 
 const VALUES = [
@@ -109,12 +109,12 @@ export default function AboutPage() {
     <>
       <Helmet>
         <title>About AI Agentix "" India's AI Automation Experts</title>
-        <meta name="description" content="Meet the team behind India's leading AI automation agency. 200+ businesses automated, ₹50Cr+ revenue generated." />
+        <meta name="description" content="Meet the team behind AI Agentix — India's fastest-growing AI automation agency. 25+ businesses automated, 96% client satisfaction." />
       </Helmet>
       <SiteNav />
 
       {/* ⓀⓀ 1. HERO "" Dark, left-copy + right orbital ⓀⓀ */}
-      <section style={{ background: 'linear-gradient(135deg, #0D1B2E 0%, #0F2240 100%)', minHeight: '72vh', display: 'flex', alignItems: 'flex-start', paddingTop: 80, position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: 'linear-gradient(135deg, #0D1B2E 0%, #0F2240 100%)', minHeight: '72vh', display: 'flex', alignItems: 'flex-start', paddingTop: 40, position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '20%', right: '8%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(232,99,26,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: 0, left: '0', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div className="ax-container" style={{ padding: '32px 40px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
@@ -159,10 +159,10 @@ export default function AboutPage() {
             </div>
             {/* Stat nodes at cardinal positions */}
             {[
-              { label: '200+', sub: 'Clients',      color: '#E8631A', style: { top: 0,    left: '50%', transform: 'translateX(-50%)' } },
-              { label: '97%',  sub: 'Satisfaction', color: '#6366F1', style: { top: '50%',left: 0,     transform: 'translateY(-50%)' } },
-              { label: '₹50Cr',sub: 'Generated',    color: '#10B981', style: { bottom: 0, left: '50%', transform: 'translateX(-50%)' } },
-              { label: '4+ Yrs',sub: 'Experience',  color: '#F59E0B', style: { top: '50%',right: 0,    transform: 'translateY(-50%)' } },
+              { label: '25+',   sub: 'Clients',      color: '#E8631A', style: { top: 0,    left: '50%', transform: 'translateX(-50%)' } },
+              { label: '96%',   sub: 'Satisfaction', color: '#6366F1', style: { top: '50%',left: 0,     transform: 'translateY(-50%)' } },
+              { label: '₹1Cr+', sub: 'Generated',    color: '#10B981', style: { bottom: 0, left: '50%', transform: 'translateX(-50%)' } },
+              { label: '1 Year', sub: 'Experience',  color: '#F59E0B', style: { top: '50%',right: 0,    transform: 'translateY(-50%)' } },
             ].map(({ label, sub, color, style }) => (
               <div key={label} style={{ position: 'absolute', ...style, background: '#0D1B2E', border: `1px solid ${color}55`, borderRadius: 10, padding: '8px 14px', textAlign: 'center', zIndex: 3, boxShadow: `0 4px 20px rgba(0,0,0,0.4), 0 0 0 1px ${color}22` }}>
                 <div style={{ fontFamily: 'var(--font-number)', fontSize: 18, fontWeight: 700, color, lineHeight: 1 }}>{label}</div>
@@ -208,12 +208,12 @@ export default function AboutPage() {
             ))}
           </motion.div>
           <motion.div {...right(0.1)} style={{ background: '#fff', borderRadius: 20, padding: 40, boxShadow: '0 4px 32px rgba(0,0,0,0.06)', border: '1px solid #E5E7EB' }}>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 800, color: '#0D1B2E', marginBottom: 28 }}>Our Vision for 2030</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 800, color: '#0D1B2E', marginBottom: 28 }}>Where We're Headed — 2026 Targets</div>
             {[
-              { num: '1M+', label: 'Businesses automated across India', color: '#E8631A' },
-              { num: '₹500Cr', label: 'Revenue generated for clients', color: '#6366F1' },
-              { num: '10', label: 'Cities with dedicated AI Agentix offices', color: '#10B981' },
-              { num: '#1', label: 'AI automation agency in South Asia', color: '#F59E0B' },
+              { num: '100+', label: 'Businesses automated across India by end of 2026', color: '#E8631A' },
+              { num: '₹10Cr', label: 'Revenue generated for clients in 2026', color: '#6366F1' },
+              { num: '5', label: 'Cities with an active AI Agentix presence', color: '#10B981' },
+              { num: 'Top 3', label: 'AI automation agencies in India (target)', color: '#F59E0B' },
             ].map((item, i) => (
               <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 20, padding: '16px 0', borderBottom: i < 3 ? '1px solid #F3F4F6' : 'none' }}>
                 <div style={{ fontFamily: 'var(--font-number)', fontSize: 28, fontWeight: 700, color: item.color, minWidth: 80 }}>{item.num}</div>
@@ -229,7 +229,7 @@ export default function AboutPage() {
         <div className="ax-container" style={{ padding: '0 40px' }}>
           <motion.div {...up(0)} style={{ textAlign: 'center', marginBottom: 64 }}>
             <span style={{ fontSize: 12, fontWeight: 600, color: '#E8631A', letterSpacing: 3, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Our Journey</span>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#fff', marginTop: 12 }}>5 Years of Building in Public</h2>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#fff', marginTop: 12 }}>Built Fast. Shipped Real. Year One.</h2>
           </motion.div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px 80px', position: 'relative' }}>
             {TIMELINE.map((item, i) => (
@@ -300,7 +300,7 @@ export default function AboutPage() {
           <motion.div {...up(0)} style={{ marginBottom: 56, maxWidth: 580 }}>
             <span style={{ fontSize: 12, fontWeight: 600, color: '#E8631A', letterSpacing: 3, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Why We're Different</span>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#0D1B2E', marginTop: 12 }}>What Sets Our Work Apart</h2>
-            <p style={{ fontSize: 16, color: '#6B7280', maxWidth: 520, marginTop: 12, fontFamily: 'var(--font-body)' }}>Four non-negotiables that govern every project — and why 200+ businesses come back to us.</p>
+            <p style={{ fontSize: 16, color: '#6B7280', maxWidth: 520, marginTop: 12, fontFamily: 'var(--font-body)' }}>Four non-negotiables that govern every project — baked in from day one.</p>
           </motion.div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 24 }}>

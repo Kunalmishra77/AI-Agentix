@@ -2,6 +2,7 @@
 // Assembles: PreloaderGate + VoiceOrb + SubtitleBand + VoiceLeadForm
 // No chat panel. The website IS the display.
 
+import { AnimatePresence } from 'framer-motion';
 import { PHASES } from './agentFlow';
 import { useVoiceLoop } from './useVoiceLoop';
 import PreloaderGate from './PreloaderGate';
@@ -25,7 +26,9 @@ export default function VoiceExperience() {
   return (
     <>
       {/* 1 — Entry gate (full-screen, first visit only) */}
-      {showGate && <PreloaderGate onEnter={onGateClick} />}
+      <AnimatePresence>
+        {showGate && <PreloaderGate key="pg" onEnter={onGateClick} />}
+      </AnimatePresence>
 
       {/* 2 — Floating orb */}
       {showOrb && (

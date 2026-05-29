@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Linkedin, Youtube, Instagram, ArrowRight } from 'lucide-react';
+import { Linkedin, Youtube, Instagram, ArrowRight, CheckCircle, Loader } from 'lucide-react';
 import {
   SiOpenai, SiGooglecloud, SiMeta, SiTwilio, SiRazorpay, SiMake,
   SiAnthropic, SiWhatsapp, SiHubspot, SiLangchain,
@@ -28,6 +29,68 @@ const SOCIALS = [
   { icon: <Youtube size={16} />, href: 'https://youtube.com/@aiagentex', label: 'YouTube' },
   { icon: <Instagram size={16} />, href: 'https://instagram.com/aiagentex', label: 'Instagram' },
 ];
+
+const API = import.meta.env.VITE_API_URL ?? 'http://localhost:5000/api/v1';
+
+function NewsletterForm() {
+  const [email,   setEmail]   = useState('');
+  const [status,  setStatus]  = useState('idle'); // idle | loading | success | error
+  const [errMsg,  setErrMsg]  = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setStatus('loading');
+    try {
+      const res = await fetch(`${API}/newsletter/subscribe`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ email: email.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error?.message ?? 'Something went wrong');
+      setStatus('success');
+      setEmail('');
+    } catch (err) {
+      setErrMsg(err.message);
+      setStatus('error');
+    }
+  };
+
+  if (status === 'success') {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', background: 'rgba(16,185,129,0.1)', borderRadius: 10, border: '1px solid rgba(16,185,129,0.25)' }}>
+        <CheckCircle size={18} color="#10B981" />
+        <span style={{ fontSize: 14, color: '#10B981', fontFamily: 'var(--font-body)' }}>You're subscribed!</span>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => { setEmail(e.target.value); setStatus('idle'); }}
+        placeholder="Your email"
+        required
+        className="ax-input"
+        style={{ fontSize: 14, padding: '12px 16px' }}
+      />
+      <button
+        type="submit"
+        disabled={status === 'loading'}
+        className="ax-btn ax-btn-primary"
+        style={{ justifyContent: 'center', padding: '12px 20px', fontSize: 14, opacity: status === 'loading' ? 0.7 : 1 }}
+      >
+        {status === 'loading' ? <><Loader size={14} style={{ animation: 'ax-spin-slow 1s linear infinite' }} /> Subscribing…</> : <>Subscribe <ArrowRight size={14} /></>}
+      </button>
+      {status === 'error' && (
+        <p style={{ margin: 0, fontSize: 12, color: '#F87171', fontFamily: 'var(--font-body)' }}>{errMsg}</p>
+      )}
+    </form>
+  );
+}
 
 export default function SiteFooter() {
   return (
@@ -120,17 +183,7 @@ export default function SiteFooter() {
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'rgba(255,255,255,0.5)', marginBottom: 16, marginTop: 0, lineHeight: 1.6 }}>
               Weekly insights on AI automation for Indian businesses.
             </p>
-            <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <input
-                type="email"
-                placeholder="Your email"
-                className="ax-input"
-                style={{ fontSize: 14, padding: '12px 16px' }}
-              />
-              <button type="submit" className="ax-btn ax-btn-primary" style={{ justifyContent: 'center', padding: '12px 20px', fontSize: 14 }}>
-                Subscribe <ArrowRight size={14} />
-              </button>
-            </form>
+            <NewsletterForm />
             <div style={{ marginTop: 24 }}>
               <p className="ax-footer-title">Contact</p>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.5)', margin: 0, lineHeight: 1.8 }}>
@@ -154,7 +207,7 @@ export default function SiteFooter() {
             {[
               { label: 'Privacy Policy',   to: '/privacy' },
               { label: 'Terms of Service', to: '/terms' },
-              { label: 'Refund Policy',    to: '/contact' },
+              { label: 'Refund Policy',    to: '/refund' },
               { label: 'Sitemap',          to: '/sitemap.xml' },
             ].map((l) => (
               <Link key={l.label} to={l.to} style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'rgba(255,255,255,0.35)', textDecoration: 'none', transition: 'color 0.2s' }}

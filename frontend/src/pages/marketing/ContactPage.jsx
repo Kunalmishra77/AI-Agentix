@@ -41,33 +41,226 @@ const TRUST_POINTS = [
   { icon: <Building2 size={18} />, label: '200+ Clients', color: '#E8631A' },
 ];
 
+const iStyle = { width: '100%', background: '#F9FAFB', border: '1px solid #E5E7EB', borderRadius: 10, padding: '12px 16px', fontFamily: 'var(--font-body)', fontSize: 14, color: '#111827', outline: 'none', boxSizing: 'border-box' };
+const labelStyle = { display: 'block', fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 6, fontFamily: 'var(--font-body)' };
+
+function AuditForm({ onSuccess }) {
+  const [fd, setFd] = useState({ name: '', phone: '', email: '', company: '', industry: '', teamSize: '', leadVolume: '', goals: [] });
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState('');
+  const set = e => setFd(p => ({ ...p, [e.target.name]: e.target.value }));
+  const toggleGoal = g => setFd(p => ({ ...p, goals: p.goals.includes(g) ? p.goals.filter(x => x !== g) : [...p.goals, g] }));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); setLoading(true); setErr('');
+    try {
+      const res = await fetch(`${API_BASE}/api/v1/contact`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...fd, goals: fd.goals.join(', '), source: 'Free AI Audit' }) });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error?.message || 'Something went wrong.');
+      onSuccess();
+    } catch (e) { setErr(e.message); } finally { setLoading(false); }
+  };
+
+  const GOALS = ['Lead Follow-up', 'Appointment Booking', 'Customer Support Bot', 'Invoice Processing', 'HR Onboarding', 'WhatsApp Campaigns'];
+
+  return (
+    <motion.form key="audit" onSubmit={handleSubmit} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }}>
+      <div style={{ background: 'linear-gradient(135deg,#FFF7ED,#FFF3E0)', border: '1px solid #FED7AA', borderRadius: 14, padding: '14px 18px', marginBottom: 24, display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+        <Zap size={16} color="#E8631A" style={{ flexShrink: 0, marginTop: 1 }} />
+        <p style={{ margin: 0, fontSize: 13, color: '#92400E', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>We'll analyse your top 3 automation opportunities and send you a <strong>custom AI Audit Report</strong> — free, no pitch, no pressure.</p>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+        {[{name:'name',label:'Full Name',ph:'Rajesh Kumar',req:true},{name:'phone',label:'Phone / WhatsApp',ph:'+91 98765 43210',req:true}].map(f=>(
+          <div key={f.name}><label style={labelStyle}>{f.label}</label><input name={f.name} value={fd[f.name]} onChange={set} placeholder={f.ph} required={f.req} style={iStyle}/></div>
+        ))}
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+        {[{name:'email',label:'Email Address',ph:'rajesh@company.com',type:'email',req:true},{name:'company',label:'Company Name',ph:'Acme Solutions Pvt Ltd'}].map(f=>(
+          <div key={f.name}><label style={labelStyle}>{f.label}</label><input name={f.name} type={f.type||'text'} value={fd[f.name]} onChange={set} placeholder={f.ph} required={f.req} style={iStyle}/></div>
+        ))}
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+        <div>
+          <label style={labelStyle}>Industry</label>
+          <select name="industry" value={fd.industry} onChange={set} style={{...iStyle,appearance:'none'}}>
+            <option value="">Select industry</option>
+            {['Real Estate','Healthcare','Education','Retail & E-commerce','Logistics','Hospitality','Manufacturing','Other'].map(i=><option key={i}>{i}</option>)}
+          </select>
+        </div>
+        <div>
+          <label style={labelStyle}>Team Size</label>
+          <select name="teamSize" value={fd.teamSize} onChange={set} style={{...iStyle,appearance:'none'}}>
+            <option value="">Select team size</option>
+            {['1–10 people','11–50 people','51–200 people','200+ people'].map(i=><option key={i}>{i}</option>)}
+          </select>
+        </div>
+      </div>
+      <div style={{ marginBottom: 24 }}>
+        <label style={labelStyle}>Which areas do you want to automate? <span style={{color:'#9CA3AF',fontWeight:400}}>(select all that apply)</span></label>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+          {GOALS.map(g => (
+            <button key={g} type="button" onClick={() => toggleGoal(g)}
+              style={{ padding: '8px 14px', borderRadius: 8, border: `1.5px solid ${fd.goals.includes(g) ? '#E8631A' : '#E5E7EB'}`, background: fd.goals.includes(g) ? '#FFF7ED' : '#F9FAFB', color: fd.goals.includes(g) ? '#E8631A' : '#374151', fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: fd.goals.includes(g) ? 600 : 400, cursor: 'pointer', transition: 'all 0.15s' }}>
+              {g}
+            </button>
+          ))}
+        </div>
+      </div>
+      {err && <div style={{ background:'#FEF2F2',border:'1px solid #FEE2E2',borderRadius:10,padding:'12px 16px',marginBottom:16,fontSize:13,color:'#DC2626',fontFamily:'var(--font-body)' }}>{err}</div>}
+      <button type="submit" disabled={loading} style={{ width:'100%',display:'flex',alignItems:'center',justifyContent:'center',gap:10,background:loading?'#9CA3AF':'linear-gradient(90deg,#E8631A,#F59E0B)',color:'#fff',fontFamily:'var(--font-display)',fontWeight:700,fontSize:16,padding:'15px 28px',borderRadius:12,border:'none',cursor:loading?'not-allowed':'pointer',boxShadow:loading?'none':'0 6px 24px rgba(232,99,26,0.3)' }}>
+        {loading ? 'Sending...' : <><Zap size={17}/> Request My Free Audit</>}
+      </button>
+    </motion.form>
+  );
+}
+
+function DemoForm({ onSuccess }) {
+  const [fd, setFd] = useState({ name: '', email: '', phone: '', company: '', preferredDate: '', timeSlot: '', demoFocus: '', attendees: '' });
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState('');
+  const set = e => setFd(p => ({ ...p, [e.target.name]: e.target.value }));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); setLoading(true); setErr('');
+    try {
+      const res = await fetch(`${API_BASE}/api/v1/contact`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...fd, source: 'Book a Demo' }) });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error?.message || 'Something went wrong.');
+      onSuccess();
+    } catch (e) { setErr(e.message); } finally { setLoading(false); }
+  };
+
+  return (
+    <motion.form key="demo" onSubmit={handleSubmit} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }}>
+      <div style={{ background: 'linear-gradient(135deg,#EEF2FF,#E0E7FF)', border: '1px solid #C7D2FE', borderRadius: 14, padding: '14px 18px', marginBottom: 24, display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+        <Calendar size={16} color="#6366F1" style={{ flexShrink: 0, marginTop: 1 }} />
+        <p style={{ margin: 0, fontSize: 13, color: '#3730A3', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>Pick a date and we'll set up a <strong>live 45-minute demo</strong> tailored to your industry — you'll see real agents running real workflows.</p>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+        {[{name:'name',label:'Full Name',ph:'Rajesh Kumar',req:true},{name:'email',label:'Email Address',ph:'rajesh@company.com',type:'email',req:true}].map(f=>(
+          <div key={f.name}><label style={labelStyle}>{f.label}</label><input name={f.name} type={f.type||'text'} value={fd[f.name]} onChange={set} placeholder={f.ph} required={f.req} style={iStyle}/></div>
+        ))}
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+        {[{name:'phone',label:'Phone / WhatsApp',ph:'+91 98765 43210'},{name:'company',label:'Company Name',ph:'Acme Solutions Pvt Ltd'}].map(f=>(
+          <div key={f.name}><label style={labelStyle}>{f.label}</label><input name={f.name} value={fd[f.name]} onChange={set} placeholder={f.ph} style={iStyle}/></div>
+        ))}
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+        <div>
+          <label style={labelStyle}>Preferred Date</label>
+          <input name="preferredDate" type="date" value={fd.preferredDate} onChange={set} required min={new Date().toISOString().split('T')[0]} style={iStyle}/>
+        </div>
+        <div>
+          <label style={labelStyle}>Preferred Time Slot</label>
+          <select name="timeSlot" value={fd.timeSlot} onChange={set} required style={{...iStyle,appearance:'none'}}>
+            <option value="">Select time</option>
+            <option>Morning (10 AM – 12 PM)</option>
+            <option>Afternoon (12 PM – 3 PM)</option>
+            <option>Evening (3 PM – 6 PM)</option>
+          </select>
+        </div>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+        <div>
+          <label style={labelStyle}>Demo Focus</label>
+          <select name="demoFocus" value={fd.demoFocus} onChange={set} style={{...iStyle,appearance:'none'}}>
+            <option value="">What should we show?</option>
+            {['Sales & Lead Automation','HR & Hiring Workflows','Customer Support Bot','Finance & Invoicing','Full Platform Overview','Industry-Specific Workflows'].map(i=><option key={i}>{i}</option>)}
+          </select>
+        </div>
+        <div>
+          <label style={labelStyle}>Number of Attendees</label>
+          <select name="attendees" value={fd.attendees} onChange={set} style={{...iStyle,appearance:'none'}}>
+            <option value="">How many joining?</option>
+            {['Just me','2–3 people','4–6 people','7+ people'].map(i=><option key={i}>{i}</option>)}
+          </select>
+        </div>
+      </div>
+      {err && <div style={{ background:'#FEF2F2',border:'1px solid #FEE2E2',borderRadius:10,padding:'12px 16px',marginBottom:16,fontSize:13,color:'#DC2626',fontFamily:'var(--font-body)' }}>{err}</div>}
+      <button type="submit" disabled={loading} style={{ width:'100%',display:'flex',alignItems:'center',justifyContent:'center',gap:10,background:loading?'#9CA3AF':'linear-gradient(135deg,#6366F1,#4F46E5)',color:'#fff',fontFamily:'var(--font-display)',fontWeight:700,fontSize:16,padding:'15px 28px',borderRadius:12,border:'none',cursor:loading?'not-allowed':'pointer',boxShadow:loading?'none':'0 6px 24px rgba(99,102,241,0.35)' }}>
+        {loading ? 'Booking...' : <><Calendar size={17}/> Book My Demo Slot</>}
+      </button>
+    </motion.form>
+  );
+}
+
+function PartnerForm({ onSuccess }) {
+  const [fd, setFd] = useState({ name: '', email: '', phone: '', company: '', website: '', partnerType: '', clientBase: '', message: '' });
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState('');
+  const set = e => setFd(p => ({ ...p, [e.target.name]: e.target.value }));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); setLoading(true); setErr('');
+    try {
+      const res = await fetch(`${API_BASE}/api/v1/contact`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...fd, source: 'Partnership' }) });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error?.message || 'Something went wrong.');
+      onSuccess();
+    } catch (e) { setErr(e.message); } finally { setLoading(false); }
+  };
+
+  const PARTNER_TYPES = ['Digital Agency', 'Business Consultant', 'Tech / SaaS Partner', 'White-label Reseller'];
+
+  return (
+    <motion.form key="partner" onSubmit={handleSubmit} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }}>
+      <div style={{ background: 'linear-gradient(135deg,#ECFDF5,#D1FAE5)', border: '1px solid #A7F3D0', borderRadius: 14, padding: '14px 18px', marginBottom: 24, display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+        <Handshake size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 1 }} />
+        <p style={{ margin: 0, fontSize: 13, color: '#065F46', lineHeight: 1.6, fontFamily: 'var(--font-body)' }}>Join our partner network — offer AI automation to your clients under your brand, earn recurring commissions, and get dedicated partner support.</p>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+        {[{name:'name',label:'Your Name',ph:'Rajesh Kumar',req:true},{name:'email',label:'Email Address',ph:'rajesh@agency.com',type:'email',req:true}].map(f=>(
+          <div key={f.name}><label style={labelStyle}>{f.label}</label><input name={f.name} type={f.type||'text'} value={fd[f.name]} onChange={set} placeholder={f.ph} required={f.req} style={iStyle}/></div>
+        ))}
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+        {[{name:'company',label:'Company / Agency Name',ph:'Growth Digital Agency',req:true},{name:'website',label:'Website URL',ph:'https://youragency.in'}].map(f=>(
+          <div key={f.name}><label style={labelStyle}>{f.label}</label><input name={f.name} value={fd[f.name]} onChange={set} placeholder={f.ph} required={f.req} style={iStyle}/></div>
+        ))}
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <label style={labelStyle}>Partnership Type</label>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+          {PARTNER_TYPES.map(pt => (
+            <button key={pt} type="button" onClick={() => setFd(p => ({...p, partnerType: pt}))}
+              style={{ padding: '8px 16px', borderRadius: 8, border: `1.5px solid ${fd.partnerType === pt ? '#10B981' : '#E5E7EB'}`, background: fd.partnerType === pt ? '#ECFDF5' : '#F9FAFB', color: fd.partnerType === pt ? '#059669' : '#374151', fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: fd.partnerType === pt ? 600 : 400, cursor: 'pointer', transition: 'all 0.15s' }}>
+              {pt}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+        <div>
+          <label style={labelStyle}>Phone / WhatsApp</label>
+          <input name="phone" value={fd.phone} onChange={set} placeholder="+91 98765 43210" style={iStyle}/>
+        </div>
+        <div>
+          <label style={labelStyle}>Current Client Base</label>
+          <select name="clientBase" value={fd.clientBase} onChange={set} style={{...iStyle,appearance:'none'}}>
+            <option value="">How many clients?</option>
+            {['1–5 clients','6–20 clients','21–50 clients','50+ clients'].map(i=><option key={i}>{i}</option>)}
+          </select>
+        </div>
+      </div>
+      <div style={{ marginBottom: 24 }}>
+        <label style={labelStyle}>What are you looking for in this partnership?</label>
+        <textarea name="message" value={fd.message} onChange={set} placeholder="E.g. We want to offer AI automation to our SME clients but lack the tech capability. Looking for white-label solutions with revenue sharing..." rows={4} style={{...iStyle,resize:'vertical',minHeight:90}}/>
+      </div>
+      {err && <div style={{ background:'#FEF2F2',border:'1px solid #FEE2E2',borderRadius:10,padding:'12px 16px',marginBottom:16,fontSize:13,color:'#DC2626',fontFamily:'var(--font-body)' }}>{err}</div>}
+      <button type="submit" disabled={loading} style={{ width:'100%',display:'flex',alignItems:'center',justifyContent:'center',gap:10,background:loading?'#9CA3AF':'linear-gradient(135deg,#10B981,#059669)',color:'#fff',fontFamily:'var(--font-display)',fontWeight:700,fontSize:16,padding:'15px 28px',borderRadius:12,border:'none',cursor:loading?'not-allowed':'pointer',boxShadow:loading?'none':'0 6px 24px rgba(16,185,129,0.35)' }}>
+        {loading ? 'Applying...' : <><Handshake size={17}/> Apply for Partnership</>}
+      </button>
+    </motion.form>
+  );
+}
+
 export default function ContactPage() {
   const [contactType, setContactType] = useState('audit');
   const [openFaq, setOpenFaq] = useState(null);
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '', industry: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [apiError, setApiError] = useState('');
 
-  const handleChange = e => setFormData(p => ({ ...p, [e.target.name]: e.target.value }));
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true); setApiError('');
-    try {
-      const res = await fetch(`${API_BASE}/api/v1/contact`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, source: CONTACT_TYPES.find(t => t.id === contactType)?.label }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data?.error?.message || 'Something went wrong. Please try again.');
-      setSubmitted(true);
-    } catch (err) {
-      setApiError(err.message || 'Failed to send. Please WhatsApp us instead.');
-    } finally { setLoading(false); }
-  };
-
-  const iStyle = { width: '100%', background: '#F9FAFB', border: '1px solid #E5E7EB', borderRadius: 10, padding: '12px 16px', fontFamily: 'var(--font-body)', fontSize: 14, color: '#111827', outline: 'none', boxSizing: 'border-box' };
+  const switchType = (id) => { setContactType(id); setSubmitted(false); };
 
   return (
     <>
@@ -78,7 +271,7 @@ export default function ContactPage() {
       <SiteNav />
 
       {/* ⓀⓀ 1. HERO "" Dark ⓀⓀ */}
-      <section style={{ background: 'linear-gradient(135deg,#0D1B2E 0%,#0F2240 100%)', minHeight: '46vh', display: 'flex', alignItems: 'center', paddingTop: 100, position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: 'linear-gradient(135deg,#0D1B2E 0%,#0F2240 100%)', minHeight: '46vh', display: 'flex', alignItems: 'center', paddingTop: 40, position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '20%', right: '8%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(232,99,26,0.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div className="ax-container" style={{ padding: '60px 40px', textAlign: 'center' }}>
           <motion.div {...up(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(232,99,26,0.12)', border: '1px solid rgba(232,99,26,0.3)', borderRadius: 100, padding: '6px 16px', marginBottom: 24 }}>
@@ -103,7 +296,7 @@ export default function ContactPage() {
             {/* Contact type selector */}
             <motion.div {...left(0)} style={{ display: 'flex', gap: 12, marginBottom: 36, flexWrap: 'wrap' }}>
               {CONTACT_TYPES.map(ct => (
-                <button key={ct.id} onClick={() => setContactType(ct.id)}
+                <button key={ct.id} onClick={() => switchType(ct.id)}
                   style={{ flex: 1, minWidth: 160, display: 'flex', alignItems: 'center', gap: 10, padding: '16px 18px', borderRadius: 14, border: `2px solid ${contactType === ct.id ? ct.color : '#E5E7EB'}`, background: contactType === ct.id ? `${ct.color}08` : '#F9FAFB', cursor: 'pointer', textAlign: 'left', transition: 'all 0.2s' }}>
                   <span style={{ color: contactType === ct.id ? ct.color : '#9CA3AF' }}>{ct.icon}</span>
                   <div>
@@ -118,50 +311,15 @@ export default function ContactPage() {
               {submitted ? (
                 <motion.div key="success" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: '60px 40px', background: '#F0FDF4', borderRadius: 20, border: '1px solid #BBF7D0' }}>
                   <CheckCircle size={56} color="#16A34A" style={{ margin: '0 auto 20px' }} />
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 24, fontWeight: 800, color: '#0D1B2E', marginBottom: 12 }}>Message Received!</h3>
-                  <p style={{ fontSize: 15, color: '#4B5563', fontFamily: 'var(--font-body)', lineHeight: 1.7 }}>We'll reach out within 4 business hours. In the meantime, feel free to WhatsApp us directly for a faster response.</p>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 24, fontWeight: 800, color: '#0D1B2E', marginBottom: 12 }}>We've Got It!</h3>
+                  <p style={{ fontSize: 15, color: '#4B5563', fontFamily: 'var(--font-body)', lineHeight: 1.7 }}>Our team will reach out within 4 business hours. WhatsApp us for a faster response.</p>
                 </motion.div>
+              ) : contactType === 'audit' ? (
+                <AuditForm onSuccess={() => setSubmitted(true)} />
+              ) : contactType === 'demo' ? (
+                <DemoForm onSuccess={() => setSubmitted(true)} />
               ) : (
-                <motion.form key="form" onSubmit={handleSubmit} {...left(0.08)}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
-                    {[
-                      { name: 'name', label: 'Full Name', placeholder: 'Rajesh Kumar', required: true },
-                      { name: 'phone', label: 'Phone / WhatsApp', placeholder: '+91 98765 43210', required: true },
-                    ].map(f => (
-                      <div key={f.name}>
-                        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 6, fontFamily: 'var(--font-body)' }}>{f.label}</label>
-                        <input name={f.name} value={formData[f.name]} onChange={handleChange} placeholder={f.placeholder} required={f.required} style={iStyle} />
-                      </div>
-                    ))}
-                  </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
-                    {[
-                      { name: 'email', label: 'Email Address', placeholder: 'rajesh@company.com', type: 'email', required: true },
-                      { name: 'company', label: 'Company Name', placeholder: 'Acme Solutions Pvt Ltd' },
-                    ].map(f => (
-                      <div key={f.name}>
-                        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 6, fontFamily: 'var(--font-body)' }}>{f.label}</label>
-                        <input name={f.name} type={f.type || 'text'} value={formData[f.name]} onChange={handleChange} placeholder={f.placeholder} required={f.required} style={iStyle} />
-                      </div>
-                    ))}
-                  </div>
-                  <div style={{ marginBottom: 16 }}>
-                    <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 6, fontFamily: 'var(--font-body)' }}>Industry</label>
-                    <select name="industry" value={formData.industry} onChange={handleChange} style={{ ...iStyle, appearance: 'none' }}>
-                      <option value="">Select your industry</option>
-                      {['Real Estate', 'Healthcare', 'Education', 'Retail & E-commerce', 'Logistics', 'Hospitality', 'Manufacturing', 'Other'].map(i => <option key={i} value={i}>{i}</option>)}
-                    </select>
-                  </div>
-                  <div style={{ marginBottom: 24 }}>
-                    <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 6, fontFamily: 'var(--font-body)' }}>What's the workflow problem you want to automate?</label>
-                    <textarea name="message" value={formData.message} onChange={handleChange} placeholder="E.g. We get 500+ leads a month but our team can't follow up fast enough. We lose 60% of leads to competitors who respond faster..." rows={4} style={{ ...iStyle, resize: 'vertical', minHeight: 100 }} />
-                  </div>
-                  {apiError && <div style={{ background: '#FEF2F2', border: '1px solid #FEE2E2', borderRadius: 10, padding: '12px 16px', marginBottom: 16, fontSize: 13, color: '#DC2626', fontFamily: 'var(--font-body)' }}>{apiError}</div>}
-                  <button type="submit" disabled={loading}
-                    style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, background: loading ? '#9CA3AF' : 'linear-gradient(90deg,#E8631A,#F59E0B)', color: '#fff', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 16, padding: '15px 28px', borderRadius: 12, border: 'none', cursor: loading ? 'not-allowed' : 'pointer', boxShadow: loading ? 'none' : '0 6px 24px rgba(232,99,26,0.3)' }}>
-                    {loading ? 'Sending...' : 'Send Message'} {!loading && <ArrowRight size={17} />}
-                  </button>
-                </motion.form>
+                <PartnerForm onSuccess={() => setSubmitted(true)} />
               )}
             </AnimatePresence>
           </div>

@@ -17,6 +17,7 @@ const SOLUTIONS_MEGA = [
   { label: 'Finance & Accounts',    to: '/solutions/finance-accounts',      icon: <BarChart3 size={18} />,   desc: 'Auto-reconciliation, invoicing & GST filing' },
   { label: 'AI Voice & Chat',       to: '/solutions/ai-voice-chat',         icon: <Bot size={18} />,         desc: '24/7 voice agents & WhatsApp bots' },
   { label: 'Manufacturing',         to: '/solutions/manufacturing',         icon: <Factory size={18} />,     desc: 'Predictive maintenance & quality inspection' },
+  { label: 'Hospital Management',   to: '/solutions/hospital-management',   icon: <Heart size={18} />,       desc: 'End-to-end HMS automation for modern hospitals' },
 ];
 
 const INDUSTRIES_MEGA = [
