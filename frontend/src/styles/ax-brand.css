@@ -337,6 +337,10 @@
   display: flex; gap: 32px; align-items: center;
   width: max-content;
   animation: ax-marquee 28s linear infinite;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 .ax-marquee-track:hover .ax-marquee-inner { animation-play-state: paused; }
 
@@ -368,9 +372,23 @@
 .ax-mq-track {
   display: flex; align-items: center; width: max-content;
   animation: ax-scroll-left 48s linear infinite;
-  will-change: transform;
+  /* GPU acceleration — prevents iOS Safari from pausing animation */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 .ax-mq-wrap:hover .ax-mq-track { animation-play-state: paused; }
+
+/* iOS Safari fix: mask-image blocks child CSS animations.
+   Remove it on mobile so the scrolling animation runs. */
+@media (max-width: 768px) {
+  .ax-mq-wrap,
+  .ax-marquee-track {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+}
 .ax-mq-pill {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 10px 20px; margin: 0 8px;
@@ -923,4 +941,199 @@ img, video, iframe { max-width: 100%; height: auto; display: block; }
 .scroll-top-btn:hover {
   background: rgba(232, 99, 26, 0.15);
   border-color: #E8631A;
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE v3 — Global section & component overrides
+   Applied to all pages via ax-brand.css global import
+   ══════════════════════════════════════════════════════ */
+
+/* ── Overflow prevention ─────────────────────────────── */
+section, article { overflow-x: hidden; }
+
+/* ── Section vertical padding (inline-style targets) ─── */
+@media (max-width: 768px) {
+  section[style*="padding: 100px 0"]  { padding: 64px 0 !important; }
+  section[style*="padding: 96px 0"]   { padding: 56px 0 !important; }
+  section[style*="padding: 80px 0"]   { padding: 52px 0 !important; }
+  section[style*="padding: 120px 0"]  { padding: 72px 0 !important; }
+}
+@media (max-width: 480px) {
+  section[style*="padding: 100px 0"]  { padding: 48px 0 !important; }
+  section[style*="padding: 96px 0"]   { padding: 44px 0 !important; }
+  section[style*="padding: 80px 0"]   { padding: 40px 0 !important; }
+  section[style*="padding: 120px 0"]  { padding: 56px 0 !important; }
+}
+
+/* ── Hero full-viewport section (inline height: 100vh) ── */
+@media (max-width: 768px) {
+  section[style*="height: 100vh"] {
+    height: auto !important;
+    min-height: 100svh !important;
+    padding-top: 96px !important;
+    padding-bottom: 60px !important;
+  }
+}
+@media (max-width: 480px) {
+  section[style*="height: 100vh"] {
+    min-height: 0 !important;
+    padding-top: 88px !important;
+    padding-bottom: 48px !important;
+  }
+}
+
+/* ── Inline 1fr 1fr grids → single col on narrow screens ── */
+@media (max-width: 560px) {
+  div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Footer partner marquee strip ─────────────────────── */
+@media (max-width: 768px) {
+  .ax-footer > div:first-child {
+    padding-top: 32px !important;
+    padding-bottom: 24px !important;
+    margin-bottom: 40px !important;
+  }
+}
+@media (max-width: 480px) {
+  .ax-footer > div:first-child {
+    padding-top: 24px !important;
+    padding-bottom: 18px !important;
+    margin-bottom: 28px !important;
+  }
+}
+
+/* ── Testimonial card width on narrow screens ────────── */
+@media (max-width: 480px) {
+  .ax-tm-card {
+    width: clamp(260px, 82vw, 320px) !important;
+    padding: 20px 16px !important;
+  }
+}
+
+/* ── Side-panel grid: tab list to horizontal row below 960px ── */
+@media (max-width: 960px) {
+  .ax-side-panel-grid > *:last-child {
+    overflow-x: hidden;
+    min-width: 0;
+  }
+}
+
+/* ── WhatsApp button: tuck in on small screens ─────────── */
+@media (max-width: 480px) {
+  .ax-whatsapp-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   DEEP RESPONSIVE v4 — Inner pages & global patterns
+   ══════════════════════════════════════════════════════ */
+
+/* ── Inner page hero sections: fix nav overlap on mobile ── */
+/* Solution/Industry pages use minHeight:90vh with paddingTop:40px.
+   Nav is 72px fixed — content can overlap. */
+@media (max-width: 768px) {
+  section[style*="min-height: 90vh"] { padding-top: 96px !important; }
+  section[style*="minHeight: 90vh"]  { padding-top: 96px !important; }
+  section[style*="min-height: 95vh"] { padding-top: 96px !important; }
+  section[style*="min-height: 100vh"] { padding-top: 96px !important; }
+}
+@media (max-width: 480px) {
+  section[style*="min-height: 90vh"] { padding-top: 88px !important; min-height: 0 !important; }
+  section[style*="min-height: 95vh"] { padding-top: 88px !important; min-height: 0 !important; }
+}
+
+/* ── Grids with fixed pixel columns collapse to 1-col ─── */
+@media (max-width: 768px) {
+  /* e.g. grid-template-columns: 170px 1fr or 1fr 170px (result cards) */
+  div[style*="grid-template-columns: 170px"],
+  div[style*="grid-template-columns: 1fr 170px"],
+  div[style*="grid-template-columns: 240px"],
+  div[style*="grid-template-columns: 280px"],
+  div[style*="grid-template-columns: 300px"],
+  div[style*="grid-template-columns: 320px"] {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+/* ── 3-col grids: 2-col at 768px ───────────────────────── */
+@media (max-width: 768px) {
+  div[style*="grid-template-columns: repeat(3"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  div[style*="grid-template-columns: 1fr 1fr 1fr"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+@media (max-width: 480px) {
+  div[style*="grid-template-columns: repeat(3"] {
+    grid-template-columns: 1fr !important;
+  }
+  div[style*="grid-template-columns: 1fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── 2-col grids with large gap: collapse at 768px ────── */
+/* catches heroSplit grids like SalesAutomationPage hero */
+@media (max-width: 768px) {
+  div[style*="grid-template-columns: 1fr 1fr"][style*="gap: 60"],
+  div[style*="grid-template-columns: 1fr 1fr"][style*="gap: 80"],
+  div[style*="grid-template-columns: 1fr 1fr"][style*="gap: 48"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+/* ── Flex rows: wrap and justify on mobile ─────────────── */
+@media (max-width: 480px) {
+  div[style*="display: flex"][style*="gap: 28px"],
+  div[style*="display: flex"][style*="gap: 32px"] {
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+}
+
+/* ── Large gap reductions on inner page grids ──────────── */
+@media (max-width: 768px) {
+  div[style*="gap: 80px"]  { gap: 40px !important; }
+  div[style*="gap: 64px"]  { gap: 32px !important; }
+  div[style*="gap: 60px"]  { gap: 28px !important; }
+}
+@media (max-width: 480px) {
+  div[style*="gap: 80px"]  { gap: 24px !important; }
+  div[style*="gap: 64px"]  { gap: 20px !important; }
+  div[style*="gap: 60px"]  { gap: 16px !important; }
+  div[style*="gap: 48px"]  { gap: 16px !important; }
+}
+
+/* ── Sticky positioned elements on mobile ─────────────── */
+@media (max-width: 900px) {
+  div[style*="position: sticky"] {
+    position: static !important;
+    top: auto !important;
+  }
+}
+
+/* ── Inner page section font size floors ──────────────── */
+@media (max-width: 480px) {
+  /* Headings inside inner page hero sections */
+  section[style*="min-height"] h1[style*="font-size"],
+  section[style*="min-height"] h2[style*="font-size"] {
+    font-size: clamp(28px, 7vw, 48px) !important;
+    line-height: 1.15 !important;
+  }
+}
+
+/* ── Remove translateY offsets on mobile (cause overlap) ── */
+@media (max-width: 768px) {
+  div[style*="translateY(-36px)"] { transform: none !important; }
+  div[style*="translateY(-80px)"] { transform: none !important; }
 }

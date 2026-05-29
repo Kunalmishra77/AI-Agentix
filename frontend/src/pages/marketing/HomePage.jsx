@@ -758,12 +758,18 @@ const RESPONSIVE_CSS = `
 .ax-result-stats-row > div:first-child { padding-left: 0; }
 .ax-result-stats-row > div:last-child { border-right: none; }
 @media (max-width: 900px) {
-  .ax-result-card { grid-template-columns: 1fr; gap: 20px; }
+  /* !important overrides the inline gridTemplateColumns style on this element */
+  .ax-result-card { grid-template-columns: 1fr !important; gap: 20px; }
   .ax-result-body { grid-template-columns: 1fr; gap: 16px; }
 }
 @media (max-width: 600px) {
   .ax-result-stats-row { flex-wrap: wrap; }
-  .ax-result-stats-row > div { min-width: 90px; margin-bottom: 12px; border-right: none; }
+  .ax-result-stats-row > div { min-width: 90px; margin-bottom: 12px; border-right: none; padding: 0 8px; }
+}
+@media (max-width: 480px) {
+  .ax-result-stats-row { flex-direction: column; gap: 12px; }
+  .ax-result-stats-row > div { border-right: none; padding: 0; text-align: left; }
+  .ax-result-stats-row--light { border-top: 1px solid #E5E7EB !important; }
 }
 
 /* Why Us comparison v2 */
@@ -787,6 +793,75 @@ const RESPONSIVE_CSS = `
   .ax-roi-grid > div:nth-child(2n) { border-right: none !important; }
   .ax-roi-grid > div:nth-child(n+3) { border-top: 1px solid #E5E7EB; padding-top: 24px; margin-top: 8px; }
 }
+
+/* ── Hero section: height/padding via class ── */
+.ax-hero-sec {
+  height: 100vh; min-height: 640px;
+  display: flex; align-items: center;
+  padding-top: 80px; padding-bottom: 0;
+  box-sizing: border-box;
+}
+@media (max-width: 768px) {
+  .ax-hero-sec { height: auto; min-height: 100svh; padding-top: 96px; padding-bottom: 56px; }
+}
+@media (max-width: 480px) {
+  .ax-hero-sec { min-height: 0; padding-top: 88px; padding-bottom: 48px; }
+}
+
+/* ── Tab panels (Build + Solutions) ── */
+.ax-tab-panel { padding: 40px; }
+@media (max-width: 960px) { .ax-tab-panel { padding: 28px 24px; } }
+@media (max-width: 480px)  { .ax-tab-panel { padding: 20px 16px; } }
+
+/* ── Features 2-col grid inside tab panel ── */
+.ax-feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
+@media (max-width: 560px) { .ax-feat-grid { grid-template-columns: 1fr; } }
+
+/* ── How It Works: timeline right panel ── */
+.ax-how-right { position: relative; padding-left: 48px; }
+@media (max-width: 900px) { .ax-how-right { padding-left: 40px; } }
+@media (max-width: 480px) { .ax-how-right { padding-left: 28px; } }
+
+/* ── Result card outer padding ── */
+.ax-result-card-outer { padding: 36px 40px; }
+@media (max-width: 768px) { .ax-result-card-outer { padding: 24px 20px; } }
+@media (max-width: 480px) { .ax-result-card-outer { padding: 18px 16px; } }
+
+/* ── CountUpStat: padding on mobile ── */
+@media (max-width: 480px) {
+  .ax-stats-grid > div { padding: 0 8px; }
+}
+
+/* ── Pain section bottom banner ── */
+@media (max-width: 600px) {
+  .ax-pain-bottom { flex-direction: column !important; align-items: flex-start !important; }
+  .ax-pain-bottom a { width: 100%; justify-content: center; }
+}
+
+/* ── Hero CTA buttons: full-width on mobile ── */
+@media (max-width: 480px) {
+  .ax-hero-ctas { flex-direction: column; gap: 12px; }
+  .ax-hero-cta-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    font-size: 15px !important;
+    padding: 14px 20px !important;
+  }
+}
+
+/* ── Hero mini stats row: 2-col on very small screens ── */
+@media (max-width: 360px) {
+  .ax-hero-grid > div > div[style*="gap: 28px"] {
+    gap: 16px !important;
+  }
+}
+
+/* ── Scroll hint: hide on very small screens ── */
+@media (max-width: 480px) {
+  .ax-hero-sec [style*="position: absolute"][style*="bottom: 24"] {
+    display: none;
+  }
+}
 `;
 
 /* Testimonial marquee CSS only (ax-mq-* now in ax-brand.css) */
@@ -796,9 +871,19 @@ const MARQUEE_CSS = `
 .ax-tm-track {
   display: flex; width: max-content; align-items: stretch;
   animation: ax-tm-scroll 70s linear infinite;
-  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 .ax-tm-wrap:hover .ax-tm-track { animation-play-state: paused; }
+/* iOS Safari: mask-image blocks CSS animations — remove on mobile */
+@media (max-width: 768px) {
+  .ax-tm-wrap {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+}
 .ax-tm-card {
   width: 340px; flex-shrink: 0; margin: 0 10px;
   background: rgba(255,255,255,0.04);
@@ -891,7 +976,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           1. HERO — Dark #0D1B2E, 2-col split
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: 'linear-gradient(135deg, #0D1B2E 0%, #0F2240 60%, #0D1B2E 100%)', height: '100vh', minHeight: 640, display: 'flex', alignItems: 'center', paddingTop: 80, paddingBottom: 0, boxSizing: 'border-box', position: 'relative', overflow: 'hidden' }}>
+      <section className="ax-hero-sec" style={{ background: 'linear-gradient(135deg, #0D1B2E 0%, #0F2240 60%, #0D1B2E 100%)', position: 'relative', overflow: 'hidden' }}>
         {/* Subtle grid overlay */}
         <div className="ax-hero-grid-bg" />
         {/* Ambient glows */}
@@ -908,18 +993,20 @@ export default function HomePage() {
 
             <motion.h1 {...up(0.08)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(40px,4.5vw,64px)', fontWeight: 800, color: '#fff', lineHeight: 1.1, marginBottom: 24 }}>
               Your Business,<br />
-              <RotatingWord />
+              <span style={{ display: 'inline-block', minHeight: '1.15em', verticalAlign: 'top' }}>
+                <RotatingWord />
+              </span>
             </motion.h1>
 
             <motion.p {...up(0.16)} style={{ fontSize: 18, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, marginBottom: 36, maxWidth: 500, fontFamily: 'var(--font-body)' }}>
               We build AI agents and automation systems that qualify leads in seconds, resolve support tickets automatically, and run your operations 24/7 — without adding headcount.
             </motion.p>
 
-            <motion.div {...up(0.22)} style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 32 }}>
-              <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'linear-gradient(90deg, #E8631A, #F59E0B)', color: '#fff', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, padding: '14px 28px', borderRadius: 12, textDecoration: 'none', boxShadow: '0 8px 28px rgba(232,99,26,0.38)' }}>
+            <motion.div {...up(0.22)} className="ax-hero-ctas" style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 32 }}>
+              <Link to="/contact" className="ax-hero-cta-btn" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'linear-gradient(90deg, #E8631A, #F59E0B)', color: '#fff', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, padding: '14px 28px', borderRadius: 12, textDecoration: 'none', boxShadow: '0 8px 28px rgba(232,99,26,0.38)' }}>
                 Book Free Strategy Call <ArrowRight size={18} />
               </Link>
-              <Link to="/case-studies" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.15)', color: '#fff', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, padding: '14px 28px', borderRadius: 12, textDecoration: 'none' }}>
+              <Link to="/case-studies" className="ax-hero-cta-btn" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.15)', color: '#fff', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, padding: '14px 28px', borderRadius: 12, textDecoration: 'none' }}>
                 <Play size={16} fill="currentColor" /> Watch Results
               </Link>
             </motion.div>
@@ -1052,7 +1139,7 @@ export default function HomePage() {
             ))}
           </div>
 
-          <motion.div {...up(0.38)} style={{ marginTop: 32, background: '#FEF2F2', border: '1px solid #FEE2E2', borderRadius: 16, padding: '20px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
+          <motion.div {...up(0.38)} className="ax-pain-bottom" style={{ marginTop: 32, background: '#FEF2F2', border: '1px solid #FEE2E2', borderRadius: 16, padding: '20px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               <AlertCircle size={20} color="#DC2626" />
               <span style={{ fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 700, color: '#111827' }}>
@@ -1119,13 +1206,14 @@ export default function HomePage() {
               <motion.div key={buildTab}
                 initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.35 }}
-                style={{ background: '#fff', border: `1px solid ${BUILD_TABS[buildTab].color}25`, borderRadius: 20, padding: 40, boxShadow: '0 4px 32px rgba(0,0,0,0.06)' }}>
+                className="ax-tab-panel"
+                style={{ background: '#fff', border: `1px solid ${BUILD_TABS[buildTab].color}25`, borderRadius: 20, boxShadow: '0 4px 32px rgba(0,0,0,0.06)' }}>
                 <div style={{ display: 'inline-block', background: `${BUILD_TABS[buildTab].color}12`, border: `1px solid ${BUILD_TABS[buildTab].color}35`, borderRadius: 8, padding: '4px 12px', marginBottom: 20 }}>
                   <span style={{ fontSize: 12, fontWeight: 600, color: BUILD_TABS[buildTab].color, fontFamily: 'var(--font-body)' }}>{BUILD_TABS[buildTab].label}</span>
                 </div>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 800, color: '#0D1B2E', marginBottom: 14 }}>{BUILD_TABS[buildTab].headline}</h3>
                 <p style={{ fontSize: 15, color: '#4B5563', lineHeight: 1.7, marginBottom: 28, fontFamily: 'var(--font-body)' }}>{BUILD_TABS[buildTab].desc}</p>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 28 }}>
+                <div className="ax-feat-grid">
                   {BUILD_TABS[buildTab].features.map(f => (
                     <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                       <CheckCircle size={15} color={BUILD_TABS[buildTab].color} />
@@ -1208,7 +1296,7 @@ export default function HomePage() {
           </div>
 
           {/* Right: timeline */}
-          <div style={{ position: 'relative', paddingLeft: 48 }}>
+          <div className="ax-how-right">
             {/* Vertical line */}
             <div style={{ position: 'absolute', left: 16, top: 24, bottom: 24, width: 2, background: 'linear-gradient(to bottom, #E8631A, #6366F1)' }} />
 
@@ -1258,7 +1346,8 @@ export default function HomePage() {
               <motion.div key={activeSolution}
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.3 }}
-                style={{ background: '#fff', border: `1px solid ${activeSol?.color || '#E8631A'}25`, borderRadius: 20, padding: 44, boxShadow: '0 4px 32px rgba(0,0,0,0.07)' }}>
+                className="ax-tab-panel"
+                style={{ background: '#fff', border: `1px solid ${activeSol?.color || '#E8631A'}25`, borderRadius: 20, boxShadow: '0 4px 32px rgba(0,0,0,0.07)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
                   <div style={{ width: 44, height: 44, borderRadius: 12, background: `${activeSol?.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: activeSol?.color }}>
                     {activeSol?.icon}
@@ -1376,7 +1465,8 @@ export default function HomePage() {
               );
               return (
                 <motion.div key={r.company} {...up(i * 0.1)}
-                  style={{ background: '#fff', border: `1px solid #E5E7EB`, borderRadius: 16, padding: '36px 40px',
+                  className="ax-result-card-outer"
+                  style={{ background: '#fff', border: `1px solid #E5E7EB`, borderRadius: 16,
                     borderLeft: flipped ? 'none' : `4px solid ${r.color}`,
                     borderRight: flipped ? `4px solid ${r.color}` : 'none',
                     boxShadow: '0 2px 16px rgba(0,0,0,0.05)',
