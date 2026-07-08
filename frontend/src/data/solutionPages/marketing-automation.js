@@ -49,6 +49,23 @@ export default {
         points: ['Topic cluster automation', 'Keyword opportunity alerts', 'Content brief generation', 'On-page SEO enforcement'] },
     ],
   },
+  signature: {
+    type: 'calculator',
+    eyebrow: 'Content Output Calculator',
+    heading: 'See how much more your team could ship',
+    body: 'Set your current output — watch what a 6x AI content engine unlocks, live.',
+    note: 'Estimates based on a 6x output multiplier and ~₹40 AI cost per piece across deployed clients. Your results will vary.',
+    inputs: [
+      { key: 'pieces', label: 'Content pieces / month (today)', min: 2, max: 40, step: 1, default: 4 },
+      { key: 'team', label: 'Marketers on the team', min: 1, max: 20, step: 1, default: 3 },
+      { key: 'cost', label: 'Avg cost per piece', min: 500, max: 12000, step: 500, default: 3000, prefix: '₹' },
+    ],
+    outputs: [
+      { key: 'output', label: 'Content pieces / month with AI', compute: (v) => v.pieces * 6 },
+      { key: 'hours', label: 'Team hours freed / month', unit: 'hrs', compute: (v) => v.team * 60 },
+      { key: 'saved', label: 'Production cost saved / month', prefix: '₹', compute: (v) => v.pieces * v.cost * 5 },
+    ],
+  },
   process: {
     eyebrow: 'The Marketing Engine',
     heading: 'Strategy to revenue — fully connected',

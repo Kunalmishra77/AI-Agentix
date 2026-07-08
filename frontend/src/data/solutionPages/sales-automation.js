@@ -57,6 +57,25 @@ export default {
         points: ['Rep performance tracking', 'Conversion funnel views', 'Revenue forecasting', 'Custom report builder'] },
     ],
   },
+  signature: {
+    type: 'calculator',
+    eyebrow: 'Sales ROI Calculator',
+    heading: 'See what automation could add to your pipeline',
+    body: 'Move the sliders to your numbers — watch the impact update live.',
+    note: 'Estimates based on a 3.4x qualified-meeting uplift and 25% meeting-to-close rate across deployed clients. Your results will vary.',
+    inputs: [
+      { key: 'leads', label: 'Inbound leads / month', min: 50, max: 5000, step: 50, default: 600 },
+      { key: 'deal', label: 'Average deal value', min: 5000, max: 500000, step: 5000, default: 60000, prefix: '₹' },
+      { key: 'conv', label: 'Current lead → meeting rate', min: 1, max: 25, step: 1, default: 6, unit: '%' },
+    ],
+    outputs: [
+      { key: 'meetings', label: 'Qualified meetings / month', compute: (v) => (v.leads * v.conv / 100) * 3.4 },
+      { key: 'revenue', label: 'Added revenue / month', prefix: '₹',
+        compute: (v) => (v.leads * v.conv / 100) * 2.4 * 0.25 * v.deal },
+      { key: 'annual', label: 'Added revenue / year', prefix: '₹',
+        compute: (v) => (v.leads * v.conv / 100) * 2.4 * 0.25 * v.deal * 12 },
+    ],
+  },
   process: {
     eyebrow: 'The Process',
     heading: 'From first touch to closed deal — end to end',

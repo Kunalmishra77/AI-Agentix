@@ -19,12 +19,30 @@ Canonical order + tone:
 | 1 | Hero (bg image, 100vh) | dark |
 | 2 | Stats band (full-width) | white |
 | 3 | Capabilities (tabbed + image) | alt |
-| 4 | Process (numbered) | white |
-| 5 | Integrations (logo grid) | alt |
-| 6 | Compare (table) | white |
-| 7 | Results (cards) | alt |
-| 8 | FAQ (accordion) | white |
-| 9 | CTA (dark card *inside* light section) | white |
+| 4 | **Signature block (unique per page)** | accent-soft |
+| 5 | Process (numbered) | white |
+| 6 | Integrations (logo grid) | alt |
+| 7 | Compare (table) | white |
+| 8 | Results (cards) | alt |
+| 9 | FAQ (accordion) | white |
+| 10 | CTA (dark card *inside* light section) | white |
+
+### Signature block — every page gets exactly ONE (decided with user)
+
+Same skeleton on every page, but each page carries ONE distinctive, interactive
+block tuned to its topic — so pages feel crafted, not copy-pasted, without breaking
+cohesion. It sits at slot #4 on an **accent-soft** band (distinct from white/alt, so
+it reads as "special" and never clashes with neighbours).
+
+Data-driven via `data.signature`, dispatched by `SolutionSignature.jsx` on `type`:
+- `calculator` → `SignatureCalculator.jsx` — interactive sliders + live formulas.
+  Each page defines its own `inputs` (sliders) and `outputs` (`compute` functions —
+  data files are JS modules, so real functions live in the data). Fits Sales (ROI),
+  Marketing (content output), Finance (savings), HR (time-to-hire), etc.
+- Add new types (demo player, flow diagram, live feed) for pages a calculator
+  doesn't suit (Voice/Chat, Hospital, Manufacturing). Register them in SolutionSignature.
+
+Every page MUST have a signature block; pick the type that best fits the topic.
 
 ## 2. Content placement logic
 

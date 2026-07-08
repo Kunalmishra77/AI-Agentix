@@ -9,6 +9,7 @@ import ScrollToHash from '../components/common/ScrollToHash'
 import SolutionHero from '../components/solution-detail/SolutionHero'
 import SolutionStats from '../components/solution-detail/SolutionStats'
 import SolutionCapabilities from '../components/solution-detail/SolutionCapabilities'
+import SolutionSignature from '../components/solution-detail/SolutionSignature'
 import SolutionProcess from '../components/solution-detail/SolutionProcess'
 import SolutionIntegrations from '../components/solution-detail/SolutionIntegrations'
 import SolutionCompare from '../components/solution-detail/SolutionCompare'
@@ -36,6 +37,7 @@ export default function SolutionDetailPage() {
         <SolutionHero hero={data.hero} image={data.heroImage} />
         {data.stats && <SolutionStats stats={data.stats} />}
         {data.capabilities && <SolutionCapabilities capabilities={data.capabilities} />}
+        {data.signature && <SolutionSignature signature={data.signature} />}
         {data.process && <SolutionProcess process={data.process} />}
         {data.integrations && <SolutionIntegrations integrations={data.integrations} />}
         {data.compare && <SolutionCompare compare={data.compare} />}
