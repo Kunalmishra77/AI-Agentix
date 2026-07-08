@@ -12,7 +12,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative flex min-h-[760px] flex-col overflow-hidden bg-ink text-white md:min-h-[880px]">
+    <section className="relative flex h-screen min-h-[600px] flex-col overflow-hidden bg-ink text-white">
       {/* HERO BACKGROUND — full-bleed image (swap for a final branded shot later) */}
       <div className="absolute inset-0" aria-hidden data-asset="hero-background-image (1920x1080, AI/business scene)">
         <div
@@ -29,19 +29,19 @@ export default function Hero() {
         />
       </div>
 
-      <div className="container-x relative z-10 flex flex-1 flex-col justify-center pt-32 pb-8 md:pt-36">
+      <div className="container-x relative z-10 flex flex-1 flex-col justify-center pt-20 pb-2 md:pt-24">
         <motion.div
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.21, 0.5, 0.25, 1] }}
           className="max-w-4xl"
         >
-          <p className="flex items-center gap-2.5 text-lg font-medium text-white/85 md:text-xl">
+          <p className="flex items-center gap-2.5 text-base font-medium text-white/85 md:text-lg">
             <span className="h-2 w-2 rounded-full bg-accent" />
             {hero.eyebrow}
           </p>
 
-          <h1 className="mt-5 text-hero font-display font-bold leading-[1.05] text-white">
+          <h1 className="mt-4 text-hero font-display font-bold leading-[1.03] text-white">
             {hero.headingPrefix}
             <br className="hidden sm:block" />{' '}
             <span className="relative inline-block align-baseline">
@@ -60,9 +60,9 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">{hero.body}</p>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-white/70">{hero.body}</p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-6 flex flex-wrap items-center gap-3">
             {hero.ctas.map((c) => (
               <Link
                 key={c.label}
@@ -75,7 +75,7 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="mt-6 flex items-center gap-2 text-sm text-white/65">
+          <div className="mt-5 flex items-center gap-2 text-sm text-white/65">
             <span className="flex text-accent">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star key={i} className="h-4 w-4 fill-current" />
@@ -88,7 +88,7 @@ export default function Hero() {
 
       {/* ADDEPTO-style service band — dark gradient panel over the hero image,
           left-aligned ~2/3 width, flush, vertical dividers with a tick per column */}
-      <div className="container-x relative z-10 pb-10 md:pb-12">
+      <div className="container-x relative z-10 pb-6 md:pb-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -96,10 +96,10 @@ export default function Hero() {
           className="grid max-w-full divide-y divide-white/15 border-t border-white/20 bg-gradient-to-r from-ink/85 via-ink/60 to-ink/10 backdrop-blur-[2px] sm:max-w-[880px] sm:grid-cols-3 sm:divide-x sm:divide-y-0"
         >
           {hero.serviceBand.map((s) => (
-            <div key={s.title} className="relative p-6 md:p-7">
-              <span className="absolute left-0 top-0 h-5 w-[3px] bg-accent" />
-              <h3 className="text-base font-bold text-white md:text-lg">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/60">{s.text}</p>
+            <div key={s.title} className="relative px-5 py-4 md:px-6 md:py-5">
+              <span className="absolute left-0 top-0 h-4 w-[3px] bg-accent" />
+              <h3 className="text-sm font-bold text-white md:text-base">{s.title}</h3>
+              <p className="mt-1.5 text-[13px] leading-snug text-white/60">{s.text}</p>
             </div>
           ))}
         </motion.div>

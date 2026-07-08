@@ -1,14 +1,11 @@
 import { Link } from 'react-router-dom'
 import { cn } from '../../lib/cn'
 
-/** AGENTiX wordmark — A + i in orange, GENT + X in white/ink (per brand). */
-export default function Logo({ dark = true, className = '' }) {
-  const base = dark ? 'text-white' : 'text-heading'
+/** Real AGENTiX brand logo (light/orange variant, for dark backgrounds). */
+export default function Logo({ className = '', imgClassName = 'h-11' }) {
   return (
     <Link to="/" aria-label="AGENTiX Home" className={cn('inline-flex items-center', className)}>
-      <span className={cn('font-display text-xl font-extrabold tracking-tight', base)}>
-        <span className="text-accent">A</span>GENT<span className="text-accent">i</span>X
-      </span>
+      <img src="/agentix-logo-white.png" alt="AGENTiX" className={cn('w-auto', imgClassName)} />
     </Link>
   )
 }
