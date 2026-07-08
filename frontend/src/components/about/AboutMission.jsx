@@ -6,7 +6,7 @@ import { mission } from '../../data/about'
 
 export default function AboutMission() {
   return (
-    <Section tone="alt">
+    <Section tone="alt" id="mission" className="scroll-mt-20">
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
         {/* left: mission */}
         <div>
@@ -28,30 +28,42 @@ export default function AboutMission() {
           </ul>
         </div>
 
-        {/* right: image + overlapping 2026 targets panel */}
-        <Reveal className="relative">
-          <div
-            className="h-56 w-full overflow-hidden rounded-3xl bg-cover bg-center md:h-64"
-            style={{ backgroundImage: 'url(/AGENTIX-MEDIAS/aiagent.webp)' }}
-            data-asset="about-mission-image"
-          />
-          <div className="relative z-10 -mt-14 ml-auto mr-0 w-[92%] overflow-hidden rounded-3xl bg-ink p-8 shadow-float md:p-9">
+        {/* right: image by default, hover reveals the 2026 targets */}
+        <Reveal>
+          <div className="group relative h-[420px] overflow-hidden rounded-3xl md:h-[460px]" data-asset="about-mission-image">
+            {/* image */}
             <div
-              className="pointer-events-none absolute inset-0 opacity-70"
-              aria-hidden
-              style={{ backgroundImage: 'radial-gradient(50% 50% at 100% 0%, rgba(242,101,34,0.25) 0%, transparent 60%)' }}
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+              style={{ backgroundImage: 'url(/AGENTIX-MEDIAS/aiagent.webp)' }}
             />
-            <div className="relative z-10">
-              <div className="mb-6 inline-flex items-center gap-2 rounded-pill bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white">
+            {/* default state (lg): bottom gradient + badge + hint */}
+            <div className="absolute inset-0 hidden bg-gradient-to-t from-ink/85 via-transparent to-transparent transition-opacity duration-300 group-hover:opacity-0 lg:block" />
+            <div className="absolute inset-x-6 bottom-6 hidden items-center justify-between transition-opacity duration-300 group-hover:opacity-0 lg:flex">
+              <span className="inline-flex items-center gap-2 rounded-pill bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white backdrop-blur">
                 <Target className="h-4 w-4 text-accent" /> {mission.targets.title}
-              </div>
-              <div className="grid gap-6 sm:grid-cols-2">
-                {mission.targets.items.map((t) => (
-                  <div key={t.label} className="border-t border-white/10 pt-4">
-                    <div className="text-3xl font-extrabold text-accent">{t.value}</div>
-                    <p className="mt-2 text-sm leading-snug text-ink-muted">{t.label}</p>
-                  </div>
-                ))}
+              </span>
+              <span className="text-xs font-medium text-white/70">Hover to view →</span>
+            </div>
+
+            {/* hover overlay: targets (always shown on mobile, reveal on hover ≥lg) */}
+            <div className="absolute inset-0 flex flex-col justify-center bg-ink/95 p-8 opacity-100 transition-opacity duration-300 lg:p-10 lg:opacity-0 lg:group-hover:opacity-100">
+              <div
+                className="pointer-events-none absolute inset-0 opacity-70"
+                aria-hidden
+                style={{ backgroundImage: 'radial-gradient(50% 50% at 100% 0%, rgba(242,101,34,0.25) 0%, transparent 60%)' }}
+              />
+              <div className="relative z-10">
+                <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-pill bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white">
+                  <Target className="h-4 w-4 text-accent" /> {mission.targets.title}
+                </div>
+                <div className="grid gap-6 sm:grid-cols-2">
+                  {mission.targets.items.map((t) => (
+                    <div key={t.label} className="border-t border-white/10 pt-4">
+                      <div className="text-3xl font-extrabold text-accent">{t.value}</div>
+                      <p className="mt-2 text-sm leading-snug text-ink-muted">{t.label}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

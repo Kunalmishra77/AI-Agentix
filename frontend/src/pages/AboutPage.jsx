@@ -4,8 +4,8 @@ import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import ScrollProgress from '../components/common/ScrollProgress'
 import ScrollToTop from '../components/common/ScrollToTop'
+import ScrollToHash from '../components/common/ScrollToHash'
 import AboutHero from '../components/about/AboutHero'
-import AboutStats from '../components/about/AboutStats'
 import AboutMission from '../components/about/AboutMission'
 import AboutJourney from '../components/about/AboutJourney'
 import AboutValues from '../components/about/AboutValues'
@@ -22,10 +22,10 @@ export default function AboutPage() {
         <meta name="description" content={meta.description} />
       </Helmet>
       <ScrollProgress />
+      <ScrollToHash />
       <SiteNav />
       <main>
         <AboutHero />
-        <AboutStats />
         <AboutMission />
         <AboutJourney />
         <AboutValues />

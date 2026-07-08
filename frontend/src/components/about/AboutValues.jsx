@@ -8,7 +8,7 @@ const ICONS = [Target, Users, Sparkles, ShieldCheck, RefreshCw, Languages]
 
 export default function AboutValues() {
   return (
-    <Section tone="alt">
+    <Section tone="alt" id="values" className="scroll-mt-20">
       <SectionHeading eyebrow={values.eyebrow} heading={values.heading} align="center" max="max-w-2xl" className="mx-auto" />
 
       <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
