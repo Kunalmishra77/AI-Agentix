@@ -1,0 +1,926 @@
+AI AGENTEX
+Complete Website Design Specification
+Every Page · Every Section · Every Design Decision
+Brand Colours · Typography · Layout · Animations · Interactions · Spacing
+Built around the AGENTIX brand identity — Orange #E8631A · Navy #1A2B4A
+PART 1 — BRAND IDENTITY & DESIGN SYSTEM
+1.1 — Logo Analysis & Brand DNA
+The AGENTIX logo communicates exactly what this brand stands for:
+The brain icon rendered in orange — intelligence, AI, neural networks, cognitive power
+Heavy geometric sans-serif letterforms in navy — authority, precision, trust, scale
+Orange accent on the 'i' dot and the 'A' — the brand's spark of intelligence embedded in structure
+Black background version shows confidence — this brand isn't shy
+The combination signals: powerful, intelligent, modern, Indian yet globally competitive
+Design DNA extracted from logo:
+Orange is the energy — it activates, energises, draws the eye to action
+Navy is the authority — it grounds, stabilises, builds trust
+The brain motif is the visual anchor — it should echo subtly in patterns, textures, backgrounds
+Geometric precision — no soft curves, no playfulness, sharp confident forms
+Dark backgrounds elevate this brand far more than light ones
+1.2 — Complete Colour System
+Primary Brand Colours (extracted from logo):
+██   #E8631A  Agentix Orange  —  Primary CTAs, highlights, active states, links, icons
+██   #1A2B4A  Agentix Navy  —  Headings, nav bar, footer, section backgrounds, body text on light
+Extended Palette:
+██   #F47B35  Orange Light  —  Hover states on orange elements, gradient endpoint
+██   #C4511A  Orange Dark  —  Pressed/active CTA states, dark section accents
+██   #0D1B2E  Deep Navy  —  Hero background, dark section backgrounds, overlay tints
+██   #243A5A  Navy Mid  —  Cards on dark backgrounds, secondary dark surfaces
+██   #2E4F74  Navy Light  —  Borders on dark sections, dividers, subtle accents
+██   #FFFFFF  Pure White  —  Body text on dark, card backgrounds on light sections
+██   #F8F6F2  Off White / Warm White  —  Light section backgrounds — warmer and more premium than pure white
+██   #1C1C1E  Near Black  —  Alternative dark background, creates depth layering
+██   #F0F4F8  Ice Blue-White  —  Alternating light section tint — not blue enough to fight brand
+██   #E8E4DC  Warm Grey  —  Subtle borders, card edges, dividers on light backgrounds
+██   #6B7280  Text Grey  —  Body copy, meta text, form placeholders
+██   #FF6B35  Electric Orange  —  Special highlights only — notification dots, badges, 'new' labels
+Gradient Definitions:
+Primary Gradient: linear-gradient(135deg, #E8631A 0%, #F47B35 100%) — CTA buttons
+Dark Hero Gradient: linear-gradient(160deg, #0D1B2E 0%, #1A2B4A 50%, #0D1B2E 100%) — hero bg
+Section Divider Gradient: linear-gradient(90deg, transparent, #E8631A, transparent) — separator lines
+Card Glow: radial-gradient(ellipse at center, rgba(232,99,26,0.15) 0%, transparent 70%) — hover card bg
+Overlay Dark: linear-gradient(180deg, transparent 0%, rgba(13,27,46,0.95) 100%) — image overlays
+Mesh Background: multiple radial-gradients creating subtle neural-net-like depth on dark sections
+1.3 — Typography System
+Display / Headline Font:
+Syne Bold / Syne ExtraBold — Google Fonts
+↳ Why: Geometric, confident, futuristic without being clichéd. The sharp angles echo the logo's precision. Unmistakable at large sizes. Pairs perfectly with the AI/tech positioning.
+Body / UI Font:
+DM Sans Regular / Medium / SemiBold — Google Fonts
+↳ Why: Clean, highly legible, modern without being generic. Works beautifully at small sizes for body copy, labels, and UI elements. The slight geometric quality harmonises with Syne.
+Accent / Number Font:
+Bebas Neue — Google Fonts (for large stat numbers only)
+↳ Why: Creates massive impact for the 200+ clients, ₹50Cr+ stat sections. The condensed, all-caps letterforms add drama to numbers.
+Full Type Scale:
+1.4 — Spacing & Grid System
+Grid:
+Desktop: 12-column grid, 1280px max container width, 24px gutters, 80px side margins
+Tablet: 8-column grid, 100% width, 20px gutters, 40px side margins
+Mobile: 4-column grid, 100% width, 16px gutters, 20px side margins
+Section Vertical Rhythm:
+XS sections (badges, small UI elements): 8px / 12px / 16px internal padding
+SM components (cards, pills): 16px / 20px / 24px padding
+MD sections (feature rows, testimonials): 80px top/bottom padding
+LG sections (hero, journey phases): 120px top/bottom padding
+XL sections (dark full-bleed backgrounds): 160px top/bottom padding
+Component Spacing Rules:
+Between section headline and body: 24px
+Between eyebrow label and headline: 12px
+Between headline and CTA: 40px
+Card internal padding: 32px all sides
+Card gap in grid: 24px
+Nav height: 80px (collapses to 64px on scroll)
+1.5 — Border Radius & Shape Language
+Buttons: 8px border-radius — slightly rounded, never pill, never sharp
+Cards (standard): 16px border-radius
+Cards (feature, large): 24px border-radius
+Image containers: 16px border-radius
+Pills / Tags: 100px border-radius (full pill)
+Input fields: 10px border-radius
+Icon containers: 14px border-radius (square-ish, slightly rounded)
+↳ Shape language philosophy: Confident but approachable. No hard 0px squares (cold, corporate). No full circles on non-circular elements (too playful). The 16-24px card radius is the sweet spot for premium tech.
+1.6 — Icon System
+Primary Icon Library:
+Phosphor Icons (Duotone style) — the duotone variant allows the secondary colour to be the Agentix orange tint, creating brand-consistent icons throughout.
+Icon Sizes:
+Feature icons: 48×48px inside a 80×80px orange-tinted container box
+Navigation icons: 20×20px
+Inline / bullet icons: 16×16px
+Hero accent icons: 64×64px
+Icon Container Style:
+Background: rgba(232, 99, 26, 0.12) — subtle orange wash
+Border: 1px solid rgba(232, 99, 26, 0.25)
+Border-radius: 14px
+Icon colour: #E8631A (orange) primary / #1A2B4A (navy) secondary
+1.7 — Motion & Animation System
+Animation Philosophy:
+Every animation must serve a purpose — either communicating the intelligence of the system, guiding the user's attention, or rewarding interaction. No decorative spinning or bouncing. Animation = intelligence made visible.
+Page Load Sequence:
+Nav slides down from top: 0ms delay, 400ms ease-out
+Hero eyebrow label fades in: 100ms delay, 500ms fade
+Hero headline: words animate in sequentially — 200ms stagger per word, 600ms duration
+Hero subheadline: 800ms delay, 400ms fade-up (translateY 20px → 0)
+Hero CTAs: 1100ms delay, 400ms fade-up
+Hero stats bar: 1400ms delay, 600ms fade-up
+Scroll-Triggered Animations:
+Section headlines: fade-up + slight scale (0.95 → 1.0), 600ms
+Cards: staggered fade-up with 80ms delay between each card
+Stat numbers: count-up animation triggered on viewport entry
+Images: subtle zoom-in from 1.05 → 1.0 as section enters viewport
+Industry logos: fade-in with left-to-right stagger
+Hover Microinteractions:
+Primary CTA button: translateY -2px + box-shadow deepens, 200ms
+Cards: translateY -8px + box-shadow increase + subtle orange border glow, 250ms
+Nav links: orange underline slides in from left, 200ms
+Industry icons: scale 1.0 → 1.08, orange glow appears below, 200ms
+Social links: rotate 10° + scale 1.1, 200ms
+Logo: subtle orange pulse on hover, 300ms
+Continuous Ambient Animations:
+Hero background: very slow mesh gradient shift (20s loop) — feels alive without being distracting
+Brain/neural network particle system on hero: subtle floating nodes connected by faint lines
+Stats section: orange glow pulses on numbers (3s loop, very subtle)
+CTA buttons: gradient background shifts slowly (4s loop)
+1.8 — Shadow System
+Card default: 0 4px 24px rgba(26, 43, 74, 0.08)
+Card hover: 0 16px 48px rgba(26, 43, 74, 0.16), 0 0 0 1px rgba(232, 99, 26, 0.2)
+Button default: 0 4px 16px rgba(232, 99, 26, 0.3)
+Button hover: 0 8px 32px rgba(232, 99, 26, 0.5)
+Nav (on scroll): 0 2px 32px rgba(13, 27, 46, 0.2)
+Hero image: 0 32px 64px rgba(13, 27, 46, 0.5)
+PART 2 — PAGE-BY-PAGE DESIGN SPECIFICATIONS
+2.1 — HOME PAGE
+HOME S01 — Navigation Bar
+HOME S02 — Hero Section
+HOME S03 — Stats Bar
+HOME S04 — What We Do (3 Pillars)
+HOME S05 — Industries Grid
+HOME S06 — Customer Journey (3 Phase)
+HOME S07 — Social Proof / Testimonials
+HOME S08 — Our 4-Step Process
+HOME S09 — AI Studio Teaser
+HOME S10 — Results / ROI Banner
+HOME S11 — Final CTA
+2.2 — ABOUT US PAGE
+ABOUT S01 — Page Hero
+ABOUT S02 — Our Story
+ABOUT S03 — Mission / Vision / Values
+ABOUT S04 — Team Section
+ABOUT S05 — Why Choose Us
+ABOUT S06 — Certifications & Partners
+2.3 — SOLUTIONS PAGE
+SOL S01 — Solutions Hero
+SOL S02 — Solutions Navigation Tabs
+SOL S03-S10 — Individual Solution Sections
+2.4 — INDUSTRIES PAGE
+IND S01 — Industry Hero
+IND S02-S08 — Individual Industry Sections
+2.5 — AI STUDIO PAGE
+STU S01 — Studio Hero
+STU S02 — Content Types Grid
+STU S03 — Platform Coverage
+2.6 — TECHNOLOGY PAGE
+TECH S01 — Technology Hero
+TECH S02 — Agentic AI Explainer
+TECH S03 — Integration Grid
+2.7 — CASE STUDIES PAGE
+CASE S01 — Page Hero
+CASE S02-S04 — Individual Case Studies
+CASE S05 — ROI Calculator
+2.8 — CONTACT PAGE
+CON S01 — Contact Hero
+CON S02 — Demo Booking
+CON S03 — Partnerships & Careers
+PART 3 — GLOBAL COMPONENTS & REUSABLE PATTERNS
+3.1 — Button Styles
+Primary CTA (Orange Gradient):
+Background: linear-gradient(135deg, #E8631A, #F47B35)
+Text: White, DM Sans SemiBold 15px, letter-spacing 0.04em
+Padding: 16px 36px
+Border-radius: 8px
+Box-shadow: 0 4px 20px rgba(232,99,26,0.4)
+Hover: translateY(-2px) + shadow deepens + gradient shifts slightly
+Active: translateY(0) + shadow reduces
+Secondary (Orange Outline):
+Background: transparent
+Border: 2px solid #E8631A
+Text: #E8631A
+Hover: Background fills orange, text turns white
+Ghost (White Outline on Dark):
+Background: transparent
+Border: 1.5px solid rgba(255,255,255,0.5)
+Text: White at 85%
+Hover: Border becomes white 100%, bg white 8%
+Text Link:
+Orange colour, no underline default
+Hover: underline slides in from left, 200ms
+3.2 — Card Styles
+Standard Feature Card (Light BG):
+Background: #FFFFFF
+Border: 1px solid #E8E4DC
+Border-radius: 16px
+Padding: 32px
+Box-shadow: 0 4px 24px rgba(26,43,74,0.08)
+Hover: translateY(-8px) + border 1px solid rgba(232,99,26,0.4) + shadow deepens
+Dark Feature Card:
+Background: #243A5A (navy mid)
+Border: 1px solid rgba(255,255,255,0.08)
+Border-radius: 16px
+Padding: 32px
+Hover: border rgba(232,99,26,0.5) + orange glow shadow
+Highlight / Outcome Card:
+Background: rgba(232,99,26,0.08)
+Border-left: 4px solid #E8631A
+Border-radius: 0 12px 12px 0
+Padding: 20px 24px
+Testimonial Card:
+Background: rgba(255,255,255,0.05) on dark sections / white on light sections
+Opening quote mark: Syne ExtraBold 60px, #E8631A, position: absolute top-left
+Quote text: DM Sans 18px, line-height 1.7
+Client: Syne SemiBold 15px orange + DM Sans 13px grey role
+3.3 — Form Elements
+Input Field:
+Background: rgba(255,255,255,0.06) on dark / #FFFFFF on light
+Border: 1px solid rgba(255,255,255,0.15) on dark / 1px solid #E8E4DC on light
+Border-radius: 10px
+Padding: 16px 20px
+Focus: border #E8631A + orange glow shadow 0 0 0 3px rgba(232,99,26,0.15)
+Floating label: 13px grey, transitions to 11px uppercase when active
+Select Dropdown:
+Same as input + custom orange chevron arrow
+Textarea:
+Same as input, min-height 120px, resize: vertical only
+3.4 — Section Layout Patterns
+Pattern A — Dark Intro / Light Detail (most common):
+Dark hero → Light feature section → Dark social proof → Light process → Dark final CTA
+Pattern B — Eyebrow Label → Headline → Body → CTA:
+Every content section follows this exact hierarchy. Orange uppercase eyebrow label (12px) → Syne Bold headline (48px) → DM Sans intro (18px) → Feature content → Optional CTA link.
+Pattern C — Asymmetric 60/40 split:
+Text block takes 60% for reading comfort. Visual takes 40%. They alternate sides between sections to create rhythm.
+Pattern D — Full-bleed colour sections:
+Used for stats, CTAs, and highlights. Orange or deep navy stretching edge-to-edge with generous vertical padding (160px). These are 'punctuation' sections — they interrupt the scroll rhythm to make an impact.
+3.5 — Footer Design
+PART 4 — RESPONSIVE DESIGN & MOBILE SPECIFICATIONS
+4.1 — Breakpoint System
+XS Mobile: 320px–479px — single column, 20px side margins
+SM Mobile: 480px–767px — single column, 24px side margins
+MD Tablet: 768px–1023px — 2 columns, 40px side margins
+LG Desktop: 1024px–1279px — full layout, 60px side margins
+XL Desktop: 1280px+ — max-width 1280px container, centred
+4.2 — Mobile-Specific Adjustments
+Typography Scale for Mobile:
+Hero Headline: 80px → 40px
+Section Headlines: 48px → 28px
+Body Text: 18px → 16px
+Stat Numbers: 72px → 48px
+Layout Changes for Mobile:
+All 2-column splits → single column stack
+3-column grids → single column with pagination or scroll
+Nav → hamburger icon, full-screen overlay on tap
+Hero right-side visual hidden or shown below text on mobile
+Stats bar → 2×2 grid
+Footer → single column, all links collapsed into expandable accordions
+4.3 — Touch Interactions
+All tap targets minimum 44×44px
+Hover states converted to tap-toggle on mobile
+Cards: tap shows hover state (lift + orange border) — stays on until tapped again
+Carousel: touch/swipe enabled with momentum, no mouse-only arrows
+Industry tabs: horizontal scroll with snap points
+PART 5 — ADDITIONAL SECTIONS FOR CONTENT RICHNESS
+The following sections should be added to enrich the pages beyond the baseline sitemap. These are high-impact sections that top consulting and AI companies use to convert high-consideration buyers.
+5.1 — Home Page Additional Sections
+HOME S12 — Blog Preview Strip
+HOME S13 — Video/Demo Section
+5.2 — Solutions Page Additional Sections
+SOL S11 — Solution Comparison Table
+5.3 — Industries Page Additional Sections
+IND S09 — Industry Selector Interactive Map
+5.4 — About Page Additional Sections
+ABOUT S07 — Culture & Work Section
+5.5 — Global: Floating WhatsApp CTA
+5.6 — Global: Exit-Intent Popup
+5.7 — Global: Cookie Banner
+PART 6 — TECHNICAL SPECIFICATIONS FOR DEVELOPMENT
+6.1 — CSS Variables Master List
+Paste this :root block at the top of your global CSS file
+--color-orange: #E8631A
+--color-orange-light: #F47B35
+--color-orange-dark: #C4511A
+--color-orange-electric: #FF6B35
+--color-navy: #1A2B4A
+--color-navy-deep: #0D1B2E
+--color-navy-mid: #243A5A
+--color-navy-light: #2E4F74
+--color-near-black: #1C1C1E
+--color-white: #FFFFFF
+--color-off-white: #F8F6F2
+--color-ice: #F0F4F8
+--color-warm-grey: #E8E4DC
+--color-text-grey: #6B7280
+--color-text-light: rgba(255,255,255,0.7)
+--gradient-orange: linear-gradient(135deg, #E8631A 0%, #F47B35 100%)
+--gradient-dark: linear-gradient(160deg, #0D1B2E 0%, #1A2B4A 50%, #0D1B2E 100%)
+--gradient-section: linear-gradient(90deg, transparent, #E8631A, transparent)
+--shadow-card: 0 4px 24px rgba(26,43,74,0.08)
+--shadow-card-hover: 0 16px 48px rgba(26,43,74,0.16), 0 0 0 1px rgba(232,99,26,0.2)
+--shadow-btn: 0 4px 16px rgba(232,99,26,0.3)
+--shadow-btn-hover: 0 8px 32px rgba(232,99,26,0.5)
+--radius-sm: 8px
+--radius-md: 16px
+--radius-lg: 24px
+--radius-pill: 100px
+--font-display: 'Syne', sans-serif
+--font-body: 'DM Sans', sans-serif
+--font-number: 'Bebas Neue', cursive
+--transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1)
+--transition-med: all 0.35s cubic-bezier(0.4, 0, 0.2, 1)
+--transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1)
+6.2 — Google Fonts Import
+Add to <head> of every page:
+<link href='https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&family=Bebas+Neue&display=swap' rel='stylesheet'>
+6.3 — Recommended Tech Stack
+Frontend Framework:
+Next.js 14+ (React) — for SEO, performance, and image optimisation
+Or: Webflow for no-code build with full design fidelity
+Animation Libraries:
+GSAP (GreenSock) — for the hero word-by-word animation, scroll-triggered reveals
+Framer Motion — if building in React/Next.js
+AOS (Animate on Scroll) — lightweight fallback for simpler scroll animations
+Particle System (Hero):
+Particles.js or tsParticles — for the neural-net background particle effect on hero
+Icon Library:
+Phosphor Icons React (npm: @phosphor-icons/react)
+Form Handling:
+React Hook Form + Zod validation
+Email: Resend or SendGrid
+CRM Integration: Zoho CRM API or HubSpot API on form submit
+Analytics:
+Google Analytics 4 + Google Tag Manager
+Hotjar (heatmaps, session recordings — essential for conversion optimisation)
+Meta Pixel + Google Ads Conversion Tracking
+6.4 — Performance Requirements
+PageSpeed Insights score: 90+ desktop, 75+ mobile
+Largest Contentful Paint (LCP): under 2.5 seconds
+Cumulative Layout Shift (CLS): under 0.1
+All images: WebP format, lazy loaded, proper alt tags
+Fonts: preloaded in <head>, display:swap
+Hero section: no render-blocking scripts
+Animations: respect prefers-reduced-motion media query
+6.5 — SEO Meta Template per Page
+Homepage:
+Title: AI Agentex | India's #1 End-to-End AI Automation & Business Consulting Company
+Description: AI Agentex automates your entire business — sales, marketing, HRMS, operations, supply chain, and finance. Serving healthcare, education, real estate, hospitality and more. Book a free AI audit today.
+Solutions:
+Title: AI Automation Solutions | Sales, Marketing, HRMS, Operations | AI Agentex
+Industries:
+Title: AI Automation for Healthcare, Education, Real Estate & More | AI Agentex
+AI Studio:
+Title: AI Content Studio | Automated Video, Social Media & Digital Marketing | AI Agentex
+Contact:
+Title: Book a Free AI Business Audit | AI Agentex
+PART 7 — DESIGNER'S QUICK REFERENCE CARD
+COLOURS AT A GLANCE
+Primary Action       Authority / Structure       Light Sections
+#E8631A Orange       #1A2B4A Navy          #F8F6F2 Off-White
+FONTS AT A GLANCE
+HEADINGS → Syne (Bold 700 / ExtraBold 800) from Google Fonts
+BODY TEXT → DM Sans (Regular 400 / Medium 500 / SemiBold 600) from Google Fonts
+BIG NUMBERS → Bebas Neue (Regular 400) from Google Fonts
+DESIGN RULES — NEVER BREAK THESE
+Never put orange text on an orange background
+Never use pure white (#FFFFFF) as a page background — always use Off-White #F8F6F2 for light sections
+Never use more than 3 fonts on any page
+Never centre-align body paragraphs (only headlines and stat numbers)
+Never use gradients on text except the hero headline — it cheapens the brand
+Always include the eyebrow label (orange, uppercase, 12px) above every major section headline
+Always end every page section with a clear next action — CTA link or button
+Dark sections (navy) always have lighter text. Never dark text on dark background.
+Orange is for action, energy, highlights — not for large body text areas
+SECTION BACKGROUND ROTATION (follow this order for visual rhythm)
+1 — Deep Navy / Near Black (hero or high-impact opener)
+2 — Off-White #F8F6F2 (feature content)
+3 — Deep Navy (social proof or testimonials)
+4 — Off-White (process or how-it-works)
+5 — Orange Gradient (stats / ROI strip — full bleed)
+6 — Deep Navy (final CTA)
+Repeat with variations. Never two consecutive same-background sections.
+─────────────────────────────────────────────────────────────────────
+AI AGENTEX — Design Specification v1.0
+Confidential — Internal Use Only
+Section ID | T-01
+Section Name | Hero Headline
+Layout Pattern | Syne ExtraBold
+Background | White or Orange
+Component Type | Display
+Viewport Height | 72–88px desktop / 40–52px mobile
+Line Height | 1.05 — very tight for dramatic impact
+Letter Spacing | -0.02em — slightly tighter than default
+Max Width | 800px — never full-width text wall
+Usage | Homepage hero, page-level hero banners only
+Section ID | T-02
+Section Name | Section Headline
+Layout Pattern | Syne Bold
+Background | Navy or White
+Component Type | Heading 2
+Viewport Height | 44–56px desktop / 30–36px mobile
+Line Height | 1.15
+Letter Spacing | -0.01em
+Usage | Every major section title across all pages
+Section ID | T-03
+Section Name | Sub-Section Heading
+Layout Pattern | Syne SemiBold
+Background | Orange
+Component Type | Heading 3
+Viewport Height | 28–34px desktop / 22–26px mobile
+Line Height | 1.2
+Usage | Card titles, sub-section headers, solution names
+Section ID | T-04
+Section Name | Body Copy
+Layout Pattern | DM Sans Regular
+Background | Grey #6B7280 on light / White-80% on dark
+Component Type | Paragraph
+Viewport Height | 16–18px
+Line Height | 1.75 — generous for readability
+Max Width | 620px per column — never full-width paragraphs
+Usage | All descriptive text, feature descriptions, about copy
+Section ID | T-05
+Section Name | Large Body / Intro
+Layout Pattern | DM Sans Regular
+Background | Navy on light / White on dark
+Component Type | Lead Paragraph
+Viewport Height | 20–22px
+Line Height | 1.6
+Usage | Hero subheadlines, section introductions, first paragraph of any page
+Section ID | T-06
+Section Name | Stat Number
+Layout Pattern | Bebas Neue
+Background | Orange gradient
+Component Type | Display Number
+Viewport Height | 64–96px
+Line Height | 1.0
+Usage | Social proof numbers: 200+, ₹50Cr+, 98%, etc.
+Note | Always paired with DM Sans label below at 14px
+Section ID | T-07
+Section Name | CTA Button Text
+Layout Pattern | DM Sans SemiBold
+Background | White on orange / Orange on dark outline
+Component Type | Button
+Viewport Height | 15–16px
+Letter Spacing | 0.04em — slightly expanded for confidence
+Text Transform | None — sentence case, never all caps
+Usage | All call-to-action buttons across the site
+Section ID | T-08
+Section Name | Nav / Menu
+Layout Pattern | DM Sans Medium
+Background | Navy or White depending on nav bg
+Component Type | Navigation
+Viewport Height | 14–15px
+Letter Spacing | 0.02em
+Usage | Primary navigation links, dropdown menus
+Section ID | T-09
+Section Name | Label / Tag
+Layout Pattern | DM Sans SemiBold
+Background | Orange on light tint bg
+Component Type | Label
+Viewport Height | 11–12px
+Letter Spacing | 0.12em — widely spaced
+Text Transform | UPPERCASE
+Usage | Section eyebrow labels: 'OUR SOLUTIONS', 'INDUSTRIES WE SERVE', 'TRUSTED BY 200+' etc.
+Section ID | H-S01
+Section Name | Global Navigation
+Layout Pattern | Logo left · Links centre · CTA right
+Background | Transparent → Navy on scroll
+Component Type | Sticky Header
+Viewport Height | 80px collapsed / 64px on scroll
+Background | Transparent over hero, transitions to rgba(13,27,46,0.95) + blur(20px) on scroll
+Logo | AGENTIX logo SVG, 160px wide — white version on dark bg
+Nav Links | DM Sans Medium 14px, white at 85% opacity, hover: 100% + orange underline animation
+Active Link | Orange colour, orange underline
+CTA Button | Outlined — 1.5px orange border, orange text, hover fills orange background
+Mobile | Hamburger icon (3 lines), opens full-screen overlay nav — dark navy bg with links stacked 32px apart
+Dropdown | Solutions & Industries have mega-dropdowns: dark card, 2-col grid of links with icons
+Section ID | H-S02
+Section Name | Hero Banner
+Layout Pattern | Text left (60%) · Visual right (40%)
+Background | Dark — Deep Navy mesh gradient
+Component Type | Full Viewport Hero
+Viewport Height | 100vh minimum
+Background | Dark mesh gradient #0D1B2E to #1A2B4A with animated neural-net particle system (faint orange nodes/lines)
+Left Column | Eyebrow label → H1 Headline → Subheadline → CTA pair → Trust strip
+Eyebrow Label | Orange pill tag: 'INDIA'S #1 AI AUTOMATION PARTNER' — DM Sans SemiBold 11px, UPPERCASE, letter-spacing 0.12em
+Headline | Syne ExtraBold 80px, white, word-by-word animation on load. Max 6 words per line. Orange colour on 'AI Automation'
+Subheadline | DM Sans Regular 20px, white 70%, max-width 540px, line-height 1.6
+Primary CTA | Orange gradient button, 'Book Your Free AI Audit', 16px DM Sans SemiBold, 20px 40px padding, 8px radius, orange glow shadow
+Secondary CTA | Ghost button (white border), 'Watch How It Works ▶', play icon left, same size
+Trust Strip | Small avatars of logos/faces + '200+ Businesses Automated' text in white — sits 48px below CTAs
+Right Column | 3D-style floating dashboard mockup — dark card showing AI agent activity, glowing stats, brain animation. Float animation 6s loop.
+Bottom Arrow | Animated scroll indicator — orange chevron bouncing gently at bottom centre
+Mobile | Stack: text above, visual below. Text centred. Visual is smaller card mockup.
+Section ID | H-S03
+Section Name | Trust Numbers
+Layout Pattern | 4-column equal grid
+Background | Orange gradient strip (#E8631A → #F47B35)
+Component Type | Statistics Banner
+Viewport Height | 180px
+Background | Vivid orange gradient — the first pop of colour after the dark hero
+4 Stats | 200+ Businesses · 15+ Industries · ₹50Cr+ Revenue Generated · 98% Retention
+Number Style | Bebas Neue 72px, white — count-up animation on scroll
+Label Style | DM Sans Medium 13px, white 85%, UPPERCASE, letter-spacing 0.08em
+Dividers | Vertical 1px white line at 30% opacity between columns
+Mobile | 2×2 grid, same styles, 140px tall total
+Section ID | H-S04
+Section Name | Value Pillars
+Layout Pattern | 3-column card grid
+Background | Off-White #F8F6F2
+Component Type | Feature Cards
+Viewport Height | 600px section height
+Eyebrow | Orange label: 'WHAT WE DO'
+Section Headline | Syne Bold 48px Navy: 'One Partner. Complete Automation.'
+Cards | 3 cards, white background, 24px radius, hover lift + orange border glow
+Card Layout | Large icon container (80px, orange tint bg) → Card title (Syne Bold 24px navy) → Body (DM Sans 16px grey) → 'Learn More →' link in orange
+Card Icons | Brain/agent, Circuit/automation, Chart/growth — Phosphor duotone icons
+Card Border | Default: 1px solid #E8E4DC. Hover: 1px solid rgba(232,99,26,0.4)
+Stagger | Cards animate in with 80ms stagger on scroll entry
+Mobile | Stack vertically, full-width cards
+Section ID | H-S05
+Section Name | Industries Served
+Layout Pattern | 7-item horizontal scrolling pill row + expanded grid on hover
+Background | Deep Navy #1A2B4A
+Component Type | Industry Selector
+Viewport Height | 480px
+Background | Navy — sharp contrast from light section above
+Eyebrow | Orange label: 'INDUSTRIES WE SERVE'
+Headline | Syne Bold 48px White: 'Purpose-Built for Your Industry'
+Industry Cards | 7 cards in horizontal scroll — each: 200px wide, dark navy card, industry icon (white), name (Syne SemiBold 16px white), 1-line descriptor (DM Sans 13px grey). Orange bottom border appears on hover.
+Selected State | Orange background, white text, scale 1.02
+Arrow CTA | Right side: 'Explore All Industries →' in orange
+Mobile | Horizontal scroll snap, 160px wide cards
+Section ID | H-S06
+Section Name | Lifecycle Automation
+Layout Pattern | 3-column with connecting animated arrows
+Background | Off-White #F8F6F2
+Component Type | Process Flow
+Viewport Height | 700px
+Eyebrow | Orange: 'THE COMPLETE CUSTOMER LIFECYCLE'
+Headline | Syne Bold 48px Navy: 'We Automate the Entire Journey'
+Phase 1 — ACQUIRE | Large card: orange top border, number '01' in Bebas Neue 80px faint orange bg, 'ACQUIRE' in Syne Bold 28px orange, description, list of 5 features with orange check icons
+Phase 2 — DELIVER | Same structure: '02', navy top border, features
+Phase 3 — RETAIN | Same: '03', gradient top border, features
+Connecting Arrows | Animated orange arrow between Phase 1→2 and 2→3, small bounce animation
+Bottom CTA | Centred: 'See the Full Automation Stack →' orange text link with arrow
+Mobile | Stacked vertically, arrows become downward-pointing
+Section ID | H-S07
+Section Name | Client Testimonials
+Layout Pattern | Large quote + 3 card carousel
+Background | Deep Navy #0D1B2E
+Component Type | Testimonials
+Viewport Height | 700px
+Background | Very dark navy, creates premium feel
+Eyebrow | Orange: 'CLIENT RESULTS'
+Headline | Syne Bold 48px White: 'The Results Speak Louder Than Promises'
+Featured Quote | Large 60px orange opening quote mark, quote text in DM Sans 22px white, client name in Syne SemiBold 16px orange, role in DM Sans 13px grey
+Quote Cards | 3 compact cards below: darker navy bg, same quote format but smaller. White card bg at 5% opacity.
+Navigation | Orange dots, prev/next arrows in orange outline circles
+Auto-rotate | 4-second intervals with smooth cross-fade
+Mobile | Single quote, swipe between testimonials
+Section ID | H-S08
+Section Name | How We Work
+Layout Pattern | Horizontal timeline / step flow
+Background | Off-White #F8F6F2
+Component Type | Process Steps
+Viewport Height | 600px
+Eyebrow | Orange: 'OUR PROCESS'
+Headline | Syne Bold 48px Navy: 'From Chaos to Automated in 4 Steps'
+Timeline | Horizontal line in orange connecting 4 numbered nodes
+Step Nodes | Circle: 56px, orange gradient, Bebas Neue white number. Below: Syne Bold 20px navy step name. DM Sans 14px grey description.
+Hover | Circle scales 1.1, connecting line pulses orange
+Step Labels | 1: Discover — 2: Design — 3: Deploy — 4: Dominate
+Mobile | Vertical timeline, line runs down left side
+Section ID | H-S09
+Section Name | AI Studio Preview
+Layout Pattern | Left text (45%) · Right visual mockup (55%)
+Background | Deep Navy gradient
+Component Type | Feature Highlight
+Viewport Height | 600px
+Background | Dark navy with subtle orange grid/mesh pattern
+Left | Orange label + Syne Bold 48px headline + body copy + CTA
+Right | Animated mockup: shows AI-generated content appearing — video thumbnails, social posts, ad creative tiles appearing with typewriter-style animations
+Orange Accent | Vertical orange line left of the text block
+CTA | Orange gradient button: 'See AI Studio in Action'
+Section ID | H-S10
+Section Name | ROI Proof
+Layout Pattern | 5-stat grid on gradient
+Background | Orange → Dark Orange gradient
+Component Type | Impact Numbers
+Viewport Height | 240px
+Background | Vivid orange — bold, unmissable section
+Stats | 5 stats in a row: 40% Cost Reduction · 3x Leads · 70% Less Admin · 50% Faster Ops · 24/7 Uptime
+Number Style | Bebas Neue 64px white
+Label | DM Sans Medium 13px white 80%
+Divider | White 1px at 25% opacity between columns
+Mobile | 2+3 grid arrangement
+Section ID | H-S11
+Section Name | Conversion CTA
+Layout Pattern | Centred, full-bleed
+Background | Deep Navy #0D1B2E
+Component Type | CTA Section
+Viewport Height | 480px
+Background | Very dark navy with large faint brain icon watermark in centre
+Headline | Syne ExtraBold 56px White — max 2 lines
+Sub | DM Sans 18px white 70%
+CTA Button | Large orange gradient, 56px height, 48px horizontal padding — the biggest CTA on the site
+Under CTA | 3 trust checkmarks in DM Sans 13px grey: ✓ No commitment ✓ Written roadmap ✓ Confidential
+Ambient | Subtle particle effect in background — faint orange nodes drifting slowly
+Section ID | AB-S01
+Section Name | About Hero
+Layout Pattern | Full-bleed, centred text overlay on abstract visual
+Background | Dark Navy with geometric pattern
+Component Type | Page Hero
+Viewport Height | 70vh
+Background | Deep navy + subtle circuit-board or neural-net line pattern (SVG, very faint orange at 8% opacity)
+Headline | Syne ExtraBold 72px White — 'We Are India's Automation Architects'
+Subheadline | DM Sans 20px white 70%, max-width 680px centred
+Breadcrumb | DM Sans 13px grey, top-left: Home > About Us
+Section ID | AB-S02
+Section Name | Origin Story
+Layout Pattern | Left large pull quote (40%) · Right body text (60%)
+Background | Off-White #F8F6F2
+Component Type | Editorial Block
+Viewport Height | 700px
+Left | Large orange quotation mark (120px), key sentence from story in Syne Bold 28px navy, orange vertical line accent
+Right | 3 paragraphs DM Sans 18px grey, generous line-height. Timeline markers on the right side showing founding year milestones.
+Timeline | Small orange dots on a vertical line with year + achievement labels: Founded · First Client · 200+ Clients etc.
+Image | Founders/team photo with 24px border-radius, orange bottom-edge accent line
+Section ID | AB-S03
+Section Name | MVV Trio
+Layout Pattern | 3-column asymmetric cards
+Background | Deep Navy #1A2B4A
+Component Type | Values Cards
+Viewport Height | 600px
+Background | Dark navy — creates gravity and authority for mission statement
+Mission Card | Largest card (takes 50% width), orange left border 4px, Syne Bold 32px white headline, DM Sans 18px white 75% body
+Vision Card | 25% width, white card on dark bg, navy text
+Values Card | 25% width, orange gradient card, white text, list of 5 values with check icons
+Numbers | Large faint numbers 01 02 03 in background of each card — Bebas Neue, very low opacity
+Section ID | AB-S04
+Section Name | Leadership Team
+Layout Pattern | 4-column team card grid
+Background | Off-White
+Component Type | Team Grid
+Viewport Height | 600px
+Card | Photo (circular, 120px, orange border 2px) → Name (Syne Bold 18px) → Role (DM Sans 13px orange) → Bio (DM Sans 14px grey) → LinkedIn icon
+Hover | Card lifts, photo scale 1.05, orange glow
+Background | White cards on off-white page bg — subtle depth
+Section ID | AB-S05
+Section Name | Differentiators
+Layout Pattern | Icon list on left + visual on right
+Background | Off-White
+Component Type | Feature List
+Viewport Height | 600px
+Left | 6 differentiators — each: orange icon box (48px) + Syne SemiBold 20px navy title + DM Sans 15px grey body
+Right | Animated infographic — showing AI Agentex's scope vs typical agencies (radar/comparison chart in orange/navy)
+Animated Line | Orange line draws itself from top to bottom of the list as user scrolls through (scroll-linked)
+Section ID | AB-S06
+Section Name | Partner Logos
+Layout Pattern | Horizontal logo row with subtle animation
+Background | Near Black #1C1C1E
+Component Type | Logo Strip
+Viewport Height | 240px
+Background | Dark — makes white/grey logos pop cleanly
+Logos | OpenAI · n8n · Make · Meta · Google Cloud · AWS · Razorpay — all white, 100px wide each
+Animation | Slow horizontal marquee scroll (left loop, 30s) for endless feel
+Label | DM Sans 13px grey above: 'BUILT ON THE WORLD'S MOST POWERFUL AI PLATFORMS'
+Section ID | SOL-S01
+Section Name | Solutions Hero
+Layout Pattern | Full-bleed dark, text left + icon grid right
+Background | Deep Navy
+Component Type | Page Hero
+Viewport Height | 70vh
+Left | Eyebrow orange label → Syne ExtraBold 72px white headline → DM Sans 20px subheadline → CTA
+Right | Animated 3×3 grid of glowing solution icons — orange glow, staggered appearance on load
+Background | Dark with subtle circuit-board grid pattern
+Section ID | SOL-S02
+Section Name | Solution Tabs
+Layout Pattern | Horizontal sticky tab bar
+Background | White with navy border-bottom
+Component Type | Tab Navigation
+Viewport Height | 72px
+Tabs | 8 solution tabs: Sales · Marketing · HRMS · Operations · Supply Chain · Finance · Voice & Chat · Manufacturing
+Active Tab | Orange border-bottom 3px, orange text
+Sticky | Sticks below main nav when scrolling through solutions
+Mobile | Horizontal scroll tabs, 120px min each
+Section ID | SOL-S03-10
+Section Name | Each Solution Block
+Layout Pattern | Alternating: text-left/right, visual opposite side
+Background | Alternating Off-White and Near-Black
+Component Type | Solution Feature
+Viewport Height | 700px each
+Odd sections | Off-white background, text left (45%), visual right (55%)
+Even sections | Dark navy background, visual left, text right — creates rhythm
+Text Block | Orange number label (01, 02...) + solution name in Syne Bold 40px + DM Sans 18px description + feature bullet list with orange dots + outcome callout box
+Outcome Box | Orange left-border card: 'Result:' in orange SemiBold + outcome text. Creates proof moment in every section.
+Visual | Dashboard mockup / automation flow diagram / device mockup relevant to solution — all in dark card style with orange accents
+Visual Style | All mockup visuals use the same dark card design language: navy card, orange highlights, white text — consistent Agentix look
+CTA per section | DM Sans 15px orange link: 'Explore [Solution Name] in Detail →'
+Section ID | IND-S01
+Section Name | Industries Hero
+Layout Pattern | Full-bleed, centred, with industry icon strip below
+Background | Deep Navy
+Component Type | Page Hero
+Viewport Height | 65vh
+Headline | Syne ExtraBold 72px white: 'Purpose-Built for Every Industry We Touch'
+Below Headline | 7 industry icon cards in horizontal row — white icons on dark, industry name below. These are CTAs to jump to that industry section.
+Background | Dark with very faint isometric city/building grid lines — representing 'industry'
+Section ID | IND-S02-08
+Section Name | Industry Deep-Dive
+Layout Pattern | Full-bleed alternating design per industry
+Background | Unique tint per industry section
+Component Type | Industry Feature
+Viewport Height | 800px each
+Healthcare | Tint: Very faint green-teal wash on off-white. Icon: heartbeat + brain. Visual: appointment booking mockup
+Education | Tint: Very faint blue wash. Visual: admissions funnel dashboard
+Hospitality | Tint: Very faint amber wash. Visual: hotel booking automation flow
+Real Estate | Tint: Very faint navy wash. Visual: lead pipeline CRM mockup
+Retail | Tint: Very faint orange wash. Visual: inventory + order management screen
+Manufacturing | Tint: Very faint grey wash. Visual: conveyor belt monitoring dashboard
+Logistics | Tint: Very faint purple wash. Visual: fleet tracking map mockup
+Per Section Layout | Large industry icon (80px orange) + Industry name (Syne Bold 48px) + Challenge cards (dark navy mini-cards) + Solution list (orange check bullets) + Client result callout (orange bg card with stat)
+Section ID | STU-S01
+Section Name | AI Studio Hero
+Layout Pattern | Split: dark left text · Right: live content feed animation
+Background | Near Black #1C1C1E
+Component Type | Page Hero
+Viewport Height | 100vh
+Left | Orange label 'AI STUDIO' → Syne ExtraBold 72px gradient headline (orange to white) → DM Sans 20px sub → CTA
+Headline Gradient | Gradient text: 'Your Brand. Every Platform. Every Day. Automated.'
+Right Side | Animated content feed — tiles slide in and out showing: video thumbnails, Instagram post mockups, email headers, WhatsApp messages, LinkedIn posts — all branded in Agentix style
+Right Animation | Cards appear from bottom and fade out top, 3-4 cards visible at once, 1.5s stagger, 3s hold
+Background | Very dark near-black — makes the colourful content tiles pop dramatically
+Section ID | STU-S02
+Section Name | Content Output
+Layout Pattern | 3×2 hexagonal or offset grid of content types
+Background | Off-White
+Component Type | Feature Grid
+Viewport Height | 700px
+Layout | 6 content type cards in a 3×2 offset grid (brick layout) — creates editorial feel
+Card Style | Dark navy card, orange icon, white title (Syne Bold 22px), grey description, sample content thumbnail at bottom
+Types | AI Videos · Social Posts · Email Campaigns · Ad Creatives · Blog Articles · WhatsApp Broadcasts
+Hover | Card flips to show a sample output — mini preview of the content type
+Section ID | STU-S03
+Section Name | Channels Managed
+Layout Pattern | Circular platform logos orbiting central 'AI' hub
+Background | Deep Navy
+Component Type | Platform Visual
+Viewport Height | 600px
+Visual Concept | Central glowing brain/AI circle, platform logos (Instagram, Facebook, YouTube, Google, LinkedIn, WhatsApp, Email) orbit around it with connecting animated lines
+Lines | Animated dashes flowing inward to centre — showing data/content flowing to AI
+Labels | Each platform: logo + name + '24/7 Managed' label
+Mobile | Simplified list with platform logos and feature bullets
+Section ID | TECH-S01
+Section Name | Tech Hero
+Layout Pattern | Full-bleed dark, floating tech logos background
+Background | Deep Navy
+Component Type | Page Hero
+Viewport Height | 70vh
+Background | Floating, slowly drifting technology logos (blurred, low opacity) — OpenAI, n8n, Meta, Google etc — creates tech depth
+Headline | Syne ExtraBold 72px white: 'Powered by World-Class AI. Built for India.'
+Section ID | TECH-S02
+Section Name | Agentic AI
+Layout Pattern | Full-width with animated flow diagram
+Background | Off-White
+Component Type | Explainer Section
+Viewport Height | 800px
+Layout | Headline + intro paragraph, then large interactive animated diagram below
+Diagram | Shows: Input → Agent Brain (orange, animated) → Tools (6 icons) → Output. Animated arrows flow through the system.
+Interactive | User can hover over each component to see a tooltip explaining that part of the agent architecture
+Visual Style | Dark card for the diagram on light background — creates depth contrast
+Section ID | TECH-S03
+Section Name | 100+ Integrations
+Layout Pattern | Scrolling logo wall, grouped by category
+Background | Near Black
+Component Type | Logo Grid
+Viewport Height | 700px
+Categories | Tabs: All · Workflow · AI Models · CRM · Marketing · Finance · HR — filters the logo grid
+Grid | Logo cards: dark navy bg, logo white/colour, tool name below. 8-column grid, scrollable or paginated.
+Hover | Card turns orange, logo becomes white, shows brief tooltip
+Counter | Large '100+' in Bebas Neue 96px orange above the grid — immediate trust signal
+Section ID | CASE-S01
+Section Name | Case Studies Hero
+Layout Pattern | Dark with floating stat callouts
+Background | Deep Navy
+Component Type | Page Hero
+Viewport Height | 70vh
+Background | Dark navy, multiple floating stat cards animate in: '3x Conversions', '65% No-shows Reduced', '₹18L Monthly Revenue Added' — in orange cards drifting in
+Headline | Syne ExtraBold 72px white: 'Real Businesses. Real Results.'
+Section ID | CASE-S02-04
+Section Name | Case Study Cards
+Layout Pattern | Full-width alternating editorial layout
+Background | Alternating White / Navy
+Component Type | Case Study Block
+Viewport Height | 700px each
+Layout | Industry badge (pill) → Client sector + city → Challenge (problem statement card, dark border) → Solution (bulleted, orange checks) → Results (3 large stats in orange Bebas Neue) → Quote from client
+Results Block | Vivid orange background strip with 3 large white stat numbers — most visually impactful element of each case study
+Before/After | Small horizontal bar chart showing before (grey) vs after (orange) for key metric — instant visual proof
+Section ID | CASE-S05
+Section Name | Interactive ROI Calc
+Layout Pattern | Card widget, dark bg
+Background | Deep Navy
+Component Type | Interactive Tool
+Viewport Height | 600px
+Card | Large dark card, orange border glow, input sliders + result panel on right
+Inputs | Sliders: Monthly Leads · Conversion Rate · Revenue Per Customer · Team Size · Monthly Cost
+Output | Real-time updating: Additional Annual Revenue (orange, large Bebas Neue) · Cost Savings · Total ROI · Payback Months
+CTA | Below results: 'Want this for your business? Book a Free Audit' — orange button
+Animation | Numbers animate/count-up smoothly as user adjusts sliders
+Section ID | CON-S01
+Section Name | Contact Hero
+Layout Pattern | Split — left form, right trust signals
+Background | Deep Navy
+Component Type | Contact Hero
+Viewport Height | 100vh
+Background | Dark navy — creates focus and reduces distraction
+Left Side — Form | White card (10% opacity bg), 'Claim Your Free AI Audit' headline, all form fields
+Form Fields | Floating label inputs — labels start as placeholders, float up when focused. Orange focus border. Dark navy bg.
+Form CTA | Full-width orange gradient button inside form
+Right Side | Trust signals stacked: ✓ badges → testimonial snippet → team photo → 'Responds within 4 hours' promise badge
+Section ID | CON-S02
+Section Name | Book a Demo
+Layout Pattern | Calendar embed + preview of what demo shows
+Background | Off-White
+Component Type | Booking Section
+Viewport Height | 700px
+Layout | Left: what you'll see in the demo (3 bullet points with orange icons) + social proof. Right: Calendly or cal.com embed.
+Demo Preview | 3 animated thumbnails showing what the demo covers: Voice Agent Live · Campaign Launch · HR Automation
+Section ID | CON-S03
+Section Name | Partnership + Careers
+Layout Pattern | 2-column split cards
+Background | Near Black
+Component Type | Two Panel Split
+Viewport Height | 500px
+Left Card | Orange gradient card — Partnerships. Icon, headline, 3 partner types, 'Apply to Partner' button
+Right Card | Dark navy card — Careers. Icon, headline, 3 open roles, 'See Open Roles' button
+Both Cards | 16px radius, same height, 24px gap between
+Section ID | G-FOOTER
+Section Name | Global Footer
+Layout Pattern | 4-column grid + bottom bar
+Background | Deep Navy #0D1B2E
+Component Type | Footer
+Viewport Height | 480px
+Column 1 | AGENTIX logo (white) → tagline (DM Sans 15px white 60%) → social icons (orange on hover)
+Column 2 | Solutions links — Syne SemiBold 13px white label + DM Sans 13px grey links with hover orange
+Column 3 | Industries links — same style
+Column 4 | Contact info + newsletter signup — compact form with orange CTA
+Divider | 1px line rgba(255,255,255,0.08) above bottom bar
+Bottom Bar | Copyright left · Privacy Policy · Terms · Sitemap right — DM Sans 12px grey
+Orange Accent | Thin orange line at very top of footer — 4px, full width — signals the brand transition from page content
+Section ID | H-S12
+Section Name | Latest Insights
+Layout Pattern | 3-card horizontal with 'View All' link
+Background | Off-White
+Component Type | Blog Preview
+Viewport Height | 500px
+Cards | Thumbnail (dark card style) + Category tag (orange pill) + Headline (Syne SemiBold 18px) + Read time + 'Read →' link
+Purpose | SEO signal + thought leadership + keeps users on site longer
+Section ID | H-S13
+Section Name | Video Demo
+Layout Pattern | Full-width video card with dark overlay
+Background | Near Black
+Component Type | Video Section
+Viewport Height | 600px
+Concept | Large video thumbnail (16:9, showing an AI voice agent in action), play button centred (80px orange circle), dark overlay, caption below
+Caption | DM Sans 16px white: 'Watch an AI Agentex voice agent qualify a real estate lead in real time — 3 minute demo'
+On Click | Opens lightbox video player, not external YouTube tab
+Section ID | SOL-S11
+Section Name | Manual vs Automated
+Layout Pattern | Side-by-side comparison table
+Background | Off-White
+Component Type | Comparison Table
+Viewport Height | 600px
+Left Column | Manual Process — grey header, strikethrough style text, red/grey indicators
+Right Column | AI Agentex Automated — orange header, green checkmarks, bold improvements
+Rows | Response Time · Cost · Accuracy · Scalability · Working Hours · Human Dependency
+Purpose | Makes the value proposition undeniable and concrete
+Section ID | IND-S09
+Section Name | India Industry Map
+Layout Pattern | Stylised India map with clickable industry pins
+Background | Deep Navy
+Component Type | Interactive Map
+Viewport Height | 700px
+Concept | Stylised flat India map, orange pins at major city clusters, hovering a pin shows client result callout
+Purpose | 'India-first' credibility signal — shows national presence and Indian business focus
+Mobile | Fallback to list of cities with client count
+Section ID | AB-S07
+Section Name | Life at Agentex
+Layout Pattern | Photo grid + culture bullets
+Background | Off-White
+Component Type | Culture Section
+Viewport Height | 500px
+Layout | 3×2 photo grid (team, office, work-from-anywhere) + right-side list of culture bullets
+Purpose | Recruitment signal + humanises the brand for enterprise buyers who want to know who they're working with
+Section ID | G-WA
+Section Name | WhatsApp Float Button
+Layout Pattern | Fixed bottom-right
+Background | N/A — floats over all pages
+Component Type | Global CTA
+Viewport Height | Always visible
+Design | WhatsApp green circle icon (56px) + orange 'Chat with Us' label that slides out on hover
+Position | Fixed: bottom 32px, right 32px, z-index 9999
+Mobile | Bottom 20px, right 20px — same size
+Purpose | Highest-converting CTA for Indian B2B audiences — direct WhatsApp access reduces friction to zero
+Section ID | G-POPUP
+Section Name | Exit Intent Offer
+Layout Pattern | Centred modal, dark overlay
+Background | Modal on navy overlay
+Component Type | Popup
+Viewport Height | 480px card
+Trigger | Mouse moves above viewport top boundary (desktop) / 40s time-on-page (mobile)
+Design | Dark navy card + orange headline + 'Before you go...' + offer: free AI audit or free checklist download
+CTA | Orange gradient button inside modal
+Close | White X top-right, ESC key, click overlay
+Section ID | G-COOKIE
+Section Name | Cookie Consent
+Layout Pattern | Bottom strip
+Background | Near black with orange accent
+Component Type | Cookie Bar
+Viewport Height | 80px
+Design | Bottom of screen, slim strip, DM Sans 13px grey text, 'Accept' orange button, 'Settings' ghost button
+Animation | Slides up from bottom after 2s page load

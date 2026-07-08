@@ -1,0 +1,799 @@
+AI AGENTEX
+Complete Website Content
+India's Leading End-to-End AI Automation & Business Consulting Company
+All Pages · All Sections · Ready to Publish
+PAGE 1 — HOME
+Section 1.1 — Navigation Bar
+Sticky top nav with logo + 7 menu items + CTA button
+Logo Text:
+AI Agentex | Powering India's Automation Revolution
+Nav Links:
+Home
+About Us
+Solutions
+Industries
+AI Studio
+Technology
+Case Studies
+Contact
+CTA Button:
+Get a Free AI Audit →
+Section 1.2 — Hero Banner
+Full-screen hero with headline, sub-headline, two CTAs, and trust stats
+Headline:
+India's #1 End-to-End AI Automation Partner
+Sub-headline:
+We automate your entire business — from acquiring your first customer to retaining them forever. Sales, marketing, operations, HRMS, supply chain, finance — all powered by intelligent AI agents built for Indian businesses.
+Primary CTA:
+Book Your Free AI Audit
+Secondary CTA:
+Watch How It Works
+Trust Stats Bar:
+200+ Businesses Automated
+15+ Industries Served
+₹50 Cr+ Revenue Generated for Clients
+98% Client Retention Rate
+Headquartered in India, Serving Globally
+Section 1.3 — What We Do (3-Column Overview)
+Three pillars of the business presented as icon cards
+Pillar 1 — Agentic AI Solutions:
+We build custom AI agents that run your sales, marketing, customer support, and operations 24/7 — without human intervention. Our agents think, decide, and act so your team can focus on growth.
+Pillar 2 — End-to-End Automation:
+From the moment a lead enters your funnel to the day they become a loyal repeat customer, every touchpoint is automated. We handle lead generation, onboarding, delivery, follow-up, and retention.
+Pillar 3 — Business Consulting + AI:
+We don't just implement tools — we fix bottlenecks. Our AI business consultants analyse your operations, identify revenue leaks, and deploy automation that directly increases your top and bottom line.
+Section 1.4 — Industries We Serve (Scrolling Ticker / Grid)
+Visual grid of 7 industry icons with one-line descriptors
+Healthcare — Automate patient acquisition, appointments & follow-ups
+Education — Automate admissions, fee collection & student engagement
+Hospitality — Automate bookings, guest experience & loyalty programs
+Real Estate — Automate lead capture, site visits & CRM follow-up
+Retail & E-commerce — Automate inventory, orders & customer retention
+Manufacturing — Automate conveyor belts, QC & supply chain
+Logistics — Automate dispatch, tracking & vendor communication
+Section 1.5 — Customer Journey Automation (3-Phase Visual)
+Headline:
+We Automate Your Entire Customer Lifecycle
+Phase 1 — ACQUIRE:
+AI-powered lead generation, voice agents, chat agents, social media outreach, and paid ad automation bring qualified prospects directly into your pipeline — while you sleep.
+Phase 2 — DELIVER:
+From order fulfilment and service delivery to operations, supply chain, and real-time inventory management — we ensure every promise you make to a customer is kept, automatically.
+Phase 3 — RETAIN:
+Automated follow-up sequences, AI-driven CRM updates, loyalty programs, re-engagement campaigns, and customer satisfaction monitoring keep your clients coming back for more.
+Section 1.6 — Trusted by Indian Businesses (Social Proof)
+Headline:
+Trusted by Forward-Thinking Companies Across India
+Sub-text:
+From startups to enterprises, we've helped 200+ Indian companies cut costs by 40%, double their lead flow, and reclaim hundreds of hours per month through intelligent automation.
+Client Testimonial 1:
+"AI Agentex completely transformed our admissions process. We went from manually calling 500 leads a week to a fully automated voice agent that qualifies and books demos 24/7. Our conversions jumped 3x in 60 days." — Director, Leading EdTech Company, Bangalore
+Client Testimonial 2:
+"We were losing leads because our follow-up was slow. AI Agentex built us an AI agent that responds in seconds, nurtures prospects, and books appointments without any human effort. Remarkable ROI." — MD, Real Estate Developer, Delhi NCR
+Client Testimonial 3:
+"Our HR team was spending 60% of their time on repetitive tasks. After AI Agentex implemented our HRMS automation, we freed up two full-time resources and reduced hiring time by 50%." — COO, Hospitality Chain, Mumbai
+Section 1.7 — Our Unique Approach
+Headline:
+We Don't Sell Software. We Build Systems.
+Body:
+Most automation companies hand you a tool and walk away. We're different. Our team of AI engineers and business consultants embeds with your organisation, maps every workflow, identifies every inefficiency, and builds a fully custom AI automation stack tailored to your industry and goals.
+4-Step Process:
+Discover — Free 90-minute AI audit of your current business processes
+Design — Custom automation roadmap built by our AI consultants
+Deploy — End-to-end implementation of AI agents, integrations & workflows
+Dominate — Ongoing optimisation, reporting, and scaling support
+Section 1.8 — AI Studio Teaser
+Headline:
+Run Your Entire Digital Marketing on Autopilot
+Body:
+Our AI Studio generates high-quality video content, writes social media posts, runs paid campaigns, and manages your brand's online presence — all through AI agents. No agency fees. No delays. Just consistent, conversion-focused content posted daily.
+CTA:
+See AI Studio in Action →
+Section 1.9 — Results / ROI Banner
+Headline:
+The Numbers Speak for Themselves
+40% Average Reduction in Operational Costs
+3x Average Increase in Lead Conversion Rate
+70% Reduction in Manual HR & Admin Tasks
+50% Faster Order Processing & Fulfilment
+24/7 Customer Engagement with Zero Additional Headcount
+Section 1.10 — Final CTA Section
+Headline:
+Ready to Automate Your Business with AI?
+Sub-text:
+Book a free 90-minute AI audit with our experts. We'll analyse your business, identify your biggest automation opportunities, and show you exactly how AI Agentex can double your revenue and cut your costs.
+CTA Button:
+Claim Your Free AI Audit — No Commitment Required
+Section 1.11 — Footer
+Tagline:
+AI Agentex — Automating India's Business Future
+Footer Links:
+Privacy Policy
+Terms of Service
+Refund Policy
+Sitemap
+Social Links:
+LinkedIn
+Instagram
+YouTube
+WhatsApp Business
+Contact Info:
+Email: hello@aiagentex.in | WhatsApp: +91-XXXXXXXXXX | Office: [City], India
+PAGE 2 — ABOUT US
+Section 2.1 — Hero / Banner
+Headline:
+We Are India's Automation Architects
+Sub-headline:
+AI Agentex was founded with a single mission: to give every Indian business — from a 10-person startup to a 1,000-person enterprise — the same unfair competitive advantage that Fortune 500 companies get from artificial intelligence.
+Section 2.2 — Our Story
+Headline:
+Born From a Frustration, Built for a Revolution
+Body:
+Every Indian business owner we met was working harder than ever — but growing slower than they should. They were buried in repetitive tasks, losing leads to slow follow-up, and paying huge teams to do work that AI could handle in seconds.
+We started AI Agentex to change that. We combined deep AI engineering expertise with real-world business consulting experience to build something no one else in India was offering: a true end-to-end AI automation partner. Not a software vendor. Not a digital agency. A genuine business transformation partner that sits alongside you, understands your goals, and automates everything standing between you and explosive growth.
+Today, AI Agentex serves clients across healthcare, education, hospitality, real estate, retail, manufacturing, and logistics — automating their sales, marketing, operations, HR, finance, and customer journeys from first touchpoint to long-term loyalty.
+Section 2.3 — Our Mission, Vision & Values
+Mission:
+To democratise AI automation for Indian businesses — making enterprise-grade intelligence accessible, affordable, and impactful for organisations of every size.
+Vision:
+To become the most trusted AI automation partner in Asia, powering the next generation of intelligent, efficient, and profitable Indian businesses.
+Core Values:
+Results First — We measure success in your revenue growth, cost savings, and time reclaimed
+Radical Transparency — You always know what we're building, why, and what it's delivering
+Deep Expertise — We hire only AI engineers and consultants who have delivered real-world automation at scale
+Indian at Heart — We understand the unique context, culture, and challenges of Indian business
+Continuous Innovation — We stay ahead of the AI curve so you always have access to the latest and most powerful tools
+Section 2.4 — Our Team
+Headline:
+The People Powering Your Automation
+Sub-text:
+Our team combines AI engineers, automation architects, business consultants, and digital marketing specialists — all with one goal: to make your business run itself.
+Team Roles Featured:
+Founder & CEO — AI Strategy & Business Consulting
+Head of AI Engineering — Agentic Systems & Automation Architecture
+Head of AI Studio — Content Generation & Digital Marketing
+Head of Operations Automation — HRMS, Finance & Supply Chain
+Head of Sales Automation — Lead Generation, Voice & Chat Agents
+Customer Success Lead — Onboarding, Training & Ongoing Support
+Section 2.5 — Why Choose AI Agentex
+Headline:
+What Makes Us Different From Every Other AI Company in India
+End-to-end ownership — We build, integrate, maintain, and optimise everything
+Industry-specific expertise — Custom solutions for your sector, not generic templates
+Business consulting + AI — We fix business problems, not just implement tools
+Agentic AI — We build autonomous agents, not just automations
+Full-stack capability — Sales, marketing, operations, HR, finance, content — all under one roof
+Measurable ROI — Every engagement starts with clear KPIs and ends with verified results
+Section 2.6 — Certifications & Partnerships
+Headline:
+Built on the World's Most Powerful AI Platforms
+OpenAI Technology Partner
+n8n Certified Automation Specialists
+Make (formerly Integromat) Certified Partners
+Google Workspace Automation Experts
+Meta Business Partners — WhatsApp & Instagram Automation
+AWS & Google Cloud Certified Infrastructure
+Section 2.7 — Press / Recognition
+Headline:
+Recognised as a Pioneer in India's AI Automation Space
+[Placeholder for media logos, awards, and press mentions as they are earned]
+PAGE 3 — SOLUTIONS
+Section 3.0 — Solutions Overview Banner
+Headline:
+Automate Every Function. Dominate Every Market.
+Sub-text:
+AI Agentex delivers 8 core automation solutions that cover every critical function of your business — from the first marketing touchpoint to the last mile of operations. Each solution is fully custom-built, deeply integrated, and continuously optimised for measurable ROI.
+Section 3.1 — Sales Automation
+Page Headline:
+Close More Deals Without Adding a Single Salesperson
+What We Automate:
+AI-powered lead scoring and prioritisation from all inbound channels
+Automated outbound email sequences with personalisation at scale
+WhatsApp sales automation — follow-up, product info, payment links
+AI voice agents for outbound calling, qualification, and appointment setting
+CRM auto-population, pipeline management, and deal tracking
+Sales performance dashboards with real-time reporting
+Automated proposal generation and contract follow-up
+Outcome:
+Our clients average a 3x increase in qualified leads and a 60% reduction in sales cycle length within 90 days of deployment.
+Section 3.2 — Marketing Automation
+Page Headline:
+Run 24/7 Marketing Campaigns Without a Marketing Team
+What We Automate:
+Multi-channel campaign orchestration — email, WhatsApp, SMS, Instagram, Facebook
+AI-generated ad copy, creative briefs, and A/B test variants
+Lead nurture sequences triggered by user behaviour and intent signals
+Automated social media posting, scheduling, and engagement replies
+SEO content generation and blog publishing workflows
+Retargeting audiences built and refreshed automatically by AI
+Marketing analytics and attribution reporting, automated weekly
+Outcome:
+Clients reduce their marketing spend by 35% while doubling their content output and increasing qualified lead volume by 150%.
+Section 3.3 — HRMS & Hiring Automation
+Page Headline:
+Hire Faster, Manage Smarter, Retain Longer
+What We Automate:
+Job posting distribution across 15+ platforms simultaneously
+AI-powered resume screening and candidate scoring
+Automated interview scheduling and reminder sequences
+Offer letter generation, e-signing, and onboarding workflows
+Attendance tracking, leave management, and payroll calculation
+Employee performance review cycles and appraisal workflows
+Salary slip generation and disbursement notification automation
+Exit interview workflows and offboarding checklists
+Outcome:
+HR teams reclaim 70% of their time, reduce time-to-hire by 50%, and eliminate payroll errors entirely.
+Section 3.4 — Operations Automation
+Page Headline:
+Run Leaner Operations with Zero Human Error
+What We Automate:
+Standard operating procedure (SOP) automation and task assignment
+Customer escalation routing and resolution tracking
+Vendor communication, PO generation, and invoice processing
+Quality assurance checklists and compliance reporting
+Real-time operations dashboards for managers and executives
+Multi-location coordination and daily report aggregation
+Project management automation with deadline alerts and bottleneck flags
+Outcome:
+Operational costs reduced by 40% with full visibility and control across every department.
+Section 3.5 — Supply Chain Automation
+Page Headline:
+From Supplier to Customer — Automated, End to End
+What We Automate:
+Demand forecasting using AI to predict stock needs before they arise
+Automated purchase orders triggered by inventory thresholds
+Supplier performance tracking and reorder optimisation
+Real-time shipment tracking and delay alert automation
+Returns processing, credit notes, and vendor reconciliation
+Logistics route optimisation and delivery scheduling
+Outcome:
+Supply chain costs drop by 30% and stockouts are eliminated with predictive AI inventory management.
+Section 3.6 — Finance & Accounts Automation
+Page Headline:
+Close Your Books Faster. Never Miss a Payment.
+What We Automate:
+GST-compliant invoice generation and dispatch
+Accounts payable and receivable workflow automation
+Expense claim submission, approval, and reimbursement
+Automated payment reminders and follow-up sequences
+Bank reconciliation and ledger matching workflows
+Monthly MIS reports generated and distributed automatically
+Salary calculation with allowance rules, deductions, and tax slabs
+Outcome:
+Finance teams reduce month-end close time by 60% and eliminate late payment penalties entirely.
+Section 3.7 — Voice & Chat Agents
+Page Headline:
+Your Business Is Now Open 24/7 — Powered by AI
+Voice Agent Capabilities:
+Outbound calling for lead qualification, appointment booking, and follow-up
+Inbound call handling — FAQs, order status, complaint routing
+Human-like conversations in Hindi, English, and regional languages
+Call recording, transcription, and CRM logging — fully automatic
+Escalation to human agent when complexity requires it
+Chat Agent Capabilities:
+WhatsApp Business automation — lead capture, product enquiries, payment
+Website live chat with full product knowledge and lead qualification
+Instagram DM automation for leads from social campaigns
+Personalised follow-up sequences based on conversation history
+Multilingual support for diverse Indian customer bases
+Outcome:
+Businesses respond to 100% of leads within seconds, increase booking rates by 4x, and save 80% of customer service costs.
+Section 3.8 — Manufacturing Automation
+Page Headline:
+Intelligent Manufacturing for the Modern Indian Factory
+What We Automate:
+Conveyor belt process monitoring with AI anomaly detection
+Predictive maintenance scheduling based on equipment sensor data
+Production planning and shift scheduling automation
+Quality control image recognition to detect defects in real time
+Raw material consumption tracking and waste reduction alerts
+Worker safety compliance monitoring and automated reporting
+Outcome:
+Manufacturing clients see a 25% increase in production efficiency and a 40% reduction in downtime and defect rates.
+PAGE 4 — INDUSTRIES
+Section 4.0 — Industries Overview Banner
+Headline:
+Purpose-Built Automation for Every Industry We Touch
+Sub-text:
+Generic automation fails because every industry has unique workflows, compliance requirements, customer journeys, and operational challenges. AI Agentex builds industry-specific automation stacks — not templates, not re-skinned tools, but genuinely custom AI systems designed for your sector.
+Section 4.1 — Healthcare
+Headline:
+Automate the Business of Healthcare — So You Can Focus on Patients
+Challenges We Solve:
+Missed appointments and no-shows draining revenue
+Slow patient follow-up after consultations
+Staff overwhelmed by administrative tasks
+Disconnected patient data across departments
+What We Automate:
+Patient lead generation from digital channels and health platforms
+AI voice agent for appointment booking, reminders, and cancellations
+Post-consultation follow-up sequences for prescriptions and check-ins
+Insurance claim processing and documentation automation
+Doctor scheduling, staff roster management, and payroll
+Inventory management for medical consumables and pharmaceuticals
+Patient feedback collection and reputation management
+Client Result:
+A multi-specialty clinic in Delhi reduced appointment no-shows by 65% and increased new patient acquisitions by 40% in 90 days using AI Agentex voice and chat agents.
+Section 4.2 — Education
+Headline:
+Automate Admissions, Engagement, and Growth for Education Institutions
+Challenges We Solve:
+High enquiry volume with slow manual follow-up losing admissions to competitors
+Fee collection delays and payment reminders managed manually
+Student engagement dropping after enrolment
+Administrative staff overwhelmed with repetitive tasks
+What We Automate:
+Lead capture from website, social media, and education portals
+AI chat and voice agents for instant counsellor-like responses to enquiries
+Automated admissions journey — enquiry to application to enrolment
+Fee reminder sequences with payment link delivery via WhatsApp
+Student performance tracking and parent communication automation
+Faculty recruitment, onboarding, and attendance management
+Content marketing automation to build institutional brand awareness
+Client Result:
+An ed-tech coaching institute in Mumbai used AI Agentex to process 1,200 monthly enquiries automatically, reducing counsellor workload by 70% while increasing enrolment rates by 55%.
+Section 4.3 — Hospitality
+Headline:
+Deliver Exceptional Guest Experiences — Automated, Every Time
+Challenges We Solve:
+High cost of front desk staffing and guest communication
+Review management and reputation building done manually
+Loyalty programs that don't engage or retain guests
+Revenue leakage from unmanaged upsell opportunities
+What We Automate:
+Online booking management and confirmation workflows
+Pre-arrival communication sequences — welcome, upsell, local guide
+AI chat agent for 24/7 guest queries on WhatsApp and website
+Post-stay review request and reputation management automation
+Loyalty point tracking, rewards triggers, and re-booking campaigns
+Housekeeping schedule optimisation and task assignment
+Revenue management — dynamic pricing alerts and OTA sync
+Client Result:
+A boutique hotel chain in Rajasthan increased direct bookings by 80% and improved TripAdvisor rating from 3.8 to 4.6 stars within 6 months using AI Agentex automation.
+Section 4.4 — Real Estate
+Headline:
+Turn Every Enquiry Into a Site Visit. Every Visit Into a Sale.
+Challenges We Solve:
+Thousands of leads with no systematic follow-up process
+Sales teams spending time on unqualified prospects
+Long sales cycles with no nurturing between touchpoints
+No visibility on lead status and pipeline health
+What We Automate:
+Lead capture across 99acres, MagicBricks, Housing.com, Facebook, and Google
+AI voice agent for instant lead qualification and site visit booking
+Drip nurture campaigns for long-cycle buyers — project updates, EMI calculators, testimonials
+CRM updates, follow-up reminders, and deal stage progression
+Broker communication and channel partner onboarding workflows
+Post-purchase documentation automation — registry, loan, possession
+Customer satisfaction tracking and referral program automation
+Client Result:
+A real estate developer in Pune reduced their average lead-to-site-visit time from 5 days to 4 hours using AI Agentex voice agents and automated WhatsApp sequences.
+Section 4.5 — Retail & E-commerce
+Headline:
+Sell More, Return Less, Retain Customers Longer
+What We Automate:
+Product catalogue management and multi-channel listing sync
+Order confirmation, dispatch, tracking, and delivery notification
+Abandoned cart recovery campaigns via WhatsApp and email
+AI-powered personalised product recommendations
+Customer service automation — returns, exchanges, complaints
+Inventory replenishment triggers and supplier PO automation
+Post-purchase review requests and loyalty reward distribution
+Section 4.6 — Manufacturing
+Headline:
+Smarter Factories. Fewer Defects. Higher Output.
+What We Automate:
+Production line monitoring and alert systems
+Predictive maintenance to prevent costly equipment failure
+Raw material procurement and vendor management
+Worker attendance, shift management, and safety compliance
+Quality assurance reporting and defect analysis
+Customer order management from receipt to dispatch
+Section 4.7 — Logistics
+Headline:
+Faster Deliveries. Fewer Errors. Happier Customers.
+What We Automate:
+Fleet dispatch and route optimisation automation
+Driver communication and delivery confirmation workflows
+Customer delivery notifications and real-time tracking links
+Proof of delivery capture and automated billing triggers
+Returns and reverse logistics workflow management
+Vendor payments, invoice reconciliation, and performance reporting
+PAGE 5 — AI STUDIO
+Section 5.1 — Hero
+Headline:
+Your Brand. On Every Platform. Every Day. Fully Automated.
+Sub-headline:
+AI Agentex operates India's most advanced AI-powered content and marketing studio. We create, publish, and optimise your brand's entire digital presence using AI agents — delivering the output of a 10-person marketing team at a fraction of the cost.
+Section 5.2 — AI Video Content Generation
+Headline:
+Professional Video Content — Created by AI, Approved by You
+Body:
+Our AI Studio generates high-quality explainer videos, testimonial compilations, product showcases, promotional reels, and educational content — tailored to your brand voice, industry, and platform. Each video is scripted, voiced, designed, and edited by AI in hours, not weeks.
+What We Produce:
+Short-form reels for Instagram, Facebook, and YouTube Shorts
+Long-form explainer videos for YouTube and your website
+AI-voiced product demos with screen recording and animation
+Event recap videos, webinar highlights, and testimonial cuts
+Multilingual video content in Hindi, English, and regional languages
+Deliverable:
+A consistent pipeline of 20–30 brand-relevant videos per month, published on schedule, with analytics reported weekly.
+Section 5.3 — Agentic Digital Marketing
+Headline:
+AI Agents That Run Your Entire Marketing Department
+Body:
+Our AI marketing agents don't just schedule posts — they plan campaigns, write copy, design creatives, run A/B tests, analyse performance, and iterate. It's a full digital marketing function running autonomously, reporting to you weekly.
+Channels Managed:
+Instagram — Daily stories, reels, carousels, and DM automation
+Facebook — Ads, posts, group engagement, and lead form automation
+LinkedIn — Thought leadership content, connection outreach, and InMail automation
+YouTube — Video uploads, SEO-optimised titles, descriptions, and thumbnails
+Google Ads — Campaign creation, bid management, and conversion optimisation
+WhatsApp Business — Broadcast campaigns, drip sequences, and support automation
+Email Marketing — Newsletter creation, send scheduling, and open/click reporting
+Section 5.4 — AI Lead Generation System
+Headline:
+A Lead Generation Machine That Never Sleeps
+Body:
+Our AI lead generation agents combine content marketing, paid advertising, social outreach, and landing page optimisation to fill your pipeline with qualified prospects — automatically. Every lead is scored, tagged, and routed to your sales automation before a human even sees it.
+What's Included:
+AI-written and published SEO blog content targeting buyer intent keywords
+Lead magnet creation — eBooks, checklists, calculators, and webinar registrations
+Facebook and Google lead generation ad campaigns — managed by AI agents
+LinkedIn outreach automation for B2B lead acquisition
+Landing page creation and conversion rate optimisation
+Lead scoring model built on your ideal customer profile
+Section 5.5 — Social Media Automation
+Headline:
+30 Days of Social Media Content. Published Automatically.
+Body:
+Our AI agents plan and publish a full month of social media content across all platforms — strategically timed, on-brand, and optimised for reach and engagement. Hashtag research, caption writing, creative direction, and comment moderation — all handled without lifting a finger.
+Section 5.6 — AI Studio Packages
+Starter Package:
+8 videos per month
+30-day social media calendar across 3 platforms
+2 email campaigns per month
+Basic ad campaign management
+Growth Package:
+20 videos per month
+Daily content across 5 platforms
+Weekly email sequences
+Full Google & Facebook ad management
+Monthly performance report
+Dominator Package:
+30+ videos per month
+Full omnichannel marketing automation
+Lead generation system included
+AI voice agent for inbound lead follow-up
+Real-time analytics dashboard
+Dedicated AI marketing manager
+PAGE 6 — TECHNOLOGY
+Section 6.1 — Hero
+Headline:
+Powered by the World's Most Advanced AI — Built for Indian Business
+Sub-headline:
+Our technology stack combines the world's leading AI models, automation platforms, and integration tools — assembled by our expert engineers into custom-built agentic systems that run your business operations end to end.
+Section 6.2 — The Agentic AI Platform
+Headline:
+What Is Agentic AI — And Why It Changes Everything
+Body:
+Traditional automation follows rigid rules. If X happens, do Y. Agentic AI is different — it thinks. Our AI agents observe your business environment, reason about what needs to happen, make decisions, take actions, and learn from outcomes. They don't just follow instructions; they solve problems.
+Every automation system we build at AI Agentex is built on agentic principles — AI that can handle exceptions, adapt to new information, and escalate to humans only when genuinely necessary.
+Core Capabilities:
+Multi-step reasoning — agents plan across multiple actions to achieve goals
+Tool use — agents access databases, APIs, CRMs, emails, and phone systems
+Memory — agents retain context from past interactions for smarter responses
+Self-correction — agents identify errors and fix them without human intervention
+Human-in-the-loop — escalation to humans only for complex edge cases
+Section 6.3 — Automation Tools & Integrations
+Headline:
+100+ Integrations. One Unified Automation Brain.
+Workflow Automation:
+n8n — Enterprise workflow automation and agent orchestration
+Make (Integromat) — Complex multi-app integration flows
+Zapier — Rapid lightweight automation triggers
+AI & LLM Layer:
+OpenAI GPT-4o — Language reasoning, content generation, decision making
+Anthropic Claude — Complex document analysis and long-context reasoning
+Google Gemini — Multimodal AI for image and video intelligence
+ElevenLabs — Hyper-realistic AI voice generation for voice agents
+CRM & Sales Tools:
+Zoho CRM, HubSpot, Salesforce — Full pipeline automation
+WhatsApp Business API — Official Meta-approved integration
+Twilio & Exotel — Voice agent telephony infrastructure
+Marketing Platforms:
+Meta Ads API, Google Ads API — Automated campaign management
+Mailchimp, Brevo, Klaviyo — Email automation
+Buffer, Hootsuite — Social media scheduling and analytics
+Operations & Finance:
+Tally, Zoho Books — Accounting and invoice automation
+Razorpay, PayU — Payment gateway integrations
+Google Workspace, Microsoft 365 — Internal process automation
+HR & Payroll:
+Keka, HROne, Darwinbox — HRMS integration and automation
+Aadhaar & DigiLocker — Automated KYC and document verification
+Section 6.4 — Agent Builder
+Headline:
+Custom AI Agents — Built From Scratch for Your Exact Needs
+Body:
+Off-the-shelf automation tools solve generic problems. AI Agentex builds custom agents that solve your specific problems. Our agent builder process starts with deep discovery of your workflows, maps every decision point, and creates autonomous agents that handle those workflows end to end.
+Agent Types We Build:
+Sales Development Agent — qualifies leads, books demos, follows up
+Customer Support Agent — answers queries, resolves complaints, escalates issues
+Marketing Agent — generates content, posts on schedule, reports performance
+HR Agent — screens resumes, schedules interviews, generates offer letters
+Finance Agent — processes invoices, sends reminders, reconciles payments
+Operations Agent — assigns tasks, monitors SLAs, escalates delays
+Inventory Agent — tracks stock levels, triggers POs, alerts on low inventory
+Section 6.5 — Security & Compliance
+Headline:
+Enterprise-Grade Security. India-Compliant. Always.
+Body:
+All AI Agentex systems are designed with data security and regulatory compliance at their core. We implement end-to-end encryption, role-based access controls, and audit logging across every automation we build.
+Compliance Coverage:
+IT Act 2000 & DPDP Act 2023 compliance for all data handling
+GDPR-compliant workflows for businesses with international clients
+GST-compliant invoice and financial automation
+HIPAA-aligned workflows for healthcare clients
+WhatsApp Business Policy compliance for all messaging automations
+PAGE 7 — CASE STUDIES
+Section 7.0 — Overview Banner
+Headline:
+Real Businesses. Real Results. Real Revenue.
+Sub-text:
+Every case study below represents a real engagement where AI Agentex transformed a business through intelligent automation. We measure our success in our clients' growth — in revenue added, costs saved, and hours reclaimed.
+Section 7.1 — Case Study: Healthcare
+Client:
+Multi-specialty clinic, Delhi NCR (name withheld by request)
+Challenge:
+The clinic was losing 40% of new patient enquiries due to slow follow-up. Their front desk team was overwhelmed managing calls, WhatsApp, and email enquiries simultaneously, resulting in missed bookings and poor patient experience.
+Solution:
+Deployed AI voice agent for inbound appointment booking — 24/7, instant response
+Built WhatsApp automation for new patient onboarding, document collection, and reminders
+Automated post-consultation follow-up sequences for prescription refills and check-ups
+Integrated patient data into centralised CRM with full interaction history
+Results:
+65% reduction in appointment no-shows
+40% increase in new patient acquisitions within 90 days
+Front desk team freed from 70% of administrative tasks
+Patient satisfaction score improved from 3.9 to 4.7 out of 5
+Section 7.2 — Case Study: Education
+Client:
+UPSC & competitive exam coaching institute, Mumbai
+Challenge:
+1,200+ monthly enquiries from multiple channels with a 3-person counsellor team. Response time averaged 6 hours. Competitors were converting the same leads faster. Enrolment conversions were below 12%.
+Solution:
+AI chat agent deployed on website and WhatsApp for instant, 24/7 counsellor-quality responses
+Lead qualification workflow to identify serious candidates and prioritise counsellor attention
+Automated drip nurture campaign with course information, success stories, and demo class invites
+Fee payment link automation and admission confirmation workflow
+Results:
+Response time reduced from 6 hours to 45 seconds
+Counsellor workload reduced by 70%
+Enrolment conversion improved from 12% to 31%
+Monthly revenue increased by ₹18 lakh within 4 months
+Section 7.3 — Case Study: Real Estate
+Client:
+Residential developer with 3 active projects, Pune
+Challenge:
+Sales team was receiving 800+ leads per month from portals but had no system for follow-up. Leads were going cold within 48 hours. Site visit conversion was below 8%, and the team had no CRM visibility.
+Solution:
+AI voice agent for instant lead qualification across 99acres, MagicBricks, and Facebook Leads
+Automated WhatsApp nurture sequences with project brochures, floor plans, and testimonials
+Site visit booking automation with calendar sync and reminder sequences
+CRM automation with deal stage tracking and salesperson performance dashboards
+Results:
+Lead-to-site-visit time reduced from 5 days to 4 hours
+Site visit conversion rate improved from 8% to 22%
+Sales team productivity increased by 3x without any new hires
+2 additional units sold per month purely from previously lost leads
+Section 7.4 — ROI Calculator
+Headline:
+Calculate Your Automation ROI in 60 Seconds
+Sub-text:
+Answer 5 simple questions about your business and our AI will calculate exactly how much revenue you stand to gain and how much cost you can eliminate with AI Agentex automation.
+Calculator Fields:
+Monthly leads received
+Current lead-to-customer conversion rate
+Average revenue per customer
+Number of employees doing repetitive tasks
+Average monthly cost of those employees
+Output:
+Projected additional annual revenue from improved lead conversion
+Projected annual cost savings from operations automation
+Estimated total ROI in Year 1
+Payback period in months
+Section 7.5 — Testimonials Wall
+Headline:
+What Our Clients Say About Working With AI Agentex
+Testimonial 1:
+"In 6 months with AI Agentex, we went from a chaotic sales process to a fully automated revenue engine. Our lead conversion tripled and we haven't added a single salesperson." — CEO, SaaS Company, Hyderabad
+Testimonial 2:
+"The AI Studio has been a game-changer for us. We get 30 pieces of quality content every month without briefing a single person. Our Instagram went from 2,000 to 18,000 followers in 4 months." — Founder, D2C Brand, Jaipur
+Testimonial 3:
+"We were hesitant about AI at first. But after AI Agentex automated our HR and payroll, our HR team finally has time to actually focus on people. We'll never go back." — HR Director, Manufacturing Company, Ahmedabad
+Testimonial 4:
+"The voice agent AI Agentex built for us is remarkable. It speaks to our patients in Hindi, books appointments, sends reminders, and has virtually eliminated no-shows. We've recovered ₹8 lakh per month in lost appointments." — Medical Director, Diagnostic Centre, Lucknow
+PAGE 8 — CUSTOMER JOURNEY AUTOMATION
+Section 8.1 — ACQUIRE Page
+Headline:
+Fill Your Pipeline on Autopilot
+Sub-headline:
+Never chase a lead again. AI Agentex builds AI-powered acquisition systems that find, qualify, and engage your ideal customers automatically — through voice, chat, content, and paid advertising.
+Acquisition Channels We Automate:
+Voice agents — outbound calling to cold lists and warm leads
+WhatsApp Business — instant response to every inbound enquiry
+Website chat agent — 24/7 lead capture and qualification
+Instagram & Facebook DM automation — convert social traffic instantly
+LinkedIn outreach automation for B2B businesses
+Google & Facebook paid advertising management via AI
+SEO content machine — rank for buyer-intent keywords, 24/7
+Lead magnet funnels — eBooks, calculators, free audits
+How It Works:
+Lead enters your ecosystem via any channel
+AI agent responds instantly — qualifies, scores, and segments
+Qualified leads are nurtured automatically or routed to sales
+CRM is updated in real time with every interaction
+Unqualified leads enter long-term nurture sequences
+Section 8.2 — DELIVER Page
+Headline:
+Fulfil Every Promise. Delight Every Customer.
+Sub-headline:
+Acquiring a customer is only half the battle. AI Agentex automates your entire delivery infrastructure — operations, supply chain, inventory, and fulfilment — so every customer receives an exceptional experience, every time.
+Delivery Automation Includes:
+Order confirmation and fulfilment workflow automation
+Real-time shipment tracking and proactive customer notification
+Inventory replenishment and supplier PO automation
+Service delivery checklists and SLA monitoring
+Quality assurance workflows with automated reporting
+Customer onboarding sequences post-purchase
+Issue resolution routing and escalation automation
+Section 8.3 — RETAIN Page
+Headline:
+Turn One-Time Buyers Into Lifetime Fans
+Sub-headline:
+Retention is where businesses are made or broken. AI Agentex builds automated retention systems that keep your customers engaged, returning, and referring — without any manual effort from your team.
+Retention Automation Includes:
+Post-purchase follow-up sequences personalised by product and segment
+Loyalty program management — points, tiers, rewards, and expiry alerts
+Re-engagement campaigns for inactive customers
+Net Promoter Score (NPS) surveys with automated follow-up
+Review request automation and reputation management
+Anniversary and birthday campaign automation
+Referral program automation with tracking and reward distribution
+Churn prediction alerts — AI flags at-risk customers for proactive intervention
+PAGE 9 — RESOURCES & ENGAGEMENT
+Section 9.1 — Blog
+Headline:
+The AI Agentex Knowledge Hub
+Sub-text:
+Weekly articles, guides, and insights on AI automation, agentic AI, business growth, and industry-specific technology trends — written by our team of AI engineers and business consultants.
+Sample Blog Topics:
+How AI Voice Agents Are Revolutionising Lead Follow-Up in Real Estate
+The Complete Guide to HRMS Automation for Indian Businesses
+How to Reduce WhatsApp Response Time from Hours to Seconds with AI
+Supply Chain Automation: A Step-by-Step Guide for Indian Manufacturers
+5 Things Every Healthcare Clinic Should Automate in 2025
+How AI Agentex Clients Are Achieving 3x ROI in 90 Days
+Section 9.2 — Resources Library
+Headline:
+Free Guides, Templates & Frameworks
+Resources Available:
+The Indian Business Automation Playbook (PDF)
+AI Audit Checklist: 25 Processes You Should Automate Now
+ROI Calculator Spreadsheet — Free Download
+Industry Automation Blueprint: Healthcare Edition
+Industry Automation Blueprint: Education Edition
+Industry Automation Blueprint: Real Estate Edition
+The Complete Guide to AI Voice Agents for Business
+How to Build a 24/7 Lead Generation System with AI
+Section 9.3 — Events & Webinars
+Headline:
+Learn Directly From India's AI Automation Experts
+Regular Events:
+Monthly Webinar: 'Automate or Stagnate' — Live AI automation demos for business owners
+Quarterly Workshop: 'Build Your First AI Agent' — Hands-on technical session
+Industry Roundtable: AI in Healthcare / Education / Real Estate — invite-only for senior executives
+Free 1-on-1 AI Audit Session — 90 minutes with an AI Agentex consultant
+Section 9.4 — Pricing
+Headline:
+Transparent Pricing. Transformative Results.
+Sub-text:
+AI Agentex engagements are scoped and priced based on the complexity of your automation needs, the number of systems integrated, and the level of ongoing support required. Every engagement begins with a free AI audit to ensure we recommend only what your business truly needs.
+Engagement Types:
+Project-Based — One-time automation build with handover and training
+Retainer — Ongoing automation management, optimisation, and AI Studio services
+AI Studio Only — Monthly content and digital marketing automation package
+Enterprise — Full-stack automation across all business functions
+CTA:
+Request a Custom Quote — All proposals include a free ROI projection
+Section 9.5 — FAQ
+Headline:
+Frequently Asked Questions
+Q: What size of business is AI Agentex right for?
+A: We work with businesses of all sizes — from 10-person startups to enterprises with 1,000+ employees. The right time to automate is when repetitive tasks are costing you time and money. That can happen at any stage of growth.
+Q: How long does it take to deploy an automation?
+A: Simple automations like a WhatsApp response bot or email sequence can go live in 5-7 days. Complex multi-system integrations like a full HRMS or supply chain automation typically take 4-8 weeks.
+Q: Do I need a technical team to work with you?
+A: No. We handle everything — discovery, design, development, integration, testing, and training. Your team simply needs to be available to brief us and approve the workflows we design.
+Q: Will the automation work with my existing software?
+A: Almost certainly yes. We integrate with 100+ business applications including Zoho, HubSpot, Tally, Razorpay, WhatsApp Business, Google Workspace, and all major CRM, ERP, and HRMS platforms.
+Q: What happens if the automation breaks or needs to be updated?
+A: All AI Agentex clients on a retainer plan receive ongoing monitoring, maintenance, and updates. We proactively fix issues before they impact your business and update workflows as your business evolves.
+Q: How do you measure success?
+A: Every engagement begins with agreed KPIs — typically lead conversion rate, cost per acquisition, operational cost reduction, and time saved. We report against these KPIs monthly and you always know exactly what your investment is delivering.
+Q: Is my business data secure with AI Agentex?
+A: Absolutely. We implement enterprise-grade encryption, strict access controls, and audit logging on all systems. We are fully compliant with India's DPDP Act 2023 and follow global best practices for data security.
+Q: Do you offer services in languages other than English?
+A: Yes. Our AI agents support Hindi, English, and major regional languages including Tamil, Telugu, Marathi, Bengali, and Gujarati. Voice agents are particularly effective in regional languages for rural and tier-2/3 market engagement.
+PAGE 10 — CONTACT
+Section 10.1 — Hero
+Headline:
+Let's Automate Your Business — Starting Today
+Sub-headline:
+Book a free 90-minute AI Audit with our experts. We'll map your workflows, identify your biggest automation opportunities, and show you exactly how AI Agentex can transform your business.
+Section 10.2 — Free AI Audit Form
+Form Headline:
+Claim Your Free AI Business Audit
+Form Fields:
+Full Name
+Business Name
+Industry (Dropdown)
+Business Size (Number of employees)
+Phone Number (WhatsApp preferred)
+Email Address
+Website URL (optional)
+Biggest challenge you want to solve with automation (free text)
+How did you hear about us? (Dropdown)
+CTA Button:
+Book My Free AI Audit — 90 Minutes, No Commitment
+Trust Statement Below Form:
+✓ No sales pressure ✓ You'll receive a written automation roadmap ✓ Confidential — your business information is never shared
+Section 10.3 — Book a Demo
+Headline:
+See AI Agentex in Action — Live Demo
+Body:
+In a 30-minute live demo, our team will show you exactly how our AI agents work — from a voice agent calling a lead and booking an appointment, to a full automated marketing campaign being launched, to an HRMS processing a payroll run. Book your slot now.
+Calendar Integration:
+[Calendly or similar booking widget embedded here]
+Section 10.4 — Partnerships
+Headline:
+Partner With AI Agentex
+Body:
+Are you a business consultant, marketing agency, IT company, or industry expert looking to offer AI automation to your clients? Join our partner network and access co-delivery support, white-label services, and revenue sharing on referrals.
+Partnership Types:
+Referral Partner — Earn commissions for every client you refer
+Implementation Partner — Co-deliver AI Agentex solutions with your team
+White-Label Partner — Offer AI Agentex products under your own brand
+Technology Partner — Integrate your platform with AI Agentex's automation stack
+CTA:
+Apply to Become a Partner →
+Section 10.5 — Careers
+Headline:
+Build the Future of Indian Business With Us
+Body:
+AI Agentex is growing fast and we're always looking for exceptional AI engineers, automation architects, business consultants, and digital marketers who are passionate about building systems that transform businesses.
+Open Culture:
+Remote-first work environment
+Work on the most advanced AI systems in India
+Direct impact — every system you build helps a real business grow
+Competitive compensation + performance bonuses
+Continuous learning — access to all leading AI platforms and courses
+Current Openings:
+AI Engineer — n8n & LLM Automation Specialist
+AI Prompt Engineer & Agent Designer
+Business Development Executive
+Digital Marketing Automation Manager
+Client Success Manager
+CTA:
+Send your CV and a note on what you'd build at AI Agentex to: careers@aiagentex.in
+Section 10.6 — Contact Details
+Email:
+hello@aiagentex.in
+WhatsApp:
++91-XXXXXXXXXX (WhatsApp Business — replies within minutes)
+Office:
+[City, State] — India
+Social:
+LinkedIn: linkedin.com/company/aiagentex
+Instagram: @aiagentex
+YouTube: youtube.com/@aiagentex
