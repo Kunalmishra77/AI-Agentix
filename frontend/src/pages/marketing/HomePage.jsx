@@ -709,7 +709,7 @@ const RESPONSIVE_CSS = `
   .ax-stats-grid > div:nth-child(2) { border-right: none !important; }
   .ax-stats-grid > div:nth-child(3),
   .ax-stats-grid > div:nth-child(4) {
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid var(--l-border);
     padding-top: 40px;
     margin-top: 40px;
   }
@@ -1055,22 +1055,19 @@ export default function HomePage() {
       <style>{MARQUEE_CSS}</style>
       <style>{RESPONSIVE_CSS}</style>
       <section style={{
-        background: 'linear-gradient(180deg, #0A1628 0%, #0D1B2E 100%)',
+        background: 'var(--l-page)',
         padding: '52px 0 56px',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        borderTop: '1px solid var(--l-border)',
+        borderBottom: '1px solid var(--l-border)',
         overflow: 'hidden',
         position: 'relative',
       }}>
-        {/* Ambient glow */}
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 200, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(232,99,26,0.07) 0%, transparent 70%)', pointerEvents: 'none' }} />
-
         {/* Label */}
         <div style={{ textAlign: 'center', marginBottom: 28 }}>
           <span style={{
             display: 'inline-block',
             fontSize: 11, fontWeight: 700, letterSpacing: 3.5,
-            color: 'rgba(255,255,255,0.35)',
+            color: 'var(--l-muted)',
             fontFamily: 'var(--font-body)',
             textTransform: 'uppercase',
           }}>
@@ -1081,7 +1078,7 @@ export default function HomePage() {
 
         {/* Single row — scrolls left, infinite */}
         <div
-          className="ax-mq-wrap"
+          className="ax-mq-wrap ax-mq--light"
           style={{
             overflow: 'hidden',
             maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
@@ -1107,7 +1104,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           3. PAIN SECTION — Light, centered header + 4 problem cards
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#F9FAFB', padding: '100px 0' }}>
+      <section style={{ background: 'var(--l-alt)', padding: '100px 0' }}>
         <div className="ax-container">
           <motion.div {...up(0)} style={{ textAlign: 'center', marginBottom: 64, maxWidth: 640, margin: '0 auto 64px' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#FEF2F2', border: '1px solid #FEE2E2', borderRadius: 100, padding: '5px 14px', marginBottom: 20 }}>
@@ -1156,21 +1153,17 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           4. STATS — Deep dark, orange count-up numbers
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#060E1A', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
-        {/* Subtle dot grid */}
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(232,99,26,0.07) 1px, transparent 1px)', backgroundSize: '32px 32px', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 700, height: 300, background: 'radial-gradient(ellipse, rgba(232,99,26,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
-
+      <section style={{ background: 'var(--l-page)', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="ax-container" style={{ position: 'relative' }}>
           <motion.div {...up(0)} style={{ textAlign: 'center', marginBottom: 64 }}>
             <span style={{ fontSize: 12, fontWeight: 600, color: '#E8631A', letterSpacing: 3, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Our Track Record</span>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px,2.8vw,36px)', fontWeight: 800, color: '#fff', marginTop: 12 }}>Numbers That Speak for Themselves</div>
-            <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-body)', marginTop: 8 }}>From real deployments. Verified by clients across India.</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px,2.8vw,36px)', fontWeight: 800, color: 'var(--l-ink)', marginTop: 12 }}>Numbers That Speak for Themselves</div>
+            <div style={{ fontSize: 15, color: 'var(--l-muted)', fontFamily: 'var(--font-body)', marginTop: 8 }}>From real deployments. Verified by clients across India.</div>
           </motion.div>
           <motion.div {...up(0.1)} className="ax-stats-grid">
             {STAT_DATA.map((s, i) => (
-              <div key={s.label} style={{ position: 'relative', padding: '0 8px', borderRight: i < STAT_DATA.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none' }}>
-                <CountUpStat num={s.num} suffix={s.suffix} label={s.label} sub={s.sub} dark={true} />
+              <div key={s.label} className={i < STAT_DATA.length - 1 ? 'ax-l-divider' : ''} style={{ position: 'relative', padding: '0 8px', borderRight: i < STAT_DATA.length - 1 ? '1px solid var(--l-border)' : 'none' }}>
+                <CountUpStat num={s.num} suffix={s.suffix} label={s.label} sub={s.sub} dark={false} />
               </div>
             ))}
           </motion.div>
@@ -1180,7 +1173,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           5. WHAT WE BUILD — Light, TABBED layout
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#F9FAFB', padding: '100px 0' }}>
+      <section style={{ background: 'var(--l-alt)', padding: '100px 0' }}>
         <div className="ax-container">
           <motion.div {...up(0)} style={{ marginBottom: 8 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>What We Build</span>
@@ -1234,19 +1227,17 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           6. HOW IT WORKS — Dark, timeline layout
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#0D1B2E', padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
-        {/* Ambient glow */}
-        <div style={{ position: 'absolute', top: '30%', right: '-10%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(232,99,26,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      <section style={{ background: 'var(--l-page)', padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="ax-container ax-how-grid" style={{ position: 'relative', zIndex: 1 }}>
           {/* Left: intro */}
           <div className="ax-how-sticky" style={{ position: 'sticky', top: 120 }}>
             <motion.div {...left(0)} style={{ marginBottom: 12 }}>
               <span style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Our Process</span>
             </motion.div>
-            <motion.h2 {...left(0.06)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#fff', lineHeight: 1.2, marginBottom: 20 }}>
+            <motion.h2 {...left(0.06)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: 'var(--l-ink)', lineHeight: 1.2, marginBottom: 20 }}>
               From First Call to<br />Full Automation
             </motion.h2>
-            <motion.p {...left(0.12)} style={{ fontSize: 16, color: 'rgba(255,255,255,0.58)', lineHeight: 1.75, marginBottom: 32, fontFamily: 'var(--font-body)' }}>
+            <motion.p {...left(0.12)} style={{ fontSize: 16, color: 'var(--l-body)', lineHeight: 1.75, marginBottom: 32, fontFamily: 'var(--font-body)' }}>
               We don't sell software. We build custom automation systems for your specific workflows. Here's exactly how it works — no surprises, no scope creep.
             </motion.p>
             <motion.div {...left(0.18)}>
@@ -1268,19 +1259,19 @@ export default function HomePage() {
                     {icon}
                   </div>
                   <div>
-                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>{label}</div>
-                    <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-body)', marginTop: 2 }}>{sub}</div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: 'var(--l-ink)', lineHeight: 1.2 }}>{label}</div>
+                    <div style={{ fontSize: 12, color: 'var(--l-muted)', fontFamily: 'var(--font-body)', marginTop: 2 }}>{sub}</div>
                   </div>
                 </div>
               ))}
             </motion.div>
 
             {/* Mini testimonial */}
-            <motion.div {...left(0.3)} style={{ marginTop: 32, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 14, padding: '18px 20px' }}>
+            <motion.div {...left(0.3)} style={{ marginTop: 32, background: 'var(--l-alt)', border: '1px solid var(--l-border)', borderRadius: 14, padding: '18px 20px' }}>
               <div style={{ display: 'flex', gap: 2, marginBottom: 10 }}>
                 {[...Array(5)].map((_, k) => <Star key={k} size={12} color="#F59E0B" fill="#F59E0B" />)}
               </div>
-              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, fontFamily: 'var(--font-body)', margin: '0 0 12px', fontStyle: 'italic' }}>
+              <p style={{ fontSize: 13, color: 'var(--l-body)', lineHeight: 1.6, fontFamily: 'var(--font-body)', margin: '0 0 12px', fontStyle: 'italic' }}>
                 "From first call to live automation in 11 days. The process was seamless — exactly as described."
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -1288,8 +1279,8 @@ export default function HomePage() {
                   <span style={{ fontSize: 11, fontWeight: 700, color: '#fff', fontFamily: 'var(--font-display)' }}>R</span>
                 </div>
                 <div>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: '#fff', fontFamily: 'var(--font-display)' }}>Rajiv Mehta</div>
-                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-body)' }}>Founder, RealEdge Properties</div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--l-ink)', fontFamily: 'var(--font-display)' }}>Rajiv Mehta</div>
+                  <div style={{ fontSize: 11, color: 'var(--l-muted)', fontFamily: 'var(--font-body)' }}>Founder, RealEdge Properties</div>
                 </div>
               </div>
             </motion.div>
@@ -1303,13 +1294,13 @@ export default function HomePage() {
             {HOW_STEPS.map((step, i) => (
               <motion.div key={step.num} {...up(i * 0.1)} style={{ position: 'relative', marginBottom: 48 }}>
                 {/* Dot */}
-                <div style={{ position: 'absolute', left: -40, top: 6, width: 16, height: 16, borderRadius: '50%', background: '#E8631A', border: '3px solid #0D1B2E', boxShadow: '0 0 0 3px rgba(232,99,26,0.3)' }} />
+                <div style={{ position: 'absolute', left: -40, top: 6, width: 16, height: 16, borderRadius: '50%', background: '#E8631A', border: '3px solid var(--l-page)', boxShadow: '0 0 0 3px rgba(232,99,26,0.25)' }} />
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
                   <span style={{ fontFamily: 'var(--font-number)', fontSize: 13, fontWeight: 700, color: '#E8631A', letterSpacing: 1 }}>STEP {step.num}</span>
-                  <span style={{ fontSize: 11, background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 100, padding: '3px 10px', color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-body)' }}>{step.duration}</span>
+                  <span style={{ fontSize: 11, background: 'var(--l-alt)', border: '1px solid var(--l-border)', borderRadius: 100, padding: '3px 10px', color: 'var(--l-muted)', fontFamily: 'var(--font-body)' }}>{step.duration}</span>
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 700, color: '#fff', marginBottom: 8 }}>{step.title}</h3>
-                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, fontFamily: 'var(--font-body)' }}>{step.desc}</p>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 700, color: 'var(--l-ink)', marginBottom: 8 }}>{step.title}</h3>
+                <p style={{ fontSize: 14, color: 'var(--l-body)', lineHeight: 1.7, fontFamily: 'var(--font-body)' }}>{step.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -1319,7 +1310,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           7. SOLUTIONS PREVIEW — Light, left-list + right-panel
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#F0F4F8', padding: '100px 0' }}>
+      <section style={{ background: 'var(--l-alt)', padding: '100px 0' }}>
         <div className="ax-container">
           <motion.div {...up(0)} style={{ marginBottom: 8 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Solutions</span>
@@ -1384,14 +1375,12 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           8. INDUSTRIES STRIP — Dark, horizontal scroll
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#0A1628', padding: '80px 0', position: 'relative', overflow: 'hidden' }}>
-        {/* Subtle dot grid */}
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(232,99,26,0.055) 1px, transparent 1px)', backgroundSize: '32px 32px', pointerEvents: 'none' }} />
+      <section style={{ background: 'var(--l-page)', padding: '80px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="ax-container" style={{ position: 'relative', zIndex: 1 }}>
           <motion.div {...up(0)} className="ax-ind-header">
             <div>
               <div style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)', marginBottom: 8 }}>Industries</div>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px,2.8vw,38px)', fontWeight: 800, color: '#fff', margin: 0 }}>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px,2.8vw,38px)', fontWeight: 800, color: 'var(--l-ink)', margin: 0 }}>
                 We Speak Your Industry's Language
               </h2>
             </div>
@@ -1406,11 +1395,11 @@ export default function HomePage() {
               {[...INDUSTRIES, ...INDUSTRIES].map((ind, i) => (
                 <Link key={i} to={ind.to} style={{ textDecoration: 'none', flexShrink: 0, margin: '0 10px' }}>
                   <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.2 }}
-                    style={{ width: 184, background: 'rgba(255,255,255,0.04)', border: `1px solid rgba(255,255,255,0.08)`, borderRadius: 16, padding: '28px 20px', borderTop: `4px solid ${ind.color}`, cursor: 'pointer' }}>
+                    style={{ width: 184, background: 'var(--l-card)', border: `1px solid var(--l-border)`, borderRadius: 16, padding: '28px 20px', borderTop: `4px solid ${ind.color}`, boxShadow: 'var(--l-shadow)', cursor: 'pointer' }}>
                     <div style={{ width: 52, height: 52, borderRadius: 14, background: `${ind.color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: ind.color, marginBottom: 14 }}>
                       {ind.icon}
                     </div>
-                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15, color: '#fff', marginBottom: 8 }}>{ind.label}</div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15, color: 'var(--l-ink)', marginBottom: 8 }}>{ind.label}</div>
                     <div style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: ind.color }}>{ind.stat}</div>
                   </motion.div>
                 </Link>
@@ -1423,7 +1412,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           9. RESULTS — Light, full-width horizontal strips
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#F9FAFB', padding: '100px 0' }}>
+      <section style={{ background: 'var(--l-alt)', padding: '100px 0' }}>
         <div className="ax-container">
           <motion.div {...up(0)} style={{ marginBottom: 8 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Case Studies</span>
@@ -1484,21 +1473,16 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           10. WHY US — Dark, visual battle-card layout
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#050E1A', padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
-        {/* Dot-grid background */}
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(232,99,26,0.045) 1px, transparent 1px)', backgroundSize: '32px 32px', pointerEvents: 'none' }} />
-        {/* Ambient glow */}
-        <div style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%,-50%)', width: 900, height: 500, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(232,99,26,0.06) 0%, transparent 65%)', pointerEvents: 'none' }} />
-
+      <section style={{ background: 'var(--l-page)', padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="ax-container" style={{ position: 'relative', zIndex: 1 }}>
           {/* Header */}
           <motion.div {...up(0)} style={{ textAlign: 'center', marginBottom: 10 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Why AI Agentix</span>
           </motion.div>
-          <motion.h2 {...up(0.06)} style={{ textAlign: 'center', fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#fff', marginBottom: 12 }}>
+          <motion.h2 {...up(0.06)} style={{ textAlign: 'center', fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: 'var(--l-ink)', marginBottom: 12 }}>
             Old Way vs. The AI Way
           </motion.h2>
-          <motion.p {...up(0.1)} style={{ textAlign: 'center', fontSize: 16, color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-body)', maxWidth: 500, margin: '0 auto 52px' }}>
+          <motion.p {...up(0.1)} style={{ textAlign: 'center', fontSize: 16, color: 'var(--l-muted)', fontFamily: 'var(--font-body)', maxWidth: 500, margin: '0 auto 52px' }}>
             Every manual process is a liability. See exactly what changes when you automate with us.
           </motion.p>
 
@@ -1520,24 +1504,24 @@ export default function HomePage() {
             {WHY_ROWS.map((row, i) => (
               <motion.div key={row.label} {...up(0.14 + i * 0.07)} className="ax-why-v2-cols">
                 {/* Bad card — stat + description only, no repeated label */}
-                <div style={{ background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.14)', borderRadius: 14, padding: '20px 24px' }}>
+                <div style={{ background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.18)', borderRadius: 14, padding: '20px 24px' }}>
                   <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 800, color: '#ef4444', lineHeight: 1, marginBottom: 8 }}>{row.badStat}</div>
-                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.32)', fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>{row.bad}</div>
+                  <div style={{ fontSize: 13, color: 'var(--l-body)', fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>{row.bad}</div>
                 </div>
 
                 {/* Center: icon + category label + gain badge */}
                 <div className="ax-why-gain" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-                  <div style={{ width: 32, height: 32, borderRadius: 8, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.4)' }}>{row.icon}</div>
-                  <div style={{ fontSize: 8.5, color: 'rgba(255,255,255,0.25)', fontFamily: 'var(--font-body)', fontWeight: 700, letterSpacing: 0.7, textTransform: 'uppercase', textAlign: 'center', lineHeight: 1.3 }}>{row.label}</div>
+                  <div style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--l-alt)', border: '1px solid var(--l-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--l-muted)' }}>{row.icon}</div>
+                  <div style={{ fontSize: 8.5, color: 'var(--l-muted)', fontFamily: 'var(--font-body)', fontWeight: 700, letterSpacing: 0.7, textTransform: 'uppercase', textAlign: 'center', lineHeight: 1.3 }}>{row.label}</div>
                   <div style={{ background: 'rgba(232,99,26,0.12)', border: '1px solid rgba(232,99,26,0.28)', borderRadius: 100, padding: '3px 9px' }}>
                     <div style={{ fontSize: 8, color: '#E8631A', fontWeight: 700, letterSpacing: 0.5, fontFamily: 'var(--font-body)', whiteSpace: 'nowrap' }}>{row.gain}</div>
                   </div>
                 </div>
 
                 {/* Good card — stat + description only, no repeated label */}
-                <div style={{ background: 'rgba(232,99,26,0.05)', border: '1px solid rgba(232,99,26,0.18)', borderRadius: 14, padding: '20px 24px' }}>
+                <div style={{ background: 'rgba(232,99,26,0.06)', border: '1px solid rgba(232,99,26,0.22)', borderRadius: 14, padding: '20px 24px' }}>
                   <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 800, color: '#E8631A', lineHeight: 1, marginBottom: 8 }}>{row.goodStat}</div>
-                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.62)', fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>{row.good}</div>
+                  <div style={{ fontSize: 13, color: 'var(--l-body)', fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>{row.good}</div>
                 </div>
               </motion.div>
             ))}
@@ -1549,7 +1533,7 @@ export default function HomePage() {
               style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'linear-gradient(90deg, #E8631A, #F59E0B)', color: '#fff', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 16, padding: '15px 32px', borderRadius: 12, textDecoration: 'none', boxShadow: '0 8px 32px rgba(232,99,26,0.35)' }}>
               See AI Agentix in Action <ArrowRight size={18} />
             </Link>
-            <div style={{ marginTop: 14, fontSize: 13, color: 'rgba(255,255,255,0.25)', fontFamily: 'var(--font-body)' }}>Free strategy call · No commitment · Results guaranteed</div>
+            <div style={{ marginTop: 14, fontSize: 13, color: 'var(--l-muted)', fontFamily: 'var(--font-body)' }}>Free strategy call · No commitment · Results guaranteed</div>
           </motion.div>
         </div>
       </section>
@@ -1557,14 +1541,14 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           11. TESTIMONIALS — Light, infinite scroll marquee
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#F8F6F2', padding: '100px 0', overflow: 'hidden', position: 'relative' }}>
+      <section style={{ background: 'var(--l-alt)', padding: '100px 0', overflow: 'hidden', position: 'relative' }}>
         {/* Header */}
         <div className="ax-container" style={{ marginBottom: 52, position: 'relative', zIndex: 1 }}>
           <motion.div {...up(0)} style={{ marginBottom: 8 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#E8631A', letterSpacing: 2, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>Client Stories</span>
           </motion.div>
           <motion.div {...up(0.06)} style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#0D1B2E', lineHeight: 1.15, margin: 0 }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: 'var(--l-ink)', lineHeight: 1.15, margin: 0 }}>
               Businesses That<br />
               <span style={{ background: 'linear-gradient(90deg, #E8631A, #F59E0B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 Transformed With Us
@@ -1609,16 +1593,16 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           12. ROI STRIP — Light background, orange numbers
       ═══════════════════════════════════════════════ */}
-      <section style={{ background: '#ffffff', padding: '80px 0', borderTop: '1px solid #F3F4F6', borderBottom: '1px solid #F3F4F6' }}>
+      <section style={{ background: 'var(--l-page)', padding: '80px 0', borderTop: '1px solid var(--l-border)', borderBottom: '1px solid var(--l-border)' }}>
         <div className="ax-container">
           <motion.div {...up(0)} style={{ textAlign: 'center', marginBottom: 60 }}>
             <span style={{ fontSize: 12, fontWeight: 600, color: '#E8631A', letterSpacing: 3, textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>The ROI Case</span>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,2.5vw,34px)', fontWeight: 800, color: '#0D1B2E', marginTop: 10 }}>The Business Case for AI Agentix</div>
-            <div style={{ fontSize: 15, color: '#9CA3AF', marginTop: 6, fontFamily: 'var(--font-body)' }}>Measured across 200+ client deployments</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,2.5vw,34px)', fontWeight: 800, color: 'var(--l-ink)', marginTop: 10 }}>The Business Case for AI Agentix</div>
+            <div style={{ fontSize: 15, color: 'var(--l-muted)', marginTop: 6, fontFamily: 'var(--font-body)' }}>Measured across 200+ client deployments</div>
           </motion.div>
           <motion.div {...up(0.1)} className="ax-roi-grid">
             {ROI_ITEMS.map((item, i) => (
-              <div key={item.label} style={{ textAlign: 'center', padding: '0 16px', borderRight: i < ROI_ITEMS.length - 1 ? '1px solid #E5E7EB' : 'none' }}>
+              <div key={item.label} style={{ textAlign: 'center', padding: '0 16px', borderRight: i < ROI_ITEMS.length - 1 ? '1px solid var(--l-border)' : 'none' }}>
                 <CountUpStat num={item.num} suffix={item.suffix} label={item.label} sub={item.sub} dark={false} />
               </div>
             ))}

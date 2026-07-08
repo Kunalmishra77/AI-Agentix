@@ -51,6 +51,18 @@
   --trans:      all 0.2s cubic-bezier(0.4,0,0.2,1);
   --trans-med:  all 0.35s cubic-bezier(0.4,0,0.2,1);
   --trans-slow: all 0.6s cubic-bezier(0.4,0,0.2,1);
+
+  /* ── Light-mode semantic tokens (ADDEPTO-style restyle) ──
+     Flat/airy: white + subtle alt, hairline borders, minimal shadow. */
+  --l-page:   #FFFFFF;   /* primary light section bg */
+  --l-alt:    #F7F8FA;   /* alternating section bg (soft light gray) */
+  --l-card:   #FFFFFF;   /* card bg */
+  --l-border: #EAECEF;   /* hairline card/section borders */
+  --l-ink:    #0B0F1A;   /* headlines — near-black (brand: black headings) */
+  --l-body:   #374151;   /* paragraphs — dark gray */
+  --l-muted:  #6B7280;   /* captions / muted labels */
+  --l-shadow:       0 1px 2px rgba(13,27,46,0.04);           /* resting: barely-there */
+  --l-shadow-hover: 0 12px 32px rgba(13,27,46,0.08);         /* hover lift, no glow */
 }
 
 /* ── Base ───────────────────────────────────────────── */
@@ -309,6 +321,86 @@
 .ax-bg-offwhite { background: var(--ow); }
 .ax-bg-off      { background: var(--ow); }
 .ax-bg-ice      { background: var(--ice); }
+
+/* ══════════════════════════════════════════════════════
+   LIGHT RESTYLE (ADDEPTO) — flat, airy, hairline borders
+   Used by the light middle sections of the homepage.
+   ══════════════════════════════════════════════════════ */
+.ax-l-white { background: var(--l-page); }
+.ax-l-alt   { background: var(--l-alt); }
+.ax-l-sec   { padding: clamp(64px,9vw,120px) 0; }
+
+/* Eyebrow — orange text label on light bg (ADDEPTO uses simple caps labels) */
+.ax-l-eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--or); margin-bottom: 14px;
+}
+.ax-l-h2 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(28px,3.6vw,46px); line-height: 1.15;
+  letter-spacing: -0.01em; color: var(--l-ink); margin: 0 0 18px;
+}
+.ax-l-lead {
+  font-family: var(--font-body);
+  font-size: clamp(16px,1.4vw,19px); line-height: 1.7;
+  color: var(--l-body); font-weight: 400;
+}
+.ax-l-body  { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--l-body); }
+.ax-l-muted { color: var(--l-muted); }
+
+/* Flat card — hairline border, minimal shadow, clean hover (no glow) */
+.ax-l-card {
+  background: var(--l-card);
+  border: 1px solid var(--l-border);
+  border-radius: 16px;
+  box-shadow: var(--l-shadow);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.ax-l-card:hover {
+  border-color: rgba(232,99,26,0.35);
+  box-shadow: var(--l-shadow-hover);
+  transform: translateY(-4px);
+}
+
+/* Icon chip on light */
+.ax-l-icon {
+  width: 52px; height: 52px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(232,99,26,0.08);
+  border: 1px solid rgba(232,99,26,0.18);
+  color: var(--or); flex-shrink: 0;
+}
+
+/* Tab pill on light */
+.ax-l-tab {
+  flex-shrink: 0; background: var(--l-card);
+  border: 1px solid var(--l-border); border-radius: 10px;
+  padding: 10px 20px; font-family: var(--font-body);
+  font-size: 14px; font-weight: 600; color: var(--l-body);
+  cursor: pointer; transition: var(--trans); white-space: nowrap;
+}
+.ax-l-tab:hover { border-color: rgba(232,99,26,0.35); color: var(--l-ink); }
+.ax-l-tab.active { background: var(--or); border-color: var(--or); color: #fff; }
+
+/* Link with arrow on light (ADDEPTO "read more") */
+.ax-l-link {
+  color: var(--or); font-family: var(--font-body); font-weight: 600; font-size: 14px;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+}
+.ax-l-link:hover { color: var(--ord); }
+
+/* Marquee pills on a light background (platform / logo strips) */
+.ax-mq--light .ax-mq-pill {
+  background: var(--l-card); border-color: var(--l-border); backdrop-filter: none;
+}
+.ax-mq--light .ax-mq-pill:hover { border-color: rgba(232,99,26,0.35); background: var(--l-card); }
+.ax-mq--light .ax-mq-label { color: var(--l-body); }
+
+/* Stat divider on light */
+.ax-l-divider { border-color: var(--l-border) !important; }
 
 /* ── Section header ──────────────────────────────────── */
 .ax-section-header { margin-bottom: 56px; }
