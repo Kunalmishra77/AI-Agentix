@@ -52,11 +52,15 @@ export default function Industries() {
               transition={{ duration: 0.35 }}
               className="flex flex-col justify-center p-8 md:p-12"
             >
-              <span className="eyebrow mb-3">AI for {it.name}</span>
-              <div className="text-6xl font-extrabold tracking-tight text-heading">{it.stat}</div>
-              <Link to={it.to} className="btn-primary mt-8 w-fit">
+              <h3 className="text-3xl font-bold text-heading">AI for {it.name}</h3>
+              <p className="mt-4 max-w-md text-base leading-relaxed text-body">{it.desc}</p>
+              <div className="mt-6 flex items-center gap-3">
+                <span className="text-4xl font-extrabold tracking-tight text-accent">{it.stat.split(' ')[0]}</span>
+                <span className="text-sm font-medium text-body">{it.stat.split(' ').slice(1).join(' ')}</span>
+              </div>
+              <Link to={it.to} className="group mt-8 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-accent">
                 Explore {it.name}
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </motion.div>
           </AnimatePresence>

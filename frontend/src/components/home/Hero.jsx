@@ -98,16 +98,15 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="grid rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md sm:grid-cols-3"
+          className="grid divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md sm:grid-cols-3 sm:divide-x sm:divide-y-0"
         >
-          {hero.serviceBand.map((s, i) => (
-            <div
-              key={s.title}
-              className={`relative p-6 md:p-8 ${i > 0 ? 'sm:border-l sm:border-white/10' : ''} ${i > 0 ? 'border-t border-white/10 sm:border-t-0' : ''}`}
-            >
-              <span className="absolute left-0 top-6 hidden h-6 w-0.5 bg-accent sm:block md:top-8" />
-              <h3 className="text-lg font-bold text-white md:text-xl">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/60">{s.text}</p>
+          {hero.serviceBand.map((s) => (
+            <div key={s.title} className="group relative flex items-start gap-4 p-7 md:p-8">
+              <span className="mt-1 h-8 w-1 shrink-0 rounded-full bg-accent" />
+              <div>
+                <h3 className="text-lg font-bold text-white md:text-xl">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/60">{s.text}</p>
+              </div>
             </div>
           ))}
         </motion.div>

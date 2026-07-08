@@ -193,14 +193,15 @@ export const industries = {
   eyebrow: 'Industries',
   heading: "We Speak Your Industry's Language",
   link: { label: 'All Industries', to: '/industries' },
+  // desc fields are verbatim from the archived Industries mega-menu (global.md).
   items: [
-    { name: 'Real Estate', stat: '4.2x ROI', to: '/industries/real-estate' },
-    { name: 'Healthcare', stat: '70% less admin', to: '/industries/healthcare' },
-    { name: 'Education', stat: '3x enrollments', to: '/industries/education' },
-    { name: 'Retail & E-com', stat: '28% more orders', to: '/industries/retail-ecommerce' },
-    { name: 'Logistics', stat: '50% faster ops', to: '/industries/logistics' },
-    { name: 'Hospitality', stat: '92% satisfaction', to: '/industries/hospitality' },
-    { name: 'Manufacturing', stat: '35% cost cut', to: '/industries/manufacturing' },
+    { name: 'Real Estate', stat: '4.2x ROI', to: '/industries/real-estate', desc: 'Lead nurturing & property recommendation AI' },
+    { name: 'Healthcare', stat: '70% less admin', to: '/industries/healthcare', desc: 'Appointment bots, patient follow-up & billing AI' },
+    { name: 'Education', stat: '3x enrollments', to: '/industries/education', desc: 'Admissions automation & student engagement' },
+    { name: 'Retail & E-com', stat: '28% more orders', to: '/industries/retail-ecommerce', desc: 'Personalisation, returns & inventory automation' },
+    { name: 'Logistics', stat: '50% faster ops', to: '/industries/logistics', desc: 'Route optimisation & delivery status automation' },
+    { name: 'Hospitality', stat: '92% satisfaction', to: '/industries/hospitality', desc: 'Booking management & guest experience AI' },
+    { name: 'Manufacturing', stat: '35% cost cut', to: '/industries/manufacturing', desc: 'Shop-floor AI, defect detection & OEE tracking' },
   ],
 }
 

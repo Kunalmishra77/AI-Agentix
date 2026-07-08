@@ -17,35 +17,56 @@ const CELL = [
   'lg:col-start-3 lg:row-start-3',
 ]
 
-function Card({ c, Icon, cell, tint }) {
+function Bullets({ items }) {
+  return (
+    <ul className="mt-3 grid gap-1.5">
+      {items.map((b) => (
+        <li key={b} className="flex items-start gap-2 text-[13px] text-body">
+          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
+          {b}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function Card({ c, Icon, tint }) {
   return (
     <article
       className={cn(
-        'group relative flex min-h-[240px] w-full flex-col overflow-hidden rounded-card border border-line p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-card-hover',
+        'group relative h-full min-h-[330px] w-full overflow-hidden rounded-card border border-line transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-card-hover',
         tint ? 'bg-surface' : 'bg-white',
       )}
     >
-      <h3 className="max-w-[80%] text-xl font-bold text-heading">{c.title}</h3>
-      <p className="mt-1 text-sm font-semibold text-accent">{c.tagline}</p>
-
-      {/* detail revealed on hover (present in DOM; expanded on lg hover, always shown below lg) */}
-      <div className="mt-3 lg:max-h-0 lg:overflow-hidden lg:opacity-0 lg:transition-all lg:duration-500 lg:group-hover:max-h-[320px] lg:group-hover:opacity-100">
-        <p className="text-sm leading-relaxed text-body">{c.text}</p>
-        <ul className="mt-3 grid gap-1.5">
-          {c.bullets.map((b) => (
-            <li key={b} className="flex items-start gap-2 text-[13px] text-body">
-              <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
-              {b}
-            </li>
-          ))}
-        </ul>
+      {/* base layer */}
+      <div className="flex h-full flex-col p-7">
+        <h3 className="text-xl font-bold text-heading">{c.title}</h3>
+        <p className="mt-1 text-sm font-semibold text-accent">{c.tagline}</p>
+        {/* full detail inline on mobile/tablet (no hover there) */}
+        <div className="lg:hidden">
+          <p className="mt-3 text-sm leading-relaxed text-body">{c.text}</p>
+          <Bullets items={c.bullets} />
+        </div>
+        <div className="mt-auto flex items-end justify-between pt-6">
+          <span className="rounded-pill bg-ink px-3 py-1.5 text-xs font-semibold text-white">{c.metric}</span>
+          <span className="text-accent transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
+            <Icon className="h-8 w-8" strokeWidth={1.5} />
+          </span>
+        </div>
       </div>
 
-      <div className="mt-auto flex items-end justify-between pt-6">
-        <span className="rounded-pill bg-ink px-3 py-1.5 text-xs font-semibold text-white">{c.metric}</span>
-        <span className="text-accent transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
-          <Icon className="h-8 w-8" strokeWidth={1.5} />
-        </span>
+      {/* hover overlay (lg+) — absolute, no layout shift */}
+      <div
+        className={cn(
+          'pointer-events-none absolute inset-0 hidden flex-col p-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 lg:flex',
+          tint ? 'bg-surface' : 'bg-white',
+        )}
+      >
+        <h3 className="text-xl font-bold text-heading">{c.title}</h3>
+        <p className="mt-1 text-sm font-semibold text-accent">{c.tagline}</p>
+        <p className="mt-3 text-sm leading-relaxed text-body">{c.text}</p>
+        <Bullets items={c.bullets} />
+        <span className="mt-auto w-fit rounded-pill bg-ink px-3 py-1.5 text-xs font-semibold text-white">{c.metric}</span>
       </div>
     </article>
   )

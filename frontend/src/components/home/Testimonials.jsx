@@ -44,9 +44,6 @@ function Row({ items, direction = 'left', speed = 'animate-marquee-slow' }) {
 
 export default function Testimonials() {
   const { items } = testimonialsSection
-  const half = Math.ceil(items.length / 2)
-  const row1 = items.slice(0, half)
-  const row2 = items.slice(half)
 
   return (
     <Section tone="alt" full className="overflow-hidden">
@@ -59,9 +56,8 @@ export default function Testimonials() {
           className="mx-auto"
         />
       </div>
-      <div className="mt-12 flex flex-col gap-5">
-        <Row items={row1} direction="left" speed="animate-marquee-slow" />
-        <Row items={row2} direction="right" speed="animate-marquee-fast" />
+      <div className="mt-12">
+        <Row items={items} direction="left" speed="animate-marquee-slow" />
       </div>
     </Section>
   )
