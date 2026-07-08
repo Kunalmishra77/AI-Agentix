@@ -12,14 +12,14 @@ export default function SiteFooter() {
   const partners = [...footer.partners, ...footer.partners]
 
   return (
-    <footer className="bg-[#0B0D12] text-ink-muted">
+    <footer className="border-t border-line bg-surface-alt text-body">
       {/* partner marquee */}
-      <div className="border-b border-white/8 py-10">
-        <p className="container-x mb-6 text-center text-eyebrow uppercase text-ink-muted">{footer.partnersCaption}</p>
+      <div className="border-b border-line py-10">
+        <p className="container-x mb-6 text-center text-eyebrow uppercase text-body-soft">{footer.partnersCaption}</p>
         <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
           <div className="flex w-max animate-marquee-slow items-center gap-12 pr-12">
             {partners.map((p, i) => (
-              <span key={`${p}-${i}`} data-asset={`partner-logo: ${p}`} className="whitespace-nowrap text-lg font-bold text-white/30">
+              <span key={`${p}-${i}`} data-asset={`partner-logo: ${p}`} className="whitespace-nowrap text-lg font-bold text-heading/30">
                 {p}
               </span>
             ))}
@@ -31,8 +31,8 @@ export default function SiteFooter() {
       <div className="container-x grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.4fr]">
         {/* brand */}
         <div>
-          <Logo dark />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-muted">{footer.brandBlurb}</p>
+          <Logo dark={false} />
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-body">{footer.brandBlurb}</p>
           <div className="mt-6 flex gap-3">
             {footer.socials.map((s) => {
               const Icon = SOCIAL_ICONS[s.label] || MessageCircle
@@ -43,7 +43,7 @@ export default function SiteFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-colors hover:border-accent hover:bg-accent hover:text-white"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-line text-body transition-colors hover:border-accent hover:bg-accent hover:text-white"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -55,11 +55,11 @@ export default function SiteFooter() {
         {/* link cols */}
         {footer.cols.map((col) => (
           <div key={col.title}>
-            <h4 className="text-sm font-bold text-white">{col.title}</h4>
+            <h4 className="text-sm font-bold text-heading">{col.title}</h4>
             <ul className="mt-4 space-y-2.5">
               {col.links.map((l) => (
                 <li key={l.label}>
-                  <Link to={l.to} className="text-sm text-ink-muted transition-colors hover:text-accent">{l.label}</Link>
+                  <Link to={l.to} className="text-sm text-body transition-colors hover:text-accent">{l.label}</Link>
                 </li>
               ))}
             </ul>
@@ -68,8 +68,8 @@ export default function SiteFooter() {
 
         {/* newsletter + contact */}
         <div>
-          <h4 className="text-sm font-bold text-white">{footer.newsletter.title}</h4>
-          <p className="mt-4 text-sm text-ink-muted">{footer.newsletter.blurb}</p>
+          <h4 className="text-sm font-bold text-heading">{footer.newsletter.title}</h4>
+          <p className="mt-4 text-sm text-body">{footer.newsletter.blurb}</p>
           <form
             className="mt-4 flex gap-2"
             onSubmit={(e) => { e.preventDefault(); if (email) setSent(true) }}
@@ -82,14 +82,14 @@ export default function SiteFooter() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={footer.newsletter.placeholder}
-              className="min-w-0 flex-1 rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder:text-white/40 focus:border-accent focus:outline-none"
+              className="min-w-0 flex-1 rounded-lg border border-line bg-white px-3 py-2.5 text-sm text-heading placeholder:text-body-soft focus:border-accent focus:outline-none"
             />
             <button type="submit" className="btn-primary shrink-0 px-4 py-2.5">{footer.newsletter.submit}</button>
           </form>
           {sent && <p className="mt-2 text-xs font-semibold text-accent">{footer.newsletter.success}</p>}
 
-          <h4 className="mt-8 text-sm font-bold text-white">{footer.contact.title}</h4>
-          <ul className="mt-4 space-y-2.5 text-sm text-ink-muted">
+          <h4 className="mt-8 text-sm font-bold text-heading">{footer.contact.title}</h4>
+          <ul className="mt-4 space-y-2.5 text-sm text-body">
             <li className="flex items-center gap-2.5"><Mail className="h-4 w-4 text-accent" /><a href={`mailto:${footer.contact.email}`} className="hover:text-accent">{footer.contact.email}</a></li>
             <li className="flex items-center gap-2.5"><Phone className="h-4 w-4 text-accent" /><a href={`tel:${footer.contact.phone.replace(/\s/g, '')}`} className="hover:text-accent">{footer.contact.phone}</a></li>
             <li className="flex items-center gap-2.5"><MapPin className="h-4 w-4 text-accent" />{footer.contact.address}</li>
@@ -98,11 +98,11 @@ export default function SiteFooter() {
       </div>
 
       {/* bottom bar */}
-      <div className="border-t border-white/8">
-        <div className="container-x flex flex-col gap-4 py-6 text-xs text-ink-muted md:flex-row md:items-center md:justify-between">
+      <div className="border-t border-line">
+        <div className="container-x flex flex-col gap-4 py-6 text-xs text-body-soft md:flex-row md:items-center md:justify-between">
           <div>
             <p>© {new Date().getFullYear()} {footer.copyright}</p>
-            <p className="mt-1 text-white/30">{footer.entity}</p>
+            <p className="mt-1 text-body-soft/70">{footer.entity}</p>
           </div>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             {footer.legal.map((l) => (

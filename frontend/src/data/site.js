@@ -7,13 +7,46 @@ export const brand = {
 
 export const navLinks = [
   { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
+  { label: 'About', to: '/about', mega: 'about' },
   { label: 'Solutions', to: '/solutions', mega: 'solutions' },
   { label: 'Industries', to: '/industries', mega: 'industries' },
-  { label: 'Technology', to: '/technology' },
+  { label: 'Technology', to: '/technology', mega: 'technology' },
   { label: 'Case Studies', to: '/case-studies' },
   { label: 'Contact', to: '/contact' },
 ]
+
+// desc fields are verbatim from content-archive (about.md, technology.md, case-studies.md).
+export const aboutMega = {
+  title: 'About AI Agentix',
+  tagline: 'We Exist to Make AI Work for Every Business',
+  cta: { label: 'About Us', to: '/about' },
+  stat: { value: '96%', label: 'client satisfaction' },
+  items: [
+    { label: 'Our Mission', to: '/about', desc: 'Democratize AI for India’s 63 Million Businesses' },
+    { label: 'Our Journey', to: '/about', desc: 'Built Fast. Shipped Real. Year One.' },
+    { label: 'Our Values', to: '/about', desc: 'Principles We Never Compromise On' },
+    { label: 'Why We’re Different', to: '/about', desc: 'What Sets Our Work Apart' },
+    { label: 'Case Studies', to: '/case-studies', desc: 'Real Results. Real Businesses.' },
+    { label: 'AI Studio', to: '/ai-studio', desc: 'AI content, videos, social & email on autopilot' },
+  ],
+}
+
+export const technologyMega = {
+  title: 'AI Technology',
+  tagline: 'The Technology Behind Every Automation',
+  cta: { label: 'Explore Technology', to: '/technology' },
+  stat: { value: '300+', label: 'tools we connect with' },
+  items: [
+    { label: 'Sales Agent', to: '/technology', desc: 'Lead Qualification & Follow-Up' },
+    { label: 'Support Agent', to: '/technology', desc: 'Ticket Resolution & Escalation' },
+    { label: 'Analytics Agent', to: '/technology', desc: 'Anomaly Detection & Forecasting' },
+    { label: 'Content Agent', to: '/technology', desc: 'Research, Write & Publish' },
+    { label: 'Voice Agent', to: '/technology', desc: 'Inbound Calls & Outbound Outreach' },
+    { label: 'HR Agent', to: '/technology', desc: 'Hiring, Onboarding & HR Ops' },
+    { label: 'Finance Agent', to: '/technology', desc: 'Invoicing, Reconciliation & GST' },
+    { label: 'Document Agent', to: '/technology', desc: 'Contract Review & Document Processing' },
+  ],
+}
 
 export const solutionsMega = {
   title: 'AI Solutions',

@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ChevronDown, Menu, X, ArrowUpRight } from 'lucide-react'
-import { navLinks, solutionsMega, industriesMega, brand } from '../../data/site'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
+import { navLinks, solutionsMega, industriesMega, aboutMega, technologyMega, brand } from '../../data/site'
 import { cn } from '../../lib/cn'
 import Logo from './Logo'
 
 const MEGAS = {
+  about: { data: aboutMega, image: '/AGENTIX-MEDIAS/img.webp' },
   solutions: { data: solutionsMega, image: '/AGENTIX-MEDIAS/aiagent.webp' },
   industries: { data: industriesMega, image: '/AGENTIX-MEDIAS/growthamplified.webp' },
+  technology: { data: technologyMega, image: '/AGENTIX-MEDIAS/brain-illustration.webp' },
 }
 
 export default function SiteNav() {
@@ -28,17 +30,20 @@ export default function SiteNav() {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
+  const light = scrolled || !!openMega
+
   return (
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-all duration-300',
-        scrolled ? 'bg-ink/95 backdrop-blur-md border-b border-white/10 shadow-lg' : 'bg-transparent',
+        light ? 'border-b border-line bg-white shadow-md' : 'bg-transparent',
       )}
       onMouseLeave={() => setOpenMega(null)}
     >
       <div className="container-x flex h-[72px] items-center justify-between">
         <Logo
-          imgClassName="h-11 transition-transform duration-300 hover:scale-105 md:h-12 [filter:drop-shadow(0_2px_6px_rgba(0,0,0,0.35))]"
+          dark={!light}
+          imgClassName="h-11 transition-transform duration-300 hover:scale-105 md:h-12"
         />
 
         {/* desktop nav */}
@@ -49,12 +54,11 @@ export default function SiteNav() {
                 <Link
                   to={l.to}
                   className={cn(
-                    'flex items-center gap-1 rounded-md px-3.5 py-2 text-sm font-medium transition-colors',
-                    openMega === l.mega ? 'text-accent' : 'text-white/85 hover:text-white',
+                    'flex items-center rounded-md px-3.5 py-2 text-sm font-medium transition-colors',
+                    openMega === l.mega ? 'text-accent' : light ? 'text-heading hover:text-accent' : 'text-white/85 hover:text-white',
                   )}
                 >
                   {l.label}
-                  <ChevronDown className={cn('h-3.5 w-3.5 transition-transform', openMega === l.mega && 'rotate-180')} />
                 </Link>
                 {openMega === l.mega && (
                   <span className="absolute -bottom-0.5 left-1/2 h-3 w-[3px] -translate-x-1/2 rounded-full bg-accent" />
@@ -64,7 +68,10 @@ export default function SiteNav() {
               <Link
                 key={l.label}
                 to={l.to}
-                className="rounded-md px-3.5 py-2 text-sm font-medium text-white/85 transition-colors hover:text-white"
+                className={cn(
+                  'rounded-md px-3.5 py-2 text-sm font-medium transition-colors',
+                  light ? 'text-heading hover:text-accent' : 'text-white/85 hover:text-white',
+                )}
               >
                 {l.label}
               </Link>
@@ -81,7 +88,7 @@ export default function SiteNav() {
 
         {/* mobile toggle */}
         <button
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-white lg:hidden"
+          className={cn('inline-flex h-10 w-10 items-center justify-center rounded-md lg:hidden', light ? 'text-heading' : 'text-white')}
           aria-label="Menu"
           onClick={() => setMobileOpen(true)}
         >
