@@ -6,6 +6,7 @@ import supplyChain from './supply-chain'
 import financeAccounts from './finance-accounts'
 import aiVoiceChat from './ai-voice-chat'
 import manufacturing from './manufacturing'
+import hospitalManagement from './hospital-management'
 
 // Registry of solution detail pages, keyed by slug. Add a data file + entry
 // here to publish another solution page — the generic SolutionDetailPage renders it.
@@ -18,6 +19,7 @@ export const SOLUTION_PAGES = {
   'finance-accounts': financeAccounts,
   'ai-voice-chat': aiVoiceChat,
   'manufacturing': manufacturing,
+  'hospital-management': hospitalManagement,
 }
 
 export function getSolutionPage(slug) {

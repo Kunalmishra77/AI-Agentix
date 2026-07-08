@@ -1,6 +1,7 @@
 import SignatureCalculator from './SignatureCalculator'
 import SignatureChat from './SignatureChat'
 import SignatureMonitor from './SignatureMonitor'
+import SignatureDashboard from './SignatureDashboard'
 
 // Dispatches the per-page "signature" block by type. Each solution page gets
 // exactly one, tuned to its topic. Add new types here as pages need them.
@@ -8,6 +9,7 @@ const SIGNATURES = {
   calculator: SignatureCalculator,
   chat: SignatureChat,
   monitor: SignatureMonitor,
+  dashboard: SignatureDashboard,
 }
 
 export default function SolutionSignature({ signature }) {
