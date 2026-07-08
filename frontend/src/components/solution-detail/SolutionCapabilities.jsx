@@ -17,7 +17,7 @@ export default function SolutionCapabilities({ capabilities }) {
       <SectionHeading eyebrow={capabilities.eyebrow} heading={capabilities.heading} align="center" max="max-w-2xl" className="mx-auto" />
 
       {/* pill tabs — single row, scrollable on small screens */}
-      <div className="mt-9 flex justify-start gap-2 overflow-x-auto pb-1 lg:justify-center [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="mt-9 flex justify-start gap-2 overflow-x-auto pb-1 lg:flex-wrap lg:justify-center lg:overflow-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {capabilities.items.map((it, i) => {
           const Icon = CAP_ICONS[it.icon]
           return (
