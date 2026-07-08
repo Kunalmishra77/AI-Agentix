@@ -34,15 +34,30 @@ block tuned to its topic — so pages feel crafted, not copy-pasted, without bre
 cohesion. It sits at slot #4 on an **accent-soft** band (distinct from white/alt, so
 it reads as "special" and never clashes with neighbours).
 
-Data-driven via `data.signature`, dispatched by `SolutionSignature.jsx` on `type`:
+Data-driven via `data.signature`, dispatched by `SolutionSignature.jsx` on `type`.
+All four types share the accent-soft band + dark-panel motif for cohesion:
 - `calculator` → `SignatureCalculator.jsx` — interactive sliders + live formulas.
-  Each page defines its own `inputs` (sliders) and `outputs` (`compute` functions —
-  data files are JS modules, so real functions live in the data). Fits Sales (ROI),
-  Marketing (content output), Finance (savings), HR (time-to-hire), etc.
-- Add new types (demo player, flow diagram, live feed) for pages a calculator
-  doesn't suit (Voice/Chat, Hospital, Manufacturing). Register them in SolutionSignature.
+  Each page defines `inputs` (sliders) and `outputs` (`compute` functions — data
+  files are JS modules, so real functions live in the data). Used by Sales (ROI),
+  Marketing (content output), HRMS (time-to-hire), Operations (automation savings),
+  Supply Chain (stockout/logistics savings), Finance (finance-ops savings).
+- `chat` → `SignatureChat.jsx` — animated conversation demo (typing + staggered
+  bubbles) that then checks off `outcomes`; Replay button. Used by AI Voice & Chat.
+- `monitor` → `SignatureMonitor.jsx` — live control-room panel of status cards with
+  color-coded statuses + animated bars (`lines`). Used by Manufacturing (factory floor).
+- `dashboard` → `SignatureDashboard.jsx` — count-up KPI tiles (`metrics`). Used by
+  Hospital Management (today's hospital dashboard).
+
+All signature components must respect reduced-motion and be remount-safe (the
+dispatcher keys by `signature.eyebrow`) so client-side navigation between pages —
+including between different signature TYPES — never reuses stale state.
 
 Every page MUST have a signature block; pick the type that best fits the topic.
+
+### Status: all 9 solution pages COMPLETE
+sales-automation, marketing-automation, hrms-hiring, operations, supply-chain,
+finance-accounts, ai-voice-chat, manufacturing, hospital-management — each a data
+file in `src/data/solutionPages/`, registered in `index.js`.
 
 ## 2. Content placement logic
 
