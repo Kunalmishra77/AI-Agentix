@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import SolutionsPage from './pages/SolutionsPage.jsx'
+import SolutionDetailPage from './pages/SolutionDetailPage.jsx'
 
 export default function App() {
   return (
@@ -9,6 +10,7 @@ export default function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/solutions" element={<SolutionsPage />} />
+      <Route path="/solutions/:slug" element={<SolutionDetailPage />} />
       {/* Other pages come in later phases. */}
       <Route path="*" element={<HomePage />} />
     </Routes>
