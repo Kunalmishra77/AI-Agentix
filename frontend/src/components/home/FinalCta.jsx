@@ -7,49 +7,37 @@ import { finalCta } from '../../data/home'
 export default function FinalCta() {
   return (
     <Section tone="alt">
-      <Reveal>
-        <div className="relative overflow-hidden rounded-3xl bg-ink px-6 py-16 text-center md:px-12 md:py-20">
-          {/* ambient orange glow */}
-          <div
-            className="pointer-events-none absolute inset-0 opacity-70"
-            aria-hidden
-            style={{
-              backgroundImage:
-                'radial-gradient(50% 60% at 50% 0%, rgba(242,101,34,0.25) 0%, transparent 60%)',
-            }}
-          />
-          <div className="relative z-10 mx-auto max-w-2xl">
-            <span className="eyebrow mb-5 justify-center">
-              <span className="h-px w-6 bg-accent" aria-hidden />
-              {finalCta.eyebrow}
-            </span>
-            <h2 className="text-h2 text-white">{finalCta.heading}</h2>
-            <p className="mt-5 text-base leading-relaxed text-white/75 md:text-lg">{finalCta.body}</p>
+      <div className="grid items-center gap-10 lg:grid-cols-2">
+        <Reveal>
+          <span className="eyebrow mb-4">
+            <span className="h-px w-6 bg-accent" aria-hidden />
+            {finalCta.eyebrow}
+          </span>
+          <h2 className="text-display text-heading">{finalCta.heading}</h2>
+        </Reveal>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              {finalCta.ctas.map((c) => (
-                <Link
-                  key={c.label}
-                  to={c.to}
-                  className={c.primary ? 'btn-primary' : 'btn border border-white/25 text-white hover:bg-white/10'}
-                >
-                  {c.label}
-                  {c.primary && <ArrowRight className="h-4 w-4" />}
-                </Link>
-              ))}
-            </div>
+        <Reveal delay={0.1}>
+          <p className="text-base leading-relaxed text-body md:text-lg">{finalCta.body}</p>
 
-            <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-              {finalCta.checklist.map((item) => (
-                <li key={item} className="flex items-center gap-2 text-sm text-white/80">
-                  <Check className="h-4 w-4 text-accent" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+          <div className="mt-7 flex flex-wrap gap-3">
+            {finalCta.ctas.map((c) => (
+              <Link key={c.label} to={c.to} className={c.primary ? 'btn-primary' : 'btn-outline'}>
+                {c.label}
+                {c.primary && <ArrowRight className="h-4 w-4" />}
+              </Link>
+            ))}
           </div>
-        </div>
-      </Reveal>
+
+          <ul className="mt-7 flex flex-wrap gap-x-6 gap-y-2">
+            {finalCta.checklist.map((item) => (
+              <li key={item} className="flex items-center gap-2 text-sm text-body">
+                <Check className="h-4 w-4 text-accent" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      </div>
     </Section>
   )
 }

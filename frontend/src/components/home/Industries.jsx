@@ -16,45 +16,61 @@ export default function Industries() {
     <Section tone="alt">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <SectionHeading eyebrow={industries.eyebrow} heading={industries.heading} max="max-w-xl" />
-        <Link to={industries.link.to} className="btn-ghost shrink-0">
+        <Link to={industries.link.to} className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-heading hover:text-accent">
           {industries.link.label}
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </Link>
       </div>
 
       <div className="mt-12 overflow-hidden rounded-2xl border border-line bg-white">
+        {/* panel: image left, content right */}
         <div className="grid md:grid-cols-2">
+          <div className="p-4 md:p-5">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35 }}
+                className="group h-full overflow-hidden rounded-xl"
+              >
+                <Placeholder
+                  label={`industry-visual: ${it.name}`}
+                  className="h-full min-h-[240px] transition-transform duration-500 group-hover:scale-105"
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
-              initial={{ opacity: 0, x: -12 }}
+              initial={{ opacity: 0, x: 14 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 12 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, x: -14 }}
+              transition={{ duration: 0.35 }}
               className="flex flex-col justify-center p-8 md:p-12"
             >
-              <span className="eyebrow mb-3">{it.name}</span>
-              <div className="text-5xl font-extrabold tracking-tight text-heading">{it.stat}</div>
-              <Link to={it.to} className="btn-primary mt-6 w-fit">
+              <span className="eyebrow mb-3">AI for {it.name}</span>
+              <div className="text-6xl font-extrabold tracking-tight text-heading">{it.stat}</div>
+              <Link to={it.to} className="btn-primary mt-8 w-fit">
                 Explore {it.name}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </motion.div>
           </AnimatePresence>
-          <div className="min-h-[260px] p-4 md:p-6">
-            <Placeholder label={`industry-visual: ${it.name}`} className="h-full min-h-[220px]" />
-          </div>
         </div>
 
         {/* tab row */}
-        <div className="flex flex-wrap gap-1 border-t border-line bg-surface-alt p-2">
+        <div className="grid grid-cols-2 border-t border-line sm:grid-cols-4 lg:grid-cols-7">
           {industries.items.map((x, i) => (
             <button
               key={x.name}
               onClick={() => setActive(i)}
               className={cn(
-                'flex-1 whitespace-nowrap rounded-lg px-3 py-2.5 text-xs font-semibold transition-colors sm:text-sm',
-                i === active ? 'bg-accent text-white' : 'text-body hover:bg-white hover:text-heading',
+                'border-line px-3 py-4 text-xs font-semibold transition-colors sm:text-sm [&:not(:last-child)]:border-r [&:nth-child(-n+5)]:border-b sm:[&:nth-child(-n+4)]:border-b lg:[&]:border-b-0',
+                i === active ? 'bg-ink text-accent' : 'bg-white text-body hover:bg-surface-alt hover:text-heading',
               )}
             >
               {x.name}
