@@ -34,7 +34,9 @@ export default function SiteNav() {
       onMouseLeave={() => setOpenMega(null)}
     >
       <div className="container-x flex h-[72px] items-center justify-between">
-        <Logo dark />
+        <Logo
+          imgClassName="h-16 translate-y-1 transition-transform duration-300 hover:scale-[1.06] md:h-20 [filter:drop-shadow(0_6px_10px_rgba(0,0,0,0.55))_drop-shadow(0_0_20px_rgba(242,101,34,0.4))]"
+        />
 
         {/* desktop nav */}
         <nav className="hidden items-center gap-1 lg:flex">
