@@ -1,4 +1,4 @@
-import { Target, Send, GitBranch, Database, CalendarCheck, BarChart3, MessageSquare, Bot, Megaphone, Users, Truck, Calculator, Phone, Factory, Stethoscope } from 'lucide-react'
+import { Target, Send, GitBranch, Database, CalendarCheck, BarChart3, MessageSquare, Bot, Megaphone, Users, Truck, Calculator, Phone, Factory, Stethoscope, FileText, Rocket, Sprout, Search } from 'lucide-react'
 
 // Icon keys used across solution-detail data files.
 export const CAP_ICONS = {
@@ -17,4 +17,8 @@ export const CAP_ICONS = {
   phone: Phone,
   factory: Factory,
   health: Stethoscope,
+  content: FileText,
+  campaign: Rocket,
+  nurture: Sprout,
+  seo: Search,
 }

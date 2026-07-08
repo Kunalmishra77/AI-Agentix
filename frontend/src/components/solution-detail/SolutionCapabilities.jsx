@@ -49,7 +49,7 @@ export default function SolutionCapabilities({ capabilities }) {
             <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-soft text-accent">
               {ActiveIcon && <ActiveIcon className="h-7 w-7" strokeWidth={1.7} />}
             </span>
-            <h3 className="mt-5 text-2xl font-bold text-heading md:text-3xl">{c.name}</h3>
+            <h3 className="mt-5 text-2xl font-bold text-heading md:text-3xl">{c.title || c.name}</h3>
             <p className="mt-3 text-base leading-relaxed text-body">{c.desc}</p>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
               {c.points.map((p) => (

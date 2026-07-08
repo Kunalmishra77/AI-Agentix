@@ -48,4 +48,5 @@ coverage/
 
 # local review screenshots
 sa-*.jpeg
+ma-*.jpeg
 .playwright-mcp/
