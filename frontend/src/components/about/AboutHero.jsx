@@ -12,7 +12,7 @@ const POS = [
 
 export default function AboutHero() {
   return (
-    <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-ink pt-28 pb-16 text-white">
+    <section className="relative flex h-screen min-h-[600px] items-center overflow-hidden bg-ink pt-24 pb-10 text-white">
       {/* background — full-bleed image with dark overlays (like homepage hero) */}
       <div className="absolute inset-0" aria-hidden data-asset="about-hero-image (1920x1080, team/AI)">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/AGENTIX-MEDIAS/img.webp)' }} />
@@ -31,13 +31,13 @@ export default function AboutHero() {
       <div className="container-x relative z-10 grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
         {/* copy */}
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-          <span className="eyebrow mb-5">
+          <span className="eyebrow mb-4">
             <span className="h-px w-6 bg-accent" aria-hidden />
             {hero.eyebrow}
           </span>
-          <h1 className="text-hero font-display font-bold leading-[1.04] text-white">{hero.heading}</h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 md:text-lg">{hero.body}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <h1 className="font-display text-[clamp(2.2rem,4.4vw,4rem)] font-bold leading-[1.03] text-white">{hero.heading}</h1>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-white/70">{hero.body}</p>
+          <div className="mt-7 flex flex-wrap gap-3">
             {hero.ctas.map((c) => (
               <Link key={c.label} to={c.to} className={c.primary ? 'btn-primary' : 'btn border border-white/25 text-white hover:bg-white/10'}>
                 {c.primary ? <ArrowRight className="h-4 w-4" /> : <Play className="h-4 w-4" />}
