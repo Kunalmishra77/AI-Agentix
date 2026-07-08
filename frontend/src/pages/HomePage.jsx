@@ -2,6 +2,8 @@ import { Helmet } from 'react-helmet-async'
 import { meta } from '../data/home'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
+import ScrollProgress from '../components/common/ScrollProgress'
+import ScrollToTop from '../components/common/ScrollToTop'
 import Hero from '../components/home/Hero'
 import PlatformMarquee from '../components/home/PlatformMarquee'
 import ProblemSection from '../components/home/ProblemSection'
@@ -23,6 +25,7 @@ export default function HomePage() {
         <title>{meta.title}</title>
         <meta name="description" content={meta.description} />
       </Helmet>
+      <ScrollProgress />
       <SiteNav />
       <main>
         <Hero />
@@ -40,6 +43,7 @@ export default function HomePage() {
         <FinalCta />
       </main>
       <SiteFooter />
+      <ScrollToTop />
     </>
   )
 }
