@@ -10,5 +10,8 @@ export default function SolutionSignature({ signature }) {
   if (!signature) return null
   const Cmp = SIGNATURES[signature.type]
   if (!Cmp) return null
-  return <Cmp signature={signature} />
+  // Key by the signature's identity so switching solution pages client-side
+  // remounts with fresh state instead of reusing the previous page's instance.
+  const key = signature.eyebrow || (signature.inputs || []).map((i) => i.key).join('|')
+  return <Cmp key={key} signature={signature} />
 }

@@ -20,9 +20,16 @@ export default function SignatureCalculator({ signature }) {
     Object.fromEntries(signature.inputs.map((i) => [i.key, i.default])),
   )
 
+  // Resolve every input against its default so a stale key (e.g. after
+  // client-side navigation to another calculator page) can never read undefined.
+  const resolved = useMemo(
+    () => Object.fromEntries(signature.inputs.map((i) => [i.key, vals[i.key] ?? i.default])),
+    [vals, signature.inputs],
+  )
+
   const outputs = useMemo(
-    () => signature.outputs.map((o) => ({ ...o, value: o.compute(vals) })),
-    [vals, signature.outputs],
+    () => signature.outputs.map((o) => ({ ...o, value: o.compute(resolved) })),
+    [resolved, signature.outputs],
   )
 
   const fmt = (n, o) => {
@@ -47,7 +54,7 @@ export default function SignatureCalculator({ signature }) {
                   <div className="flex items-baseline justify-between">
                     <label htmlFor={`calc-${i.key}`} className="text-sm font-semibold text-heading">{i.label}</label>
                     <span className="text-sm font-bold text-accent">
-                      {i.prefix || ''}{(i.format ? i.format(vals[i.key]) : vals[i.key].toLocaleString('en-IN'))}{i.unit ? ` ${i.unit}` : ''}
+                      {i.prefix || ''}{(i.format ? i.format(resolved[i.key]) : resolved[i.key].toLocaleString('en-IN'))}{i.unit ? ` ${i.unit}` : ''}
                     </span>
                   </div>
                   <input
@@ -56,7 +63,7 @@ export default function SignatureCalculator({ signature }) {
                     min={i.min}
                     max={i.max}
                     step={i.step || 1}
-                    value={vals[i.key]}
+                    value={resolved[i.key]}
                     onChange={(e) => setVals((v) => ({ ...v, [i.key]: Number(e.target.value) }))}
                     className="mt-3 h-2 w-full cursor-pointer appearance-none rounded-full bg-line accent-accent"
                     aria-label={i.label}
