@@ -1,0 +1,29 @@
+import { motion } from 'framer-motion'
+import Section from '../common/Section'
+import SectionHeading from '../common/SectionHeading'
+import { roi } from '../../data/home'
+
+export default function RoiCase() {
+  return (
+    <Section tone="white">
+      <SectionHeading eyebrow={roi.eyebrow} heading={roi.heading} sub={roi.sub} align="center" max="max-w-2xl" className="mx-auto" />
+
+      <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-5">
+        {roi.stats.map((s, i) => (
+          <motion.div
+            key={s.label}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: i * 0.08 }}
+            className="flex flex-col items-center bg-white p-7 text-center"
+          >
+            <div className="text-4xl font-extrabold tracking-tight text-accent md:text-5xl">{s.value}</div>
+            <div className="mt-2 text-sm font-semibold text-heading">{s.label}</div>
+            <div className="mt-1 text-xs text-body-soft">{s.sub}</div>
+          </motion.div>
+        ))}
+      </div>
+    </Section>
+  )
+}

@@ -1,61 +1,69 @@
+/** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
       colors: {
-        accent:         '#F26522',
+        // Brand
+        accent:         '#F26522',   // primary orange
         'accent-hover': '#D4541A',
-        'accent-light': '#FFF5F0',
-        navy:           '#0D1E3A',
-        'navy-deep':    '#070D1A',
-        'border-ui':    '#E8EDF3',
-        'text-muted':   '#6B7280',
-        'text-sub':     '#9CA3AF',
-        'bg-surface':   '#F8FAFC',
-        // Category colors
-        'cat-content':  '#7C3AED',
-        'cat-sales':    '#F26522',
-        'cat-research': '#0EA5E9',
-        'cat-business': '#059669',
+        'accent-soft':  '#FFF3EC',   // orange tint surface
+        'accent-ring':  '#FCE0D0',
+        // Ink / dark (ADDEPTO-style near-black for dark sections + footer)
+        ink:            '#12141A',
+        'ink-800':      '#1A1D25',
+        'ink-700':      '#242833',
+        'ink-muted':    '#9AA3B2',   // muted text on dark
+        // Text (light theme)
+        heading:        '#12141A',   // black headings
+        body:           '#4A5261',   // dark gray body
+        'body-soft':    '#6B7280',
+        // Surfaces
+        surface:        '#FFFFFF',
+        'surface-alt':  '#F6F6F6',   // ADDEPTO light-gray alt sections
+        'surface-2':    '#F1F3F6',
+        line:           '#E7EAF0',   // hairline borders
+        'line-dark':    '#252A35',   // borders on dark
       },
       fontFamily: {
-        display: ['Manrope', 'sans-serif'],
-        body:    ['Manrope', 'sans-serif'],
+        display: ['Poppins', 'system-ui', 'sans-serif'],
+        body:    ['Poppins', 'system-ui', 'sans-serif'],
+        mono:    ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       fontSize: {
-        'display-xl': ['clamp(3.5rem,7vw,6rem)',   { lineHeight: '1.03', letterSpacing: '-0.04em' }],
-        'display-lg': ['clamp(2.8rem,5.5vw,4.5rem)',{ lineHeight: '1.05', letterSpacing: '-0.035em' }],
-        'display-md': ['clamp(2rem,4vw,3rem)',      { lineHeight: '1.1',  letterSpacing: '-0.025em' }],
-        'display-sm': ['clamp(1.4rem,2.5vw,2rem)', { lineHeight: '1.15', letterSpacing: '-0.02em' }],
+        'hero':    ['clamp(2.6rem, 6vw, 5rem)',  { lineHeight: '1.06', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'display': ['clamp(2rem, 4vw, 3.25rem)', { lineHeight: '1.1',  letterSpacing: '-0.015em', fontWeight: '700' }],
+        'h2':      ['clamp(1.75rem, 3vw, 2.5rem)',{ lineHeight: '1.15', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'eyebrow': ['0.8125rem', { lineHeight: '1', letterSpacing: '0.14em', fontWeight: '600' }],
       },
       maxWidth: {
-        content: '1240px',
-        wide:    '1440px',
+        container: '1280px',
+      },
+      spacing: {
+        section: '90px',
+      },
+      borderRadius: {
+        card: '16px',
+        pill: '999px',
       },
       boxShadow: {
-        'card':    '0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07)',
-        'card-hover': '0 8px 40px rgba(0,0,0,0.14)',
-        'bento-lg': '0 2px 8px rgba(0,0,0,0.06), 0 12px 40px rgba(0,0,0,0.1)',
+        card:       '0 1px 2px rgba(18,20,26,0.04), 0 8px 30px rgba(18,20,26,0.06)',
+        'card-hover':'0 12px 44px rgba(18,20,26,0.12)',
+        float:      '0 20px 60px rgba(18,20,26,0.16)',
+        orange:     '0 10px 30px rgba(242,101,34,0.28)',
       },
       keyframes: {
-        marquee:    { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
-        'fade-up':  { '0%': { opacity: '0', transform: 'translateY(24px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-        'pulse-dot':{ '0%,100%': { opacity: '1' }, '50%': { opacity: '0.4' } },
-        'count-up': { '0%': { opacity: '0', transform: 'translateY(12px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-        'gradient-shift': {
-          '0%,100%': { backgroundPosition: '0% 50%' },
-          '50%':     { backgroundPosition: '100% 50%' },
-        },
+        marquee:   { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+        'fade-up': { '0%': { opacity: '0', transform: 'translateY(24px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+        'pulse-dot': { '0%,100%': { opacity: '1' }, '50%': { opacity: '0.35' } },
+        blink: { '0%,100%': { opacity: '1' }, '50%': { opacity: '0' } },
       },
       animation: {
-        marquee:         'marquee 35s linear infinite',
-        'marquee-slow':  'marquee 55s linear infinite',
-        'fade-up':       'fade-up 0.6s ease forwards',
-        'pulse-dot':     'pulse-dot 1.8s ease-in-out infinite',
-        'gradient-shift':'gradient-shift 6s ease infinite',
-      },
-      backgroundSize: {
-        '300%': '300%',
+        'marquee-slow': 'marquee 40s linear infinite',
+        'marquee-fast': 'marquee 28s linear infinite',
+        'fade-up':      'fade-up 0.6s ease forwards',
+        'pulse-dot':    'pulse-dot 1.6s ease-in-out infinite',
+        blink:          'blink 1s step-end infinite',
       },
     },
   },
