@@ -28,9 +28,14 @@ export default function AboutMission() {
           </ul>
         </div>
 
-        {/* right: 2026 targets */}
-        <Reveal>
-          <div className="relative overflow-hidden rounded-3xl bg-ink p-8 md:p-10">
+        {/* right: image + overlapping 2026 targets panel */}
+        <Reveal className="relative">
+          <div
+            className="h-56 w-full overflow-hidden rounded-3xl bg-cover bg-center md:h-64"
+            style={{ backgroundImage: 'url(/AGENTIX-MEDIAS/aiagent.webp)' }}
+            data-asset="about-mission-image"
+          />
+          <div className="relative z-10 -mt-14 ml-auto mr-0 w-[92%] overflow-hidden rounded-3xl bg-ink p-8 shadow-float md:p-9">
             <div
               className="pointer-events-none absolute inset-0 opacity-70"
               aria-hidden

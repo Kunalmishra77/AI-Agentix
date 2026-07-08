@@ -13,12 +13,14 @@ const POS = [
 export default function AboutHero() {
   return (
     <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-ink pt-28 pb-16 text-white">
-      {/* background */}
-      <div className="absolute inset-0" aria-hidden>
-        <div className="absolute inset-0 bg-gradient-to-b from-ink-800 via-ink to-ink" />
+      {/* background — full-bleed image with dark overlays (like homepage hero) */}
+      <div className="absolute inset-0" aria-hidden data-asset="about-hero-image (1920x1080, team/AI)">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/AGENTIX-MEDIAS/img.webp)' }} />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/70" />
         <div
           className="absolute inset-0 opacity-70"
-          style={{ backgroundImage: 'radial-gradient(55% 55% at 75% 30%, rgba(242,101,34,0.22) 0%, transparent 60%), radial-gradient(45% 45% at 15% 85%, rgba(242,101,34,0.10) 0%, transparent 60%)' }}
+          style={{ backgroundImage: 'radial-gradient(50% 50% at 75% 35%, rgba(242,101,34,0.22) 0%, transparent 60%)' }}
         />
         <div
           className="absolute inset-0 opacity-[0.05]"
