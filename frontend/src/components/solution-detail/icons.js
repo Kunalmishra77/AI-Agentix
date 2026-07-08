@@ -1,4 +1,4 @@
-import { Target, Send, GitBranch, Database, CalendarCheck, BarChart3, MessageSquare, Bot, Megaphone, Users, Truck, Calculator, Phone, Factory, Stethoscope, FileText, Rocket, Sprout, Search, UserSearch, Video, UserPlus, Smile, Workflow, ScanText, BadgeCheck, AlertTriangle, Network } from 'lucide-react'
+import { Target, Send, GitBranch, Database, CalendarCheck, BarChart3, MessageSquare, Bot, Megaphone, Users, Truck, Calculator, Phone, Factory, Stethoscope, FileText, Rocket, Sprout, Search, UserSearch, Video, UserPlus, Smile, Workflow, ScanText, BadgeCheck, AlertTriangle, Network, TrendingUp, Boxes } from 'lucide-react'
 
 // Icon keys used across solution-detail data files.
 export const CAP_ICONS = {
@@ -30,4 +30,6 @@ export const CAP_ICONS = {
   approval: BadgeCheck,
   alert: AlertTriangle,
   integration: Network,
+  forecast: TrendingUp,
+  inventory: Boxes,
 }
