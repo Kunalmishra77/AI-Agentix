@@ -13,26 +13,20 @@ export default function Hero() {
 
   return (
     <section className="relative flex min-h-[760px] flex-col overflow-hidden bg-ink text-white md:min-h-[880px]">
-      {/* HERO BACKGROUND — replace with real asset */}
-      <div className="absolute inset-0" aria-hidden data-asset="hero-background-image (1920x1080, dark tech/city, AI-detection overlay)">
-        <div className="absolute inset-0 bg-gradient-to-b from-ink-800 via-ink to-ink" />
+      {/* HERO BACKGROUND — full-bleed image (swap for a final branded shot later) */}
+      <div className="absolute inset-0" aria-hidden data-asset="hero-background-image (1920x1080, AI/business scene)">
         <div
-          className="absolute inset-0 opacity-[0.55]"
-          style={{
-            backgroundImage:
-              'radial-gradient(55% 55% at 80% 12%, rgba(242,101,34,0.26) 0%, transparent 60%), radial-gradient(45% 45% at 8% 88%, rgba(242,101,34,0.10) 0%, transparent 60%)',
-          }}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/AGENTIX-MEDIAS/aiagent.webp)' }}
         />
+        {/* dark overlays keep the left-aligned copy + bottom band legible over the photo */}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-transparent" />
+        {/* subtle orange ambient */}
         <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)',
-            backgroundSize: '64px 64px',
-          }}
+          className="absolute inset-0 opacity-70"
+          style={{ backgroundImage: 'radial-gradient(50% 50% at 85% 15%, rgba(242,101,34,0.18) 0%, transparent 60%)' }}
         />
-        {/* bottom scrim so the band panel reads clearly */}
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink to-transparent" />
       </div>
 
       <div className="container-x relative z-10 flex flex-1 flex-col justify-center pt-32 pb-8 md:pt-36">
