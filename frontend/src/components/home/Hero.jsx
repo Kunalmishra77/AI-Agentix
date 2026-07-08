@@ -92,21 +92,20 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ADDEPTO-style translucent service band — one panel, 3 columns, hairline dividers */}
-      <div className="container-x relative z-10 pb-10 md:pb-14">
+      {/* ADDEPTO-style service band — dark gradient panel over the hero image,
+          left-aligned ~2/3 width, flush, vertical dividers with a tick per column */}
+      <div className="container-x relative z-10 pb-10 md:pb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="grid divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md sm:grid-cols-3 sm:divide-x sm:divide-y-0"
+          className="grid max-w-full divide-y divide-white/15 border-t border-white/20 bg-gradient-to-r from-ink/85 via-ink/60 to-ink/10 backdrop-blur-[2px] sm:max-w-[880px] sm:grid-cols-3 sm:divide-x sm:divide-y-0"
         >
           {hero.serviceBand.map((s) => (
-            <div key={s.title} className="group relative flex items-start gap-4 p-7 md:p-8">
-              <span className="mt-1 h-8 w-1 shrink-0 rounded-full bg-accent" />
-              <div>
-                <h3 className="text-lg font-bold text-white md:text-xl">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/60">{s.text}</p>
-              </div>
+            <div key={s.title} className="relative p-6 md:p-7">
+              <span className="absolute left-0 top-0 h-5 w-[3px] bg-accent" />
+              <h3 className="text-base font-bold text-white md:text-lg">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/60">{s.text}</p>
             </div>
           ))}
         </motion.div>

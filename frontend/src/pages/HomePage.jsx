@@ -3,7 +3,6 @@ import { meta } from '../data/home'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import Hero from '../components/home/Hero'
-import DashboardMock from '../components/home/DashboardMock'
 import PlatformMarquee from '../components/home/PlatformMarquee'
 import ProblemSection from '../components/home/ProblemSection'
 import Capabilities from '../components/home/Capabilities'
@@ -27,7 +26,6 @@ export default function HomePage() {
       <SiteNav />
       <main>
         <Hero />
-        <DashboardMock />
         <PlatformMarquee />
         <ProblemSection />
         <Capabilities />

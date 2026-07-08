@@ -208,6 +208,8 @@ export const industries = {
 export const caseStudies = {
   eyebrow: 'Case Studies',
   heading: 'Real Results. Real Businesses.',
+  // Homepage-featured stories. First two from home.md; the rest are additional
+  // documented case studies pulled verbatim from content-archive/pages/case-studies.md.
   items: [
     { client: 'PropTech Startup, Mumbai', industry: 'Real Estate',
       challenge: 'Sales team spending 4 hrs/day manually qualifying leads from 6 different portals.',
@@ -217,6 +219,26 @@ export const caseStudies = {
       challenge: 'Customer support team overwhelmed. 500+ daily tickets, 6-hour average resolution time.',
       solution: 'AI support agent trained on product catalog + escalation logic + Shopify integration.',
       stats: [{ v: '82%', k: 'Tickets auto-resolved' }, { v: '4 min', k: 'Avg. resolution time (was 6 hrs)' }, { v: '₹8L/mo', k: 'Support cost saved' }] },
+    { client: 'Multi-Specialty Clinic Chain, New Delhi', industry: 'Healthcare',
+      challenge: 'A 12-doctor clinic losing ₹8L/month to no-shows. Front desk of 4 overwhelmed with 300+ daily calls — reminders and rescheduling consumed 80% of working hours.',
+      solution: 'AI voice agent handling all inbound calls 24/7 with natural Hindi/English conversations; automated 3-touch reminder sequence (48h, 24h, 2h before appointment).',
+      stats: [{ v: '65%', k: 'Reduction in no-shows' }, { v: '₹8L', k: 'Monthly revenue recovered' }, { v: '4.2★', k: 'Google rating increase' }] },
+    { client: 'CBSE Day School (2,400 Students), Pune', industry: 'Education',
+      challenge: '600+ admission enquiries in a 6-week window. Office staff of 5 handling calls, form processing, and interviews — 30% of hot leads lost to faster-responding competitor schools.',
+      solution: 'AI WhatsApp agent answering all admission queries 24/7 — fees, curriculum, facilities, transport; automated application form dispatch with step-by-step completion guidance.',
+      stats: [{ v: '100%', k: 'Enquiries responded (within 90s)' }, { v: '5→2', k: 'Admissions staff needed' }, { v: '92%', k: 'Seats filled by week 4' }] },
+    { client: 'Last-Mile Delivery Company, Delhi NCR', industry: 'Logistics',
+      challenge: 'Ops managers spending 4 hours every morning on manual dispatch coordination, client update calls, and invoice reconciliation. No visibility on delays until customers complained.',
+      solution: 'AI-driven dispatch with route optimization using real-time traffic data; automated client shipment status updates via WhatsApp at key milestones.',
+      stats: [{ v: '50%', k: 'Faster operations' }, { v: '₹6L', k: 'Monthly ops overhead saved' }, { v: '99.2%', k: 'On-time delivery rate' }] },
+    { client: 'Boutique Hotel Chain (12 Properties), Rajasthan', industry: 'Hospitality',
+      challenge: 'Over 60% of bookings via OTAs costing 18–22% commission. Pre-arrival guest communication was inconsistent. Review management across 12 properties was manual and slow.',
+      solution: 'WhatsApp AI concierge activated on every booking confirmation; pre-arrival personalization for dining preferences, room customisation, and local experiences.',
+      stats: [{ v: '41%', k: 'Direct booking revenue up' }, { v: '₹3.2L', k: 'Monthly upsell revenue' }, { v: '2.4x', k: 'Review volume increase' }] },
+    { client: 'Auto Components Manufacturer, Pune', industry: 'Manufacturing',
+      challenge: 'Purchase team of 6 spending 60% of time on vendor follow-ups, PO generation, and invoice reconciliation. No real-time inventory visibility led to frequent stockouts and over-ordering.',
+      solution: 'AI procurement agent auto-generating POs based on inventory triggers and reorder points; automated vendor follow-up via WhatsApp and email with escalation logic.',
+      stats: [{ v: '₹18L', k: 'Monthly savings' }, { v: '0', k: 'Stockouts in 3 months' }, { v: '75%', k: 'Team time saved' }] },
   ],
 }
 
