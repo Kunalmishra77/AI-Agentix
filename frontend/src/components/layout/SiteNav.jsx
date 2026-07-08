@@ -6,7 +6,10 @@ import { navLinks, solutionsMega, industriesMega, brand } from '../../data/site'
 import { cn } from '../../lib/cn'
 import Logo from './Logo'
 
-const MEGAS = { solutions: solutionsMega, industries: industriesMega }
+const MEGAS = {
+  solutions: { data: solutionsMega, image: '/AGENTIX-MEDIAS/aiagent.webp' },
+  industries: { data: industriesMega, image: '/AGENTIX-MEDIAS/growthamplified.webp' },
+}
 
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false)
@@ -45,11 +48,17 @@ export default function SiteNav() {
               <div key={l.label} onMouseEnter={() => setOpenMega(l.mega)} className="relative">
                 <Link
                   to={l.to}
-                  className="flex items-center gap-1 rounded-md px-3.5 py-2 text-sm font-medium text-white/85 transition-colors hover:text-white"
+                  className={cn(
+                    'flex items-center gap-1 rounded-md px-3.5 py-2 text-sm font-medium transition-colors',
+                    openMega === l.mega ? 'text-accent' : 'text-white/85 hover:text-white',
+                  )}
                 >
                   {l.label}
                   <ChevronDown className={cn('h-3.5 w-3.5 transition-transform', openMega === l.mega && 'rotate-180')} />
                 </Link>
+                {openMega === l.mega && (
+                  <span className="absolute -bottom-0.5 left-1/2 h-3 w-[3px] -translate-x-1/2 rounded-full bg-accent" />
+                )}
               </div>
             ) : (
               <Link
@@ -90,7 +99,7 @@ export default function SiteNav() {
             transition={{ duration: 0.18 }}
             className="absolute inset-x-0 top-[72px] hidden lg:block"
           >
-            <MegaPanel data={MEGAS[openMega]} />
+            <MegaPanel {...MEGAS[openMega]} onClose={() => setOpenMega(null)} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -103,41 +112,55 @@ export default function SiteNav() {
   )
 }
 
-function MegaPanel({ data }) {
+/** ADDEPTO-style mega: full-width light panel, links become elevated white
+ *  cards on hover, plus a featured image card. Contained height (not full page). */
+function MegaPanel({ data, image, onClose }) {
   return (
-    <div className="mx-auto max-w-container px-5 sm:px-8 lg:px-10">
-      <div className="overflow-hidden rounded-b-2xl border border-t-0 border-white/10 bg-ink shadow-2xl">
-        <div className="grid grid-cols-[1fr_2.4fr]">
-          <div className="flex flex-col justify-between gap-6 bg-white/[0.03] p-7">
-            <div>
-              <h3 className="text-lg font-bold text-white">{data.title}</h3>
-              <p className="mt-2 text-sm text-ink-muted">{data.tagline}</p>
-            </div>
-            <div>
-              <div className="mb-4 flex items-baseline gap-2">
-                <span className="text-3xl font-extrabold text-accent">{data.stat.value}</span>
-                <span className="text-xs text-ink-muted">{data.stat.label}</span>
-              </div>
-              <Link to={data.cta.to} className="inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-accent">
-                {data.cta.label} <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </div>
+    <div className="border-t border-line bg-surface-alt shadow-2xl">
+      <div className="container-x grid gap-8 py-8 lg:grid-cols-[1fr_300px]">
+        {/* links */}
+        <div>
+          <div className="mb-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <span className="text-xs font-bold uppercase tracking-[0.14em] text-body-soft">{data.title}</span>
+            <span className="text-sm text-body">{data.tagline}</span>
           </div>
-          <div className="grid grid-cols-2 gap-1 p-4">
+          <div className="grid grid-cols-2 gap-2 lg:grid-cols-3">
             {data.items.map((it) => (
               <Link
                 key={it.label}
                 to={it.to}
-                className="group rounded-xl p-3.5 transition-colors hover:bg-white/[0.05]"
+                onClick={onClose}
+                className="group rounded-xl p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-card"
               >
-                <div className="flex items-center gap-2 text-sm font-semibold text-white group-hover:text-accent">
-                  {it.label}
-                </div>
-                <p className="mt-1 text-xs leading-relaxed text-ink-muted">{it.desc}</p>
+                <div className="text-sm font-bold text-heading transition-colors group-hover:text-accent">{it.label}</div>
+                <p className="mt-0.5 text-xs leading-snug text-body-soft">{it.desc}</p>
               </Link>
             ))}
           </div>
         </div>
+
+        {/* featured image card */}
+        <Link
+          to={data.cta.to}
+          onClick={onClose}
+          className="group relative flex min-h-[200px] flex-col justify-end overflow-hidden rounded-2xl"
+        >
+          <img
+            src={image}
+            alt=""
+            aria-hidden
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/20" />
+          <div className="relative z-10 p-6">
+            <div className="text-3xl font-extrabold text-accent">{data.stat.value}</div>
+            <p className="text-sm text-white/85">{data.stat.label}</p>
+            <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-white">
+              {data.cta.label}
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </span>
+          </div>
+        </Link>
       </div>
     </div>
   )
