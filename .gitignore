@@ -45,3 +45,7 @@ coverage/
 .parcel-cache/
 
 .vercel
+
+# local review screenshots
+sa-*.jpeg
+.playwright-mcp/

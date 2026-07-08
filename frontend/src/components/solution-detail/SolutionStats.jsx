@@ -1,25 +1,24 @@
 import { motion } from 'framer-motion'
-import Section from '../common/Section'
 
 export default function SolutionStats({ stats }) {
   return (
-    <Section tone="white" className="py-12 md:py-14">
-      <div className="grid grid-cols-2 gap-y-8 lg:grid-cols-4">
+    <section className="border-b border-line bg-white">
+      <div className="grid grid-cols-2 md:grid-cols-4">
         {stats.map((s, i) => (
           <motion.div
             key={s.label}
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: i * 0.08 }}
-            className="border-l border-line px-6 first:border-l-0 lg:px-8"
+            transition={{ duration: 0.4, delay: i * 0.06 }}
+            className="border-line px-6 py-8 text-center [&:nth-child(-n+2)]:border-b md:[&:nth-child(-n+2)]:border-b-0 md:border-l md:first:border-l-0 [&:nth-child(2)]:border-l md:[&:nth-child(2)]:border-l"
           >
-            <div className="text-4xl font-extrabold tracking-tight text-accent md:text-5xl">{s.value}</div>
-            <div className="mt-2 text-sm font-semibold text-heading">{s.label}</div>
+            <div className="text-3xl font-extrabold tracking-tight text-accent md:text-4xl">{s.value}</div>
+            <div className="mt-1.5 text-sm font-semibold text-heading">{s.label}</div>
             {s.sub && <div className="mt-0.5 text-xs text-body-soft">{s.sub}</div>}
           </motion.div>
         ))}
       </div>
-    </Section>
+    </section>
   )
 }
