@@ -974,78 +974,51 @@ export default function HomePage() {
       <SiteNav />
 
       {/* ═══════════════════════════════════════════════
-          1. HERO — Dark #0D1B2E, 2-col split
+          1. HERO — ADDEPTO-style: full-bleed image, giant headline,
+             overlapping 3-column service band. Brand: orange/black/white.
       ═══════════════════════════════════════════════ */}
-      <section className="ax-hero-sec" style={{ background: 'linear-gradient(135deg, #0D1B2E 0%, #0F2240 60%, #0D1B2E 100%)', position: 'relative', overflow: 'hidden' }}>
-        {/* Subtle grid overlay */}
-        <div className="ax-hero-grid-bg" />
-        {/* Ambient glows */}
-        <div className="ax-orb ax-orb-orange" style={{ width: 640, height: 640, top: '5%', right: '-4%' }} />
-        <div className="ax-orb ax-orb-indigo" style={{ width: 480, height: 480, bottom: '5%', left: '-4%' }} />
+      <section className="ax-hero-ad">
+        {/* Full-bleed background image + dark overlays for legibility */}
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/AGENTIX-MEDIAS/aiagent.webp)', backgroundSize: 'cover', backgroundPosition: 'center right', zIndex: 0 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(8,8,10,0.94) 0%, rgba(8,8,10,0.80) 42%, rgba(8,8,10,0.40) 100%)', zIndex: 1 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(8,8,10,0.60) 0%, transparent 26%, transparent 50%, rgba(8,8,10,0.90) 100%)', zIndex: 1 }} />
 
-        <div className="ax-container ax-hero-grid">
-          {/* Left: copy */}
-          <div>
-            <motion.div {...up(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(232,99,26,0.12)', border: '1px solid rgba(232,99,26,0.3)', borderRadius: 100, padding: '6px 16px', marginBottom: 24 }}>
-              <Zap size={14} color="#E8631A" />
-              <span style={{ fontSize: 13, color: '#E8631A', fontFamily: 'var(--font-body)', fontWeight: 500 }}>India's #1 AI Automation Agency</span>
-            </motion.div>
-
-            <motion.h1 {...up(0.08)} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(40px,4.5vw,64px)', fontWeight: 800, color: '#fff', lineHeight: 1.1, marginBottom: 24 }}>
-              Your Business,<br />
-              <span style={{ display: 'inline-block', minHeight: '1.15em', verticalAlign: 'top' }}>
-                <RotatingWord />
-              </span>
-            </motion.h1>
-
-            <motion.p {...up(0.16)} style={{ fontSize: 18, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, marginBottom: 36, maxWidth: 500, fontFamily: 'var(--font-body)' }}>
-              We build AI agents and automation systems that qualify leads in seconds, resolve support tickets automatically, and run your operations 24/7 — without adding headcount.
-            </motion.p>
-
-            <motion.div {...up(0.22)} className="ax-hero-ctas" style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 32 }}>
-              <Link to="/contact" className="ax-hero-cta-btn" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'linear-gradient(90deg, #E8631A, #F59E0B)', color: '#fff', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, padding: '14px 28px', borderRadius: 12, textDecoration: 'none', boxShadow: '0 8px 28px rgba(232,99,26,0.38)' }}>
-                Book Free Strategy Call <ArrowRight size={18} />
-              </Link>
-              <Link to="/case-studies" className="ax-hero-cta-btn" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.15)', color: '#fff', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, padding: '14px 28px', borderRadius: 12, textDecoration: 'none' }}>
-                <Play size={16} fill="currentColor" /> Watch Results
-              </Link>
-            </motion.div>
-
-            {/* Trust bar */}
-            <motion.div {...up(0.26)} style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 36, padding: '14px 18px', background: 'rgba(255,255,255,0.04)', borderRadius: 10, border: '1px solid rgba(255,255,255,0.08)', width: 'fit-content' }}>
-              <div style={{ display: 'flex', gap: 2 }}>
-                {[...Array(5)].map((_, k) => <Star key={k} size={13} color="#F59E0B" fill="#F59E0B" />)}
-              </div>
-              <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', fontFamily: 'var(--font-body)' }}>
-                <strong style={{ color: '#fff' }}>4.9/5</strong> from 200+ Indian businesses
-              </span>
-              <div style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.15)' }} />
-              <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-body)' }}>Avg. ROI 8x in 6 months</span>
-            </motion.div>
-
-            <motion.div {...up(0.32)} style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
-              {[['200+', 'Businesses automated'], ['₹50Cr+', 'Client revenue'], ['97%', 'Satisfaction rate']].map(([v, l]) => (
-                <div key={l}>
-                  <div style={{ fontFamily: 'var(--font-number)', fontSize: 26, fontWeight: 700, color: '#E8631A' }}>{v}</div>
-                  <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-body)' }}>{l}</div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* Right: dashboard mock */}
-          <motion.div {...right(0.3)} className="ax-hero-right">
-            <div style={{ transform: 'translateY(-36px) translateX(18px)' }}>
-              <HeroDashboard />
+        {/* Copy */}
+        <div className="ax-container" style={{ position: 'relative', zIndex: 2, width: '100%', paddingTop: 'clamp(120px,17vh,210px)', paddingBottom: 40 }}>
+          <motion.div {...up(0)} className="ax-hero-ad-eyebrow">India's #1 AI Automation Agency</motion.div>
+          <motion.h1 {...up(0.08)} className="ax-hero-ad-h1">
+            Your Business,<br />
+            <span style={{ color: 'var(--or)', display: 'inline-block', minHeight: '1.02em', verticalAlign: 'top' }}>
+              <RotatingWord />
+            </span>
+          </motion.h1>
+          <motion.p {...up(0.16)} className="ax-hero-ad-lead">
+            We build AI agents and automation systems that qualify leads in seconds, resolve support tickets automatically, and run your operations 24/7 — without adding headcount.
+          </motion.p>
+          <motion.div {...up(0.22)} style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
+            <Link to="/contact" className="ax-pill ax-pill-primary">Book Free Strategy Call <ArrowRight size={18} /></Link>
+            <Link to="/case-studies" className="ax-pill ax-pill-outline-light"><Play size={15} fill="currentColor" /> Watch Results</Link>
+          </motion.div>
+          <motion.div {...up(0.28)} style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 22, flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: 2 }}>
+              {[...Array(5)].map((_, k) => <Star key={k} size={13} color="#F59E0B" fill="#F59E0B" />)}
             </div>
+            <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', fontFamily: 'var(--font-body)' }}>
+              <strong style={{ color: '#fff' }}>4.9/5</strong> from 200+ Indian businesses · Avg. ROI 8x in 6 months
+            </span>
           </motion.div>
         </div>
 
-        {/* Scroll hint */}
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2 }}
-          style={{ position: 'absolute', bottom: 24, left: '50%', transform: 'translateX(-50%)', color: 'rgba(255,255,255,0.25)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-          <span style={{ fontSize: 10, fontFamily: 'var(--font-body)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>scroll</span>
-          <ChevronDown size={18} />
+        {/* Overlapping 3-column service band */}
+        <motion.div {...up(0.34)} className="ax-container" style={{ position: 'relative', zIndex: 2, width: '100%', paddingBottom: 'clamp(28px,5vh,56px)' }}>
+          <div className="ax-hero-ad-services">
+            {BUILD_TABS.slice(0, 3).map((s) => (
+              <div key={s.label} className="ax-hero-ad-col">
+                <h3>{s.label}</h3>
+                <p>{s.headline}</p>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </section>
 

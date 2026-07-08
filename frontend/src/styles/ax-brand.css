@@ -402,6 +402,60 @@
 /* Stat divider on light */
 .ax-l-divider { border-color: var(--l-border) !important; }
 
+/* ══════════════════════════════════════════════════════
+   ADDEPTO-STYLE HERO (full-bleed image, giant headline,
+   overlapping 3-column service band). Brand: orange/black/white.
+   ══════════════════════════════════════════════════════ */
+.ax-hero-ad {
+  position: relative; min-height: 94vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  overflow: hidden; background: #0B0B0C;
+}
+.ax-hero-ad-eyebrow {
+  display: inline-block; font-family: var(--font-body);
+  font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.9);
+  margin-bottom: 18px;
+}
+.ax-hero-ad-h1 {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(44px, 6.6vw, 100px); line-height: 1.0;
+  letter-spacing: -0.025em; color: #fff; margin: 0 0 24px; max-width: 1050px;
+}
+.ax-hero-ad-lead {
+  font-family: var(--font-body); font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.6; color: rgba(255,255,255,0.72); max-width: 600px; margin: 0 0 34px;
+}
+/* Pill buttons (ADDEPTO uses pills) */
+.ax-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-weight: 600; font-size: 15px;
+  padding: 14px 28px; border-radius: 100px; text-decoration: none;
+  transition: var(--trans); white-space: nowrap; cursor: pointer; border: none;
+}
+.ax-pill-primary { background: var(--or); color: #fff; }
+.ax-pill-primary:hover { background: var(--ord); transform: translateY(-2px); color: #fff; }
+.ax-pill-outline-light { background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.45); color: #fff; }
+.ax-pill-outline-light:hover { background: rgba(255,255,255,0.16); border-color: #fff; color: #fff; }
+.ax-pill-outline-dark { background: transparent; border: 1.5px solid var(--l-ink); color: var(--l-ink); }
+.ax-pill-outline-dark:hover { background: var(--l-ink); color: #fff; }
+
+/* Overlapping 3-column service band */
+.ax-hero-ad-services {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  background: rgba(11,11,12,0.5); backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; overflow: hidden;
+}
+.ax-hero-ad-col { padding: 26px 30px; border-left: 1px solid rgba(255,255,255,0.12); }
+.ax-hero-ad-col:first-child { border-left: none; }
+.ax-hero-ad-col h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #fff; margin: 0 0 8px; }
+.ax-hero-ad-col p  { font-family: var(--font-body); font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.62); margin: 0; }
+@media (max-width: 768px) {
+  .ax-hero-ad-services { grid-template-columns: 1fr; }
+  .ax-hero-ad-col { border-left: none; border-top: 1px solid rgba(255,255,255,0.12); }
+  .ax-hero-ad-col:first-child { border-top: none; }
+}
+
 /* ── Section header ──────────────────────────────────── */
 .ax-section-header { margin-bottom: 56px; }
 .ax-section-header.center { text-align: center; }
