@@ -16,16 +16,7 @@ export default {
       { label: 'Get Healthcare AI Audit', to: '/contact', primary: true },
       { label: 'See Case Studies', to: '/case-studies', primary: false },
     ],
-    live: {
-      label: 'Today at City Multispeciality Hospital',
-      status: 'Live',
-      metrics: [
-        { value: '247', label: 'Appointments Today', sub: '18% fewer no-shows' },
-        { value: '312', label: 'Reminders Sent', sub: 'via WhatsApp & SMS' },
-        { value: '89', label: 'Claims Submitted', sub: '₹12.4L in claims' },
-        { value: '64', label: 'Notes Auto-Generated', sub: 'Saved 3.2 hrs doctor time' },
-      ],
-    },
+    tags: ['Appointments', 'Patient Communication', 'Clinical Documentation', 'Billing & Claims', 'Pharmacy', 'Staff Scheduling'],
   },
   stats: [
     { value: '60%', label: 'Reduction in No-Shows', sub: 'with AI reminders' },
