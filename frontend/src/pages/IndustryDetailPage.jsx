@@ -12,6 +12,7 @@ import IndustryChallenges from '../components/industry-detail/IndustryChallenges
 import IndustrySolutions from '../components/industry-detail/IndustrySolutions'
 import IndustrySegments from '../components/industry-detail/IndustrySegments'
 import IndustryCompliance from '../components/industry-detail/IndustryCompliance'
+import SolutionIntegrations from '../components/solution-detail/SolutionIntegrations'
 import IndustryProof from '../components/industry-detail/IndustryProof'
 import IndustryFaq from '../components/industry-detail/IndustryFaq'
 import IndustryCta from '../components/industry-detail/IndustryCta'
@@ -30,6 +31,7 @@ export default function IndustryDetailPage() {
   if (data.solutions) flexible.push((tone) => <IndustrySolutions key="solutions" solutions={data.solutions} tone={tone} />)
   if (data.segments) flexible.push((tone) => <IndustrySegments key="segments" segments={data.segments} tone={tone} />)
   if (data.compliance) flexible.push((tone) => <IndustryCompliance key="compliance" compliance={data.compliance} tone={tone} />)
+  if (data.integrations) flexible.push((tone) => <SolutionIntegrations key="integrations" integrations={data.integrations} tone={tone} />)
   if (data.proof) flexible.push((tone) => <IndustryProof key="proof" proof={data.proof} tone={tone} />)
   if (data.faq) flexible.push((tone) => <IndustryFaq key="faq" faq={data.faq} tone={tone} />)
 

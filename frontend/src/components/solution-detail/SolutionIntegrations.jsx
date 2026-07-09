@@ -7,9 +7,9 @@ function mono(name) {
   return parts.length > 1 ? (parts[0][0] + parts[1][0]).toUpperCase() : name.slice(0, 2).toUpperCase()
 }
 
-export default function SolutionIntegrations({ integrations }) {
+export default function SolutionIntegrations({ integrations, tone = 'alt' }) {
   return (
-    <Section tone="alt">
+    <Section tone={tone}>
       <SectionHeading eyebrow={integrations.eyebrow} heading={integrations.heading} sub={integrations.body} align="center" max="max-w-2xl" className="mx-auto" />
 
       <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
