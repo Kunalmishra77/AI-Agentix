@@ -2,9 +2,9 @@ import { motion } from 'framer-motion'
 import Section from '../common/Section'
 import SectionHeading from '../common/SectionHeading'
 
-export default function SolutionProcess({ process }) {
+export default function SolutionProcess({ process, tone = 'white' }) {
   return (
-    <Section tone="white">
+    <Section tone={tone}>
       <SectionHeading eyebrow={process.eyebrow} heading={process.heading} align="center" max="max-w-2xl" className="mx-auto" />
 
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
