@@ -4,6 +4,7 @@ import hospitality from './hospitality'
 import realEstate from './real-estate'
 import retailEcommerce from './retail-ecommerce'
 import manufacturing from './manufacturing'
+import logistics from './logistics'
 
 // Registry of industry detail pages, keyed by slug. Add a data file + entry
 // here to publish another industry page.
@@ -14,6 +15,7 @@ export const INDUSTRY_PAGES = {
   'real-estate': realEstate,
   'retail-ecommerce': retailEcommerce,
   manufacturing,
+  logistics,
 }
 
 export function getIndustryPage(slug) {
