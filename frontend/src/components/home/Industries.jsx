@@ -35,10 +35,19 @@ export default function Industries() {
                 transition={{ duration: 0.35 }}
                 className="group h-full overflow-hidden rounded-xl"
               >
-                <Placeholder
-                  label={`industry-visual: ${it.name}`}
-                  className="h-full min-h-[240px] transition-transform duration-500 group-hover:scale-105"
-                />
+                {it.image ? (
+                  <img
+                    src={it.image}
+                    alt={`AI for ${it.name}`}
+                    loading="lazy"
+                    className="h-full min-h-[240px] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <Placeholder
+                    label={`industry-visual: ${it.name}`}
+                    className="h-full min-h-[240px] transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
               </motion.div>
             </AnimatePresence>
           </div>

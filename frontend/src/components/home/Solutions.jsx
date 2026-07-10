@@ -64,7 +64,18 @@ export default function Solutions() {
                 </Link>
               </div>
               <div className="flex flex-col gap-4">
-                <Placeholder label={`solution-visual: ${s.name} (4:3)`} ratio="4/3" />
+                {s.image ? (
+                  <div className="group/img overflow-hidden rounded-xl border border-line">
+                    <img
+                      src={s.image}
+                      alt={`${s.name} — ${s.tagline}`}
+                      loading="lazy"
+                      className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover/img:scale-105"
+                    />
+                  </div>
+                ) : (
+                  <Placeholder label={`solution-visual: ${s.name} (4:3)`} ratio="4/3" />
+                )}
                 <div className="rounded-xl bg-ink p-5">
                   <div className="text-3xl font-extrabold text-accent">{s.stat.split(' ')[0]}</div>
                   <p className="mt-1 text-sm text-white">{s.stat}</p>
