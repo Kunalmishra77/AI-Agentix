@@ -86,17 +86,17 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ADDEPTO-style service band — dark gradient panel over the hero image,
-          left-aligned ~2/3 width, flush, vertical dividers with a tick per column */}
-      <div className="container-x relative z-10 pb-6 md:pb-8">
+      {/* ADDEPTO-style service band — solid grey panel, left-aligned ~2/3 width,
+          flush with the bottom edge of the hero, vertical dividers + tick per column */}
+      <div className="container-x relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="grid max-w-full divide-y divide-white/15 border-t border-white/20 bg-gradient-to-r from-ink/85 via-ink/60 to-ink/10 backdrop-blur-[2px] sm:max-w-[880px] sm:grid-cols-3 sm:divide-x sm:divide-y-0"
+          className="grid max-w-full divide-y divide-white/10 border-t border-white/15 bg-[#262A31]/95 backdrop-blur-sm sm:max-w-[880px] sm:grid-cols-3 sm:divide-x sm:divide-y-0"
         >
           {hero.serviceBand.map((s) => (
-            <div key={s.title} className="relative px-5 py-4 md:px-6 md:py-5">
+            <div key={s.title} className="relative px-5 py-5 md:px-6 md:py-6">
               <span className="absolute left-0 top-0 h-4 w-[3px] bg-accent" />
               <h3 className="text-sm font-bold text-white md:text-base">{s.title}</h3>
               <p className="mt-1.5 text-[13px] leading-snug text-white/60">{s.text}</p>
