@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Star, ArrowRight, Play } from 'lucide-react'
+import { ArrowRight, Play } from 'lucide-react'
 import { hero } from '../../data/home'
 
 export default function Hero() {
@@ -81,14 +81,6 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="mt-5 flex items-center gap-2 text-sm text-white/65">
-            <span className="flex text-accent">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-4 w-4 fill-current" />
-              ))}
-            </span>
-            <span>{hero.rating}</span>
-          </div>
         </motion.div>
       </div>
 
@@ -99,12 +91,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="relative grid max-w-full sm:max-w-[920px] sm:grid-cols-3"
+          className="relative grid max-w-full sm:max-w-[850px] sm:grid-cols-3"
         >
           {/* grey panel background, extended past the left viewport edge for a full-bleed look */}
           <div className="absolute inset-y-0 right-0 left-[-100vw]  bg-[#262A31]/95 backdrop-blur-sm" aria-hidden />
           {hero.serviceBand.map((s) => (
-            <div key={s.title} className="relative px-6 py-4 md:px-10 md:py-7">
+            <div key={s.title} className="relative px-6 py-4 md:px-6 md:py-7">
               {/* short, vertically-centred leading divider before every column (incl. the first) */}
               <span aria-hidden className="absolute left-0 top-1/2 hidden h-[58%] w-px -translate-y-1/2 bg-white/15 sm:block" />
               <h3 className="text-xl font-semibold leading-tight text-white md:text-2xl">
