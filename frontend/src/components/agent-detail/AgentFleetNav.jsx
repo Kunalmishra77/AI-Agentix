@@ -24,7 +24,7 @@ export default function AgentFleetNav({ currentSlug }) {
             <Link
               key={a.slug}
               to={`/technology/${a.slug}`}
-              className="group flex items-center gap-4 rounded-2xl border border-line bg-white p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-card"
+              className="group flex min-w-0 items-center gap-4 rounded-2xl border border-line bg-white p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-card"
             >
               <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-white">
                 <Icon className="h-5 w-5" strokeWidth={1.8} />
