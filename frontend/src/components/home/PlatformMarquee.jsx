@@ -1,5 +1,5 @@
 import {
-  SiOpenai, SiAnthropic, SiGooglegemini, SiMeta, SiMistralai, SiPerplexity,
+  SiOpenai, SiAnthropic, SiClaude, SiGooglegemini, SiMeta, SiMistralai, SiPerplexity,
   SiHuggingface, SiLangchain, SiNvidia, SiGooglecloud, SiN8N, SiZapier, SiSlack, SiHubspot,
 } from 'react-icons/si'
 import { platforms } from '../../data/home'
@@ -11,6 +11,7 @@ import { platforms } from '../../data/home'
 const LOGOS = [
   { name: 'OpenAI', Icon: SiOpenai, color: '#412991' },
   { name: 'Anthropic', Icon: SiAnthropic, color: '#CC785C' },
+  { name: 'Claude', Icon: SiClaude, color: '#D97757' },
   { name: 'Google Gemini', Icon: SiGooglegemini, color: '#4285F4' },
   { name: 'Meta AI', Icon: SiMeta, color: '#0081FB' },
   { name: 'Mistral AI', Icon: SiMistralai, color: '#FA520F' },
