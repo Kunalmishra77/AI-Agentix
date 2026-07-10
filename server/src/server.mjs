@@ -43,6 +43,27 @@ function safeAction(action) {
   return { navigate: nav, anchor: typeof action.anchor === 'string' ? action.anchor : null, highlight: action.highlight !== false }
 }
 
+// Rewrite the latest message (any language + short pronoun follow-ups) into a
+// concise English search query for retrieval. Falls back to the raw message.
+async function toSearchQuery(message, history = []) {
+  if (!openai) return message
+  try {
+    const r = await openai.chat.completions.create({
+      model: CHAT_MODEL,
+      temperature: 0,
+      max_tokens: 32,
+      messages: [
+        { role: 'system', content: 'Rewrite the user\'s latest message into a short English keyword search query for a company website (translate Hindi/Hinglish to English; resolve pronouns using the prior turns). Output ONLY the query text.' },
+        ...history.slice(-2).map((h) => ({ role: h.role === 'assistant' ? 'assistant' : 'user', content: String(h.content).slice(0, 300) })),
+        { role: 'user', content: String(message).slice(0, 500) },
+      ],
+    })
+    return (r.choices[0].message.content || message).trim() || message
+  } catch {
+    return message
+  }
+}
+
 app.get('/api/health', (_req, res) => {
   res.json({ ok: true, ...getStats(), configured: !!openai })
 })
@@ -54,15 +75,19 @@ app.post('/api/chat', rateLimit, async (req, res) => {
       return res.status(400).json({ error: 'Invalid message.' })
     }
 
-    // 1) retrieve — vector if we have a key + embeddings, else lexical
+    // 1) normalise the query to English keywords so Hindi / Hinglish / pronoun
+    //    follow-ups still retrieve the right English content
+    const searchText = await toSearchQuery(message, history)
+
+    // 2) retrieve — vector if we have a key + embeddings, else lexical
     let queryEmbedding = null
     if (openai && getStats().hasEmbeddings) {
       try {
-        const e = await openai.embeddings.create({ model: EMBED_MODEL, input: message })
+        const e = await openai.embeddings.create({ model: EMBED_MODEL, input: searchText })
         queryEmbedding = e.data[0].embedding
       } catch { /* fall back to lexical */ }
     }
-    const retrieved = retrieve(message, { queryEmbedding, k: 6 })
+    const retrieved = retrieve(searchText, { queryEmbedding, k: 6 })
 
     // 2) no key → graceful, but retrieval-grounded, reply
     if (!openai) {
