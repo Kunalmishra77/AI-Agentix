@@ -7,6 +7,7 @@ import IndustriesPage from './pages/IndustriesPage.jsx'
 import IndustryDetailPage from './pages/IndustryDetailPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import TechnologyPage from './pages/TechnologyPage.jsx'
+import CaseStudiesPage from './pages/CaseStudiesPage.jsx'
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
       <Route path="/industries/:slug" element={<IndustryDetailPage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/technology" element={<TechnologyPage />} />
+      <Route path="/case-studies" element={<CaseStudiesPage />} />
       {/* Other pages come in later phases. */}
       <Route path="*" element={<HomePage />} />
     </Routes>
