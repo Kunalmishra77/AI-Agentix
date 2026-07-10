@@ -12,7 +12,7 @@ const POS = [
 
 export default function AboutHero() {
   return (
-    <section className="relative flex h-screen min-h-[620px] flex-col overflow-hidden bg-ink pt-20 pb-6 text-white">
+    <section className="relative flex min-h-screen flex-col overflow-hidden bg-ink pt-24 pb-8 text-white">
       {/* background — full-bleed image with dark overlays */}
       <div className="absolute inset-0" aria-hidden data-asset="about-hero-image (1920x1080, team/AI)">
         <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/50" />

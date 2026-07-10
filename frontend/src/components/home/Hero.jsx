@@ -12,7 +12,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative flex h-screen min-h-[600px] flex-col overflow-hidden bg-ink text-white">
+    <section className="relative flex min-h-screen flex-col overflow-hidden bg-ink text-white">
       {/* HERO BACKGROUND — branded video, with dark overlays for text legibility. */}
       <div className="absolute inset-0" aria-hidden>
         {/* background video */}

@@ -4,7 +4,7 @@ import { ArrowRight, Play } from 'lucide-react'
 
 export default function SolutionHero({ hero, image }) {
   return (
-    <section className="relative flex h-screen min-h-[600px] items-center overflow-hidden bg-ink pt-24 pb-10 text-white">
+    <section className="relative flex min-h-screen items-center overflow-hidden bg-ink pt-28 pb-14 text-white">
       {/* full-bleed background image + dark overlays */}
       <div className="absolute inset-0" aria-hidden data-asset="solution-hero-image">
         {image && <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${image})` }} />}
