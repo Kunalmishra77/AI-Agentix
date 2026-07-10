@@ -25,7 +25,13 @@ export default function Hero() {
           playsInline
           preload="auto"
         />
-        {/* bottom fade only — keeps the stats band legible; video otherwise shows clean */}
+        {/* light overall tint — just enough to lift text off the video without darkening it much */}
+        <div className="absolute inset-0 bg-ink/20" />
+        {/* soft left-weighted gradient for the heading/body legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/55 via-ink/20 to-transparent" />
+        {/* top fade — keeps the nav clearly legible over the video */}
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink/70 to-transparent" />
+        {/* bottom fade — keeps the stats band legible */}
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" />
       </div>
 
@@ -96,7 +102,7 @@ export default function Hero() {
           className="relative grid max-w-full sm:max-w-[920px] sm:grid-cols-3"
         >
           {/* grey panel background, extended past the left viewport edge for a full-bleed look */}
-          <div className="absolute inset-y-0 right-0 left-[-100vw] border-t border-white/12 bg-[#262A31]/95 backdrop-blur-sm" aria-hidden />
+          <div className="absolute inset-y-0 right-0 left-[-100vw]  bg-[#262A31]/95 backdrop-blur-sm" aria-hidden />
           {hero.serviceBand.map((s) => (
             <div key={s.title} className="relative px-6 py-4 md:px-10 md:py-7">
               {/* short, vertically-centred leading divider before every column (incl. the first) */}
