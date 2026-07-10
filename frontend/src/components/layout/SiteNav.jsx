@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Menu, X, ArrowUpRight } from 'lucide-react'
+import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react'
 import { navLinks, solutionsMega, industriesMega, aboutMega, technologyMega, brand } from '../../data/site'
 import { cn } from '../../lib/cn'
 import Logo from './Logo'
@@ -88,7 +88,7 @@ export default function SiteNav() {
 
         {/* mobile toggle */}
         <button
-          className={cn('inline-flex h-10 w-10 items-center justify-center rounded-md lg:hidden', light ? 'text-heading' : 'text-white')}
+          className={cn('-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md lg:hidden', light ? 'text-heading' : 'text-white')}
           aria-label="Menu"
           onClick={() => setMobileOpen(true)}
         >
@@ -178,6 +178,8 @@ function MegaPanel({ data, image, onClose }) {
 }
 
 function MobileDrawer({ onClose }) {
+  // which mega section is expanded (only one at a time)
+  const [openSection, setOpenSection] = useState(null)
   return (
     <>
       <motion.div
@@ -190,24 +192,81 @@ function MobileDrawer({ onClose }) {
         initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
         transition={{ type: 'tween', duration: 0.28, ease: [0.21, 0.5, 0.25, 1] }}
       >
-        <div className="flex h-[72px] items-center justify-between border-b border-white/10 px-5">
+        <div className="flex h-[72px] items-center justify-between border-b border-white/10 pl-5 pr-3">
           <Logo dark />
-          <button aria-label="Close menu" onClick={onClose} className="text-white">
+          <button
+            aria-label="Close menu"
+            onClick={onClose}
+            className="-mr-1 inline-flex h-11 w-11 items-center justify-center rounded-md text-white hover:bg-white/10"
+          >
             <X className="h-6 w-6" />
           </button>
         </div>
-        <nav className="flex-1 overflow-y-auto px-5 py-6">
-          {navLinks.map((l) => (
-            <Link
-              key={l.label}
-              to={l.to}
-              onClick={onClose}
-              className="block border-b border-white/5 py-3.5 text-lg font-medium text-white/90"
-            >
-              {l.label}
-            </Link>
-          ))}
+
+        <nav className="flex-1 overflow-y-auto px-4 py-3">
+          {navLinks.map((l) => {
+            const mega = l.mega ? MEGAS[l.mega]?.data : null
+            if (!mega) {
+              return (
+                <Link
+                  key={l.label}
+                  to={l.to}
+                  onClick={onClose}
+                  className="block border-b border-white/5 py-3.5 text-lg font-medium text-white/90"
+                >
+                  {l.label}
+                </Link>
+              )
+            }
+            const isOpen = openSection === l.label
+            return (
+              <div key={l.label} className="border-b border-white/5">
+                <div className="flex items-center">
+                  <Link
+                    to={l.to}
+                    onClick={onClose}
+                    className="flex-1 py-3.5 text-lg font-medium text-white/90"
+                  >
+                    {l.label}
+                  </Link>
+                  <button
+                    aria-label={`${isOpen ? 'Collapse' : 'Expand'} ${l.label}`}
+                    aria-expanded={isOpen}
+                    onClick={() => setOpenSection(isOpen ? null : l.label)}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-md text-white/60 hover:bg-white/10 hover:text-white"
+                  >
+                    <ChevronDown className={cn('h-5 w-5 transition-transform duration-300', isOpen && 'rotate-180')} />
+                  </button>
+                </div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <div className="space-y-0.5 pb-2 pl-2">
+                        {mega.items.map((it) => (
+                          <Link
+                            key={it.label}
+                            to={it.to}
+                            onClick={onClose}
+                            className="flex items-center rounded-lg px-3 py-3 text-sm text-white/65 transition-colors hover:bg-white/5 hover:text-white"
+                          >
+                            {it.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            )
+          })}
         </nav>
+
         <div className="border-t border-white/10 p-5">
           <Link to={brand.audit.to} onClick={onClose} className="btn-primary w-full">
             {brand.audit.label}
