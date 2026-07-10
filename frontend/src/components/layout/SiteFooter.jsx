@@ -1,26 +1,45 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Linkedin, Instagram, Facebook, Twitter, MessageCircle, Mail, Phone, MapPin } from 'lucide-react'
+import {
+  SiOpenai, SiAnthropic, SiClaude, SiGooglegemini, SiMeta, SiPerplexity, SiHuggingface,
+  SiMistralai, SiNvidia, SiLangchain, SiN8N, SiZapier, SiMake, SiSlack, SiHubspot,
+  SiWhatsapp, SiTwilio, SiRazorpay, SiGooglecloud,
+} from 'react-icons/si'
 import { footer } from '../../data/site'
 import Logo from './Logo'
 
 const SOCIAL_ICONS = { LinkedIn: Linkedin, Instagram, Facebook, Twitter, WhatsApp: MessageCircle }
 
+// Footer "Powered by" marquee — logo + name, shown in monochrome (B&W).
+const FOOTER_PLATFORMS = [
+  { name: 'OpenAI', Icon: SiOpenai }, { name: 'Anthropic', Icon: SiAnthropic }, { name: 'Claude', Icon: SiClaude },
+  { name: 'Google Gemini', Icon: SiGooglegemini }, { name: 'Meta AI', Icon: SiMeta }, { name: 'Perplexity', Icon: SiPerplexity },
+  { name: 'Hugging Face', Icon: SiHuggingface }, { name: 'Mistral AI', Icon: SiMistralai }, { name: 'NVIDIA', Icon: SiNvidia },
+  { name: 'LangChain', Icon: SiLangchain }, { name: 'n8n', Icon: SiN8N }, { name: 'Zapier', Icon: SiZapier },
+  { name: 'Make', Icon: SiMake }, { name: 'Slack', Icon: SiSlack }, { name: 'HubSpot', Icon: SiHubspot },
+  { name: 'WhatsApp', Icon: SiWhatsapp }, { name: 'Twilio', Icon: SiTwilio }, { name: 'Razorpay', Icon: SiRazorpay },
+  { name: 'Google Cloud', Icon: SiGooglecloud },
+]
+
 export default function SiteFooter() {
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
-  const partners = [...footer.partners, ...footer.partners]
+  // Two identical halves, each repeated wide enough for a seamless -50% loop on ultra-wide.
+  const half = [...FOOTER_PLATFORMS, ...FOOTER_PLATFORMS]
+  const marqueeRow = [...half, ...half]
 
   return (
     <footer className="border-t border-line bg-surface-alt text-body">
-      {/* partner marquee */}
+      {/* partner marquee — logo + name, brand white & orange (orange mark, dark name) */}
       <div className="border-b border-line py-10">
         <p className="container-x mb-6 text-center text-eyebrow uppercase text-body-soft">{footer.partnersCaption}</p>
-        <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-          <div className="flex w-max animate-marquee-slow items-center gap-12 pr-12">
-            {partners.map((p, i) => (
-              <span key={`${p}-${i}`} data-asset={`partner-logo: ${p}`} className="whitespace-nowrap text-lg font-bold text-heading/30">
-                {p}
+        <div className="group relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+          <div className="flex w-max items-center gap-10 pr-10 will-change-transform animate-marquee-slow group-hover:[animation-play-state:paused]">
+            {marqueeRow.map(({ name, Icon }, i) => (
+              <span key={`${name}-${i}`} className="flex shrink-0 items-center gap-2.5">
+                <Icon className="h-5 w-5 text-accent" aria-hidden />
+                <span className="whitespace-nowrap text-base font-semibold text-heading/80">{name}</span>
               </span>
             ))}
           </div>
