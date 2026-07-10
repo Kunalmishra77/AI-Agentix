@@ -1,3 +1,4 @@
+import Placeholder from '../common/Placeholder'
 import { Check, Target } from 'lucide-react'
 import Section from '../common/Section'
 import SectionHeading from '../common/SectionHeading'
@@ -31,11 +32,8 @@ export default function AboutMission() {
         {/* right: image by default, hover reveals the 2026 targets */}
         <Reveal>
           <div className="group relative h-[420px] overflow-hidden rounded-3xl md:h-[460px]" data-asset="about-mission-image">
-            {/* image */}
-            <div
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-              style={{ backgroundImage: 'url(/AGENTIX-MEDIAS/aiagent.webp)' }}
-            />
+            {/* image (pending designer asset) */}
+            <Placeholder label="about-mission-image" dark className="absolute inset-0 transition-transform duration-700 group-hover:scale-105" />
             {/* default state (lg): bottom gradient + badge + hint */}
             <div className="absolute inset-0 hidden bg-gradient-to-t from-ink/85 via-transparent to-transparent transition-opacity duration-300 group-hover:opacity-0 lg:block" />
             <div className="absolute inset-x-6 bottom-6 hidden items-center justify-between transition-opacity duration-300 group-hover:opacity-0 lg:flex">

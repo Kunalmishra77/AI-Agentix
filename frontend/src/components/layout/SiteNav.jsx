@@ -7,10 +7,10 @@ import { cn } from '../../lib/cn'
 import Logo from './Logo'
 
 const MEGAS = {
-  about: { data: aboutMega, image: '/AGENTIX-MEDIAS/img.webp' },
-  solutions: { data: solutionsMega, image: '/AGENTIX-MEDIAS/aiagent.webp' },
-  industries: { data: industriesMega, image: '/AGENTIX-MEDIAS/growthamplified.webp' },
-  technology: { data: technologyMega, image: '/AGENTIX-MEDIAS/brain-illustration.webp' },
+  about: { data: aboutMega },
+  solutions: { data: solutionsMega },
+  industries: { data: industriesMega },
+  technology: { data: technologyMega },
 }
 
 export default function SiteNav() {
@@ -150,14 +150,18 @@ function MegaPanel({ data, image, onClose }) {
         <Link
           to={data.cta.to}
           onClick={onClose}
-          className="group relative flex min-h-[200px] flex-col justify-end overflow-hidden rounded-2xl"
+          className="group relative flex min-h-[200px] flex-col justify-end overflow-hidden rounded-2xl bg-ink"
         >
-          <img
-            src={image}
-            alt=""
-            aria-hidden
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          {image ? (
+            <img
+              src={image}
+              alt=""
+              aria-hidden
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div className="absolute inset-0 opacity-70" aria-hidden style={{ backgroundImage: 'radial-gradient(60% 60% at 80% 20%, rgba(242,101,34,0.28) 0%, transparent 60%)' }} />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/20" />
           <div className="relative z-10 p-6">
             <div className="text-3xl font-extrabold text-accent">{data.stat.value}</div>

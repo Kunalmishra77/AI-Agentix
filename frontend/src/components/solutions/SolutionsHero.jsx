@@ -9,7 +9,6 @@ export default function SolutionsHero() {
     <section className="relative flex min-h-[88vh] items-center overflow-hidden bg-ink pt-28 pb-16 text-white">
       {/* background */}
       <div className="absolute inset-0" aria-hidden>
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: 'url(/AGENTIX-MEDIAS/aiagent.webp)' }} />
         <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/95 to-ink/70" />
         <div className="absolute inset-0 opacity-70" style={{ backgroundImage: 'radial-gradient(50% 50% at 80% 30%, rgba(242,101,34,0.20) 0%, transparent 60%)' }} />
         <div

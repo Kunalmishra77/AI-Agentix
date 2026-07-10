@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
 import Section from '../common/Section'
 import SectionHeading from '../common/SectionHeading'
+import Placeholder from '../common/Placeholder'
 import { cn } from '../../lib/cn'
 
 /**
@@ -27,7 +28,11 @@ export default function IndustrySolutions({ solutions, tone = 'white' }) {
                 className={cn('group relative overflow-hidden rounded-3xl border border-line shadow-float', flip && 'lg:order-2')}
               >
                 <div className="relative aspect-[16/11]">
-                  <img src={s.image} alt={s.name} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  {s.image ? (
+                    <img src={s.image} alt={s.name} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  ) : (
+                    <Placeholder label={`industry-solution-visual: ${s.name}`} dark className="h-full w-full" />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/15 to-transparent" />
                   <span className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-sm font-extrabold text-white shadow-orange">
                     0{i + 1}
