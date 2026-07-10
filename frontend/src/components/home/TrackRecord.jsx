@@ -24,9 +24,9 @@ export default function TrackRecord() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="border-l border-white/10 px-6 first:border-l-0 lg:px-8"
+            className="min-w-0 border-l border-white/10 px-3 first:border-l-0 sm:px-6 lg:px-8"
           >
-            <div className="text-5xl font-extrabold tracking-tight text-accent md:text-6xl">{s.value}</div>
+            <div className="text-4xl font-extrabold tracking-tight text-accent sm:text-5xl md:text-6xl">{s.value}</div>
             <div className="mt-3 text-base font-semibold text-white">{s.label}</div>
             <div className="mt-1 text-sm text-ink-muted">{s.sub}</div>
           </motion.div>

@@ -9,7 +9,8 @@ export default function SolutionsCompare() {
     <Section tone="dark">
       <SectionHeading eyebrow={compare.eyebrow} heading={compare.heading} tone="dark" align="center" max="max-w-2xl" className="mx-auto" />
 
-      <div className="mx-auto mt-12 max-w-4xl overflow-hidden rounded-2xl border border-white/10">
+      {/* DESKTOP (md+): 3-column table */}
+      <div className="mx-auto mt-12 hidden max-w-4xl overflow-hidden rounded-2xl border border-white/10 md:block">
         {/* header */}
         <div className="grid grid-cols-[1fr_1.2fr_1.2fr] bg-white/[0.03] text-xs font-bold uppercase tracking-wide sm:text-sm">
           <div className="p-4 text-ink-muted md:p-5">{compare.cols[0]}</div>
@@ -38,6 +39,31 @@ export default function SolutionsCompare() {
               {r.ai}
             </div>
           </motion.div>
+        ))}
+      </div>
+
+      {/* MOBILE (<md): one stacked card per row */}
+      <div className="mt-10 space-y-3 md:hidden">
+        {compare.rows.map((r) => (
+          <div key={r.metric} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+            <h4 className="text-sm font-bold text-white">{r.metric}</h4>
+            <div className="mt-3 space-y-2">
+              <div className="flex items-start gap-2.5 px-1">
+                <X className="mt-0.5 h-4 w-4 shrink-0 text-red-400" />
+                <div className="min-w-0">
+                  <div className="text-xs font-bold uppercase tracking-wide text-ink-muted">{compare.cols[1]}</div>
+                  <div className="mt-0.5 text-sm text-ink-muted">{r.manual}</div>
+                </div>
+              </div>
+              <div className="flex items-start gap-2.5 rounded-lg bg-accent/[0.1] px-3 py-2.5">
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                <div className="min-w-0">
+                  <div className="text-xs font-bold uppercase tracking-wide text-accent">{compare.cols[2]}</div>
+                  <div className="mt-0.5 text-sm font-medium text-white">{r.ai}</div>
+                </div>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </Section>

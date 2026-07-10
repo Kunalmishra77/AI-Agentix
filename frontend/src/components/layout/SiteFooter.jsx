@@ -30,7 +30,7 @@ export default function SiteFooter() {
       {/* main */}
       <div className="container-x grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.4fr]">
         {/* brand */}
-        <div>
+        <div className="min-w-0">
           <Logo dark={false} />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-body">{footer.brandBlurb}</p>
           <div className="mt-6 flex gap-3">
@@ -54,7 +54,7 @@ export default function SiteFooter() {
 
         {/* link cols */}
         {footer.cols.map((col) => (
-          <div key={col.title}>
+          <div key={col.title} className="min-w-0">
             <h4 className="text-sm font-bold text-heading">{col.title}</h4>
             <ul className="mt-4 space-y-2.5">
               {col.links.map((l) => (
@@ -67,7 +67,7 @@ export default function SiteFooter() {
         ))}
 
         {/* newsletter + contact */}
-        <div>
+        <div className="min-w-0">
           <h4 className="text-sm font-bold text-heading">{footer.newsletter.title}</h4>
           <p className="mt-4 text-sm text-body">{footer.newsletter.blurb}</p>
           <form

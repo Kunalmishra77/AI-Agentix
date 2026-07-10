@@ -86,8 +86,8 @@ export default function CaseStudies() {
               </div>
               <div className="mt-6 grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
                 {c.stats.map((s) => (
-                  <div key={s.k}>
-                    <div className="text-2xl font-extrabold text-accent md:text-3xl">{s.v}</div>
+                  <div key={s.k} className="min-w-0">
+                    <div className="text-xl font-extrabold text-accent sm:text-2xl md:text-3xl">{s.v}</div>
                     <div className="mt-1 text-[11px] leading-tight text-ink-muted">{s.k}</div>
                   </div>
                 ))}

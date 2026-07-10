@@ -16,9 +16,9 @@ export default function RoiCase() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: i * 0.08 }}
-            className="flex flex-col items-center bg-white p-7 text-center"
+            className="flex min-w-0 flex-col items-center bg-white p-4 text-center sm:p-6 md:p-7"
           >
-            <div className="text-4xl font-extrabold tracking-tight text-accent md:text-5xl">{s.value}</div>
+            <div className="text-3xl font-extrabold tracking-tight text-accent sm:text-4xl md:text-5xl">{s.value}</div>
             <div className="mt-2 text-sm font-semibold text-heading">{s.label}</div>
             <div className="mt-1 text-xs text-body-soft">{s.sub}</div>
           </motion.div>
