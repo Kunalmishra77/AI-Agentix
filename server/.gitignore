@@ -3,3 +3,5 @@ node_modules/
 .env.local
 # generated bundle used only during knowledge extraction
 scripts/_kb-bundle.mjs
+# large, regenerable embeddings (run `npm run embed` on deploy)
+src/knowledge.embeddings.json
