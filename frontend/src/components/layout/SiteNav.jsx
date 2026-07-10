@@ -54,7 +54,7 @@ export default function SiteNav() {
                 <Link
                   to={l.to}
                   className={cn(
-                    'flex items-center rounded-md px-3.5 py-2 text-sm font-medium transition-colors',
+                    'flex items-center rounded-md whitespace-nowrap px-2 py-2 text-[13px] font-medium transition-colors xl:px-3.5 xl:text-sm',
                     openMega === l.mega ? 'text-accent' : light ? 'text-heading hover:text-accent' : 'text-white/85 hover:text-white',
                   )}
                 >
@@ -69,7 +69,7 @@ export default function SiteNav() {
                 key={l.label}
                 to={l.to}
                 className={cn(
-                  'rounded-md px-3.5 py-2 text-sm font-medium transition-colors',
+                  'rounded-md whitespace-nowrap px-2 py-2 text-[13px] font-medium transition-colors xl:px-3.5 xl:text-sm',
                   light ? 'text-heading hover:text-accent' : 'text-white/85 hover:text-white',
                 )}
               >
@@ -79,8 +79,8 @@ export default function SiteNav() {
           )}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <Link to={brand.audit.to} className="btn-primary">
+        <div className="hidden shrink-0 items-center gap-3 lg:flex">
+          <Link to={brand.audit.to} className="btn-primary whitespace-nowrap">
             {brand.audit.label}
             <ArrowUpRight className="h-4 w-4" />
           </Link>
