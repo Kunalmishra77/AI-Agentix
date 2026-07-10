@@ -13,23 +13,19 @@ export default function Hero() {
 
   return (
     <section className="relative flex h-screen min-h-[600px] flex-col overflow-hidden bg-ink text-white">
-      {/* HERO BACKGROUND — reserved for a future branded video (no image, per brand). */}
-      <div className="absolute inset-0" aria-hidden data-asset="hero-background-video (reserved — drop <video> here later)">
-        {/* subtle grid texture */}
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px)', backgroundSize: '64px 64px' }}
+      {/* HERO BACKGROUND — branded video, with dark overlays for text legibility. */}
+      <div className="absolute inset-0" aria-hidden>
+        {/* background video */}
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/home/home_hero_video-1080p.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
         />
-        {/* orange ambient glows */}
-        <div
-          className="absolute inset-0 opacity-80"
-          style={{ backgroundImage: 'radial-gradient(45% 45% at 85% 12%, rgba(242,101,34,0.22) 0%, transparent 60%)' }}
-        />
-        <div
-          className="absolute inset-0 opacity-60"
-          style={{ backgroundImage: 'radial-gradient(40% 40% at 12% 90%, rgba(242,101,34,0.12) 0%, transparent 60%)' }}
-        />
-        {/* bottom fade for the stats band legibility */}
+        {/* bottom fade only — keeps the stats band legible; video otherwise shows clean */}
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" />
       </div>
 
