@@ -5,6 +5,7 @@ import SolutionsPage from './pages/SolutionsPage.jsx'
 import SolutionDetailPage from './pages/SolutionDetailPage.jsx'
 import IndustriesPage from './pages/IndustriesPage.jsx'
 import IndustryDetailPage from './pages/IndustryDetailPage.jsx'
+import ContactPage from './pages/ContactPage.jsx'
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Route path="/solutions/:slug" element={<SolutionDetailPage />} />
       <Route path="/industries" element={<IndustriesPage />} />
       <Route path="/industries/:slug" element={<IndustryDetailPage />} />
+      <Route path="/contact" element={<ContactPage />} />
       {/* Other pages come in later phases. */}
       <Route path="*" element={<HomePage />} />
     </Routes>
