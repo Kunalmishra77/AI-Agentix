@@ -12,7 +12,7 @@ export const hero = {
   headingPrefix: 'Your Business,',
   rotatingWords: ['Automated.', 'Transformed.', 'Supercharged.', 'Unstoppable.'],
   body:
-    'We build AI agents and automation systems that qualify leads in seconds, resolve support tickets automatically, and run your operations 24/7 — without adding headcount.',
+    'AI agents that qualify leads, resolve support tickets, and run your operations 24/7 — without adding headcount.',
   rating: '4.9/5 from 200+ Indian businesses · Avg. ROI 8x in 6 months',
   ctas: [
     { label: 'Book Free Strategy Call', to: '/contact', primary: true },

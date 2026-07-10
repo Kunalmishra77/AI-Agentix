@@ -86,20 +86,24 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ADDEPTO-style service band — solid grey panel, left-aligned ~2/3 width,
-          flush with the bottom edge of the hero, vertical dividers + tick per column */}
+      {/* ADDEPTO-style service band — solid grey panel that bleeds off the left
+          screen edge, flush with the hero's bottom, ~2/3 width, plain vertical dividers */}
       <div className="container-x relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="grid max-w-full divide-y divide-white/10 border-t border-white/15 bg-[#262A31]/95 backdrop-blur-sm sm:max-w-[880px] sm:grid-cols-3 sm:divide-x sm:divide-y-0"
+          className="relative grid max-w-full sm:max-w-[860px] sm:grid-cols-3"
         >
-          {hero.serviceBand.map((s) => (
-            <div key={s.title} className="relative px-5 py-5 md:px-6 md:py-6">
-              <span className="absolute left-0 top-0 h-4 w-[3px] bg-accent" />
-              <h3 className="text-sm font-bold text-white md:text-base">{s.title}</h3>
-              <p className="mt-1.5 text-[13px] leading-snug text-white/60">{s.text}</p>
+          {/* grey panel background, extended past the left viewport edge for a full-bleed look */}
+          <div className="absolute inset-y-0 right-0 left-[-100vw] border-t border-white/12 bg-[#262A31]/95 backdrop-blur-sm" aria-hidden />
+          {hero.serviceBand.map((s, i) => (
+            <div
+              key={s.title}
+              className={`relative px-5 py-7 md:py-8 md:px-8 ${i > 0 ? 'sm:border-l sm:border-white/10' : ''}`}
+            >
+              <h3 className="text-lg font-bold leading-tight text-white md:text-xl">{s.title}</h3>
+              <p className="mt-2.5 text-sm leading-snug text-white/60">{s.text}</p>
             </div>
           ))}
         </motion.div>
