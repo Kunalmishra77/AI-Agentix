@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import Section from '../common/Section'
 import SectionHeading from '../common/SectionHeading'
 import { agents } from '../../data/technology'
+import { agentIndex } from '../../data/agents'
 import { TECH_ICONS } from './icons'
 import { cn } from '../../lib/cn'
 
@@ -11,6 +13,7 @@ export default function TechAgents() {
   const [active, setActive] = useState(0)
   const a = agents.items[active]
   const Icon = TECH_ICONS[a.icon]
+  const slug = agentIndex.find((x) => x.key === a.key)?.slug
 
   return (
     <Section tone="white">
@@ -62,6 +65,12 @@ export default function TechAgents() {
                 ))}
               </div>
             </div>
+
+            {slug && (
+              <Link to={`/technology/${slug}`} className="btn-primary mt-8">
+                Explore the {a.name} <ArrowRight className="h-4 w-4" />
+              </Link>
+            )}
           </div>
 
           {/* right: process flow */}

@@ -37,14 +37,14 @@ export const technologyMega = {
   cta: { label: 'Explore Technology', to: '/technology' },
   stat: { value: '300+', label: 'tools we connect with' },
   items: [
-    { label: 'Sales Agent', to: '/technology', desc: 'Lead Qualification & Follow-Up' },
-    { label: 'Support Agent', to: '/technology', desc: 'Ticket Resolution & Escalation' },
-    { label: 'Analytics Agent', to: '/technology', desc: 'Anomaly Detection & Forecasting' },
-    { label: 'Content Agent', to: '/technology', desc: 'Research, Write & Publish' },
-    { label: 'Voice Agent', to: '/technology', desc: 'Inbound Calls & Outbound Outreach' },
-    { label: 'HR Agent', to: '/technology', desc: 'Hiring, Onboarding & HR Ops' },
-    { label: 'Finance Agent', to: '/technology', desc: 'Invoicing, Reconciliation & GST' },
-    { label: 'Document Agent', to: '/technology', desc: 'Contract Review & Document Processing' },
+    { label: 'Sales Agent', to: '/technology/sales-agent', desc: 'Lead Qualification & Follow-Up' },
+    { label: 'Support Agent', to: '/technology/support-agent', desc: 'Ticket Resolution & Escalation' },
+    { label: 'Analytics Agent', to: '/technology/analytics-agent', desc: 'Anomaly Detection & Forecasting' },
+    { label: 'Content Agent', to: '/technology/content-agent', desc: 'Research, Write & Publish' },
+    { label: 'Voice Agent', to: '/technology/voice-agent', desc: 'Inbound Calls & Outbound Outreach' },
+    { label: 'HR Agent', to: '/technology/hr-agent', desc: 'Hiring, Onboarding & HR Ops' },
+    { label: 'Finance Agent', to: '/technology/finance-agent', desc: 'Invoicing, Reconciliation & GST' },
+    { label: 'Document Agent', to: '/technology/document-agent', desc: 'Contract Review & Document Processing' },
   ],
 }
 

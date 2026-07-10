@@ -8,6 +8,7 @@ import IndustriesPage from './pages/IndustriesPage.jsx'
 import IndustryDetailPage from './pages/IndustryDetailPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import TechnologyPage from './pages/TechnologyPage.jsx'
+import AgentDetailPage from './pages/AgentDetailPage.jsx'
 import CaseStudiesPage from './pages/CaseStudiesPage.jsx'
 import AIStudioPage from './pages/AIStudioPage.jsx'
 import PrivacyPage from './pages/PrivacyPage.jsx'
@@ -27,6 +28,7 @@ export default function App() {
       <Route path="/industries/:slug" element={<IndustryDetailPage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/technology" element={<TechnologyPage />} />
+      <Route path="/technology/:slug" element={<AgentDetailPage />} />
       <Route path="/case-studies" element={<CaseStudiesPage />} />
       <Route path="/ai-studio" element={<AIStudioPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
