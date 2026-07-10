@@ -2,10 +2,31 @@ import { useEffect, useRef, useState, useCallback } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { SiWhatsapp } from 'react-icons/si'
-import { X, Send, ArrowRight } from 'lucide-react'
+import { X, Send, ArrowRight, Mic, Volume2, VolumeX } from 'lucide-react'
 
 const WA_NUMBER = '919217064245' // real WhatsApp handoff
 const GREETING = "Hi! I'm the Agentix Assistant. Ask me about our AI solutions, industries, technology or how to get started — I can also take you straight to the right page."
+
+// Web Speech API (feature-detected; absent on some browsers)
+const SpeechRecognitionAPI = typeof window !== 'undefined' && (window.SpeechRecognition || window.webkitSpeechRecognition)
+const canSpeak = typeof window !== 'undefined' && 'speechSynthesis' in window
+
+// Best-effort "which section is the visitor looking at" — the section nearest the
+// top third of the viewport — so answers can be context-aware.
+function currentSection() {
+  if (typeof document === 'undefined') return null
+  const secs = [...document.querySelectorAll('main section')]
+  const anchor = window.innerHeight * 0.3
+  let best = null, bestDist = Infinity
+  for (const s of secs) {
+    const r = s.getBoundingClientRect()
+    if (r.bottom < 40 || r.top > window.innerHeight) continue
+    const dist = Math.abs(r.top - anchor)
+    if (dist < bestDist) { bestDist = dist; best = s }
+  }
+  if (!best) return null
+  return best.id || best.querySelector('h1,h2,h3')?.textContent?.trim()?.slice(0, 70) || null
+}
 
 // smooth-scroll to an in-page section after navigation, with a brief highlight
 function goToAnchor(anchor) {
@@ -32,10 +53,22 @@ export default function AssistantWidget() {
   const [messages, setMessages] = useState([{ role: 'assistant', text: GREETING }])
   const [input, setInput] = useState('')
   const [busy, setBusy] = useState(false)
+  const [listening, setListening] = useState(false)
+  const [speakOn, setSpeakOn] = useState(false)
   const panelRef = useRef(null)
   const scrollRef = useRef(null)
+  const recRef = useRef(null)
+  const sendRef = useRef(null)
   const location = useLocation()
   const navigate = useNavigate()
+
+  const speak = useCallback((text) => {
+    if (!speakOn || !canSpeak || !text) return
+    window.speechSynthesis.cancel()
+    const u = new SpeechSynthesisUtterance(text)
+    u.lang = 'en-IN'; u.rate = 1.03; u.pitch = 1
+    window.speechSynthesis.speak(u)
+  }, [speakOn])
 
   // autoscroll to latest message
   useEffect(() => {
@@ -65,11 +98,12 @@ export default function AssistantWidget() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: q, history, context: { route: location.pathname } }),
+        body: JSON.stringify({ message: q, history, context: { route: location.pathname, section: currentSection() } }),
       })
       const data = await res.json()
       const reply = data.reply || "Sorry, I couldn't find that on our site."
       setMessages((m) => [...m, { role: 'assistant', text: reply, action: data.action }])
+      speak(reply)
       if (data.action?.navigate) {
         navigate(data.action.navigate + (data.action.anchor || ''))
         goToAnchor(data.action.anchor)
@@ -79,7 +113,36 @@ export default function AssistantWidget() {
     } finally {
       setBusy(false)
     }
-  }, [input, busy, messages, location.pathname, navigate])
+  }, [input, busy, messages, location.pathname, navigate, speak])
+  sendRef.current = send
+
+  // Voice input (speech-to-text). Fills the field live, auto-sends on finish.
+  const toggleMic = useCallback(() => {
+    if (!SpeechRecognitionAPI) return
+    if (listening) { recRef.current?.stop(); return }
+    const rec = new SpeechRecognitionAPI()
+    rec.lang = 'en-IN'
+    rec.interimResults = true
+    rec.continuous = false
+    let finalText = ''
+    rec.onresult = (e) => {
+      let interim = ''
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        const t = e.results[i][0].transcript
+        if (e.results[i].isFinal) finalText += t; else interim += t
+      }
+      setInput((finalText + interim).trim())
+    }
+    rec.onend = () => {
+      setListening(false)
+      const text = finalText.trim()
+      if (text) { setInput(''); sendRef.current?.(text) }
+    }
+    rec.onerror = () => setListening(false)
+    recRef.current = rec
+    setListening(true)
+    rec.start()
+  }, [listening])
 
   const waLink = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hi AI Agentix, I have a question about your services.')}`
 
@@ -166,6 +229,15 @@ export default function AssistantWidget() {
                     <span className="h-1.5 w-1.5 rounded-full bg-green-300" /> online
                   </div>
                 </div>
+                {canSpeak && (
+                  <button
+                    aria-label={speakOn ? 'Turn off voice replies' : 'Turn on voice replies'}
+                    onClick={() => setSpeakOn((v) => { if (v) window.speechSynthesis.cancel(); return !v })}
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full text-white/90 hover:bg-white/10"
+                  >
+                    {speakOn ? <Volume2 className="h-5 w-5" /> : <VolumeX className="h-5 w-5" />}
+                  </button>
+                )}
                 <button aria-label="Close" onClick={() => setOpen(false)} className="inline-flex h-9 w-9 items-center justify-center rounded-full text-white/90 hover:bg-white/10">
                   <X className="h-5 w-5" />
                 </button>
@@ -212,10 +284,20 @@ export default function AssistantWidget() {
                 <input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask anything…"
+                  placeholder={listening ? 'Listening…' : 'Ask anything…'}
                   aria-label="Message"
                   className="min-w-0 flex-1 rounded-full border border-black/10 bg-white px-4 py-2.5 text-base text-[#111B21] outline-none placeholder:text-body-soft focus:border-accent/50 sm:text-sm"
                 />
+                {SpeechRecognitionAPI && (
+                  <button
+                    type="button"
+                    onClick={toggleMic}
+                    aria-label={listening ? 'Stop listening' : 'Voice input'}
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-colors ${listening ? 'animate-pulse border-transparent bg-red-500 text-white' : 'border-black/10 bg-white text-body-soft hover:text-accent'}`}
+                  >
+                    <Mic className="h-5 w-5" />
+                  </button>
+                )}
                 <button
                   type="submit"
                   disabled={!input.trim() || busy}
