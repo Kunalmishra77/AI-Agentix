@@ -72,7 +72,7 @@ export default function AboutHero() {
                 transition={{ duration: 4 + i, repeat: Infinity, ease: 'easeInOut' }}
               >
                 <div className="text-xl font-extrabold text-accent">{n.value}</div>
-                <div className="mt-0.5 text-[11px] text-white/60">{n.label}</div>
+                <div className="mt-0.5 text-xs text-white/60">{n.label}</div>
               </motion.div>
             ))}
           </div>
@@ -90,7 +90,7 @@ export default function AboutHero() {
           {stats.map((s) => (
             <div key={s.label} className="border-white/10 px-5 py-4 text-center [&:nth-child(-n+2)]:border-b sm:[&:nth-child(-n+2)]:border-b-0 sm:border-l sm:first:border-l-0">
               <div className="text-xl font-extrabold tracking-tight text-accent md:text-2xl">{s.value}</div>
-              <div className="mt-0.5 text-[11px] font-medium text-white/60 md:text-xs">{s.label}</div>
+              <div className="mt-0.5 text-xs font-medium text-white/60 md:text-xs">{s.label}</div>
             </div>
           ))}
         </div>

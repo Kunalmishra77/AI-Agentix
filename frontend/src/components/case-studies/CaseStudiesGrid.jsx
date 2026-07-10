@@ -19,7 +19,7 @@ const Card = forwardRef(function Card({ s, onOpen }, ref) {
       transition={{ duration: 0.3 }}
       className="group flex h-full flex-col rounded-2xl border border-line bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/50 hover:shadow-card-hover"
     >
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-body-soft">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-body-soft">
         <span className="rounded-pill bg-accent-soft px-2.5 py-1 font-bold text-accent">{s.industry}</span>
         <span className="inline-flex items-center gap-1"><MapPin className="h-3 w-3" /> {s.location}</span>
         <span className="inline-flex items-center gap-1"><Clock className="h-3 w-3" /> {s.readTime}</span>
@@ -32,14 +32,14 @@ const Card = forwardRef(function Card({ s, onOpen }, ref) {
         {s.stats.slice(0, 2).map((st) => (
           <div key={st.label}>
             <div className="font-display text-xl font-extrabold text-accent">{st.value}</div>
-            <div className="mt-0.5 text-[11px] font-semibold leading-tight text-heading">{st.label}</div>
+            <div className="mt-0.5 text-xs font-semibold leading-tight text-heading">{st.label}</div>
           </div>
         ))}
       </div>
 
       <div className="mt-4 flex flex-wrap gap-1.5">
         {s.tags.slice(0, 3).map((t) => (
-          <span key={t} className="rounded-pill bg-surface-alt px-2.5 py-1 text-[11px] font-medium text-body">{t}</span>
+          <span key={t} className="rounded-pill bg-surface-alt px-2.5 py-1 text-xs font-medium text-body">{t}</span>
         ))}
       </div>
 

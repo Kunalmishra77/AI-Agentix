@@ -25,7 +25,7 @@ export default function SolutionResults({ results }) {
 
             <div className="relative z-10 flex h-full flex-col">
               <div className="flex items-center justify-between">
-                <span className="rounded-pill bg-accent-soft px-3 py-1 text-[11px] font-semibold text-accent">{r.tag}</span>
+                <span className="rounded-pill bg-accent-soft px-3 py-1 text-xs font-semibold text-accent">{r.tag}</span>
                 <Quote className="h-6 w-6 text-accent/30 transition-colors duration-300 group-hover:text-accent/60" />
               </div>
               <p className="mt-6 bg-gradient-to-br from-accent to-accent-hover bg-clip-text text-2xl font-extrabold leading-tight text-transparent">

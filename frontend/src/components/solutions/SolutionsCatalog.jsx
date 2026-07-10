@@ -23,7 +23,7 @@ const SolutionCard = forwardRef(function SolutionCard({ s }, ref) {
         <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-white">
           <Icon className="h-6 w-6" strokeWidth={1.8} />
         </span>
-        <span className="rounded-pill border border-line px-3 py-1 text-[11px] font-semibold text-body-soft">{s.category}</span>
+        <span className="rounded-pill border border-line px-3 py-1 text-xs font-semibold text-body-soft">{s.category}</span>
       </div>
 
       <h3 className="mt-5 text-xl font-bold text-heading">{s.name}</h3>

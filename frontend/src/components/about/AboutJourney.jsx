@@ -53,7 +53,7 @@ export default function AboutJourney() {
                       i === active && 'scale-125 shadow-orange ring-4 ring-accent/25',
                     )}
                   />
-                  <span className={cn('whitespace-nowrap text-[11px] font-semibold transition-colors sm:text-xs', i === active ? 'text-accent' : 'text-ink-muted')}>
+                  <span className={cn('whitespace-nowrap text-xs font-semibold transition-colors sm:text-xs', i === active ? 'text-accent' : 'text-ink-muted')}>
                     {it.date}
                   </span>
                 </button>

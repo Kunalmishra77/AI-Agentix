@@ -86,7 +86,7 @@ export default function SignatureChat({ signature }) {
               </div>
               <button
                 onClick={() => setPlayId((n) => n + 1)}
-                className="inline-flex items-center gap-1.5 rounded-pill border border-line px-3 py-1.5 text-xs font-semibold text-body transition-colors hover:border-accent/50 hover:text-accent"
+                className="inline-flex items-center gap-1.5 rounded-pill border border-line px-4 py-2.5 text-xs font-semibold text-body transition-colors hover:border-accent/50 hover:text-accent"
               >
                 <RotateCcw className="h-3.5 w-3.5" /> Replay
               </button>

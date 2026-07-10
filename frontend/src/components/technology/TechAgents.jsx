@@ -28,7 +28,7 @@ export default function TechAgents() {
               key={it.key}
               onClick={() => setActive(i)}
               className={cn(
-                'inline-flex items-center gap-1.5 rounded-pill px-3.5 py-2 text-[13px] font-semibold transition-all',
+                'inline-flex items-center gap-1.5 rounded-pill px-4 py-2.5 text-[13px] font-semibold transition-all',
                 i === active ? 'bg-accent text-white shadow-orange' : 'border border-line bg-white text-body hover:border-accent/50 hover:text-heading',
               )}
             >

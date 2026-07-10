@@ -38,7 +38,7 @@ function Field({ f, value, error, onChange }) {
                 key={o}
                 onClick={() => onChange(on ? arr.filter((x) => x !== o) : [...arr, o])}
                 className={cn(
-                  'inline-flex items-center gap-1.5 rounded-pill border px-3.5 py-2 text-sm font-medium transition-all',
+                  'inline-flex items-center gap-1.5 rounded-pill border px-4 py-2.5 text-sm font-medium transition-all',
                   on ? 'border-accent bg-accent text-white shadow-orange' : 'border-line bg-white text-body hover:border-accent/50 hover:text-heading',
                 )}
               >

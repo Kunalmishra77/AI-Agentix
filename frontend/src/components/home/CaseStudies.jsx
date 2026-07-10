@@ -88,7 +88,7 @@ export default function CaseStudies() {
                 {c.stats.map((s) => (
                   <div key={s.k} className="min-w-0">
                     <div className="text-xl font-extrabold text-accent sm:text-2xl md:text-3xl">{s.v}</div>
-                    <div className="mt-1 text-[11px] leading-tight text-ink-muted">{s.k}</div>
+                    <div className="mt-1 text-xs leading-tight text-ink-muted">{s.k}</div>
                   </div>
                 ))}
               </div>
@@ -98,21 +98,23 @@ export default function CaseStudies() {
           {/* controls */}
           <div className="mt-8 flex items-center gap-4">
             <div className="flex gap-2">
-              <button onClick={() => go(-1)} aria-label="Previous case study" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-accent hover:bg-accent">
+              <button onClick={() => go(-1)} aria-label="Previous case study" className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-accent hover:bg-accent">
                 <ArrowLeft className="h-4 w-4" />
               </button>
-              <button onClick={() => go(1)} aria-label="Next case study" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-accent hover:bg-accent">
+              <button onClick={() => go(1)} aria-label="Next case study" className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-accent hover:bg-accent">
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap">
               {items.map((x, i) => (
                 <button
                   key={x.client}
                   onClick={() => setActive(i)}
                   aria-label={x.client}
-                  className={cn('h-2 rounded-full transition-all', i === active ? 'w-7 bg-accent' : 'w-2 bg-white/25 hover:bg-white/45')}
-                />
+                  className="group flex h-10 items-center px-1"
+                >
+                  <span className={cn('block h-2 rounded-full transition-all', i === active ? 'w-7 bg-accent' : 'w-2 bg-white/25 group-hover:bg-white/45')} />
+                </button>
               ))}
             </div>
             <span className="ml-auto text-xs font-medium text-ink-muted">

@@ -19,7 +19,7 @@ export default function IndustryProof({ proof, tone = 'white' }) {
             className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-white p-7 transition-all duration-300 hover:-translate-y-2 hover:border-accent/50 hover:shadow-[0_24px_60px_-20px_rgba(242,101,34,0.35)]"
           >
             <div className="flex items-center justify-between">
-              <span className="rounded-pill bg-accent-soft px-3 py-1 text-[11px] font-semibold text-accent">{r.tag}</span>
+              <span className="rounded-pill bg-accent-soft px-3 py-1 text-xs font-semibold text-accent">{r.tag}</span>
               <Quote className="h-6 w-6 text-accent/30 transition-colors duration-300 group-hover:text-accent/60" />
             </div>
             <p className="mt-6 font-display text-2xl font-extrabold leading-tight text-heading">{r.stat}</p>

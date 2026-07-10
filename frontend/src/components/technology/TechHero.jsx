@@ -40,7 +40,7 @@ export default function TechHero() {
                 <div className="text-sm font-bold text-white">{hero.fleetTitle}</div>
                 <div className="mt-0.5 text-xs text-ink-muted">{hero.fleetNote}</div>
               </div>
-              <span className="inline-flex items-center gap-1.5 rounded-pill bg-white/10 px-2.5 py-1 text-[11px] font-semibold text-white/90">
+              <span className="inline-flex items-center gap-1.5 rounded-pill bg-white/10 px-2.5 py-1 text-xs font-semibold text-white/90">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500" /> Operational
               </span>
             </div>

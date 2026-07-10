@@ -28,7 +28,7 @@ export default function CaseStudyModal({ study, onClose }) {
         {/* header */}
         <div className="sticky top-0 z-10 flex items-center justify-between border-b border-line bg-white/95 px-6 py-4 backdrop-blur md:px-8">
           <span className="rounded-pill bg-accent-soft px-3 py-1 text-xs font-bold text-accent">{study.industry}</span>
-          <button onClick={onClose} aria-label="Close" className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-body transition-colors hover:border-accent hover:text-accent">
+          <button onClick={onClose} aria-label="Close" className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-body transition-colors hover:border-accent hover:text-accent">
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -46,8 +46,8 @@ export default function CaseStudyModal({ study, onClose }) {
             {study.stats.map((s) => (
               <div key={s.label} className="text-center">
                 <div className="font-display text-xl font-extrabold text-accent md:text-2xl">{s.value}</div>
-                <div className="mt-1 text-[11px] font-semibold leading-tight text-heading">{s.label}</div>
-                <div className="mt-0.5 text-[10px] leading-tight text-body-soft">{s.sub}</div>
+                <div className="mt-1 text-xs font-semibold leading-tight text-heading">{s.label}</div>
+                <div className="mt-0.5 text-xs leading-tight text-body-soft">{s.sub}</div>
               </div>
             ))}
           </div>
@@ -74,12 +74,12 @@ export default function CaseStudyModal({ study, onClose }) {
             <ol className="relative mt-4 space-y-4 before:absolute before:left-[13px] before:top-2 before:h-[calc(100%-1rem)] before:w-px before:bg-line">
               {study.timeline.map((p) => (
                 <li key={p.no} className="relative flex items-start gap-4">
-                  <span className="relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent text-[11px] font-bold text-white">{p.no}</span>
+                  <span className="relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-bold text-white">{p.no}</span>
                   <div className="pt-0.5">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-[10px] font-bold uppercase tracking-wide text-accent">Phase {p.no}</span>
+                      <span className="text-xs font-bold uppercase tracking-wide text-accent">Phase {p.no}</span>
                       <span className="text-sm font-bold text-heading">{p.title}</span>
-                      <span className="rounded-pill bg-surface-alt px-2 py-0.5 text-[10px] font-semibold text-body">{p.time}</span>
+                      <span className="rounded-pill bg-surface-alt px-2 py-0.5 text-xs font-semibold text-body">{p.time}</span>
                     </div>
                     <p className="mt-1 text-sm leading-relaxed text-body">{p.text}</p>
                   </div>

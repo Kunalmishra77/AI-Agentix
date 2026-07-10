@@ -64,7 +64,7 @@ export default function AIStudioHero() {
                     </span>
                     <div className="min-w-0">
                       <div className="truncate text-xs font-semibold text-white">{p.name}</div>
-                      <div className="truncate text-[10px] text-ink-muted">{p.role}</div>
+                      <div className="truncate text-xs text-ink-muted">{p.role}</div>
                     </div>
                   </div>
                 )

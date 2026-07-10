@@ -38,7 +38,7 @@ export default function WhyUs() {
                 <p className="text-sm font-medium text-heading">{r.good}</p>
                 <div className="mt-1 flex flex-wrap items-center gap-2">
                   <span className="text-xs text-accent">{r.goodMeta}</span>
-                  <span className="rounded-pill bg-accent px-2 py-0.5 text-[10px] font-bold text-white">{r.gain}</span>
+                  <span className="rounded-pill bg-accent px-2 py-0.5 text-xs font-bold text-white">{r.gain}</span>
                 </div>
               </div>
             </div>

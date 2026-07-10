@@ -16,7 +16,7 @@ export default function AIStudioStats() {
           >
             <div className="font-display text-3xl font-extrabold tracking-tight text-accent md:text-4xl">{s.value}</div>
             <div className="mt-1.5 text-[13px] font-semibold leading-snug text-heading">{s.label}</div>
-            <div className="mt-0.5 text-[11px] text-body-soft">{s.sub}</div>
+            <div className="mt-0.5 text-xs text-body-soft">{s.sub}</div>
           </motion.div>
         ))}
       </div>

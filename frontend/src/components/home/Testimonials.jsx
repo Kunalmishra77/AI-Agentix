@@ -9,7 +9,7 @@ function Card({ t }) {
     <figure className="flex w-[340px] shrink-0 flex-col rounded-2xl border border-line bg-white p-6 shadow-card sm:w-[380px]">
       <div className="flex items-center justify-between">
         <Quote className="h-6 w-6 text-accent" />
-        <span className="rounded-pill bg-accent-soft px-2.5 py-1 text-[11px] font-semibold text-accent">{t.result}</span>
+        <span className="rounded-pill bg-accent-soft px-2.5 py-1 text-xs font-semibold text-accent">{t.result}</span>
       </div>
       <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-body">"{t.quote}"</blockquote>
       <figcaption className="mt-5 flex items-center gap-3 border-t border-line pt-4">
@@ -20,7 +20,7 @@ function Card({ t }) {
           <span className="block truncate text-sm font-bold text-heading">{t.name}</span>
           <span className="block truncate text-xs text-body-soft">{t.role}</span>
         </span>
-        <span className="ml-auto shrink-0 text-[11px] font-medium uppercase tracking-wide text-body-soft">{t.tag}</span>
+        <span className="ml-auto shrink-0 text-xs font-medium uppercase tracking-wide text-body-soft">{t.tag}</span>
       </figcaption>
     </figure>
   )

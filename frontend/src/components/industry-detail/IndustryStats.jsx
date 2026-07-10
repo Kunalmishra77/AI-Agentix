@@ -52,7 +52,7 @@ export default function IndustryStats({ stats }) {
               <StatValue value={s.value} run={inView} />
             </div>
             <div className="mt-1.5 text-[13px] font-semibold leading-snug text-heading">{s.label}</div>
-            {s.sub && <div className="mt-0.5 text-[11px] text-body-soft">{s.sub}</div>}
+            {s.sub && <div className="mt-0.5 text-xs text-body-soft">{s.sub}</div>}
           </motion.div>
         ))}
       </div>

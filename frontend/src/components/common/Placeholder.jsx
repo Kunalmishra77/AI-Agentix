@@ -33,7 +33,7 @@ export default function Placeholder({ label, kind = 'image', className = '', dar
       />
       <div className="relative z-10 flex flex-col items-center gap-2 px-4 text-center">
         <Icon className="h-6 w-6 text-accent/70" strokeWidth={1.6} />
-        <span className="text-[11px] font-medium uppercase tracking-wider">{label}</span>
+        <span className="text-xs font-medium uppercase tracking-wider">{label}</span>
       </div>
     </div>
   )
