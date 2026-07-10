@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import ScrollReset from './components/common/ScrollReset.jsx'
+import AssistantWidget from './components/assistant/AssistantWidget.jsx'
 import HomePage from './pages/HomePage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import SolutionsPage from './pages/SolutionsPage.jsx'
@@ -37,6 +38,7 @@ export default function App() {
       {/* Other pages come in later phases. */}
       <Route path="*" element={<HomePage />} />
       </Routes>
+      <AssistantWidget />
     </>
   )
 }
