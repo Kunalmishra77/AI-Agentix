@@ -1,0 +1,5 @@
+node_modules/
+.env
+.env.local
+# generated bundle used only during knowledge extraction
+scripts/_kb-bundle.mjs
