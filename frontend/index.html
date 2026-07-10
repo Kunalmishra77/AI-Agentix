@@ -13,8 +13,78 @@
     <!-- AI Agentex brand fonts: Poppins (display+body) | Bebas Neue (big numbers) -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
     <title>AI Agentex — India's #1 End-to-End AI Automation Partner</title>
+
+    <!-- Skip the preloader on repeat loads within the same session (no flash) -->
+    <script>
+      try { if (sessionStorage.getItem('agentixLoaded')) document.documentElement.classList.add('agx-preloaded'); } catch (e) {}
+    </script>
+    <!-- Premium preloader — inlined so it paints instantly, before the bundle/Tailwind load -->
+    <style>
+      #agx-preloader {
+        position: fixed; inset: 0; z-index: 9999;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+        background: #ffffff;
+        font-family: 'Poppins', system-ui, sans-serif;
+        opacity: 1; transition: opacity .55s ease, visibility .55s ease;
+      }
+      .agx-preloaded #agx-preloader { display: none !important; }
+      #agx-preloader.agx-hide { opacity: 0; visibility: hidden; pointer-events: none; }
+
+      .agx-brainwrap { position: relative; width: 92px; height: 92px; display: grid; place-items: center; }
+      /* soft brand glow */
+      .agx-brainwrap::before {
+        content: ""; position: absolute; width: 78px; height: 78px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(242,101,34,.30) 0%, rgba(242,101,34,0) 70%);
+        animation: agx-glow 1.8s ease-in-out infinite;
+      }
+      /* neural pulse rings */
+      .agx-ring {
+        position: absolute; inset: 0; margin: auto; width: 60px; height: 60px; border-radius: 50%;
+        border: 1.5px solid rgba(242,101,34,.5); opacity: 0; animation: agx-pulse 1.8s ease-out infinite;
+      }
+      .agx-ring:nth-child(2) { animation-delay: .6s; }
+      .agx-ring:nth-child(3) { animation-delay: 1.2s; }
+
+      .agx-brain { width: 56px; height: 56px; position: relative; filter: drop-shadow(0 4px 12px rgba(242,101,34,.35)); }
+      .agx-brain path { stroke: #F26522; stroke-width: 1.4; fill: none; stroke-linecap: round; stroke-linejoin: round;
+        stroke-dasharray: 1; stroke-dashoffset: 1; animation: agx-draw 1.3s ease forwards; }
+      .agx-brain path:nth-child(2) { animation-delay: .15s; }
+
+      .agx-word { font-weight: 800; font-size: 20px; letter-spacing: .06em; color: #12141A; opacity: 0; animation: agx-fade-up .6s ease .5s forwards; }
+      .agx-word i { color: #F26522; font-style: normal; }
+
+      .agx-dots { display: flex; gap: 6px; opacity: 0; animation: agx-fade-up .6s ease .7s forwards; }
+      .agx-dots span { width: 6px; height: 6px; border-radius: 50%; background: #F26522; opacity: .35; animation: agx-dot 1.2s ease-in-out infinite; }
+      .agx-dots span:nth-child(2) { animation-delay: .2s; }
+      .agx-dots span:nth-child(3) { animation-delay: .4s; }
+
+      @keyframes agx-draw  { to { stroke-dashoffset: 0; } }
+      @keyframes agx-glow  { 0%,100% { transform: scale(.85); opacity: .7; } 50% { transform: scale(1.05); opacity: 1; } }
+      @keyframes agx-pulse { 0% { transform: scale(.6); opacity: .6; } 100% { transform: scale(1.7); opacity: 0; } }
+      @keyframes agx-dot   { 0%,100% { opacity: .3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
+      @keyframes agx-fade-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+      @media (prefers-reduced-motion: reduce) {
+        #agx-preloader *, #agx-preloader *::before { animation: none !important; }
+        .agx-brain path { stroke-dashoffset: 0; }
+        .agx-word, .agx-dots { opacity: 1; }
+      }
+    </style>
   </head>
   <body>
+    <!-- Premium AI "thinking" preloader (removed by main.jsx once the app is ready) -->
+    <div id="agx-preloader" role="status" aria-label="Loading AI Agentix">
+      <div class="agx-brainwrap">
+        <span class="agx-ring"></span><span class="agx-ring"></span><span class="agx-ring"></span>
+        <svg class="agx-brain" viewBox="0 0 24 24" aria-hidden="true">
+          <path pathLength="1" d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+          <path pathLength="1" d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+        </svg>
+      </div>
+      <div class="agx-word">AGENT<i>i</i>X</div>
+      <div class="agx-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
