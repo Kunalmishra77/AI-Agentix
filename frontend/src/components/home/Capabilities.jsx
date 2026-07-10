@@ -19,11 +19,20 @@ const CELL = [
 function Card({ c, Icon }) {
   return (
     <article className="group relative h-full min-h-[220px] w-full overflow-hidden rounded-card border border-line bg-white transition-colors duration-300 hover:border-accent">
+      {/* background image + light legibility overlay (default state; hidden under orange fill on hover) */}
+      {c.image && (
+        <div className="absolute inset-0 transition-opacity duration-300 lg:group-hover:opacity-0" aria-hidden>
+          <img src={c.image} alt="" loading="lazy" className="h-full w-full object-cover" />
+          {/* dark left-to-right scrim: white title (left) stays crisp, image shows on the right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-ink/25" />
+        </div>
+      )}
+
       {/* default: title + icon (fades out on hover, lg). Full detail inline on mobile. */}
-      <div className="flex h-full flex-col p-7 transition-opacity duration-300 lg:group-hover:opacity-0">
-        <h3 className="text-lg font-bold text-heading">{c.title}</h3>
+      <div className="relative flex h-full flex-col p-7 transition-opacity duration-300 lg:group-hover:opacity-0">
+        <h3 className={cn('text-lg font-bold', c.image ? 'text-white' : 'text-heading')}>{c.title}</h3>
         <p className="mt-1 text-sm font-semibold text-accent lg:hidden">{c.tagline}</p>
-        <p className="mt-3 text-sm leading-relaxed text-body lg:hidden">{c.text}</p>
+        <p className={cn('mt-3 text-sm leading-relaxed lg:hidden', c.image ? 'text-white/85' : 'text-body')}>{c.text}</p>
         <div className="mt-auto flex items-end justify-between pt-6">
           <span className="rounded-pill bg-ink px-3 py-1.5 text-xs font-semibold text-white lg:hidden">{c.metric}</span>
           <Icon className="ml-auto h-9 w-9 text-accent" strokeWidth={1.5} />
