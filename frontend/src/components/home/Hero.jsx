@@ -25,12 +25,12 @@ export default function Hero() {
           playsInline
           preload="auto"
         />
-        {/* light overall tint — just enough to lift text off the video without darkening it much */}
-        <div className="absolute inset-0 bg-ink/20" />
+        {/* very light overall tint — barely lifts text off the video */}
+        <div className="absolute inset-0 bg-ink/10" />
         {/* soft left-weighted gradient for the heading/body legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/55 via-ink/20 to-transparent" />
-        {/* top fade — keeps the nav clearly legible over the video */}
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/40 via-ink/10 to-transparent" />
+        {/* top fade — keeps the nav legible over the video */}
+        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-ink/55 to-transparent" />
         {/* bottom fade — keeps the stats band legible */}
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" />
       </div>
