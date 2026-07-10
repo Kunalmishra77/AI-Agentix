@@ -54,3 +54,5 @@ ma-*.jpeg
 # source image zip (converted to /public/home/*.webp) — keep local, not in repo
 frontend/public/agentix image.zip
 frontend/public/_tmp_agentix/
+
+.vercel
