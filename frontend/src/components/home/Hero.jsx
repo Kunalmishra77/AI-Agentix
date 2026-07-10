@@ -93,17 +93,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="relative grid max-w-full sm:max-w-[860px] sm:grid-cols-3"
+          className="relative grid max-w-full sm:max-w-[920px] sm:grid-cols-3"
         >
           {/* grey panel background, extended past the left viewport edge for a full-bleed look */}
           <div className="absolute inset-y-0 right-0 left-[-100vw] border-t border-white/12 bg-[#262A31]/95 backdrop-blur-sm" aria-hidden />
-          {hero.serviceBand.map((s, i) => (
-            <div
-              key={s.title}
-              className={`relative px-5 py-7 md:py-8 md:px-8 ${i > 0 ? 'sm:border-l sm:border-white/10' : ''}`}
-            >
-              <h3 className="text-lg font-bold leading-tight text-white md:text-xl">{s.title}</h3>
-              <p className="mt-2.5 text-sm leading-snug text-white/60">{s.text}</p>
+          {hero.serviceBand.map((s) => (
+            <div key={s.title} className="relative px-6 py-4 md:px-10 md:py-7">
+              {/* short, vertically-centred leading divider before every column (incl. the first) */}
+              <span aria-hidden className="absolute left-0 top-1/2 hidden h-[58%] w-px -translate-y-1/2 bg-white/15 sm:block" />
+              <h3 className="text-xl font-semibold leading-tight text-white md:text-2xl">
+                {s.title.replaceAll('-', '‑')}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-white/55">{s.text}</p>
             </div>
           ))}
         </motion.div>
