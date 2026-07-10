@@ -233,12 +233,12 @@ export default function AssistantWidget() {
                   <button
                     aria-label={speakOn ? 'Turn off voice replies' : 'Turn on voice replies'}
                     onClick={() => setSpeakOn((v) => { if (v) window.speechSynthesis.cancel(); return !v })}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full text-white/90 hover:bg-white/10"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full text-white/90 hover:bg-white/10"
                   >
                     {speakOn ? <Volume2 className="h-5 w-5" /> : <VolumeX className="h-5 w-5" />}
                   </button>
                 )}
-                <button aria-label="Close" onClick={() => setOpen(false)} className="inline-flex h-9 w-9 items-center justify-center rounded-full text-white/90 hover:bg-white/10">
+                <button aria-label="Close" onClick={() => setOpen(false)} className="inline-flex h-10 w-10 items-center justify-center rounded-full text-white/90 hover:bg-white/10">
                   <X className="h-5 w-5" />
                 </button>
               </div>
