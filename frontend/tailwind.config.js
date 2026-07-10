@@ -3,6 +3,10 @@ export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
+      screens: {
+        // Default sm/md/lg/xl/2xl retained; add a very-large tier for FHD/2K/4K.
+        '3xl': '1920px',
+      },
       colors: {
         // Brand
         accent:         '#F26522',   // primary orange
@@ -31,13 +35,16 @@ export default {
         mono:    ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       fontSize: {
-        'hero':    ['clamp(2.6rem, 6vw, 5rem)',  { lineHeight: '1.06', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'display': ['clamp(2rem, 4vw, 3.25rem)', { lineHeight: '1.1',  letterSpacing: '-0.015em', fontWeight: '700' }],
-        'h2':      ['clamp(1.75rem, 3vw, 2.5rem)',{ lineHeight: '1.15', letterSpacing: '-0.01em', fontWeight: '700' }],
+        // clamp caps raised so headings keep scaling up on large/4K screens
+        'hero':    ['clamp(2.6rem, 6vw, 5.5rem)',  { lineHeight: '1.06', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'display': ['clamp(2rem, 4vw, 3.75rem)', { lineHeight: '1.1',  letterSpacing: '-0.015em', fontWeight: '700' }],
+        'h2':      ['clamp(1.75rem, 3vw, 2.85rem)',{ lineHeight: '1.15', letterSpacing: '-0.01em', fontWeight: '700' }],
         'eyebrow': ['0.8125rem', { lineHeight: '1', letterSpacing: '0.14em', fontWeight: '600' }],
       },
       maxWidth: {
         container: '1280px',
+        wide:      '1440px',   // 2xl content width
+        ultra:     '1600px',   // 3xl content width
       },
       spacing: {
         section: '90px',

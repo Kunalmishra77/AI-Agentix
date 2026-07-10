@@ -12,7 +12,7 @@ const TONES = {
 
 export default function Section({ id, tone = 'white', className = '', containerClassName = '', children, full = false }) {
   return (
-    <section id={id} className={cn('py-[70px] md:py-section', TONES[tone], className)}>
+    <section id={id} className={cn('py-[70px] md:py-section 2xl:py-[112px]', TONES[tone], className)}>
       {full ? children : <div className={cn('container-x', containerClassName)}>{children}</div>}
     </section>
   )

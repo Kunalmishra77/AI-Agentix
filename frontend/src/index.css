@@ -27,7 +27,7 @@
 
 @layer components {
   .container-x {
-    @apply mx-auto w-full max-w-container px-5 sm:px-8 lg:px-10;
+    @apply mx-auto w-full max-w-container px-5 sm:px-8 lg:px-10 2xl:max-w-wide 3xl:max-w-ultra;
   }
   .eyebrow {
     @apply inline-flex items-center gap-2 text-eyebrow uppercase text-accent;
