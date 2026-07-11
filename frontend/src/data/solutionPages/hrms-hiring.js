@@ -3,6 +3,7 @@
 
 export default {
   slug: 'hrms-hiring',
+  heroImage: '/images/hero-hrms-hiring.webp',
   meta: {
     title: 'HRMS & Hiring Automation | AI Agentix',
     description: 'AI-powered recruitment, onboarding, payroll, and performance management. Reduce time-to-hire by 60% and handle 80% of HR queries automatically.',

@@ -3,6 +3,7 @@
 
 export default {
   slug: 'healthcare',
+  heroImage: '/images/hero-ind-healthcare.webp',
   meta: {
     title: 'AI for Healthcare | AI Agentix',
     description: 'AI-powered appointment management, patient communication, clinical documentation, and revenue cycle automation — built for hospitals, clinics, and healthcare networks.',

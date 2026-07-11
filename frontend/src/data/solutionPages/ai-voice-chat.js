@@ -4,6 +4,7 @@
 
 export default {
   slug: 'ai-voice-chat',
+  heroImage: '/images/voice-chat.webp',
   meta: {
     title: 'AI Voice & Chat Agents | AI Agentix',
     description: 'Human-like voice and chat agents that qualify leads, resolve support queries, and book meetings 24/7 — across WhatsApp, phone, website, and social channels.',

@@ -4,6 +4,7 @@
 
 export default {
   slug: 'manufacturing',
+  heroImage: '/images/hero-manufacturing.webp',
   meta: {
     title: 'Manufacturing AI Automation | AI Agentix',
     description: 'AI-powered production planning, predictive maintenance, quality control, and OEE optimization. Transform your factory floor with intelligent automation.',

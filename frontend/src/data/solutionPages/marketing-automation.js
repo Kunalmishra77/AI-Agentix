@@ -3,6 +3,7 @@
 
 export default {
   slug: 'marketing-automation',
+  heroImage: '/images/hero-marketing-automation.webp',
   meta: {
     title: 'Marketing Automation | AI Agentix',
     description: 'Content, campaigns, lead nurturing, and analytics — all running on autopilot. 6x your marketing output with AI-powered automation.',

@@ -3,6 +3,7 @@
 
 export default {
   slug: 'sales-automation',
+  heroImage: '/images/hero-sales-automation.webp',
   meta: {
     title: 'Sales Automation | AI Agentix',
     description: 'Qualify every lead in 90 seconds, automate multi-channel outreach, and close 3x more deals with AI-powered sales automation.',

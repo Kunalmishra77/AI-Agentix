@@ -3,6 +3,7 @@
 
 export default {
   slug: 'retail-ecommerce',
+  heroImage: '/images/hero-ind-retail.webp',
   meta: {
     title: 'AI for Retail & E-commerce | AI Agentix',
     description: 'AI-powered shopping assistants, recovery campaigns, and inventory intelligence that drive revenue while you sleep.',

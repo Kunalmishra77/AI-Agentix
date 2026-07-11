@@ -3,6 +3,7 @@
 
 export default {
   slug: 'hospitality',
+  heroImage: '/images/hero-ind-hospitality.webp',
   meta: {
     title: 'AI for Hospitality | AI Agentix',
     description: 'Automate reservations, personalize guest experiences, and optimize revenue — so your team can focus on delivering exceptional service.',

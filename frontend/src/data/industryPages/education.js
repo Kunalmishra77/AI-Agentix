@@ -3,6 +3,7 @@
 
 export default {
   slug: 'education',
+  heroImage: '/images/hero-ind-education.webp',
   meta: {
     title: 'AI for Education | AI Agentix',
     description: 'From admissions to alumni engagement, AI Agentix automates every touchpoint so educators can focus on what matters — inspiring students.',

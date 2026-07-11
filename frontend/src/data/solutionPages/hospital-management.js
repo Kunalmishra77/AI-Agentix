@@ -4,6 +4,7 @@
 
 export default {
   slug: 'hospital-management',
+  heroImage: '/images/hero-hospital-management.webp',
   meta: {
     title: 'Hospital Management System | AI Agentix',
     description: 'From patient booking to discharge — fully automated. Reduce admin overhead by 70%, eliminate billing errors, and give clinical staff more time for patient care.',

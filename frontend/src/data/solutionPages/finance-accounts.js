@@ -4,6 +4,7 @@
 
 export default {
   slug: 'finance-accounts',
+  heroImage: '/images/hero-finance-accounts.webp',
   meta: {
     title: 'Finance & Accounts Automation | AI Agentix',
     description: 'Automate invoicing, expense management, GST compliance, and financial reporting. Eliminate 85% of manual finance work while staying audit-ready.',

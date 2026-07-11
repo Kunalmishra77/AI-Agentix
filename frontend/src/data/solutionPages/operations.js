@@ -3,6 +3,7 @@
 
 export default {
   slug: 'operations',
+  heroImage: '/images/hero-operations.webp',
   meta: {
     title: 'Operations Automation | AI Agentix',
     description: 'Workflow automation, document processing, approvals, and real-time ops visibility — all connected. Eliminate 70% of manual operations work with AI.',

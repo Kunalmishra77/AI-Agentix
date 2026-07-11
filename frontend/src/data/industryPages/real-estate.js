@@ -3,6 +3,7 @@
 
 export default {
   slug: 'real-estate',
+  heroImage: '/images/hero-ind-real-estate.webp',
   meta: {
     title: 'AI for Real Estate | AI Agentix',
     description: 'From first inquiry to final handover, AI Agentix automates the entire real estate sales cycle — so your agents focus on closing, not chasing leads.',
