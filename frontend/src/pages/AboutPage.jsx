@@ -11,7 +11,6 @@ import AboutJourney from '../components/about/AboutJourney'
 import AboutValues from '../components/about/AboutValues'
 import AboutDifferent from '../components/about/AboutDifferent'
 import AboutCompare from '../components/about/AboutCompare'
-import AboutTeam from '../components/about/AboutTeam'
 import AboutFinalCta from '../components/about/AboutFinalCta'
 
 export default function AboutPage() {
@@ -31,7 +30,6 @@ export default function AboutPage() {
         <AboutValues />
         <AboutDifferent />
         <AboutCompare />
-        <AboutTeam />
         <AboutFinalCta />
       </main>
       <SiteFooter />

@@ -15,6 +15,7 @@ export default function AboutHero() {
     <section className="relative flex min-h-screen flex-col overflow-hidden bg-ink pt-24 pb-8 text-white">
       {/* background — full-bleed image with dark overlays */}
       <div className="absolute inset-0" aria-hidden data-asset="about-hero-image (1920x1080, team/AI)">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/images/hr-recruitment.webp)' }} />
         <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/70" />
         <div className="absolute inset-0 opacity-70" style={{ backgroundImage: 'radial-gradient(50% 50% at 75% 35%, rgba(242,101,34,0.22) 0%, transparent 60%)' }} />

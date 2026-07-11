@@ -35,6 +35,9 @@ export default function IndustriesPage() {
         {/* hero */}
         <section className="relative flex min-h-[560px] items-center overflow-hidden bg-ink pt-28 pb-16 text-white">
           <div className="absolute inset-0" aria-hidden>
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/images/workflow-automation.webp)' }} />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-ink/35" />
             <div className="absolute inset-0 opacity-70" style={{ backgroundImage: 'radial-gradient(45% 50% at 80% 20%, rgba(242,101,34,0.22) 0%, transparent 60%)' }} />
             <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px)', backgroundSize: '60px 60px' }} />
           </div>

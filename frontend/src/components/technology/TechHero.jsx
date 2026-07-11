@@ -8,6 +8,9 @@ export default function TechHero() {
   return (
     <section className="relative overflow-hidden bg-ink pt-32 pb-16 text-white md:pt-36 md:pb-20">
       <div className="absolute inset-0" aria-hidden>
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/images/analytics-bi.webp)' }} />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-ink/35" />
         <div className="absolute inset-0 opacity-70" style={{ backgroundImage: 'radial-gradient(45% 55% at 85% 15%, rgba(242,101,34,0.2) 0%, transparent 60%)' }} />
         <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px)', backgroundSize: '60px 60px' }} />
       </div>
