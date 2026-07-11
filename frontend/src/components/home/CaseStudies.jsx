@@ -53,12 +53,19 @@ export default function CaseStudies() {
             transition={{ duration: 0.4 }}
             className="group relative overflow-hidden rounded-2xl"
           >
-            <Placeholder
-              label={`case-study-image: ${c.client}`}
-              dark
-              ratio="4/3"
-              className="transition-transform duration-500 group-hover:scale-105"
-            />
+            {c.image ? (
+              <div className="relative aspect-[4/3]">
+                <img src={c.image} alt={`${c.client} — ${c.industry}`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
+              </div>
+            ) : (
+              <Placeholder
+                label={`case-study-image: ${c.client}`}
+                dark
+                ratio="4/3"
+                className="transition-transform duration-500 group-hover:scale-105"
+              />
+            )}
             <span className="absolute bottom-4 right-4 rounded-lg bg-white px-3 py-1.5 text-xs font-bold text-heading shadow">
               {c.industry}
             </span>
