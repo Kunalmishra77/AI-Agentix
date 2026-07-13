@@ -18,6 +18,18 @@ const SLUG = {
   document: 'document-agent',
 }
 
+// key -> hero background image (from the latest Agentix designer set)
+const IMAGE = {
+  sales: '/images/sales-agent.webp',
+  support: '/images/chat-support.webp',
+  analytics: '/images/analytics-bi.webp',
+  content: '/images/content-engine.webp',
+  voice: '/images/voice-agent.webp',
+  hr: '/images/hr-recruitment.webp',
+  finance: '/images/finance-billing.webp',
+  document: '/images/document-ocr.webp',
+}
+
 // Page-only content, keyed by agent key.
 const EXTRAS = {
   sales: {
@@ -223,6 +235,7 @@ const REGISTRY = fleet.items.reduce((acc, base) => {
     slug,
     key: base.key,
     icon: base.icon,
+    image: IMAGE[base.key],
     name: base.name,
     role: base.role,
     desc: base.desc,

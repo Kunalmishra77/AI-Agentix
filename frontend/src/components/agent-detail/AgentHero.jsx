@@ -10,8 +10,13 @@ export default function AgentHero({ agent, index, total }) {
   const Icon = TECH_ICONS[agent.icon]
   return (
     <section className="relative overflow-hidden bg-ink pt-28 pb-16 text-white md:pt-32 md:pb-20">
-      {/* backdrop: grid + orange glow (no image — reserved brand treatment) */}
+      {/* backdrop: agent image (right-weighted), darkened for legibility, + grid + orange glow */}
       <div className="absolute inset-0" aria-hidden>
+        {agent.image && (
+          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${agent.image})` }} />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-ink/25" />
         <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px)', backgroundSize: '54px 54px' }} />
         <div className="absolute inset-0 opacity-80" style={{ backgroundImage: 'radial-gradient(45% 45% at 88% 12%, rgba(242,101,34,0.22) 0%, transparent 62%)' }} />
       </div>
