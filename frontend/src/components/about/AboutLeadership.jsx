@@ -15,6 +15,32 @@ function initials(name) {
     .toUpperCase()
 }
 
+// Small circular avatar — real photo when provided, else initials (confirmed)
+// or a neutral icon (pending). Kept intentionally compact so the bio leads.
+function Avatar({ m }) {
+  if (m.image) {
+    return (
+      <img
+        src={m.image}
+        alt={m.pending ? '' : m.name}
+        className="h-20 w-20 rounded-full object-cover ring-2 ring-accent-soft"
+      />
+    )
+  }
+  if (m.pending) {
+    return (
+      <span className="flex h-20 w-20 items-center justify-center rounded-full bg-surface-alt text-accent ring-1 ring-line">
+        <User className="h-8 w-8" strokeWidth={1.6} />
+      </span>
+    )
+  }
+  return (
+    <span className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-hover text-xl font-extrabold text-white shadow-orange">
+      {initials(m.name)}
+    </span>
+  )
+}
+
 export default function AboutLeadership() {
   return (
     <Section tone="white" id="leadership" className="scroll-mt-20">
@@ -30,48 +56,19 @@ export default function AboutLeadership() {
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {leadership.members.map((m, i) => (
           <Reveal key={`${m.role}-${i}`} delay={(i % 4) * 0.08}>
-            <article className="group h-full overflow-hidden rounded-card border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
-              {/* photo area — swap to <img> when a headshot is provided */}
-              <div className="relative aspect-[4/5] overflow-hidden bg-surface-alt">
-                {m.image ? (
-                  <img
-                    src={m.image}
-                    alt={m.pending ? '' : m.name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-surface-alt to-white">
-                    {/* subtle brand glow */}
-                    <div
-                      className="absolute inset-0 opacity-70"
-                      aria-hidden
-                      style={{ backgroundImage: 'radial-gradient(55% 55% at 50% 30%, rgba(242,101,34,0.10) 0%, transparent 65%)' }}
-                    />
-                    {m.pending ? (
-                      <span className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white text-accent shadow-card ring-1 ring-line">
-                        <User className="h-9 w-9" strokeWidth={1.6} />
-                      </span>
-                    ) : (
-                      <span className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-hover text-2xl font-extrabold text-white shadow-float">
-                        {initials(m.name)}
-                      </span>
-                    )}
-                  </div>
-                )}
-                {m.pending && (
-                  <span className="absolute left-3 top-3 rounded-pill bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-body-soft backdrop-blur">
-                    Coming soon
-                  </span>
-                )}
-              </div>
+            <article className="group flex h-full flex-col rounded-card border border-line bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+              <Avatar m={m} />
 
-              {/* identity */}
-              <div className="p-5">
-                <h3 className={m.pending ? 'text-lg font-bold text-body-soft' : 'text-lg font-bold text-heading'}>
-                  {m.name}
-                </h3>
-                <p className="mt-1 text-sm font-semibold text-accent">{m.role}</p>
-              </div>
+              <h3 className={`mt-4 text-lg font-bold ${m.pending ? 'text-body-soft' : 'text-heading'}`}>
+                {m.name}
+              </h3>
+              <p className="mt-1 text-sm font-semibold leading-snug text-accent">{m.role}</p>
+
+              {m.bio ? (
+                <p className="mt-4 text-sm leading-relaxed text-body">{m.bio}</p>
+              ) : m.pending ? (
+                <p className="mt-4 text-sm leading-relaxed text-body-soft">Profile details coming soon.</p>
+              ) : null}
             </article>
           </Reveal>
         ))}
