@@ -1,0 +1,12 @@
+# Local-only designer source ZIP (single source of truth, kept off deploy)
+Agentix Images.zip
+*.zip
+.newassets/
+
+# Reference docs, not part of the deployed app
+*.docx
+docs/
+content-archive/
+
+# Separate backend service (deployed independently, not this project)
+server/
