@@ -7,10 +7,10 @@ import { cn } from '../../lib/cn'
 import Logo from './Logo'
 
 const MEGAS = {
-  about: { data: aboutMega },
-  solutions: { data: solutionsMega },
-  industries: { data: industriesMega },
-  technology: { data: technologyMega },
+  about: { data: aboutMega, image: '/images/hero-about.webp' },
+  solutions: { data: solutionsMega, image: '/images/hero-solutions.webp' },
+  industries: { data: industriesMega, image: '/images/hero-industries.webp' },
+  technology: { data: technologyMega, image: '/images/hero-technology.webp' },
 }
 
 export default function SiteNav() {
