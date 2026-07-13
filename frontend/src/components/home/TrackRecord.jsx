@@ -7,6 +7,7 @@ export default function TrackRecord() {
   return (
     <Section tone="dark">
       <SectionHeading
+        variant="stacked"
         eyebrow={trackRecord.eyebrow}
         heading={trackRecord.heading}
         sub={trackRecord.sub}

@@ -8,7 +8,7 @@ import { problem } from '../../data/home'
 export default function ProblemSection() {
   return (
     <Section tone="white">
-      <SectionHeading eyebrow={problem.eyebrow} heading={problem.heading} sub={problem.sub} max="max-w-2xl" />
+      <SectionHeading variant="stacked" eyebrow={problem.eyebrow} heading={problem.heading} sub={problem.sub} max="max-w-2xl" />
 
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {problem.cards.map((c, i) => (

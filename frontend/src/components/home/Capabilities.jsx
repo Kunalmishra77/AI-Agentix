@@ -54,12 +54,10 @@ export default function Capabilities() {
     <Section tone="white">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-3">
         <Reveal className="flex flex-col justify-start md:col-span-2 lg:col-span-1 lg:col-start-1 lg:row-start-1">
-          <span className="eyebrow mb-4">
-            <span className="h-px w-6 bg-accent" aria-hidden />
-            {capabilities.eyebrow}
-          </span>
-          <h2 className="text-h2 text-heading">{capabilities.heading}</h2>
-          <p className="mt-4 max-w-sm text-base leading-relaxed text-body">{capabilities.sub}</p>
+          <span className="mb-5 block h-1 w-10 rounded-full bg-accent" aria-hidden />
+          <h2 className="text-h2 text-heading">{capabilities.eyebrow}</h2>
+          <p className="mt-3 text-lg font-semibold text-body md:text-xl">{capabilities.heading}</p>
+          <p className="mt-3 max-w-sm text-sm leading-relaxed text-body-soft md:text-base">{capabilities.sub}</p>
         </Reveal>
 
         {capabilities.items.map((c, i) => (

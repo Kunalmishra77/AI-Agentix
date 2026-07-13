@@ -1,4 +1,4 @@
-import { TrendingUp, Headphones, PenTool, BarChart3, Users, ShoppingCart, Workflow, Phone } from 'lucide-react'
+import { TrendingUp, Headphones, PenTool, BarChart3, Users, ShoppingCart, Workflow, Phone, MessagesSquare, UserCheck } from 'lucide-react'
 
 export const SOLUTION_ICONS = {
   sales: TrendingUp,
@@ -9,4 +9,6 @@ export const SOLUTION_ICONS = {
   ecom: ShoppingCart,
   workflow: Workflow,
   voice: Phone,
+  outreach: MessagesSquare,
+  qualify: UserCheck,
 }

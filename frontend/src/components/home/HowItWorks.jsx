@@ -9,7 +9,7 @@ export default function HowItWorks() {
   return (
     <Section tone="white">
       <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-        <SectionHeading eyebrow={process.eyebrow} heading={process.heading} sub={process.body} max="max-w-2xl" />
+        <SectionHeading variant="stacked" eyebrow={process.eyebrow} heading={process.heading} sub={process.body} max="max-w-2xl" />
         <Reveal>
           <Link to={process.cta.to} className="btn-primary shrink-0">
             {process.cta.label}

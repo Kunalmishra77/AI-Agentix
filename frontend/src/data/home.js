@@ -8,11 +8,11 @@ export const meta = {
 }
 
 export const hero = {
-  eyebrow: "India's #1 AI Automation Agency",
+  eyebrow: "India's Fastest Growing AI Consulting Company",
   headingPrefix: 'Your Business,',
   rotatingWords: ['Automated.', 'Transformed.', 'Supercharged.', 'Unstoppable.'],
   body:
-    'AI agents that qualify leads, resolve support tickets, and run your operations 24/7 — without adding headcount.',
+    'AI agents that automate your sales, marketing, support, HR, finance, and operations—with minimal human effort.',
   rating: '4.9/5 from 200+ Indian businesses · Avg. ROI 8x in 6 months',
   ctas: [
     { label: 'Book Free Strategy Call', to: '/contact', primary: true },
@@ -62,7 +62,7 @@ export const platforms = {
 
 export const problem = {
   eyebrow: 'The Problem',
-  heading: 'Manual Work Is Quietly Killing Your Growth',
+  heading: 'Manual work is quietly killing your growth.',
   sub: "While you're chasing spreadsheets and follow-ups, automated competitors respond in seconds. Here's exactly what it's costing you.",
   cards: [
     { stat: '67%', statLabel: 'leads never followed up', title: '67% of Leads Go Cold Within 1 Hour',
@@ -92,7 +92,7 @@ export const trackRecord = {
 
 export const capabilities = {
   eyebrow: 'What We Build',
-  heading: 'Our core capabilities',
+  heading: 'Our Core Capabilities',
   sub: 'Six core capabilities. One integrated system — deployed end-to-end for your business.',
   items: [
     { title: 'Agentic AI Solutions', image: '/images/workflow-automation.webp', tagline: 'AI Agents That Work While You Sleep',

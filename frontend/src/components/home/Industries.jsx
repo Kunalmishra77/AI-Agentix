@@ -15,7 +15,7 @@ export default function Industries() {
   return (
     <Section tone="alt">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <SectionHeading eyebrow={industries.eyebrow} heading={industries.heading} max="max-w-xl" />
+        <SectionHeading variant="stacked" eyebrow={industries.eyebrow} heading={industries.heading} max="max-w-xl" />
         <Link to={industries.link.to} className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-heading hover:text-accent">
           {industries.link.label}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

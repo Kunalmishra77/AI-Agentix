@@ -6,7 +6,7 @@ export const meta = {
 }
 
 export const hero = {
-  eyebrow: '8 Production-Ready Solutions',
+  eyebrow: '10 Production-Ready Solutions',
   heading: 'AI Built for Every Business Function',
   body: 'From lead generation to HR automation — every solution is custom-built for your workflows and deployed in 2–4 weeks.',
   ctas: [
@@ -19,6 +19,14 @@ export const categories = ['All', 'Sales & Revenue', 'Customer Support', 'Market
 
 // icon keys map to lucide icons in the component
 export const items = [
+  { name: 'Multi-Channel Outreach', category: 'Marketing', icon: 'outreach', tagline: 'One Campaign. Every Channel.',
+    desc: 'Reach customers on WhatsApp, voice, email, website chat, Instagram, and Facebook Messenger from a single campaign — every reply flows into one centralized CRM automatically, so no conversation is ever missed.',
+    features: ['WhatsApp, Voice, Email, Chat & Social in one flow', 'Automated responses across every channel', 'Unified conversation history in your CRM', 'Segmented broadcasts with smart follow-up'],
+    stat: '6 channels, one dashboard', time: '2–3 weeks', roi: '6–10x' },
+  { name: 'AI Lead Qualification', category: 'Sales & Revenue', icon: 'qualify', tagline: 'Only Talk to Ready-to-Buy Leads',
+    desc: 'AI scores and qualifies every incoming lead by purchase intent in real time, routes hot leads to the right rep, and syncs status to your CRM — so your team spends time only on leads that actually convert.',
+    features: ['Real-time intent scoring', 'Automatic lead routing & assignment', 'Instant CRM sync & status updates', 'Auto follow-up on unqualified leads'],
+    stat: '3x higher lead-to-meeting rate', time: '2–3 weeks', roi: '8–12x' },
   { name: 'AI Sales Agent', category: 'Sales & Revenue', icon: 'sales', tagline: 'Never Miss a Lead Again',
     desc: 'Deploy an AI agent that qualifies every inbound lead within 90 seconds, scores them by purchase intent, routes to the right rep, and follows up automatically across WhatsApp, email, and phone.',
     features: ['Lead qualification in < 90 seconds', 'Intent scoring & CRM auto-update', 'Multi-channel follow-up sequences', 'Real-time sales pipeline visibility'],
@@ -62,6 +70,34 @@ export const process = {
     { no: '02', time: '3–5 days', title: 'Architecture Design', text: 'Our engineers map the exact automation stack, integrations, and AI models for your specific use case.' },
     { no: '03', time: '2–4 weeks', title: 'Build & Test', text: 'We build, integrate, and stress-test every automation against real business scenarios before you see it.' },
     { no: '04', time: 'Ongoing', title: 'Go Live & Optimize', text: 'Launch with confidence. We monitor performance and iterate until every KPI is hit.' },
+  ],
+}
+
+// Product demonstration showcase. The video itself is not final yet — the UI is
+// built and ready; the <video> simply drops into the 16:9 placeholder later with
+// no layout change. `flows` document the customer journeys the demo will show.
+export const demo = {
+  eyebrow: 'See It In Action',
+  heading: 'Watch AI Agentix Run a Real Business',
+  body: 'A complete customer journey — from first touch to closed deal — automated end to end across every channel and synced into one CRM. Full walkthrough video arriving soon.',
+  videoBadge: 'Product Demo',
+  videoNote: 'Full walkthrough video coming soon',
+  flows: [
+    { key: 'whatsapp', name: 'WhatsApp Automation',
+      summary: 'Bulk campaigns that reply, qualify, and route on their own.',
+      steps: ['Bulk WhatsApp campaign starts', 'Messages delivered automatically', 'Customers reply', 'AI responds instantly', 'Qualified leads identified', 'Conversations sync into the CRM', 'Leads assigned automatically', 'Sales pipeline updates in real time'] },
+    { key: 'voice', name: 'AI Voice Agent',
+      summary: 'Inbound and outbound calls handled with natural conversation.',
+      steps: ['Incoming & outgoing calls', 'AI answers automatically', 'Natural conversation', 'Lead qualification', 'Appointment booking', 'CRM synchronization', 'Ticket creation (if applicable)', 'Call summaries & analytics'] },
+    { key: 'crm', name: 'CRM Flow',
+      summary: 'Every lead tracked from creation to close, automatically.',
+      steps: ['New lead creation', 'Lead assignment', 'Status updates', 'Follow-ups', 'Sales stages', 'Activity timeline', 'Notifications', 'Dashboard updates'] },
+    { key: 'omnichannel', name: 'Multi-Channel Automation',
+      summary: 'Six channels, one centralized CRM dashboard.',
+      steps: ['WhatsApp', 'Voice Calls', 'Email', 'Website Chat', 'Instagram', 'Facebook Messenger', 'All flowing into one CRM dashboard'] },
+    { key: 'analytics', name: 'Analytics',
+      summary: 'Live results — campaigns, conversion, ROI, and productivity.',
+      steps: ['Live dashboards', 'Campaign performance', 'Lead conversion', 'AI insights', 'Team productivity', 'ROI improvements'] },
   ],
 }
 

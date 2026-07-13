@@ -49,6 +49,7 @@ export default function Testimonials() {
     <Section tone="alt" full className="overflow-hidden">
       <div className="container-x">
         <SectionHeading
+          variant="stacked"
           eyebrow={testimonialsSection.eyebrow}
           heading={testimonialsSection.heading}
           align="center"

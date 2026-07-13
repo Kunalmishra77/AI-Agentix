@@ -26,11 +26,9 @@ export default function CaseStudies() {
     <Section tone="dark">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <Reveal>
-          <span className="eyebrow mb-4">
-            <span className="h-px w-6 bg-accent" aria-hidden />
-            {caseStudies.eyebrow}
-          </span>
-          <h2 className="text-h2 max-w-2xl text-white">{caseStudies.heading}</h2>
+          <span className="mb-5 block h-1 w-10 rounded-full bg-accent" aria-hidden />
+          <h2 className="text-h2 max-w-2xl text-white">{caseStudies.eyebrow}</h2>
+          <p className="mt-3 max-w-2xl text-lg font-semibold text-white/75 md:text-xl">{caseStudies.heading}</p>
         </Reveal>
         <Link to="/case-studies" className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-white hover:text-accent">
           View all case studies

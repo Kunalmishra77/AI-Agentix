@@ -9,6 +9,7 @@ import AboutHero from '../components/about/AboutHero'
 import AboutMission from '../components/about/AboutMission'
 import AboutJourney from '../components/about/AboutJourney'
 import AboutValues from '../components/about/AboutValues'
+import AboutLeadership from '../components/about/AboutLeadership'
 import AboutDifferent from '../components/about/AboutDifferent'
 import AboutCompare from '../components/about/AboutCompare'
 import AboutFinalCta from '../components/about/AboutFinalCta'
@@ -28,6 +29,7 @@ export default function AboutPage() {
         <AboutMission />
         <AboutJourney />
         <AboutValues />
+        <AboutLeadership />
         <AboutDifferent />
         <AboutCompare />
         <AboutFinalCta />

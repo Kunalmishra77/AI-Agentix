@@ -14,7 +14,7 @@ export default function Solutions() {
 
   return (
     <Section tone="white">
-      <SectionHeading eyebrow={solutions.eyebrow} heading={solutions.heading} max="max-w-2xl" />
+      <SectionHeading variant="stacked" eyebrow={solutions.eyebrow} heading={solutions.heading} max="max-w-2xl" />
 
       <div className="mt-12 grid gap-6 lg:grid-cols-[minmax(0,320px)_1fr]">
         {/* tab list */}

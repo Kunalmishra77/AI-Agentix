@@ -119,6 +119,22 @@ export const team = {
   ],
 }
 
+// Leadership team. Layout is live; profiles fill in as they are confirmed.
+// `image: null` renders an elegant placeholder. `pending: true` shows a
+// "To be announced" name until the real profile is provided. Do NOT add
+// biographies until they are supplied by the company.
+export const leadership = {
+  eyebrow: 'Leadership',
+  heading: 'The Team Building AI Agentix',
+  sub: 'The people behind every automation we ship — driving strategy, engineering, and delivery.',
+  members: [
+    { name: 'Anand Sanadhya', role: 'CEO & Founder', image: null, pending: false },
+    { name: 'To be announced', role: 'Co-Founder / CTO', image: null, pending: true },
+    { name: 'To be announced', role: 'Operations Manager', image: null, pending: true },
+    { name: 'To be announced', role: 'Business Manager', image: null, pending: true },
+  ],
+}
+
 export const finalCta = {
   eyebrow: 'Ready to Start?',
   heading: "Let's Build Something That Actually Works",

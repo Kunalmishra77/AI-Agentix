@@ -6,7 +6,7 @@ import { roi } from '../../data/home'
 export default function RoiCase() {
   return (
     <Section tone="white">
-      <SectionHeading eyebrow={roi.eyebrow} heading={roi.heading} sub={roi.sub} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading variant="stacked" eyebrow={roi.eyebrow} heading={roi.heading} sub={roi.sub} align="center" max="max-w-2xl" className="mx-auto" />
 
       <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-5">
         {roi.stats.map((s, i) => (

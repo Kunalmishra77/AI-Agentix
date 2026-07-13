@@ -9,11 +9,9 @@ export default function FinalCta() {
     <Section tone="alt">
       <div className="grid items-center gap-10 lg:grid-cols-2">
         <Reveal>
-          <span className="eyebrow mb-4">
-            <span className="h-px w-6 bg-accent" aria-hidden />
-            {finalCta.eyebrow}
-          </span>
-          <h2 className="text-display text-heading">{finalCta.heading}</h2>
+          <span className="mb-5 block h-1 w-10 rounded-full bg-accent" aria-hidden />
+          <h2 className="text-display text-heading">{finalCta.eyebrow}</h2>
+          <p className="mt-3 text-lg font-semibold text-body md:text-xl">{finalCta.heading}</p>
         </Reveal>
 
         <Reveal delay={0.1}>
