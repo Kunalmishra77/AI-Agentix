@@ -5,7 +5,7 @@ export default function CaseStudiesHero() {
   return (
     <section className="relative overflow-hidden bg-ink pt-32 pb-14 text-white md:pt-36 md:pb-16">
       <div className="absolute inset-0" aria-hidden>
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/images/forecasting.webp)' }} />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/images/hero-case-studies.webp)' }} />
         <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/55" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-ink/35" />
         <div className="absolute inset-0 opacity-70" style={{ backgroundImage: 'radial-gradient(45% 55% at 82% 15%, rgba(242,101,34,0.2) 0%, transparent 60%)' }} />

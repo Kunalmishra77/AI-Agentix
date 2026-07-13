@@ -4,7 +4,7 @@
 
 export default {
   slug: 'manufacturing',
-  heroImage: '/images/ind-manufacturing.webp',
+  heroImage: '/images/hero-ind-manufacturing.webp',
   meta: {
     title: 'AI for Manufacturing | AI Agentix',
     description: 'Predictive maintenance, quality vision systems, and production AI that reduce downtime, improve quality, and cut operational costs across your factory floor.',

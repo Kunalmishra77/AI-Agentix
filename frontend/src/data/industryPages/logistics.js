@@ -3,7 +3,7 @@
 
 export default {
   slug: 'logistics',
-  heroImage: '/images/ind-logistics.webp',
+  heroImage: '/images/hero-ind-logistics.webp',
   meta: {
     title: 'AI for Logistics | AI Agentix',
     description: 'Route optimization, automated customer updates, and warehouse intelligence that cut costs, improve delivery performance, and delight customers.',

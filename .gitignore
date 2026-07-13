@@ -55,4 +55,8 @@ ma-*.jpeg
 frontend/public/agentix image.zip
 frontend/public/_tmp_agentix/
 
+# designer source asset ZIP — single source of truth, kept local (too large for repo)
+Agentix Images.zip
+.newassets/
+
 .vercel
