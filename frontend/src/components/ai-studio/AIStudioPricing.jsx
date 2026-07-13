@@ -9,7 +9,7 @@ import { cn } from '../../lib/cn'
 export default function AIStudioPricing() {
   return (
     <Section tone="alt" id="packages" className="scroll-mt-20">
-      <SectionHeading eyebrow={pricing.eyebrow} heading={pricing.heading} sub={pricing.body} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={pricing.eyebrow} heading={pricing.heading} sub={pricing.body} max="max-w-2xl" />
 
       <div className="mt-14 grid gap-6 lg:grid-cols-3">
         {pricing.packages.map((p, i) => (

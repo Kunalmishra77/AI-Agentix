@@ -12,7 +12,7 @@ import { cn } from '../../lib/cn'
 export default function IndustrySolutions({ solutions, tone = 'white' }) {
   return (
     <Section tone={tone} className="overflow-hidden">
-      <SectionHeading eyebrow={solutions.eyebrow} heading={solutions.heading} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={solutions.eyebrow} heading={solutions.heading} max="max-w-2xl" />
 
       <div className="mt-14 space-y-14 md:space-y-20">
         {solutions.items.map((s, i) => {

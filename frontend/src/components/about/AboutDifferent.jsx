@@ -7,7 +7,7 @@ import { different } from '../../data/about'
 export default function AboutDifferent() {
   return (
     <Section tone="dark" id="different" className="scroll-mt-20">
-      <SectionHeading eyebrow={different.eyebrow} heading={different.heading} sub={different.body} tone="dark" align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={different.eyebrow} heading={different.heading} sub={different.body} tone="dark" max="max-w-2xl" />
 
       <div className="mt-12 grid gap-5 md:grid-cols-2">
         {different.items.map((d, i) => (

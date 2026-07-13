@@ -7,10 +7,10 @@ import { compare } from '../../data/solutions'
 export default function SolutionsCompare() {
   return (
     <Section tone="dark">
-      <SectionHeading eyebrow={compare.eyebrow} heading={compare.heading} tone="dark" align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={compare.eyebrow} heading={compare.heading} tone="dark" max="max-w-2xl" />
 
       {/* DESKTOP (md+): 3-column table */}
-      <div className="mx-auto mt-12 hidden max-w-4xl overflow-hidden rounded-2xl border border-white/10 md:block">
+      <div className="mt-12 hidden max-w-4xl overflow-hidden rounded-2xl border border-white/10 md:block">
         {/* header */}
         <div className="grid grid-cols-[1fr_1.2fr_1.2fr] bg-white/[0.03] text-xs font-bold uppercase tracking-wide sm:text-sm">
           <div className="p-4 text-ink-muted md:p-5">{compare.cols[0]}</div>

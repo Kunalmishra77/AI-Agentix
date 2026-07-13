@@ -61,9 +61,7 @@ export default function AboutLeadership() {
         eyebrow={leadership.eyebrow}
         heading={leadership.heading}
         sub={leadership.sub}
-        align="center"
         max="max-w-2xl"
-        className="mx-auto"
       />
 
       <div className="mx-auto mt-12 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-4">

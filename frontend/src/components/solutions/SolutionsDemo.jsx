@@ -16,9 +16,7 @@ export default function SolutionsDemo() {
         eyebrow={demo.eyebrow}
         heading={demo.heading}
         sub={demo.body}
-        align="center"
         max="max-w-2xl"
-        className="mx-auto"
       />
 
       {/* ── Video showcase ──────────────────────────────────────────────
@@ -28,7 +26,7 @@ export default function SolutionsDemo() {
                    src="/…mp4" poster="/…" controls playsInline />
           The 16:9 container, framing, and layout stay identical — no redesign. */}
       <Reveal className="mt-12">
-        <div className="relative mx-auto aspect-video w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-ink shadow-float">
+        <div className="relative aspect-video w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-ink shadow-float">
           {/* placeholder visuals */}
           <div className="absolute inset-0" aria-hidden>
             <div
@@ -58,7 +56,7 @@ export default function SolutionsDemo() {
       </Reveal>
 
       {/* ── Demo workflow showcase (what the video will walk through) ── */}
-      <div className="mx-auto mt-12 max-w-5xl">
+      <div className="mt-12 max-w-5xl">
         {/* flow selector */}
         <div className="flex flex-wrap justify-center gap-2">
           {demo.flows.map((f, i) => (

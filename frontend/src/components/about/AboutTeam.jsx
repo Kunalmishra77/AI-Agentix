@@ -11,7 +11,7 @@ function initials(name) {
 export default function AboutTeam() {
   return (
     <Section tone="white">
-      <SectionHeading eyebrow={team.eyebrow} heading={team.heading} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={team.eyebrow} heading={team.heading} max="max-w-2xl" />
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {team.members.map((m, i) => (

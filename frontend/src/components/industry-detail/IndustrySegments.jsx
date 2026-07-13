@@ -6,7 +6,7 @@ import SectionHeading from '../common/SectionHeading'
 export default function IndustrySegments({ segments, tone = 'alt' }) {
   return (
     <Section tone={tone}>
-      <SectionHeading eyebrow={segments.eyebrow} heading={segments.heading} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={segments.eyebrow} heading={segments.heading} max="max-w-2xl" />
 
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {segments.items.map((s, i) => (

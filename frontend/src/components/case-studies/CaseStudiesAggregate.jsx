@@ -6,8 +6,8 @@ import { aggregate } from '../../data/caseStudies'
 export default function CaseStudiesAggregate() {
   return (
     <Section tone="white">
-      <SectionHeading eyebrow={aggregate.eyebrow} heading={aggregate.heading} align="center" max="max-w-2xl" className="mx-auto" />
-      <div className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-5 md:grid-cols-4">
+      <SectionHeading eyebrow={aggregate.eyebrow} heading={aggregate.heading} max="max-w-2xl" />
+      <div className="mt-12 grid max-w-5xl grid-cols-2 gap-5 md:grid-cols-4">
         {aggregate.stats.map((s, i) => (
           <motion.div
             key={s.label}

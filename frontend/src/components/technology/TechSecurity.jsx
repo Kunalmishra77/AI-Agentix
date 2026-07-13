@@ -7,7 +7,7 @@ import { TECH_ICONS } from './icons'
 export default function TechSecurity() {
   return (
     <Section tone="alt">
-      <SectionHeading eyebrow={security.eyebrow} heading={security.heading} sub={security.body} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={security.eyebrow} heading={security.heading} sub={security.body} max="max-w-2xl" />
 
       <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {security.items.map((s, i) => {

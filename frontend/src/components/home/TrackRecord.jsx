@@ -12,9 +12,7 @@ export default function TrackRecord() {
         heading={trackRecord.heading}
         sub={trackRecord.sub}
         tone="dark"
-        align="center"
         max="max-w-2xl"
-        className="mx-auto"
       />
 
       <div className="mt-14 grid grid-cols-2 gap-y-10 lg:grid-cols-4">

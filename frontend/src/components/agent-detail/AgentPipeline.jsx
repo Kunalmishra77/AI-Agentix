@@ -14,9 +14,7 @@ export default function AgentPipeline({ agent }) {
         eyebrow="The Pipeline"
         heading={`How the ${agent.name} works`}
         sub="Every step runs autonomously, end to end — no human in the loop until one is genuinely needed."
-        align="center"
         max="max-w-2xl"
-        className="mx-auto"
       />
 
       {/* desktop: horizontal connected pipeline */}

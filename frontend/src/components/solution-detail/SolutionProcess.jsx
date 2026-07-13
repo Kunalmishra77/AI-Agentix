@@ -5,7 +5,7 @@ import SectionHeading from '../common/SectionHeading'
 export default function SolutionProcess({ process, tone = 'white' }) {
   return (
     <Section tone={tone}>
-      <SectionHeading eyebrow={process.eyebrow} heading={process.heading} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={process.eyebrow} heading={process.heading} max="max-w-2xl" />
 
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {process.steps.map((s, i) => (

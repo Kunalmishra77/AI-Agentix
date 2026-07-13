@@ -7,7 +7,7 @@ import { TECH_ICONS } from './icons'
 export default function TechStack() {
   return (
     <Section tone="alt">
-      <SectionHeading eyebrow={stack.eyebrow} heading={stack.heading} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={stack.eyebrow} heading={stack.heading} max="max-w-2xl" />
 
       <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {stack.layers.map((l, i) => {

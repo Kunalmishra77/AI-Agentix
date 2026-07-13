@@ -7,7 +7,7 @@ import { process } from '../../data/solutions'
 export default function SolutionsProcess() {
   return (
     <Section tone="white">
-      <SectionHeading eyebrow={process.eyebrow} heading={process.heading} sub={process.body} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={process.eyebrow} heading={process.heading} sub={process.body} max="max-w-2xl" />
 
       <Reveal className="mt-12">
         <div className="grid overflow-hidden rounded-2xl border border-line sm:grid-cols-2">

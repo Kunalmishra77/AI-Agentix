@@ -24,10 +24,10 @@ export default function AboutJourney() {
         aria-hidden
       />
       <div className="relative">
-        <SectionHeading eyebrow={journey.eyebrow} heading={journey.heading} tone="dark" align="center" max="max-w-2xl" className="mx-auto" />
+        <SectionHeading eyebrow={journey.eyebrow} heading={journey.heading} tone="dark" max="max-w-2xl" />
 
         <div
-          className="mx-auto mt-14 max-w-5xl"
+          className="mt-14 max-w-5xl"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >

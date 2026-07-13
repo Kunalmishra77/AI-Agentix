@@ -8,9 +8,9 @@ import { compare } from '../../data/about'
 export default function AboutCompare() {
   return (
     <Section tone="alt">
-      <SectionHeading eyebrow={compare.eyebrow} heading={compare.heading} sub={compare.sub} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={compare.eyebrow} heading={compare.heading} sub={compare.sub} max="max-w-2xl" />
 
-      <Reveal className="mx-auto mt-12 max-w-4xl">
+      <Reveal className="mt-12 max-w-4xl">
         <div className="overflow-hidden rounded-2xl border border-line bg-white">
           <div className="grid grid-cols-[0.9fr_1.3fr_1.3fr] bg-white text-xs font-bold uppercase tracking-wide sm:text-sm">
             <div className="p-4" />

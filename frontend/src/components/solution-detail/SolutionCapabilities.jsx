@@ -14,7 +14,7 @@ export default function SolutionCapabilities({ capabilities }) {
 
   return (
     <Section tone="alt">
-      <SectionHeading eyebrow={capabilities.eyebrow} heading={capabilities.heading} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={capabilities.eyebrow} heading={capabilities.heading} max="max-w-2xl" />
 
       {/* pill tabs — single row, scrollable on small screens */}
       <div className="mt-9 flex justify-start gap-2 overflow-x-auto pb-1 lg:flex-wrap lg:justify-center lg:overflow-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">

@@ -7,7 +7,7 @@ import { STUDIO_ICONS } from './icons'
 export default function AIStudioCreate() {
   return (
     <Section tone="alt">
-      <SectionHeading eyebrow={create.eyebrow} heading={create.heading} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={create.eyebrow} heading={create.heading} max="max-w-2xl" />
 
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {create.items.map((c, i) => {

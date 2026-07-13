@@ -17,7 +17,7 @@ export default function TechAgents() {
 
   return (
     <Section tone="white">
-      <SectionHeading eyebrow={agents.eyebrow} heading={agents.heading} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={agents.eyebrow} heading={agents.heading} max="max-w-2xl" />
 
       {/* agent tabs */}
       <div className="mt-9 flex flex-wrap justify-center gap-2">

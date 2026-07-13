@@ -6,7 +6,7 @@ import SectionHeading from '../common/SectionHeading'
 export default function IndustryChallenges({ challenges, tone = 'alt' }) {
   return (
     <Section tone={tone}>
-      <SectionHeading eyebrow={challenges.eyebrow} heading={challenges.heading} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={challenges.eyebrow} heading={challenges.heading} max="max-w-2xl" />
 
       <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         {challenges.items.map((c, i) => (

@@ -65,9 +65,9 @@ export default function SignatureChat({ signature }) {
     <section ref={ref} className="relative overflow-hidden bg-accent-soft py-section">
       <div className="pointer-events-none absolute -right-24 top-0 h-96 w-96 rounded-full bg-accent/10 blur-[120px]" aria-hidden />
       <div className="container-x relative">
-        <SectionHeading eyebrow={signature.eyebrow} heading={signature.heading} sub={signature.body} align="center" max="max-w-2xl" className="mx-auto" />
+        <SectionHeading eyebrow={signature.eyebrow} heading={signature.heading} sub={signature.body} max="max-w-2xl" />
 
-        <div className="mx-auto mt-12 grid max-w-5xl items-stretch gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mt-12 grid max-w-5xl items-stretch gap-6 lg:grid-cols-[1.15fr_0.85fr]">
           {/* chat window */}
           <div className="flex flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-card">
             {/* header */}

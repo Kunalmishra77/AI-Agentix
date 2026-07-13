@@ -52,9 +52,7 @@ export default function Testimonials() {
           variant="stacked"
           eyebrow={testimonialsSection.eyebrow}
           heading={testimonialsSection.heading}
-          align="center"
           max="max-w-2xl"
-          className="mx-auto"
         />
       </div>
       <div className="mt-12">

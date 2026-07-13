@@ -6,7 +6,7 @@ import SectionHeading from '../common/SectionHeading'
 export default function IndustryProof({ proof, tone = 'white' }) {
   return (
     <Section tone={tone}>
-      <SectionHeading eyebrow={proof.eyebrow} heading={proof.heading} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={proof.eyebrow} heading={proof.heading} max="max-w-2xl" />
 
       <div className="mt-12 grid gap-5 md:grid-cols-3">
         {proof.items.map((r, i) => (

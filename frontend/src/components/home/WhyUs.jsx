@@ -8,9 +8,9 @@ import { whyUs } from '../../data/home'
 export default function WhyUs() {
   return (
     <Section tone="white">
-      <SectionHeading variant="stacked" eyebrow={whyUs.eyebrow} heading={whyUs.heading} sub={whyUs.sub} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading variant="stacked" eyebrow={whyUs.eyebrow} heading={whyUs.heading} sub={whyUs.sub} max="max-w-2xl" />
 
-      <Reveal className="mx-auto mt-12 max-w-4xl">
+      <Reveal className="mt-12 max-w-4xl">
         <div className="overflow-hidden rounded-2xl border border-line">
           {/* header */}
           <div className="grid grid-cols-[1.1fr_1.4fr_1.4fr] bg-surface-alt text-xs font-bold uppercase tracking-wide sm:text-sm">

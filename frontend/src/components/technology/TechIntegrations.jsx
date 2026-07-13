@@ -7,7 +7,7 @@ import { integrations } from '../../data/technology'
 export default function TechIntegrations() {
   return (
     <Section tone="white">
-      <SectionHeading eyebrow={integrations.eyebrow} heading={integrations.heading} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={integrations.eyebrow} heading={integrations.heading} max="max-w-2xl" />
 
       <div className="mt-12 grid gap-5 md:grid-cols-2">
         {integrations.categories.map((c, i) => (

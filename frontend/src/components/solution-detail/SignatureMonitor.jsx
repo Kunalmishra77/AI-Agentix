@@ -19,10 +19,10 @@ export default function SignatureMonitor({ signature }) {
     <section className="relative overflow-hidden bg-accent-soft py-section">
       <div className="pointer-events-none absolute -right-24 top-0 h-96 w-96 rounded-full bg-accent/10 blur-[120px]" aria-hidden />
       <div className="container-x relative">
-        <SectionHeading eyebrow={signature.eyebrow} heading={signature.heading} sub={signature.body} align="center" max="max-w-2xl" className="mx-auto" />
+        <SectionHeading eyebrow={signature.eyebrow} heading={signature.heading} sub={signature.body} max="max-w-2xl" />
 
         {/* dark control-room panel */}
-        <div className="relative mx-auto mt-12 max-w-5xl overflow-hidden rounded-3xl bg-ink p-6 text-white shadow-float md:p-8">
+        <div className="relative mt-12 max-w-5xl overflow-hidden rounded-3xl bg-ink p-6 text-white shadow-float md:p-8">
           <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-accent/20 blur-[90px]" aria-hidden />
           <div className="relative">
             {/* header */}

@@ -43,9 +43,9 @@ export default function SignatureCalculator({ signature }) {
       {/* soft branded glow */}
       <div className="pointer-events-none absolute -right-24 top-0 h-96 w-96 rounded-full bg-accent/10 blur-[120px]" aria-hidden />
       <div className="container-x relative">
-        <SectionHeading eyebrow={signature.eyebrow} heading={signature.heading} sub={signature.body} align="center" max="max-w-2xl" className="mx-auto" />
+        <SectionHeading eyebrow={signature.eyebrow} heading={signature.heading} sub={signature.body} max="max-w-2xl" />
 
-        <div className="mx-auto mt-12 grid max-w-5xl items-stretch gap-6 lg:grid-cols-[1fr_1fr]">
+        <div className="mt-12 grid max-w-5xl items-stretch gap-6 lg:grid-cols-[1fr_1fr]">
           {/* inputs */}
           <div className="rounded-3xl border border-line bg-white p-7 shadow-card md:p-9">
             <div className="space-y-7">

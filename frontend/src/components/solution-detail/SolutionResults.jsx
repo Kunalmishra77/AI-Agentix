@@ -6,7 +6,7 @@ import SectionHeading from '../common/SectionHeading'
 export default function SolutionResults({ results }) {
   return (
     <Section tone="alt">
-      <SectionHeading eyebrow={results.eyebrow} heading={results.heading} align="center" max="max-w-2xl" className="mx-auto" />
+      <SectionHeading eyebrow={results.eyebrow} heading={results.heading} max="max-w-2xl" />
 
       <div className="mt-12 grid gap-5 md:grid-cols-3">
         {results.items.map((r, i) => (
