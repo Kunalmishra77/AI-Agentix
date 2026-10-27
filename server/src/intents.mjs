@@ -104,9 +104,9 @@ const INTENTS = [
     key: 'phone',
     test: /\b(your|aapka|apka|contact|whatsapp) (number|no\.?)|\bnumber (kya|do|bhejo|please)|phone|mobile|e-?mail|address|office|location|नंबर|ईमेल|फ़ोन|पता/i,
     reply: {
-      en: 'Phone: +91 92170 64245 · Email: myai@ai-agentix.com · Office: New Delhi, India. For the fastest reply, ' + WA + '.',
-      hinglish: 'Phone: +91 92170 64245 · Email: myai@ai-agentix.com · Office: New Delhi. Sabse jaldi reply ke liye WhatsApp karein (neeche left me green button).',
-      hi: 'Phone: +91 92170 64245 · Email: myai@ai-agentix.com · Office: New Delhi। सबसे जल्दी जवाब के लिए WhatsApp करें (नीचे बाईं ओर green button)।',
+      en: 'Phone: +91 92170 64245 · WhatsApp: +91 92171 67347 · Email: myai@ai-agentix.com · Office: New Delhi, India.',
+      hinglish: 'Phone: +91 92170 64245 · WhatsApp: +91 92171 67347 · Email: myai@ai-agentix.com · Office: New Delhi. Sabse jaldi reply ke liye WhatsApp karein (neeche left me green button).',
+      hi: 'Phone: +91 92170 64245 · WhatsApp: +91 92171 67347 · Email: myai@ai-agentix.com · Office: New Delhi। सबसे जल्दी जवाब के लिए WhatsApp करें (नीचे बाईं ओर green button)।',
     },
   },
   {

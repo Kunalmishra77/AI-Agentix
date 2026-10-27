@@ -14,6 +14,16 @@ Useful anchors: /about#mission, /about#journey, /about#values, /about#different,
 Booking / consultation / demo / audit / contact → /contact
 `.trim()
 
+// Contact facts the assistant may always quote. Keep in sync with contactInfo in
+// frontend/src/data/site.js.
+export const CONTACT_FACTS = `
+Phone (calls): +91 92170 64245
+WhatsApp: +91 92171 67347 (the green WhatsApp button at the bottom-left of every page)
+Email: myai@ai-agentix.com
+Office: New Delhi, India
+Company: AI Agentix is a product of Santure AI Private Limited
+`.trim()
+
 export function buildMessages({ message, history = [], context = {}, retrieved = [] }) {
   const contextBlock = retrieved
     .map((r, i) => `[${i + 1}] (page: ${r.route}${r.title ? `, section: ${r.title}` : ''})\n${r.text}`)
@@ -41,6 +51,10 @@ ${here}
 
 NAVIGATION TARGETS:
 ${NAV_HINTS}
+
+CONTACT DETAILS (always accurate, may be quoted):
+${CONTACT_FACTS}
+- Spell people's names exactly as written in the CONTEXT.
 
 Respond with ONLY a JSON object, no prose around it:
 {

@@ -108,17 +108,6 @@ export const compare = {
   cta: { label: 'Work With AI Agentix', to: '/contact' },
 }
 
-export const team = {
-  eyebrow: 'Our Team',
-  heading: 'Meet the Team',
-  members: [
-    { name: 'Anant Sanadhya', role: 'Founder & CEO', bio: 'Visionary entrepreneur and AI strategist. Founded AGENTiX to make cutting-edge AI automation accessible to every Indian business, from startups to enterprises.' },
-    { name: 'Priya Nair', role: 'Head of Technology', bio: 'ML Engineer with deep expertise in LLMs and agentic systems. Builds the AI models and automation pipelines that power our client deployments.' },
-    { name: 'Rahul Singh', role: 'Head of Delivery', bio: '8 years in automation consulting. Manages every client engagement from discovery to go-live, ensuring on-time delivery every time.' },
-    { name: 'Sneha Kapoor', role: 'Head of Growth', bio: 'Growth marketer turned AI advocate. Runs partnerships, events, and the India-wide expansion strategy.' },
-  ],
-}
-
 // Leadership team. Layout is live; profiles fill in as they are confirmed.
 // `image: null` renders an elegant placeholder. `pending: true` shows a
 // "To be announced" name until the real profile is provided. Do NOT add
