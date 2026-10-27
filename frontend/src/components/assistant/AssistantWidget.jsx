@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { SiWhatsapp } from 'react-icons/si'
-import { X, Send, ArrowRight, Mic, Volume2, VolumeX } from 'lucide-react'
-
-const WA_NUMBER = '919217064245' // real WhatsApp handoff
+import { X, Send, ArrowRight, Mic, Volume2, VolumeX, Sparkles, Bot } from 'lucide-react'
+import { whatsappLink } from '../../data/site'
 const GREETING = "Hi! I'm the Agentix Assistant. Ask me about our AI solutions, industries, technology or how to get started — I can also take you straight to the right page."
 
 // Web Speech API (feature-detected; absent on some browsers)
@@ -100,8 +99,15 @@ export default function AssistantWidget() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: q, history, context: { route: location.pathname, section: currentSection() } }),
       })
-      const data = await res.json()
-      const reply = data.reply || "Sorry, I couldn't find that on our site."
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data.reply) {
+        const msg = res.status === 429
+          ? 'You are sending messages quickly — please wait a few seconds and try again.'
+          : 'I had trouble answering just now. Please try again, or message us on WhatsApp.'
+        setMessages((m) => [...m, { role: 'assistant', text: msg }])
+        return
+      }
+      const reply = data.reply
       setMessages((m) => [...m, { role: 'assistant', text: reply, action: data.action }])
       speak(reply)
       if (data.action?.navigate) {
@@ -144,14 +150,15 @@ export default function AssistantWidget() {
     rec.start()
   }, [listening])
 
-  const waLink = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hi AI Agentix, I have a question about your services.')}`
+  const waLink = whatsappLink()
 
   return (
     <>
       {/* Floating action button */}
+      {/* sits above the floating lead-form button (bottom-right) */}
       <div
-        className="fixed right-5 z-[60] flex flex-col items-end"
-        style={{ bottom: 'calc(1.25rem + env(safe-area-inset-bottom))' }}
+        className="agx-float fixed right-4 z-[61] flex flex-col items-end sm:right-5"
+        style={{ bottom: 'calc(5.5rem + env(safe-area-inset-bottom))' }}
         onMouseEnter={() => window.innerWidth >= 640 && !open && setPreview(true)}
         onMouseLeave={() => setPreview(false)}
       >
@@ -166,20 +173,20 @@ export default function AssistantWidget() {
               onClick={() => { setOpen(true); setPreview(false) }}
               className="mb-3 hidden w-64 overflow-hidden rounded-2xl bg-white text-left shadow-float ring-1 ring-black/5 sm:block"
             >
-              <div className="flex items-center gap-2.5 bg-[#075E54] px-4 py-3 text-white">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
-                  <SiWhatsapp className="h-4 w-4" />
+              <div className="flex items-center gap-2.5 bg-ink px-4 py-3 text-white">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/20 text-accent">
+                  <Bot className="h-4 w-4" aria-hidden />
                 </span>
                 <div>
-                  <div className="text-sm font-semibold leading-tight">Agentix Assistant</div>
-                  <div className="text-[11px] leading-tight text-white/80">online · replies instantly</div>
+                  <div className="text-sm font-semibold leading-tight">Agentix AI Assistant</div>
+                  <div className="text-[11px] leading-tight text-white/70">Answers from our website</div>
                 </div>
               </div>
               <div className="px-4 py-3">
                 <p className="rounded-xl rounded-tl-sm bg-surface-alt px-3 py-2 text-xs leading-relaxed text-body">
                   Hi 👋 Ask me anything about AI Agentix — I'll answer and take you there.
                 </p>
-                <span className="mt-2.5 inline-flex items-center gap-1 text-xs font-semibold text-accent">
+                <span className="mt-2.5 inline-flex items-center gap-1 text-xs font-semibold text-accent-strong">
                   Start chatting <ArrowRight className="h-3.5 w-3.5" />
                 </span>
               </div>
@@ -188,12 +195,15 @@ export default function AssistantWidget() {
         </AnimatePresence>
 
         <button
-          aria-label="Open Agentix Assistant"
+          type="button"
+          aria-label={open ? 'Close AI assistant' : 'Ask our AI assistant'}
+          aria-expanded={open}
+          aria-controls="agx-assistant-panel"
           onClick={() => setOpen((v) => !v)}
-          className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_30px_rgba(37,211,102,.45)] transition-transform hover:scale-105 active:scale-95"
+          className="inline-flex h-11 items-center gap-2 rounded-full bg-ink pl-3 pr-4 text-sm font-semibold text-white shadow-float ring-1 ring-white/10 transition-transform hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 active:scale-95"
         >
-          <span className="absolute inset-0 animate-ping rounded-full bg-[#25D366] opacity-20" aria-hidden />
-          <SiWhatsapp className="h-7 w-7" />
+          <Sparkles className="h-4 w-4 text-accent" aria-hidden />
+          Ask AI
         </button>
       </div>
 
@@ -209,25 +219,26 @@ export default function AssistantWidget() {
             />
             <motion.div
               ref={panelRef}
+              id="agx-assistant-panel"
+              role="dialog"
+              aria-label="AI assistant"
               initial={{ opacity: 0, y: 24, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.98 }}
               transition={{ type: 'tween', duration: 0.22, ease: [0.21, 0.5, 0.25, 1] }}
-              className="fixed inset-0 z-[70] flex h-[100dvh] w-full flex-col overflow-hidden bg-[#ECE5DD] sm:inset-auto sm:bottom-24 sm:right-5 sm:h-[560px] sm:max-h-[calc(100vh-7rem)] sm:w-[384px] sm:max-w-[calc(100vw-2.5rem)] sm:rounded-2xl sm:shadow-float sm:ring-1 sm:ring-black/10"
+              className="fixed inset-0 z-[70] flex h-[100dvh] w-full flex-col overflow-hidden bg-surface-alt sm:inset-auto sm:bottom-[8.75rem] sm:right-5 sm:h-[560px] sm:max-h-[calc(100vh-10rem)] sm:w-[384px] sm:max-w-[calc(100vw-2.5rem)] sm:rounded-2xl sm:shadow-float sm:ring-1 sm:ring-black/10"
             >
               {/* header */}
-              <div className="flex items-center gap-3 bg-[#075E54] px-4 py-3 text-white">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15">
-                  <SiWhatsapp className="h-5 w-5" />
+              <div className="flex items-center gap-3 bg-ink px-4 py-3 text-white">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent/20 text-accent">
+                  <Bot className="h-5 w-5" aria-hidden />
                 </span>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 text-sm font-semibold leading-tight">
                     Agentix Assistant
-                    <span className="rounded-full bg-accent px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide">AI</span>
+                    <span className="rounded-full bg-accent-cta px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide">AI</span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-[11px] leading-tight text-white/80">
-                    <span className="h-1.5 w-1.5 rounded-full bg-green-300" /> online
-                  </div>
+                  <div className="text-[11px] leading-tight text-white/70">Automated answers from our website</div>
                 </div>
                 {canSpeak && (
                   <button
@@ -243,16 +254,22 @@ export default function AssistantWidget() {
                 </button>
               </div>
 
+              {/* AI + privacy notice (AGX-011) */}
+              <p className="border-b border-line bg-white px-4 py-2 text-[11px] leading-snug text-body-soft">
+                This is an AI assistant. Please don't share sensitive personal information.{' '}
+                <Link to="/privacy" onClick={() => setOpen(false)} className="font-semibold text-accent-strong underline underline-offset-2">Privacy Policy</Link>
+              </p>
+
               {/* messages */}
-              <div ref={scrollRef} className="flex-1 space-y-2.5 overflow-y-auto px-3.5 py-4" style={{ backgroundImage: 'radial-gradient(rgba(0,0,0,.03) 1px, transparent 1px)', backgroundSize: '18px 18px' }}>
+              <div ref={scrollRef} aria-live="polite" className="flex-1 space-y-2.5 overflow-y-auto px-3.5 py-4">
                 {messages.map((m, i) => (
                   <div key={i} className={m.role === 'user' ? 'flex justify-end' : 'flex justify-start'}>
                     <div className={m.role === 'user'
-                      ? 'max-w-[82%] rounded-2xl rounded-tr-sm bg-[#DCF8C6] px-3.5 py-2 text-sm leading-relaxed text-[#111B21] shadow-sm'
-                      : 'max-w-[85%] rounded-2xl rounded-tl-sm bg-white px-3.5 py-2 text-sm leading-relaxed text-[#111B21] shadow-sm'}>
+                      ? 'max-w-[82%] rounded-2xl rounded-tr-sm bg-accent-soft px-3.5 py-2 text-sm leading-relaxed text-heading shadow-sm'
+                      : 'max-w-[85%] rounded-2xl rounded-tl-sm bg-white px-3.5 py-2 text-sm leading-relaxed text-heading shadow-sm'}>
                       {m.text}
                       {m.action?.navigate && (
-                        <span className="mt-1.5 flex items-center gap-1 text-xs font-semibold text-accent">
+                        <span className="mt-1.5 flex items-center gap-1 text-xs font-semibold text-accent-strong">
                           <ArrowRight className="h-3.5 w-3.5" /> Taking you to {m.action.navigate}
                         </span>
                       )}
@@ -272,13 +289,13 @@ export default function AssistantWidget() {
 
               {/* WhatsApp handoff */}
               <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 bg-[#25D366]/10 py-2 text-xs font-semibold text-[#075E54] transition-colors hover:bg-[#25D366]/20">
-                <SiWhatsapp className="h-3.5 w-3.5" /> Chat with a human on WhatsApp
+                <SiWhatsapp className="h-3.5 w-3.5" aria-hidden /> Chat with us on WhatsApp
               </a>
 
               {/* input */}
               <form
                 onSubmit={(e) => { e.preventDefault(); send() }}
-                className="flex items-center gap-2 border-t border-black/5 bg-[#F0F0F0] px-3 py-2.5"
+                className="flex items-center gap-2 border-t border-line bg-white px-3 py-2.5"
                 style={{ paddingBottom: 'calc(0.625rem + env(safe-area-inset-bottom))' }}
               >
                 <input
@@ -286,6 +303,7 @@ export default function AssistantWidget() {
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={listening ? 'Listening…' : 'Ask anything…'}
                   aria-label="Message"
+                  maxLength={1000}
                   className="min-w-0 flex-1 rounded-full border border-black/10 bg-white px-4 py-2.5 text-base text-[#111B21] outline-none placeholder:text-body-soft focus:border-accent/50 sm:text-sm"
                 />
                 {SpeechRecognitionAPI && (
@@ -302,7 +320,7 @@ export default function AssistantWidget() {
                   type="submit"
                   disabled={!input.trim() || busy}
                   aria-label="Send"
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent text-white transition-colors hover:bg-accent-hover disabled:opacity-40"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent-cta text-white transition-colors hover:bg-accent-cta-hover disabled:opacity-40"
                 >
                   <Send className="h-5 w-5" />
                 </button>

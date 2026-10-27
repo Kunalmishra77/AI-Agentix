@@ -16,7 +16,7 @@ export default function WhyUs() {
           <div className="grid grid-cols-[1.1fr_1.4fr_1.4fr] bg-surface-alt text-xs font-bold uppercase tracking-wide sm:text-sm">
             <div className="p-4 text-body-soft" />
             <div className="flex items-center gap-2 p-4 text-body-soft">
-              <X className="h-4 w-4 text-red-400" /> {whyUs.cols[0]}
+              <X className="h-4 w-4 text-red-600" /> {whyUs.cols[0]}
             </div>
             <div className="flex items-center gap-2 bg-accent p-4 text-white">
               <Check className="h-4 w-4" /> {whyUs.cols[1]}
@@ -32,7 +32,7 @@ export default function WhyUs() {
               <div className="flex items-center p-4 text-sm font-semibold text-heading">{r.label}</div>
               <div className="p-4">
                 <p className="text-sm text-body">{r.bad}</p>
-                <p className="mt-0.5 text-xs text-red-400">{r.badMeta}</p>
+                <p className="mt-0.5 text-xs text-danger">{r.badMeta}</p>
               </div>
               <div className="bg-accent-soft/60 p-4">
                 <p className="text-sm font-medium text-heading">{r.good}</p>

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
 
-/** Bottom-left button that appears after scrolling and jumps to the top. */
+/** Bottom-left button, stacked above the WhatsApp button, that appears after scrolling and jumps to the top. */
 export default function ScrollToTop() {
   const [show, setShow] = useState(false)
 
@@ -24,9 +24,10 @@ export default function ScrollToTop() {
           transition={{ duration: 0.2 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Back to top"
-          className="group fixed bottom-6 left-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white shadow-orange transition-colors hover:bg-accent-hover"
+          className="agx-float group fixed left-[22px] z-50 flex h-10 w-10 items-center justify-center rounded-full bg-ink text-white shadow-card transition-colors hover:bg-ink-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 sm:left-[28px]"
+          style={{ bottom: 'calc(5.25rem + env(safe-area-inset-bottom))' }}
         >
-          <ArrowUp className="h-5 w-5 transition-transform group-hover:-translate-y-0.5" />
+          <ArrowUp className="h-5 w-5 transition-transform group-hover:-translate-y-0.5" aria-hidden />
         </motion.button>
       )}
     </AnimatePresence>

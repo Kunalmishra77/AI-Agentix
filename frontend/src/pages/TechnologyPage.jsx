@@ -3,7 +3,6 @@ import { meta } from '../data/technology'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import ScrollProgress from '../components/common/ScrollProgress'
-import ScrollToTop from '../components/common/ScrollToTop'
 import TechHero from '../components/technology/TechHero'
 import TechAgents from '../components/technology/TechAgents'
 import TechStack from '../components/technology/TechStack'
@@ -20,7 +19,7 @@ export default function TechnologyPage() {
       </Helmet>
       <ScrollProgress />
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <TechHero />
         <TechAgents />
         <TechStack />
@@ -29,7 +28,6 @@ export default function TechnologyPage() {
         <TechCta />
       </main>
       <SiteFooter />
-      <ScrollToTop />
     </>
   )
 }

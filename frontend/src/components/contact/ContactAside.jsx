@@ -1,9 +1,10 @@
-import { Phone, Mail, MapPin, Check } from 'lucide-react'
+import { Phone, Mail, MapPin, Check, MessageCircle } from 'lucide-react'
 import { details, nextSteps } from '../../data/contact'
 
 export default function ContactAside() {
   const rows = [
-    { icon: Phone, label: 'Call / WhatsApp', value: details.phone, href: details.whatsapp },
+    { icon: Phone, label: 'Call', value: details.phone, href: details.phoneHref },
+    { icon: MessageCircle, label: 'WhatsApp', value: details.whatsappDisplay, href: details.whatsapp },
     { icon: Mail, label: 'Email', value: details.email, href: `mailto:${details.email}` },
     { icon: MapPin, label: 'Office', value: details.office, href: null },
   ]
@@ -26,7 +27,7 @@ export default function ContactAside() {
               </>
             )
             return r.href ? (
-              <a key={r.label} href={r.href} target={r.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="group flex items-center gap-3.5">
+              <a key={r.label} href={r.href} target={r.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" className="group flex items-center gap-3.5">
                 {Inner}
               </a>
             ) : (

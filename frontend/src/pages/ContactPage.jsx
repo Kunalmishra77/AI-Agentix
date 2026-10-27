@@ -3,7 +3,6 @@ import { meta } from '../data/contact'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import ScrollProgress from '../components/common/ScrollProgress'
-import ScrollToTop from '../components/common/ScrollToTop'
 import Section from '../components/common/Section'
 import ContactHero from '../components/contact/ContactHero'
 import ContactForms from '../components/contact/ContactForms'
@@ -20,7 +19,7 @@ export default function ContactPage() {
       </Helmet>
       <ScrollProgress />
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <ContactHero />
         <Section tone="white">
           <div className="grid gap-8 lg:grid-cols-[1.55fr_1fr] lg:gap-10">
@@ -32,7 +31,6 @@ export default function ContactPage() {
         <ContactCta />
       </main>
       <SiteFooter />
-      <ScrollToTop />
     </>
   )
 }

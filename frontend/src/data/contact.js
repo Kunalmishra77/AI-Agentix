@@ -1,4 +1,5 @@
 // Contact page content — verbatim from content-archive/pages/contact.md
+import { contactInfo, whatsappLink } from './site'
 
 export const meta = {
   title: 'Contact — AI Agentix',
@@ -30,7 +31,7 @@ export const forms = {
     loading: 'Sending...',
     fields: [
       { key: 'name', label: 'Full Name', type: 'text', placeholder: 'Rajesh Kumar', required: true, half: true },
-      { key: 'phone', label: 'Phone / WhatsApp', type: 'tel', placeholder: '+91 92170 64245', required: true, half: true },
+      { key: 'phone', label: 'Phone / WhatsApp', type: 'tel', placeholder: '+91 98XXX XXXXX', required: true, half: true },
       { key: 'email', label: 'Email Address', type: 'email', placeholder: 'rajesh@company.com', required: true, half: true },
       { key: 'company', label: 'Company Name', type: 'text', placeholder: 'Acme Solutions Pvt Ltd', half: true },
       { key: 'industry', label: 'Industry', type: 'select', placeholder: 'Select industry', half: true,
@@ -48,7 +49,7 @@ export const forms = {
     fields: [
       { key: 'name', label: 'Full Name', type: 'text', placeholder: 'Rajesh Kumar', required: true, half: true },
       { key: 'email', label: 'Email Address', type: 'email', placeholder: 'rajesh@company.com', required: true, half: true },
-      { key: 'phone', label: 'Phone / WhatsApp', type: 'tel', placeholder: '+91 92170 64245', half: true },
+      { key: 'phone', label: 'Phone / WhatsApp', type: 'tel', placeholder: '+91 98XXX XXXXX', half: true },
       { key: 'company', label: 'Company Name', type: 'text', placeholder: 'Acme Solutions Pvt Ltd', half: true },
       { key: 'date', label: 'Preferred Date', type: 'date', required: true, half: true },
       { key: 'timeSlot', label: 'Preferred Time Slot', type: 'select', placeholder: 'Select time', required: true, half: true,
@@ -70,7 +71,7 @@ export const forms = {
       { key: 'website', label: 'Website URL', type: 'url', placeholder: 'https://youragency.in', half: true },
       { key: 'partnershipType', label: 'Partnership Type', type: 'chips',
         options: ['Digital Agency', 'Business Consultant', 'Tech / SaaS Partner', 'White-label Reseller'] },
-      { key: 'phone', label: 'Phone / WhatsApp', type: 'tel', placeholder: '+91 92170 64245', half: true },
+      { key: 'phone', label: 'Phone / WhatsApp', type: 'tel', placeholder: '+91 98XXX XXXXX', half: true },
       { key: 'clientBase', label: 'Current Client Base', type: 'select', placeholder: 'How many clients?', half: true,
         options: ['1–5 clients', '6–20 clients', '21–50 clients', '50+ clients'] },
       { key: 'lookingFor', label: 'What are you looking for in this partnership?', type: 'textarea',
@@ -85,10 +86,12 @@ export const success = {
 }
 
 export const details = {
-  phone: '+91 92170 64245',
-  email: 'myai@ai-agentix.com',
-  office: 'New Delhi, India',
-  whatsapp: 'https://wa.me/919217064245',
+  phone: contactInfo.phone,
+  phoneHref: contactInfo.phoneHref,
+  email: contactInfo.email,
+  office: contactInfo.address,
+  whatsapp: whatsappLink(),
+  whatsappDisplay: contactInfo.whatsappDisplay,
 }
 
 export const nextSteps = [
@@ -114,5 +117,5 @@ export const faq = {
 export const finalCta = {
   heading: 'Still Have Questions?',
   body: 'WhatsApp us directly. Our team responds within 30 minutes during business hours.',
-  whatsapp: 'https://wa.me/919217064245',
+  whatsapp: whatsappLink(),
 }

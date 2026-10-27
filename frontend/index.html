@@ -2,72 +2,77 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#12141A" />
     <link rel="preload" as="image" href="/agentix-logo-dark.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="AI Agentix — Enterprise Agentic AI Systems, n8n Automation & LLM Integration" />
+    <!--
+      Route-specific title/description/canonical/OG tags are written into each route's
+      HTML at build time (scripts/prerender-meta.mjs) and kept in sync by react-helmet-async
+      at runtime. data-rh lets Helmet replace these instead of duplicating them.
+    -->
+    <title>AI Agentix — AI Automation Experts for Indian Businesses</title>
+    <meta data-rh="true" name="description" content="AI Agentix builds AI agents and end-to-end automation for sales, marketing, HR, operations, finance and customer support — for growing businesses in India and worldwide." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <!-- Platform fonts: Manrope + Inter + JetBrains Mono -->
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <!-- AI Agentex brand fonts: Poppins (display+body) | Bebas Neue (big numbers) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
-    <title>AI Agentex — India's #1 End-to-End AI Automation Partner</title>
+    <!-- Brand fonts: Poppins (display + body) | JetBrains Mono (technical labels) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-    <!-- Premium preloader — inlined so it paints instantly, before the bundle/Tailwind load.
-         Real brand logo on a soft orange->white wash; one JS-driven progress bar. -->
+    <!-- Preloader: shown only while the app bundle downloads; removed on first render (AGX-026). -->
     <style>
       #agx-preloader {
         position: fixed; inset: 0; z-index: 9999;
         display: flex; flex-direction: column; align-items: center; justify-content: center;
-        background:
-          radial-gradient(80% 60% at 50% 32%, rgba(242,101,34,.16) 0%, rgba(242,101,34,0) 60%),
-          linear-gradient(155deg, #FFD9C0 0%, #FFE9DC 38%, #FFF6F1 66%, #FFFFFF 100%);
+        background: linear-gradient(155deg, #FFE9DC 0%, #FFF6F1 55%, #FFFFFF 100%);
         font-family: 'Poppins', system-ui, sans-serif;
-        opacity: 1; transition: opacity .5s ease, transform .5s ease, filter .5s ease;
+        transition: opacity .25s ease;
       }
-      #agx-preloader.agx-hide { opacity: 0; transform: scale(1.03); filter: blur(4px); pointer-events: none; }
-
-      .agx-logo-wrap { position: relative; display: grid; place-items: center; }
-      .agx-logo-wrap::before {
-        content: ""; position: absolute; width: 190%; height: 260%; border-radius: 50%;
-        background: radial-gradient(circle, rgba(242,101,34,.16) 0%, rgba(242,101,34,0) 68%);
-        animation: agx-breathe 2.8s ease-in-out infinite;
-      }
-      .agx-logo { position: relative; height: 58px; width: auto; opacity: 0;
-        animation: agx-rise .6s cubic-bezier(.2,.7,.2,1) .05s forwards; }
-
-      .agx-tag { margin-top: 18px; font-size: 11px; font-weight: 600; letter-spacing: .34em; text-transform: uppercase;
-        color: #B4816A; opacity: 0; animation: agx-rise .6s ease .3s forwards; }
-
-      .agx-bar { position: relative; margin-top: 26px; width: 176px; height: 3px; border-radius: 999px;
-        background: rgba(18,20,26,.08); overflow: hidden; opacity: 0; animation: agx-rise .5s ease .45s forwards; }
-      .agx-bar-fill { position: absolute; inset: 0; border-radius: 999px;
-        background: linear-gradient(90deg, #F26522, #FF9152); transform-origin: left; transform: scaleX(0); }
-
-      @keyframes agx-breathe { 0%,100% { transform: scale(.9); opacity: .55; } 50% { transform: scale(1.05); opacity: 1; } }
-      @keyframes agx-rise    { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
-
-      @media (prefers-reduced-motion: reduce) {
-        #agx-preloader *, #agx-preloader *::before { animation: none !important; }
-        #agx-preloader.agx-hide { transform: none; filter: none; }
-        .agx-logo, .agx-tag, .agx-bar { opacity: 1; }
-        .agx-bar-fill { transform: scaleX(1); }
-      }
+      #agx-preloader.agx-hide { opacity: 0; pointer-events: none; }
+      .agx-logo { height: 58px; width: auto; }
+      .agx-tag { margin-top: 18px; font-size: 11px; font-weight: 600; letter-spacing: .34em; text-transform: uppercase; color: #8A4B2E; }
     </style>
+
+    <!-- Floating lead form (lead-widget skill kit) — bottom-right; posts to our own /api/leads -->
+    <link rel="stylesheet" href="/lead-widget/lead-widget.css?v=2" />
+    <script>
+      window.LeadWidgetConfig = {
+        endpoint: '/api/leads',
+        thankYouUrl: '/thank-you?type=popup',
+        openThankYouInNewTab: false,
+        brandColor: '#CC4A12',
+        position: 'right',
+        bottomOffset: 20,
+        sideOffset: 20,
+        zIndex: 60,
+        eyebrow: 'Free consultation',
+        title: 'Talk to an AI expert',
+        text: 'Share your details and our team will call or WhatsApp you within 4 business hours.',
+        submitText: 'Request a Call Back',
+        iconLabel: 'Book a free consultation',
+        namePlaceholder: 'Full Name',
+        phonePlaceholder: 'Mobile number',
+        emailPlaceholder: 'Email (optional)',
+        messagePlaceholder: 'What would you like to automate? (optional)',
+        phonePattern: '^(?:[6-9][0-9]{9}|[0-9]{11,15})$',
+        phoneMaxLength: 15,
+        phoneError: 'Please enter a 10-digit mobile number, or your full number with country code.',
+        consentHtml: 'I agree that AI Agentix may contact me about this enquiry by call, WhatsApp, SMS or email — once or more than once, even if my number is on DND. I can withdraw anytime. <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>',
+        consentError: 'Please tick the box to agree, so we can contact you about your enquiry.',
+        autoShowPages: ['/'],
+        gtagEvent: 'generate_lead',
+        dataLayerEvent: 'generate_lead'
+      };
+    </script>
+    <script src="/lead-widget/lead-widget.js?v=2" defer></script>
   </head>
   <body>
-    <!-- Premium AI preloader (removed by main.jsx once fonts/app are ready) -->
+    <a class="skip-link" href="#main">Skip to content</a>
     <div id="agx-preloader" role="status" aria-label="Loading AI Agentix">
-      <div class="agx-logo-wrap">
-        <img class="agx-logo" src="/agentix-logo-dark.png" alt="AGENTiX" width="139" height="58" />
-      </div>
+      <img class="agx-logo" src="/agentix-logo-dark.png" alt="AGENTiX" width="139" height="58" />
       <div class="agx-tag">Intelligent Automation</div>
-      <div class="agx-bar" aria-hidden="true"><span class="agx-bar-fill"></span></div>
     </div>
 
     <div id="root"></div>

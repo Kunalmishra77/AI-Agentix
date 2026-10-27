@@ -3,7 +3,6 @@ import { meta } from '../data/aiStudio'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import ScrollProgress from '../components/common/ScrollProgress'
-import ScrollToTop from '../components/common/ScrollToTop'
 import ScrollToHash from '../components/common/ScrollToHash'
 import AIStudioHero from '../components/ai-studio/AIStudioHero'
 import AIStudioStats from '../components/ai-studio/AIStudioStats'
@@ -22,7 +21,7 @@ export default function AIStudioPage() {
       <ScrollProgress />
       <ScrollToHash />
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <AIStudioHero />
         <AIStudioStats />
         <AIStudioCreate />
@@ -31,7 +30,6 @@ export default function AIStudioPage() {
         <AIStudioCta />
       </main>
       <SiteFooter />
-      <ScrollToTop />
     </>
   )
 }

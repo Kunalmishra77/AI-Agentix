@@ -3,7 +3,6 @@ import { meta } from '../data/solutions'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import ScrollProgress from '../components/common/ScrollProgress'
-import ScrollToTop from '../components/common/ScrollToTop'
 import ScrollToHash from '../components/common/ScrollToHash'
 import SolutionsHero from '../components/solutions/SolutionsHero'
 import SolutionsCatalog from '../components/solutions/SolutionsCatalog'
@@ -22,7 +21,7 @@ export default function SolutionsPage() {
       <ScrollProgress />
       <ScrollToHash />
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <SolutionsHero />
         <SolutionsCatalog />
         <SolutionsDemo />
@@ -31,7 +30,6 @@ export default function SolutionsPage() {
         <SolutionsFinalCta />
       </main>
       <SiteFooter />
-      <ScrollToTop />
     </>
   )
 }

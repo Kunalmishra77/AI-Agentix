@@ -1,10 +1,10 @@
-import { useParams, Navigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import NotFoundPage from './NotFoundPage'
 import { Helmet } from 'react-helmet-async'
 import { getAgentPage, agentIndex } from '../data/agents'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import ScrollProgress from '../components/common/ScrollProgress'
-import ScrollToTop from '../components/common/ScrollToTop'
 import ScrollToHash from '../components/common/ScrollToHash'
 import AgentHero from '../components/agent-detail/AgentHero'
 import AgentPipeline from '../components/agent-detail/AgentPipeline'
@@ -20,7 +20,7 @@ export default function AgentDetailPage() {
   const agent = getAgentPage(slug)
 
   // Unknown agents fall back to the Technology page.
-  if (!agent) return <Navigate to="/technology" replace />
+  if (!agent) return <NotFoundPage />
 
   const index = agentIndex.findIndex((a) => a.slug === slug)
 
@@ -33,7 +33,7 @@ export default function AgentDetailPage() {
       <ScrollProgress />
       <ScrollToHash />
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         {/* Tone rhythm: only the hero is dark, everything else alternates white/alt. */}
         <AgentHero agent={agent} index={index} total={agentIndex.length} />
         <AgentPipeline agent={agent} />
@@ -45,7 +45,6 @@ export default function AgentDetailPage() {
         <AgentCta agent={agent} />
       </main>
       <SiteFooter />
-      <ScrollToTop />
     </>
   )
 }

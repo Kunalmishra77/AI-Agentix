@@ -15,7 +15,7 @@ export default function SolutionsCompare() {
         <div className="grid grid-cols-[1fr_1.2fr_1.2fr] bg-white/[0.03] text-xs font-bold uppercase tracking-wide sm:text-sm">
           <div className="p-4 text-ink-muted md:p-5">{compare.cols[0]}</div>
           <div className="flex items-center gap-2 p-4 text-ink-muted md:p-5">
-            <X className="h-4 w-4 text-red-400" /> {compare.cols[1]}
+            <X className="h-4 w-4 text-red-600" /> {compare.cols[1]}
           </div>
           <div className="flex items-center gap-2 bg-accent p-4 text-white md:p-5">
             <Check className="h-4 w-4" /> {compare.cols[2]}
@@ -49,7 +49,7 @@ export default function SolutionsCompare() {
             <h4 className="text-sm font-bold text-white">{r.metric}</h4>
             <div className="mt-3 space-y-2">
               <div className="flex items-start gap-2.5 px-1">
-                <X className="mt-0.5 h-4 w-4 shrink-0 text-red-400" />
+                <X className="mt-0.5 h-4 w-4 shrink-0 text-red-600" />
                 <div className="min-w-0">
                   <div className="text-xs font-bold uppercase tracking-wide text-ink-muted">{compare.cols[1]}</div>
                   <div className="mt-0.5 text-sm text-ink-muted">{r.manual}</div>

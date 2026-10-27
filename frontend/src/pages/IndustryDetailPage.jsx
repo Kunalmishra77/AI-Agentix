@@ -1,10 +1,10 @@
-import { useParams, Navigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import NotFoundPage from './NotFoundPage'
 import { Helmet } from 'react-helmet-async'
 import { getIndustryPage } from '../data/industryPages'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import ScrollProgress from '../components/common/ScrollProgress'
-import ScrollToTop from '../components/common/ScrollToTop'
 import ScrollToHash from '../components/common/ScrollToHash'
 import IndustryHero from '../components/industry-detail/IndustryHero'
 import IndustryStats from '../components/industry-detail/IndustryStats'
@@ -23,7 +23,7 @@ export default function IndustryDetailPage() {
   const data = getIndustryPage(slug)
 
   // Industries not yet built fall back to the Industries index.
-  if (!data) return <Navigate to="/industries" replace />
+  if (!data) return <NotFoundPage />
 
   // Flexible light sections alternate alt/white after the white stats band,
   // so the tone rhythm holds regardless of which optional sections a page has.
@@ -53,14 +53,13 @@ export default function IndustryDetailPage() {
       <ScrollProgress />
       <ScrollToHash />
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <IndustryHero hero={data.hero} image={data.heroImage} />
         {data.stats && <IndustryStats stats={data.stats} />}
         {rendered}
         {data.cta && <IndustryCta cta={data.cta} />}
       </main>
       <SiteFooter />
-      <ScrollToTop />
     </>
   )
 }

@@ -3,7 +3,6 @@ import { meta } from '../data/caseStudies'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import ScrollProgress from '../components/common/ScrollProgress'
-import ScrollToTop from '../components/common/ScrollToTop'
 import CaseStudiesHero from '../components/case-studies/CaseStudiesHero'
 import CaseStudiesGrid from '../components/case-studies/CaseStudiesGrid'
 import CaseStudiesAggregate from '../components/case-studies/CaseStudiesAggregate'
@@ -18,14 +17,13 @@ export default function CaseStudiesPage() {
       </Helmet>
       <ScrollProgress />
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <CaseStudiesHero />
         <CaseStudiesGrid />
         <CaseStudiesAggregate />
         <CaseStudiesCta />
       </main>
       <SiteFooter />
-      <ScrollToTop />
     </>
   )
 }

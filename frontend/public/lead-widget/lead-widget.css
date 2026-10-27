@@ -1,0 +1,108 @@
+/* =====================================================================
+   Lead Widget: floating "Book An Appointment" form (bottom-left/right)
+   Colours come from lead-widget.js config (brandColor / brandTextColor),
+   which sets the --lw-* variables below on the widget element.
+   ===================================================================== */
+.lw-widget {
+	--lw-brand: #ff9152;
+	--lw-brand-text: #ffffff;
+	--lw-brand-soft: rgba(255, 145, 82, 0.12);
+	--lw-bottom: 25px;
+	--lw-side: 25px;
+	position: fixed; bottom: var(--lw-bottom); left: var(--lw-side); z-index: 9990;
+	font-family: inherit; line-height: 1.4; color: #222;
+}
+.lw-widget.lw-right { left: auto; right: var(--lw-side); }
+.lw-widget *, .lw-widget *::before, .lw-widget *::after { box-sizing: border-box; }
+
+/* ---- Minimised icon ---- */
+.lw-toggle {
+	position: relative; width: 58px; height: 58px; padding: 0; border: none; border-radius: 50%;
+	background: var(--lw-brand); color: var(--lw-brand-text); cursor: pointer;
+	display: flex; align-items: center; justify-content: center;
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+	transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.lw-toggle svg { width: 26px; height: 26px; }
+.lw-toggle:hover { transform: scale(1.08); }
+.lw-toggle::after {
+	content: ''; position: absolute; inset: 0; border-radius: 50%;
+	border: 2px solid var(--lw-brand); animation: lwPulse 2s ease-out infinite;
+}
+@keyframes lwPulse { from { transform: scale(1); opacity: 0.7; } to { transform: scale(1.6); opacity: 0; } }
+.lw-widget.is-open .lw-toggle { opacity: 0; transform: scale(0.6); pointer-events: none; }
+
+/* ---- Panel ---- */
+.lw-panel {
+	position: absolute; left: 0; bottom: 0; width: 340px; max-width: calc(100vw - 32px);
+	max-height: calc(100vh - 110px); overflow-y: auto;
+	background: #fff; border-radius: 16px; padding: 20px 16px 16px;
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+	transform-origin: bottom left; transform: translate(-10px, 10px) scale(0.15); opacity: 0; visibility: hidden;
+	transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease, visibility 0s linear 0.45s;
+}
+.lw-right .lw-panel { left: auto; right: 0; transform-origin: bottom right; transform: translate(10px, 10px) scale(0.15); }
+.lw-widget.is-open .lw-panel {
+	transform: none; opacity: 1; visibility: visible;
+	transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease, visibility 0s;
+}
+.lw-close {
+	position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; padding: 0; border: none; border-radius: 50%;
+	background: #f2f2f2; color: #333; display: flex; align-items: center; justify-content: center; cursor: pointer;
+}
+.lw-close svg { width: 14px; height: 14px; }
+.lw-close:hover { background: #e6e6e6; }
+.lw-eyebrow { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--lw-brand); }
+.lw-title { font-size: 20px; line-height: 1.3; font-weight: 700; margin: 2px 32px 4px 0; color: #111; }
+.lw-text { font-size: 12.5px; line-height: 1.45; color: #555; margin: 0 0 12px; }
+
+/* ---- Form ---- */
+.lw-form { display: flex; flex-direction: column; gap: 8px; margin: 0; }
+.lw-row { display: flex; gap: 8px; }
+.lw-row .lw-input { flex: 1; min-width: 0; }
+.lw-input {
+	display: block; width: 100%; height: 40px; margin: 0; padding: 8px 12px;
+	font: inherit; font-size: 13px; color: #222;
+	border: 1px solid #e3e3e3; border-radius: 8px; background: #fafafa; box-shadow: none; outline: none;
+}
+.lw-input:focus { border-color: var(--lw-brand); background: #fff; box-shadow: 0 0 0 3px var(--lw-brand-soft); }
+textarea.lw-input { height: auto; min-height: 58px; resize: vertical; }
+.lw-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.lw-error {
+	margin: 0; padding: 8px 10px; font-size: 12.5px; line-height: 1.4; border-radius: 8px;
+	color: #b42318; background: #fef3f2; border: 1px solid #fecdca;
+}
+.lw-error[hidden] { display: none; }
+.lw-submit {
+	display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
+	padding: 13px 20px; border: none; border-radius: 50px; cursor: pointer;
+	background: var(--lw-brand); color: var(--lw-brand-text); font: inherit; font-size: 15px; font-weight: 500;
+	transition: filter 0.2s ease;
+}
+.lw-submit svg { width: 22px; height: 22px; }
+.lw-submit:hover { filter: brightness(0.95); }
+.lw-submit:disabled { opacity: 0.7; cursor: wait; }
+
+/* Consent checkbox (AI Agentix: DPDP Act) */
+.lw-consent { display: flex; align-items: flex-start; gap: 8px; font-size: 11.5px; line-height: 1.45; color: #4a5261; cursor: pointer; }
+.lw-consent input { flex: none; width: 16px; height: 16px; margin: 1px 0 0; accent-color: var(--lw-brand); cursor: pointer; }
+.lw-consent a { color: var(--lw-brand); font-weight: 600; text-decoration: underline; }
+.lw-submit:focus-visible, .lw-toggle:focus-visible, .lw-close:focus-visible { outline: 2px solid #12141a; outline-offset: 2px; }
+
+/* Error box for page forms marked data-lead-form */
+.lw-page-error {
+	display: block; margin-top: 12px; padding: 10px 14px; border-radius: 8px; font-size: 14px; line-height: 1.45;
+	color: #b42318; background: #fef3f2; border: 1px solid #fecdca;
+}
+.lw-page-error:empty { display: none; }
+
+@media (max-width: 575px) {
+	.lw-widget { left: min(var(--lw-side), 16px); }
+	.lw-widget.lw-right { left: auto; right: min(var(--lw-side), 16px); }
+	.lw-toggle { width: 52px; height: 52px; }
+	.lw-toggle svg { width: 23px; height: 23px; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.lw-toggle::after { animation: none; }
+	.lw-panel, .lw-widget.is-open .lw-panel { transition: none; }
+}

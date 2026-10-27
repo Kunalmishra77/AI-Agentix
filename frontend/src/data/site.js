@@ -1,5 +1,18 @@
 // Global nav + footer content — verbatim from content-archive/global.md (SiteNav.jsx / SiteFooter.jsx).
 
+// Single source of truth for how visitors reach us. WhatsApp = the AI Agentix
+// WhatsApp bot line; phone = the calling number.
+export const contactInfo = {
+  phone: '+91 92170 64245',
+  phoneHref: 'tel:+919217064245',
+  email: 'myai@ai-agentix.com',
+  address: 'New Delhi, India',
+  whatsappNumber: '919217167347',
+  whatsappDisplay: '+91 92171 67347',
+}
+export const whatsappLink = (text = 'Hi AI Agentix, I have a question about your services.') =>
+  `https://wa.me/${contactInfo.whatsappNumber}${text ? `?text=${encodeURIComponent(text)}` : ''}`
+
 export const brand = {
   name: 'AGENTiX',
   audit: { label: 'Get a Free AI Audit', to: '/contact' },
@@ -92,34 +105,35 @@ export const footer = {
     { label: 'Instagram', href: 'https://www.instagram.com/ai_agentix' },
     { label: 'Facebook', href: 'https://www.facebook.com/aiagentix' },
     { label: 'Twitter', href: 'https://x.com/ai_agentix' },
-    { label: 'WhatsApp', href: 'https://wa.me/919217064245' },
+    { label: 'WhatsApp', href: whatsappLink('') },
   ],
   cols: [
+    // AGX-016: every item links to its own detail page
     { title: 'Solutions', links: [
-      { label: 'Sales Automation', to: '/solutions' }, { label: 'Marketing Automation', to: '/solutions' },
-      { label: 'HRMS & Hiring', to: '/solutions' }, { label: 'Operations', to: '/solutions' },
-      { label: 'Supply Chain', to: '/solutions' }, { label: 'Finance & Accounts', to: '/solutions' },
-      { label: 'Voice & Chat Agents', to: '/solutions' }, { label: 'Manufacturing', to: '/solutions' },
+      { label: 'Sales Automation', to: '/solutions/sales-automation' }, { label: 'Marketing Automation', to: '/solutions/marketing-automation' },
+      { label: 'HRMS & Hiring', to: '/solutions/hrms-hiring' }, { label: 'Operations', to: '/solutions/operations' },
+      { label: 'Supply Chain', to: '/solutions/supply-chain' }, { label: 'Finance & Accounts', to: '/solutions/finance-accounts' },
+      { label: 'Voice & Chat Agents', to: '/solutions/ai-voice-chat' }, { label: 'Manufacturing', to: '/solutions/manufacturing' },
     ]},
     { title: 'Industries', links: [
-      { label: 'Healthcare', to: '/industries' }, { label: 'Education', to: '/industries' },
-      { label: 'Hospitality', to: '/industries' }, { label: 'Real Estate', to: '/industries' },
-      { label: 'Retail & E-commerce', to: '/industries' }, { label: 'Manufacturing', to: '/industries' },
-      { label: 'Logistics', to: '/industries' },
+      { label: 'Healthcare', to: '/industries/healthcare' }, { label: 'Education', to: '/industries/education' },
+      { label: 'Hospitality', to: '/industries/hospitality' }, { label: 'Real Estate', to: '/industries/real-estate' },
+      { label: 'Retail & E-commerce', to: '/industries/retail-ecommerce' }, { label: 'Manufacturing', to: '/industries/manufacturing' },
+      { label: 'Logistics', to: '/industries/logistics' },
     ]},
     { title: 'Company', links: [
       { label: 'About Us', to: '/about' }, { label: 'Technology', to: '/technology' },
       { label: 'AI Studio', to: '/ai-studio' }, { label: 'Case Studies', to: '/case-studies' },
-      { label: 'Contact', to: '/contact' }, { label: 'Careers', to: '/contact#careers' },
+      { label: 'Contact', to: '/contact' },
       { label: 'Partner With Us', to: '/contact#partnerships' },
     ]},
   ],
   newsletter: {
     title: 'Stay Updated',
-    blurb: 'Weekly insights on AI automation for Indian businesses.',
-    placeholder: 'Your email', submit: 'Subscribe', submitting: 'Subscribing…', success: "You're subscribed!",
+    blurb: 'Occasional insights on AI automation for growing businesses.',
+    placeholder: 'Your email', submit: 'Subscribe', submitting: 'Subscribing…',
   },
-  contact: { title: 'Contact', email: 'myai@ai-agentix.com', phone: '+91 92170 64245', address: 'New Delhi, India' },
+  contact: { title: 'Contact', email: contactInfo.email, phone: contactInfo.phone, phoneHref: contactInfo.phoneHref, address: contactInfo.address },
   copyright: 'AGENTiX. All rights reserved. Powering India’s Automation Revolution.',
   entity: 'A product of SANTURE AI PRIVATE LIMITED',
   legal: [
