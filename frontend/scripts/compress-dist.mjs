@@ -6,7 +6,7 @@ import path from 'node:path'
 import zlib from 'node:zlib'
 import { fileURLToPath } from 'node:url'
 
-const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'dist')
+const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', process.env.OUT_DIR || 'dist')
 const EXT = new Set(['.js', '.css', '.html', '.svg', '.json', '.xml', '.txt', '.ico'])
 let files = 0, before = 0, afterBr = 0
 

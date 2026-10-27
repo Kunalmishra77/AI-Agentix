@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url'
 import { createServer } from 'vite'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const dist = path.join(root, 'dist')
+const dist = path.resolve(root, process.env.OUT_DIR || 'dist')
 
 const vite = await createServer({ root, logLevel: 'error', server: { middlewareMode: true, hmr: false }, appType: 'custom' })
 let seo

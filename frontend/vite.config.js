@@ -12,6 +12,8 @@ export default defineConfig({
     },
   },
   build: {
+    // OUT_DIR lets the deploy script build next to the live dist/ and swap (no downtime)
+    outDir: process.env.OUT_DIR || 'dist',
     rollupOptions: {
       output: {
         manualChunks(id) {
