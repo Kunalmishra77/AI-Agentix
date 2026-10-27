@@ -7,6 +7,7 @@ import SectionHeading from '../common/SectionHeading'
 import Placeholder from '../common/Placeholder'
 import { solutions } from '../../data/home'
 import { cn } from '../../lib/cn'
+import { tabKeyHandler } from '../../lib/tabKeys'
 
 export default function Solutions() {
   const [active, setActive] = useState(0)
@@ -18,10 +19,21 @@ export default function Solutions() {
 
       <div className="mt-12 grid gap-6 lg:grid-cols-[minmax(0,320px)_1fr]">
         {/* tab list */}
-        <div className="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
+        <div
+          role="tablist"
+          aria-label={solutions.heading}
+          aria-orientation="vertical"
+          onKeyDown={tabKeyHandler(solutions.items.length, active, setActive, 'sol')}
+          className="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0"
+        >
           {solutions.items.map((it, i) => (
             <button
               key={it.name}
+              id={`sol-tab-${i}`}
+              role="tab"
+              aria-selected={i === active}
+              aria-controls="sol-panel"
+              tabIndex={i === active ? 0 : -1}
               onClick={() => setActive(i)}
               className={cn(
                 'whitespace-nowrap rounded-xl border px-4 py-3 text-left text-sm font-semibold transition-all lg:whitespace-normal',
@@ -36,7 +48,7 @@ export default function Solutions() {
         </div>
 
         {/* detail panel */}
-        <div className="rounded-2xl border border-line bg-surface-alt p-6 md:p-8">
+        <div id="sol-panel" role="tabpanel" aria-labelledby={`sol-tab-${active}`} tabIndex={0} className="rounded-2xl border border-line bg-surface-alt p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:p-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -58,9 +70,9 @@ export default function Solutions() {
                     </li>
                   ))}
                 </ul>
-                <Link to={solutions.link.to} className="btn-ghost mt-6">
-                  {solutions.link.label}
-                  <ArrowRight className="h-4 w-4" />
+                <Link to={s.to} className="btn-ghost mt-6">
+                  {solutions.linkLabel}<span className="sr-only">: {s.name}</span>
+                  <ArrowRight className="h-4 w-4" aria-hidden />
                 </Link>
               </div>
               <div className="flex flex-col gap-4">

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Plus, Quote } from 'lucide-react'
+import { ArrowRight, Quote } from 'lucide-react'
 import Section from '../common/Section'
 import SectionHeading from '../common/SectionHeading'
 import Reveal from '../common/Reveal'
@@ -34,9 +34,6 @@ export default function HowItWorks() {
               </div>
               <h3 className="mt-4 text-xl font-bold text-heading transition-colors group-hover:text-white">{s.title}</h3>
               <p className="mt-2 max-w-md text-sm leading-relaxed text-body transition-colors group-hover:text-white/90">{s.text}</p>
-              <span className="absolute bottom-8 right-8 flex h-9 w-9 items-center justify-center rounded-full bg-surface-alt text-accent transition-all duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-accent sm:bottom-10 sm:right-10">
-                <Plus className="h-4 w-4" />
-              </span>
             </div>
           ))}
         </div>

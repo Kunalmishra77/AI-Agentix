@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import NotFoundPage from './NotFoundPage'
-import { Helmet } from 'react-helmet-async'
+import Seo from '../components/common/Seo'
 import { getAgentPage, agentIndex } from '../data/agents'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
@@ -26,10 +26,7 @@ export default function AgentDetailPage() {
 
   return (
     <>
-      <Helmet>
-        <title>{agent.meta.title}</title>
-        {agent.meta.description && <meta name="description" content={agent.meta.description} />}
-      </Helmet>
+      <Seo title={agent.meta.title} description={agent.meta.description} />
       <ScrollProgress />
       <ScrollToHash />
       <SiteNav />

@@ -210,7 +210,7 @@ function buildEmail(lead) {
   rows.push(['Form', FORM_LABELS[lead.type] || lead.type])
   if (lead.pageUrl) rows.push(['Page', lead.pageUrl])
   if (lead.utm && Object.keys(lead.utm).length) rows.push(['Campaign', Object.entries(lead.utm).map(([k, v]) => `${k}=${v}`).join(' · ')])
-  rows.push(['Consent', `Given at ${lead.consent.at} (notice v${lead.consent.version})`])
+  rows.push(['Consent', `Given at ${lead.consent.at} (notice v${lead.consent.version})${lead.consent.marketing ? ' · also opted in to marketing updates' : ' · enquiry only (no marketing)'}`])
   rows.push(['Lead ID', lead.id])
 
   const who = lead.fields.name || lead.fields.email || 'website visitor'
@@ -260,7 +260,7 @@ export function sheetRow(lead) {
       lead.receivedAt, lead.id, FORM_LABELS[lead.type] || lead.type,
       f.name, f.phone, f.email, f.company || f.agency, details,
       lead.pageUrl, Object.entries(lead.utm || {}).map(([k, v]) => `${k}=${v}`).join(' '),
-      `Yes (v${lead.consent.version}, ${lead.consent.at})`,
+      `Yes (v${lead.consent.version}, ${lead.consent.at})${lead.consent.marketing ? ' + marketing' : ''}`,
     ].map(sheetSafe),
   }
 }
@@ -370,6 +370,7 @@ function normaliseBody(body = {}) {
       type: body.form_source === 'popup' ? 'popup' : String(body.form_source || ''),
       fields: { name, phone, email, message },
       consent: body.consent === 'yes' || body.consent === 'on' || body.consent === 'true',
+      marketing: body.marketing_consent === 'yes' || body.marketing_consent === 'on',
       hp: body.website || '',
       elapsed: Number(body.form_elapsed),
       pageUrl: body.page_url,
@@ -380,6 +381,7 @@ function normaliseBody(body = {}) {
     type: body.type,
     fields: body.fields && typeof body.fields === 'object' ? body.fields : {},
     consent: body.consent === true,
+    marketing: body.marketingConsent === true || body.type === 'newsletter',
     hp: body.hp || '',
     elapsed: Number(body.elapsed),
     pageUrl: body.pageUrl,
@@ -433,7 +435,7 @@ export function leadHandler({ origins }) {
       receivedAt: now.toISOString(),
       type: b.type,
       fields,
-      consent: { given: true, version: CONSENT_VERSION, at: now.toISOString() },
+      consent: { given: true, marketing: !!b.marketing, version: CONSENT_VERSION, at: now.toISOString() },
       pageUrl: cleanPageUrl(b.pageUrl, origins),
       utm: cleanUtm(b.utm),
       ip,

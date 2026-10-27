@@ -131,8 +131,7 @@ export const leadership = {
     { name: 'Anand Sanadhya', role: 'CEO & Founder', image: null, pending: false, bio: '' },
     { name: 'Vitalsai Gorrela', role: 'Co-Founder & COO', image: null, pending: false,
       bio: "As Co-Founder and Chief Operating Officer of AGENTiX, Vitalsai Gorrela drives the company's operations, strategy, and execution. With a strong foundation in AI, cloud engineering, and enterprise automation, he leads cross-functional teams to build scalable AI solutions that help businesses innovate, automate, and grow. He is passionate about turning complex technologies into real-world business impact while shaping the future of intelligent automation." },
-    { name: 'To be announced', role: 'Operations Manager', image: null, pending: true, bio: '' },
-    { name: 'To be announced', role: 'Business Manager', image: null, pending: true, bio: '' },
+    // Placeholder "To be announced" cards removed (AGX-018); add real people here when ready.
   ],
 }
 

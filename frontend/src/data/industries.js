@@ -1,7 +1,7 @@
 // Industries index page content.
 
 export const meta = {
-  title: 'AI by Industry | AI Agentix',
+  title: 'AI by Industry — AI Agentix',
   description: 'Purpose-built AI automation for healthcare, education, hospitality, real estate, retail, manufacturing, and logistics — tuned to each industry’s workflows.',
 }
 

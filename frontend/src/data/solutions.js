@@ -78,8 +78,11 @@ export const process = {
 // no layout change. `flows` document the customer journeys the demo will show.
 export const demo = {
   eyebrow: 'See It In Action',
-  heading: 'Watch AI Agentix Run a Real Business',
-  body: 'A complete customer journey — from first touch to closed deal — automated end to end across every channel and synced into one CRM. Full walkthrough video arriving soon.',
+  heading: 'See AI Agentix Run a Real Business',
+  body: 'A complete customer journey — from first touch to closed deal — automated end to end across every channel and synced into one CRM.',
+  // Set to the video path (e.g. '/home/demo.mp4') when the walkthrough is ready; the
+  // video block stays hidden until then (AGX-016).
+  videoSrc: '',
   videoBadge: 'Product Demo',
   videoNote: 'Full walkthrough video coming soon',
   flows: [

@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+import Seo from '../common/Seo'
 import { motion } from 'framer-motion'
 import { ShieldCheck, CalendarDays, Building2, Mail, ArrowUpRight } from 'lucide-react'
 import SiteNav from '../layout/SiteNav'
@@ -14,10 +14,7 @@ const jump = (i) => (e) => {
 export default function LegalLayout({ data }) {
   return (
     <>
-      <Helmet>
-        <title>{data.meta.title}</title>
-        <meta name="description" content={data.meta.description} />
-      </Helmet>
+      <Seo title={data.meta.title} description={data.meta.description} />
       <ScrollProgress />
       <SiteNav />
       <main id="main" tabIndex={-1} className="outline-none">

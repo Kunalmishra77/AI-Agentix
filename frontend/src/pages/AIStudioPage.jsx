@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+import Seo from '../components/common/Seo'
 import { meta } from '../data/aiStudio'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
@@ -14,10 +14,7 @@ import AIStudioCta from '../components/ai-studio/AIStudioCta'
 export default function AIStudioPage() {
   return (
     <>
-      <Helmet>
-        <title>{meta.title}</title>
-        <meta name="description" content={meta.description} />
-      </Helmet>
+      <Seo title={meta.title} description={meta.description} />
       <ScrollProgress />
       <ScrollToHash />
       <SiteNav />

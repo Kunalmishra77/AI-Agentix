@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
+import Seo from '../components/common/Seo'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Stethoscope, GraduationCap, Hotel, Building2, ShoppingBag, Factory, Truck } from 'lucide-react'
 import SiteNav from '../components/layout/SiteNav'
@@ -23,10 +23,7 @@ const ICONS = {
 export default function IndustriesPage() {
   return (
     <>
-      <Helmet>
-        <title>{meta.title}</title>
-        <meta name="description" content={meta.description} />
-      </Helmet>
+      <Seo title={meta.title} description={meta.description} />
       <ScrollProgress />
       <ScrollToHash />
       <SiteNav />
@@ -58,6 +55,7 @@ export default function IndustriesPage() {
 
         {/* industry grid */}
         <Section tone="alt">
+          <h2 className="sr-only">Industries we serve</h2>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {items.map((it, i) => {
               const Icon = ICONS[it.icon] || Building2

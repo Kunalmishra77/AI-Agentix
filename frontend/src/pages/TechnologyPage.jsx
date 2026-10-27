@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+import Seo from '../components/common/Seo'
 import { meta } from '../data/technology'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
@@ -13,10 +13,7 @@ import TechCta from '../components/technology/TechCta'
 export default function TechnologyPage() {
   return (
     <>
-      <Helmet>
-        <title>{meta.title}</title>
-        <meta name="description" content={meta.description} />
-      </Helmet>
+      <Seo title={meta.title} description={meta.description} />
       <ScrollProgress />
       <SiteNav />
       <main id="main" tabIndex={-1} className="outline-none">

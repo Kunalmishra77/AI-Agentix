@@ -12,7 +12,7 @@ export default function ContactAside() {
     <div className="space-y-6">
       {/* reach us directly */}
       <div className="rounded-3xl border border-line bg-surface-alt/50 p-6 md:p-7">
-        <h3 className="text-lg font-bold text-heading">Reach Us Directly</h3>
+        <h2 className="text-lg font-bold text-heading">Reach Us Directly</h2>
         <div className="mt-5 space-y-4">
           {rows.map((r) => {
             const Inner = (
@@ -39,7 +39,7 @@ export default function ContactAside() {
 
       {/* what happens next */}
       <div className="rounded-3xl bg-ink p-6 text-white md:p-7">
-        <h3 className="text-lg font-bold">What Happens Next?</h3>
+        <h2 className="text-lg font-bold text-white">What Happens Next?</h2>
         <ol className="mt-5 space-y-4">
           {nextSteps.map((s, i) => (
             <li key={s} className="flex items-start gap-3">

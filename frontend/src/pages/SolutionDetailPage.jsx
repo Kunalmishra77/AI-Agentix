@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import NotFoundPage from './NotFoundPage'
-import { Helmet } from 'react-helmet-async'
+import Seo from '../components/common/Seo'
 import { getSolutionPage } from '../data/solutionPages'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
@@ -26,10 +26,7 @@ export default function SolutionDetailPage() {
 
   return (
     <>
-      <Helmet>
-        <title>{data.meta.title}</title>
-        {data.meta.description && <meta name="description" content={data.meta.description} />}
-      </Helmet>
+      <Seo title={data.meta.title} description={data.meta.description} />
       <ScrollProgress />
       <ScrollToHash />
       <SiteNav />

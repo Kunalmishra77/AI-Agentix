@@ -242,7 +242,7 @@ const REGISTRY = fleet.items.reduce((acc, base) => {
     flow: base.flow,
     tech: base.tech,
     meta: {
-      title: `${base.name} — ${base.role} | AI Agentix`,
+      title: `${base.name}: ${base.role} — AI Agentix`,
       description: `${base.name}: ${base.desc}`,
     },
     ...extra,

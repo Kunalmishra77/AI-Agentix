@@ -110,9 +110,11 @@ export default function AssistantWidget() {
       const reply = data.reply
       setMessages((m) => [...m, { role: 'assistant', text: reply, action: data.action }])
       speak(reply)
-      if (data.action?.navigate) {
-        navigate(data.action.navigate + (data.action.anchor || ''))
-        goToAnchor(data.action.anchor)
+      // only plain internal paths (defence in depth on top of the server allow-list)
+      const anchor = /^#[a-z0-9-]+$/i.test(data.action?.anchor || '') ? data.action.anchor : ''
+      if (data.action?.navigate && /^\/[a-z0-9/-]*$/i.test(data.action.navigate)) {
+        navigate(data.action.navigate + anchor)
+        goToAnchor(anchor)
       }
     } catch {
       setMessages((m) => [...m, { role: 'assistant', text: 'I had trouble connecting. Please try again, or reach us on WhatsApp.' }])

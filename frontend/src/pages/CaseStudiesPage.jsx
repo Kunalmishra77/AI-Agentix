@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+import Seo from '../components/common/Seo'
 import { meta } from '../data/caseStudies'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
@@ -11,10 +11,7 @@ import CaseStudiesCta from '../components/case-studies/CaseStudiesCta'
 export default function CaseStudiesPage() {
   return (
     <>
-      <Helmet>
-        <title>{meta.title}</title>
-        <meta name="description" content={meta.description} />
-      </Helmet>
+      <Seo title={meta.title} description={meta.description} />
       <ScrollProgress />
       <SiteNav />
       <main id="main" tabIndex={-1} className="outline-none">

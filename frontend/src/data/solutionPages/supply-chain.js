@@ -5,7 +5,7 @@ export default {
   slug: 'supply-chain',
   heroImage: '/images/hero-supply-chain.webp',
   meta: {
-    title: 'Supply Chain Automation | AI Agentix',
+    title: 'Supply Chain Automation — AI Agentix',
     description: 'AI-powered demand forecasting, inventory management, vendor automation, and logistics optimization. Stop firefighting and start anticipating.',
   },
   hero: {
