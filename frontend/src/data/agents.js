@@ -197,7 +197,7 @@ const EXTRAS = {
       { q: 'Does it work with Tally?', a: 'Yes — GST-ready data and reconciled entries export directly to Tally Prime. Zoho Books, QuickBooks and Busy are also supported.' },
       { q: 'How accurate is the invoice reading?', a: 'It uses enterprise OCR (Google Document AI / Nanonets) and flags anything low-confidence for a quick human check rather than posting it blindly.' },
       { q: 'Can it handle GST filing prep?', a: 'It computes and structures your GST data ready for filing and exports it to your accounting system. Final submission stays with your accountant.' },
-      { q: 'Is our financial data secure?', a: 'All data stays on AWS Mumbai, encrypted in transit and at rest, and is never used to train shared models. Full audit logs are retained.' },
+      { q: 'Is our financial data secure?', a: 'Data is encrypted in transit and at rest, can be hosted in India, and is never used to train shared models. Full audit logs are retained.' },
     ],
   },
   document: {
@@ -242,7 +242,7 @@ const REGISTRY = fleet.items.reduce((acc, base) => {
     flow: base.flow,
     tech: base.tech,
     meta: {
-      title: `${base.name} — ${base.role} | AI Agentix`,
+      title: `${base.name}: ${base.role} — AI Agentix`,
       description: `${base.name}: ${base.desc}`,
     },
     ...extra,

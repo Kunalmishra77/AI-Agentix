@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react'
 import { navLinks, solutionsMega, industriesMega, aboutMega, technologyMega, brand } from '../../data/site'
+import useFocusTrap from '../../lib/useFocusTrap'
 import { cn } from '../../lib/cn'
 import Logo from './Logo'
 
@@ -27,7 +28,9 @@ export default function SiteNav() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    // hides the floating WhatsApp / lead-form / assistant buttons so they never cover the drawer (AGX-023)
+    document.body.classList.toggle('agx-drawer-open', mobileOpen)
+    return () => { document.body.style.overflow = ''; document.body.classList.remove('agx-drawer-open') }
   }, [mobileOpen])
 
   const light = scrolled || !!openMega
@@ -89,10 +92,12 @@ export default function SiteNav() {
         {/* mobile toggle */}
         <button
           className={cn('-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md lg:hidden', light ? 'text-heading' : 'text-white')}
-          aria-label="Menu"
+          aria-label="Open menu"
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-menu"
           onClick={() => setMobileOpen(true)}
         >
-          <Menu className="h-6 w-6" />
+          <Menu className="h-6 w-6" aria-hidden />
         </button>
       </div>
 
@@ -180,14 +185,23 @@ function MegaPanel({ data, image, onClose }) {
 function MobileDrawer({ onClose }) {
   // which mega section is expanded (only one at a time)
   const [openSection, setOpenSection] = useState(null)
+  const drawerRef = useRef(null)
+  const closeRef = useRef(null)
+  useFocusTrap(drawerRef, true, onClose, closeRef)
   return (
     <>
       <motion.div
         className="fixed inset-0 z-40 bg-black/60 lg:hidden"
+        aria-hidden
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
         onClick={onClose}
       />
       <motion.aside
+        ref={drawerRef}
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site menu"
         className="fixed inset-y-0 right-0 z-50 flex w-[86%] max-w-sm flex-col bg-ink lg:hidden"
         initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
         transition={{ type: 'tween', duration: 0.28, ease: [0.21, 0.5, 0.25, 1] }}
@@ -195,6 +209,7 @@ function MobileDrawer({ onClose }) {
         <div className="flex h-[72px] items-center justify-between border-b border-white/10 pl-5 pr-3">
           <Logo dark />
           <button
+            ref={closeRef}
             aria-label="Close menu"
             onClick={onClose}
             className="-mr-1 inline-flex h-11 w-11 items-center justify-center rounded-md text-white hover:bg-white/10"

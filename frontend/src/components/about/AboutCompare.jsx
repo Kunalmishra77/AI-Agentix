@@ -15,7 +15,7 @@ export default function AboutCompare() {
           <div className="grid grid-cols-[0.9fr_1.3fr_1.3fr] bg-white text-xs font-bold uppercase tracking-wide sm:text-sm">
             <div className="p-4" />
             <div className="flex items-center gap-2 p-4 text-body-soft">
-              <X className="h-4 w-4 text-red-400" /> {compare.cols[0]}
+              <X className="h-4 w-4 text-red-600" /> {compare.cols[0]}
             </div>
             <div className="flex items-center gap-2 bg-accent p-4 text-white">
               <Check className="h-4 w-4" /> {compare.cols[1]}

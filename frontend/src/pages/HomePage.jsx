@@ -1,9 +1,8 @@
-import { Helmet } from 'react-helmet-async'
+import Seo from '../components/common/Seo'
 import { meta } from '../data/home'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import ScrollProgress from '../components/common/ScrollProgress'
-import ScrollToTop from '../components/common/ScrollToTop'
 import Hero from '../components/home/Hero'
 import PlatformMarquee from '../components/home/PlatformMarquee'
 import ProblemSection from '../components/home/ProblemSection'
@@ -21,13 +20,10 @@ import FinalCta from '../components/home/FinalCta'
 export default function HomePage() {
   return (
     <>
-      <Helmet>
-        <title>{meta.title}</title>
-        <meta name="description" content={meta.description} />
-      </Helmet>
+      <Seo title={meta.title} description={meta.description} org />
       <ScrollProgress />
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <Hero />
         <PlatformMarquee />
         <ProblemSection />
@@ -43,7 +39,6 @@ export default function HomePage() {
         <FinalCta />
       </main>
       <SiteFooter />
-      <ScrollToTop />
     </>
   )
 }

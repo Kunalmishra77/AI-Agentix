@@ -1,9 +1,8 @@
-import { Helmet } from 'react-helmet-async'
+import Seo from '../components/common/Seo'
 import { meta } from '../data/about'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import ScrollProgress from '../components/common/ScrollProgress'
-import ScrollToTop from '../components/common/ScrollToTop'
 import ScrollToHash from '../components/common/ScrollToHash'
 import AboutHero from '../components/about/AboutHero'
 import AboutMission from '../components/about/AboutMission'
@@ -17,14 +16,11 @@ import AboutFinalCta from '../components/about/AboutFinalCta'
 export default function AboutPage() {
   return (
     <>
-      <Helmet>
-        <title>{meta.title}</title>
-        <meta name="description" content={meta.description} />
-      </Helmet>
+      <Seo title={meta.title} description={meta.description} />
       <ScrollProgress />
       <ScrollToHash />
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <AboutHero />
         <AboutMission />
         <AboutJourney />
@@ -35,7 +31,6 @@ export default function AboutPage() {
         <AboutFinalCta />
       </main>
       <SiteFooter />
-      <ScrollToTop />
     </>
   )
 }

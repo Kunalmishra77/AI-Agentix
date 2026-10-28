@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
+import Seo from '../components/common/Seo'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Stethoscope, GraduationCap, Hotel, Building2, ShoppingBag, Factory, Truck } from 'lucide-react'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import ScrollProgress from '../components/common/ScrollProgress'
-import ScrollToTop from '../components/common/ScrollToTop'
 import ScrollToHash from '../components/common/ScrollToHash'
 import Section from '../components/common/Section'
 import IndustryCta from '../components/industry-detail/IndustryCta'
@@ -24,14 +23,11 @@ const ICONS = {
 export default function IndustriesPage() {
   return (
     <>
-      <Helmet>
-        <title>{meta.title}</title>
-        <meta name="description" content={meta.description} />
-      </Helmet>
+      <Seo title={meta.title} description={meta.description} />
       <ScrollProgress />
       <ScrollToHash />
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         {/* hero */}
         <section className="relative flex min-h-[560px] items-center overflow-hidden bg-ink pt-28 pb-16 text-white">
           <div className="absolute inset-0" aria-hidden>
@@ -59,6 +55,7 @@ export default function IndustriesPage() {
 
         {/* industry grid */}
         <Section tone="alt">
+          <h2 className="sr-only">Industries we serve</h2>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {items.map((it, i) => {
               const Icon = ICONS[it.icon] || Building2
@@ -96,7 +93,6 @@ export default function IndustriesPage() {
         <IndustryCta cta={cta} />
       </main>
       <SiteFooter />
-      <ScrollToTop />
     </>
   )
 }

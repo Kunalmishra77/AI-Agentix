@@ -10,7 +10,7 @@ export const meta = {
 export const hero = {
   eyebrow: 'AI Content Studio',
   heading: 'Your Brand. On Every Platform. Every Day.',
-  body: "AI Agentix runs India's most advanced AI-powered content studio. We create, publish, and optimize your brand's entire digital presence — delivering the output of a 10-person marketing team at a fraction of the cost.",
+  body: "AI Agentix runs an AI-powered content studio. We create, publish, and optimize your brand's entire digital presence — delivering the output of a 10-person marketing team at a fraction of the cost.",
   quickStats: [
     { value: '10x', label: 'Content output' },
     { value: '60%', label: 'Lower cost vs agency' },

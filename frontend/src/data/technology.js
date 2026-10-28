@@ -4,15 +4,15 @@
 
 export const meta = {
   title: 'Technology — AI Agentix',
-  description: 'The AI stack behind AI Agentix — agentic AI, RAG pipelines, voice agents, and 200+ integrations. SOC 2 compliant, hosted in India.',
+  description: 'The AI stack behind AI Agentix — agentic AI, RAG pipelines, voice agents, and 200+ integrations, with India hosting available.',
 }
 
 export const hero = {
   eyebrow: 'Enterprise-Grade AI Stack',
   heading: 'The Technology Behind Every Automation',
-  body: 'Purpose-built agentic AI. Not off-the-shelf tools wrapped in a dashboard. Every system we deploy is custom-engineered on a battle-tested stack — hosted in India, compliant with Indian data laws.',
+  body: 'Purpose-built agentic AI. Not off-the-shelf tools wrapped in a dashboard. Every system we deploy is custom-engineered on a battle-tested stack — with India hosting available and built for India’s data protection law.',
   cta: { label: 'Talk to an Engineer', to: '/contact' },
-  trust: ['SOC 2 Compliant', 'DPDPA 2023', 'Hosted in India (AWS Mumbai)', '99.97% uptime SLA'],
+  trust: ['Encrypted in transit & at rest', 'Built for DPDP Act 2023', 'India hosting available', 'Audit logs on every action'],
   fleetTitle: 'The Agent Fleet',
   fleetNote: 'Eight specialised agents — one unified platform',
 }
@@ -91,11 +91,11 @@ export const integrations = {
 export const security = {
   eyebrow: 'Security & Compliance',
   heading: 'Enterprise Security by Default',
-  body: 'Every AI Agentix deployment meets enterprise security requirements. Your data is never used to train shared models.',
+  body: 'Security is designed into every AI Agentix deployment. Your data is never used to train shared models.',
   items: [
-    { icon: 'lock', title: 'End-to-End Encryption', desc: 'All data encrypted in transit (TLS 1.3) and at rest (AES-256). Encryption keys are rotated quarterly and stored in AWS KMS.' },
-    { icon: 'shield', title: 'DPDPA 2023 Compliant', desc: "Fully aligned with India's Digital Personal Data Protection Act 2023. Consent management, data minimization, and breach notification within 72 hours." },
-    { icon: 'server', title: 'Indian Data Residency', desc: 'All client data stored on AWS Mumbai (ap-south-1). Data never leaves Indian borders without written consent. No cross-border transfer by default.' },
+    { icon: 'lock', title: 'End-to-End Encryption', desc: 'Data is encrypted in transit and at rest, with encryption keys held in a managed key service and access limited to authorised systems.' },
+    { icon: 'shield', title: 'Built for the DPDP Act, 2023', desc: "Designed around India's Digital Personal Data Protection Act, 2023 — consent capture, data minimisation, retention limits and breach response." },
+    { icon: 'server', title: 'Indian Data Residency', desc: 'Client systems can be hosted in India (AWS Mumbai, ap-south-1). We tell you where each system runs and agree any cross-border transfer with you in writing.' },
     { icon: 'eyeoff', title: 'Zero Data Sharing', desc: 'Your data is never used to train models for other clients. Each client gets isolated fine-tuning environments — fully air-gapped from other deployments.' },
     { icon: 'scroll', title: 'Real-Time Audit Logs', desc: 'Every agent action, API call, and data access is logged with a tamper-proof audit trail. Full visibility for compliance and forensic review.' },
     { icon: 'key', title: 'Role-Based Access Control', desc: 'Granular RBAC down to field level. SSO support (Google, Microsoft). MFA enforced by default. Access auto-revoked on employee offboarding.' },

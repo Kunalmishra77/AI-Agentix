@@ -1,9 +1,8 @@
-import { Helmet } from 'react-helmet-async'
+import Seo from '../components/common/Seo'
 import { meta } from '../data/technology'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import ScrollProgress from '../components/common/ScrollProgress'
-import ScrollToTop from '../components/common/ScrollToTop'
 import TechHero from '../components/technology/TechHero'
 import TechAgents from '../components/technology/TechAgents'
 import TechStack from '../components/technology/TechStack'
@@ -14,13 +13,10 @@ import TechCta from '../components/technology/TechCta'
 export default function TechnologyPage() {
   return (
     <>
-      <Helmet>
-        <title>{meta.title}</title>
-        <meta name="description" content={meta.description} />
-      </Helmet>
+      <Seo title={meta.title} description={meta.description} />
       <ScrollProgress />
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <TechHero />
         <TechAgents />
         <TechStack />
@@ -29,7 +25,6 @@ export default function TechnologyPage() {
         <TechCta />
       </main>
       <SiteFooter />
-      <ScrollToTop />
     </>
   )
 }

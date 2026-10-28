@@ -7,6 +7,7 @@ import SectionHeading from '../common/SectionHeading'
 import Placeholder from '../common/Placeholder'
 import { industries } from '../../data/home'
 import { cn } from '../../lib/cn'
+import { tabKeyHandler } from '../../lib/tabKeys'
 
 export default function Industries() {
   const [active, setActive] = useState(0)
@@ -24,7 +25,7 @@ export default function Industries() {
 
       <div className="mt-12 overflow-hidden rounded-2xl border border-line bg-white">
         {/* panel: image left, content right */}
-        <div className="grid md:grid-cols-2">
+        <div id="ind-panel" role="tabpanel" aria-labelledby={`ind-tab-${active}`} className="grid md:grid-cols-2">
           <div className="p-4 md:p-5">
             <AnimatePresence mode="wait">
               <motion.div
@@ -76,10 +77,20 @@ export default function Industries() {
         </div>
 
         {/* tab row */}
-        <div className="grid grid-cols-2 border-t border-line sm:grid-cols-4 lg:grid-cols-7">
+        <div
+          role="tablist"
+          aria-label="Industries"
+          onKeyDown={tabKeyHandler(industries.items.length, active, setActive, 'ind')}
+          className="grid grid-cols-2 border-t border-line sm:grid-cols-4 lg:grid-cols-7"
+        >
           {industries.items.map((x, i) => (
             <button
               key={x.name}
+              id={`ind-tab-${i}`}
+              role="tab"
+              aria-selected={i === active}
+              aria-controls="ind-panel"
+              tabIndex={i === active ? 0 : -1}
               onClick={() => setActive(i)}
               className={cn(
                 'border-line px-3 py-4 text-xs font-semibold transition-colors sm:text-sm [&:not(:last-child)]:border-r [&:nth-child(-n+5)]:border-b sm:[&:nth-child(-n+4)]:border-b lg:[&]:border-b-0',

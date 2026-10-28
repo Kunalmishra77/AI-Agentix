@@ -41,7 +41,7 @@ export default function SolutionCompare({ compare }) {
                 <Check className="h-4 w-4 shrink-0 text-accent" /> {r.ai}
               </div>
               <div className="flex items-center justify-center gap-2 p-4 text-center text-sm text-body-soft md:p-5">
-                <X className="h-4 w-4 shrink-0 text-red-400" /> {r.traditional}
+                <X className="h-4 w-4 shrink-0 text-red-600" /> {r.traditional}
               </div>
             </motion.div>
           ))}
@@ -52,7 +52,7 @@ export default function SolutionCompare({ compare }) {
       <div className="mt-10 space-y-3 md:hidden">
         {compare.rows.map((r) => (
           <div key={r.cap} className="rounded-2xl border border-line bg-white p-4 shadow-card">
-            <h4 className="text-sm font-bold text-heading">{r.cap}</h4>
+            <h3 className="text-sm font-bold text-heading">{r.cap}</h3>
             <div className="mt-3 space-y-2">
               <div className="flex items-start gap-2.5 rounded-lg bg-accent-soft px-3 py-2.5">
                 <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
@@ -62,7 +62,7 @@ export default function SolutionCompare({ compare }) {
                 </div>
               </div>
               <div className="flex items-start gap-2.5 px-3 py-1">
-                <X className="mt-0.5 h-4 w-4 shrink-0 text-red-400" />
+                <X className="mt-0.5 h-4 w-4 shrink-0 text-red-600" />
                 <div className="min-w-0">
                   <div className="text-xs font-bold uppercase tracking-wide text-ink-muted">{compare.cols[2]}</div>
                   <div className="mt-0.5 text-sm text-body-soft">{r.traditional}</div>

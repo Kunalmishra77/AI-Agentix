@@ -8,7 +8,7 @@ export const meta = {
 }
 
 export const hero = {
-  eyebrow: "India's Fastest Growing AI Consulting Company",
+  eyebrow: 'End-to-End AI Automation Partner',
   headingPrefix: 'Your Business,',
   rotatingWords: ['Automated.', 'Transformed.', 'Supercharged.', 'Unstoppable.'],
   body:
@@ -16,7 +16,7 @@ export const hero = {
   rating: '4.9/5 from 200+ Indian businesses · Avg. ROI 8x in 6 months',
   ctas: [
     { label: 'Book Free Strategy Call', to: '/contact', primary: true },
-    { label: 'Watch Results', to: '/case-studies', primary: false },
+    { label: 'See Results', to: '/case-studies', primary: false },
   ],
   serviceBand: [
     { title: 'Agentic AI Solutions', text: 'AI Agents That Work While You Sleep' },
@@ -65,7 +65,7 @@ export const problem = {
   heading: 'Manual work is quietly killing your growth.',
   sub: "While you're chasing spreadsheets and follow-ups, automated competitors respond in seconds. Here's exactly what it's costing you.",
   cards: [
-    { stat: '67%', statLabel: 'leads never followed up', title: '67% of Leads Go Cold Within 1 Hour',
+    { stat: '67%', statLabel: 'of leads go cold within 1 hour', title: '67% of Leads Go Cold Within 1 Hour',
       text: 'Your sales team is busy. Manual follow-ups get delayed. Competitors who automate respond in seconds — and win.' },
     { stat: '₹8L+', statLabel: 'avg. monthly loss', title: '₹8 Lakh+ Per Month Lost to Admin Errors',
       text: 'Data entry mistakes, missed invoices, delayed reports — the hidden cost of manual processes drains your margins silently.' },
@@ -81,7 +81,7 @@ export const problem = {
 export const trackRecord = {
   eyebrow: 'Our Track Record',
   heading: 'Numbers That Speak for Themselves',
-  sub: 'From real deployments. Verified by clients across India.',
+  sub: 'From real client deployments across India.',
   stats: [
     { value: '200+', label: 'Businesses Automated', sub: 'Across 15+ industries' },
     { value: '97%', label: 'Client Satisfaction', sub: 'Measured post-deployment' },
@@ -134,7 +134,7 @@ export const process = {
     { no: '04', title: 'Go Live + Optimize', time: 'Ongoing', text: "We monitor performance post-launch, retrain models on your data, and iterate until KPIs are hit. You're not left alone after deployment." },
   ],
   trustSignals: [
-    { title: '14-day avg. delivery', text: 'First automation live in 2 weeks' },
+    { title: '~2 weeks to first automation', text: 'Full rollout typically 4–10 weeks' },
     { title: 'No lock-in contract', text: 'Month-to-month, cancel anytime' },
     { title: '24/7 post-launch support', text: 'We stay with you after go-live' },
     { title: 'Results-backed pricing', text: 'Milestones tied to your KPIs' },
@@ -148,41 +148,42 @@ export const process = {
 export const solutions = {
   eyebrow: 'Solutions',
   heading: 'Built for Every Business Function',
-  link: { label: 'See full case study', to: '/solutions' },
+  // each tab links to the page that covers it (AGX-016)
+  linkLabel: 'Explore this solution',
   items: [
-    { name: 'AI Sales Agent', image: '/images/sales-agent.webp', tagline: 'Never Miss a Lead Again',
+    { name: 'AI Sales Agent', to: '/solutions/sales-automation', image: '/images/sales-agent.webp', tagline: 'Never Miss a Lead Again',
       text: 'An AI agent that qualifies inbound leads, scores them by intent, routes to the right rep, and follows up automatically within minutes — not hours.',
       bullets: ['Instant lead response < 2 min', 'Intent-based scoring model', 'CRM auto-update on every touchpoint', '3x conversion rate improvement'],
       stat: '340% increase in qualified meetings' },
-    { name: 'AI Customer Support', image: '/images/customer-support.webp', tagline: 'Support at Scale, Zero Burnout',
+    { name: 'AI Customer Support', to: '/solutions/ai-voice-chat', image: '/images/customer-support.webp', tagline: 'Support at Scale, Zero Burnout',
       text: 'Deploy a 24/7 AI support agent that resolves 80% of tickets instantly, escalates complex ones with full context, and learns from every interaction.',
       bullets: ['80% tickets auto-resolved', 'Seamless human handoff', 'Multilingual: EN, HI, and more', 'Integrates with Zendesk, Freshdesk'],
       stat: '80% tickets resolved without human' },
-    { name: 'AI Content Engine', image: '/images/content-engine.webp', tagline: 'Content Factory on Autopilot',
+    { name: 'AI Content Engine', to: '/ai-studio', image: '/images/content-engine.webp', tagline: 'Content Factory on Autopilot',
       text: 'From keyword brief to published post — fully automated. SEO research, outline, draft, images, and scheduling handled by AI trained on your brand voice.',
       bullets: ['Full blog workflow automation', 'Brand voice fine-tuning', 'Auto-publish to CMS', 'SEO metadata generation'],
       stat: '10x content output, same team size' },
-    { name: 'Business Intelligence', image: '/images/business-intelligence.webp', tagline: 'Real-Time Decisions, Not Gut Feels',
+    { name: 'Business Intelligence', to: '/technology/analytics-agent', image: '/images/business-intelligence.webp', tagline: 'Real-Time Decisions, Not Gut Feels',
       text: 'Pull data from every tool you use into one live dashboard. AI surfaces anomalies, forecasts trends, and sends alerts before problems become crises.',
       bullets: ['All sources in one view', 'Anomaly detection alerts', 'Predictive revenue forecasting', 'Custom KPI dashboards'],
       stat: '2.4x faster decision making' },
-    { name: 'HR & Ops Automation', image: '/images/hr-ops.webp', tagline: 'Ops That Run Without You',
+    { name: 'HR & Ops Automation', to: '/solutions/hrms-hiring', image: '/images/hr-ops.webp', tagline: 'Ops That Run Without You',
       text: 'Automate hiring funnels, onboarding workflows, leave management, and payroll triggers. Your HR team focuses on people, not paperwork.',
       bullets: ['Resume screening automation', 'Automated onboarding flows', 'Leave approval workflows', 'Payroll trigger integrations'],
       stat: '60% reduction in HR admin time' },
-    { name: 'E-commerce Automation', image: '/images/ecommerce.webp', tagline: 'Scale Orders, Not Overheads',
+    { name: 'E-commerce Automation', to: '/industries/retail-ecommerce', image: '/images/ecommerce.webp', tagline: 'Scale Orders, Not Overheads',
       text: 'Automate inventory updates, order processing, abandoned cart recovery, and customer win-back campaigns across Shopify, WooCommerce, and more.',
       bullets: ['Real-time inventory sync', 'Abandoned cart recovery flows', 'Auto order status updates', 'Review request sequences'],
       stat: '28% increase in repeat purchases' },
-    { name: 'Voice AI Agents', image: '/images/voice-agent.webp', tagline: 'Calls Answered. Leads Captured. 24/7.',
+    { name: 'Voice AI Agents', to: '/solutions/ai-voice-chat', image: '/images/voice-agent.webp', tagline: 'Calls Answered. Leads Captured. 24/7.',
       text: 'AI voice agents that handle inbound calls, book appointments, qualify leads, and answer FAQs — in Hindi, English, and 12+ regional languages. No human needed.',
       bullets: ['Natural-sounding voice conversations', 'Appointment booking & confirmation', 'Lead capture to CRM in real-time', 'Works on IVR, WhatsApp & web'],
       stat: '3x more calls handled per day' },
-    { name: 'Finance & GST Automation', image: '/images/finance-gst.webp', tagline: 'Finance Ops Without the Errors',
+    { name: 'Finance & GST Automation', to: '/solutions/finance-accounts', image: '/images/finance-gst.webp', tagline: 'Finance Ops Without the Errors',
       text: 'Automate invoice generation, GST filing, bank reconciliation, and MIS reports. Integrated with Tally, Zoho Books, and Razorpay for seamless Indian accounting.',
       bullets: ['Auto invoice dispatch & tracking', 'GST return preparation & filing', 'Bank reconciliation automation', 'Real-time P&L dashboards'],
       stat: '85% reduction in manual finance tasks' },
-    { name: 'WhatsApp Marketing', image: '/images/whatsapp-marketing.webp', tagline: 'Your Best Salesperson Runs on WhatsApp',
+    { name: 'WhatsApp Marketing', to: '/solutions/marketing-automation', image: '/images/whatsapp-marketing.webp', tagline: 'Your Best Salesperson Runs on WhatsApp',
       text: 'Build automated WhatsApp sequences for lead nurturing, re-engagement, and post-sale follow-up. Personalised, compliant with WABA policies, and measurable.',
       bullets: ['Drip campaigns with smart branching', 'Broadcast to segmented contact lists', 'Opt-in/opt-out compliance built-in', 'Analytics: open, click & reply rates'],
       stat: '62% higher conversion than email' },
@@ -254,7 +255,7 @@ export const whyUs = {
     { label: 'Data Visibility', bad: 'Monthly spreadsheet reports', badMeta: '30-day lag', good: 'Live dashboards, instant alerts', goodMeta: '< 5 sec data', gain: 'Real-time' },
     { label: 'Operating Cost', bad: 'Manual overhead + errors', badMeta: '₹8L+/mo waste', good: 'Automated, lean operations', goodMeta: '60% cut', gain: 'Save ₹8L/mo' },
   ],
-  bottomNote: 'Free strategy call · No commitment · Results guaranteed',
+  bottomNote: 'Free strategy call · No commitment · Milestones tied to your KPIs',
   cta: { label: 'See AI Agentix in Action', to: '/contact' },
 }
 
@@ -278,13 +279,13 @@ export const testimonialsSection = {
 export const roi = {
   eyebrow: 'The ROI Case',
   heading: 'The Business Case for AI Agentix',
-  sub: 'Measured across 200+ client deployments',
+  sub: 'What changes once the work runs itself',
   stats: [
-    { value: '8x', label: 'Average ROI', sub: 'Measured at 6 months' },
     { value: '12x', label: 'Faster Operations', sub: 'Task completion speed' },
     { value: '60%', label: 'Cost Reduction', sub: 'On automated workflows' },
-    { value: '200+', label: 'Deployments', sub: 'Across industries' },
-    { value: '97%', label: 'Satisfaction', sub: 'Post-deployment score' },
+    { value: '< 90s', label: 'Lead Response', sub: 'Instead of hours' },
+    { value: '24/7', label: 'Always On', sub: 'Agents never clock out' },
+    { value: '~2 wks', label: 'To First Automation', sub: 'Full rollout 4–10 weeks' },
   ],
 }
 
@@ -292,7 +293,7 @@ export const finalCta = {
   eyebrow: 'Get Started',
   heading: 'Ready to Automate Your Business?',
   body: "Book a free 30-minute strategy call. We'll map your biggest automation opportunity and show you exactly what we'd build — no commitment required.",
-  checklist: ['No credit card required', '30-min free call', 'Results in 2–4 weeks'],
+  checklist: ['No credit card required', '30-min free call', 'First automation in ~2 weeks'],
   ctas: [
     { label: 'Book Free Strategy Call', to: '/contact', primary: true },
     { label: 'Explore Solutions', to: '/solutions', primary: false },

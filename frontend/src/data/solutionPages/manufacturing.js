@@ -6,7 +6,7 @@ export default {
   slug: 'manufacturing',
   heroImage: '/images/hero-manufacturing-solution.webp',
   meta: {
-    title: 'Manufacturing AI Automation | AI Agentix',
+    title: 'Manufacturing AI Automation — AI Agentix',
     description: 'AI-powered production planning, predictive maintenance, quality control, and OEE optimization. Transform your factory floor with intelligent automation.',
   },
   hero: {
@@ -110,7 +110,7 @@ export default {
       { q: 'Does it work with our existing machines and sensors?', a: 'Yes. We integrate with any IoT-enabled machinery through MQTT, OPC-UA, or standard APIs. Older machines can be retrofitted with our IoT gateway.' },
       { q: 'How long before we see predictive maintenance results?', a: 'The ML models need 4–8 weeks of sensor data to establish baselines. First predictions typically surface after 6–8 weeks of operation.' },
       { q: 'Can it handle multi-shift and multi-plant operations?', a: 'Yes. Consolidated dashboards across plants and shifts, with granular drill-down to individual lines, machines, and operators.' },
-      { q: 'What about data security on the factory floor?', a: 'Edge computing options available for air-gapped environments. All data encrypted at rest and in transit. Compliant with ISO 27001.' },
+      { q: 'What about data security on the factory floor?', a: 'Edge computing options available for air-gapped environments. All data encrypted at rest and in transit, with role-based access and audit logs.' },
       { q: 'How does it integrate with our ERP?', a: 'Direct connectors for SAP S/4HANA, SAP Business One, Oracle, and Microsoft Dynamics. Setup takes 2–3 weeks including testing.' },
     ],
   },

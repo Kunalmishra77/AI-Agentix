@@ -7,8 +7,23 @@ import { categories, items } from '../../data/solutions'
 import { SOLUTION_ICONS } from './icons'
 import { cn } from '../../lib/cn'
 
+// Card → the page that covers it in depth (AGX-016)
+const DETAIL = {
+  'Multi-Channel Outreach': '/solutions/marketing-automation',
+  'AI Lead Qualification': '/solutions/sales-automation',
+  'AI Sales Agent': '/technology/sales-agent',
+  'AI Support Agent': '/technology/support-agent',
+  'AI Content Engine': '/ai-studio',
+  'Business Intelligence': '/technology/analytics-agent',
+  'HR & Ops Automation': '/solutions/hrms-hiring',
+  'E-commerce Automation': '/industries/retail-ecommerce',
+  'Workflow Automation': '/solutions/operations',
+  'AI Voice Agent': '/solutions/ai-voice-chat',
+}
+
 const SolutionCard = forwardRef(function SolutionCard({ s }, ref) {
   const Icon = SOLUTION_ICONS[s.icon]
+  const detail = DETAIL[s.name]
   return (
     <motion.article
       ref={ref}
@@ -49,10 +64,18 @@ const SolutionCard = forwardRef(function SolutionCard({ s }, ref) {
             <TrendingUp className="h-3.5 w-3.5 text-accent" /> {s.roi} ROI
           </span>
         </div>
-        <Link to="/contact" className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-heading transition-colors hover:text-accent">
-          Get Started
-          <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
-        </Link>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          {detail && (
+            <Link to={detail} className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition-colors hover:text-heading">
+              Learn more<span className="sr-only"> about {s.name}</span>
+              <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" aria-hidden />
+            </Link>
+          )}
+          <Link to="/contact" className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-heading transition-colors hover:text-accent">
+            Get Started
+            <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" aria-hidden />
+          </Link>
+        </div>
       </div>
     </motion.article>
   )
@@ -64,12 +87,14 @@ export default function SolutionsCatalog() {
 
   return (
     <Section tone="alt" id="catalog" className="scroll-mt-20">
+      <h2 className="sr-only">All AI solutions</h2>
       {/* filter pills */}
       <div className="mb-10 flex flex-wrap justify-center gap-2">
         {categories.map((c) => (
           <button
             key={c}
             onClick={() => setCat(c)}
+            aria-pressed={cat === c}
             className={cn(
               'rounded-pill px-4 py-2 text-sm font-semibold transition-all',
               cat === c ? 'bg-accent text-white shadow-orange' : 'border border-line bg-white text-body hover:border-accent/50 hover:text-heading',

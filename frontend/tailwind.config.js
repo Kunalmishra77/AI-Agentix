@@ -13,6 +13,12 @@ export default {
         'accent-hover': '#D4541A',
         'accent-soft':  '#FFF3EC',   // orange tint surface
         'accent-ring':  '#FCE0D0',
+        // WCAG AA tokens (AGX-020): small orange text on light surfaces, and
+        // filled buttons/badges that carry white text.
+        'accent-strong':     '#C2410C',   // 5.18:1 on white
+        'accent-cta':        '#CC4A12',   // white text 4.61:1
+        'accent-cta-hover':  '#A93B0B',
+        danger:              '#B91C1C',   // 6.47:1 on white
         // Ink / dark (ADDEPTO-style near-black for dark sections + footer)
         ink:            '#12141A',
         'ink-800':      '#1A1D25',

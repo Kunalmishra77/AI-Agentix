@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { Linkedin, Instagram, Facebook, Twitter, MessageCircle, Mail, Phone, MapPin } from 'lucide-react'
 import {
   SiOpenai, SiAnthropic, SiClaude, SiGooglegemini, SiMeta, SiPerplexity, SiHuggingface,
@@ -7,6 +7,10 @@ import {
   SiWhatsapp, SiTwilio, SiRazorpay, SiGooglecloud,
 } from 'react-icons/si'
 import { footer } from '../../data/site'
+import { consent as consentText } from '../../data/consent'
+import { submitLead, trackLead, isEmail } from '../../lib/leads'
+import ConsentCheckbox from '../common/ConsentCheckbox'
+import { analyticsEnabled, CONSENT_EVENT } from '../../lib/analytics'
 import Logo from './Logo'
 
 const SOCIAL_ICONS = { LinkedIn: Linkedin, Instagram, Facebook, Twitter, WhatsApp: MessageCircle }
@@ -23,8 +27,35 @@ const FOOTER_PLATFORMS = [
 ]
 
 export default function SiteFooter() {
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
-  const [sent, setSent] = useState(false)
+  const [agree, setAgree] = useState(false)
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
+  const startedAt = useRef(Date.now())
+  const inFlight = useRef(false)
+
+  // AGX-002: only claim a subscription after the server stored it; then the thank-you page.
+  const subscribe = async (e) => {
+    e.preventDefault()
+    if (inFlight.current) return
+    const value = email.trim()
+    if (!isEmail(value)) { setError('Please enter a valid email address.'); return }
+    if (!agree) { setError('Please tick the box to agree to receive updates.'); return }
+    inFlight.current = true
+    setBusy(true)
+    setError('')
+    try {
+      await submitLead('newsletter', { email: value }, { consent: true, marketing: true, startedAt: startedAt.current })
+      trackLead('newsletter')
+      navigate('/thank-you?type=newsletter', { replace: true })
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      inFlight.current = false
+      setBusy(false)
+    }
+  }
   // Two identical halves, each repeated wide enough for a seamless -50% loop on ultra-wide.
   const half = [...FOOTER_PLATFORMS, ...FOOTER_PLATFORMS]
   const marqueeRow = [...half, ...half]
@@ -89,36 +120,44 @@ export default function SiteFooter() {
         <div className="min-w-0">
           <h4 className="text-sm font-bold text-heading">{footer.newsletter.title}</h4>
           <p className="mt-4 text-sm text-body">{footer.newsletter.blurb}</p>
-          <form
-            className="mt-4 flex gap-2"
-            onSubmit={(e) => { e.preventDefault(); if (email) setSent(true) }}
-          >
-            <label className="sr-only" htmlFor="footer-email">Email</label>
-            <input
-              id="footer-email"
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder={footer.newsletter.placeholder}
-              className="min-w-0 flex-1 rounded-lg border border-line bg-white px-3 py-2.5 text-sm text-heading placeholder:text-body-soft focus:border-accent focus:outline-none"
-            />
-            <button type="submit" className="btn-primary shrink-0 px-4 py-2.5">{footer.newsletter.submit}</button>
+          <form className="mt-4" onSubmit={subscribe} noValidate aria-busy={busy}>
+            <div className="flex gap-2">
+              <label className="sr-only" htmlFor="footer-email">Email address</label>
+              <input
+                id="footer-email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                maxLength={254}
+                value={email}
+                onChange={(e) => { setEmail(e.target.value); setError('') }}
+                placeholder={footer.newsletter.placeholder}
+                aria-invalid={error ? true : undefined}
+                aria-describedby={error ? 'footer-email-error' : undefined}
+                className="min-w-0 flex-1 rounded-lg border border-line bg-white px-3 py-2.5 text-base text-heading placeholder:text-body-soft focus:border-accent focus:outline-none sm:text-sm"
+              />
+              <button type="submit" disabled={busy} className="btn-primary shrink-0 px-4 py-2.5 disabled:opacity-80">
+                {busy ? footer.newsletter.submitting : footer.newsletter.submit}
+              </button>
+            </div>
+            <div className="mt-3">
+              <ConsentCheckbox id="footer-consent" checked={agree} onChange={(v) => { setAgree(v); setError('') }} label={consentText.newsletter} small />
+            </div>
+            <p id="footer-email-error" role="alert" className="mt-2 text-xs font-medium text-danger empty:hidden">{error}</p>
           </form>
-          {sent && <p className="mt-2 text-xs font-semibold text-accent">{footer.newsletter.success}</p>}
 
           <h4 className="mt-8 text-sm font-bold text-heading">{footer.contact.title}</h4>
           <ul className="mt-4 space-y-2.5 text-sm text-body">
             <li className="flex items-center gap-2.5"><Mail className="h-4 w-4 text-accent" /><a href={`mailto:${footer.contact.email}`} className="hover:text-accent">{footer.contact.email}</a></li>
-            <li className="flex items-center gap-2.5"><Phone className="h-4 w-4 text-accent" /><a href={`tel:${footer.contact.phone.replace(/\s/g, '')}`} className="hover:text-accent">{footer.contact.phone}</a></li>
-            <li className="flex items-center gap-2.5"><MapPin className="h-4 w-4 text-accent" />{footer.contact.address}</li>
+            <li className="flex items-center gap-2.5"><Phone className="h-4 w-4 text-accent" /><a href={footer.contact.phoneHref} className="hover:text-accent">{footer.contact.phone}</a></li>
+            <li className="flex items-start gap-2.5"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden /><span>{footer.contact.address}</span></li>
           </ul>
         </div>
       </div>
 
       {/* bottom bar */}
       <div className="border-t border-line">
-        <div className="container-x flex flex-col gap-4 py-6 text-xs text-body-soft md:flex-row md:items-center md:justify-between">
+        <div className="container-x flex flex-col gap-4 pt-6 pb-24 text-xs md:pb-6 text-body-soft md:flex-row md:items-center md:justify-between">
           <div>
             <p>© {new Date().getFullYear()} {footer.copyright}</p>
             <p className="mt-1 text-body-soft/70">{footer.entity}</p>
@@ -127,6 +166,11 @@ export default function SiteFooter() {
             {footer.legal.map((l) => (
               <Link key={l.label} to={l.to} className="transition-colors hover:text-accent">{l.label}</Link>
             ))}
+            {analyticsEnabled() && (
+              <button type="button" onClick={() => window.dispatchEvent(new Event(CONSENT_EVENT))} className="transition-colors hover:text-accent">
+                Cookie settings
+              </button>
+            )}
           </div>
         </div>
       </div>

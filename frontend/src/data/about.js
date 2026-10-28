@@ -74,8 +74,8 @@ export const values = {
     { title: 'Results First', text: "Every engagement starts with a measurable ROI target. We don't ship unless the numbers move.", bullets: ['Defined KPIs before project kickoff', 'Live ROI dashboard from day one', 'Monthly performance reviews', 'Results-tied milestone payments'], stat: '8x average client ROI' },
     { title: 'Partnership Mindset', text: "We're not vendors. We're embedded in your team until the system works — and well after.", bullets: ['Dedicated account manager per client', 'Weekly sync calls included', 'Slack access to engineering team', 'No ghosting after go-live'], stat: '97% client retention rate' },
     { title: 'Radical Simplicity', text: "Complex AI, simple interfaces. If your team can't use it in 2 hours, we rebuild it.", bullets: ['No-code dashboards for non-tech teams', 'Training sessions for all users', '2-hour onboarding guarantee', 'Plain-language documentation'], stat: '2 hrs avg. team onboarding time' },
-    { title: 'Enterprise Grade Security', text: 'ISO 27001 aligned. Your data never leaves Indian servers without explicit consent.', bullets: ['Data hosted on Indian cloud servers', 'End-to-end encryption at rest & transit', 'Role-based access controls', 'DPDP Act 2023 compliant'], stat: '0 data breaches since founding' },
-    { title: 'Continuous Improvement', text: 'We monitor every automation post-launch and retrain models on your data every quarter.', bullets: ['Automated performance monitoring', 'Quarterly model retraining included', 'Proactive alert on anomalies', 'Free minor updates for 12 months'], stat: '99.6% average system uptime' },
+    { title: 'Enterprise Grade Security', text: 'Security is designed in from day one, and your data is used only for your project.', bullets: ['India hosting available on request', 'Encryption in transit and at rest', 'Role-based access controls & audit logs', 'Built for the DPDP Act, 2023'], stat: 'NDA & data processing agreement on request' },
+    { title: 'Continuous Improvement', text: 'We monitor every automation post-launch and retrain models on your data every quarter.', bullets: ['Automated performance monitoring', 'Quarterly model retraining included', 'Proactive alert on anomalies', 'Free minor updates for 12 months'], stat: 'Proactive monitoring after go-live' },
     { title: 'Indian Context Expertise', text: 'Built for India — multilingual, WhatsApp-first, Razorpay-integrated, GST-aware automation.', bullets: ['Hindi, Tamil, Marathi, Bengali AI', 'WhatsApp Business API certified', 'Tally, Zoho, Razorpay integrations', 'GST & Indian compliance baked in'], stat: '15+ Indian languages supported' },
   ],
 }
@@ -85,7 +85,7 @@ export const different = {
   heading: 'What Sets Our Work Apart',
   body: 'Four non-negotiables that govern every project — baked in from day one.',
   items: [
-    { title: 'Speed Without Shortcuts', text: 'Our pre-built Indian integrations and reusable AI components cut delivery time by 70%. You see your first automation running in two weeks, not three months.', metric: '14 days avg. first automation live' },
+    { title: 'Speed Without Shortcuts', text: 'Our pre-built Indian integrations and reusable AI components cut delivery time by 70%. You see your first automation running in about two weeks, not three months.', metric: '~2 weeks to first automation' },
     { title: 'Built for India, Not Retrofitted', text: 'Every system is designed for WhatsApp-first workflows, Hindi/regional NLP, GST APIs, Razorpay, and Tally — not Western tools forced to work in an Indian context.', metric: '15+ Indian languages supported' },
     { title: 'Real AI, Not Prompt Wrappers', text: 'We architect from scratch and select the right model — GPT-4, Claude, Gemini, Llama — for each specific task. One model does not fit every problem.', metric: '100% custom-built, zero templates' },
     { title: 'You Own Everything', text: 'No platform licensing. No vendor lock-in. You own the code, the models, and your data. Month-to-month contracts with transparent, results-tied pricing.', metric: '0 lock-in or hidden fees' },
@@ -108,17 +108,6 @@ export const compare = {
   cta: { label: 'Work With AI Agentix', to: '/contact' },
 }
 
-export const team = {
-  eyebrow: 'Our Team',
-  heading: 'Meet the Team',
-  members: [
-    { name: 'Anant Sanadhya', role: 'Founder & CEO', bio: 'Visionary entrepreneur and AI strategist. Founded AGENTiX to make cutting-edge AI automation accessible to every Indian business, from startups to enterprises.' },
-    { name: 'Priya Nair', role: 'Head of Technology', bio: 'ML Engineer with deep expertise in LLMs and agentic systems. Builds the AI models and automation pipelines that power our client deployments.' },
-    { name: 'Rahul Singh', role: 'Head of Delivery', bio: '8 years in automation consulting. Manages every client engagement from discovery to go-live, ensuring on-time delivery every time.' },
-    { name: 'Sneha Kapoor', role: 'Head of Growth', bio: 'Growth marketer turned AI advocate. Runs partnerships, events, and the India-wide expansion strategy.' },
-  ],
-}
-
 // Leadership team. Layout is live; profiles fill in as they are confirmed.
 // `image: null` renders an elegant placeholder. `pending: true` shows a
 // "To be announced" name until the real profile is provided. Do NOT add
@@ -128,11 +117,10 @@ export const leadership = {
   heading: 'The Team Building AI Agentix',
   sub: 'The people behind every automation we ship — driving strategy, engineering, and delivery.',
   members: [
-    { name: 'Anand Sanadhya', role: 'CEO & Founder', image: null, pending: false, bio: '' },
-    { name: 'Vitalsai Gorrela', role: 'Co-Founder & COO', image: null, pending: false,
-      bio: "As Co-Founder and Chief Operating Officer of AGENTiX, Vitalsai Gorrela drives the company's operations, strategy, and execution. With a strong foundation in AI, cloud engineering, and enterprise automation, he leads cross-functional teams to build scalable AI solutions that help businesses innovate, automate, and grow. He is passionate about turning complex technologies into real-world business impact while shaping the future of intelligent automation." },
-    { name: 'To be announced', role: 'Operations Manager', image: null, pending: true, bio: '' },
-    { name: 'To be announced', role: 'Business Manager', image: null, pending: true, bio: '' },
+    { name: 'Anant Sanadhya', role: 'CEO & Founder', image: null, pending: false, bio: '' },
+    { name: 'Vitalsai Gorrela', role: 'Co-Founder & CMO', image: null, pending: false,
+      bio: "As Co-Founder and Chief Marketing Officer of AGENTiX, Vitalsai Gorrela drives the company's operations, strategy, and execution. With a strong foundation in AI, cloud engineering, and enterprise automation, he leads cross-functional teams to build scalable AI solutions that help businesses innovate, automate, and grow. He is passionate about turning complex technologies into real-world business impact while shaping the future of intelligent automation." },
+    // Placeholder "To be announced" cards removed (AGX-018); add real people here when ready.
   ],
 }
 

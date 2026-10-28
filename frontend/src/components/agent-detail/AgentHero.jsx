@@ -88,7 +88,7 @@ export default function AgentHero({ agent, index, total }) {
           </dl>
           <div className="px-5 pb-5 pt-1">
             <p className="rounded-xl border border-white/8 bg-white/[0.03] px-4 py-3 text-xs leading-relaxed text-white/55">
-              Custom-engineered on our stack, hosted in India (AWS Mumbai). Configured to your workflows — not a one-size template.
+              Custom-engineered on our stack, with India hosting available. Configured to your workflows — not a one-size template.
             </p>
           </div>
         </motion.div>

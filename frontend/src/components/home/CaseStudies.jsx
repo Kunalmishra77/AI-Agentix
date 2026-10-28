@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight, ArrowLeft } from 'lucide-react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { ArrowRight, ArrowLeft, Pause, Play } from 'lucide-react'
 import Section from '../common/Section'
 import Placeholder from '../common/Placeholder'
 import Reveal from '../common/Reveal'
@@ -11,14 +11,20 @@ import { cn } from '../../lib/cn'
 export default function CaseStudies() {
   const items = caseStudies.items
   const [active, setActive] = useState(0)
-  const [paused, setPaused] = useState(false)
+  // AGX-022: auto-advance pauses on hover / keyboard focus, has a visible pause
+  // button, and never runs for visitors who prefer reduced motion.
+  const [hovered, setHovered] = useState(false)
+  const [focused, setFocused] = useState(false)
+  const reduceMotion = useReducedMotion()
+  const [stopped, setStopped] = useState(false)
+  const autoplay = !reduceMotion && !stopped
   const c = items[active]
 
   useEffect(() => {
-    if (paused) return
+    if (!autoplay || hovered || focused) return
     const id = setInterval(() => setActive((i) => (i + 1) % items.length), 6000)
     return () => clearInterval(id)
-  }, [paused, items.length])
+  }, [autoplay, hovered, focused, items.length])
 
   const go = (dir) => setActive((i) => (i + dir + items.length) % items.length)
 
@@ -38,8 +44,13 @@ export default function CaseStudies() {
 
       <div
         className="mt-12 grid items-center gap-8 lg:grid-cols-2 lg:gap-14"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Case studies"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onFocus={() => setFocused(true)}
+        onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false) }}
       >
         {/* image */}
         <AnimatePresence mode="wait">
@@ -53,7 +64,7 @@ export default function CaseStudies() {
           >
             {c.image ? (
               <div className="relative aspect-[4/3]">
-                <img src={c.image} alt={`${c.client} — ${c.industry}`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <img src={c.image} alt={`${c.client} — ${c.industry}`} loading="lazy" decoding="async" width="1448" height="1086" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
               </div>
             ) : (
@@ -75,6 +86,7 @@ export default function CaseStudies() {
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
+              aria-live={autoplay ? 'off' : 'polite'}
               initial={{ opacity: 0, x: 16 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -16 }}
@@ -103,6 +115,16 @@ export default function CaseStudies() {
           {/* controls */}
           <div className="mt-8 flex items-center gap-4">
             <div className="flex gap-2">
+              {!reduceMotion && (
+                <button
+                  type="button"
+                  onClick={() => setStopped((v) => !v)}
+                  aria-label={stopped ? 'Play case study slideshow' : 'Pause case study slideshow'}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-accent hover:bg-accent"
+                >
+                  {stopped ? <Play className="h-4 w-4" aria-hidden /> : <Pause className="h-4 w-4" aria-hidden />}
+                </button>
+              )}
               <button onClick={() => go(-1)} aria-label="Previous case study" className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-accent hover:bg-accent">
                 <ArrowLeft className="h-4 w-4" />
               </button>
@@ -115,8 +137,9 @@ export default function CaseStudies() {
                 <button
                   key={x.client}
                   onClick={() => setActive(i)}
-                  aria-label={x.client}
-                  className="group flex h-10 items-center px-1"
+                  aria-label={`Show case study ${i + 1}: ${x.client}`}
+                  aria-current={i === active ? 'true' : undefined}
+                  className="group flex h-10 min-w-[24px] items-center justify-center px-1"
                 >
                   <span className={cn('block h-2 rounded-full transition-all', i === active ? 'w-7 bg-accent' : 'w-2 bg-white/25 group-hover:bg-white/45')} />
                 </button>

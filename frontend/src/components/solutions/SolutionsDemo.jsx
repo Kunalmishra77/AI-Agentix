@@ -25,8 +25,10 @@ export default function SolutionsDemo() {
             <video className="absolute inset-0 h-full w-full object-cover"
                    src="/…mp4" poster="/…" controls playsInline />
           The 16:9 container, framing, and layout stay identical — no redesign. */}
+      {demo.videoSrc && (
       <Reveal className="mt-12">
         <div className="relative aspect-video w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-ink shadow-float">
+          <video className="absolute inset-0 z-20 h-full w-full object-cover" src={demo.videoSrc} controls playsInline preload="metadata" />
           {/* placeholder visuals */}
           <div className="absolute inset-0" aria-hidden>
             <div
@@ -54,6 +56,7 @@ export default function SolutionsDemo() {
           </span>
         </div>
       </Reveal>
+      )}
 
       {/* ── Demo workflow showcase (what the video will walk through) ── */}
       <div className="mt-12 max-w-5xl">

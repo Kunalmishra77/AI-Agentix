@@ -9,10 +9,7 @@ export default function ScrollToHash() {
   const { hash, pathname } = useLocation()
 
   useEffect(() => {
-    if (!hash) {
-      window.scrollTo({ top: 0, behavior: 'auto' })
-      return
-    }
+    if (!hash) return // ScrollReset handles top-of-page and back/forward restore
     const id = hash.slice(1)
     let tries = 0
     const go = () => {

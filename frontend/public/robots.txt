@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /thank-you
 
-Sitemap: https://aiagentix.in/sitemap.xml
+Sitemap: https://ai-agentix.com/sitemap.xml

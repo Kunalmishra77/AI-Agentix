@@ -1,10 +1,10 @@
-import { useParams, Navigate } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
+import { useParams } from 'react-router-dom'
+import NotFoundPage from './NotFoundPage'
+import Seo from '../components/common/Seo'
 import { getSolutionPage } from '../data/solutionPages'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import ScrollProgress from '../components/common/ScrollProgress'
-import ScrollToTop from '../components/common/ScrollToTop'
 import ScrollToHash from '../components/common/ScrollToHash'
 import SolutionHero from '../components/solution-detail/SolutionHero'
 import SolutionStats from '../components/solution-detail/SolutionStats'
@@ -21,19 +21,16 @@ export default function SolutionDetailPage() {
   const { slug } = useParams()
   const data = getSolutionPage(slug)
 
-  // Solutions not yet built fall back to the Solutions index.
-  if (!data) return <Navigate to="/solutions" replace />
+  // Unknown slugs show the 404 page (AGX-005).
+  if (!data) return <NotFoundPage />
 
   return (
     <>
-      <Helmet>
-        <title>{data.meta.title}</title>
-        {data.meta.description && <meta name="description" content={data.meta.description} />}
-      </Helmet>
+      <Seo title={data.meta.title} description={data.meta.description} />
       <ScrollProgress />
       <ScrollToHash />
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <SolutionHero hero={data.hero} image={data.heroImage} />
         {data.stats && <SolutionStats stats={data.stats} />}
         {data.capabilities && <SolutionCapabilities capabilities={data.capabilities} />}
@@ -46,7 +43,6 @@ export default function SolutionDetailPage() {
         {data.cta && <SolutionCta cta={data.cta} />}
       </main>
       <SiteFooter />
-      <ScrollToTop />
     </>
   )
 }

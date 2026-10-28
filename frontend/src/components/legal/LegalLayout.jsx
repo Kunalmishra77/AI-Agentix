@@ -1,10 +1,9 @@
-import { Helmet } from 'react-helmet-async'
+import Seo from '../common/Seo'
 import { motion } from 'framer-motion'
 import { ShieldCheck, CalendarDays, Building2, Mail, ArrowUpRight } from 'lucide-react'
 import SiteNav from '../layout/SiteNav'
 import SiteFooter from '../layout/SiteFooter'
 import ScrollProgress from '../common/ScrollProgress'
-import ScrollToTop from '../common/ScrollToTop'
 import Section from '../common/Section'
 
 const jump = (i) => (e) => {
@@ -15,13 +14,10 @@ const jump = (i) => (e) => {
 export default function LegalLayout({ data }) {
   return (
     <>
-      <Helmet>
-        <title>{data.meta.title}</title>
-        <meta name="description" content={data.meta.description} />
-      </Helmet>
+      <Seo title={data.meta.title} description={data.meta.description} />
       <ScrollProgress />
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         {/* hero */}
         <section className="relative overflow-hidden bg-ink pt-32 pb-14 text-white md:pt-36 md:pb-16">
           <div className="absolute inset-0" aria-hidden>
@@ -90,7 +86,6 @@ export default function LegalLayout({ data }) {
         </Section>
       </main>
       <SiteFooter />
-      <ScrollToTop />
     </>
   )
 }

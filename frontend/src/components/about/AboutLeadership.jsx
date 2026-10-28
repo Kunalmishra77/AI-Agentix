@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { User, X, ArrowRight } from 'lucide-react'
 import Section from '../common/Section'
 import SectionHeading from '../common/SectionHeading'
 import Reveal from '../common/Reveal'
 import { leadership } from '../../data/about'
+import useFocusTrap from '../../lib/useFocusTrap'
 
 // Derive initials for confirmed members (elegant placeholder until photos arrive).
 function initials(name) {
@@ -43,16 +44,15 @@ export default function AboutLeadership() {
   // matter how long any single bio is.
   const [active, setActive] = useState(null)
   const member = active != null ? leadership.members[active] : null
+  const dialogRef = useRef(null)
+  const closeRef = useRef(null)
+  // AGX-024: focus moves to Close, Tab stays inside, Escape closes, focus returns to the card
+  useFocusTrap(dialogRef, member != null, () => setActive(null), closeRef)
 
   useEffect(() => {
     if (member == null) return
-    const onKey = (e) => e.key === 'Escape' && setActive(null)
-    window.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
-    return () => {
-      window.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-    }
+    return () => { document.body.style.overflow = '' }
   }, [member])
 
   return (
@@ -64,7 +64,7 @@ export default function AboutLeadership() {
         max="max-w-2xl"
       />
 
-      <div className="mx-auto mt-12 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-12 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {leadership.members.map((m, i) => {
           const openable = !!m.bio
           const Wrapper = openable ? 'button' : 'div'
@@ -102,8 +102,10 @@ export default function AboutLeadership() {
           >
             <div className="absolute inset-0 bg-ink/60 backdrop-blur-sm" onClick={() => setActive(null)} aria-hidden />
             <motion.div
+              ref={dialogRef}
               role="dialog"
               aria-modal="true"
+              aria-labelledby="leader-dialog-name"
               className="relative z-10 w-full max-w-lg overflow-hidden rounded-3xl border border-line bg-white p-8 shadow-float"
               initial={{ opacity: 0, y: 24, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -111,9 +113,10 @@ export default function AboutLeadership() {
               transition={{ duration: 0.25, ease: [0.21, 0.5, 0.25, 1] }}
             >
               <button
+                ref={closeRef}
                 type="button"
                 onClick={() => setActive(null)}
-                aria-label="Close"
+                aria-label="Close profile"
                 className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-body-soft transition-colors hover:bg-surface-alt hover:text-heading"
               >
                 <X className="h-5 w-5" />
@@ -121,7 +124,7 @@ export default function AboutLeadership() {
 
               <div className="flex flex-col items-center text-center">
                 <Avatar m={member} size="lg" />
-                <h3 className="mt-5 text-xl font-bold text-heading">{member.name}</h3>
+                <h3 id="leader-dialog-name" className="mt-5 text-xl font-bold text-heading">{member.name}</h3>
                 <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-accent">{member.role}</p>
                 <div className="mt-5 h-px w-12 bg-line" aria-hidden />
                 <p className="mt-5 text-left text-sm leading-relaxed text-body">{member.bio}</p>

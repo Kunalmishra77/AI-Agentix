@@ -37,7 +37,7 @@
     @apply inline-flex items-center justify-center gap-2 rounded-[10px] px-5 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2;
   }
   .btn-primary {
-    @apply btn bg-accent text-white hover:bg-accent-hover hover:shadow-orange;
+    @apply btn bg-accent-cta text-white hover:bg-accent-cta-hover hover:shadow-orange disabled:cursor-not-allowed;
   }
   .btn-dark {
     @apply btn bg-ink text-white hover:bg-ink-800;
@@ -52,6 +52,32 @@
     @apply rounded-card border border-line bg-white transition-all duration-300;
   }
 }
+
+/* AGX-020 — brand orange #F26522 is only 3.15:1 on white. Orange TEXT on light
+   surfaces uses the deeper #C2410C; dark sections keep the bright brand orange
+   (5.84:1 on ink, where the deeper shade would fail). Placed after the utilities
+   so it overrides Tailwind's .text-accent. */
+:root { --agx-accent-text: #C2410C; }
+.bg-ink, .bg-ink-800, .bg-ink-700, .bg-black, [data-tone='dark'] { --agx-accent-text: #F26522; }
+.bg-white, .bg-surface, .bg-surface-alt, .bg-accent-soft, [data-tone='light'] { --agx-accent-text: #C2410C; }
+.text-accent, .eyebrow { color: var(--agx-accent-text); }
+/* filled orange chips/badges with white text */
+.bg-accent.text-white { background-color: #CC4A12; }
+
+/* Floating buttons stay out of the way while the mobile menu is open (AGX-023) */
+body.agx-drawer-open .agx-float,
+body.agx-drawer-open .lw-widget { display: none !important; }
+
+/* The open lead form sits above the "Ask AI" button stacked over its icon */
+.lw-widget.is-open { z-index: 75 !important; }
+
+/* Skip link (AGX-036) */
+.skip-link {
+  position: absolute; left: 12px; top: -60px; z-index: 10000;
+  background: #12141A; color: #fff; padding: 10px 16px; border-radius: 8px; font-weight: 600; font-size: 14px;
+  transition: top .15s ease;
+}
+.skip-link:focus { top: 12px; outline: 2px solid #F26522; outline-offset: 2px; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -87,7 +87,7 @@ export const items = [
     timeline: [P('01', 'Patient Database', 'Week 1–2', 'Digitized prescription history for 8,000+ repeat customers across 15 outlets.'), P('02', 'Refill Engine', 'Week 2–4', 'Built refill prediction model and WhatsApp reminder sequences per medication type.'), P('03', 'Order Flow', 'Week 4–6', 'Launched WhatsApp ordering with prescription photo processing and confirmation.'), P('04', 'Delivery Sync', 'Week 6–7', 'Integrated delivery partner API for real-time tracking messages to customers.')],
     stats: [S('₹9L', 'Refill revenue added/month', 'Without adding marketing spend'), S('68%', 'Repeat customer retention', 'Up from 42% vs. online competition'), S('15', 'Outlets fully coordinated', 'Single WhatsApp system across all'), S('4.5★', 'Google rating', 'After review automation deployed')],
     deploy: '7 weeks',
-    quote: { text: 'Customers who were switching to online pharmacies are now our most loyal. Convenience beats price every time.', name: 'Anand Krishnan', role: 'CEO, MedPlus Neighbourhood' },
+    quote: { text: 'Customers who were switching to online pharmacies are now our most loyal. Convenience beats price every time.', name: 'Anand Krishnan', role: 'Founder, Pharmacy Chain (15 Outlets)' },
     tags: ['Pharmacy Automation', 'Prescription Refill', 'WhatsApp Commerce', 'Customer Retention'],
   },
   {

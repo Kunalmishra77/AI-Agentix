@@ -1,9 +1,8 @@
-import { Helmet } from 'react-helmet-async'
+import Seo from '../components/common/Seo'
 import { meta } from '../data/contact'
 import SiteNav from '../components/layout/SiteNav'
 import SiteFooter from '../components/layout/SiteFooter'
 import ScrollProgress from '../components/common/ScrollProgress'
-import ScrollToTop from '../components/common/ScrollToTop'
 import Section from '../components/common/Section'
 import ContactHero from '../components/contact/ContactHero'
 import ContactForms from '../components/contact/ContactForms'
@@ -14,13 +13,10 @@ import ContactCta from '../components/contact/ContactCta'
 export default function ContactPage() {
   return (
     <>
-      <Helmet>
-        <title>{meta.title}</title>
-        <meta name="description" content={meta.description} />
-      </Helmet>
+      <Seo title={meta.title} description={meta.description} />
       <ScrollProgress />
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <ContactHero />
         <Section tone="white">
           <div className="grid gap-8 lg:grid-cols-[1.55fr_1fr] lg:gap-10">
@@ -32,7 +28,6 @@ export default function ContactPage() {
         <ContactCta />
       </main>
       <SiteFooter />
-      <ScrollToTop />
     </>
   )
 }
