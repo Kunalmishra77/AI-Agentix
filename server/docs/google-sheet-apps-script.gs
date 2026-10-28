@@ -12,6 +12,31 @@
 var SHEET_NAME = 'Leads';
 var HEADERS = ['Received (UTC)', 'Lead ID', 'Form', 'Name', 'Phone', 'Email', 'Company', 'Details', 'Page', 'Campaign', 'Consent'];
 
+// Run this ONCE from the editor (select "setupSheet" → Run). It asks for permission
+// and creates the "Leads" tab with headers. Then deploy as a web app.
+function setupSheet() {
+  var sheet = getLeadsSheet();
+  Logger.log('Ready: "' + sheet.getName() + '" in ' + sheet.getParent().getName());
+}
+
+// Works when the script was opened from the sheet (Extensions → Apps Script). If it was
+// created separately, add a script property SHEET_ID = the long ID from the sheet's URL.
+function getLeadsSheet() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) {
+    var id = PropertiesService.getScriptProperties().getProperty('SHEET_ID');
+    if (!id) throw new Error('Open this script from the Google Sheet, or set the SHEET_ID script property.');
+    ss = SpreadsheetApp.openById(id);
+  }
+  var sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(HEADERS);
+    sheet.setFrozenRows(1);
+    sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
+  }
+  return sheet;
+}
+
 function doPost(e) {
   try {
     var body = JSON.parse(e.postData.contents);
@@ -22,13 +47,7 @@ function doPost(e) {
     var lock = LockService.getScriptLock();
     lock.waitLock(20000);
     try {
-      var ss = SpreadsheetApp.getActiveSpreadsheet();
-      var sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
-      if (sheet.getLastRow() === 0) {
-        sheet.appendRow(HEADERS);
-        sheet.setFrozenRows(1);
-        sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
-      }
+      var sheet = getLeadsSheet();
       // Skip duplicates: the server retries until it gets ok, so a lead may arrive twice.
       var leadId = String(body.row[1]);
       var last = sheet.getLastRow();
