@@ -1,6 +1,6 @@
 # AI Agentix Website — Fixes Completion Report
 
-**Branch:** `fix/website-audit-2026-10` (from `master` @ `80ba5d3`) · **Date:** 27 October 2026
+**Branch:** `fix/website-audit-2026-10` (from `master` @ `80ba5d3`) · **Date:** 27–28 October 2026
 **Deployment status:** **NOT DEPLOYED.** Everything below is implemented and tested locally. The live site
 (ai-agentix.com) is unchanged. Deployment needs VPS access — see §9.
 
@@ -74,11 +74,11 @@ still got success (lead saved), and after the mocks recovered the background ret
 |---|---|---|---|
 | AGX-001 | Contact form fake success | ✅ | Playwright: validation, consent, 1 request on double-click, same-tab thank-you, 500/offline/timeout paths; 18 server tests |
 | AGX-002 | Newsletter fake success | ✅ | Playwright: invalid email, consent required, thank-you after save |
-| AGX-003 | Analytics / conversion | 🟡 / ⏳ | `generate_lead` hook + thank-you URL ready; GA4/GTM ID and consent banner not chosen |
+| AGX-003 | Analytics / conversion | ✅ / ⏳ | GA4 with consent banner (Consent Mode v2), `generate_lead`, WhatsApp/phone/email/assistant events — tested with a dummy ID; needs your real `G-…` ID |
 | AGX-004 | robots/sitemap wrong domain | ✅ | robots.txt → ai-agentix.com; sitemap generated at build: 35 URLs with lastmod. www/aiagentix.in redirects need server access |
 | AGX-005 | Same HTML for every URL, title, OG, soft 404 | ✅ / 🟡 | Per-route HTML with title/description/canonical/OG/Twitter (+ Organization JSON-LD on home), 404 page `noindex`, bad slugs → 404. Real HTTP 404 status needs the nginx change |
 | AGX-006 | Security headers, version disclosure | 🟡 | Express: x-powered-by off, nosniff/frame/referrer (tested). nginx headers + CSP (Report-Only) in `deploy/` — not applied |
-| AGX-007 | Compliance claims (SOC 2, ISO, HIPAA) | ⏳ | Not changed — list in §7, needs your confirmation |
+| AGX-007 | Compliance claims (SOC 2, ISO, HIPAA) | ✅ | Rewritten to accurate wording (§7) — no certification is claimed |
 | AGX-008 | 13 MB hero video | ✅ | Poster 75 kB paints first; 480p 1.4 MB / 720p 3.1 MB / 1080p 7.1 MB chosen by width after load; none with reduced motion / Save-Data |
 | AGX-009 | Uncompressed JS/CSS | 🟡 | Build writes .br/.gz (1177 kB → 316 kB). nginx `gzip_static` not applied |
 | AGX-010 | /api/chat abuse | ✅ | Rate limit on real client IP (was spoofable via X-Forwarded-For), message 1000 chars, history 6, 20 s timeout, daily AI cap, origin check, no stack traces; prompt-injection test refused |
@@ -86,11 +86,11 @@ still got success (lead saved), and after the mocks recovered the background ret
 | AGX-012 | Comparison block left-weighted | ✅ | Full content width (screenshot 1280) |
 | AGX-013 | Table clipped ≤375 px | ✅ | Stacked cards below `sm`; no overflow at 320–1920 |
 | AGX-014 | Hero strip lopsided | ✅ | Full-bleed on mobile; desktop bleed-left kept (looked intentional) |
-| AGX-015 | Contradictory timelines | ⏳ | Needs one approved wording (list in §7) |
+| AGX-015 | Contradictory timelines | ✅ | Approved wording applied: first automation ~2 weeks, full rollout 4–10 weeks |
 | AGX-016 | Wrong/generic links | ✅ | Footer → detail pages; home Solutions tabs + /solutions cards → detail pages; "See Results"; "video coming soon" hidden |
 | AGX-017 | Careers / Partner anchors | ✅ | Careers link removed; `/contact#partnerships`, `#demo`, `#audit` open the right form |
 | AGX-018 | TBA cards, names | ✅ | TBA cards removed; CEO name corrected to **Anant Sanadhya** (confirmed by you); grid aligned with heading. Anant has no bio → no "View profile" yet |
-| AGX-019 | Superlatives, duplicate stats | 🟡 / ⏳ | 67% label fixed. Claims and duplicate stat blocks need your decision (§7) |
+| AGX-019 | Superlatives, duplicate stats | ✅ | Superlatives replaced; ROI block no longer repeats Track Record numbers; 67% label fixed |
 | AGX-020 | Orange contrast | ✅ | Orange text on light backgrounds #C2410C (5.18:1), buttons #CC4A12 (4.61:1), dark sections keep #F26522 (5.84:1), red metrics #B91C1C |
 | AGX-021 | Form a11y + validation | ✅ | name/autocomplete, aria-invalid/describedby, alert summary, phone rule = server rule, neutral placeholder |
 | AGX-022 | Carousel/marquee no pause | ✅ | Pause/play buttons, pause on hover + focus, no autoplay with reduced motion, 24 px dots |
@@ -102,7 +102,7 @@ still got success (lead saved), and after the mocks recovered the background ret
 | AGX-028 | No code splitting | ✅ | Main bundle 509 kB → 105 kB |
 | AGX-029 | Titles, favicon.ico | ✅ | "Page — AI Agentix" everywhere; favicon.ico added |
 | AGX-030 | /api/health details | ✅ | Returns `{ ok: true }` |
-| AGX-031 | Privacy policy | ✅ / ⏳ | Rewritten for DPDP (§5); Grievance Officer name + registered address still needed; counsel review recommended |
+| AGX-031 | Privacy policy | ✅ | Rewritten for DPDP (§5) incl. Grievance Officer and registered address; legal review still recommended |
 | AGX-032 | Reduced motion | ✅ | MotionConfig `reducedMotion="user"`, video + carousel + rotating word respect it |
 | AGX-033 | Hero readability | ✅ | Stronger left/overall overlay; subtitle opacity raised (visual check on bright frames) |
 | AGX-034 | Decorative "+" | ✅ | Removed |
@@ -134,8 +134,10 @@ security and breach notification; delete data when no longer needed. *This is no
   AES-256, TLS 1.3, "never share your data").
 - Terms: website use, communications consent, AI assistant disclaimer, client-data processor clause.
 
-**Still needed from you:** Grievance Officer name (or designation) and registered office address;
-confirm the 24-month retention period; legal review.
+**Added 28 Oct:** Grievance Officer **Vital Sai (CMO)**, registered address **T-1, Pankaj Arcade, Plot No. 16,
+Sector 5, Dwarka, New Delhi 110075** (Privacy Policy, Terms, footer, contact page, Organization JSON-LD,
+assistant). Analytics section describes GA4 with opt-in cookies. Still recommended: legal review and
+confirming the 24-month retention period.
 
 ## 6. Floating lead form and WhatsApp
 
@@ -149,37 +151,30 @@ confirm the 24-month retention period; legal review.
 - **AI assistant:** "Ask AI" pill stacked above the lead-form icon; back-to-top above WhatsApp.
 - Verified: positions at 375 px and 1280 px, no overlap, all hidden while the mobile menu is open.
 
-## 7. Needs your decision (not changed)
+## 7. Claims, stats and timelines — what was changed (28 Oct, as instructed)
 
-**Compliance / superlative claims** (AGX-007/019) — please confirm which are true; I'll replace the rest
-with accurate wording (e.g. "hosted on infrastructure from SOC 2-audited cloud providers"):
+No certification is claimed any more; wording describes what the company actually does.
 
-| Claim | Where |
+| Before | After |
 |---|---|
-| "SOC 2 — Compliant" badge | data/contact.js:14 |
-| "SOC 2 compliant, ISO 27001 aligned … TLS 1.3 … AES-256 … Hosted on AWS Mumbai" | data/contact.js:112 |
-| "SOC 2 Type II certified" | data/solutionPages/finance-accounts.js:100 |
-| "SOC 2 Type II compliant infrastructure" | data/solutionPages/hrms-hiring.js:113 |
-| "Compliant with ISO 27001" | data/solutionPages/manufacturing.js:113 |
-| "ISO 27001 aligned", "0 data breaches since founding", "99.6% uptime", "DPDP Act 2023 compliant" | data/about.js:77–78 |
-| "SOC 2 Compliant", "AWS Mumbai", "99.97% uptime SLA", TLS 1.3 / AES-256 | data/technology.js:7, 15, 69, 96, 98; AgentHero.jsx:91; AgentStack.jsx:24; agents.js:200 |
-| HIPAA compliance answers | industryPages/healthcare.js:83; solutionPages/hospital-management.js:112 |
-| "India's Fastest Growing AI Consulting Company" | data/home.js:11 |
-| "India's #1 end-to-end AI automation partner" | data/site.js:102 |
-| "India's most advanced AI-powered content studio" | data/aiStudio.js:13 |
-| "Results guaranteed" | data/home.js:258 |
-| "Verified by clients across India", 200+ businesses, ₹50 Cr+, 97%, 8x, 4.9/5 | home.js:7, 16, 84–88, 282–288; caseStudies.js:21–22; site.js:68; contact.js:17 |
-| Named testimonial "Anand Krishnan — CEO, MedPlus Neighbourhood" (real brand) | data/caseStudies.js:90 — confirm you have permission |
+| "SOC 2 — Compliant" badge (contact hero) | "Free — AI Audit" |
+| "SOC 2 compliant, ISO 27001 aligned … TLS 1.3 … AES-256 … AWS Mumbai" (contact FAQ) | encrypted in transit and at rest, access limited to the project team, DPDP Act, India hosting on request, NDA + DPA |
+| "SOC 2 Type II certified / compliant infrastructure" (finance, HRMS) | encryption, role-based access, audit logs, Indian data residency available |
+| "Compliant with ISO 27001" (manufacturing) | encryption, role-based access and audit logs |
+| HIPAA answers (healthcare, hospital management) | DPDP Act; HIPAA or other frameworks designed in and agreed in contract when required |
+| "ISO 27001 aligned", "0 data breaches since founding", "99.6% uptime" (About) | security-by-design bullets; "NDA & data processing agreement on request"; "Proactive monitoring after go-live" |
+| "SOC 2 Compliant", "99.97% uptime SLA", "Hosted in India (AWS Mumbai)", "breach notification within 72 hours" (Technology) | "Encrypted in transit & at rest", "Built for DPDP Act 2023", "India hosting available", "Audit logs on every action" |
+| "India's Fastest Growing AI Consulting Company" | "End-to-End AI Automation Partner" |
+| "India's #1 end-to-end AI automation partner" | "End-to-end AI automation partner for growing businesses …" |
+| "India's most advanced AI-powered content studio" | "an AI-powered content studio" |
+| "Results guaranteed" | "Milestones tied to your KPIs" |
+| "Verified by clients across India" | "From real client deployments across India" |
+| ROI block repeated 8x / 200+ / 97% | 12x faster, 60% cost cut, < 90 s lead response, 24/7, ~2 weeks to first automation |
+| "CEO, MedPlus Neighbourhood" (real national brand, didn't match a 15-outlet client) | "Founder, Pharmacy Chain (15 Outlets)" |
+| Timelines: 14-day / 2–4 weeks / 6–10 weeks / two weeks | "First automation in ~2 weeks; full rollout typically 4–10 weeks" (per-agent "2–4 weeks" build times kept) |
 
-Duplicate "Our Track Record" / "The ROI Case" stats (8x, 200+, 97%): tell me which numbers to keep.
-
-**Delivery timeline** (AGX-015) — currently: "14-day avg. delivery" (home.js:137), "11 days" testimonial
-(home.js:143), "2–4 weeks" (home.js:133, 296; solutions.js; agents.js; supply-chain.js), "6–10 weeks"
-(contact.js:107), "two weeks" (about.js:88). Suggested single wording: *"First automation live in about
-2 weeks; full rollout typically 4–10 weeks."*
-
-**Other:** canonical domain (I used **ai-agentix.com**); analytics tool + cookie banner; newsletter —
-there is no sending tool yet (emails are collected only); careers page (link removed).
+Kept as the company's own figures: 200+ businesses, 97% satisfaction, ₹50 Cr+, 8x ROI, 4.9/5, named
+testimonials on the case-studies page — keep evidence for these on file (ASCI).
 
 ## 8. Files changed (main)
 
@@ -229,36 +224,25 @@ as directional; video bytes on the live site were still streaming):**
 
 Lighthouse was not run (not installed); re-measure on the live site after deployment.
 
-## 10. Deployment and what's needed from you
+## 10. Deployment status and steps
 
-Nothing has been pushed or deployed. To deploy:
+**Not deployed yet.** Step-by-step instructions (GitHub → VPS, Gmail, Google Sheet, Google Analytics, nginx) are in
+[`deploy/DEPLOY_STEPS.md`](deploy/DEPLOY_STEPS.md).
 
-1. **Give me / confirm:** SSH access (or run commands yourself), the repo folder on the VPS, the branch the
-   VPS uses, and the pm2 process name (`pm2 ls`). The old configs pointed to `/var/www/ai-agentix` + pm2,
-   but the current server layout is unverified. The site appears to run behind Caddy → nginx.
-2. **On the VPS `server/.env`** add: `LEADS_DIR`, `SMTP_*` + `LEAD_NOTIFY_TO` (Gmail App Password),
-   `GOOGLE_SHEET_WEBHOOK_URL` + `GOOGLE_SHEET_WEBHOOK_TOKEN`, `NODE_ENV=production`,
-   `ALLOWED_ORIGINS=https://ai-agentix.com`, and either the new `OPENAI_API_KEY` + `LLM_DAILY_LIMIT` or leave
-   the key empty for the free assistant. Node must be ≥ 20.
-3. Merge `fix/website-audit-2026-10` into the branch the VPS deploys, then on the VPS:
-   `APP_DIR=<repo folder> BRANCH=<branch> PM2_APP=<name> bash deploy/deploy.sh`
-   (builds next to the live site and swaps — no downtime; previous build kept in `dist-prev/`).
-4. Apply `deploy/nginx-recommended.conf` + the headers snippet after comparing with `nginx -T`, then
-   `nginx -t && systemctl reload nginx`. Add `www` → apex and `aiagentix.in` → `ai-agentix.com` 301s.
-5. After deploy: submit one test lead per form ("AUDIT TEST", test@example.invalid) and check inbox, Sheet,
-   thank-you page; check WhatsApp button; ask the assistant a question.
+- **Gmail verified (28 Oct):** SMTP login with the App Password for myai@ai-agentix.com succeeded and one test lead
+  ("AUDIT TEST") was delivered to that inbox through the real pipeline. The password is only in the local, git-ignored
+  `server/.env` and must also be put in the VPS `server/.env`.
+- Google Sheet URL and GA4 Measurement ID are still to be created by you (steps in the guide).
 
-**Security notes:** the OpenAI key previously stored on the server is invalid — remove it. The key you
-pasted in chat was used only in the local, git-ignored `server/.env`; because it was shared in chat,
-consider rotating it and setting a monthly spend limit. The local `.vercel/` folder (git-ignored, never
-committed) contains production secrets (database URL, admin password, JWT secret, Supabase key) from the
-old Vercel project — delete it and rotate those secrets if that project is still in use.
+**Security notes:** the OpenAI key on the server is invalid — replace or remove it. Keys and passwords shared in chat
+(OpenAI key, Gmail App Password) should be rotated after go-live if the chat is accessible to others. The local
+`.vercel/` folder (git-ignored, never committed) holds old Vercel production secrets — delete it and rotate them if
+that project is still used.
 
 ## 11. Remaining limitations
 
 - Responsive image variants / `srcset` for card images (AGX-027) not done.
 - nginx headers, gzip_static, real 404 status, www/aiagentix.in redirects — need server access.
-- Analytics + consent banner, newsletter sending tool — need decisions.
-- Claims, timelines, stats, Grievance Officer details — need your approval/input.
+- GA4 Measurement ID (banner and tracking switch on when it is added); newsletter sending tool not chosen.
 - Vite 8 / React Router 7 upgrades — recommended, not done (major versions).
 - Not tested on real iOS/Android devices; browser tests used Chromium.

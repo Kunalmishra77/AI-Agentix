@@ -7,6 +7,8 @@ const COMPANY = 'AI Agentix (Santure AI Private Limited)'
 const UPDATED = '1 January 2025'
 const POLICY_UPDATED = '27 October 2026'
 const EMAIL = 'myai@ai-agentix.com'
+const ADDRESS = 'T-1, Pankaj Arcade, Plot No. 16, Sector 5, Dwarka, New Delhi 110075'
+const GRIEVANCE_OFFICER = 'Vital Sai (CMO)'
 
 export const privacy = {
   meta: { title: 'Privacy Policy — AI Agentix', description: 'How AI Agentix (Santure AI Private Limited) collects, uses, shares and protects personal data under India’s Digital Personal Data Protection Act, 2023, and how to exercise your rights.' },
@@ -16,7 +18,7 @@ export const privacy = {
   updated: POLICY_UPDATED, appliesTo: COMPANY,
   sections: [
     { title: 'Who we are', paragraphs: [
-      'This website (ai-agentix.com) is operated by Santure AI Private Limited, New Delhi, India ("AI Agentix", "we", "us"). For personal data you share with us through this website, we are the Data Fiduciary under the Digital Personal Data Protection Act, 2023 (DPDP Act) and the Digital Personal Data Protection Rules, 2025.',
+      'This website (ai-agentix.com) is operated by Santure AI Private Limited, ' + ADDRESS + ', India ("AI Agentix", "we", "us"). For personal data you share with us through this website, we are the Data Fiduciary under the Digital Personal Data Protection Act, 2023 (DPDP Act) and the Digital Personal Data Protection Rules, 2025.',
       'This policy covers this website, its enquiry forms, the floating consultation form, the newsletter sign-up, the WhatsApp link and the on-site AI assistant. Services we deliver to clients under a contract are governed by that contract and its data processing terms.',
     ] },
     { title: 'Personal data we collect', paragraphs: [
@@ -26,7 +28,7 @@ export const privacy = {
       'Technical data sent with a form: the page you submitted it from, campaign parameters in the link you arrived by (for example utm_source or gclid), your IP address and your browser’s user-agent. We use these to prevent spam and abuse and as evidence of your consent.',
       'AI assistant: the questions you type (or dictate) and the page you are on. Voice input uses your browser’s built-in speech recognition (provided by your browser maker, e.g. Google in Chrome); we receive only the resulting text.',
       'We do not ask for, and please do not share, sensitive information such as government ID numbers, bank or card details, passwords or health records through this website.',
-      'This website does not currently use analytics or advertising cookies. It stores a few non-identifying values in your browser (your scroll position and the campaign that brought you here, for the current visit only). If we add analytics, we will update this policy and ask for consent where required.',
+      'Cookies and analytics: with your permission (the cookie banner shown on your first visit), we use Google Analytics 4 to understand how visitors use the site — pages viewed, approximate location (city level), device and browser, and clicks on our contact buttons. These cookies are off unless you accept them, and you can change your choice any time from “Cookie settings” in the footer. We do not use advertising cookies. The site also stores a few non-identifying values in your browser (your cookie choice, scroll position and the campaign that brought you here).',
     ] },
     { title: 'Why we use it', paragraphs: [
       'To respond to your enquiry: reviewing your request, contacting you by phone call, WhatsApp, SMS or email — once or more than once — to understand your needs, schedule a demo or audit, and send you a proposal. We do this on the basis of the consent you give by ticking the box on the form.',
@@ -42,7 +44,7 @@ export const privacy = {
     { title: 'Who we share it with', paragraphs: [
       'We share personal data only with service providers that help us run this website and respond to you, under instructions to use it only for that purpose (Data Processors):',
       '• Our website hosting provider — stores enquiries on our server.',
-      '• Google (Gmail / Google Workspace and Google Sheets) — delivers each enquiry to our team’s inbox and our enquiry tracking sheet.',
+      '• Google (Gmail / Google Workspace and Google Sheets) — delivers each enquiry to our team’s inbox and our enquiry tracking sheet; and Google Analytics, only if you accept analytics cookies.',
       '• OpenAI — only if the AI assistant is running in AI mode: the text of your question and relevant website content are sent to generate an answer. OpenAI states that API data is not used to train its models and may be retained for up to 30 days for abuse monitoring.',
       '• WhatsApp (Meta) — if you choose to message us on WhatsApp, that conversation is also subject to WhatsApp’s own terms and privacy policy.',
       'We may also disclose personal data where required by law or by a lawful order of a court or government authority.',
@@ -66,7 +68,7 @@ export const privacy = {
       'We aim to respond within 30 days, and in any case within the 90 days allowed by the DPDP Rules.',
     ] },
     { title: 'Grievances and complaints', paragraphs: [
-      'For any concern about how we handle your personal data, contact our Grievance Officer at ' + EMAIL + ' (subject “Grievance”) or write to the Grievance Officer, Santure AI Private Limited, New Delhi, India.',
+      'Grievance Officer: ' + GRIEVANCE_OFFICER + ', Santure AI Private Limited, ' + ADDRESS + '. Email: ' + EMAIL + ' (subject “Grievance”). We acknowledge grievances promptly and resolve them within 30 days, and in any case within the 90 days allowed by the DPDP Rules.',
       'If you are not satisfied with our response, you may file a complaint with the Data Protection Board of India after using our grievance process, as provided under the DPDP Act.',
     ] },
     { title: 'Children', paragraphs: [
@@ -77,7 +79,7 @@ export const privacy = {
       'This policy was last updated on ' + POLICY_UPDATED + '. When we make material changes we will update this page and the date above, and where the law requires, ask for your consent again.',
     ] },
   ],
-  finalCta: { heading: 'Questions about your data?', body: 'Email our Grievance Officer — we respond within 30 days.', email: EMAIL },
+  finalCta: { heading: 'Questions about your data?', body: 'Email our Grievance Officer, ' + GRIEVANCE_OFFICER + ' — we respond within 30 days.', email: EMAIL },
 }
 
 export const terms = {
@@ -133,7 +135,7 @@ export const terms = {
     ] },
     { title: 'Contact & Updates', paragraphs: [
       'These Terms of Service were last updated on ' + POLICY_UPDATED + '. We may update them periodically — significant changes will be communicated via email or a prominent notice on our website at least 14 days in advance.',
-      'For any questions regarding these terms, please contact us at: ' + EMAIL + ' or write to Santure AI Private Limited, New Delhi, India.',
+      'For any questions regarding these terms, please contact us at: ' + EMAIL + ' or write to Santure AI Private Limited, ' + ADDRESS + '.',
     ] },
   ],
   finalCta: { heading: 'Questions about our terms?', body: 'Our team is happy to walk you through anything that needs clarification.', email: EMAIL },
@@ -171,7 +173,7 @@ export const refund = {
     ] },
     { title: 'Contact for Refund Requests', paragraphs: [
       'This Refund Policy was last updated on 1 January 2025. We may revise it from time to time — updates will be published on this page.',
-      'To initiate a refund request or ask questions about this policy, contact us at: ' + EMAIL + ' or write to Santure AI Private Limited, New Delhi, India.',
+      'To initiate a refund request or ask questions about this policy, contact us at: ' + EMAIL + ' or write to Santure AI Private Limited, ' + ADDRESS + '.',
     ] },
   ],
   finalCta: { heading: 'Need to raise a refund request?', body: 'Email our billing team directly with your invoice number and details.', email: EMAIL },

@@ -11,7 +11,7 @@ export const hero = {
   heading: "Let's Talk About Your Biggest Workflow Problem",
   body: "No pitch decks. No pressure. Just an honest conversation about what you're dealing with — and whether we can automate it.",
   trust: [
-    { value: 'SOC 2', label: 'Compliant' },
+    { value: 'Free', label: 'AI Audit' },
     { value: '4-hour', label: 'Response SLA' },
     { value: '97%', label: 'Satisfaction' },
     { value: '200+', label: 'Clients' },
@@ -104,12 +104,12 @@ export const nextSteps = [
 export const faq = {
   heading: 'Questions We Get Every Day',
   items: [
-    { q: 'How long does implementation take?', a: 'Most clients are live within 6–10 weeks from signing. A single AI voice agent is 2–3 weeks; a full multi-system integration is 8–10 weeks. We give you a precise timeline after the discovery audit — no surprises.' },
+    { q: 'How long does implementation take?', a: 'Your first automation is usually live in about 2 weeks, and a full rollout typically takes 4–10 weeks depending on how many systems are involved. We give you a precise timeline after the discovery audit — no surprises.' },
     { q: 'Do we need to change our existing tools?', a: 'No. We integrate with your existing stack. AI Agentix connects with 200+ tools including Zoho, HubSpot, Salesforce, Tally, Google Workspace, and WhatsApp Business. We work around your systems.' },
     { q: 'What if the automation breaks or has errors?', a: 'Every automation has fallback logic that routes to a human when needed. You get real-time monitoring dashboards, instant alerts, and our support team responds within 4 business hours. Most issues are caught proactively.' },
     { q: 'Do we need technical staff to manage this?', a: 'No. Dashboards are built for business owners and managers, not developers. We train your team in 2 hours. Most clients manage their automations with no coding knowledge at all.' },
     { q: 'How is pricing structured?', a: 'Starter (₹25,000/mo), Growth (₹49,000/mo), and Enterprise (₹89,000/mo+). Each includes automation workflows plus ongoing support. Custom pricing for large-scale deployments. No setup fees in most cases.' },
-    { q: 'Is our data safe?', a: 'Yes. SOC 2 compliant, ISO 27001 aligned. Your data is encrypted in transit (TLS 1.3) and at rest (AES-256). Hosted on AWS Mumbai — data never leaves India without written consent. We sign NDAs for sensitive industries.' },
+    { q: 'Is our data safe?', a: 'Yes. Your data is encrypted in transit and at rest, access is limited to the people working on your project, and it is used only for your project. We work in line with the DPDP Act, 2023, can host in India on request, and sign NDAs and data processing agreements.' },
     { q: 'Can we start with one automation and scale later?', a: 'Absolutely. We recommend starting with your highest-impact workflow — usually lead follow-up or appointment management. Once you see ROI, expanding is fast because the infrastructure is already in place.' },
   ],
 }

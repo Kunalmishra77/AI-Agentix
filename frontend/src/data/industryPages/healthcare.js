@@ -80,7 +80,7 @@ export default {
   faq: {
     heading: 'Healthcare AI — Questions Answered',
     items: [
-      { q: 'Is patient data HIPAA / data privacy compliant?', a: 'Yes. All patient data is encrypted, access-controlled, and stored with full audit trails. We sign Business Associate Agreements with all healthcare clients.' },
+      { q: 'How is patient data protected?', a: 'All patient data is encrypted, access-controlled and stored with full audit trails, in line with the DPDP Act, 2023. If you must meet HIPAA or another framework, we design the system to those requirements and agree the data terms in your contract.' },
       { q: 'Does it integrate with our HMS/EMR system?', a: 'We integrate with major Indian HMS systems including Practo, Doctify, eSanjeevani, and any system with API access. Custom integrations available.' },
       { q: 'How does the appointment AI handle different specialities?', a: 'Appointment slots, durations, and routing rules are configured per speciality. Each department can have its own booking workflows and reminder sequences.' },
       { q: 'Can it handle multi-location hospital networks?', a: 'Yes. Centralized dashboards across all locations with location-specific workflows, staff assignments, and reporting.' },

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { SiWhatsapp } from 'react-icons/si'
 import { X, Send, ArrowRight, Mic, Volume2, VolumeX, Sparkles, Bot } from 'lucide-react'
 import { whatsappLink } from '../../data/site'
+import { track } from '../../lib/analytics'
 const GREETING = "Hi! I'm the Agentix Assistant. Ask me about our AI solutions, industries, technology or how to get started — I can also take you straight to the right page."
 
 // Web Speech API (feature-detected; absent on some browsers)
@@ -201,7 +202,7 @@ export default function AssistantWidget() {
           aria-label={open ? 'Close AI assistant' : 'Ask our AI assistant'}
           aria-expanded={open}
           aria-controls="agx-assistant-panel"
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpen((v) => { if (!v) track('assistant_open'); return !v })}
           className="inline-flex h-11 items-center gap-2 rounded-full bg-ink pl-3 pr-4 text-sm font-semibold text-white shadow-float ring-1 ring-white/10 transition-transform hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 active:scale-95"
         >
           <Sparkles className="h-4 w-4 text-accent" aria-hidden />

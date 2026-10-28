@@ -4,6 +4,7 @@ import ScrollReset from './components/common/ScrollReset.jsx'
 import ScrollToTop from './components/common/ScrollToTop.jsx'
 import WhatsAppFloat from './components/common/WhatsAppFloat.jsx'
 import AssistantWidget from './components/assistant/AssistantWidget.jsx'
+import CookieConsent from './components/common/CookieConsent.jsx'
 import HomePage from './pages/HomePage.jsx'
 
 // Route-level code splitting (AGX-028): the home page ships in the main bundle,
@@ -55,6 +56,7 @@ export default function App() {
       <WhatsAppFloat />
       <ScrollToTop />
       <AssistantWidget />
+      <CookieConsent />
     </>
   )
 }

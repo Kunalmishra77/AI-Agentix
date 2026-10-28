@@ -109,7 +109,7 @@ export default {
     items: [
       { q: 'How long does deployment take?', a: 'Most hospitals go live within 3–4 weeks. We handle data migration, staff training, and integration with your existing HMIS/EMR without disrupting ongoing operations.' },
       { q: 'Does it work with existing HMIS software?', a: 'Yes. We integrate with all major Indian HMIS platforms — Practo, eVital, HIS, Marg, and custom systems. API-based integration means no rip-and-replace.' },
-      { q: 'Is patient data secure and HIPAA/DPDPA compliant?', a: 'Absolutely. All data is encrypted at rest and in transit, stored in India, and fully compliant with DPDPA 2023 and healthcare data protection standards.' },
+      { q: 'Is patient data secure?', a: 'Yes. All data is encrypted at rest and in transit, can be stored in India, and is handled in line with the DPDP Act, 2023. Specific standards your hospital must meet (such as HIPAA for US patients) are built into the design and the contract.' },
       { q: 'Can it handle multi-speciality or multi-location hospitals?', a: 'Yes. The system is built for multi-department and multi-branch environments with centralized dashboards and department-level access controls.' },
       { q: 'What happens if the internet goes down?', a: 'Critical functions have offline fallback modes. Data syncs automatically once connectivity is restored. Zero patient data is lost.' },
     ],

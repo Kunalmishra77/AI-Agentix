@@ -110,7 +110,7 @@ export default {
       { q: 'How does AI screening reduce bias?', a: 'The AI evaluates skills and experience against job requirements, not photos, names, or other personal attributes. You can configure blind screening modes for complete anonymity.' },
       { q: 'Does it integrate with job boards?', a: 'Yes — LinkedIn, Naukri, Indeed, and Shine. Applications flow directly into the ATS and get scored automatically without manual import.' },
       { q: 'Can employees self-serve on HR queries?', a: 'The HR AI bot handles leave requests, payslip queries, policy questions, and more. 80% of HR queries resolved without HR team involvement.' },
-      { q: 'Is payroll data secure?', a: 'All payroll data is encrypted, role-gated, and audit-logged. SOC 2 Type II compliant infrastructure with Indian data residency options.' },
+      { q: 'Is payroll data secure?', a: 'All payroll data is encrypted, role-gated, and audit-logged, on enterprise cloud infrastructure with Indian data residency options.' },
       { q: 'How long to implement?', a: '4–6 weeks for full HRMS setup including payroll, compliance, and ATS. Core recruitment module live in 2 weeks.' },
     ],
   },

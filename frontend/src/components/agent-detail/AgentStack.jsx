@@ -21,7 +21,7 @@ export default function AgentStack({ agent }) {
               <Cpu className="h-5 w-5" />
             </span>
             <p className="text-sm text-body">
-              <span className="font-semibold text-heading">Hosted in India</span> · AWS Mumbai (ap-south-1)
+              <span className="font-semibold text-heading">India hosting available</span> · AWS Mumbai (ap-south-1)
             </p>
           </div>
         </div>

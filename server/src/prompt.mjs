@@ -20,7 +20,7 @@ export const CONTACT_FACTS = `
 Phone (calls): +91 92170 64245
 WhatsApp: +91 92171 67347 (the green WhatsApp button at the bottom-left of every page)
 Email: myai@ai-agentix.com
-Office: New Delhi, India
+Office: T-1, Pankaj Arcade, Plot No. 16, Sector 5, Dwarka, New Delhi 110075, India
 Company: AI Agentix is a product of Santure AI Private Limited
 `.trim()
 

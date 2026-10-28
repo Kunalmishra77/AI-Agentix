@@ -50,7 +50,7 @@ export function organizationJsonLd() {
     logo: `${SITE_URL}/favicon-512.png`,
     email: contactInfo.email,
     telephone: contactInfo.phone.replace(/\s/g, ''),
-    address: { '@type': 'PostalAddress', addressLocality: 'New Delhi', addressCountry: 'IN' },
+    address: { '@type': 'PostalAddress', streetAddress: 'T-1, Pankaj Arcade, Plot No. 16, Sector 5, Dwarka', addressLocality: 'New Delhi', postalCode: '110075', addressCountry: 'IN' },
     sameAs: footer.socials.filter((s) => s.label !== 'WhatsApp').map((s) => s.href),
   }
 }

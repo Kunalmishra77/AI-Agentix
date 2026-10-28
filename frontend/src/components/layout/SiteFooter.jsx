@@ -10,6 +10,7 @@ import { footer } from '../../data/site'
 import { consent as consentText } from '../../data/consent'
 import { submitLead, trackLead, isEmail } from '../../lib/leads'
 import ConsentCheckbox from '../common/ConsentCheckbox'
+import { analyticsEnabled, CONSENT_EVENT } from '../../lib/analytics'
 import Logo from './Logo'
 
 const SOCIAL_ICONS = { LinkedIn: Linkedin, Instagram, Facebook, Twitter, WhatsApp: MessageCircle }
@@ -149,7 +150,7 @@ export default function SiteFooter() {
           <ul className="mt-4 space-y-2.5 text-sm text-body">
             <li className="flex items-center gap-2.5"><Mail className="h-4 w-4 text-accent" /><a href={`mailto:${footer.contact.email}`} className="hover:text-accent">{footer.contact.email}</a></li>
             <li className="flex items-center gap-2.5"><Phone className="h-4 w-4 text-accent" /><a href={footer.contact.phoneHref} className="hover:text-accent">{footer.contact.phone}</a></li>
-            <li className="flex items-center gap-2.5"><MapPin className="h-4 w-4 text-accent" />{footer.contact.address}</li>
+            <li className="flex items-start gap-2.5"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden /><span>{footer.contact.address}</span></li>
           </ul>
         </div>
       </div>
@@ -165,6 +166,11 @@ export default function SiteFooter() {
             {footer.legal.map((l) => (
               <Link key={l.label} to={l.to} className="transition-colors hover:text-accent">{l.label}</Link>
             ))}
+            {analyticsEnabled() && (
+              <button type="button" onClick={() => window.dispatchEvent(new Event(CONSENT_EVENT))} className="transition-colors hover:text-accent">
+                Cookie settings
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -5,9 +5,11 @@ import { HelmetProvider } from 'react-helmet-async'
 import { MotionConfig } from 'framer-motion'
 import App from './App.jsx'
 import { captureUtm } from './lib/leads'
+import { initAnalytics } from './lib/analytics'
 import './index.css'
 
 captureUtm()
+initAnalytics()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

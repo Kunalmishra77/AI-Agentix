@@ -8,7 +8,7 @@ export const meta = {
 }
 
 export const hero = {
-  eyebrow: "India's Fastest Growing AI Consulting Company",
+  eyebrow: 'End-to-End AI Automation Partner',
   headingPrefix: 'Your Business,',
   rotatingWords: ['Automated.', 'Transformed.', 'Supercharged.', 'Unstoppable.'],
   body:
@@ -81,7 +81,7 @@ export const problem = {
 export const trackRecord = {
   eyebrow: 'Our Track Record',
   heading: 'Numbers That Speak for Themselves',
-  sub: 'From real deployments. Verified by clients across India.',
+  sub: 'From real client deployments across India.',
   stats: [
     { value: '200+', label: 'Businesses Automated', sub: 'Across 15+ industries' },
     { value: '97%', label: 'Client Satisfaction', sub: 'Measured post-deployment' },
@@ -134,7 +134,7 @@ export const process = {
     { no: '04', title: 'Go Live + Optimize', time: 'Ongoing', text: "We monitor performance post-launch, retrain models on your data, and iterate until KPIs are hit. You're not left alone after deployment." },
   ],
   trustSignals: [
-    { title: '14-day avg. delivery', text: 'First automation live in 2 weeks' },
+    { title: '~2 weeks to first automation', text: 'Full rollout typically 4–10 weeks' },
     { title: 'No lock-in contract', text: 'Month-to-month, cancel anytime' },
     { title: '24/7 post-launch support', text: 'We stay with you after go-live' },
     { title: 'Results-backed pricing', text: 'Milestones tied to your KPIs' },
@@ -255,7 +255,7 @@ export const whyUs = {
     { label: 'Data Visibility', bad: 'Monthly spreadsheet reports', badMeta: '30-day lag', good: 'Live dashboards, instant alerts', goodMeta: '< 5 sec data', gain: 'Real-time' },
     { label: 'Operating Cost', bad: 'Manual overhead + errors', badMeta: '₹8L+/mo waste', good: 'Automated, lean operations', goodMeta: '60% cut', gain: 'Save ₹8L/mo' },
   ],
-  bottomNote: 'Free strategy call · No commitment · Results guaranteed',
+  bottomNote: 'Free strategy call · No commitment · Milestones tied to your KPIs',
   cta: { label: 'See AI Agentix in Action', to: '/contact' },
 }
 
@@ -279,13 +279,13 @@ export const testimonialsSection = {
 export const roi = {
   eyebrow: 'The ROI Case',
   heading: 'The Business Case for AI Agentix',
-  sub: 'Measured across 200+ client deployments',
+  sub: 'What changes once the work runs itself',
   stats: [
-    { value: '8x', label: 'Average ROI', sub: 'Measured at 6 months' },
     { value: '12x', label: 'Faster Operations', sub: 'Task completion speed' },
     { value: '60%', label: 'Cost Reduction', sub: 'On automated workflows' },
-    { value: '200+', label: 'Deployments', sub: 'Across industries' },
-    { value: '97%', label: 'Satisfaction', sub: 'Post-deployment score' },
+    { value: '< 90s', label: 'Lead Response', sub: 'Instead of hours' },
+    { value: '24/7', label: 'Always On', sub: 'Agents never clock out' },
+    { value: '~2 wks', label: 'To First Automation', sub: 'Full rollout 4–10 weeks' },
   ],
 }
 
@@ -293,7 +293,7 @@ export const finalCta = {
   eyebrow: 'Get Started',
   heading: 'Ready to Automate Your Business?',
   body: "Book a free 30-minute strategy call. We'll map your biggest automation opportunity and show you exactly what we'd build — no commitment required.",
-  checklist: ['No credit card required', '30-min free call', 'Results in 2–4 weeks'],
+  checklist: ['No credit card required', '30-min free call', 'First automation in ~2 weeks'],
   ctas: [
     { label: 'Book Free Strategy Call', to: '/contact', primary: true },
     { label: 'Explore Solutions', to: '/solutions', primary: false },

@@ -6,10 +6,16 @@ export const contactInfo = {
   phone: '+91 92170 64245',
   phoneHref: 'tel:+919217064245',
   email: 'myai@ai-agentix.com',
-  address: 'New Delhi, India',
+  address: 'T-1, Pankaj Arcade, Plot No. 16, Sector 5, Dwarka, New Delhi 110075',
   whatsappNumber: '919217167347',
   whatsappDisplay: '+91 92171 67347',
 }
+// Google Analytics 4 measurement ID (looks like 'G-XXXXXXXXXX'). Empty = no analytics and no
+// cookie banner. When set, GA loads only after the visitor accepts analytics cookies.
+export const analytics = {
+  ga4Id: '',
+}
+
 export const whatsappLink = (text = 'Hi AI Agentix, I have a question about your services.') =>
   `https://wa.me/${contactInfo.whatsappNumber}${text ? `?text=${encodeURIComponent(text)}` : ''}`
 
@@ -99,7 +105,7 @@ export const industriesMega = {
 export const footer = {
   partnersCaption: 'Powered by the world’s most powerful AI platforms',
   partners: ['OpenAI', 'Google Cloud', 'AWS', 'Meta AI', 'Twilio', 'Razorpay', 'n8n', 'Make', 'Anthropic', 'WhatsApp', 'HubSpot', 'LangChain'],
-  brandBlurb: "India's #1 end-to-end AI automation partner. Powering intelligent businesses across 15+ industries.",
+  brandBlurb: 'End-to-end AI automation partner for growing businesses — AI agents for sales, marketing, HR, operations, finance and support.',
   socials: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/company/ai-agentix/about/' },
     { label: 'Instagram', href: 'https://www.instagram.com/ai_agentix' },

@@ -97,7 +97,7 @@ export default {
     heading: 'Finance Automation — Questions Answered',
     items: [
       { q: 'Which accounting software does it connect to?', a: 'Tally, QuickBooks, Zoho Books, SAP, and Oracle. Direct integration maintains a live sync without manual data import.' },
-      { q: 'Is financial data secure?', a: 'Bank-grade encryption, role-based access, and full audit logs. SOC 2 Type II certified with Indian data residency. Only authorized users see financial data.' },
+      { q: 'Is financial data secure?', a: 'Encryption in transit and at rest, role-based access, and full audit logs, with Indian data residency available. Only authorised users see financial data.' },
       { q: 'How does GST automation work?', a: 'AI matches invoices, calculates liability, and prepares GSTR-1, GSTR-3B, and annual returns. You review and file — no manual preparation required.' },
       { q: 'Can it handle multi-entity companies?', a: 'Yes. Consolidated reporting across multiple entities, intercompany elimination, and entity-level drill-down all supported.' },
       { q: 'How long until we see time savings?', a: 'Finance teams typically save 40–60 hours per month in the first 30 days through invoice automation and expense management alone.' },
