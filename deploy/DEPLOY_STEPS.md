@@ -8,7 +8,7 @@ and the Apps Script "Script properties".
 
 ## A. Google Sheet for leads (browser, ~10 min)
 
-1. Log in to Google with **myai@ai-agentix.com** → open <https://sheets.new> → name it **AI Agentix Website Leads**.
+1. Log in to the Google account that should own the leads sheet (currently **kunal.mishra.50999@gmail.com**) → open <https://sheets.new> → name it **AI Agentix Website Leads**.
 2. Menu **Extensions → Apps Script**. A new tab opens with a file `Code.gs`.
 3. Delete everything in `Code.gs`, paste the full content of
    [`server/docs/google-sheet-apps-script.gs`](../server/docs/google-sheet-apps-script.gs), click **Save** (disk icon).
@@ -16,13 +16,13 @@ and the Apps Script "Script properties".
    - Property: `LEADS_TOKEN`
    - Value: the secret token you were given (one long line, no spaces) → **Save script properties**.
 4b. In the editor toolbar choose the function **setupSheet** → **Run** → **Review permissions** → pick
-   **myai@ai-agentix.com** → Advanced → Go to … → **Allow**. The sheet now has a **Leads** tab with headers.
+   the same account that owns the sheet → Advanced → Go to … → **Allow**. The sheet now has a **Leads** tab with headers.
    *If you see "Error 401: invalid_client — The OAuth client is not fully created yet": the new project is still
-   being set up by Google. Wait 10–15 minutes, reload the Apps Script page and Run again. Make sure the popup shows
-   myai@ai-agentix.com, not a personal account.*
+   being set up by Google. Wait 10–15 minutes, reload the Apps Script page and Run again. Make sure the popup shows the
+   account that owns the sheet.*
 5. Top right **Deploy → New deployment** → gear icon next to "Select type" → **Web app**:
    - Description: `Website leads`
-   - Execute as: **Me (myai@ai-agentix.com)**
+   - Execute as: **Me** (the sheet owner)
    - Who has access: **Anyone**  (safe — every request without the token is rejected)
    - **Deploy** → Google asks for permission → **Authorize access** → choose the account →
      "Google hasn't verified this app" → **Advanced → Go to … (unsafe)** → **Allow**
