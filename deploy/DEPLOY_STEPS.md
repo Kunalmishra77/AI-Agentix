@@ -15,6 +15,11 @@ and the Apps Script "Script properties".
 4. Left sidebar **⚙ Project Settings** → scroll to **Script properties** → **Add script property**:
    - Property: `LEADS_TOKEN`
    - Value: the secret token you were given (one long line, no spaces) → **Save script properties**.
+4b. In the editor toolbar choose the function **setupSheet** → **Run** → **Review permissions** → pick
+   **myai@ai-agentix.com** → Advanced → Go to … → **Allow**. The sheet now has a **Leads** tab with headers.
+   *If you see "Error 401: invalid_client — The OAuth client is not fully created yet": the new project is still
+   being set up by Google. Wait 10–15 minutes, reload the Apps Script page and Run again. Make sure the popup shows
+   myai@ai-agentix.com, not a personal account.*
 5. Top right **Deploy → New deployment** → gear icon next to "Select type" → **Web app**:
    - Description: `Website leads`
    - Execute as: **Me (myai@ai-agentix.com)**
