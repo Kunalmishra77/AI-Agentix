@@ -173,6 +173,8 @@ Then:
    `deploy/nginx-recommended.conf`: `server_tokens off;`, the `include snippets/…` lines, `gzip_static on;`,
    the cache `location` blocks, and replace `try_files $uri $uri/ /index.html;` with
    `try_files $uri $uri/index.html =404;` plus `error_page 404 /404.html;`.
+   **Required even if you skip the rest:** the old `try_files $uri $uri/ /index.html;` redirects every page to
+   `http://…:8090/page/` with the new build — use `try_files $uri $uri/index.html /index.html;` and `absolute_redirect off;`.
    Keep your existing `listen`, SSL and `root` lines.
 3. `sudo nginx -t` → must say *syntax is ok / test is successful*. Only then: `sudo systemctl reload nginx`.
 4. If anything breaks: restore the file you edited from `~/nginx-before.txt` and reload again.
