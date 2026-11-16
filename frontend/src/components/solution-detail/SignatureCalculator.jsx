@@ -45,7 +45,7 @@ export default function SignatureCalculator({ signature }) {
       <div className="container-x relative">
         <SectionHeading eyebrow={signature.eyebrow} heading={signature.heading} sub={signature.body} max="max-w-2xl" />
 
-        <div className="mt-12 grid max-w-5xl items-stretch gap-6 lg:grid-cols-[1fr_1fr]">
+        <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-[1fr_1fr]">
           {/* inputs */}
           <div className="rounded-3xl border border-line bg-white p-7 shadow-card md:p-9">
             <div className="space-y-7">

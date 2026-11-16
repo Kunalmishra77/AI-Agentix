@@ -20,10 +20,10 @@ function initials(name) {
 
 // Circular avatar — real photo when provided, else initials (confirmed) or icon (pending).
 function Avatar({ m, size = 'md' }) {
-  const dim = size === 'lg' ? 'h-24 w-24 text-2xl' : 'h-16 w-16 text-lg'
+  const dim = size === 'lg' ? 'h-28 w-28 text-3xl' : 'h-24 w-24 text-2xl'
   const icon = size === 'lg' ? 'h-10 w-10' : 'h-7 w-7'
   if (m.image) {
-    return <img src={m.image} alt={m.pending ? '' : m.name} className={`${dim} rounded-full object-cover ring-2 ring-accent-soft`} />
+    return <img src={m.image} alt={m.pending ? '' : m.name} width="224" height="224" loading="lazy" decoding="async" className={`${dim} rounded-full object-cover ring-4 ring-accent-soft`} />
   }
   if (m.pending) {
     return (
@@ -64,7 +64,8 @@ export default function AboutLeadership() {
         max="max-w-2xl"
       />
 
-      <div className="mt-12 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {/* full content width, like every other section (cards fill the row) */}
+      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {leadership.members.map((m, i) => {
           const openable = !!m.bio
           const Wrapper = openable ? 'button' : 'div'
@@ -78,6 +79,7 @@ export default function AboutLeadership() {
                 <Avatar m={m} />
                 <h3 className={`mt-4 text-base font-bold ${m.pending ? 'text-body-soft' : 'text-heading'}`}>{m.name}</h3>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-accent">{m.role}</p>
+                {m.qualification && <p className="mt-2 text-sm text-body">{m.qualification}</p>}
 
                 {openable ? (
                   <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-body-soft transition-colors group-hover:text-accent">
@@ -126,6 +128,7 @@ export default function AboutLeadership() {
                 <Avatar m={member} size="lg" />
                 <h3 id="leader-dialog-name" className="mt-5 text-xl font-bold text-heading">{member.name}</h3>
                 <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-accent">{member.role}</p>
+                {member.qualification && <p className="mt-2 text-sm text-body">{member.qualification}</p>}
                 <div className="mt-5 h-px w-12 bg-line" aria-hidden />
                 <p className="mt-5 text-left text-sm leading-relaxed text-body">{member.bio}</p>
               </div>

@@ -9,7 +9,7 @@ export default function SolutionCompare({ compare }) {
       <SectionHeading eyebrow={compare.eyebrow} heading={compare.heading} max="max-w-2xl" />
 
       {/* DESKTOP (md+): highlighted 3-column table */}
-      <div className="relative mt-16 hidden max-w-4xl md:block">
+      <div className="relative mt-16 hidden md:block">
         {/* elevated highlight behind the AI column */}
         <div className="absolute -top-5 bottom-0 left-1/3 w-1/3 rounded-3xl bg-gradient-to-b from-accent-soft to-white ring-1 ring-accent/30 shadow-[0_20px_50px_-24px_rgba(242,101,34,0.45)]" aria-hidden />
         {/* recommended badge */}

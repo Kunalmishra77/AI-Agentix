@@ -38,7 +38,8 @@ export default function IndustryStats({ stats }) {
   const inView = useInView(ref, { once: true, margin: '-60px' })
   return (
     <section ref={ref} className="bg-white py-10 md:py-12">
-      <div className="mx-auto grid max-w-4xl grid-cols-2 gap-y-8 rounded-2xl border border-line bg-surface-alt/40 px-4 py-8 md:grid-cols-4">
+      <div className="container-x">
+      <div className="grid grid-cols-2 gap-y-8 rounded-2xl border border-line bg-surface-alt/40 px-4 py-8 md:grid-cols-4">
         {stats.map((s, i) => (
           <motion.div
             key={s.label}
@@ -55,6 +56,7 @@ export default function IndustryStats({ stats }) {
             {s.sub && <div className="mt-0.5 text-xs text-body-soft">{s.sub}</div>}
           </motion.div>
         ))}
+      </div>
       </div>
     </section>
   )
