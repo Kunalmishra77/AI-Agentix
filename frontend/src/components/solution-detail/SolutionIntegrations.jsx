@@ -12,7 +12,7 @@ export default function SolutionIntegrations({ integrations, tone = 'alt' }) {
     <Section tone={tone}>
       <SectionHeading eyebrow={integrations.eyebrow} heading={integrations.heading} sub={integrations.body} max="max-w-2xl" />
 
-      <div className="mt-12 grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
         {integrations.tools.map((t, i) => (
           <motion.div
             key={t}

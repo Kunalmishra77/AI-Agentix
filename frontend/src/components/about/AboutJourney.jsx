@@ -27,7 +27,7 @@ export default function AboutJourney() {
         <SectionHeading eyebrow={journey.eyebrow} heading={journey.heading} tone="dark" max="max-w-2xl" />
 
         <div
-          className="mt-14 max-w-5xl"
+          className="mt-14"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >

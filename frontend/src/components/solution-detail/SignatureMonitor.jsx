@@ -22,7 +22,7 @@ export default function SignatureMonitor({ signature }) {
         <SectionHeading eyebrow={signature.eyebrow} heading={signature.heading} sub={signature.body} max="max-w-2xl" />
 
         {/* dark control-room panel */}
-        <div className="relative mt-12 max-w-5xl overflow-hidden rounded-3xl bg-ink p-6 text-white shadow-float md:p-8">
+        <div className="relative mt-12 overflow-hidden rounded-3xl bg-ink p-6 text-white shadow-float md:p-8">
           <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-accent/20 blur-[90px]" aria-hidden />
           <div className="relative">
             {/* header */}

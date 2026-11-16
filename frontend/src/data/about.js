@@ -108,19 +108,21 @@ export const compare = {
   cta: { label: 'Work With AI Agentix', to: '/contact' },
 }
 
-// Leadership team. Layout is live; profiles fill in as they are confirmed.
-// `image: null` renders an elegant placeholder. `pending: true` shows a
-// "To be announced" name until the real profile is provided. Do NOT add
-// biographies until they are supplied by the company.
+// Leadership team — names, titles and qualifications as confirmed by the company.
+// image: put the photo in /public/images/team/ (square, ≥ 400×400) and set the path
+//        here, e.g. '/images/team/anant-sanadhya.webp'; null shows initials.
+// qualification: short line under the title (degree / certification); '' hides it.
+// bio: opens the "View profile" modal; '' means no modal. Do NOT invent bios.
 export const leadership = {
   eyebrow: 'Leadership',
   heading: 'The Team Building AI Agentix',
   sub: 'The people behind every automation we ship — driving strategy, engineering, and delivery.',
   members: [
-    { name: 'Anant Sanadhya', role: 'CEO & Founder', image: null, pending: false, bio: '' },
-    { name: 'Vitalsai Gorrela', role: 'Co-Founder & CMO', image: null, pending: false,
+    { name: 'Anant Sanadhya', role: 'CEO & Founder', qualification: '', image: null, pending: false, bio: '' },
+    { name: 'Vitalsai Gorrela', role: 'Co-Founder & CMO', qualification: '', image: null, pending: false,
       bio: "As Co-Founder and Chief Marketing Officer of AGENTiX, Vitalsai Gorrela drives the company's operations, strategy, and execution. With a strong foundation in AI, cloud engineering, and enterprise automation, he leads cross-functional teams to build scalable AI solutions that help businesses innovate, automate, and grow. He is passionate about turning complex technologies into real-world business impact while shaping the future of intelligent automation." },
-    // Placeholder "To be announced" cards removed (AGX-018); add real people here when ready.
+    { name: 'Vimlendra', role: 'Co-Founder & CTO', qualification: '', image: null, pending: false, bio: '' },
+    { name: 'Mukesh Jain', role: 'Co-Founder & Accountant', qualification: 'Chartered Accountant (CA)', image: null, pending: false, bio: '' },
   ],
 }
 

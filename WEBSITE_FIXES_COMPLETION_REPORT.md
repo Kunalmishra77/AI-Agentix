@@ -1,8 +1,8 @@
 # AI Agentix Website — Fixes Completion Report
 
 **Branch:** `fix/website-audit-2026-10` (from `master` @ `80ba5d3`) · **Date:** 27–28 October 2026
-**Deployment status:** **NOT DEPLOYED.** Everything below is implemented and tested locally. The live site
-(ai-agentix.com) is unchanged. Deployment needs VPS access — see §9.
+**Deployment status:** **DEPLOYED to the VPS on 28 October 2026** (commit `29bd759`, merged PR #1) and verified on
+https://ai-agentix.com — see §12.
 
 Status legend: **✅ Tested** = implemented and verified (automated test and/or real browser) ·
 **🟡 Implemented** = done, not fully verifiable locally · **⏳ Needs decision/credential** · **❌ Not done**
@@ -246,3 +246,27 @@ that project is still used.
 - GA4 Measurement ID (banner and tracking switch on when it is added); newsletter sending tool not chosen.
 - Vite 8 / React Router 7 upgrades — recommended, not done (major versions).
 - Not tested on real iOS/Android devices; browser tests used Chromium.
+
+## 12. Live deployment record (28 October 2026)
+
+- VPS 76.13.250.173: Traefik (Coolify) → nginx :8090 → pm2 `ai-agentix-backend` (Node 20, port 3001), repo
+  `/var/www/ai-agentix` on `master`. Backups: `/root/ai-agentix-env-backup-2026-10-28`,
+  `/root/ai-agentix-dist-backup-2026-10-28.tgz`; previous build in `frontend/dist-prev`.
+- `server/.env`: production mode, `TRUST_PROXY_HOPS=2`, leads in `/var/lib/ai-agentix/leads`, Gmail SMTP,
+  Google Sheet webhook, new OpenAI key with `LLM_DAILY_LIMIT=300` (the old key was invalid — it had been pasted as
+  `sk-sk-…`).
+- `deploy.sh` run: 18/18 tests, knowledge base 362 chunks + embeddings, build, swap, pm2 reload.
+- **Issue found and fixed during deploy:** the old nginx rule `try_files $uri $uri/ /index.html` answered the new
+  per-route folders with `301 → http://ai-agentix.com:8090/page/`. Changed on the VPS to
+  `try_files $uri $uri/index.html /index.html;` + `absolute_redirect off;` (`nginx -t` OK, reloaded).
+- **Verified live (read-only, from outside):** 20 URLs return 200 with correct titles/canonicals; sitemap/robots/OG
+  image served; API headers `nosniff`/`DENY`; requests without Origin → 403; desktop 1366 px and mobile 390 px:
+  WhatsApp bottom-left (`wa.me/919217167347`), lead form bottom-right with consent, "Ask AI" above it, no overlap,
+  no horizontal scroll, no console errors or failed requests; hero video 480p (mobile) / 720p (desktop);
+  assistant answers in AI mode (CEO Anant Sanadhya); Privacy Policy shows Grievance Officer and address.
+- **Verified live lead:** `L20261028-ff3ca20b` from the floating form → stored → email delivered → Sheet row;
+  `npm run leads -- --pending` → 0 undelivered.
+- Still to do: GA4 Measurement ID; optional nginx security headers / gzip_static / real 404 status
+  (`deploy/nginx-recommended.conf`); merge the small deploy-script fix (commit `9bfcd8d` on the branch);
+  rotate the Gmail App Password and OpenAI key that were shared in chat; set an OpenAI monthly limit.
+

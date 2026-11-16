@@ -67,6 +67,6 @@ say "Verify"
 curl -fsS "http://127.0.0.1:${API_PORT}/api/health" && echo
 curl -fsS -o /dev/null -w "home %{http_code}\n" "$SITE_URL/"
 curl -fsS -o /dev/null -w "thank-you %{http_code}\n" "$SITE_URL/thank-you"
-curl -fsS "$SITE_URL/sitemap.xml" | head -3
+curl -fsS "$SITE_URL/sitemap.xml" | head -3 || true   # head closing the pipe must not stop the script
 pm2 status "$PM2_APP"
 echo; echo "Deployed $(git -C "$APP_DIR" rev-parse --short HEAD). Now test a form on the live site."

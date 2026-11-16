@@ -67,7 +67,7 @@ export default function SignatureChat({ signature }) {
       <div className="container-x relative">
         <SectionHeading eyebrow={signature.eyebrow} heading={signature.heading} sub={signature.body} max="max-w-2xl" />
 
-        <div className="mt-12 grid max-w-5xl items-stretch gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-[1.15fr_0.85fr]">
           {/* chat window */}
           <div className="flex flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-card">
             {/* header */}
