@@ -118,11 +118,13 @@ export const leadership = {
   heading: 'The Team Building AI Agentix',
   sub: 'The people behind every automation we ship — driving strategy, engineering, and delivery.',
   members: [
-    { name: 'Anant Sanadhya', role: 'CEO & Founder', qualification: '', image: null, pending: false, bio: '' },
-    { name: 'Vitalsai Gorrela', role: 'Co-Founder & CMO', qualification: '', image: null, pending: false,
-      bio: "As Co-Founder and Chief Marketing Officer of AGENTiX, Vitalsai Gorrela drives the company's operations, strategy, and execution. With a strong foundation in AI, cloud engineering, and enterprise automation, he leads cross-functional teams to build scalable AI solutions that help businesses innovate, automate, and grow. He is passionate about turning complex technologies into real-world business impact while shaping the future of intelligent automation." },
-    { name: 'Vimlendra', role: 'Co-Founder & CTO', qualification: '', image: null, pending: false, bio: '' },
-    { name: 'Mukesh Jain', role: 'Co-Founder & Accountant', qualification: 'Chartered Accountant (CA)', image: null, pending: false, bio: '' },
+    // Details and photos from the company deck "AGENTIX-AI-HIMS" (Sept 2026).
+    { name: 'Anant Sanadhya', role: 'CEO & Founder', qualification: 'B.Pharma · MBA, IIM Calcutta', image: '/images/team/anant-sanadhya.webp', pending: false,
+      bio: 'Anant Sanadhya founded AI Agentix. A Bachelor of Pharmacy gives first-hand understanding of clinical workflows, drug management and pharmacy operations, and an MBA from IIM Calcutta, one of India’s top-ranked business schools, brings rigorous strategic, financial and operational thinking to how every solution is priced, positioned and rolled out. Anant leads the company’s direction, partnerships and healthcare vertical, translating real-world workflows into AI systems that businesses actually adopt.' },
+    { name: 'Vimlendra Tiwari', role: 'Co-Founder & CTO', qualification: 'B.Tech & M.Tech, IIT Kharagpur', image: '/images/team/vimlendra-tiwari.webp', pending: false,
+      bio: 'A B.Tech and M.Tech from IIT Kharagpur, one of India’s premier technology institutes, anchors deep engineering rigour in everything AI Agentix builds. Vimlendra Tiwari leads the technical build: the AI and voice models, the real-time integration layer, and the systems that connect every department without manual handoffs. Vimlendra also owns scalability, data architecture and interoperability standards, the engineering backbone that large deployments require.' },
+    { name: 'Vitalsai Gorella', role: 'Co-Founder & CMO', qualification: 'B.Tech', image: '/images/team/vitalsai-gorella.webp', pending: false,
+      bio: 'Vitalsai Gorella is Co-Founder and Chief Marketing Officer of AI Agentix. A B.Tech foundation supports hands-on ownership of product execution and technical delivery across client engagements. Vitalsai drives go-to-market, organisational scale and cross-functional execution, bridging the founding vision and on-ground implementation so that every rollout goes live on schedule, with the right people and processes in place.' },
   ],
 }
 

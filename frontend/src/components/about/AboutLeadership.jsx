@@ -65,7 +65,7 @@ export default function AboutLeadership() {
       />
 
       {/* full content width, like every other section (cards fill the row) */}
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-12 grid gap-5 md:grid-cols-3">
         {leadership.members.map((m, i) => {
           const openable = !!m.bio
           const Wrapper = openable ? 'button' : 'div'
