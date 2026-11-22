@@ -87,3 +87,13 @@ body.agx-drawer-open .lw-widget { display: none !important; }
     scroll-behavior: auto !important;
   }
 }
+
+/* Landing page (/book-a-demo) helpers */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.lp-dots {
+  background-image: radial-gradient(rgba(18, 20, 26, 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+/* the ads landing page has its own CTAs and mobile action bar: hide the site-wide floats */
+body.agx-lp .lw-widget { display: none !important; }

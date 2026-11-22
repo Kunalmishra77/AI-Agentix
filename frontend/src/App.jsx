@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import ScrollReset from './components/common/ScrollReset.jsx'
 import ScrollToTop from './components/common/ScrollToTop.jsx'
 import WhatsAppFloat from './components/common/WhatsAppFloat.jsx'
@@ -24,11 +24,15 @@ const TermsPage = lazy(() => import('./pages/TermsPage.jsx'))
 const RefundPage = lazy(() => import('./pages/RefundPage.jsx'))
 const ThankYouPage = lazy(() => import('./pages/ThankYouPage.jsx'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'))
+// Google Ads landing page: its own header, CTAs and mobile action bar, no site floats.
+const LandingPage = lazy(() => import('./pages/LandingPage.jsx'))
+const LandingThankYouPage = lazy(() => import('./pages/LandingThankYouPage.jsx'))
 
 // Full-height blank placeholder while a page chunk loads: no spinner flash, no layout jump.
 const PageFallback = () => <div className="min-h-screen bg-surface" aria-busy="true" />
 
 export default function App() {
+  const isLanding = useLocation().pathname.startsWith('/book-a-demo')
   return (
     <>
       <ScrollReset />
@@ -49,13 +53,19 @@ export default function App() {
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/refund" element={<RefundPage />} />
           <Route path="/thank-you" element={<ThankYouPage />} />
+          <Route path="/book-a-demo" element={<LandingPage />} />
+          <Route path="/book-a-demo/thank-you" element={<LandingThankYouPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
       {/* Floating actions: WhatsApp + back-to-top bottom-left; lead form (index.html) bottom-right with the AI assistant above it. */}
-      <WhatsAppFloat />
-      <ScrollToTop />
-      <AssistantWidget />
+      {!isLanding && (
+        <>
+          <WhatsAppFloat />
+          <ScrollToTop />
+          <AssistantWidget />
+        </>
+      )}
       <CookieConsent />
     </>
   )
