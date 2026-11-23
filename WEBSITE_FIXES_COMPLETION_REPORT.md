@@ -270,3 +270,32 @@ that project is still used.
   (`deploy/nginx-recommended.conf`); merge the small deploy-script fix (commit `9bfcd8d` on the branch);
   rotate the Gmail App Password and OpenAI key that were shared in chat; set an OpenAI monthly limit.
 
+
+## 13. Google Ads landing page — /book-a-demo (22 Nov 2026)
+
+Built for paid traffic, modelled on the structure of the Umang `/book-consultation/` page and
+the two references supplied (neuragg.com/demo, kraya-ai.com/book-a-call). Not linked from the site
+navigation; `noindex`; not in the sitemap.
+
+- **Page:** `frontend/src/pages/LandingPage.jsx` and `components/landing/*`; copy in `data/landing.js`.
+  Sections: focused header (phone + "Book free call"); hero with rotating headline and a 2-step booking
+  card (Mon–Sat, 10:00 AM–6:30 PM IST, then name / mobile / email / business + optional "what to
+  automate" + required DPDP consent); tools strip; problem statement; four product blocks with animated
+  mock-ups and a case-study result each; interactive "watch an enquiry become a booked meeting" demo
+  (4 industries, labelled as a sample); results and quote; founders with photos; process; trust points;
+  FAQ; final CTA with a second booking card; mobile action bar (call / WhatsApp / book). Site floats
+  (WhatsApp, Ask AI, lead widget) are hidden on this page.
+- **Claims:** only figures already on the site; each result names the case-study client type.
+- **Leads:** new type `lp` in `server/src/leads.mjs` (slot and need are validated against fixed lists,
+  date must be within 90 days). Stored → email → Google Sheet like every other form; UTM + `gclid`
+  are saved with the lead. New server test (19/19 pass).
+- **Thank-you:** `/book-a-demo/thank-you` shows the booked slot; reached with `replace`, so Back /
+  refresh never resubmits.
+- **Google Ads conversion:** set `analytics.googleAdsId` (AW-…) and `googleAdsLeadLabel` in
+  `frontend/src/data/site.js`. The tag runs in Consent Mode v2 (all denied until the visitor accepts
+  cookies); the conversion fires once per lead id (`transaction_id`) on the thank-you page. Verified with
+  a test ID (1 conversion, 0 after reload) and reverted to empty. When the real ID is added, the Privacy
+  Policy cookie paragraph must also mention Google Ads measurement (needs approval).
+- **Tests:** booking flow on desktop and mobile (empty → field errors + focus, no consent → blocked,
+  double-click → 1 request, thank-you, reload → no resubmit, gclid saved); overflow sweep 320–1920 px =
+  0; no console errors; main-site floats unchanged.

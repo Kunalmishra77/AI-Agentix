@@ -95,6 +95,22 @@ test('demo date in the past is rejected, future accepted', async () => {
   assert.equal((await post(demo(future))).status, 200)
 })
 
+test('landing-page booking: slot, need and gclid are kept; bad slot and far-future date are rejected', async () => {
+  const lp = (f = {}) => ({ type: 'lp', consent: true, elapsed: 9, utm: { gclid: 'AUDIT-TEST-GCLID', utm_source: 'google' },
+    fields: { name: 'Audit Test', phone: '+91 98765 43210', email: 'test@example.invalid', company: 'AUDIT TEST', need: ['AI voice calling'], date: future, callSlot: '11:30 AM', ...f } })
+  const ok = await post(lp())
+  const json = await ok.json()
+  assert.equal(ok.status, 200, JSON.stringify(json))
+  const saved = readLeads().find((l) => l.id === json.id)
+  assert.equal(saved.type, 'lp')
+  assert.equal(saved.fields.callSlot, '11:30 AM')
+  assert.deepEqual(saved.fields.need, ['AI voice calling'])
+  assert.equal(saved.utm.gclid, 'AUDIT-TEST-GCLID')
+  assert.equal((await post(lp({ callSlot: '3:15 AM' }))).status, 400)
+  assert.equal((await post(lp({ company: '' }))).status, 400)
+  assert.equal((await post(lp({ date: '2099-01-01' }))).status, 400)
+})
+
 test('foreign origin and missing origin are refused in production', async () => {
   assert.equal((await post(audit(), { origin: 'https://evil.example' })).status, 403)
   assert.equal((await post(audit(), { origin: null })).status, 403)

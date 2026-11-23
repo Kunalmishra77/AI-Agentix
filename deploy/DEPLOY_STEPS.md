@@ -50,6 +50,18 @@ If you change the script later: **Deploy → Manage deployments → ✏ Edit →
 
 ---
 
+## B2. Google Ads landing page (browser, ~10 min)
+
+Landing page URL for ads: `https://ai-agentix.com/book-a-demo` (thank-you: `/book-a-demo/thank-you`).
+
+1. Google Ads → Goals → Conversions → New conversion action → Website → enter `ai-agentix.com` →
+   "Add a conversion action manually" → Category **Submit lead form**, Value: optional, Count: **One**.
+2. Tag setup → "Use Google tag" → copy the **Conversion ID** (`AW-…`) and **Conversion label**.
+3. Send both to the developer — they go in `frontend/src/data/site.js` (`googleAdsId`,
+   `googleAdsLeadLabel`) and the Privacy Policy cookie paragraph is updated; then redeploy.
+4. Ads final URL: `https://ai-agentix.com/book-a-demo` (keep auto-tagging ON so `gclid` is saved with
+   each lead; it shows in the email and Sheet "Campaign" column).
+
 ## C. Deploy on the VPS (SSH, ~20–30 min)
 
 You need: SSH login to the VPS (`76.13.250.173`), and `sudo` rights.

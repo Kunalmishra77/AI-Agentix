@@ -14,6 +14,12 @@ export const contactInfo = {
 // cookie banner. When set, GA loads only after the visitor accepts analytics cookies.
 export const analytics = {
   ga4Id: '',
+  // Google Ads conversion tracking for the ads landing page (/book-a-demo).
+  // googleAdsId looks like 'AW-123456789'; googleAdsLeadLabel is the conversion label
+  // from Google Ads → Goals → Conversions → (your "Lead" action) → Tag setup.
+  // Empty = no Ads tag. Runs in Consent Mode: no ad cookies unless the visitor accepts.
+  googleAdsId: '',
+  googleAdsLeadLabel: '',
 }
 
 export const whatsappLink = (text = 'Hi AI Agentix, I have a question about your services.') =>

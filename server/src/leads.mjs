@@ -31,6 +31,7 @@ const FORM_LABELS = {
   partner: 'Partnership (contact page)',
   popup: 'Book a Consultation (floating form)',
   newsletter: 'Newsletter (footer)',
+  lp: 'Book a Free Call (ads landing page /book-a-demo)',
 }
 
 const OPTIONS = {
@@ -42,6 +43,10 @@ const OPTIONS = {
   attendees: ['Just me', '2–3 people', '4–6 people', '7+ people'],
   partnershipType: ['Digital Agency', 'Business Consultant', 'Tech / SaaS Partner', 'White-label Reseller'],
   clientBase: ['1–5 clients', '6–20 clients', '21–50 clients', '50+ clients'],
+  // Landing page (/book-a-demo) — keep in sync with frontend/src/data/landing.js
+  callSlot: ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', '2:00 PM',
+    '2:30 PM', '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM', '5:00 PM', '5:30 PM', '6:00 PM', '6:30 PM'],
+  need: ['Lead follow-up & WhatsApp', 'AI voice calling', 'Customer support', 'Finance & invoicing', 'HR & operations', 'Not sure yet'],
 }
 
 // kind: text | email | phone | url | date | select | multi ; max = max length
@@ -84,13 +89,22 @@ const SCHEMAS = {
   newsletter: {
     email: { kind: 'email', required: true },
   },
+  lp: {
+    name: { kind: 'text', required: true, max: 100 },
+    phone: { kind: 'phone', required: true },
+    email: { kind: 'email', required: true },
+    company: { kind: 'text', required: true, max: 150 },
+    need: { kind: 'multi' },
+    date: { kind: 'date', required: true },
+    callSlot: { kind: 'select', required: true },
+  },
 }
 
 const LABELS = {
   name: 'Name', phone: 'Phone', email: 'Email', company: 'Company', industry: 'Industry', teamSize: 'Team size',
   automate: 'Wants to automate', date: 'Preferred date', timeSlot: 'Time slot', focus: 'Demo focus', attendees: 'Attendees',
   agency: 'Company / agency', website: 'Website', partnershipType: 'Partnership type', clientBase: 'Client base',
-  lookingFor: 'Looking for', message: 'Message',
+  lookingFor: 'Looking for', message: 'Message', need: 'Wants help with', callSlot: 'Preferred call time (IST)',
 }
 
 export const isEmail = (v) => /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/.test(v) && v.length <= 254
@@ -148,6 +162,7 @@ export function validateLead(type, raw = {}) {
       case 'date':
         if (!/^\d{4}-\d{2}-\d{2}$/.test(v) || Number.isNaN(Date.parse(v))) errors[key] = 'Please pick a valid date.'
         else if (v < todayIST()) errors[key] = 'Please pick today or a future date.'
+        else if (v > new Date(Date.now() + 5.5 * 3600_000 + 90 * 86400_000).toISOString().slice(0, 10)) errors[key] = 'Please pick a date within the next 90 days.'
         break
       case 'select':
         if (!OPTIONS[key].includes(v)) errors[key] = 'Invalid selection.'

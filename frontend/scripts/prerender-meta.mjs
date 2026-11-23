@@ -6,7 +6,7 @@
 // Tags carry data-rh="true" so react-helmet-async replaces them at runtime.
 import fs from 'node:fs'
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { createServer } from 'vite'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -70,10 +70,20 @@ fs.writeFileSync(path.join(dist, 'thank-you', 'index.html'), render({
   path: '/thank-you', title: 'Thank You — AI Agentix', description: 'Thank you for contacting AI Agentix.', noindex: true,
 }))
 
+// Google Ads landing page + its thank-you: noindex (ads traffic only, not for search).
+const landing = await import(pathToFileURL(path.join(root, 'src', 'data', 'landing.js')).href)
+for (const [route, title, description] of [
+  [landing.LP_PATH, landing.meta.title, landing.meta.description],
+  [landing.LP_THANKS, 'Your call is booked — AI Agentix', 'Thank you for booking a free AI automation call.'],
+]) {
+  fs.mkdirSync(path.join(dist, route.slice(1)), { recursive: true })
+  fs.writeFileSync(path.join(dist, route.slice(1), 'index.html'), render({ path: route, title, description, noindex: true }))
+}
+
 const lastmod = new Date().toISOString().slice(0, 10)
 const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
   + routes.map((r) => `  <url><loc>${esc(canonicalUrl(r.path))}</loc><lastmod>${lastmod}</lastmod><priority>${r.priority}</priority></url>`).join('\n')
   + '\n</urlset>\n'
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap)
 
-console.log(`[prerender-meta] ${routes.length} routes + 404 + thank-you · sitemap.xml (${SITE_URL})`)
+console.log(`[prerender-meta] ${routes.length} routes + 404 + thank-you + ads landing page · sitemap.xml (${SITE_URL})`)
