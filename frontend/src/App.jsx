@@ -1,10 +1,11 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import ScrollReset from './components/common/ScrollReset.jsx'
 import ScrollToTop from './components/common/ScrollToTop.jsx'
 import WhatsAppFloat from './components/common/WhatsAppFloat.jsx'
 import AssistantWidget from './components/assistant/AssistantWidget.jsx'
 import CookieConsent from './components/common/CookieConsent.jsx'
+import { trackPageView } from './lib/analytics'
 import HomePage from './pages/HomePage.jsx'
 
 // Route-level code splitting (AGX-028): the home page ships in the main bundle,
@@ -31,8 +32,21 @@ const LandingThankYouPage = lazy(() => import('./pages/LandingThankYouPage.jsx')
 // Full-height blank placeholder while a page chunk loads: no spinner flash, no layout jump.
 const PageFallback = () => <div className="min-h-screen bg-surface" aria-busy="true" />
 
+// In-app navigations → agx_page_view for Google Tag Manager (the first load is GTM's own
+// page view). Waits briefly so the new page's <title> is in place.
+function usePageViews(pathname) {
+  const first = useRef(true)
+  useEffect(() => {
+    if (first.current) { first.current = false; return }
+    const t = setTimeout(() => trackPageView(pathname), 400)
+    return () => clearTimeout(t)
+  }, [pathname])
+}
+
 export default function App() {
-  const isLanding = useLocation().pathname.startsWith('/book-a-demo')
+  const { pathname } = useLocation()
+  const isLanding = pathname.startsWith('/book-a-demo')
+  usePageViews(pathname)
   return (
     <>
       <ScrollReset />

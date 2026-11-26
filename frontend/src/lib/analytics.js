@@ -1,4 +1,5 @@
-// Consent-aware Google Analytics 4 (AGX-003). Nothing loads until the visitor accepts
+// Consent-aware Google tags (AGX-003): Google Tag Manager (public/agx-tags.js, loaded in
+// <head> with consent defaults) plus optional direct GA4 / Google Ads tags below. Nothing loads until the visitor accepts
 // analytics cookies; the choice is remembered in this browser and can be changed from the
 // footer ("Cookie settings"). Uses Google Consent Mode v2: everything denied by default.
 // Events never include personal data.
@@ -6,7 +7,11 @@ import { analytics } from '../data/site'
 
 const STORE = 'agx_consent'
 export const CONSENT_EVENT = 'agx:consent-open'
-export const analyticsEnabled = () => !!(analytics.ga4Id || analytics.googleAdsId)
+export const gtmEnabled = () => !!(typeof window !== 'undefined' && window.agxTags?.gtm?.length)
+export const analyticsEnabled = () => !!(analytics.ga4Id || analytics.googleAdsId || gtmEnabled())
+// Ad cookies are asked for only when the site actually runs Google Ads measurement and the
+// Privacy Policy says so (analytics.adCookies). Ad personalisation is never switched on.
+export const adCookiesUsed = () => !!(analytics.googleAdsId || analytics.adCookies)
 export const adsEnabled = () => !!(analytics.googleAdsId && analytics.googleAdsLeadLabel)
 
 export function getConsent() {
@@ -20,16 +25,19 @@ function ensureGtag(id) {
   if (base) return
   base = true
   window.dataLayer = window.dataLayer || []
-  window.gtag = function gtag() { window.dataLayer.push(arguments) } // eslint-disable-line prefer-rest-params
-  window.gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' })
-  if (getConsent()?.analytics) grant()
+  if (typeof window.gtag !== 'function') window.gtag = function gtag() { window.dataLayer.push(arguments) } // eslint-disable-line prefer-rest-params
+  // agx-tags.js already set the consent defaults (from the saved choice) before GTM loaded
+  if (!window.agxConsentDefaultSet) {
+    window.gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' })
+    if (getConsent()?.analytics) grant()
+  }
   window.gtag('js', new Date())
   const s = document.createElement('script')
   s.async = true
   s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`
   document.head.appendChild(s)
 }
-const grant = () => window.gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: analytics.googleAdsId ? 'granted' : 'denied', ad_user_data: analytics.googleAdsId ? 'granted' : 'denied' })
+const grant = () => window.gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: adCookiesUsed() ? 'granted' : 'denied', ad_user_data: adCookiesUsed() ? 'granted' : 'denied' })
 
 let gaLoaded = false
 function loadGa() {
@@ -60,7 +68,7 @@ export function reportAdsConversion(leadId) {
 }
 
 export function setConsent(accepted) {
-  try { localStorage.setItem(STORE, JSON.stringify({ analytics: accepted, at: new Date().toISOString() })) } catch { /* private mode */ }
+  try { localStorage.setItem(STORE, JSON.stringify({ analytics: accepted, ads: accepted && adCookiesUsed(), at: new Date().toISOString() })) } catch { /* private mode */ }
   if (accepted) { if (window.gtag) grant(); loadGa() }
   else if (window.gtag) {
     // withdrawing: stop collection now and remove Google cookies for this site
@@ -71,7 +79,20 @@ export function setConsent(accepted) {
 }
 
 export function track(name, params = {}) {
-  if (typeof window.gtag === 'function') window.gtag('event', name, params)
+  try {
+    if (gaLoaded || adsLoaded) window.gtag('event', name, params)
+    // plain dataLayer event so GTM triggers ("Custom Event") can use it
+    if (gtmEnabled()) { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: name, ...params }) }
+  } catch { /* analytics must never break the page */ }
+}
+
+// The site is a single-page app: GTM's "All Pages" trigger fires on the first load only.
+// Every later in-app navigation pushes agx_page_view (use it as a Custom Event trigger, or use
+// GTM's built-in History Change trigger). No personal data: path and title only.
+export function trackPageView(path) {
+  if (!gtmEnabled()) return
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({ event: 'agx_page_view', page_path: path, page_location: window.location.href, page_title: document.title })
 }
 
 // Called once at start-up: load GA if already accepted, and record clicks on contact links.
