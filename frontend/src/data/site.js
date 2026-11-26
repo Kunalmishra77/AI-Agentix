@@ -20,6 +20,10 @@ export const analytics = {
   // Empty = no Ads tag. Runs in Consent Mode: no ad cookies unless the visitor accepts.
   googleAdsId: '',
   googleAdsLeadLabel: '',
+  // Google Tag Manager containers are loaded from public/agx-tags.js (IDs live there).
+  // Set adCookies to true ONLY after the Privacy Policy cookie section is updated to say Google
+  // Ads measurement is used: until then accepting the banner grants analytics cookies only.
+  adCookies: false,
 }
 
 export const whatsappLink = (text = 'Hi AI Agentix, I have a question about your services.') =>
